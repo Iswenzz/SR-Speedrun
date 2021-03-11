@@ -1,3 +1,5 @@
+@ECHO OFF
+
 del mod.ff
 
 xcopy mp ..\..\raw\mp /SY
