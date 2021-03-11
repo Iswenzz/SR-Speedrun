@@ -1,0 +1,114 @@
+/*
+
+  _|_|_|            _|      _|      _|                  _|            
+_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|  
+  _|_|    _|    _|      _|          _|        _|    _|  _|      _|    
+      _|  _|    _|    _|  _|        _|        _|    _|  _|    _|      
+_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|  
+
+Map and GSC Made By SuX Lolz.
+
+Steam: http://steamcommunity.com/profiles/76561198163403316/
+Discord: https://discord.gg/76aHfGF
+Youtube: https://www.youtube.com/channel/UC1vxOXBzEF7W4g7TRU0C1rw
+Paypal: suxlolz@outlook.fr
+Email Pro: suxlolz@outlook.fr
+
+*/
+
+#include maps\mp\_utility;
+#include maps\mp\gametypes\_hud_util;
+#include common_scripts\utility;
+
+main()
+{
+	maps\mp\_load::main();
+	maps\mp\enter_teleport\_teleport::main();
+	maps\mp\_compass::setupMiniMap("compass_mp_q3_slide_wsrc09_03");
+ 
+	game["allies"] = "marines";
+	game["axis"] = "opfor";
+	game["attackers"] = "axis";
+	game["defenders"] = "allies";
+	game["allies_soldiertype"] = "desert";
+	game["axis_soldiertype"] = "desert";
+ 
+	setdvar("r_specularcolorscale","1");
+	setdvar("compassmaxrange","1600");
+	setdvar("r_glowbloomintensity0",".1");
+	setdvar("r_glowbloomintensity1",".1");
+	setdvar("r_glowskybleedintensity0",".1");
+	setDvar("bg_falldamagemaxheight", 20000000 );
+	setDvar("bg_falldamageminheight", 15000000 );
+
+	visionSetNaked("mp_q3_slide_wsrc09_03",0);
+
+	thread way_connect();
+	thread boost_trig();
+
+	level.slide_map = true;
+	level.slide_map_multiplier = 5;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+way_connect()
+{
+    wait 0.05;
+	
+    level.masterSpawn = spawn("script_origin",(-56,2592,-320));
+    level.masterSpawn.angles = (0,180,0);
+
+    sr\api\_map::createWay("normal", "Normal Way", "1");
+	
+    for(;;) 
+    {
+        level waittill( "connected", player );
+        player thread sr\api\_map::way_name();
+        player thread onPlayerSpawned();
+    }
+}
+
+onPlayerSpawned()
+{
+	self endon("disconnect");
+
+	for(;;)
+	{
+		self waittill("spawned_player");
+		self.boosted = false;
+	}
+}
+
+boost_trig()
+{
+	trig = getEnt("boost","targetname");
+
+	for(;;)
+	{
+		trig waittill("trigger",player);
+
+		if(!player.boosted)
+			player thread boost_do(trig);
+	}
+}
+
+boost_do(trig)
+{
+	self endon("disconnect");
+
+	self.boosted = true;
+	
+	if(self isTouching(trig))
+	{
+		for(i=0;i<4;i++)
+		{
+			self.health += 10000;
+			self finishPlayerDamage(self, self, 10000, 0, "MOD_PROJECTILE", "bh_mp", self.origin, AnglesToForward((0, 0, -90)), "none", 0);
+		}
+	}
+	
+	wait 2;
+	
+	self.boosted = false;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////

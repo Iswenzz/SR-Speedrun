@@ -1,0 +1,41 @@
+//////////////////////////////////////////////////////////////
+//////////////////////map by jerkan///////////////////////////
+//////////////////////////////////////////////////////////////
+/////////////////////XFire: jerkan18//////////////////////////
+//////////////////////////////////////////////////////////////
+///////////////////e-mail: jerkan@net.hr//////////////////////
+//////////////////////////////////////////////////////////////
+////////////////www.jerkanmaps.weebly.com/////////////////////
+//////////////////////////////////////////////////////////////
+
+main()
+{
+
+	thread trap7();
+
+}
+
+
+trap7()
+
+{
+	granata = getEnt( "granata", "targetname" );
+	killtrigger_t7 = getEnt( "killtrigger_t7", "targetname" );
+
+	killtrigger_t7 enableLinkTo();
+	killtrigger_t7 linkTo( granata );
+
+
+	trig_t7 = getEnt( "trap7_trigger", "targetname" );
+	brush1t7 = getEnt( "trap7_upitnik", "targetname" );
+	brush2t7 = getEnt( "trap7_blok", "targetname" );
+	brush3t7 = getEnt( "trap7_uputa", "targetname" );
+	fxt7 = getent ( "t7_fx" ,"targetname" ); //origin
+
+	t7_top_fx1 = getent ( "t7_top_fx1" ,"targetname" ); //origin
+	t7_top_fx2 = getent ( "t7_top_fx2" ,"targetname" ); //origin
+
+	granata movey( -96, 0.2 );
+	wait 0.2;
+
+}

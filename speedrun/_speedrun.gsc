@@ -1,0 +1,793 @@
+/*
+
+  _|_|_|            _|      _|      _|                  _|            
+_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|  
+  _|_|    _|    _|      _|          _|        _|    _|  _|      _|    
+      _|  _|    _|    _|  _|        _|        _|    _|  _|    _|      
+_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|  
+
+Script made by SuX Lolz (Iswenzz) and Sheep Wizard
+
+Steam: http://steamcommunity.com/profiles/76561198163403316/
+Discord: https://discord.gg/76aHfGF
+Youtube: https://www.youtube.com/channel/UC1vxOXBzEF7W4g7TRU0C1rw
+Paypal: suxlolz@outlook.fr
+Email Pro: suxlolz1528@gmail.com
+
+*/
+#include maps\mp\_utility;
+#include common_scripts\utility;
+#include maps\mp\gametypes\_hud_util;
+
+#include braxi\_common;
+#include braxi\_dvar;
+
+#include sr\sys\_gsxcommon;
+
+main()
+{
+	level.openFiles = 0;
+	level.timesToSave = 30;
+	level.krispymap = "mp_dr_nighty";
+	level.voteInProgress = false;
+
+	setDvar("sv_consayname", "^5#SR: ^7");
+	setDvar("sv_contellname", "^5#SR^7->^5PM: ^7");
+
+	thread sr\weapons\_setup::main();
+	thread speedrun\_leaderboard::loadTimes();
+	thread sr\features\_triggerfx::init();
+	thread sr\admin\_adminsys::init();
+	thread sr\misc\_spam::init();
+	thread sr\player\_options::init();
+	thread sr\sys\mapsetting::init();
+	thread sr\sys\maptriggers::init();
+	thread sr\admin\_chicken::init();
+	thread sr\admin\_saved_map::init();
+	thread sr\features\_race::init();
+	thread sr\features\_kz::init();
+	// thread speedrun\_speedrunbot::init();
+	thread vipList();
+}
+
+getXpBar()
+{
+	self waittill("spawned_player");
+	
+    if(!isDefined(self.getxpbar))
+    {
+        self clientcmd("setu sr_xp_bar 0");
+        self.getxpbar = true;
+    }
+}
+
+connectMessages()
+{
+	self endon("disconnect");
+	wait 2;
+
+	if(self.pers["team"] != "allies")
+		return;
+	
+	rank = "^7Player";
+	loc = self getgeolocation(2);
+	wait 1;
+
+	switch (self.admin_group)
+	{
+		case "owner": 		rank = "^5Owner";			break;
+		case "masteradmin": rank = "^9Master Admin"; 	break;
+		case "adminplus": 	rank = "^1Admin+"; 			break;
+		case "admin": 		rank = "^6Admin"; 			break;
+		case "member": 		rank = "^3Member"; 			break;
+		case "donator": 	rank = "^2Donator"; 		break;
+	}
+	wait 0.2;
+	exec("say  ^2Welcome^7 " + rank + " ^7" + self.name + " from^1 " + loc );
+}
+
+adminStuff()
+{	
+    if(!isDefined(self.admin_group))
+        return;
+    
+	switch (self.admin_group)
+	{
+		case "owner":
+			self thread adminPickup();
+			self thread sr\plugins\_srmenu::OnMenuResponse();
+			self thread noclip_check();
+			break;
+		case "masteradmin": 
+			self thread adminPickup();
+			break;
+		case "adminplus": 
+			break;
+		case "admin": 
+			break;
+		case "member": 
+			break;
+	}
+}
+
+noclip_check()
+{
+	self endon("disconnect");
+	self.noclip_ent = spawn("script_origin", (0, 0, 0));
+	self.noclip_isLinked = false;
+
+	while (true)
+	{
+		// wait for command toggle
+		while (!isDefined(self.sr_noclip))
+		{
+			// unlink if already linked to noclip ent
+			if (self.noclip_isLinked)
+			{
+				self.disableAntiEle = true;
+				self.noclip_isLinked = false;
+				self unlink();
+			}
+			wait 1;
+		}
+
+		// wait for frag button trigger
+		while (self fragButtonPressed())
+		{
+			// link to noclip ent
+			if (!self.noclip_isLinked)
+			{
+				self.noclip_isLinked = true;
+				self.disableAntiEle = false;
+				self.noclip_ent.origin = self getOrigin();
+				self linkTo(self.noclip_ent);
+			}
+
+			// move to forwarded origin
+			speed = 70;
+			if (self useButtonPressed())
+				speed = 300;
+			newPos = self getOrigin() + (anglesToForward(self getPlayerAngles()) * speed);
+			self.noclip_ent moveTo(newPos, 0.05);
+			wait 0.1;
+		}
+		wait 0.1;
+	}
+}
+
+fortniteDance()
+{
+    self endon("disconnect");
+    self endon("death");
+
+    currentweap = self getCurrentWeapon();	
+	self giveWeapon("fortnite_mp");
+	self switchToWeapon("fortnite_mp");
+			
+	wait 0.2;
+			
+	self setClientDvar("cg_thirdperson", 1);
+	self setClientDvar("cg_thirdpersonangle", 180);
+			
+	wait 7;
+			
+    self takeWeapon("fortnite_mp");
+    self switchToWeapon(currentweap);	
+	self setClientDvar("cg_thirdperson", 0);
+	self setClientDvar("cg_thirdpersonangle", 0);	
+}
+
+adminPickup()
+{
+    self endon( "disconnect" );
+    self.pickupMode = 0;
+	
+    while(1)
+    {    
+		wait 0.1;    
+        while(!self secondaryoffhandButtonPressed())
+            wait 0.05;
+       
+        start = self getEye();
+        end = start + maps\mp\_utility::vector_scale(anglestoforward(self getPlayerAngles()), 999999);
+        trace = bulletTrace(start, end, true, self);
+        dist = distance(start, trace["position"]);
+
+        ent = trace["entity"];
+
+        if(!isDefined(ent))
+        {
+            wait 0.05;
+            continue;
+        }
+
+        if(!IsPlayer(ent))
+        {
+            if(!isDefined(ent.originalPlace))
+                ent.originalPlace = ent GetOrigin();
+        }
+
+        if(isDefined(ent))
+        {
+            linker = spawn("script_origin", trace["position"]);
+            ent linkto(linker);
+
+		if(isDefined(ent.targetname))
+			self iprintlnbold(ent.targetname);
+
+            while(self secondaryoffhandButtonPressed())
+            {
+                wait 0.05;
+            }
+
+            while(!self secondaryoffhandButtonPressed() && isDefined(ent))
+            {
+                if(self UseButtonPressed())
+                {
+                    if(self.pickupMode == 0)
+                    {
+                        self.pickupMode = 1;
+                        self IPrintLnBold("Roate Yaw");
+                    }
+                    else if(self.pickupMode == 1)
+                    {
+                        self.pickupMode = 2;
+                        self IPrintLnBold("Roate Pitch");
+                    }
+                    else if(self.pickupMode == 2)
+                    {
+                        self.pickupMode = 3;
+                        self IPrintLnBold("Roate Roll");
+                    }
+                    else if(self.pickupMode == 3)
+                    {
+                        self.pickupMode = 4;
+                        self IPrintLnBold("Reset");
+                    }
+                    else if(self.pickupMode == 4)
+                    {
+                        self.pickupMode = 0;
+                        self IPrintLnBold("Change distance");
+                    }
+                    wait 0.1;
+                }
+
+                start = self getEye();
+                end = start + maps\mp\_utility::vector_scale(anglestoforward(self getPlayerAngles()), dist);
+                trace = bulletTrace(start, end, false, ent);
+                dist = distance(start, trace["position"]);
+
+                if(self.pickupMode == 0)
+                {
+
+                    if(self fragButtonPressed() && !self MeleeButtonPressed())
+                        dist -= 15;
+                    else if(self fragButtonPressed() && self MeleeButtonPressed())
+                        dist += 15;
+                }
+                if(self.pickupMode == 1)
+                {
+                    ang = linker.angles;
+
+                    if(self fragButtonPressed() && !self MeleeButtonPressed())
+                    {
+                        if(ang[2] == 180)
+                            linker rotateTo( (ang[0],ang[1],-180), 0.05);
+                        else
+                            linker rotateTo( (ang[0],ang[1],ang[2]+2), 0.05);
+                    }
+                    else if(self fragButtonPressed() && self MeleeButtonPressed())
+                    {
+                        if(ang[2] == -180)
+                            linker rotateTo( (ang[0],ang[1],180), 0.05);
+                        else
+                            linker rotateTo( (ang[0],ang[1],ang[2]-2), 0.05);
+                    }
+                }
+                if(self.pickupMode == 2)
+                {
+                    ang = linker.angles;
+
+                    if(self fragButtonPressed() && !self MeleeButtonPressed())
+                    {
+                        if(ang[1] == 180)
+                            linker rotateTo( (ang[0],-180,ang[2]), 0.05);
+                        else
+                            linker rotateTo( (ang[0],ang[1]+2,ang[2]), 0.05);
+                    }
+                    else if(self fragButtonPressed() && self MeleeButtonPressed())
+                    {
+                        if(ang[1] == -180)
+                            linker rotateTo( (ang[0],180,ang[2]), 0.05);
+                        else
+                            linker rotateTo( (ang[0],ang[1]-2,ang[2]), 0.05);
+                    }
+                }
+                if(self.pickupMode == 3)
+                {
+                    ang = linker.angles;
+
+                    if(self fragButtonPressed() && !self MeleeButtonPressed())
+                    {
+                        if(ang[0] == 180)
+                            linker rotateTo( (-180,ang[1],ang[2]), 0.05);
+                        else
+                            linker rotateTo( (ang[0]+2,ang[1],ang[2]), 0.05);
+                    }
+                    else if(self fragButtonPressed() && self MeleeButtonPressed())
+                    {
+                        if(ang[0] == -180)
+                            linker rotateTo( (180,ang[1],ang[2]), 0.05);
+                        else
+                            linker rotateTo( (ang[0]-2,ang[1],ang[2]), 0.05);
+                    }
+                }
+                if(self.pickupMode == 4)
+                {
+                    if(self fragButtonPressed() && !IsPlayer(ent))
+                    {
+                        ent unlink();
+                        ent MoveTo(ent.originalPlace, 0.05);
+                        ent rotateTo((0,0,0), 0.05);
+                        break;
+                    }
+                }
+                end = start + maps\mp\_utility::vector_Scale(anglestoforward(self getPlayerAngles()), dist);
+                trace = bulletTrace(start, end, false, ent);
+                linker.origin = trace["position"];
+
+                wait 0.05; 
+            }
+
+            if(isDefined(ent))
+                ent unlink();
+            linker delete();
+        }
+
+        while(self secondaryoffhandButtonPressed())
+            wait 0.05;
+    }
+}
+
+onConnect()
+{
+	if (self sr\admin\_adminsys::checkBanned())
+		return;
+	self thread sr\weapons\_setup::self_setup();
+	self thread sr\player\_id::checkid();
+	self thread speedrun\_speedrun::checkVIP();
+	self thread sr\admin\_adminsys::setGroup();
+	self thread sr\player\_options::onConnectOptions();
+	self thread speedrun\_speedrun::adminStuff();
+
+	self.pers["fullbright"] = 0;
+	self.pers["fovscale"] = 0;
+	self.pers["fxenabled"] = 1;
+	self.pers["login"] = false;
+
+	self.pb_190 = [];
+	self.pb_210 = [];
+
+	if (isDefined(level.normal_way) && isDefined(level.normal_way.size))
+	{
+		for(j = 0; j < level.normal_way.size; j++)
+		{
+			self.pb_190["ns_"+j] = [];
+			self.pb_210["ns_"+j] = [];
+		}
+	}
+
+	if (isDefined(level.secret_way) && isDefined(level.secret_way.size))
+	{
+		for(j = 0; j < level.secret_way.size; j++)
+		{
+			self.pb_190["s_"+j] = [];
+			self.pb_210["s_"+j] = [];
+		}
+	}
+
+	self.sr_speed = 190;
+	self.voteCoolDown = getTime();
+	self.sr_cheatmode = false;
+	self.sr_practise = false;
+	self.raceWon = 0;
+	self.wonKz = false;
+	self.kzWon = 0;
+	self.inRaceDead = false;
+	self.inRaceFinish = false;
+	self.inRace = false;
+	self.inKz = false;
+	self.sr_savePos = [];
+
+	self setClientDvar("cl_maxpackets", 125);
+	self setClientDvar("rate", 25000);
+
+	if(!self.isBot)
+		self thread sr\player\_id::checkid();
+
+	self speedrun\_leaderboard::loadPersonBest();
+	self thread sr\api\_map::way_name_default();	
+	self thread sr\api\_map::way_name();
+	self thread getFps();
+	self thread getXpBar();
+}
+
+onPlayerSpawned()
+{
+	self thread speedrun\_speedrunhud::destroyClientHud();
+	self thread setSpeed();
+	self setContents( 0 );
+	self.sr_way = "ns0";
+	self.sr_secret = false; // Legacy variable.
+	self thread speedrun\_speedrunhud::timeHud();
+	self thread updateRunHuds();
+	
+	if(!self.sr_cheatmode)
+	{
+		self.runNumber = RandomInt(999999);
+		self thread watchWay();
+	}
+	self thread sr\admin\_anticheat_hud::init();
+
+	self.stop_demo = false;
+	self.current_fps = "125";
+	self thread wait_record();
+	self thread stop_2min();
+
+	if(isDefined(self.isVIP))
+	{	
+		self.statusicon = "vip_status";
+		self thread spawnTrail();
+	}
+}
+
+updateRunHuds()
+{
+	if (self.inRace)
+	{
+		self.runNumber = "Race Mode";
+		wait 0.3;
+		if(isDefined(self.timerHud[5]))
+			self.timerHud[5] setText( "^2Race Mode" );
+	}
+	else if (self.inKz)
+	{
+		self.runNumber = "KillZone Mode";
+		wait 0.3;
+		if(isDefined(self.timerHud[5]))
+			self.timerHud[5] setText( "^6KillZone Mode" );
+	}
+	else if(self.sr_practise)
+	{
+		self.runNumber = "Practise Mode";
+		self thread sr\player\_practise::init();
+		wait 0.3;
+		if(isDefined(self.timerHud[5]))
+			self.timerHud[5] setText( "^1Practise Mode" );
+	}
+}
+
+// Wait 1sec before starting recording.
+wait_record()
+{
+	self endon("death");
+	self endon("disconnect");
+	mapname = getDvar("mapname");
+
+	if(mapname == "mp_dr_train_rush") // TODO sr_api stopRecording
+		return;
+
+	wait 1;
+	self thread record();
+}
+
+// Stop recording after 2mins.
+stop_2min()
+{
+	self endon("death");
+	self endon("disconnect");
+
+	wait 120;
+	stoprecord_delete();
+}
+
+// Record demo.
+record()
+{
+	if(self.isBot)
+		return;
+
+	mapname = getDvar("mapname");
+	if(mapname.size > 17)
+		mapname = GetSubStr(mapname, mapname.size - 17, mapname.size);
+
+	if(isStringInt(self.runNumber))
+		exec("record "+self GetEntityNumber()+" ./"+getDvar("fs_game")+"/server_data/speedrun/demos/"+self.playerID+"/"+mapname+"/"+self.runNumber);
+
+	self thread speedrun\_speedrunbot::record_txt();
+}
+
+// Stop the recording and save it.
+stoprecord_save()
+{
+	exec("stoprecord "+self GetEntityNumber());
+}
+
+// Stop the recording and delete it.
+stoprecord_delete()
+{
+	if (!isDefined(self.stop_demo))
+		return;
+	if(self.stop_demo)
+		return;
+
+	mapname = getDvar("mapname");
+	if(mapname.size > 17)
+		mapname = GetSubStr(mapname, mapname.size - 17, mapname.size);
+	exec("stoprecord "+self GetEntityNumber());
+	path = "./server_data/speedrun/demos/"+self.playerID+"/"+mapname+"/"+self.runNumber+".dm_1";
+	path2 = "./server_data/speedrun/txt_demos/"+mapname+"/"+self.runNumber+".txt";
+	file_exists = checkfile(path);
+	file_exists2 = checkfile(path2);
+
+	if(!file_exists)
+		return;
+
+	deleteFile_late(path);
+
+	if(!file_exists2)
+		return;
+
+	deleteFile_late(path2);
+}
+
+// Stop recording on death.
+stoprecord_death()
+{
+	if(self.stop_demo)
+		return;
+
+	mapname = getDvar("mapname");
+	if(mapname.size > 17)
+		mapname = GetSubStr(mapname, mapname.size - 17, mapname.size);
+	exec("stoprecord "+self GetEntityNumber());
+	path = "./server_data/speedrun/demos/"+self.playerID+"/"+mapname+"/"+self.runNumber+".dm_1";
+	path2 = "./server_data/speedrun/txt_demos/"+mapname+"/"+self.runNumber+".txt";
+	file_exists = checkfile(path);
+	file_exists2 = checkfile(path2);
+
+	if(!file_exists)
+		return;
+
+	deleteFile_late(path);
+
+	if(!file_exists2)
+		return;
+
+	deleteFile_late(path2);
+}
+
+// Stop recording on disconnect.
+stoprecord_disconnect()
+{
+	if (!isDefined(self) || !isDefined(self.stop_demo))
+		return;
+	if(self.stop_demo)
+		return;
+
+	mapname = getDvar("mapname");
+	if(mapname.size > 17)
+		mapname = GetSubStr(mapname, mapname.size - 17, mapname.size);
+	path = "./server_data/speedrun/demos/"+self.playerID+"/"+mapname+"/"+self.runNumber+".dm_1";
+	path2 = "./server_data/speedrun/txt_demos/"+mapname+"/"+self.runNumber+".txt";
+	file_exists = checkfile(path);
+	file_exists2 = checkfile(path2);
+	
+	if(!file_exists)
+		return;
+
+	deleteFile_late(path);
+
+	if(!file_exists2)
+		return;
+
+	deleteFile_late(path2);
+}
+
+spawnTrail()
+{
+    self endon("death");
+    self endon("disconnect");
+
+    if(isDefined(self.trailTag))
+    {
+        self.trailTag Unlink();
+        self.trailTag Delete();
+    }
+    wait 0.1;
+    while(1)
+    {
+        self.trailTag = spawn("script_model", self.origin);
+        self.trailTag setmodel("tag_origin");
+        wait 0.05;
+        self.trailTag linkto(self);
+
+        if(self.vip_trail != 0)
+        	PlayFXOnTag(level.fx["viptrail"+self.vip_trail], self.trailTag, "tag_origin");
+
+        wait 10;
+        self.trailTag Unlink();
+        self.trailTag delete();
+    }
+}
+
+checkVIP()
+{
+	if(!isDefined(self.playerID))
+	{
+		IPrintLn("^1PLAYER HAS NO ID");
+		return;
+	}
+	path = "./server_data/admin/vip.txt";
+	file_exists = checkfile(path);
+	if(!file_exists)
+	{
+		IPrintLn("^1NO VIP FILE");
+		return;
+	}
+	r = readAll(path);
+	for(i=0; i<r.size; i++)
+	{
+		a = StrTok(r[i],"\\");
+		if(isDefined(a[0]))
+		{
+			if(self.playerID == a[0])
+			{
+				self.isVIP = true;
+				self.vip_trail = self getStat(1570);
+				self setStat(2360,1);
+				return;
+			}
+		}
+	}
+}
+
+vipList()
+{
+	level.viplist = [];
+	path = "./server_data/admin/vip.txt";
+	file_exists = checkfile(path);
+	if(!file_exists)
+	{
+		IPrintLn("^1NO VIP FILE");
+		return;
+	}
+	level.viplist = readAll(path);
+}
+
+// Get player's FPS, called on connect then used with getUserInfo();
+getFps()
+{
+    if(!isDefined(self.getfps))
+    {
+        self clientcmd("setu com_maxfps 125");
+        self.getfps = true;
+    }
+}
+
+// Set player's movements.
+setSpeed()
+{
+	if(isDefined(level.slide_map) && isDefined(level.slide_map_multiplier))
+	{
+		speed = 1.0;
+
+		if(self.sr_speed == 210)
+			speed = 1.8;
+
+		else if(self.sr_speed == 190)
+			speed = 1.0;
+
+		self setgravity(1000);
+		self setjumpheight(70);
+		self setMoveSpeedScale( speed );
+		self setmovespeed(190 * level.slide_map_multiplier);
+		return;
+	}
+	speed = 1.05;
+
+	if(self.sr_speed == 210) 
+	{
+		self setmovespeed(210);
+		if (!isDefined(level.fixedgrav))
+			self setgravity(800);
+		speed = 1.12;
+	}
+
+	else if(self.sr_speed == 190)
+	{
+		self setmovespeed(190);
+		if (!isDefined(level.fixedgrav))
+			self setgravity(800);
+		speed = 1.05;
+	}
+
+	self setMoveSpeedScale( speed );
+}
+
+// Watch player changing way. supports old legacy sr api.
+watchWay()
+{
+	self endon("disconnect");
+	self endon("death");
+	self endon( "joined_spectators" );
+
+	if(isDefined(level.new_leaderboard))
+	{
+		self thread watchWay_new();
+		return;
+	}
+	x = self.sr_secret;
+
+	while(1)
+	{
+		if(x != self.sr_secret)
+		{
+			x = self.sr_secret;
+
+			if(!self.sr_secret) self.sr_way = "ns0";
+			if(self.sr_secret) self.sr_way = "s0";
+
+			self thread speedrun\_speedrunhud::updatepbHud();
+			self thread speedrun\_speedrunhud::updatewrHud();
+
+			if(isDefined(self.timerHud[5]))
+				self.timerHud[5] setText( level.secret_way[0].name );
+		}
+		wait 0.1;
+	}
+}
+
+// Watch player changing way.
+watchWay_new()
+{
+	self endon("disconnect");
+	self endon("death");
+	self endon( "joined_spectators" );
+
+	x = self.sr_way;
+
+	while(1)
+	{
+		if(x != self.sr_way)
+		{
+			x = self.sr_way;
+			way = isSubStr(x,"ns");
+
+			if(way)
+			{
+				way = strTok(x,"ns");
+				number = way[0];
+				secret = false;
+			}
+
+			else
+			{
+				way = strTok(x,"s");
+				number = way[0];
+				secret = true;
+			}
+
+			self thread speedrun\_speedrunhud::updatepbHud();
+			self thread speedrun\_speedrunhud::updatewrHud();
+
+			if(isDefined(self.timerHud[5]) && !secret)
+				self.timerHud[5] setText( level.normal_way[int(number)].name );
+
+			if(isDefined(self.timerHud[5]) && secret)
+				self.timerHud[5] setText( level.secret_way[int(number)].name );
+		}
+
+		wait 0.1;
+	}
+}
