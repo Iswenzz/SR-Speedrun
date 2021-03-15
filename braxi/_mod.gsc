@@ -673,11 +673,11 @@ PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 			attacker.kills++;
 			attacker.pers["kills"]++;
 			if(sHitLoc == "head" && sMeansOfDeath != "MOD_MELEE")
-				attacker thread braxi\_rank::giveRankXP2(10);
+				attacker thread braxi\_rank::giveRankXP(10);
 			else if (sMeansOfDeath == "MOD_MELEE")
-				attacker thread braxi\_rank::giveRankXP2(7);
+				attacker thread braxi\_rank::giveRankXP(7);
 			else
-				attacker thread braxi\_rank::giveRankXP2(5);
+				attacker thread braxi\_rank::giveRankXP(5);
 		}
 	}
 

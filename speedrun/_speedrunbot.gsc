@@ -16,7 +16,7 @@ Email Pro: suxlolz1528@gmail.com
 
 */
 #include sr\sys\_gsxcommon;
-#include sr\features\_leaderboard;
+#include sr\game\_leaderboard;
 
 // TODO works with multiple ways.
 // TODO rotation in C
@@ -36,7 +36,7 @@ init()
 	// bot_search_path();
 
 	// if(isDefined(level.bot_190_ns_path))
-	// 	level.bot_curr_path = "./server_data/speedrun/txt_demos/"+mapname+"/"+level.bot_190_ns_path+".txt";
+	// 	level.bot_curr_path = "./sr/server_data/speedrun/txt_demos/"+mapname+"/"+level.bot_190_ns_path+".txt";
 
 	while(1)
 	{
@@ -48,24 +48,24 @@ init()
 bot_search_path()
 {
 	mapname = getDvar("mapname");
-	file_exists = checkfile("./server_data/speedrun/txt_demos/"+mapname+"/WR.txt");
+	file_exists = checkfile("./sr/server_data/speedrun/txt_demos/"+mapname+"/WR.txt");
 
 	if(!file_exists)
 	{
-		WriteToFile("./server_data/speedrun/txt_demos/"+mapname+"/WR.txt",""); // empty
-		WriteToFile("./server_data/speedrun/txt_demos/"+mapname+"/WR_190_ns.txt","");
-		WriteToFile("./server_data/speedrun/txt_demos/"+mapname+"/WR_190_s.txt","");
-		WriteToFile("./server_data/speedrun/txt_demos/"+mapname+"/WR_210_ns.txt","");
-		WriteToFile("./server_data/speedrun/txt_demos/"+mapname+"/WR_210_s.txt","");
+		WriteToFile("./sr/server_data/speedrun/txt_demos/"+mapname+"/WR.txt",""); // empty
+		WriteToFile("./sr/server_data/speedrun/txt_demos/"+mapname+"/WR_190_ns.txt","");
+		WriteToFile("./sr/server_data/speedrun/txt_demos/"+mapname+"/WR_190_s.txt","");
+		WriteToFile("./sr/server_data/speedrun/txt_demos/"+mapname+"/WR_210_ns.txt","");
+		WriteToFile("./sr/server_data/speedrun/txt_demos/"+mapname+"/WR_210_s.txt","");
 	}
 	
-	path_190_ns = "./server_data/speedrun/txt_demos/"+mapname+"/WR_190_ns.txt";
+	path_190_ns = "./sr/server_data/speedrun/txt_demos/"+mapname+"/WR_190_ns.txt";
 	path_190_ns_read = readAll(path_190_ns);
-	path_190_s = "./server_data/speedrun/txt_demos/"+mapname+"/WR_190_s.txt";
+	path_190_s = "./sr/server_data/speedrun/txt_demos/"+mapname+"/WR_190_s.txt";
 	path_190_s_read = readAll(path_190_s);
-	path_210_ns = "./server_data/speedrun/txt_demos/"+mapname+"/WR_210_ns.txt";
+	path_210_ns = "./sr/server_data/speedrun/txt_demos/"+mapname+"/WR_210_ns.txt";
 	path_210_ns_read = readAll(path_210_ns);
-	path_210_s = "./server_data/speedrun/txt_demos/"+mapname+"/WR_210_s.txt";
+	path_210_s = "./sr/server_data/speedrun/txt_demos/"+mapname+"/WR_210_s.txt";
 	path_210_s_read = readAll(path_210_s);
 
 	if(isStringInt(path_190_ns_read[0]) && path_190_ns_read[0] != "")
@@ -105,8 +105,8 @@ bot_run(bot)
 
 	//bot speedrunBOT(path);
 	mapname = getDvar("mapname");
-	// bot speedrunBOT("./server_data/speedrun/txt_demos/"+mapname+"/test.txt");
-	// bot bot_gsc_test("./server_data/speedrun/txt_demos/"+mapname+"/test.txt");
+	// bot speedrunBOT("./sr/server_data/speedrun/txt_demos/"+mapname+"/test.txt");
+	// bot bot_gsc_test("./sr/server_data/speedrun/txt_demos/"+mapname+"/test.txt");
 
 	wait 2;
 
@@ -161,7 +161,7 @@ record_txt()
 	mapname = getDvar("mapname");
 	if(mapname.size > 17)
 		mapname = GetSubStr(mapname, mapname.size - 17, mapname.size);
-	path = "./server_data/speedrun/txt_demos/"+mapname+"/"+self.runNumber+".txt";
+	path = "./sr/server_data/speedrun/txt_demos/"+mapname+"/"+self.runNumber+".txt";
 
 	//self BOTrec(path);
 }

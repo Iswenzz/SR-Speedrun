@@ -57,7 +57,7 @@ loadTImes()
 loadPersonBest()
 {
 	mapname = getDvar("mapname");
-	path = "./server_data/speedrun/personbest/" + self.playerID + ".txt";
+	path = "./sr/server_data/speedrun/personbest/" + self.playerID + ".txt";
 	file_exists = checkfile(path);
 
 	if(!file_exists)
@@ -505,7 +505,7 @@ savepersonalbest(a, way)
 	faster = false;
 	newrecord = true;
 	mapname = getDvar("mapname");
-	path = "./server_data/speedrun/personbest/" + a["guid"] +".txt";
+	path = "./sr/server_data/speedrun/personbest/" + a["guid"] +".txt";
 	file_exists = checkfile(path);
 
 	if(!file_exists)
@@ -688,7 +688,6 @@ saveToFile(a, path)
 {
 	string = "";
 	arr = [];
-	mapname = getDvar("mapname");
 
     l = a.size;
 	if(l > level.timesToSave)
@@ -732,7 +731,7 @@ giveXpForTop30(b)
         				else
         					multiplyer = level.normal_way_info_190[int(number[0])].size;
 
-        				self braxi\_rank::giveRankXP2((xpamount()[i] * multiplyer));
+        				self braxi\_rank::giveRankXP((xpamount()[i] * multiplyer));
         				return;
         			}
 
@@ -743,7 +742,7 @@ giveXpForTop30(b)
         				else
         					multiplyer = level.normal_way_info_190[int(number[0])].size * 3;
 
-        				self braxi\_rank::giveRankXP2((xpamount()[i] * multiplyer));
+        				self braxi\_rank::giveRankXP((xpamount()[i] * multiplyer));
         				return;
         			}
         		}
@@ -765,7 +764,7 @@ giveXpForTop30(b)
         				else
         					multiplyer = level.secret_way_info_190[int(number[0])].size;
 
-        				self braxi\_rank::giveRankXP2((xpamount()[i] * multiplyer));
+        				self braxi\_rank::giveRankXP((xpamount()[i] * multiplyer));
         				return;
         			}
 
@@ -776,7 +775,7 @@ giveXpForTop30(b)
         				else
         					multiplyer = level.secret_way_info_190[int(number[0])].size * 3;
 
-        				self braxi\_rank::giveRankXP2((xpamount()[i] * multiplyer));
+        				self braxi\_rank::giveRankXP((xpamount()[i] * multiplyer));
         				return;
         			}
         		}
@@ -801,7 +800,7 @@ giveXpForTop30(b)
         				else
         					multiplyer = level.normal_way_info_210[int(number[0])].size;
 
-        				self braxi\_rank::giveRankXP2((xpamount()[i] * multiplyer));
+        				self braxi\_rank::giveRankXP((xpamount()[i] * multiplyer));
         				return;
         			}
 
@@ -812,7 +811,7 @@ giveXpForTop30(b)
         				else
         					multiplyer = level.normal_way_info_210[int(number[0])].size * 2;
 
-        				self braxi\_rank::giveRankXP2((xpamount()[i] * multiplyer));
+        				self braxi\_rank::giveRankXP((xpamount()[i] * multiplyer));
         				return;
         			}
         		}
@@ -834,7 +833,7 @@ giveXpForTop30(b)
         				else
         					multiplyer = level.secret_way_info_210[int(number[0])].size;
 
-        				self braxi\_rank::giveRankXP2((xpamount()[i] * multiplyer));
+        				self braxi\_rank::giveRankXP((xpamount()[i] * multiplyer));
         				return;
         			}
 
@@ -845,7 +844,7 @@ giveXpForTop30(b)
         				else
         					multiplyer = level.secret_way_info_210[int(number[0])].size * 2;
 
-        				self braxi\_rank::giveRankXP2((xpamount()[i] * multiplyer));
+        				self braxi\_rank::giveRankXP((xpamount()[i] * multiplyer));
         				return;
         			}
         		}
