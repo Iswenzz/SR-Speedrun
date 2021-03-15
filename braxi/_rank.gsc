@@ -24,6 +24,10 @@ init()
 	level.scoreInfo = [];
 	level.rankTable = [];
 
+	SQL_Connect("127.0.0.1", 3306, "root", "rootpassword"); // Test
+	SQL_SelectDB("sr");
+	ComPrintf(SQL_Version());
+
 	precacheShader("white");
 
 	precacheString( &"RANK_PLAYER_WAS_PROMOTED_N" );
@@ -79,26 +83,6 @@ sr_reset()
 {
 	self resetEverything();
 	updateRankStats( self, 0 );
-	self updateAntiHackValues();
-}
-
-updateAntiHackValues()
-{
-	baseVal = level.dvar["antiHackStat"];
-
-	// THESE MUST MATCH ORDER IN antiHack() !!!
-	self setStatFromStat( 2326, baseVal );
-	self setStatFromStat( 2350, baseVal+1 );
-	self setStatFromStat( 2301, baseVal+2 );
-
-	self setStatFromStat( 3200, baseVal+3 );
-	self setStatFromStat( 3201, baseVal+4 );
-	self setStatFromStat( 3202, baseVal+5 );
-	self setStatFromStat( 3203, baseVal+6 );
-	self setStatFromStat( 3204, baseVal+7 );
-	self setStatFromStat( 3205, baseVal+8 );
-	self setStatFromStat( 3206, baseVal+9 );
-	self setStatFromStat( 3207, baseVal+10 );
 }
 
 setStatFromStat( stat2, stat1 )
@@ -123,6 +107,8 @@ resetEverything()
 
 	for( stat = 979; stat < 983; stat++ ) // spray, character, weapon & ability
 		self setStat( stat, 0 );
+
+	self databaseSetRank(0, 0, 0);
 }
 
 isRegisteredEvent( type )
@@ -218,34 +204,32 @@ onPlayerConnect()
 	for(;;)
 	{
 		level waittill( "connected", player );
+		playerData = player databaseGetRank();
 
-		player.pers["rankxp"] = player maps\mp\gametypes\_persistence::statGet( "rankxp" );
-		rankId = player getRankForXp( player getRankXP() );
-		prestige = player getPrestigeLevel();
-		player.pers["rank"] = rankId;
+		player.pers["rankxp"] = playerData.rankxp;
+		player.pers["rank"] = playerData.rank;
+		player.pers["prestige"] = playerData.prestige;
 		player.pers["participation"] = 0;
-		player.pers["prestige"] = prestige;
 		player.doingNotify = false;
-
 		player.rankUpdateTotal = 0;
 		
 		// for keeping track of rank through stat#251 used by menu script
 		// attempt to move logic out of menus as much as possible
-		player.cur_rankNum = rankId;
-		assertex( isdefined(player.cur_rankNum), "rank: "+ rankId + " does not have an index, check mp/ranktable.csv" );
+		player.cur_rankNum = player.pers["rank"];
+		assertex( isdefined(player.cur_rankNum), "rank: "+ player.pers["rank"] + " does not have an index, check mp/ranktable.csv" );
 		player setStat( 251, player.cur_rankNum );
-		
-		
-		player setRank( rankId, int(prestige) );
+
+		player setRank( player.pers["rank"], int(player.pers["prestige"]) );
+		player setStat( 2326, player.pers["prestige"] );
+		player setStat( 2350, player.pers["rank"] );
+		player setStat( 2301, player.pers["rankxp"] );
 
 		player thread onPlayerSpawned();
 		player thread onJoinedTeam();
 		player thread onJoinedSpectators();
 		player initUnlockMessage();
-
 	}
 }
-
 
 onJoinedTeam()
 {
@@ -306,42 +290,76 @@ roundUp( floatVal )
 giveRankXP( type, value )
 {
 	self endon("disconnect");
-	
-	if(isDefined(type) && type == "setrank")
-	{
-		self thread giveRankXP_setrank( type, value );
+
+	if (!isDefined(value))
 		return;
+
+	self.score += value;
+	self.pers["score"] = self.score;
+
+	score = self maps\mp\gametypes\_persistence::statGet( "score" );
+	self maps\mp\gametypes\_persistence::statSet( "score", score+value );
+
+	self incRankXP( value );
+	self thread updateRankScoreHUD( value );
+	self databaseSetRank(self.pers["rankxp"], self.pers["rank"], self.pers["prestige"]);
+}
+
+databaseSetRank(xp, rank, prestige)
+{
+	SQL_Query("UPDATE `speedrun_ranks` SET " 
+		+ "`name` = \'" + SQL_EscapeString(self.name) + "\', "
+		+ "`xp` = \'" + SQL_EscapeString(xp) + "\', "
+		+ "`rank` = \'" + SQL_EscapeString(rank) + "\', "
+		+ "`prestige` = \'" + SQL_EscapeString(prestige) + "\' "
+		+ "WHERE `guid` = \'" + SQL_EscapeString(getSubStr(self getGuid(), 24, 32)) + "\';");
+	if (!SQL_AffectedRows())
+	{
+		SQL_Query("INSERT INTO `speedrun_ranks` (`name`, `guid`, `xp`, `rank`, `prestige`) VALUES (" 
+			+ "\'" + SQL_EscapeString(self.name) + "\', "
+			+ "\'" + SQL_EscapeString(getSubStr(self getGuid(), 24, 32)) + "\', "
+			+ "\'" + SQL_EscapeString(xp) + "\', "
+			+ "\'" + SQL_EscapeString(rank) + "\', "
+			+ "\'" + SQL_EscapeString(prestige) + "\');");
 	}
 }
 
-giveRankXP2(value)
+databaseGetRank()
 {
-	self endon("disconnect");
-	self.score += value;
-	self.pers["score"] = self.score;
+	struct = spawnStruct();
+	SQL_Query("SELECT * from `speedrun_ranks` WHERE `guid` = \'" 
+		+ SQL_EscapeString(getSubStr(self getGuid(), 24, 32))
+		+ "\';");
+	if (SQL_NumRows())
+	{
+		row = SQL_FetchRow();
+		if (row.size == 6)
+		{
+			struct.rankxp = int(row[3]);
+			struct.rank = int(row[4]);
+			struct.prestige = int(row[5]);
+		}
+	}
 
-	score = self maps\mp\gametypes\_persistence::statGet( "score" );
-	self maps\mp\gametypes\_persistence::statSet( "score", score+value );
-
-	self incRankXP( value );
-	self thread updateRankScoreHUD( value );
-}
-
-giveRankXP_setrank( type, value )
-{
-	self endon("disconnect");
-
-	if(isDefined(type) && type != "setrank")
-		return;
-
-	self.score += value;
-	self.pers["score"] = self.score;
-
-	score = self maps\mp\gametypes\_persistence::statGet( "score" );
-	self maps\mp\gametypes\_persistence::statSet( "score", score+value );
-
-	self incRankXP( value );
-	self thread updateRankScoreHUD( value );
+	if (!isDefined(struct.rankxp))
+	{
+		// check for previous rank system
+		if (!self getStat(3122))
+		{
+			self setStat(3122, 157); // random value
+			struct.rankxp = self getStat(2301);
+			struct.rank = self getStat(2350);
+			struct.prestige = self getStat(2326);
+			self databaseSetRank(struct.rankxp, struct.rank, struct.prestige);
+		}
+		else
+		{
+			struct.rankxp = 0;
+			struct.rank = 0;
+			struct.prestige = 0;
+		}
+	}
+	return struct;
 }
 
 prestigeSystem()
@@ -367,6 +385,8 @@ prestigeSystem()
     self setStat(980,0);
     self setStat(981,0);
     self setStat(982,0);
+
+	self databaseSetRank(self.pers["rankxp"], self.pers["rank"], self.pers["prestige"]);
 }
 
 updateRankScoreHUD( amount )
@@ -898,29 +918,5 @@ showUnlockMessage( notifyData )
 		self.unlockMessageQueue[i-1] = undefined;
 		
 		self thread showUnlockMessage( nextUnlockMessageData );
-	}
-}
-
-autorankup()
-{
-	self endon("disconnect");
-	level endon( "endround" );
-	
-	while ( self.pers["score"] <= 100000 )
-	{
-		self giveRankXP( "", 50 );
-		wait 0.2;
-	}
-}
-
-autorankup2()
-{
-	self endon("disconnect");
-	level endon( "endround" );
-	rank = getDvarInt("temp_rank") - 2;
-	while ( self.pers["rank"] <= rank )
-	{
-		self giveRankXP( "", 500 );
-		wait 0.1;
 	}
 }
