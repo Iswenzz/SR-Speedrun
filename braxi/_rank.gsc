@@ -310,7 +310,7 @@ databaseSetRank(xp, rank, prestige)
 	SQL_Query("UPDATE `speedrun_ranks` SET " 
 		+ "`name` = \'" + SQL_EscapeString(self.name) + "\', "
 		+ "`xp` = \'" + SQL_EscapeString(xp) + "\', "
-		+ "`rank` = \'" + SQL_EscapeString(rank) + "\', "
+		+ "`rank` = \'" + SQL_EscapeString(rank + 1) + "\', "
 		+ "`prestige` = \'" + SQL_EscapeString(prestige) + "\' "
 		+ "WHERE `guid` = \'" + SQL_EscapeString(getSubStr(self getGuid(), 24, 32)) + "\';");
 	if (!SQL_AffectedRows())
@@ -319,7 +319,7 @@ databaseSetRank(xp, rank, prestige)
 			+ "\'" + SQL_EscapeString(self.name) + "\', "
 			+ "\'" + SQL_EscapeString(getSubStr(self getGuid(), 24, 32)) + "\', "
 			+ "\'" + SQL_EscapeString(xp) + "\', "
-			+ "\'" + SQL_EscapeString(rank) + "\', "
+			+ "\'" + SQL_EscapeString(rank + 1) + "\', "
 			+ "\'" + SQL_EscapeString(prestige) + "\');");
 	}
 }
@@ -336,7 +336,7 @@ databaseGetRank()
 		if (row.size == 6)
 		{
 			struct.rankxp = int(row[3]);
-			struct.rank = int(row[4]);
+			struct.rank = int(row[4]) - 1;
 			struct.prestige = int(row[5]);
 		}
 	}
