@@ -34,6 +34,7 @@ main()
 	setDvar("sv_consayname", "^5#SR: ^7");
 	setDvar("sv_contellname", "^5#SR^7->^5PM: ^7");
 
+	thread sr\_main::main();
 	thread sr\weapons\_setup::main();
 	thread speedrun\_leaderboard::loadTimes();
 	thread sr\game\_triggerfx::init();
@@ -46,7 +47,6 @@ main()
 	thread sr\admin\_saved_map::init();
 	thread sr\game\_race::init();
 	thread sr\game\_kz::init();
-	// thread speedrun\_speedrunbot::init();
 	thread vipList();
 }
 
