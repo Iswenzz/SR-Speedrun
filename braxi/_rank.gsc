@@ -204,6 +204,9 @@ onPlayerConnect()
 	for(;;)
 	{
 		level waittill( "connected", player );
+		if (player.isBot)
+			continue;
+
 		playerData = player databaseGetRank();
 
 		player.pers["rankxp"] = playerData.rankxp;
@@ -307,59 +310,73 @@ giveRankXP( type, value )
 
 databaseSetRank(xp, rank, prestige)
 {
-	SQL_Query("UPDATE `speedrun_ranks` SET " 
-		+ "`name` = \'" + SQL_EscapeString(self.name) + "\', "
-		+ "`xp` = \'" + SQL_EscapeString(xp) + "\', "
-		+ "`rank` = \'" + SQL_EscapeString(rank + 1) + "\', "
-		+ "`prestige` = \'" + SQL_EscapeString(prestige) + "\' "
-		+ "WHERE `guid` = \'" + SQL_EscapeString(getSubStr(self getGuid(), 24, 32)) + "\';");
+	if (self.isBot)
+		return;
+
+	// Update rank
+	sr\sys\_mysql::prepare("UPDATE speedrun_ranks SET name = ?, xp = ?, rank = ?, prestige = ? WHERE guid = ?");
+	SQL_BindParam(self.name, level.MYSQL_TYPE_VAR_STRING);
+	SQL_BindParam(xp, level.MYSQL_TYPE_LONG);
+	SQL_BindParam(rank + 1, level.MYSQL_TYPE_LONG);
+	SQL_BindParam(prestige, level.MYSQL_TYPE_LONG);
+	SQL_BindParam(getSubStr(self getGuid(), 24, 32), level.MYSQL_TYPE_VAR_STRING);
+	sr\sys\_mysql::execute();
+
+	// Insert new rank
 	if (!SQL_AffectedRows())
 	{
-		SQL_Query("INSERT INTO `speedrun_ranks` (`name`, `guid`, `xp`, `rank`, `prestige`) VALUES (" 
-			+ "\'" + SQL_EscapeString(self.name) + "\', "
-			+ "\'" + SQL_EscapeString(getSubStr(self getGuid(), 24, 32)) + "\', "
-			+ "\'" + SQL_EscapeString(xp) + "\', "
-			+ "\'" + SQL_EscapeString(rank + 1) + "\', "
-			+ "\'" + SQL_EscapeString(prestige) + "\');");
+		sr\sys\_mysql::prepare("INSERT INTO speedrun_ranks (name, guid, xp, rank, prestige) VALUES (?, ?, ?, ?, ?)");
+		SQL_BindParam(self.name, level.MYSQL_TYPE_VAR_STRING);
+		SQL_BindParam(getSubStr(self getGuid(), 24, 32), level.MYSQL_TYPE_VAR_STRING);
+		SQL_BindParam(xp, level.MYSQL_TYPE_LONG);
+		SQL_BindParam(rank + 1, level.MYSQL_TYPE_LONG);
+		SQL_BindParam(prestige, level.MYSQL_TYPE_LONG);
+		sr\sys\_mysql::execute();
 	}
 }
 
 databaseGetRank()
 {
-	struct = spawnStruct();
-	SQL_Query("SELECT * from `speedrun_ranks` WHERE `guid` = \'" 
-		+ SQL_EscapeString(getSubStr(self getGuid(), 24, 32))
-		+ "\';");
+	sr\sys\_mysql::prepare("SELECT guid, xp, rank, prestige FROM speedrun_ranks WHERE guid = ?");
+	SQL_BindParam(getSubStr(self getGuid(), 24, 32), level.MYSQL_TYPE_VAR_STRING);
+	SQL_BindResult(level.MYSQL_TYPE_VAR_STRING, 8);
+	SQL_BindResult(level.MYSQL_TYPE_LONG);
+	SQL_BindResult(level.MYSQL_TYPE_LONG);
+	SQL_BindResult(level.MYSQL_TYPE_LONG);
+	sr\sys\_mysql::execute();
+
+	// Get user's rank
+	s = spawnStruct();
 	if (SQL_NumRows())
 	{
-		row = SQL_FetchRow();
-		if (row.size == 6)
+		row = SQL_FetchRowDict();
+		if (isDefined(row))
 		{
-			struct.rankxp = int(row[3]);
-			struct.rank = int(row[4]) - 1;
-			struct.prestige = int(row[5]);
+			s.rankxp = row["xp"];
+			s.rank = row["rank"] - 1;
+			s.prestige = row["prestige"];
 		}
 	}
-
-	if (!isDefined(struct.rankxp))
+	// Get default rank
+	if (!isDefined(s.rankxp))
 	{
-		// check for previous rank system
+		// Check for previous rank system - @TODO remove later
 		if (!self getStat(3122))
 		{
-			self setStat(3122, 157); // random value
-			struct.rankxp = self getStat(2301);
-			struct.rank = self getStat(2350);
-			struct.prestige = self getStat(2326);
-			self databaseSetRank(struct.rankxp, struct.rank, struct.prestige);
+			self setStat(3122, 157); // Random value
+			s.rankxp = self getStat(2301);
+			s.rank = self getStat(2350);
+			s.prestige = self getStat(2326);
+			self databaseSetRank(s.rankxp, s.rank, s.prestige);
 		}
 		else
 		{
-			struct.rankxp = 0;
-			struct.rank = 0;
-			struct.prestige = 0;
+			s.rankxp = 0;
+			s.rank = 0;
+			s.prestige = 0;
 		}
 	}
-	return struct;
+	return s;
 }
 
 prestigeSystem()
