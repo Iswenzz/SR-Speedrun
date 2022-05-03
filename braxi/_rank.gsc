@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////
 /*
 	BraXi's Death Run Mod
-	
+
 	Website: www.braxi.org
 	E-mail: paulina1295@o2.pl
 
@@ -26,7 +26,7 @@ init()
 
 	SQL_Connect("127.0.0.1", 3306, "root", "rootpassword"); // Test
 	SQL_SelectDB("sr");
-	ComPrintf(SQL_Version());
+	ComPrint(SQL_Version());
 
 	precacheShader("white");
 
@@ -50,7 +50,7 @@ init()
 
 	level.maxRank = int(tableLookup( "mp/rankTable.csv", 0, "maxrank", 1 ));
 	level.maxPrestige = int(tableLookup( "mp/rankIconTable.csv", 0, "maxprestige", 1 ));
-	
+
 	pId = 0;
 	rId = 0;
 	for ( pId = 0; pId <= level.maxPrestige; pId++ )
@@ -62,7 +62,7 @@ init()
 	rankId = 0;
 	rankName = tableLookup( "mp/ranktable.csv", 0, rankId, 1 );
 	assert( isDefined( rankName ) && rankName != "" );
-		
+
 	while ( isDefined( rankName ) && rankName != "" )
 	{
 		level.rankTable[rankId][1] = tableLookup( "mp/ranktable.csv", 0, rankId, 1 );
@@ -73,7 +73,7 @@ init()
 		precacheString( tableLookupIString( "mp/ranktable.csv", 0, rankId, 16 ) );
 
 		rankId++;
-		rankName = tableLookup( "mp/ranktable.csv", 0, rankId, 1 );		
+		rankName = tableLookup( "mp/ranktable.csv", 0, rankId, 1 );
 	}
 
 	level thread onPlayerConnect();
@@ -215,7 +215,7 @@ onPlayerConnect()
 		player.pers["participation"] = 0;
 		player.doingNotify = false;
 		player.rankUpdateTotal = 0;
-		
+
 		// for keeping track of rank through stat#251 used by menu script
 		// attempt to move logic out of menus as much as possible
 		player.cur_rankNum = player.pers["rank"];
@@ -393,11 +393,11 @@ prestigeSystem()
     self.pers["prestige"]++;
     self setrank(0,self.pers["prestige"]);
     self maps\mp\gametypes\_persistence::statset("rankxp",1);
-    
+
     updaterankstats(self,0);
-    
+
     iprintln(self.name+" has entered Prestige "+self.pers["prestige"]+" of "+level.maxprestige);
-    
+
     self setStat(979,0);
     self setStat(980,0);
     self setStat(981,0);
@@ -423,7 +423,7 @@ updateRankScoreHUD( amount )
 	wait ( 0.05 );
 
 	if( isDefined( self.hud_rankscroreupdate ) )
-	{			
+	{
 		if ( self.rankUpdateTotal < 0 )
 		{
 			self.hud_rankscroreupdate.label = &"";
@@ -442,7 +442,7 @@ updateRankScoreHUD( amount )
 		wait 1;
 		self.hud_rankscroreupdate fadeOverTime( 0.75 );
 		self.hud_rankscroreupdate.alpha = 0;
-		
+
 		self.rankUpdateTotal = 0;
 	}
 }
@@ -454,10 +454,10 @@ removeRankHUD()
 }
 
 getRank()
-{	
+{
 	rankXp = self.pers["rankxp"];
 	rankId = self.pers["rank"];
-	
+
 	if ( rankXp < (getRankInfoMinXP( rankId ) + getRankInfoXPAmt( rankId )) )
 		return rankId;
 	else
@@ -469,7 +469,7 @@ getRankForXp( xpVal )
 	rankId = 0;
 	rankName = level.rankTable[rankId][1];
 	assert( isDefined( rankName ) );
-	
+
 	while ( isDefined( rankName ) && rankName != "" )
 	{
 		if ( xpVal < getRankInfoMinXP( rankId ) + getRankInfoXPAmt( rankId ) )
@@ -481,7 +481,7 @@ getRankForXp( xpVal )
 		else
 			rankName = undefined;
 	}
-	
+
 	rankId--;
 	return rankId;
 }
@@ -503,10 +503,10 @@ getRankXP()
 }
 
 incRankXP( amount )
-{	
+{
 	xp = self getRankXP();
 	newXp = (xp + amount);
-	
+
 	if( level.dvar["dev"] )
 	{
 		iprintln( "getRankXP() : " + xp );
@@ -544,10 +544,10 @@ updateRankStats( player, rankId )
 	player maps\mp\gametypes\_persistence::statSet( "minxp", getRankInfoMinXp( rankId ) );
 	player maps\mp\gametypes\_persistence::statSet( "maxxp", getRankInfoMaxXp( rankId ) );
 	player maps\mp\gametypes\_persistence::statSet( "plevel", player.pers["prestige"] );
-	
+
 	player maps\mp\gametypes\_persistence::statSet( "vip", rankId );
 	player maps\mp\gametypes\_persistence::statSet( "vipplus", player.pers["prestige"] );
-	
+
 	if( rankId > level.maxRank )
 		player setStat( 252, level.maxRank );
 	else
@@ -563,12 +563,12 @@ updateRankAnnounceHUD()
 
 	team = self.pers["team"];
 	if ( !isdefined( team ) )
-		return;	
-	
+		return;
+
 	self notify("reset_outcome");
 	self.pers["rankstring"] = self.pers["rank"];
 	self.pers["rankstring"]++;
-	
+
 	notifyData = spawnStruct();
 	notifyData.titleText = &"RANK_PROMOTED";
 	notifyData.iconName = self getRankInfoIcon( self.pers["rank"], self.pers["prestige"] );
@@ -590,12 +590,12 @@ processXpReward( sMeansOfDeath, attacker, victim )
 	{
 		kills = attacker maps\mp\gametypes\_persistence::statGet( "KILLED_JUMPERS" );
 		attacker maps\mp\gametypes\_persistence::statSet( "KILLED_JUMPERS", kills+1 );
-	}	
+	}
 	else
 	{
 		kills = attacker maps\mp\gametypes\_persistence::statGet( "KILLED_ACTIVATORS" );
 		attacker maps\mp\gametypes\_persistence::statSet( "KILLED_ACTIVATORS", kills+1 );
-	}	
+	}
 
 	switch( sMeansOfDeath )
 	{
@@ -648,7 +648,7 @@ unlockAbility( name )
 			notifyData.description = level.abilityInfo[i]["name"];
 			notifyData.icon = level.abilityInfo[i]["shader"];
 			notifyData.duration = 2.9;
-	
+
 			self thread unlockMessage( notifyData );
 			break;
 		}
@@ -857,13 +857,13 @@ unlockMessage( notifyData )
 {
 	self endon ( "death" );
 	self endon ( "disconnect" );
-	
+
 	if ( !self.doingUnlockMessage )
 	{
 		self thread showUnlockMessage( notifyData );
 		return;
 	}
-	
+
 	self.unlockMessageQueue[ self.unlockMessageQueue.size ] = notifyData;
 }
 
@@ -883,16 +883,16 @@ showUnlockMessage( notifyData )
 	self.unlockMessage[0] setShader( "black", 195, 48 );
 	self.unlockMessage[0].sort = 990;
 
-	self.unlockMessage[1] = braxi\_mod::addTextHud( self, -190, 20, 1, "left", "top", 1.5 ); 
+	self.unlockMessage[1] = braxi\_mod::addTextHud( self, -190, 20, 1, "left", "top", 1.5 );
 	self.unlockMessage[1] setShader( notifyData.icon, 55, 48 );
 	self.unlockMessage[1].sort = 992;
 
-	self.unlockMessage[2] = braxi\_mod::addTextHud( self, -130, 23, 1, "left", "top", 1.4 ); 
+	self.unlockMessage[2] = braxi\_mod::addTextHud( self, -130, 23, 1, "left", "top", 1.4 );
 	self.unlockMessage[2].font = "objective";
 	self.unlockMessage[2] setText( notifyData.title );
 	self.unlockMessage[2].sort = 993;
 
-	self.unlockMessage[3] = braxi\_mod::addTextHud( self, -130, 40, 1, "left", "top", 1.4 ); 
+	self.unlockMessage[3] = braxi\_mod::addTextHud( self, -130, 40, 1, "left", "top", 1.4 );
 	self.unlockMessage[3] setText( notifyData.description );
 	self.unlockMessage[3].sort = 993;
 
@@ -928,12 +928,12 @@ showUnlockMessage( notifyData )
 	if( self.unlockMessageQueue.size > 0 )
 	{
 		nextUnlockMessageData = self.unlockMessageQueue[0];
-		
+
 		newQueue = [];
 		for( i = 1; i < self.unlockMessageQueue.size; i++ )
 			self.unlockMessageQueue[i-1] = self.unlockMessageQueue[i];
 		self.unlockMessageQueue[i-1] = undefined;
-		
+
 		self thread showUnlockMessage( nextUnlockMessageData );
 	}
 }
