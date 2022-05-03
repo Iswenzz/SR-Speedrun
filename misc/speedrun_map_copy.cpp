@@ -1,25 +1,23 @@
 // ------------------------ SPEEDRUN ------------------------
 // ----------------------------------------------------------
 
-// spawn auto placement
-auto_spawn = getEntArray("mp_jumper_spawn", "classname");
-if(auto_spawn.size > 0)
-	thread speedrun\_way_name::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin,
-		auto_spawn[int(auto_spawn.size / 2)].angles[1]);
+thread sr\api\_map::create_spawn_auto();
 
-player thread speedrun\_way_name::change_way("s0");
-player thread speedrun\_way_name::finish_way("s0");
+player thread sr\api\_map::change_way("s0");
+player thread sr\api\_map::finish_way("s0");
 
-thread speedrun\_way_name::create_spawn((0, 0, 0), 0);
+thread sr\api\_map::create_spawn((0, 0, 0), 0);
 
-thread speedrun\_way_name::create_normal_way("Normal Way;");
-thread speedrun\_way_name::create_secret_way("Secret Way;");
+thread sr\api\_map::create_normal_way("Normal Way;");
+thread sr\api\_map::create_secret_way("Secret Way;");
 
-thread speedrun\_way_name::create_endmap((0, 0, 0), 100, 150);
-thread speedrun\_way_name::create_endmap((0, 0, 0), 100, 150, "s0");
+thread sr\api\_map::create_endmap((0, 0, 0), 100, 150);
+thread sr\api\_map::create_endmap((0, 0, 0), 100, 150, "s0");
 
-thread speedrun\_way_name::create_tp((0, 0, 0), 100, 150, (0, 0, 0), 0, "freeze", "blue", "s0");
-thread speedrun\_way_name::create_tp((0, 0, 0), 100, 150, (0, 0, 0), 0, "freeze");
+thread sr\api\_map::create_tp((0, 0, 0), 100, 150, (0, 0, 0), 0, "freeze", "blue", "s0");
+thread sr\api\_map::create_tp((0, 0, 0), 100, 150, (0, 0, 0), 0, "freeze");
+
+player.disableAntiEle = true;
 
 // CJ
 speedrun\maptriggers::cj_dvar(); // CJ MAP
