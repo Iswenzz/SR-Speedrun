@@ -1,48 +1,24 @@
-///////////////////////////////////////////////////////////////
-////|         |///|        |///|       |/\  \/////  ///|  |////
-////|  |////  |///|  |//|  |///|  |/|  |//\  \///  ////|__|////
-////|  |////  |///|  |//|  |///|  |/|  |///\  \/  /////////////
-////|          |//|  |//|  |///|       |////\    //////|  |////
-////|  |////|  |//|         |//|  |/|  |/////    \/////|  |////
-////|  |////|  |//|  |///|  |//|  |/|  |////  /\  \////|  |////
-////|  |////|  |//|  | //|  |//|  |/|  |///  ///\  \///|  |////
-////|__________|//|__|///|__|//|__|/|__|//__/////\__\//|__|////
-///////////////////////////////////////////////////////////////
-/*
-	BraXi's Death Run Mod
-	
-	Website: www.braxi.org
-	E-mail: paulina1295@o2.pl
-
-	[DO NOT COPY WITHOUT PERMISSION]
-
-	=== INFO ===
-		In this script you can add following things:
-			- blockers	[ spawnCollision( (X,Y,Z), width, height ) ]
-			- arrays of activation triggers for specified maps
-*/
 #include braxi\_common;
 
 // TODO remove this gsc and move changes to their own map GSC.
-
-getMapNameString( mapName ) 
+getMapNameString(mapName)
 {
-	tokens = strTok( toLower( mapName ), "_" ); // mp 0, deathrun/dr 1, name 2, (optional)version 3
+	// mp 0, deathrun/dr 1, name 2, (optional)version 3
+	tokens = strTok(toLower(mapName), "_");
 
-	if( tokens.size < 2  || !tokens.size )
+	if(tokens.size < 2  || !tokens.size)
 		return mapName;
 	return tokens[2];
 }
 
 init()
 {
-	switch ( level.mapName )
+	switch (level.mapName)
 	{
 	case "mp_deathrun_cave":
 		trigger = spawn( "trigger_radius", (2226.29, 3548.81, 4.125), 0, 55, 55 );
 		trigger.targetname = "endmap_trig";
 		break;
-	
 	case "mp_deathrun_supermario":
 		trigger = spawn( "trigger_radius", (293.538, -1472, 8.12501), 0, 40, 50 );
 		trigger.targetname = "endmap_trig";
@@ -55,23 +31,18 @@ init()
 		trigger = spawn( "trigger_radius", (6.59441, -808.602, 32.125), 0, 60, 50 );
 		trigger.targetname = "endmap_trig";
 		break;
-
 	case "mp_deathrun_colourful":
 		trigger = spawn( "trigger_radius", (350.749, 197.533, 688.125), 0, 65, 40 );
 		trigger.targetname = "endmap_trig";
 		break;
-
 	case "mp_deathrun_escape2":
 		trigger = spawn( "trigger_radius", (-6464.2, -2495.73, 184.125), 0, 60, 60 );
 		trigger.targetname = "endmap_trig";
 		break;
-
 	case "mp_deathrun_ruin2":
 		trigger = spawn( "trigger_radius", (9329.7, 380.853, 128.125), 0, 255, 140 );
 		trigger.targetname = "endmap_trig";
 		break;
-
-// ===== Thanks to DuffMan for these ===== //
 	case "mp_dr_bigfall":
 		trigger = spawn( "trigger_radius", (-5484.02, -123.487, -12273.5), 0, 96, 48 );
 		trigger.targetname = "endmap_trig";
@@ -221,14 +192,11 @@ init()
 		break;
 	}
 
-//===//
-
-	if( !isDefined( level.trapTriggers ) )
+	if (!isDefined(level.trapTriggers))
 	{
 		level.trapTriggers = [];
-		switch ( level.mapName )
+		switch (level.mapName)
 		{
-		// BraXi's MAPS
 		case "mp_deathrun_darkness":
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "t1", "targetname" );
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "t2", "targetname" );
@@ -251,15 +219,13 @@ init()
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "trigger11", "targetname" );
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "trigger12", "targetname" );
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "trigger13", "targetname" );
-			spawnCollision( (112,3440,24), 70, 16 );
-			spawnCollision( (16,3696,28), 70, 16 );
-			spawnCollision( (-112,3440,28), 70, 16 );
-			spawnCollision( (-112,3440,28), 70, 16 );
-			spawnCollision( (1136,3936,28), 110, 16 );
-			spawnCollision( (304,-352,20), 110, 48 );
+			spawnCollision((112,3440,24), 70, 16);
+			spawnCollision((16,3696,28), 70, 16);
+			spawnCollision((-112,3440,28), 70, 16);
+			spawnCollision((-112,3440,28), 70, 16);
+			spawnCollision((1136,3936,28), 110, 16);
+			spawnCollision((304,-352,20), 110, 48);
 			break;
-
-		// Viking's MAPS
 		case "mp_deathrun_watchit_v2":
 		case "mp_deathrun_watchit_v3":
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "t1", "targetname" );
@@ -276,8 +242,6 @@ init()
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "t12", "targetname" );
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "t13", "targetname" );
 			break;
-
-		// MR-X's MAPS
 		case "mp_deathrun_takecare":
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "trig_1", "targetname" );
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "trig_2", "targetname" );
@@ -301,7 +265,6 @@ init()
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "trig_9", "targetname" );
 			break;
 		case "mp_deathrun_supermario":
-
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "trig1", "targetname" );
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "trig2", "targetname" );
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "trig3", "targetname" );
@@ -312,8 +275,6 @@ init()
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "trig8", "targetname" );
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "trig9", "targetname" );
 			break;
-
-		// Patrick's MAPS
 		case "mp_deathrun_short":
 		case "mp_deathrun_short_v2":
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "t1", "targetname" );
@@ -322,8 +283,6 @@ init()
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "t4", "targetname" );
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "t5", "targetname" );
 			break;
-		
-		// Rednose's MAPS
 		case "mp_deathrun_grassy":
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "trigger1", "targetname" );
 			level.trapTriggers[level.trapTriggers.size] = getEnt( "trigger2", "targetname" );
@@ -345,75 +304,44 @@ init()
 			break;
 		}
 	}
-
-	if( isDefined( level.trapTriggers ) )
-	{
+	if (isDefined(level.trapTriggers))
 		level thread checkTrapUsage();
-	}
 }
 
 checkTrapUsage()
 {
-
-	if( !level.trapTriggers.size )
+	if(!level.trapTriggers.size)
 	{
-		warning( "checkTrapUsage() reported that level.trapTriggers.size is -1, add trap activation triggers to level.trapTriggers array and recompile FF" );
-		warning( "Map doesn't support free run and XP for activation" );
+		warning("checkTrapUsage() reported that level.trapTriggers.size is -1, add trap activation triggers to level.trapTriggers array and recompile FF");
+		warning("Map doesn't support free run and XP for activation");
 		return;
 	}
 
-	for( i = 0; i < level.trapTriggers.size; i++ )
+	for(i = 0; i < level.trapTriggers.size; i++)
 	{
-		if ( level.dvar[ "freeRunChoice" ] == 2 )
-		{
+		if (level.dvar[ "freeRunChoice" ] == 2)
 			level.trapTriggers[i] thread killFreeRunIfActivated();
-		}
-		if ( level.dvar[ "giveXpForActivation" ] )
-		{
+		if (level.dvar[ "giveXpForActivation" ])
 			level.trapTriggers[i] thread giveXpIfActivated();
-		}
-		level.trapTriggers[i] thread processTrapChallenge();
 	}
 }
 
-processTrapChallenge()
-{
-	level endon( "death" );
-	level endon( "delete" );
-	level endon( "deleted" );
-
-	while( isDefined( self ) )
-	{
-		self waittill( "trigger", who );
-		if( who.pers["team"] == "axis" )
-		{
-			if( game["state"] != "playing" )
-				return;
-			who braxi\_missions::processChallenge( "ch_activated", 1 );
-			break;
-		}
-	}
-}
-		
 killFreeRunIfActivated()
 {
-	level endon( "death" );
-	level endon( "delete" );
-	level endon( "deleted" );
-	level endon( "kill_free_run_choice" );
+	level endon("death");
+	level endon("delete");
+	level endon("deleted");
+	level endon("kill_free_run_choice");
 
 	//level.trapsDisabled
-	while( isDefined( self ) )
+	while (isDefined(self))
 	{
-		self waittill( "trigger", who );
-		if( who.pers["team"] == "axis" )
+		self waittill("trigger", who);
+		if (who.pers["team"] == "axis")
 		{
 			level.canCallFreeRun = false;
-			if( !level.trapsDisabled )
-			{
-				//who iPrintlnBold( "You have activated trap and now you can't call free run" );
-				level notify( "kill_free_run_choice" );
-			}
+			if (!level.trapsDisabled)
+				level notify("kill_free_run_choice");
 			break;
 		}
 	}
@@ -421,18 +349,18 @@ killFreeRunIfActivated()
 
 giveXpIfActivated()
 {
-	level endon( "death" );
-	level endon( "delete" );
-	level endon( "deleted" );
+	level endon("death");
+	level endon("delete");
+	level endon("deleted");
 
-	while( isDefined( self ) )
+	while (isDefined(self))
 	{
-		self waittill( "trigger", who );
-		if( who.pers["team"] == "axis" )
+		self waittill("trigger", who);
+		if (who.pers["team"] == "axis")
 		{
-			if( game["state"] != "playing" )
+			if (game["state"] != "playing")
 				return;
-			who braxi\_rank::giveRankXP( "trap_activation" );
+			who braxi\_rank::giveRankXP("trap_activation");
 			break;
 		}
 	}

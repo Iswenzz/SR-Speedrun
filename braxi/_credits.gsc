@@ -1,65 +1,28 @@
-///////////////////////////////////////////////////////////////
-////|         |///|        |///|       |/\  \/////  ///|  |////
-////|  |////  |///|  |//|  |///|  |/|  |//\  \///  ////|__|////
-////|  |////  |///|  |//|  |///|  |/|  |///\  \/  /////////////
-////|          |//|  |//|  |///|       |////\    //////|  |////
-////|  |////|  |//|         |//|  |/|  |/////    \/////|  |////
-////|  |////|  |//|  |///|  |//|  |/|  |////  /\  \////|  |////
-////|  |////|  |//|  | //|  |//|  |/|  |///  ///\  \///|  |////
-////|__________|//|__|///|__|//|__|/|__|//__/////\__\//|__|////
-///////////////////////////////////////////////////////////////
-/*
-	BraXi's Death Run Mod
-	
-	Website: www.braxi.org
-	E-mail: paulina1295@o2.pl
-
-	[DO NOT COPY WITHOUT PERMISSION]
-
-	showCredit() written by Bipo.
-*/
-
 main()
 {
-	level.creditTime = 6;
+	level.creditTime = 4;
 
 	braxi\_common::cleanScreen();
 
-	thread showCredit( "Deathrun Created by Braxi", 2, 40 );
+	thread showCredit("SR Mod (c) 2016-2022", 2, 80);
 	wait 0.5;
-	thread showCredit( "SpeedRun Mod Created by:", 2, 80 );
-	wait 0.5;
-	thread showCredit( "Sheep Wizard", 1.8, 100 );
-	wait 0.5;
-	thread showCredit( "Sux Lolz", 1.8, 120 );
+	thread showCredit("SuX Lolz", 1.8, 120);
 	wait 1;
-	thread showCredit( "Characters/Weapons Rigged By:", 2.4, 160 );
-	wait 0.8;
-	thread showCredit( "|MACOM|Hacker", 1.8, 180 );
-	wait 0.8;
-	thread showCredit( "_INSANE_", 1.8, 200 );
-	wait 0.8;
-	thread showCredit( "Lenny", 1.8, 220 );
-	wait 0.8;
-	thread showCredit( "Sanya", 1.8, 240 );
-	wait 0.8;
-	thread showCredit( "Hacker22", 1.8, 260 );
-	wait 0.8;
-	thread showCredit( "ConvictioNDR", 1.8, 280 );
-	wait 0.8;
-	thread showCredit( "mitsurugi", 1.8, 300 );
-	wait 0.8;
-	thread showCredit( "darkraptor", 1.8, 320 );
-	wait 0.8;
-	thread showCredit( "Additional Help", 2, 360 );
-	wait 0.8;
-	thread showCredit( "IzNoGod -- Vc' Blade -- Jax -- Mist -- jaay", 1.8, 380 );
-	wait 1.2;
+	thread showCredit("Additional Help", 2, 160);
+	wait 0.5;
+	thread showCredit("Sheep Wizard", 1.7, 200);
+	wait 0.5;
+	thread showCredit("IzNoGod", 1.7, 240);
+	wait 0.5;
+	thread showCredit("Vc' Blade", 1.7, 280);
+	wait 0.5;
+	thread showCredit("3xP' Noob", 1.7, 320);
+	wait 1;
 
 	wait level.creditTime + 2;
 }
 
-showCredit( text, scale, y )
+showCredit(text, scale, y)
 {
 	end_text = newHudElem();
 	end_text.font = "objective";
@@ -72,7 +35,7 @@ showCredit( text, scale, y )
 	end_text.x = 0;
 	end_text.y = y;
 	end_text.sort = -1;
-	end_text.glowColor = (119/255, 0/255, 255/255);
+	end_text.glowColor = (119 / 255, 0 / 255, 255 / 255);
 	end_text.glowAlpha = 1;
 	end_text.alpha = 0;
 	end_text fadeOverTime(0.9);
@@ -87,19 +50,19 @@ showCredit( text, scale, y )
 
 neon()
 {
-	neon = addNeon( "", 1.4 );
-	while( 1 )
+	neon = addNeon("", 1.4);
+	while (1)
 	{
-		neon moveOverTime( 12 );
+		neon moveOverTime(12);
 		neon.x = 800;
 		wait 15;
-		neon moveOverTime( 12 );
+		neon moveOverTime(12);
 		neon.x = -800;
 		wait 15;
 	}
 }
 
-addNeon( text, scale )
+addNeon(text, scale)
 {
 	end_text = newHudElem();
 	end_text.font = "objective";
