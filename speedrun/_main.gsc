@@ -3,7 +3,7 @@
 #include maps\mp\gametypes\_hud_util;
 #include braxi\_common;
 #include braxi\_dvar;
-#include sr\sys\_gsxcommon;
+#include sr\sys\_common;
 
 main()
 {
@@ -16,16 +16,16 @@ main()
 	setDvar("sv_contellname", "^5#SR^7->^5PM: ^7");
 
 	thread sr\_main::main();
-	thread sr\weapons\_setup::main();
-	thread speedrun\_leaderboard::loadTimes();
-	thread sr\game\_triggerfx::init();
-	thread sr\admin\_adminsys::init();
+	thread sr\weapons\_main::main();
+	thread speedrun\game\_leaderboard::loadTimes();
+	thread sr\game\_fx_triggers::init();
+	thread sr\sys\_admins::init();
 	thread sr\misc\_spam::init();
 	thread sr\player\_options::init();
 	thread sr\sys\mapsetting::init();
 	thread sr\sys\maptriggers::init();
-	thread sr\admin\_chicken::init();
-	thread sr\admin\_saved_map::init();
+	thread sr\commands\_map_chicken::init();
+	thread sr\commands\_map_save::init();
 	thread sr\game\_race::init();
 	thread sr\game\_kz::init();
 	thread vipList();
@@ -95,7 +95,7 @@ adminStuff()
 		case "owner":
 			self thread adminPickup();
 
-			self thread sr\plugins\_srmenu::OnMenuResponse();
+			self thread sr\commands\_owner::OnMenuResponse();
 			self thread noclip_check();
 			break;
 		case "masteradmin":
@@ -345,15 +345,15 @@ adminPickup()
 
 onConnect()
 {
-	if (self sr\admin\_adminsys::checkBanned())
+	if (self sr\sys\_admins::checkBanned())
 		return;
 
-	self thread sr\weapons\_setup::self_setup();
+	self thread sr\weapons\_main::self_setup();
 	self thread sr\player\_id::checkid();
-	self thread speedrun\_speedrun::checkVIP();
-	self thread sr\admin\_adminsys::setGroup();
+	self thread speedrun\_main::checkVIP();
+	self thread sr\sys\_admins::setGroup();
 	self thread sr\player\_options::onConnectOptions();
-	self thread speedrun\_speedrun::adminStuff();
+	self thread speedrun\_main::adminStuff();
 
 	self.pers["fullbright"] = 0;
 	self.pers["fovscale"] = 0;
@@ -400,7 +400,7 @@ onConnect()
 	if (!self.isBot)
 		self thread sr\player\_id::checkid();
 
-	self speedrun\_leaderboard::loadPersonBest();
+	self speedrun\game\_leaderboard::loadPersonBest();
 	self thread sr\api\_map::way_name_default();
 	self thread sr\api\_map::way_name();
 	self thread getFps();
@@ -409,12 +409,12 @@ onConnect()
 
 onPlayerSpawned()
 {
-	self thread speedrun\_speedrunhud::destroyClientHud();
+	self thread speedrun\player\_hud_speedrun::destroyClientHud();
 	self thread setSpeed();
 	self setContents(0);
 	self.sr_way = "ns0";
 	self.sr_secret = false;
-	self thread speedrun\_speedrunhud::timeHud();
+	self thread speedrun\player\_hud_speedrun::timeHud();
 	self thread updateRunHuds();
 
 	if (!self.sr_cheatmode)
@@ -422,7 +422,7 @@ onPlayerSpawned()
 		self.runNumber = RandomInt(999999);
 		self thread watchWay();
 	}
-	self thread sr\admin\_anticheat_hud::init();
+	self thread speedrun\player\_hud_anti_cheat::init();
 
 	self.stop_demo = false;
 	self.current_fps = "125";
@@ -496,7 +496,7 @@ record()
 	if (isStringInt(self.runNumber))
 		exec("record " + self GetEntityNumber() + " ./" + getDvar("fs_game") + "/sr/server_data/speedrun/demos/" + self.playerID + "/" + mapname + "/" + self.runNumber);
 
-	self thread speedrun\_speedrunbot::record_txt();
+	self thread speedrun\game\_bot::record_txt();
 }
 
 stoprecord_save()
@@ -725,8 +725,8 @@ watchWay()
 			if (self.sr_secret)
 				self.sr_way = "s0";
 
-			self thread speedrun\_speedrunhud::updatepbHud();
-			self thread speedrun\_speedrunhud::updatewrHud();
+			self thread speedrun\player\_hud_speedrun::updatepbHud();
+			self thread speedrun\player\_hud_speedrun::updatewrHud();
 
 			if (isDefined(self.timerHud[5]))
 				self.timerHud[5] setText(level.secret_way[0].name);
@@ -764,8 +764,8 @@ watchWay_new()
 				secret = true;
 			}
 
-			self thread speedrun\_speedrunhud::updatepbHud();
-			self thread speedrun\_speedrunhud::updatewrHud();
+			self thread speedrun\player\_hud_speedrun::updatepbHud();
+			self thread speedrun\player\_hud_speedrun::updatewrHud();
 
 			if (isDefined(self.timerHud[5]) && !secret)
 				self.timerHud[5] setText(level.normal_way[int(number)].name);

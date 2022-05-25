@@ -88,25 +88,25 @@ onMenuResponse()
 			self CloseMenu();
 			self closeInGameMenu();
 			self openMenu("sr_leaderboard");
-			self thread speedrun\_leaderboard::top10Menu();
+			self thread speedrun\game\_leaderboard::top10Menu();
 		}
 
 		if (response == "vote_menu")
-			self thread sr\admin\_mapvote::init();
+			self thread sr\commands\_map_vote::init();
 
 		if (menu == game["menu_welcome"])
 		{
 			switch (response)
 			{
 				case "connectmessage":
-				self thread speedrun\_speedrun::connectMessages();
+				self thread speedrun\_main::connectMessages();
 				break;
 
 			}
 		}
 
 		if (response == "checkguid")
-			self sr\admin\_adminsys::checkBanned();
+			self sr\sys\_admins::checkBanned();
 
 		if (menu == "sr_customize" || menu == "sr_customize_area")
 			self thread sr\player\_customize::executeResponse(menu, response);
@@ -211,8 +211,8 @@ onMenuResponse()
 				self braxi\_teams::setTeam("spectator");
 				self braxi\_mod::spawnSpectator(level.spawn["spectator"].origin, level.spawn["spectator"].angles);
 				if (self.pers["spec_hud"] == 1)
-					self thread speedrun\_spectatorhud::init();
-				self thread sr\admin\_anticheat_hud::spec();
+					self thread speedrun\player\_hud_spectator::init();
+				self thread speedrun\player\_hud_anti_cheat::spec();
 				break;
 
 				case "sr_customize":

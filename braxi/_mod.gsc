@@ -74,7 +74,7 @@ main()
 	buildGloveInfo();
 	buildRankIcons();
 
-	thread speedrun\_speedrun::main();
+	thread speedrun\_main::main();
 
 	thread maps\mp\gametypes\_hud::init();
 	thread maps\mp\gametypes\_hud_message::init();
@@ -97,13 +97,6 @@ main()
 	level thread fastestTime();
 
 	visionSetNaked(level.mapName, 0);
-
-	if (level.dvar["usePlugins"])
-	{
-		println("Initializing plugins...");
-		thread sr\plugins\_plugins::main();
-		println("Plugins initialized");
-	}
 }
 
 precache()
@@ -482,7 +475,7 @@ playerConnect() // Called when player is connecting to server
 	self.pers["fxenabled"] = 1;
 	self setStat(2360, 0);
 
-	self thread speedrun\_speedrun::onConnect();
+	self thread speedrun\_main::onConnect();
 
 	if (!isDefined(self.name))
 		self.name = "undefined name";
@@ -544,7 +537,7 @@ playerDisconnect() // Called when player disconnect from server
 {
 	level notify("disconnected", self);
 	self thread cleanUp();
-	self thread speedrun\_speedrun::stoprecord_disconnect();
+	self thread speedrun\_main::stoprecord_disconnect();
 
 	if (isDefined(self.clone))
 		self.clone delete();
@@ -612,7 +605,7 @@ PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 
 	level notify("player_killed", self, eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration);
 
-	self thread speedrun\_speedrun::stoprecord_death();
+	self thread speedrun\_main::stoprecord_death();
 
 	if (level.dvar["giveXpForKill"] && !level.trapsDisabled)
 	{
@@ -687,7 +680,7 @@ spawnPlayer(origin, angles)
 	self.statusicon = "";
 	self.finishedMap = undefined;
 
-	self thread speedrun\_speedrun::onPlayerSpawned();
+	self thread speedrun\_main::onPlayerSpawned();
 
 	self braxi\_teams::setPlayerModel();
 
@@ -1120,7 +1113,7 @@ endMap(winningteam, map)
 
 	if (!isDefined(map))
 	{
-		setDvar("sv_maprotationcurrent", "gametype deathrun map " + sr\admin\_mapvote::loadmaps(false)[RandomInt(sr\admin\_mapvote::loadmaps(false).size)]);
+		setDvar("sv_maprotationcurrent", "gametype deathrun map " + sr\commands\_map_vote::loadmaps(false)[RandomInt(sr\commands\_map_vote::loadmaps(false).size)]);
 		ExitLevel(false);
 	}
 
@@ -1505,13 +1498,13 @@ endTimer()
 			self.sr_way = "s0";
 	}
 
-	self.time = speedrun\_leaderboard::realtime(getTime() - self.timerStartTime);
+	self.time = speedrun\game\_leaderboard::realtime(getTime() - self.timerStartTime);
 
-	self thread speedrun\_leaderboard::saveTimes();
-	self speedrun\_leaderboard::loadPersonBest();
-	self thread speedrun\_speedrunhud::updatepbHud();
-	self thread speedrun\_speedrunhud::updatewrHud();
-	self thread speedrun\_speedrunhud::updateHud();
+	self thread speedrun\game\_leaderboard::saveTimes();
+	self speedrun\game\_leaderboard::loadPersonBest();
+	self thread speedrun\player\_hud_speedrun::updatepbHud();
+	self thread speedrun\player\_hud_speedrun::updatewrHud();
+	self thread speedrun\player\_hud_speedrun::updateHud();
 
 	if (self.time.ori < self.pers["time"])
 		self.pers["time"] = self.time.ori;

@@ -1,4 +1,4 @@
-#include sr\sys\_gsxcommon;
+#include sr\sys\_common;
 #include sr\game\_leaderboard;
 
 init()

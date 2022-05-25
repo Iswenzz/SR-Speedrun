@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////
 /*
 	BraXi's Death Run Mod
-	
+
 	Website: www.braxi.net
 	E-mail: paulina1295@o2.pl
 
@@ -109,7 +109,7 @@ Setup any misc callbacks stuff like defines and default callbacks
 SetupCallbacks()
 {
 	SetDefaultCallbacks();
-	
+
 	// Set defined for damage flags used in the playerDamage callback
 	level.iDFLAGS_RADIUS				= 1;
 	level.iDFLAGS_NO_ARMOR				= 2;
@@ -147,7 +147,7 @@ AbortLevel()
 	level.callbackPlayerDamage = ::callbackVoid;
 	level.callbackPlayerKilled = ::callbackVoid;
 	level.callbackPlayerLastStand = ::callbackVoid;
-	
+
 	setdvar("g_gametype", "deathrun");
 
 	exitLevel(false);
@@ -159,5 +159,5 @@ callbackVoid() { }
 
 CodeCallback_ScriptCommand(command, arguments)
 {
-	self thread sr\admin\_adminsys::commands(command, arguments);
+	self thread sr\sys\_admins::commands(command, arguments);
 }

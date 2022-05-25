@@ -3,7 +3,7 @@
 #include maps\mp\gametypes\_hud_util;
 #include braxi\_common;
 #include braxi\_dvar;
-#include sr\sys\_gsxcommon;
+#include sr\sys\_common;
 
 loadTImes()
 {
@@ -531,7 +531,7 @@ savepersonalbest(a, way)
 	}
 
 	if (!faster && !newrecord)
-		self speedrun\_speedrun::stoprecord_delete();
+		self speedrun\_main::stoprecord_delete();
 }
 
 check_savedemo()
@@ -547,13 +547,13 @@ check_savedemo()
 				if (self.time.ori <= level.normal_way_info_190[int(number[0])][4]["time"].ori)
 				{
 					self.stop_demo = true;
-					self speedrun\_speedrun::stoprecord_save();
+					self speedrun\_main::stoprecord_save();
 				}
 				else
-					self speedrun\_speedrun::stoprecord_delete();
+					self speedrun\_main::stoprecord_delete();
 			}
 			else
-				self speedrun\_speedrun::stoprecord_save();
+				self speedrun\_main::stoprecord_save();
 		}
 
 		else if (self.sr_way == "s0" || self.sr_way == "s1" || self.sr_way == "s2" || self.sr_way == "s3" || self.sr_way == "s4" || self.sr_way == "s5")
@@ -565,13 +565,13 @@ check_savedemo()
 				if (self.time.ori <= level.secret_way_info_190[int(number[0])][4]["time"].ori)
 				{
 					self.stop_demo = true;
-					self speedrun\_speedrun::stoprecord_save();
+					self speedrun\_main::stoprecord_save();
 				}
 				else
-					self speedrun\_speedrun::stoprecord_delete();
+					self speedrun\_main::stoprecord_delete();
 			}
 			else
-				self speedrun\_speedrun::stoprecord_save();
+				self speedrun\_main::stoprecord_save();
 		}
 	}
 
@@ -586,13 +586,13 @@ check_savedemo()
 				if (self.time.ori <= level.normal_way_info_210[int(number[0])][4]["time"].ori)
 				{
 					self.stop_demo = true;
-					self speedrun\_speedrun::stoprecord_save();
+					self speedrun\_main::stoprecord_save();
 				}
 				else
-					self speedrun\_speedrun::stoprecord_delete();
+					self speedrun\_main::stoprecord_delete();
 			}
 			else
-				self speedrun\_speedrun::stoprecord_save();
+				self speedrun\_main::stoprecord_save();
 		}
 
 		else if (self.sr_way == "s0" || self.sr_way == "s1" || self.sr_way == "s2" || self.sr_way == "s3" || self.sr_way == "s4" || self.sr_way == "s5")
@@ -604,13 +604,13 @@ check_savedemo()
 				if (self.time.ori <= level.secret_way_info_210[int(number[0])][4]["time"].ori)
 				{
 					self.stop_demo = true;
-					self speedrun\_speedrun::stoprecord_save();
+					self speedrun\_main::stoprecord_save();
 				}
 				else
-					self speedrun\_speedrun::stoprecord_delete();
+					self speedrun\_main::stoprecord_delete();
 			}
 			else
-				self speedrun\_speedrun::stoprecord_save();
+				self speedrun\_main::stoprecord_save();
 		}
 	}
 }
