@@ -1,6 +1,0 @@
-{
-    "files.associations": {
-        "*.gsc": "cpp",
-        "condition_variable": "cpp"
-    }
-}
