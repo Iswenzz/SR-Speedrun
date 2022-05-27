@@ -74,8 +74,6 @@ main()
 	buildGloveInfo();
 	buildRankIcons();
 
-	thread speedrun\_main::main();
-
 	thread maps\mp\gametypes\_hud::init();
 	thread maps\mp\gametypes\_hud_message::init();
 	thread maps\mp\gametypes\_damagefeedback::init();

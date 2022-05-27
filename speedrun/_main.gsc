@@ -15,6 +15,8 @@ main()
 	setDvar("sv_consayname", "^5#SR: ^7");
 	setDvar("sv_contellname", "^5#SR^7->^5PM: ^7");
 
+	braxi\_mod::main();
+
 	thread sr\_main::main();
 	thread sr\weapons\_main::main();
 	thread speedrun\game\_leaderboard::loadTimes();
