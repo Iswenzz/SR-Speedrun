@@ -7,11 +7,6 @@
 
 main()
 {
-	level.openFiles = 0;
-	level.timesToSave = 30;
-	level.krispymap = "mp_dr_nighty";
-	level.voteInProgress = false;
-
 	setDvar("sv_consayname", "^5#SR: ^7");
 	setDvar("sv_contellname", "^5#SR^7->^5PM: ^7");
 
@@ -119,7 +114,7 @@ noclip_check()
 
 	while (true)
 	{
-		while (!isDefined(self.sr_noclip))
+		while (!isDefined(self.noclip))
 		{
 			if (self.noclip_isLinked)
 			{
@@ -149,28 +144,6 @@ noclip_check()
 		}
 		wait 0.1;
 	}
-}
-
-fortniteDance()
-{
-	self endon("disconnect");
-	self endon("death");
-
-	currentweap = self getCurrentWeapon();
-	self giveWeapon("fortnite_mp");
-	self switchToWeapon("fortnite_mp");
-
-	wait 0.2;
-
-	self setClientDvar("cg_thirdperson", 1);
-	self setClientDvar("cg_thirdpersonangle", 180);
-
-	wait 7;
-
-	self takeWeapon("fortnite_mp");
-	self switchToWeapon(currentweap);
-	self setClientDvar("cg_thirdperson", 0);
-	self setClientDvar("cg_thirdpersonangle", 0);
 }
 
 adminPickup()
