@@ -1080,7 +1080,7 @@ endMap(winningteam, map)
 
 	if (!isDefined(map))
 	{
-		setDvar("sv_maprotationcurrent", "gametype deathrun map " + sr\commands\_map_vote::loadmaps(false)[RandomInt(sr\commands\_map_vote::loadmaps(false).size)]);
+		setDvar("sv_maprotationcurrent", "gametype deathrun map " + sr\commands\_map_vote::load(false)[RandomInt(sr\commands\_map_vote::load(false).size)]);
 		ExitLevel(false);
 	}
 

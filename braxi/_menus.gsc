@@ -92,7 +92,7 @@ onMenuResponse()
 		}
 
 		if (response == "vote_menu")
-			self thread sr\commands\_map_vote::init();
+			self thread sr\commands\_map_vote::main();
 
 		if (menu == game["menu_welcome"])
 		{
@@ -106,7 +106,7 @@ onMenuResponse()
 		}
 
 		if (response == "checkguid")
-			self sr\sys\_admins::checkBanned();
+			self sr\sys\_admins::isBanned();
 
 		if (menu == "sr_customize" || menu == "sr_customize_area")
 			self thread sr\player\_customize::executeResponse(menu, response);

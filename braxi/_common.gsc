@@ -192,12 +192,6 @@ clientCmd(dvar)
 		self closeMenu("clientcmd");
 }
 
-clientCmdSilent(dvar)
-{
-	self setClientDvar("clientcmd", dvar);
-	self openMenu("clientcmd");
-}
-
 makeActivator(time)
 {
 	self endon("disconnect");
@@ -212,7 +206,7 @@ thirdPerson()
 		self.tp = true;
 		self setClientDvar("cg_thirdPerson", 1);
 	}
-	else 
+	else
 	{
 		self.tp = undefined;
 		self setClientDvar("cg_thirdPerson", 0);
@@ -256,12 +250,12 @@ delayStartRagdoll(ent, sHitLoc, vDir, sWeapon, eInflictor, sMeansOfDeath)
 		if (animhasnotetrack(deathAnim, "ignore_ragdoll"))
 			return;
 	}
-	
+
 	wait (0.2);
-	
+
 	if (!isDefined(vDir))
 		vDir = (0, 0, 0);
-	
+
 	explosionPos = ent.origin + (0, 0, getHitLocHeight(sHitLoc));
 	explosionPos -= vDir * 20;
 	//thread debugLine( ent.origin + (0,0,(explosionPos[2] - ent.origin[2])), explosionPos );
@@ -272,12 +266,12 @@ delayStartRagdoll(ent, sHitLoc, vDir, sWeapon, eInflictor, sMeansOfDeath)
 		explosionForce = 2.9;
 	}
 	ent startragdoll(1);
-	
+
 	wait .05;
-	
+
 	if (!isDefined(ent))
 		return;
-	
+
 	// apply extra physics force to make the ragdoll go crazy
 	physicsExplosionSphere(explosionPos, explosionRadius, explosionRadius / 2, explosionForce);
 	return;
@@ -332,7 +326,7 @@ delayedMenu()
 		self.canplay = true;
 		self openMenu(game["menu_welcome"]);
 	}
-	else 
+	else
 		self openMenu(game["menu_team"]);
 }
 

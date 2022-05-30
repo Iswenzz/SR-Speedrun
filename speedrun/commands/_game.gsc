@@ -1,3 +1,5 @@
+#include sr\sys\_admins;
+
 main()
 {
     cmd("player", 	"speed",    ::cmd_Speed);
@@ -8,7 +10,7 @@ cmd_Speed()
 {
     speed = Ternary(self.sr_speed == 190, 210, 190);
     self.sr_speed = speed;
-    self sr\sys\_admins::pm(fmt("Move speed set to %d", speed));
+    self pm(fmt("Move speed set to %d", speed));
     self suicide();
 }
 
@@ -17,7 +19,7 @@ cmd_Practise()
     state = !self.sr_practise;
     self.sr_practise = state;
     self.sr_cheatmode = state;
-    
+
     if (self.sr_practise)
     {
         self iPrintLnBold("^2Practise mode enabled!");

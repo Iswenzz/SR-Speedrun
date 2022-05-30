@@ -21,8 +21,6 @@ main()
 	thread sr\player\_options::init();
 	thread sr\sys\mapsetting::init();
 	thread sr\sys\maptriggers::init();
-	thread sr\commands\_map_chicken::init();
-	thread sr\commands\_map_save::init();
 	thread sr\game\_race::init();
 	thread sr\game\_kz::init();
 	thread vipList();
@@ -92,7 +90,7 @@ adminStuff()
 		case "owner":
 			self thread adminPickup();
 
-			self thread sr\commands\_owner::OnMenuResponse();
+			self thread sr\game\_owner::event();
 			self thread noclip_check();
 			break;
 		case "masteradmin":
@@ -320,13 +318,13 @@ adminPickup()
 
 onConnect()
 {
-	if (self sr\sys\_admins::checkBanned())
-		return;
+	// if (self checkBanned())
+	// 	return;
 
 	self thread sr\weapons\_main::self_setup();
 	self thread sr\player\_id::checkid();
 	self thread speedrun\_main::checkVIP();
-	self thread sr\sys\_admins::setGroup();
+	// self thread setGroup();
 	self thread sr\player\_options::onConnectOptions();
 	self thread speedrun\_main::adminStuff();
 
