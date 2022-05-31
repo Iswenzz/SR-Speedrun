@@ -23,24 +23,24 @@ init()
 bot_search_path()
 {
 	mapname = getDvar("mapname");
-	file_exists = checkfile("./sr/server_data/speedrun/txt_demos/" + mapname + "/WR.txt");
+	file_exists = checkfile("./sr/data/speedrun/txt_demos/" + mapname + "/WR.txt");
 
 	if (!file_exists)
 	{
-		WriteToFile("./sr/server_data/speedrun/txt_demos/" + mapname + "/WR.txt", "");
-		WriteToFile("./sr/server_data/speedrun/txt_demos/" + mapname + "/WR_190_ns.txt", "");
-		WriteToFile("./sr/server_data/speedrun/txt_demos/" + mapname + "/WR_190_s.txt", "");
-		WriteToFile("./sr/server_data/speedrun/txt_demos/" + mapname + "/WR_210_ns.txt", "");
-		WriteToFile("./sr/server_data/speedrun/txt_demos/" + mapname + "/WR_210_s.txt", "");
+		WriteToFile("./sr/data/speedrun/txt_demos/" + mapname + "/WR.txt", "");
+		WriteToFile("./sr/data/speedrun/txt_demos/" + mapname + "/WR_190_ns.txt", "");
+		WriteToFile("./sr/data/speedrun/txt_demos/" + mapname + "/WR_190_s.txt", "");
+		WriteToFile("./sr/data/speedrun/txt_demos/" + mapname + "/WR_210_ns.txt", "");
+		WriteToFile("./sr/data/speedrun/txt_demos/" + mapname + "/WR_210_s.txt", "");
 	}
 
-	path_190_ns = "./sr/server_data/speedrun/txt_demos/" + mapname + "/WR_190_ns.txt";
+	path_190_ns = "./sr/data/speedrun/txt_demos/" + mapname + "/WR_190_ns.txt";
 	path_190_ns_read = readAll(path_190_ns);
-	path_190_s = "./sr/server_data/speedrun/txt_demos/" + mapname + "/WR_190_s.txt";
+	path_190_s = "./sr/data/speedrun/txt_demos/" + mapname + "/WR_190_s.txt";
 	path_190_s_read = readAll(path_190_s);
-	path_210_ns = "./sr/server_data/speedrun/txt_demos/" + mapname + "/WR_210_ns.txt";
+	path_210_ns = "./sr/data/speedrun/txt_demos/" + mapname + "/WR_210_ns.txt";
 	path_210_ns_read = readAll(path_210_ns);
-	path_210_s = "./sr/server_data/speedrun/txt_demos/" + mapname + "/WR_210_s.txt";
+	path_210_s = "./sr/data/speedrun/txt_demos/" + mapname + "/WR_210_s.txt";
 	path_210_s_read = readAll(path_210_s);
 
 	if (isStringInt(path_190_ns_read[0]) && path_190_ns_read[0] != "")
@@ -80,8 +80,8 @@ bot_run(bot)
 
 	// bot speedrunBOT(path);
 	mapname = getDvar("mapname");
-	// bot speedrunBOT("./sr/server_data/speedrun/txt_demos/"+mapname+"/test.txt");
-	// bot bot_gsc_test("./sr/server_data/speedrun/txt_demos/"+mapname+"/test.txt");
+	// bot speedrunBOT("./sr/data/speedrun/txt_demos/"+mapname+"/test.txt");
+	// bot bot_gsc_test("./sr/data/speedrun/txt_demos/"+mapname+"/test.txt");
 
 	wait 2;
 
@@ -124,5 +124,5 @@ record_txt()
 	mapname = getDvar("mapname");
 	if (mapname.size > 17)
 		mapname = GetSubStr(mapname, mapname.size - 17, mapname.size);
-	path = "./sr/server_data/speedrun/txt_demos/" + mapname + "/" + self.runNumber + ".txt";
+	path = "./sr/data/speedrun/txt_demos/" + mapname + "/" + self.runNumber + ".txt";
 }

@@ -18,7 +18,6 @@ main()
 	thread sr\game\_fx_triggers::init();
 	thread sr\sys\_admins::init();
 	thread sr\misc\_spam::init();
-	thread sr\player\_options::init();
 	thread sr\sys\mapsetting::init();
 	thread sr\sys\maptriggers::init();
 	thread sr\game\_race::init();
@@ -325,7 +324,7 @@ onConnect()
 	self thread sr\player\_id::checkid();
 	self thread speedrun\_main::checkVIP();
 	// self thread setGroup();
-	self thread sr\player\_options::onConnectOptions();
+	self thread sr\player\_settings::onConnect();
 	self thread speedrun\_main::adminStuff();
 
 	self.pers["fullbright"] = 0;
@@ -467,7 +466,7 @@ record()
 		mapname = GetSubStr(mapname, mapname.size - 17, mapname.size);
 
 	if (isStringInt(self.runNumber))
-		exec("record " + self GetEntityNumber() + " ./" + getDvar("fs_game") + "/sr/server_data/speedrun/demos/" + self.playerID + "/" + mapname + "/" + self.runNumber);
+		exec("record " + self GetEntityNumber() + " ./" + getDvar("fs_game") + "/sr/data/speedrun/demos/" + self.playerID + "/" + mapname + "/" + self.runNumber);
 
 	self thread speedrun\game\_bot::record_txt();
 }
@@ -488,8 +487,8 @@ stoprecord_delete()
 	if (mapname.size > 17)
 		mapname = GetSubStr(mapname, mapname.size - 17, mapname.size);
 	exec("stoprecord " + self GetEntityNumber());
-	path = "./sr/server_data/speedrun/demos/" + self.playerID + "/" + mapname + "/" + self.runNumber + ".dm_1";
-	path2 = "./sr/server_data/speedrun/txt_demos/" + mapname + "/" + self.runNumber + ".txt";
+	path = "./sr/data/speedrun/demos/" + self.playerID + "/" + mapname + "/" + self.runNumber + ".dm_1";
+	path2 = "./sr/data/speedrun/txt_demos/" + mapname + "/" + self.runNumber + ".txt";
 	file_exists = checkfile(path);
 	file_exists2 = checkfile(path2);
 
@@ -513,8 +512,8 @@ stoprecord_death()
 	if (mapname.size > 17)
 		mapname = GetSubStr(mapname, mapname.size - 17, mapname.size);
 	exec("stoprecord " + self GetEntityNumber());
-	path = "./sr/server_data/speedrun/demos/" + self.playerID + "/" + mapname + "/" + self.runNumber + ".dm_1";
-	path2 = "./sr/server_data/speedrun/txt_demos/" + mapname + "/" + self.runNumber + ".txt";
+	path = "./sr/data/speedrun/demos/" + self.playerID + "/" + mapname + "/" + self.runNumber + ".dm_1";
+	path2 = "./sr/data/speedrun/txt_demos/" + mapname + "/" + self.runNumber + ".txt";
 	file_exists = checkfile(path);
 	file_exists2 = checkfile(path2);
 
@@ -539,8 +538,8 @@ stoprecord_disconnect()
 	mapname = getDvar("mapname");
 	if (mapname.size > 17)
 		mapname = GetSubStr(mapname, mapname.size - 17, mapname.size);
-	path = "./sr/server_data/speedrun/demos/" + self.playerID + "/" + mapname + "/" + self.runNumber + ".dm_1";
-	path2 = "./sr/server_data/speedrun/txt_demos/" + mapname + "/" + self.runNumber + ".txt";
+	path = "./sr/data/speedrun/demos/" + self.playerID + "/" + mapname + "/" + self.runNumber + ".dm_1";
+	path2 = "./sr/data/speedrun/txt_demos/" + mapname + "/" + self.runNumber + ".txt";
 	file_exists = checkfile(path);
 	file_exists2 = checkfile(path2);
 
@@ -589,7 +588,7 @@ checkVIP()
 		IPrintLn("^1PLAYER HAS NO ID");
 		return;
 	}
-	path = "./sr/server_data/admin/vip.txt";
+	path = "./sr/data/admin/vip.txt";
 	file_exists = checkfile(path);
 	if (!file_exists)
 	{
@@ -616,7 +615,7 @@ checkVIP()
 vipList()
 {
 	level.viplist = [];
-	path = "./sr/server_data/admin/vip.txt";
+	path = "./sr/data/admin/vip.txt";
 	file_exists = checkfile(path);
 	if (!file_exists)
 	{

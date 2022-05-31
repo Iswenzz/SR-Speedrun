@@ -40,7 +40,7 @@ loadTImes()
 loadPersonBest()
 {
 	mapname = getDvar("mapname");
-	path = "./sr/server_data/speedrun/personbest/" + self.playerID + ".txt";
+	path = "./sr/data/speedrun/personbest/" + self.playerID + ".txt";
 	file_exists = checkfile(path);
 
 	if (!file_exists)
@@ -488,7 +488,7 @@ savepersonalbest(a, way)
 	faster = false;
 	newrecord = true;
 	mapname = getDvar("mapname");
-	path = "./sr/server_data/speedrun/personbest/" + a["guid"] + ".txt";
+	path = "./sr/data/speedrun/personbest/" + a["guid"] + ".txt";
 	file_exists = checkfile(path);
 
 	if (!file_exists)
