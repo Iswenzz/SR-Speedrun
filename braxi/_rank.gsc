@@ -246,20 +246,20 @@ onPlayerSpawned()
 	{
 		self waittill("spawned_player");
 
-		if (!isdefined(self.hud_rankscroreupdate))
+		if (!isdefined(self.huds.rankscroreupdate))
 		{
-			self.hud_rankscroreupdate = newClientHudElem(self);
-			self.hud_rankscroreupdate.horzAlign = "center";
-			self.hud_rankscroreupdate.vertAlign = "middle";
-			self.hud_rankscroreupdate.alignX = "center";
-			self.hud_rankscroreupdate.alignY = "middle";
-			self.hud_rankscroreupdate.x = 0;
-			self.hud_rankscroreupdate.y = -60;
-			self.hud_rankscroreupdate.font = "default";
-			self.hud_rankscroreupdate.fontscale = 2.0;
-			self.hud_rankscroreupdate.archived = false;
-			self.hud_rankscroreupdate.color = (0.5, 0.5, 0.5);
-			self.hud_rankscroreupdate maps\mp\gametypes\_hud::fontPulseInit();
+			self.huds.rankscroreupdate = newClientHudElem(self);
+			self.huds.rankscroreupdate.horzAlign = "center";
+			self.huds.rankscroreupdate.vertAlign = "middle";
+			self.huds.rankscroreupdate.alignX = "center";
+			self.huds.rankscroreupdate.alignY = "middle";
+			self.huds.rankscroreupdate.x = 0;
+			self.huds.rankscroreupdate.y = -60;
+			self.huds.rankscroreupdate.font = "default";
+			self.huds.rankscroreupdate.fontscale = 2.0;
+			self.huds.rankscroreupdate.archived = false;
+			self.huds.rankscroreupdate.color = (0.5, 0.5, 0.5);
+			self.huds.rankscroreupdate maps\mp\gametypes\_hud::fontPulseInit();
 		}
 	}
 }
@@ -405,26 +405,26 @@ updateRankScoreHUD(amount)
 
 	wait (0.05);
 
-	if (isDefined(self.hud_rankscroreupdate))
+	if (isDefined(self.huds.rankscroreupdate))
 	{
 		if (self.rankUpdateTotal < 0)
 		{
-			self.hud_rankscroreupdate.label = &"";
-			self.hud_rankscroreupdate.color = (1, 0, 0);
+			self.huds.rankscroreupdate.label = &"";
+			self.huds.rankscroreupdate.color = (1, 0, 0);
 		}
 		else
 		{
-			self.hud_rankscroreupdate.label = &"MP_PLUS";
-			self.hud_rankscroreupdate.color = (1, 1, 0.5);
+			self.huds.rankscroreupdate.label = &"MP_PLUS";
+			self.huds.rankscroreupdate.color = (1, 1, 0.5);
 		}
 
-		self.hud_rankscroreupdate setValue(self.rankUpdateTotal);
-		self.hud_rankscroreupdate.alpha = 0.85;
-		self.hud_rankscroreupdate thread maps\mp\gametypes\_hud::fontPulse(self);
+		self.huds.rankscroreupdate setValue(self.rankUpdateTotal);
+		self.huds.rankscroreupdate.alpha = 0.85;
+		self.huds.rankscroreupdate thread maps\mp\gametypes\_hud::fontPulse(self);
 
 		wait 1;
-		self.hud_rankscroreupdate fadeOverTime(0.75);
-		self.hud_rankscroreupdate.alpha = 0;
+		self.huds.rankscroreupdate fadeOverTime(0.75);
+		self.huds.rankscroreupdate.alpha = 0;
 
 		self.rankUpdateTotal = 0;
 	}
@@ -432,8 +432,8 @@ updateRankScoreHUD(amount)
 
 removeRankHUD()
 {
-	if (isDefined(self.hud_rankscroreupdate))
-		self.hud_rankscroreupdate.alpha = 0;
+	if (isDefined(self.huds.rankscroreupdate))
+		self.huds.rankscroreupdate.alpha = 0;
 }
 
 getRank()

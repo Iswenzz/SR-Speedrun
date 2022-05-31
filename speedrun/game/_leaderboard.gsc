@@ -4,6 +4,7 @@
 #include braxi\_common;
 #include braxi\_dvar;
 #include sr\sys\_common;
+#include sr\sys\_admins;
 
 loadTImes()
 {
@@ -40,7 +41,7 @@ loadTImes()
 loadPersonBest()
 {
 	mapname = getDvar("mapname");
-	path = "./sr/data/speedrun/personbest/" + self.playerID + ".txt";
+	path = "./sr/data/speedrun/personbest/" + self.id + ".txt";
 	file_exists = checkfile(path);
 
 	if (!file_exists)
@@ -392,7 +393,7 @@ saveTimes()
 	info = [];
 
 	info["name"] = self.name;
-	info["guid"] = self.playerID;
+	info["guid"] = self.id;
 	info["time"] = self.time;
 	info["way"] = self.sr_way;
 	info["speed"] = self.sr_speed;
@@ -707,7 +708,7 @@ giveXpForTop30(b)
 			{
 				if (b["time"].ori <= level.normal_way_info_190[int(number[0])][i]["time"].ori)
 				{
-					if (i < 30 && !isDefined(self.isVIP))
+					if (i < 30 && !isDefined(self.vip))
 					{
 						if (level.normal_way_info_190[int(number[0])].size > 27)
 							multiplyer = 27;
@@ -718,7 +719,7 @@ giveXpForTop30(b)
 						return;
 					}
 
-					if (i < 30 && isDefined(self.isVIP) && self.isVIP)
+					if (i < 30 && self isVIP())
 					{
 						if (level.normal_way_info_190[int(number[0])].size > 27)
 							multiplyer = 27 * 3;
@@ -740,7 +741,7 @@ giveXpForTop30(b)
 			{
 				if (b["time"].ori <= level.secret_way_info_190[int(number[0])][i]["time"].ori)
 				{
-					if (i < 30 && !isDefined(self.isVIP))
+					if (i < 30 && !isDefined(self.vip))
 					{
 						if (level.secret_way_info_190[int(number[0])].size > 27)
 							multiplyer = 27;
@@ -751,7 +752,7 @@ giveXpForTop30(b)
 						return;
 					}
 
-					if (i < 30 && isDefined(self.isVIP) && self.isVIP)
+					if (i < 30 && self isVIP())
 					{
 						if (level.secret_way_info_190[int(number[0])].size > 27)
 							multiplyer = 27 * 3;
@@ -776,7 +777,7 @@ giveXpForTop30(b)
 			{
 				if (b["time"].ori <= level.normal_way_info_210[int(number[0])][i]["time"].ori)
 				{
-					if (i < 30 && !isDefined(self.isVIP))
+					if (i < 30 && !isDefined(self.vip))
 					{
 						if (level.normal_way_info_210[int(number[0])].size > 27)
 							multiplyer = 27;
@@ -787,7 +788,7 @@ giveXpForTop30(b)
 						return;
 					}
 
-					if (i < 30 && isDefined(self.isVIP) && self.isVIP)
+					if (i < 30 && self isVIP())
 					{
 						if (level.normal_way_info_210[int(number[0])].size > 27)
 							multiplyer = 27 * 2;
@@ -809,7 +810,7 @@ giveXpForTop30(b)
 			{
 				if (b["time"].ori <= level.secret_way_info_210[int(number[0])][i]["time"].ori)
 				{
-					if (i < 30 && !isDefined(self.isVIP))
+					if (i < 30 && !isDefined(self.vip))
 					{
 						if (level.secret_way_info_210[int(number[0])].size > 27)
 							multiplyer = 27;
@@ -820,7 +821,7 @@ giveXpForTop30(b)
 						return;
 					}
 
-					if (i < 30 && isDefined(self.isVIP) && self.isVIP)
+					if (i < 30 && self isVIP())
 					{
 						if (level.secret_way_info_210[int(number[0])].size > 27)
 							multiplyer = 27 * 2;

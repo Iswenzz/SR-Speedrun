@@ -211,8 +211,8 @@ onMenuResponse()
 				self braxi\_teams::setTeam("spectator");
 				self braxi\_mod::spawnSpectator(level.spawn["spectator"].origin, level.spawn["spectator"].angles);
 				if (self.pers["spec_hud"] == 1)
-					self thread speedrun\player\_hud_spectator::init();
-				self thread speedrun\player\_hud_anti_cheat::spec();
+					self thread speedrun\player\_hud_spectator::hud();
+				self thread speedrun\player\_hud_cheat::spec();
 				break;
 
 				case "sr_customize":

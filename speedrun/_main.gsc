@@ -10,9 +10,9 @@ main()
 	setDvar("sv_consayname", "^5#SR: ^7");
 	setDvar("sv_contellname", "^5#SR^7->^5PM: ^7");
 
+	sr\_main::main();
 	braxi\_mod::main();
 
-	thread sr\_main::main();
 	thread sr\weapons\_main::main();
 	thread speedrun\game\_leaderboard::loadTimes();
 	thread sr\game\_fx_triggers::init();
@@ -320,6 +320,7 @@ onConnect()
 	// if (self checkBanned())
 	// 	return;
 
+	self thread sr\_main::onConnect();
 	self thread sr\weapons\_main::self_setup();
 	self thread sr\player\_id::checkid();
 	self thread speedrun\_main::checkVIP();
@@ -381,12 +382,11 @@ onConnect()
 
 onPlayerSpawned()
 {
-	self thread speedrun\player\_hud_speedrun::destroyClientHud();
 	self thread setSpeed();
 	self setContents(0);
 	self.sr_way = "ns0";
 	self.sr_secret = false;
-	self thread speedrun\player\_hud_speedrun::timeHud();
+	self thread speedrun\player\_hud_speedrun::hud();
 	self thread updateRunHuds();
 
 	if (!self.sr_cheatmode)
@@ -394,14 +394,14 @@ onPlayerSpawned()
 		self.runNumber = RandomInt(999999);
 		self thread watchWay();
 	}
-	self thread speedrun\player\_hud_anti_cheat::init();
+	self thread speedrun\player\_hud_cheat::hud();
 
 	self.stop_demo = false;
-	self.current_fps = "125";
+	self.fps = "125";
 	self thread wait_record();
 	self thread stop_2min();
 
-	if (isDefined(self.isVIP))
+	if (isDefined(self.vip))
 	{
 		self.statusicon = "vip_status";
 		self thread spawnTrail();
@@ -414,23 +414,23 @@ updateRunHuds()
 	{
 		self.runNumber = "Race Mode";
 		wait 0.3;
-		if (isDefined(self.timerHud[5]))
-			self.timerHud[5] setText("^2Race Mode");
+		if (isDefined(self.huds.speedrun[5]))
+			self.huds.speedrun[5] setText("^2Race Mode");
 	}
 	else if (self.inKz)
 	{
 		self.runNumber = "KillZone Mode";
 		wait 0.3;
-		if (isDefined(self.timerHud[5]))
-			self.timerHud[5] setText("^6KillZone Mode");
+		if (isDefined(self.huds.speedrun[5]))
+			self.huds.speedrun[5] setText("^6KillZone Mode");
 	}
 	else if (self.sr_practise)
 	{
 		self.runNumber = "Practise Mode";
 		self thread sr\player\_practise::init();
 		wait 0.3;
-		if (isDefined(self.timerHud[5]))
-			self.timerHud[5] setText("^1Practise Mode");
+		if (isDefined(self.huds.speedrun[5]))
+			self.huds.speedrun[5] setText("^1Practise Mode");
 	}
 }
 
@@ -466,7 +466,7 @@ record()
 		mapname = GetSubStr(mapname, mapname.size - 17, mapname.size);
 
 	if (isStringInt(self.runNumber))
-		exec("record " + self GetEntityNumber() + " ./" + getDvar("fs_game") + "/sr/data/speedrun/demos/" + self.playerID + "/" + mapname + "/" + self.runNumber);
+		exec("record " + self GetEntityNumber() + " ./" + getDvar("fs_game") + "/sr/data/speedrun/demos/" + self.id + "/" + mapname + "/" + self.runNumber);
 
 	self thread speedrun\game\_bot::record_txt();
 }
@@ -487,7 +487,7 @@ stoprecord_delete()
 	if (mapname.size > 17)
 		mapname = GetSubStr(mapname, mapname.size - 17, mapname.size);
 	exec("stoprecord " + self GetEntityNumber());
-	path = "./sr/data/speedrun/demos/" + self.playerID + "/" + mapname + "/" + self.runNumber + ".dm_1";
+	path = "./sr/data/speedrun/demos/" + self.id + "/" + mapname + "/" + self.runNumber + ".dm_1";
 	path2 = "./sr/data/speedrun/txt_demos/" + mapname + "/" + self.runNumber + ".txt";
 	file_exists = checkfile(path);
 	file_exists2 = checkfile(path2);
@@ -512,7 +512,7 @@ stoprecord_death()
 	if (mapname.size > 17)
 		mapname = GetSubStr(mapname, mapname.size - 17, mapname.size);
 	exec("stoprecord " + self GetEntityNumber());
-	path = "./sr/data/speedrun/demos/" + self.playerID + "/" + mapname + "/" + self.runNumber + ".dm_1";
+	path = "./sr/data/speedrun/demos/" + self.id + "/" + mapname + "/" + self.runNumber + ".dm_1";
 	path2 = "./sr/data/speedrun/txt_demos/" + mapname + "/" + self.runNumber + ".txt";
 	file_exists = checkfile(path);
 	file_exists2 = checkfile(path2);
@@ -538,7 +538,7 @@ stoprecord_disconnect()
 	mapname = getDvar("mapname");
 	if (mapname.size > 17)
 		mapname = GetSubStr(mapname, mapname.size - 17, mapname.size);
-	path = "./sr/data/speedrun/demos/" + self.playerID + "/" + mapname + "/" + self.runNumber + ".dm_1";
+	path = "./sr/data/speedrun/demos/" + self.id + "/" + mapname + "/" + self.runNumber + ".dm_1";
 	path2 = "./sr/data/speedrun/txt_demos/" + mapname + "/" + self.runNumber + ".txt";
 	file_exists = checkfile(path);
 	file_exists2 = checkfile(path2);
@@ -583,7 +583,7 @@ spawnTrail()
 
 checkVIP()
 {
-	if (!isDefined(self.playerID))
+	if (!isDefined(self.id))
 	{
 		IPrintLn("^1PLAYER HAS NO ID");
 		return;
@@ -601,9 +601,9 @@ checkVIP()
 		a = StrTok(r[i], "\\");
 		if (isDefined(a[0]))
 		{
-			if (self.playerID == a[0])
+			if (self.id == a[0])
 			{
-				self.isVIP = true;
+				self.vip = true;
 				self.vip_trail = self getStat(1570);
 				self setStat(2360, 1);
 				return;
@@ -697,11 +697,11 @@ watchWay()
 			if (self.sr_secret)
 				self.sr_way = "s0";
 
-			self thread speedrun\player\_hud_speedrun::updatepbHud();
-			self thread speedrun\player\_hud_speedrun::updatewrHud();
+			self thread speedrun\player\_hud_speedrun::updatePB();
+			self thread speedrun\player\_hud_speedrun::updateWR();
 
-			if (isDefined(self.timerHud[5]))
-				self.timerHud[5] setText(level.secret_way[0].name);
+			if (isDefined(self.huds.speedrun[5]))
+				self.huds.speedrun[5] setText(level.secret_way[0].name);
 		}
 		wait 0.1;
 	}
@@ -736,14 +736,14 @@ watchWay_new()
 				secret = true;
 			}
 
-			self thread speedrun\player\_hud_speedrun::updatepbHud();
-			self thread speedrun\player\_hud_speedrun::updatewrHud();
+			self thread speedrun\player\_hud_speedrun::updatePB();
+			self thread speedrun\player\_hud_speedrun::updateWR();
 
-			if (isDefined(self.timerHud[5]) && !secret)
-				self.timerHud[5] setText(level.normal_way[int(number)].name);
+			if (isDefined(self.huds.speedrun[5]) && !secret)
+				self.huds.speedrun[5] setText(level.normal_way[int(number)].name);
 
-			if (isDefined(self.timerHud[5]) && secret)
-				self.timerHud[5] setText(level.secret_way[int(number)].name);
+			if (isDefined(self.huds.speedrun[5]) && secret)
+				self.huds.speedrun[5] setText(level.secret_way[int(number)].name);
 		}
 
 		wait 0.1;

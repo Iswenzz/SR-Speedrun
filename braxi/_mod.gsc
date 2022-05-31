@@ -847,8 +847,8 @@ endRound(reasonText, team)
 	game["state"] = "round ended";
 	game["roundsplayed"]++;
 
-	if (isDefined(level.hud_time))
-		level.hud_time destroy();
+	if (isDefined(level.huds.time))
+		level.huds.time destroy();
 
 	players = getAllPlayers();
 	for (i = 0; i < players.size; i++)
@@ -926,10 +926,10 @@ cleanUp()
 	self.doingBH = false;
 	self enableWeapons();
 
-	if (isDefined(self.hud_freeround))
-		self.hud_freeround destroy();
-	if (isDefined(self.hud_freeround_time))
-		self.hud_freeround_time destroy();
+	if (isDefined(self.huds.freeround))
+		self.huds.freeround destroy();
+	if (isDefined(self.huds.freeround_time))
+		self.huds.freeround_time destroy();
 }
 
 gameLogic()
@@ -984,7 +984,7 @@ gameLogic()
 
 	if (level.freeRun)
 	{
-		level.hud_time setTimer(level.dvar["freerun_time"]);
+		level.huds.time setTimer(level.dvar["freerun_time"]);
 		thread sr\game\_timer::hud(level.dvar["freerun_time"], ::endRound);
 	}
 }
@@ -998,7 +998,7 @@ checkTimeLimit()
 		return;
 
 	time = 60 * level.dvar["time_limit"];
-	level.hud_time setTimer(time);
+	level.huds.time setTimer(time);
 	wait time;
 	level thread endRound("Time limit reached", "activators");
 }
@@ -1032,8 +1032,8 @@ endMap(winningteam, map)
 
 	setDvar("g_deadChat", 1);
 
-	if (isDefined(level.hud_jumpers))
-		level.hud_jumpers destroy();
+	if (isDefined(level.huds.jumpers))
+		level.huds.jumpers destroy();
 
 	AmbientStop(2);
 
@@ -1146,31 +1146,31 @@ freeRunChoice()
 	if (!level.dvar["freeRunChoice"] || level.trapsDisabled)
 		return;
 
-	self.hud_freeround = newClientHudElem(self);
-	self.hud_freeround.elemType = "font";
-	self.hud_freeround.x = 320;
-	self.hud_freeround.y = 370;
-	self.hud_freeround.alignX = "center";
-	self.hud_freeround.alignY = "middle";
-	self.hud_freeround.alpha = 1;
-	self.hud_freeround.font = "default";
-	self.hud_freeround.fontScale = 1.8;
-	self.hud_freeround.sort = 0;
-	self.hud_freeround.foreground = true;
-	self.hud_freeround.label = level.text["call_freeround"];
+	self.huds.freeround = newClientHudElem(self);
+	self.huds.freeround.elemType = "font";
+	self.huds.freeround.x = 320;
+	self.huds.freeround.y = 370;
+	self.huds.freeround.alignX = "center";
+	self.huds.freeround.alignY = "middle";
+	self.huds.freeround.alpha = 1;
+	self.huds.freeround.font = "default";
+	self.huds.freeround.fontScale = 1.8;
+	self.huds.freeround.sort = 0;
+	self.huds.freeround.foreground = true;
+	self.huds.freeround.label = level.text["call_freeround"];
 
-	self.hud_freeround_time = newClientHudElem(self);
-	self.hud_freeround_time.elemType = "font";
-	self.hud_freeround_time.x = 320;
-	self.hud_freeround_time.y = 390;
-	self.hud_freeround_time.alignX = "center";
-	self.hud_freeround_time.alignY = "middle";
-	self.hud_freeround_time.alpha = 1;
-	self.hud_freeround_time.font = "default";
-	self.hud_freeround_time.fontScale = 1.8;
-	self.hud_freeround_time.sort = 0;
-	self.hud_freeround_time.foreground = true;
-	self.hud_freeround_time setTimer(level.dvar["freeRunChoiceTime"]);
+	self.huds.freeround_time = newClientHudElem(self);
+	self.huds.freeround_time.elemType = "font";
+	self.huds.freeround_time.x = 320;
+	self.huds.freeround_time.y = 390;
+	self.huds.freeround_time.alignX = "center";
+	self.huds.freeround_time.alignY = "middle";
+	self.huds.freeround_time.alpha = 1;
+	self.huds.freeround_time.font = "default";
+	self.huds.freeround_time.fontScale = 1.8;
+	self.huds.freeround_time.sort = 0;
+	self.huds.freeround_time.foreground = true;
+	self.huds.freeround_time setTimer(level.dvar["freeRunChoiceTime"]);
 
 	wait 1;
 	freeRun = false;
@@ -1178,8 +1178,8 @@ freeRunChoice()
 	{
 		if (!level.canCallFreeRun)
 		{
-			self.hud_freeround destroy();
-			self.hud_freeround_time destroy();
+			self.huds.freeround destroy();
+			self.huds.freeround_time destroy();
 			return;
 		}
 		if (self attackButtonPressed())
@@ -1192,10 +1192,10 @@ freeRunChoice()
 	}
 	level endon("kill_free_run_choice");
 
-	if (isDefined(self.hud_freeround))
-		self.hud_freeround destroy();
-	if (isDefined(self.hud_freeround_time))
-		self.hud_freeround_time destroy();
+	if (isDefined(self.huds.freeround))
+		self.huds.freeround destroy();
+	if (isDefined(self.huds.freeround_time))
+		self.huds.freeround_time destroy();
 
 	if (freeRun)
 	{
@@ -1409,30 +1409,30 @@ playerTimer()
 		wait 0.05;
 
 	//timer hud moves to its own gsc
-	if (!self.isBot)
-		self notify("start_time_hud");
+	// if (!self.isBot)
+	// 	self notify("start_time_hud");
 
 	self.timerStartTime = getTime();
 }
 
 doHudTime()
 {
-	level.hud_time = newHudElem();
-	level.hud_time.foreground = true;
-	level.hud_time.alignX = "right";
-	level.hud_time.alignY = "bottom";
-	level.hud_time.horzAlign = "right";
-	level.hud_time.vertAlign = "bottom";
-	level.hud_time.x = -10;
-	level.hud_time.y = -2;
-	level.hud_time.sort = 0;
-	level.hud_time.fontScale = 1.4;
-	level.hud_time.color = (1, 1, 1);
-	level.hud_time.font = "objective";
-	level.hud_time.hidewheninmenu = true;
-	level.hud_time.label = &"^7&&1";
-	level.hud_time.alpha = 1;
-	level.hud_time.archived = false;
+	level.huds.time = newHudElem();
+	level.huds.time.foreground = true;
+	level.huds.time.alignX = "right";
+	level.huds.time.alignY = "bottom";
+	level.huds.time.horzAlign = "right";
+	level.huds.time.vertAlign = "bottom";
+	level.huds.time.x = -10;
+	level.huds.time.y = -2;
+	level.huds.time.sort = 0;
+	level.huds.time.fontScale = 1.4;
+	level.huds.time.color = (1, 1, 1);
+	level.huds.time.font = "objective";
+	level.huds.time.hidewheninmenu = true;
+	level.huds.time.label = &"^7&&1";
+	level.huds.time.alpha = 1;
+	level.huds.time.archived = false;
 }
 
 endTimer()
@@ -1469,8 +1469,8 @@ endTimer()
 
 	self thread speedrun\game\_leaderboard::saveTimes();
 	self speedrun\game\_leaderboard::loadPersonBest();
-	self thread speedrun\player\_hud_speedrun::updatepbHud();
-	self thread speedrun\player\_hud_speedrun::updatewrHud();
+	self thread speedrun\player\_hud_speedrun::updatePB();
+	self thread speedrun\player\_hud_speedrun::updateWR();
 	self thread speedrun\player\_hud_speedrun::updateHud();
 
 	if (self.time.ori < self.pers["time"])
