@@ -15,13 +15,13 @@ main()
 
 	thread sr\weapons\_main::main();
 	thread speedrun\game\_leaderboard::loadTimes();
-	thread sr\game\_fx_triggers::init();
+	thread sr\game\fx\_trigger::init();
 	thread sr\sys\_admins::initAdmins();
 	thread sr\misc\_spam::init();
 	thread sr\sys\mapsetting::init();
 	thread sr\sys\maptriggers::init();
-	thread sr\game\_race::init();
-	thread sr\game\_kz::init();
+	thread sr\game\minigames\_race::init();
+	thread sr\game\minigames\_kz::init();
 	thread vipList();
 }
 
