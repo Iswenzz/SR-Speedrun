@@ -7,7 +7,7 @@ init()
 
 	thread addTestClients();
 
-	for (;;)
+	while (true)
 	{
 		updateDevSettings();
 		wait .05;
@@ -82,7 +82,7 @@ print3DUntilNotified(origin, text, color, alpha, scale)
 {
 	level endon("hide_spawnpoints");
 
-	for (;;)
+	while (true)
 	{
 		print3d(origin, text, color, alpha, scale);
 		wait .05;
@@ -93,7 +93,7 @@ lineUntilNotified(start, end, color, depthTest)
 {
 	level endon("hide_spawnpoints");
 
-	for (;;)
+	while (true)
 	{
 		line(start, end, color, depthTest);
 		wait .05;

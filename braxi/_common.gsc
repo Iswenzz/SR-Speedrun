@@ -196,7 +196,7 @@ makeActivator(time)
 {
 	self endon("disconnect");
 	wait time;
-	self braxi\_teams::setTeam("axis");
+	self sr\game\_teams::setTeam("axis");
 }
 
 thirdPerson()

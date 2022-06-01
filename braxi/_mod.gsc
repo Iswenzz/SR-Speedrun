@@ -252,9 +252,10 @@ init_spawns()
 }
 
 playerConnect() // Called when player is connecting to server
-
 {
+	comprintln("what");
 	level notify("connected", self);
+
 
 	self thread cleanUp();
 	self.canDamage = undefined;
@@ -314,7 +315,7 @@ playerConnect() // Called when player is connecting to server
 	if (isDefined(self.pers["weapon"]) && self.pers["team"] != "spectator")
 	{
 		self.pers["weapon"] = "colt_mp";
-		self thread braxi\_teams::setTeam("allies");
+		self thread sr\game\_teams::setTeam("allies");
 		spawnPlayer();
 		return;
 	}
@@ -477,7 +478,7 @@ spawnPlayer(origin, angles)
 
 	self thread speedrun\_main::onPlayerSpawned();
 
-	self braxi\_teams::setPlayerModel();
+	self sr\game\_teams::setPlayerModel();
 
 	if (isDefined(origin) && isDefined(angles))
 		self spawn(origin, angles);
@@ -512,7 +513,7 @@ spawnPlayer(origin, angles)
 	if (self.isBot)
 		self takeAllWeapons();
 
-	self thread braxi\_teams::setHealth();
+	self thread sr\game\_teams::setHealth();
 	self thread afterFirstFrame();
 
 	self notify("spawned_player");
@@ -707,7 +708,7 @@ spawnSpectator(origin, angles)
 	self.spectatorclient = -1;
 	self.statusicon = "";
 	self spawn(origin, angles);
-	self braxi\_teams::setSpectatePermissions();
+	self sr\game\_teams::setSpectatePermissions();
 
 	level notify("player_spectator", self);
 }

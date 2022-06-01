@@ -1,15 +1,20 @@
+#include sr\sys\_events;
 #include sr\utils\_common;
 #include sr\utils\_hud;
+
+main()
+{
+	event("spawn", ::clear);
+	event("spectator", ::hud);
+}
 
 hud()
 {
 	self endon("disconnect");
-	self notify("hud_spectator_end");
-	self endon("hud_spectator_end");
+	self endon("spawned_player");
 
 	self hudKeys();
 	self hudFps();
-	self thread onSpawn();
 
 	while (self.sessionstate == "spectator")
 	{
@@ -65,10 +70,8 @@ hudKeys()
 	self.huds.spectator_keys[3].hidewheninmenu = true;
 }
 
-onSpawn()
+clear()
 {
-	self waittill("spawned_player");
-
 	if (isDefined(self.huds.spectator_fps))
 		self.huds.spectator_fps destroy();
 	if (isDefined(self.huds.spectator_keys))

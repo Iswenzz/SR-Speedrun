@@ -1,6 +1,12 @@
+#include sr\sys\_events;
 #include sr\utils\_hud;
 #include sr\utils\_common;
-#include sr\sys\_admins;
+
+main()
+{
+	event("spawn", ::hud);
+	event("death", ::clear);
+}
 
 hud()
 {
@@ -8,9 +14,7 @@ hud()
 	self endon("disconnect");
 	self endon("joined_spectators");
 
-	self thread onDeath();
-
-	color = Ternary(self isVIP(),
+	color = Ternary(self sr\sys\_admins::isVIP(),
 		(self getStat(1650) / 255, self getStat(1651) / 255, self getStat(1652) / 255),
 		(0, 0, 0));
 
@@ -49,7 +53,7 @@ hud()
 	self.huds.speedrun[5].sort = 99;
 
  	self.huds.speedrun[6] = addHud(self, 142, 18, 1, "left", "top", 1.8);
-	self.huds.speedrun[6] setText(self getGroupString());
+	self.huds.speedrun[6] setText(self sr\sys\_admins::getGroupString());
 	self.huds.speedrun[6].hidewheninmenu = true;
 
 	self updatePB();
@@ -193,10 +197,9 @@ updatePB()
 	}
 }
 
-onDeath()
+clear()
 {
 	self endon("disconnect");
-	self waittill("death");
 
 	if (isDefined(self.huds.speedrun))
 	{

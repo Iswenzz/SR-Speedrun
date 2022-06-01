@@ -1,4 +1,10 @@
-#include sr\sys\_common;
+#include sr\sys\_events;
+
+main()
+{
+	event("spawn", ::hud);
+	event("spectator", ::spec);
+}
 
 hud()
 {

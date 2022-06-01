@@ -1,91 +1,119 @@
 CodeCallback_StartGameType()
 {
-	println("^5===================================");
-	println("^5SR Mod (c) Iswenzz 2016-2022");
-	println("^5Visit: iswenzz.com" );
-	println("^5===================================");
+	printLn("^5===================================");
+	printLn("^5SR Mod (c) Iswenzz 2016-2022");
+	printLn("^5Visit: iswenzz.com" );
+	printLn("^5===================================");
 
-	setdvar("g_gametype", "deathrun");
+	setDvar("g_gametype", "deathrun");
 
-	if(!isDefined(level.gametypestarted) || !level.gametypestarted)
+	if (!isDefined(level.gametypestarted) || !level.gametypestarted)
 	{
-		[[level.callbackStartGameType]]();
+		if (isDefined(level.callbackStartGameType))
+			[[level.callbackStartGameType]]();
 		level.gametypestarted = true;
+		level.gamebegin = false;
+	}
+}
+
+CodeCallback_PlayerSpawned()
+{
+	self endon("disconnect");
+
+	while (true)
+	{
+		self waittill("spawned_player");
+
+		for (i = 0; isDefined(level.events["spawn"]) && i < level.events["spawn"].size; i++)
+			self thread [[level.events["spawn"][i]]]();
+	}
+}
+
+CodeCallback_PlayerSpectator()
+{
+	self endon("disconnect");
+
+	while (true)
+	{
+		self waittill("joined_spectators");
+
+		for (i = 0; isDefined(level.events["spectator"]) && i < level.events["spectator"].size; i++)
+			self thread [[level.events["spectator"][i]]]();
+	}
+}
+
+CodeCallback_PlayerTeam()
+{
+	self endon("disconnect");
+
+	while (true)
+	{
+		self waittill("joined_team");
+
+		for (i = 0; isDefined(level.events["team"]) && i < level.events["team"].size; i++)
+			self thread [[level.events["team"][i]]]();
 	}
 }
 
 CodeCallback_PlayerConnect()
 {
 	self endon("disconnect");
-	[[level.callbackPlayerConnect]]();
+	self waittill("begin");
+	level notify("connecting", self);
+
+	self thread CodeCallback_PlayerSpawned();
+	self thread CodeCallback_PlayerSpectator();
+	self thread CodeCallback_PlayerTeam();
+
+	for (i = 0; isDefined(level.events["connect"]) && i < level.events["connect"].size; i++)
+		self thread [[level.events["connect"][i]]]();
 }
 
 CodeCallback_PlayerDisconnect()
 {
 	self notify("disconnect");
-	[[level.callbackPlayerDisconnect]]();
+
+	for (i = 0; isDefined(level.events["disconnect"]) && i < level.events["disconnect"].size; i++)
+		self thread [[level.events["disconnect"][i]]]();
 }
 
 CodeCallback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, timeOffset)
 {
 	self endon("disconnect");
-	[[level.callbackPlayerDamage]](eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, timeOffset);
+
+	for (i = 0; isDefined(level.events["damage"]) && i < level.events["damage"].size; i++)
+		self thread [[level.events["damage"][i]]](eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, timeOffset);
 }
 
 CodeCallback_PlayerKilled(eInflictor, eAttacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, timeOffset, deathAnimDuration)
 {
 	self endon("disconnect");
-	[[level.callbackPlayerKilled]](eInflictor, eAttacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, timeOffset, deathAnimDuration);
+
+	for (i = 0; isDefined(level.events["killed"]) && i < level.events["killed"].size; i++)
+		self thread [[level.events["killed"][i]]](eInflictor, eAttacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, timeOffset, deathAnimDuration);
+	for (i = 0; isDefined(level.events["death"]) && i < level.events["death"].size; i++)
+		self thread [[level.events["death"][i]]]();
 }
 
 CodeCallback_PlayerLastStand(eInflictor, eAttacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, timeOffset, deathAnimDuration)
 {
 	self endon("disconnect");
-	[[level.callbackPlayerLastStand]](eInflictor, eAttacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, timeOffset, deathAnimDuration);
+
+	for (i = 0; isDefined(level.events["laststand"]) && i < level.events["laststand"].size; i++)
+		self thread [[level.events["laststand"][i]]](eInflictor, eAttacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, timeOffset, deathAnimDuration);
 }
 
 CodeCallback_ScriptCommand(cmd, arg)
 {
-	self thread sr\sys\_admins::command(cmd, arg);
-}
+	self endon("disconnect");
 
-SetupCallbacks()
-{
-	SetDefaultCallbacks();
-
-	level.iDFLAGS_RADIUS				= 1;
-	level.iDFLAGS_NO_ARMOR				= 2;
-	level.iDFLAGS_NO_KNOCKBACK			= 4;
-	level.iDFLAGS_PENETRATION			= 8;
-	level.iDFLAGS_NO_TEAM_PROTECTION 	= 16;
-	level.iDFLAGS_NO_PROTECTION			= 32;
-	level.iDFLAGS_PASSTHRU				= 64;
-}
-
-SetDefaultCallbacks()
-{
-	level.callbackStartGameType = ::callbackVoid;
-	level.callbackPlayerConnect = ::callbackVoid;
-	level.callbackPlayerDisconnect = ::callbackVoid;
-	level.callbackPlayerDamage = ::callbackVoid;
-	level.callbackPlayerKilled = ::callbackVoid;
-	level.callbackPlayerLastStand = ::callbackVoid;
+	for (i = 0; isDefined(level.events["command"]) && i < level.events["command"].size; i++)
+		self thread [[level.events["command"][i]]](cmd, arg);
 }
 
 AbortLevel()
 {
 	println("Aborting level - gametype is not supported");
-
-	level.callbackStartGameType = ::callbackVoid;
-	level.callbackPlayerConnect = ::callbackVoid;
-	level.callbackPlayerDisconnect = ::callbackVoid;
-	level.callbackPlayerDamage = ::callbackVoid;
-	level.callbackPlayerKilled = ::callbackVoid;
-	level.callbackPlayerLastStand = ::callbackVoid;
-
-	setdvar("g_gametype", "deathrun");
-
+	setDvar("g_gametype", "deathrun");
 	exitLevel(false);
 }
-
-callbackVoid() { }

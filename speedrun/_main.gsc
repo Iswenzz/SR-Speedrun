@@ -11,6 +11,7 @@ main()
 	setDvar("sv_contellname", "^5#SR^7->^5PM: ^7");
 
 	sr\_main::main();
+	speedrun\game\_callbacks::main();
 	braxi\_mod::main();
 
 	thread sr\weapons\_main::main();
@@ -320,7 +321,6 @@ onConnect()
 	// if (self checkBanned())
 	// 	return;
 
-	self thread sr\_main::onConnect();
 	self thread sr\weapons\_main::self_setup();
 	self thread sr\player\_id::checkid();
 	self thread speedrun\_main::checkVIP();
@@ -467,8 +467,6 @@ record()
 
 	if (isStringInt(self.runNumber))
 		exec("record " + self GetEntityNumber() + " ./" + getDvar("fs_game") + "/sr/data/speedrun/demos/" + self.id + "/" + mapname + "/" + self.runNumber);
-
-	self thread speedrun\game\_bot::record_txt();
 }
 
 stoprecord_save()

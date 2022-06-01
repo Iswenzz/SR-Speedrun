@@ -33,7 +33,7 @@ init()
 
 onPlayerConnect()
 {
-	for (;;)
+	while (true)
 	{
 		level waittill("connecting", player);
 
@@ -55,7 +55,7 @@ onMenuResponse()
 	if (!isDefined(self.pers["failedLogins"]))
 		self.pers["failedLogins"] = 0;
 
-	for (;;)
+	while (true)
 	{
 		self waittill("menuresponse", menu, response);
 
@@ -184,7 +184,7 @@ onMenuResponse()
 				if (self.pers["team"] == "axis")
 					continue;
 
-				self braxi\_teams::setTeam("allies");
+				self sr\game\_teams::setTeam("allies");
 				if (self.pers["team"] == "allies" && self.sessionstate != "playing" && self.pers["lifes"])
 					continue;
 				if (self.sessionstate == "playing" || game["state"] == "round ended")
@@ -203,7 +203,7 @@ onMenuResponse()
 					self iPrintln("^1Suicide disabled.");
 					continue;
 				}
-				self braxi\_teams::setTeam("spectator");
+				self sr\game\_teams::setTeam("spectator");
 				self braxi\_mod::spawnSpectator(level.spawn["spectator"].origin, level.spawn["spectator"].angles);
 				if (self.pers["spec_hud"] == 1)
 					self thread speedrun\player\huds\_spectator::hud();
