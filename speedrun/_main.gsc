@@ -89,7 +89,7 @@ adminStuff()
 		case "owner":
 			self thread adminPickup();
 
-			self thread sr\game\_owner::eventOwner();
+			self thread sr\game\menus\_owner::eventOwner();
 			self thread noclip_check();
 			break;
 		case "masteradmin":
@@ -386,7 +386,7 @@ onPlayerSpawned()
 	self setContents(0);
 	self.sr_way = "ns0";
 	self.sr_secret = false;
-	self thread speedrun\player\_hud_speedrun::hud();
+	self thread speedrun\player\huds\_speedrun::hud();
 	self thread updateRunHuds();
 
 	if (!self.sr_cheatmode)
@@ -394,7 +394,7 @@ onPlayerSpawned()
 		self.runNumber = RandomInt(999999);
 		self thread watchWay();
 	}
-	self thread speedrun\player\_hud_cheat::hud();
+	self thread speedrun\player\huds\_cheat::hud();
 
 	self.stop_demo = false;
 	self.fps = "125";
@@ -427,7 +427,7 @@ updateRunHuds()
 	else if (self.sr_practise)
 	{
 		self.runNumber = "Practise Mode";
-		self thread sr\player\_practise::init();
+		self thread sr\player\modes\_practise::init();
 		wait 0.3;
 		if (isDefined(self.huds.speedrun[5]))
 			self.huds.speedrun[5] setText("^1Practise Mode");
@@ -697,8 +697,8 @@ watchWay()
 			if (self.sr_secret)
 				self.sr_way = "s0";
 
-			self thread speedrun\player\_hud_speedrun::updatePB();
-			self thread speedrun\player\_hud_speedrun::updateWR();
+			self thread speedrun\player\huds\_speedrun::updatePB();
+			self thread speedrun\player\huds\_speedrun::updateWR();
 
 			if (isDefined(self.huds.speedrun[5]))
 				self.huds.speedrun[5] setText(level.secret_way[0].name);
@@ -736,8 +736,8 @@ watchWay_new()
 				secret = true;
 			}
 
-			self thread speedrun\player\_hud_speedrun::updatePB();
-			self thread speedrun\player\_hud_speedrun::updateWR();
+			self thread speedrun\player\huds\_speedrun::updatePB();
+			self thread speedrun\player\huds\_speedrun::updateWR();
 
 			if (isDefined(self.huds.speedrun[5]) && !secret)
 				self.huds.speedrun[5] setText(level.normal_way[int(number)].name);

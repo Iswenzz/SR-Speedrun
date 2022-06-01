@@ -90,7 +90,7 @@ onMenuResponse()
 		}
 
 		if (response == "vote_menu")
-			self thread sr\commands\_map_vote::main();
+			self thread sr\commands\game\_vote::main();
 
 		if (menu == game["menu_welcome"])
 		{
@@ -206,8 +206,8 @@ onMenuResponse()
 				self braxi\_teams::setTeam("spectator");
 				self braxi\_mod::spawnSpectator(level.spawn["spectator"].origin, level.spawn["spectator"].angles);
 				if (self.pers["spec_hud"] == 1)
-					self thread speedrun\player\_hud_spectator::hud();
-				self thread speedrun\player\_hud_cheat::spec();
+					self thread speedrun\player\huds\_spectator::hud();
+				self thread speedrun\player\huds\_cheat::spec();
 				break;
 
 				case "sr_customize":

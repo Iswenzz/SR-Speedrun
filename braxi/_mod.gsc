@@ -896,7 +896,7 @@ endMap(winningteam, map)
 
 	if (!isDefined(map))
 	{
-		setDvar("sv_maprotationcurrent", "gametype deathrun map " + sr\commands\_map_vote::load(false)[RandomInt(sr\commands\_map_vote::load(false).size)]);
+		setDvar("sv_maprotationcurrent", "gametype deathrun map " + sr\commands\game\_vote::load(false)[RandomInt(sr\commands\game\_vote::load(false).size)]);
 		ExitLevel(false);
 	}
 
@@ -1285,9 +1285,9 @@ endTimer()
 
 	self thread speedrun\game\_leaderboard::saveTimes();
 	self speedrun\game\_leaderboard::loadPersonBest();
-	self thread speedrun\player\_hud_speedrun::updatePB();
-	self thread speedrun\player\_hud_speedrun::updateWR();
-	self thread speedrun\player\_hud_speedrun::updateHud();
+	self thread speedrun\player\huds\_speedrun::updatePB();
+	self thread speedrun\player\huds\_speedrun::updateWR();
+	self thread speedrun\player\huds\_speedrun::updateHud();
 
 	if (self.time.ori < self.pers["time"])
 		self.pers["time"] = self.time.ori;
