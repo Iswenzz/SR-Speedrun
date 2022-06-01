@@ -64,8 +64,6 @@ main()
 	setDvar("mod_author", "BraXi");
 	makeDvarServerInfo("mod_author", "BraXi");
 
-	buildRankIcons();
-
 	thread maps\mp\gametypes\_hud::init();
 	thread maps\mp\gametypes\_hud_message::init();
 	thread maps\mp\gametypes\_damagefeedback::init();
@@ -79,7 +77,6 @@ main()
 
 	thread braxi\_scoreboard::init();
 	thread braxi\_menus::init();
-	thread braxi\_rank::init();
 
 	level thread gameLogic();
 	level thread serverMessages();
@@ -252,22 +249,6 @@ init_spawns()
 	level.masterSpawn.angles = level.spawn["allies"][0].angles;
 	level.masterSpawn placeSpawnPoint();
 
-}
-
-buildRankIcons()
-{
-	level.rankIconInfo = [];
-
-	tableName = "mp/rankIconTable.csv";
-
-	for (idx = 1; isdefined(tableLookup(tableName, 0, idx, 0)) && tableLookup(tableName, 0, idx, 0) != ""; idx++)
-	{
-		level.rankIconInfo[idx - 1]["icon"] = tableLookup(tableName, 0, idx, 1);
-
-		preCacheShader(level.rankIconInfo[idx - 1]["icon"]);
-	}
-	for (i = 1; i < 11; i++)
-		preCacheShader("rank_prestige" + i);
 }
 
 playerConnect() // Called when player is connecting to server

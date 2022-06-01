@@ -715,7 +715,7 @@ giveXpForTop30(b)
 						else
 							multiplyer = level.normal_way_info_190[int(number[0])].size;
 
-						self braxi\_rank::giveRankXP("", (xpamount()[i] * multiplyer));
+						self sr\sys\_rank::giveRankXP("", (xpamount()[i] * multiplyer));
 						return;
 					}
 
@@ -726,7 +726,7 @@ giveXpForTop30(b)
 						else
 							multiplyer = level.normal_way_info_190[int(number[0])].size * 3;
 
-						self braxi\_rank::giveRankXP("", (xpamount()[i] * multiplyer));
+						self sr\sys\_rank::giveRankXP("", (xpamount()[i] * multiplyer));
 						return;
 					}
 				}
@@ -748,7 +748,7 @@ giveXpForTop30(b)
 						else
 							multiplyer = level.secret_way_info_190[int(number[0])].size;
 
-						self braxi\_rank::giveRankXP("", (xpamount()[i] * multiplyer));
+						self sr\sys\_rank::giveRankXP("", (xpamount()[i] * multiplyer));
 						return;
 					}
 
@@ -759,7 +759,7 @@ giveXpForTop30(b)
 						else
 							multiplyer = level.secret_way_info_190[int(number[0])].size * 3;
 
-						self braxi\_rank::giveRankXP("", (xpamount()[i] * multiplyer));
+						self sr\sys\_rank::giveRankXP("", (xpamount()[i] * multiplyer));
 						return;
 					}
 				}
@@ -784,7 +784,7 @@ giveXpForTop30(b)
 						else
 							multiplyer = level.normal_way_info_210[int(number[0])].size;
 
-						self braxi\_rank::giveRankXP("", (xpamount()[i] * multiplyer));
+						self sr\sys\_rank::giveRankXP("", (xpamount()[i] * multiplyer));
 						return;
 					}
 
@@ -795,7 +795,7 @@ giveXpForTop30(b)
 						else
 							multiplyer = level.normal_way_info_210[int(number[0])].size * 2;
 
-						self braxi\_rank::giveRankXP("", (xpamount()[i] * multiplyer));
+						self sr\sys\_rank::giveRankXP("", (xpamount()[i] * multiplyer));
 						return;
 					}
 				}
@@ -817,7 +817,7 @@ giveXpForTop30(b)
 						else
 							multiplyer = level.secret_way_info_210[int(number[0])].size;
 
-						self braxi\_rank::giveRankXP("", (xpamount()[i] * multiplyer));
+						self sr\sys\_rank::giveRankXP("", (xpamount()[i] * multiplyer));
 						return;
 					}
 
@@ -828,7 +828,7 @@ giveXpForTop30(b)
 						else
 							multiplyer = level.secret_way_info_210[int(number[0])].size * 2;
 
-						self braxi\_rank::giveRankXP("", (xpamount()[i] * multiplyer));
+						self sr\sys\_rank::giveRankXP("", (xpamount()[i] * multiplyer));
 						return;
 					}
 				}

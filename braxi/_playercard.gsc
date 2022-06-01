@@ -22,8 +22,8 @@ showPlayerCard(attacker, victim, text)
 
 	destroyPlayerCard();
 
-	logo1 = level.rankIconInfo[attacker.pers["rank"] - 1]["icon"];
-	logo2 = level.rankIconInfo[victim.pers["rank"] - 1]["icon"];
+	logo1 = level.assets["rank"][attacker.pers["rank"] - 1]["icon"];
+	logo2 = level.assets["rank"][victim.pers["rank"] - 1]["icon"];
 
 	level.playerCard[0] = newHudElem(level);
 	level.playerCard[0].x = 170;
