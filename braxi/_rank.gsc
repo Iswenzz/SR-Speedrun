@@ -6,10 +6,6 @@ init()
 	level.scoreInfo = [];
 	level.rankTable = [];
 
-	SQL_Connect("127.0.0.1", 3306, "root", "rootpassword");
-	SQL_SelectDB("sr");
-	ComPrint(SQL_Version());
-
 	precacheShader("white");
 
 	precacheString(&"RANK_PLAYER_WAS_PROMOTED_N");
@@ -606,14 +602,14 @@ processXpReward(sMeansOfDeath, attacker, victim)
 
 unlockSpray()
 {
-	for (i = 0; i < level.sprayInfo.size; i++)
+	for (i = 0; i < level.assets["spray"].size; i++)
 	{
-		if (self.pers["rank"] == level.sprayInfo[i]["rank"])
+		if (self.pers["rank"] == level.assets["spray"][i]["rank"])
 		{
 			notifyData = spawnStruct();
 			notifyData.title = "New Spray!";
-			notifyData.description = level.sprayInfo[i]["name"];
-			notifyData.icon = level.sprayInfo[i]["shader"];
+			notifyData.description = level.assets["spray"][i]["name"];
+			notifyData.icon = level.assets["spray"][i]["shader"];
 			notifyData.duration = 2.9;
 			self thread unlockMessage(notifyData);
 			break;
@@ -642,14 +638,14 @@ unlockAbility(name)
 
 unlockCharacter()
 {
-	for (i = 0; i < level.characterInfo.size; i++)
+	for (i = 0; i < level.assets["character"].size; i++)
 	{
-		if (self.pers["rank"] == level.characterInfo[i]["rank"])
+		if (self.pers["rank"] == level.assets["character"][i]["rank"])
 		{
 			notifyData = spawnStruct();
 			notifyData.title = "New Character Unlocked!";
-			notifyData.description = level.characterInfo[i]["name"];
-			notifyData.icon = level.characterInfo[i]["shader"];
+			notifyData.description = level.assets["character"][i]["name"];
+			notifyData.icon = level.assets["character"][i]["shader"];
 			notifyData.duration = 2.9;
 			self thread unlockMessage(notifyData);
 			break;
@@ -660,25 +656,25 @@ unlockCharacter()
 
 isCharacterUnlocked(num)
 {
-	if (num >= level.characterInfo.size || num <= -1)
+	if (num >= level.assets["character"].size || num <= -1)
 		return false;
-	if (self.pers["prestige"] > level.characterInfo[num]["prestige"])
+	if (self.pers["prestige"] > level.assets["character"][num]["prestige"])
 		return true;
-	if (self.pers["rank"] >= level.characterInfo[num]["rank"] && self.pers["prestige"] >= level.characterInfo[num]["prestige"])
+	if (self.pers["rank"] >= level.assets["character"][num]["rank"] && self.pers["prestige"] >= level.assets["character"][num]["prestige"])
 		return true;
 	return false;
 }
 
 unlockItem()
 {
-	for (i = 0; i < level.itemInfo.size; i++)
+	for (i = 0; i < level.assets["weapon"].size; i++)
 	{
-		if (self.pers["rank"] == level.itemInfo[i]["rank"])
+		if (self.pers["rank"] == level.assets["weapon"][i]["rank"])
 		{
 			notifyData = spawnStruct();
 			notifyData.title = "New Weapon!";
-			notifyData.description = level.itemInfo[i]["name"];
-			notifyData.icon = level.itemInfo[i]["shader"];
+			notifyData.description = level.assets["weapon"][i]["name"];
+			notifyData.icon = level.assets["weapon"][i]["shader"];
 			notifyData.duration = 2.9;
 			self thread unlockMessage(notifyData);
 			break;
@@ -688,14 +684,14 @@ unlockItem()
 
 unlockKnifeSkin()
 {
-	for (i = 0; i < level.knifeSkinInfo.size; i++)
+	for (i = 0; i < level.assets["knifeSkin"].size; i++)
 	{
-		if (self.pers["prestige"] == level.knifeSkinInfo[i]["rank"])
+		if (self.pers["prestige"] == level.assets["knifeSkin"][i]["rank"])
 		{
 			notifyData = spawnStruct();
 			notifyData.title = "New Knife Skin!";
-			notifyData.description = level.knifeSkinInfo[i]["name"];
-			notifyData.icon = level.knifeSkinInfo[i]["shader"];
+			notifyData.description = level.assets["knifeSkin"][i]["name"];
+			notifyData.icon = level.assets["knifeSkin"][i]["shader"];
 			notifyData.duration = 2.9;
 			self thread unlockMessage(notifyData);
 			break;
@@ -705,14 +701,14 @@ unlockKnifeSkin()
 
 unlockKnife()
 {
-	for (i = 0; i < level.knifeInfo.size; i++)
+	for (i = 0; i < level.assets["knife"].size; i++)
 	{
-		if (self.pers["rank"] == level.knifeInfo[i]["rank"])
+		if (self.pers["rank"] == level.assets["knife"][i]["rank"])
 		{
 			notifyData = spawnStruct();
 			notifyData.title = "New Knife!";
-			notifyData.description = level.knifeInfo[i]["name"];
-			notifyData.icon = level.knifeInfo[i]["shader"];
+			notifyData.description = level.assets["knife"][i]["name"];
+			notifyData.icon = level.assets["knife"][i]["shader"];
 			notifyData.duration = 2.9;
 			self thread unlockMessage(notifyData);
 			break;
@@ -724,9 +720,9 @@ isItemUnlocked(num)
 {
 	if (num > level.numItems || num <= -1)
 		return false;
-	if (self.pers["prestige"] > level.itemInfo[num]["prestige"])
+	if (self.pers["prestige"] > level.assets["weapon"][num]["prestige"])
 		return true;
-	if (self.pers["rank"] >= level.itemInfo[num]["rank"] && self.pers["prestige"] >= level.itemInfo[num]["prestige"])
+	if (self.pers["rank"] >= level.assets["weapon"][num]["rank"] && self.pers["prestige"] >= level.assets["weapon"][num]["prestige"])
 		return true;
 	return false;
 }
@@ -744,11 +740,11 @@ isAbilityUnlocked(num)
 
 isSprayUnlocked(num)
 {
-	if (num >= level.sprayInfo.size || num <= -1)
+	if (num >= level.assets["spray"].size || num <= -1)
 		return false;
-	if (self.pers["prestige"] > level.sprayInfo[num]["prestige"])
+	if (self.pers["prestige"] > level.assets["spray"][num]["prestige"])
 		return true;
-	if (self.pers["rank"] >= level.sprayInfo[num]["rank"] && self.pers["prestige"] >= level.sprayInfo[num]["prestige"])
+	if (self.pers["rank"] >= level.assets["spray"][num]["rank"] && self.pers["prestige"] >= level.assets["spray"][num]["prestige"])
 		return true;
 	return false;
 }
@@ -757,7 +753,7 @@ isKnifeSkinUnlocked(num)
 {
 	if (num > level.numKnifeSkins || num <= -1)
 		return false;
-	if (self.pers["prestige"] >= level.knifeSkinInfo[num]["rank"])
+	if (self.pers["prestige"] >= level.assets["knifeSkin"][num]["rank"])
 		return true;
 	return false;
 }
@@ -766,9 +762,9 @@ isKnifeUnlocked(num)
 {
 	if (num > level.numKnifes || num <= -1)
 		return false;
-	if (self.pers["prestige"] > level.knifeInfo[num]["prestige"])
+	if (self.pers["prestige"] > level.assets["knife"][num]["prestige"])
 		return true;
-	if (self.pers["rank"] >= level.knifeInfo[num]["rank"] && self.pers["prestige"] >= level.knifeInfo[num]["prestige"])
+	if (self.pers["rank"] >= level.assets["knife"][num]["rank"] && self.pers["prestige"] >= level.assets["knife"][num]["prestige"])
 		return true;
 	return false;
 }
@@ -777,9 +773,9 @@ isGloveUnlocked(num)
 {
 	if (num > level.numGlove || num <= -1)
 		return false;
-	if (self.pers["prestige"] > level.gloveInfo[num]["prestige"])
+	if (self.pers["prestige"] > level.assets["glove"][num]["prestige"])
 		return true;
-	if (self.pers["rank"] >= level.gloveInfo[num]["rank"] && self.pers["prestige"] >= level.gloveInfo[num]["prestige"])
+	if (self.pers["rank"] >= level.assets["glove"][num]["rank"] && self.pers["prestige"] >= level.assets["glove"][num]["prestige"])
 		return true;
 	return false;
 }
@@ -788,9 +784,9 @@ isFxUnlocked(num)
 {
 	if (num > level.numFx || num <= -1)
 		return false;
-	if (self.pers["prestige"] > level.fxInfo[num]["prestige"])
+	if (self.pers["prestige"] > level.assets["fx"][num]["prestige"])
 		return true;
-	if (self.pers["rank"] >= level.fxInfo[num]["rank"] && self.pers["prestige"] >= level.fxInfo[num]["prestige"])
+	if (self.pers["rank"] >= level.assets["fx"][num]["rank"] && self.pers["prestige"] >= level.assets["fx"][num]["prestige"])
 		return true;
 	return false;
 }

@@ -21,8 +21,6 @@ init()
 	precacheMenu("sr_leaderboard");
 	precacheMenu("sr_settings");
 	precacheMenu("sr_votemap");
-	precacheMenu("sr_customize");
-	precacheMenu("sr_customize_area");
 	precacheMenu("minesweeper");
 
 	precacheString(&"MP_HOST_ENDED_GAME");
@@ -107,9 +105,6 @@ onMenuResponse()
 
 		if (response == "checkguid")
 			self sr\sys\_admins::isBanned();
-
-		if (menu == "sr_customize" || menu == "sr_customize_area")
-			self thread sr\player\_customize::executeResponse(menu, response);
 
 		else if (response == "prestigemode")
 		{

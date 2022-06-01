@@ -64,14 +64,6 @@ main()
 	setDvar("mod_author", "BraXi");
 	makeDvarServerInfo("mod_author", "BraXi");
 
-	buildSprayInfo();
-	buildCharacterInfo();
-	buildItemInfo();
-	buildKnifeInfo();
-	buildKnifeSkinInfo();
-	buildThemeInfo();
-	buildFxInfo();
-	buildGloveInfo();
 	buildRankIcons();
 
 	thread maps\mp\gametypes\_hud::init();
@@ -276,182 +268,6 @@ buildRankIcons()
 	}
 	for (i = 1; i < 11; i++)
 		preCacheShader("rank_prestige" + i);
-}
-
-buildSprayInfo()
-{
-	level.sprayInfo = [];
-	level.numSprays = 0;
-
-	tableName = "mp/sprayTable.csv";
-
-	for (idx = 1; isdefined(tableLookup(tableName, 0, idx, 0)) && tableLookup(tableName, 0, idx, 0) != ""; idx++)
-	{
-		id = int(tableLookup(tableName, 0, idx, 1));
-		level.sprayInfo[id]["rank"] = (int(tableLookup(tableName, 0, idx, 2)) - 1);
-		level.sprayInfo[id]["prestige"] = int(tableLookup(tableName, 0, idx, 3));
-		level.sprayInfo[id]["effect"] = loadFx(tableLookup(tableName, 0, idx, 4));
-		level.sprayInfo[id]["name"] = tableLookup(tableName, 0, idx, 5);
-		level.sprayInfo[id]["model"] = "";
-		level.sprayInfo[id]["func"] = sr\player\_customize::sprayPredicate;
-
-		level.numSprays++;
-	}
-}
-
-buildCharacterInfo()
-{
-	level.characterInfo = [];
-	level.numCharacters = 0;
-
-	tableName = "mp/characterTable.csv";
-
-	for (idx = 1; isdefined(tableLookup(tableName, 0, idx, 0)) && tableLookup(tableName, 0, idx, 0) != ""; idx++)
-	{
-		id = int(tableLookup(tableName, 0, idx, 1));
-		level.characterInfo[id]["rank"] = (int(tableLookup(tableName, 0, idx, 2)) - 1);
-		level.characterInfo[id]["prestige"] = int(tableLookup(tableName, 0, idx, 3));
-		level.characterInfo[id]["model"] = tableLookup(tableName, 0, idx, 4);
-		level.characterInfo[id]["handsModel"] = tableLookup(tableName, 0, idx, 5);
-		level.characterInfo[id]["name"] = tableLookup(tableName, 0, idx, 6);
-		level.characterInfo[id]["desc"] = tableLookup(tableName, 0, idx, 7);
-		level.characterInfo[id]["func"] = sr\player\_customize::characterPredicate;
-
-		precacheModel(level.characterInfo[id]["model"]);
-		precacheModel(level.characterInfo[id]["handsModel"]);
-		level.numCharacters++;
-	}
-}
-
-buildItemInfo()
-{
-	level.itemInfo = [];
-	level.numItems = 0;
-
-	tableName = "mp/itemTable.csv";
-
-	for (idx = 1; isdefined(tableLookup(tableName, 0, idx, 0)) && tableLookup(tableName, 0, idx, 0) != ""; idx++)
-	{
-		id = int(tableLookup(tableName, 0, idx, 1));
-		level.itemInfo[id]["rank"] = (int(tableLookup(tableName, 0, idx, 2)) - 1);
-		level.itemInfo[id]["prestige"] = int(tableLookup(tableName, 0, idx, 3));
-		level.itemInfo[id]["item"] = (tableLookup(tableName, 0, idx, 4) + "_mp");
-		level.itemInfo[id]["name"] = tableLookup(tableName, 0, idx, 5);
-		level.itemInfo[id]["desc"] = tableLookup(tableName, 0, idx, 6);
-		level.itemInfo[id]["model"] = GetWeaponModel(level.itemInfo[id]["item"]);
-		level.itemInfo[id]["func"] = sr\player\_customize::weaponPredicate;
-
-		precacheItem(level.itemInfo[id]["item"]);
-		level.numItems++;
-	}
-}
-
-buildKnifeInfo()
-{
-	level.knifeInfo = [];
-	level.numKnifes = 0;
-
-	tableName = "mp/knifeTable.csv";
-
-	for (idx = 1; isdefined(tableLookup(tableName, 0, idx, 0)) && tableLookup(tableName, 0, idx, 0) != ""; idx++)
-	{
-		id = int(tableLookup(tableName, 0, idx, 1));
-		level.knifeInfo[id]["rank"] = (int(tableLookup(tableName, 0, idx, 2)) - 1);
-		level.knifeInfo[id]["prestige"] = int(tableLookup(tableName, 0, idx, 3));
-		level.knifeInfo[id]["item"] = (tableLookup(tableName, 0, idx, 4) + "_mp");
-		level.knifeInfo[id]["name"] = tableLookup(tableName, 0, idx, 5);
-		level.knifeInfo[id]["model"] = tableLookup(tableName, 0, idx, 6);
-		level.knifeInfo[id]["func"] = sr\player\_customize::knifePredicate;
-
-		precacheModel(level.knifeInfo[id]["model"]);
-		precacheItem(level.knifeInfo[id]["item"]);
-		level.numKnifes++;
-	}
-}
-
-buildKnifeSkinInfo()
-{
-	level.knifeSkinInfo = [];
-	level.numKnifeSkins = 0;
-
-	tableName = "mp/knifeSkinTable.csv";
-
-	for (idx = 1; isdefined(tableLookup(tableName, 0, idx, 0)) && tableLookup(tableName, 0, idx, 0) != ""; idx++)
-	{
-		id = int(tableLookup(tableName, 0, idx, 1));
-		level.knifeSkinInfo[id]["rank"] = (int(tableLookup(tableName, 0, idx, 2)) - 1);
-		level.knifeSkinInfo[id]["shader"] = tableLookup(tableName, 0, idx, 3);
-		level.knifeSkinInfo[id]["item"] = tableLookup(tableName, 0, idx, 4);
-		level.knifeSkinInfo[id]["name"] = tableLookup(tableName, 0, idx, 5);
-		level.knifeSkinInfo[id]["model"] = tableLookup(tableName, 0, idx, 6);
-		level.knifeSkinInfo[id]["func"] = sr\player\_customize::knifeSkinPredicate;
-
-		precacheModel(level.knifeSkinInfo[id]["model"]);
-		level.numKnifeSkins++;
-	}
-}
-
-buildThemeInfo()
-{
-	level.themeInfo = [];
-	level.numTheme = 0;
-
-	tableName = "mp/themeTable.csv";
-
-	for (idx = 1; isdefined(tableLookup(tableName, 0, idx, 0)) && tableLookup(tableName, 0, idx, 0) != ""; idx++)
-	{
-		id = int(tableLookup(tableName, 0, idx, 1));
-		level.themeInfo[id]["rank"] = (int(tableLookup(tableName, 0, idx, 2)) - 1);
-		level.themeInfo[id]["shader"] = tableLookup(tableName, 0, idx, 3);
-		level.themeInfo[id]["item"] = tableLookup(tableName, 0, idx, 4);
-		level.themeInfo[id]["name"] = tableLookup(tableName, 0, idx, 5);
-		level.themeInfo[id]["desc"] = tableLookup(tableName, 0, idx, 6);
-		level.themeInfo[id]["func"] = sr\player\_customize::themePredicate;
-		level.themeInfo[id]["model"] = "";
-
-		level.numTheme++;
-	}
-}
-
-buildFxInfo()
-{
-	level.fxInfo = [];
-	level.numFx = 0;
-
-	tableName = "mp/fxTable.csv";
-
-	for (idx = 1; isdefined(tableLookup(tableName, 0, idx, 0)) && tableLookup(tableName, 0, idx, 0) != ""; idx++)
-	{
-		id = int(tableLookup(tableName, 0, idx, 1));
-		level.fxInfo[id]["rank"] = (int(tableLookup(tableName, 0, idx, 2)) - 1);
-		level.fxInfo[id]["prestige"] = int(tableLookup(tableName, 0, idx, 3));
-		level.fxInfo[id]["name"] = tableLookup(tableName, 0, idx, 4);
-		level.fxInfo[id]["model"] = "";
-		level.fxInfo[id]["func"] = sr\player\_customize::fxPredicate;
-
-		level.numFx++;
-	}
-}
-
-buildGloveInfo()
-{
-	level.gloveInfo = [];
-	level.numGlove = 0;
-
-	tableName = "mp/gloveTable.csv";
-
-	for (idx = 1; isdefined(tableLookup(tableName, 0, idx, 0)) && tableLookup(tableName, 0, idx, 0) != ""; idx++)
-	{
-		id = int(tableLookup(tableName, 0, idx, 1));
-		level.gloveInfo[id]["rank"] = (int(tableLookup(tableName, 0, idx, 2)) - 1);
-		level.gloveInfo[id]["prestige"] = int(tableLookup(tableName, 0, idx, 3));
-		level.gloveInfo[id]["model"] = tableLookup(tableName, 0, idx, 4);
-		level.gloveInfo[id]["name"] = tableLookup(tableName, 0, idx, 5);
-		level.gloveInfo[id]["func"] = sr\player\_customize::glovePredicate;
-
-		precacheModel(level.gloveInfo[id]["model"]);
-		level.numGlove++;
-	}
 }
 
 playerConnect() // Called when player is connecting to server
@@ -694,9 +510,9 @@ spawnPlayer(origin, angles)
 		self.pers["weapon"] = "dog_mp";
 	else
 	{
-		self.pers["weapon"] = level.itemInfo[self getStat(981)]["item"];
-		self.pers["knife"] = level.knifeInfo[self getStat(982)]["item"];
-		self.pers["knife_skin"] = int(level.knifeSkinInfo[self getStat(983)]["item"]);
+		self.pers["weapon"] = level.assets["weapon"][self getStat(981)]["item"];
+		self.pers["knife"] = level.assets["knife"][self getStat(982)]["item"];
+		self.pers["knife_skin"] = int(level.assets["knifeSkin"][self getStat(983)]["item"]);
 	}
 
 	if (self.pers["knifeonly"])
@@ -821,7 +637,7 @@ sprayLogo()
 		else if (sprayNum > level.numSprays)
 			sprayNum = level.numSprays;
 
-		playFx(level.sprayInfo[sprayNum]["effect"], position, forward, up);
+		playFx(level.assets["spray"][sprayNum]["effect"], position, forward, up);
 		self playSound("sprayer");
 
 		self notify("spray", sprayNum, position, forward, up);

@@ -10,14 +10,14 @@ setPlayerModel()
 	hid = self getStat(985);
 
 	// if a player doesnt have a char model, he will have unlimited health and can cause alot of bugs
-	if (!isDefined(level.characterInfo[cid]))
+	if (!isDefined(level.assets["character"][cid]))
 	{
 		self setStat(980, 0);
 		cid = 0;
 	}
 
-	self setModel(level.characterInfo[cid]["model"]);
-	self setViewModel(level.gloveInfo[hid]["model"]);
+	self setModel(level.assets["character"][cid]["model"]);
+	self setViewModel(level.assets["glove"][hid]["model"]);
 }
 
 setHealth()

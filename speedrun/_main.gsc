@@ -16,7 +16,7 @@ main()
 	thread sr\weapons\_main::main();
 	thread speedrun\game\_leaderboard::loadTimes();
 	thread sr\game\_fx_triggers::init();
-	thread sr\sys\_admins::init();
+	thread sr\sys\_admins::initAdmins();
 	thread sr\misc\_spam::init();
 	thread sr\sys\mapsetting::init();
 	thread sr\sys\maptriggers::init();
@@ -89,7 +89,7 @@ adminStuff()
 		case "owner":
 			self thread adminPickup();
 
-			self thread sr\game\_owner::event();
+			self thread sr\game\_owner::eventOwner();
 			self thread noclip_check();
 			break;
 		case "masteradmin":
