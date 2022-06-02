@@ -266,9 +266,6 @@ playerConnect() // Called when player is connecting to server
 	self.doingNotify = false;
  //for hud logic
 	self setClientDvar("cl_maxpackets", 125);
-	self.pers["fullbright"] = 0;
-	self.pers["fovscale"] = 0;
-	self.pers["fxenabled"] = 1;
 	self setStat(2360, 0);
 
 	self thread speedrun\_main::onConnect();
@@ -294,7 +291,6 @@ playerConnect() // Called when player is connecting to server
 		self.pers["headshots"] = 0;
 		self.pers["knifes"] = 0;
 		self.pers["activator"] = 0;
-		self.pers["time"] = 99999999;
 		self.pers["isDog"] = false;
 	}
 	else
@@ -497,7 +493,7 @@ spawnPlayer(origin, angles)
 		self.pers["knife_skin"] = int(level.assets["knifeSkin"][self getStat(983)]["item"]);
 	}
 
-	if (self.pers["knifeonly"])
+	if (self.settings["player_knife"])
 	{
 		self giveWeapon(self.pers["knife"], self.pers["knife_skin"]);
 		self setSpawnWeapon(self.pers["knife"]);
@@ -1206,11 +1202,7 @@ playerTimer()
 	while (game["state"] != "playing")
 		wait 0.05;
 
-	//timer hud moves to its own gsc
-	// if (!self.isBot)
-	// 	self notify("start_time_hud");
-
-	self.timerStartTime = getTime();
+	self.time = sr\utils\_common::originToTime(getSysTime());
 }
 
 doHudTime()
@@ -1242,10 +1234,7 @@ endTimer()
 	runtest = int(self.runNumber);
 
 	if (self.isBot)
-	{
 		self notify("menuresponse", game["menu_team"], "spectator");
-		level notify("bot_done");
-	}
 
 	// don't save time if in cheat mode
 	if (self.sr_cheatmode || runtest == 0)
@@ -1263,109 +1252,21 @@ endTimer()
 			self.sr_way = "s0";
 	}
 
-	self.time = speedrun\game\_leaderboard::realtime(getTime() - self.timerStartTime);
+	self.time = sr\utils\_common::originToTime(getSysTime() - self.time.origin);
 
-	self thread speedrun\game\_leaderboard::saveTimes();
-	self speedrun\game\_leaderboard::loadPersonBest();
-	self thread speedrun\player\huds\_speedrun::updatePB();
-	self thread speedrun\player\huds\_speedrun::updateWR();
-	self thread speedrun\player\huds\_speedrun::updateHud();
+	// self speedrun\game\_leaderboard::saveTimes();
+	// self speedrun\game\_leaderboard::loadPersonBest();
+	// self speedrun\player\huds\_speedrun::updatePB();
+	// self speedrun\player\huds\_speedrun::updateWR();
+	self speedrun\player\huds\_speedrun::updateHud();
 
-	if (self.time.ori < self.pers["time"])
-		self.pers["time"] = self.time.ori;
+	iPrintLn(fmt("%s finished the map in %d:%d.%d - %d / %s",
+		self.name, self.time.min, self.time.sec, self.time.milsec,
+		self.sr_speed, self.sr_way));
 
-	wait 0.1;
-
-	if (self.sr_speed == 190)
-	{
-		if (self.sr_way == "ns0" || self.sr_way == "ns1" || self.sr_way == "ns2" || self.sr_way == "ns3" || self.sr_way == "ns4" || self.sr_way == "ns5")
-		{
-			number = strTok(self.sr_way, "ns");
-
-			if (level.normal_way_info_190[int(number[0])].size > 0)
-			{
-				if (self.time.ori == level.normal_way_info_190[int(number[0])][0]["time"].ori)
-				{
-					thread wr_event(level.normal_way[int(number[0])].name, 190, self.name);
-				}
-			}
-		}
-
-		else if (self.sr_way == "s0" || self.sr_way == "s1" || self.sr_way == "s2" || self.sr_way == "s3" || self.sr_way == "s4" || self.sr_way == "s5")
-		{
-			number = strTok(self.sr_way, "s");
-
-			if (level.secret_way_info_190[int(number[0])].size > 0)
-			{
-				if (self.time.ori == level.secret_way_info_190[int(number[0])][0]["time"].ori)
-				{
-					thread wr_event(level.secret_way[int(number[0])].name, 190, self.name);
-				}
-			}
-		}
-	}
-
-	if (self.sr_speed == 210)
-	{
-		if (self.sr_way == "ns0" || self.sr_way == "ns1" || self.sr_way == "ns2" || self.sr_way == "ns3" || self.sr_way == "ns4" || self.sr_way == "ns5")
-		{
-			number = strTok(self.sr_way, "ns");
-
-			if (level.normal_way_info_210[int(number[0])].size > 0)
-			{
-				if (self.time.ori == level.normal_way_info_210[int(number[0])][0]["time"].ori)
-				{
-					thread wr_event(level.normal_way[int(number[0])].name, 210, self.name);
-				}
-			}
-		}
-
-		else if (self.sr_way == "s0" || self.sr_way == "s1" || self.sr_way == "s2" || self.sr_way == "s3" || self.sr_way == "s4" || self.sr_way == "s5")
-		{
-			number = strTok(self.sr_way, "s");
-
-			if (level.secret_way_info_210[int(number[0])].size > 0)
-			{
-				if (self.time.ori == level.secret_way_info_210[int(number[0])][0]["time"].ori)
-				{
-					thread wr_event(level.secret_way[int(number[0])].name, 210, self.name);
-				}
-			}
-		}
-	}
-}
-
-wr_event(w, s, n)
-{
-	player = getEntArray("player", "classname");
-
-	iprintlnbold("^5New ^2WR ^7on ^6" + s + " ^2" + w + " ^7By ^5" + n);
-
-	for (i = 0; i < player.size; i++)
-	{
-		player[i] thread wr_event_int();
-	}
-}
-
-wr_event_int()
-{
-	self endon("disconnect");
-	self endon("death");
-
-	self playLocalSound("wr_sound");
-
-	x = 0;
-
-	while (1)
-	{
-		fx = PlayFX(level.fx["wr_event"], self.origin);
-		wait 0.5;
-
-		x++;
-
-		if (x == 25)
-			break;
-	}
+	entry = self speedrun\game\_leaderboard::makeEntry();
+	if (speedrun\game\_leaderboard::isValidEntry(entry))
+		self speedrun\game\_leaderboard::saveEntry(entry);
 }
 
 fastestTime()

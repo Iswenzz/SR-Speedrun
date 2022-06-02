@@ -1,10 +1,10 @@
 /*
 
-  _|_|_|            _|      _|      _|                  _|            
-_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|  
-  _|_|    _|    _|      _|          _|        _|    _|  _|      _|    
-      _|  _|    _|    _|  _|        _|        _|    _|  _|    _|      
-_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|  
+  _|_|_|            _|      _|      _|                  _|
+_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|
+  _|_|    _|    _|      _|          _|        _|    _|  _|      _|
+      _|  _|    _|    _|  _|        _|        _|    _|  _|    _|
+_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|
 
 Map and GSC Made By SuX Lolz.
 
@@ -25,14 +25,14 @@ main()
 	maps\mp\_load::main();
 	maps\mp\enter_teleport\_teleport::main();
 	maps\mp\_compass::setupMiniMap("compass_mp_sr_pure_strafe");
- 
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
- 
+
 	setdvar("r_specularcolorscale","1");
 	setdvar("compassmaxrange","1600");
 	setdvar("r_glowbloomintensity0",".1");
@@ -52,13 +52,13 @@ main()
 way_connect()
 {
     wait 0.05;
-	
+
 	sr\api\_map::createWay("normal", "Normal Way", "1");
 	sr\api\_map::createWay("secret", "Secret Way", "1");
 
 	thread secret_1();
-	
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
         player thread sr\api\_map::way_name();
@@ -91,7 +91,7 @@ secret_1()
 
 	wait 1;
 	trig.radius = 80;
-	thread speedrun\_triggerfx::createTrigFx(trig, "secret");
+	thread sr\game\fx\_trigger::createTrigFx(trig, "secret");
 
 	for(;;)
 	{

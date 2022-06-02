@@ -38,9 +38,9 @@ getBestPlayerFromTime()
 	players = getAllPlayers();
 	for (i = 0; i < players.size; i++)
 	{
-		if (players[i].pers["time"] <= score)
+		if (players[i].time.origin <= score)
 		{
-			score = players[i].pers["time"];
+			score = players[i].time.origin;
 			guy = players[i];
 		}
 	}

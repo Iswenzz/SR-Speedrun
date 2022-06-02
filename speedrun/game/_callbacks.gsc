@@ -11,8 +11,8 @@ main()
 	event("killed", 	braxi\_mod::playerKilled);
 	event("command", 	sr\sys\_admins::command);
 
-	level.allies = ::allies;
-	level.axis = ::axis;
+	level.allies 	= ::allies;
+	level.axis 		= ::axis;
 	level.spectator = ::spectator;
 }
 

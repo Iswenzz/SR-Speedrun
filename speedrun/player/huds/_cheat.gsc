@@ -12,10 +12,10 @@ hud()
 	self endon("death");
 
 	self.guid = getSubStr(self getGuid(), 24, 32);
-	self.nameSmall = getSubStr(self.name, 0, 15);
+	self.shortName = getSubStr(self.name, 0, 15);
 
 	self setClientDvar("sr_anticheat_player_id", self.id);
-	self setClientDvar("sr_anticheat_player_name", self.nameSmall);
+	self setClientDvar("sr_anticheat_player_name", self.shortName);
 	self setClientDvar("sr_anticheat_player_run", self.runNumber);
 	self setClientDvar("sr_anticheat_player_guid", self.guid);
 }
@@ -34,7 +34,7 @@ spec()
 			continue;
 
 		player.guid = getSubStr(player getGuid(), 24, 32);
-		player.nameSmall = getSubStr(player.name, 0, 15);
+		player.shortName = getSubStr(player.name, 0, 15);
 
 		if (player.isBot)
 		{
@@ -43,7 +43,7 @@ spec()
 		}
 
 		self setClientDvar("sr_anticheat_player_id", player.id);
-		self setClientDvar("sr_anticheat_player_name", player.nameSmall);
+		self setClientDvar("sr_anticheat_player_name", player.shortName);
 		self setClientDvar("sr_anticheat_player_run", player.runNumber);
 		self setClientDvar("sr_anticheat_player_guid", player.guid);
 	}

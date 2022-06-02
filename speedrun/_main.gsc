@@ -14,11 +14,10 @@ main()
 	speedrun\game\_callbacks::main();
 	braxi\_mod::main();
 
-	thread sr\weapons\_main::main();
-	thread speedrun\game\_leaderboard::loadTimes();
+	thread sr\game\weapons\_main::main();
+	thread speedrun\game\_leaderboard::main();
 	thread sr\game\fx\_trigger::init();
 	thread sr\sys\_admins::initAdmins();
-	thread sr\misc\_spam::init();
 	thread sr\sys\mapsetting::init();
 	thread sr\sys\maptriggers::init();
 	thread sr\game\minigames\_race::init();
@@ -321,17 +320,12 @@ onConnect()
 	// if (self checkBanned())
 	// 	return;
 
-	self thread sr\weapons\_main::self_setup();
+	self thread sr\game\weapons\_main::self_setup();
 	self thread sr\player\_id::checkid();
 	self thread speedrun\_main::checkVIP();
 	// self thread setGroup();
 	self thread sr\player\_settings::onConnect();
 	self thread speedrun\_main::adminStuff();
-
-	self.pers["fullbright"] = 0;
-	self.pers["fovscale"] = 0;
-	self.pers["fxenabled"] = 1;
-	self.pers["login"] = false;
 
 	self.pb_190 = [];
 	self.pb_210 = [];
@@ -373,7 +367,7 @@ onConnect()
 	if (!self.isBot)
 		self thread sr\player\_id::checkid();
 
-	self speedrun\game\_leaderboard::loadPersonBest();
+	// self speedrun\game\_leaderboard::loadPersonBest();
 	self thread sr\api\_map::way_name_default();
 	self thread sr\api\_map::way_name();
 	self thread getFps();

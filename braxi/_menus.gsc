@@ -86,7 +86,6 @@ onMenuResponse()
 			self CloseMenu();
 			self closeInGameMenu();
 			self openMenu("sr_leaderboard");
-			self thread speedrun\game\_leaderboard::top10Menu();
 		}
 
 		if (response == "vote_menu")
