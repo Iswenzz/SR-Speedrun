@@ -17,7 +17,7 @@ init()
 
 showSpawnpoints()
 {
-	if (!isdefined(level.spawnpoints))
+	if (!isDefined(level.spawnpoints))
 		return;
 
 	for (i = 0; i < level.spawnpoints.size; i++)

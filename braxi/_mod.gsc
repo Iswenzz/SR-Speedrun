@@ -811,7 +811,7 @@ endmap_song()
 
 endmap_earthquake()
 {
-	while (1)
+	while (true)
 	{
 		Earthquake(0.05, 0.05, level.spawn["spectator"].origin, 20000);
 		wait 0.05;
@@ -1035,7 +1035,7 @@ serverMessages()
 	if (!isDefined(game["msg"]))
 		game["msg"] = 0;
 
-	while (1)
+	while (true)
 	{
 		if (game["msg_time"] == level.dvar["messages_delay"])
 		{
@@ -1283,7 +1283,7 @@ fastestTime()
 
 	trig = trig[0];
 
-	while (1)
+	while (true)
 	{
 		trig waittill("trigger", user);
 

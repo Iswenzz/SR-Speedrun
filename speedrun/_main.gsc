@@ -148,7 +148,7 @@ adminPickup()
 	self endon("disconnect");
 	self.pickupMode = 0;
 
-	while (1)
+	while (true)
 	{
 		wait 0.1;
 		while (!self secondaryoffhandButtonPressed())
@@ -557,7 +557,7 @@ spawnTrail()
 		self.trailTag Delete();
 	}
 	wait 0.1;
-	while (1)
+	while (true)
 	{
 		self.trailTag = spawn("script_model", self.origin);
 		self.trailTag setmodel("tag_origin");
@@ -678,7 +678,7 @@ watchWay()
 	}
 	x = self.sr_secret;
 
-	while (1)
+	while (true)
 	{
 		if (x != self.sr_secret)
 		{
@@ -707,7 +707,7 @@ watchWay_new()
 
 	x = self.sr_way;
 
-	while (1)
+	while (true)
 	{
 		if (x != self.sr_way)
 		{

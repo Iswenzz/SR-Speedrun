@@ -18,7 +18,7 @@ addTestClients()
 
 TestClient()
 {
-	while (!isdefined(self.pers["team"]))
+	while (!isDefined(self.pers["team"]))
 		wait .05;
 
 	wait 0.05;

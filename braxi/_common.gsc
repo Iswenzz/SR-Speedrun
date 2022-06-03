@@ -258,7 +258,7 @@ delayStartRagdoll(ent, sHitLoc, vDir, sWeapon, eInflictor, sMeansOfDeath)
 
 	explosionPos = ent.origin + (0, 0, getHitLocHeight(sHitLoc));
 	explosionPos -= vDir * 20;
-	//thread debugLine( ent.origin + (0,0,(explosionPos[2] - ent.origin[2])), explosionPos );
+	//thread debugLine(ent.origin + (0,0,(explosionPos[2] - ent.origin[2])), explosionPos);
 	explosionRadius = 40;
 	explosionForce = .75;
 	if (sMeansOfDeath == "MOD_IMPACT" || sMeansOfDeath == "MOD_EXPLOSIVE" || isSubStr(sMeansOfDeath, "MOD_GRENADE") || isSubStr(sMeansOfDeath, "MOD_PROJECTILE") || sHitLoc == "object" || sHitLoc == "helmet")
@@ -346,7 +346,7 @@ annoyMe()
 {
 	self endon("disconnect");
 
-	while (1)
+	while (true)
 	{
 		wait 0.5;
 		self setClientDvar("cantplay", 1);

@@ -51,7 +51,7 @@ showCredit(text, scale, y)
 neon()
 {
 	neon = addNeon("", 1.4);
-	while (1)
+	while (true)
 	{
 		neon moveOverTime(12);
 		neon.x = 800;

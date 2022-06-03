@@ -1,7 +1,7 @@
 init()
 {
 	precacheShader("black");
-	while (1)
+	while (true)
 	{
 		level waittill("player_killed", victim, eInflictor, attacker);
 
