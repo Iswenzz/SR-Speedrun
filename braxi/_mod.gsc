@@ -431,7 +431,7 @@ PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 	if (self.inKz && level.kzStarted)
 	{
 		if (isPlayer(attacker))
-			attacker.wonKz = true;
+			attacker.kzWon = true;
 		deaths = self maps\mp\gametypes\_persistence::statGet("deaths");
 		self maps\mp\gametypes\_persistence::statSet("deaths", deaths + 1);
 		self.deaths++;

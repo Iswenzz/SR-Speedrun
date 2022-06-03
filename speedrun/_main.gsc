@@ -352,8 +352,8 @@ onConnect()
 	self.sr_cheatmode = false;
 	self.sr_practise = false;
 	self.raceWon = 0;
-	self.wonKz = false;
-	self.kzWon = 0;
+	self.kzWon = false;
+	self.kzWonCount = 0;
 	self.inRaceDead = false;
 	self.inRaceFinish = false;
 	self.inRace = false;
