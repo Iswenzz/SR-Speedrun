@@ -417,10 +417,7 @@ removeColorFromString(string)
 				}
 			}
 		}
-
 		output += string[i];
 	}
-
 	return output;
 }
-

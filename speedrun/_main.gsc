@@ -320,7 +320,6 @@ onConnect()
 	// if (self checkBanned())
 	// 	return;
 
-	self thread sr\game\weapons\_main::self_setup();
 	self thread sr\player\_id::checkid();
 	self thread speedrun\_main::checkVIP();
 	// self thread setGroup();
