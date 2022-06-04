@@ -76,7 +76,6 @@ main()
 	thread maps\mp\_weapons::init();
 
 	thread braxi\_scoreboard::init();
-	thread braxi\_menus::init();
 
 	level thread gameLogic();
 	level thread serverMessages();
@@ -321,7 +320,7 @@ playerConnect() // Called when player is connecting to server
 		self thread delayedMenu();
 		logPrint("J;" + self.guid + ";" + self.number + ";" + self.name + "\n");
 	}
-	self setClientDvars("cg_drawSpectatorMessages", 1, "ui_hud_hardcore", 1, "player_sprintTime", 4, "ui_uav_client", 0, "g_scriptMainMenu", game["menu_team"]);
+	self setClientDvars("cg_drawSpectatorMessages", 1, "ui_hud_hardcore", 1, "player_sprintTime", 4, "ui_uav_client", 0, "g_scriptMainMenu", level.menus["team"]);
 }
 
 playerDisconnect() // Called when player disconnect from server
@@ -1207,7 +1206,7 @@ endTimer()
 	runtest = int(self.runNumber);
 
 	if (self.isBot)
-		self notify("menuresponse", game["menu_team"], "spectator");
+		self notify("menuresponse", level.menus["team"], "spectator");
 
 	// don't save time if in cheat mode
 	if (self.sr_cheatmode || runtest == 0)
@@ -1227,8 +1226,8 @@ endTimer()
 
 	self.time = sr\utils\_common::originToTime(getSysTime() - self.time.origin);
 
-	// self speedrun\game\_leaderboard::saveTimes();
-	// self speedrun\game\_leaderboard::loadPersonBest();
+	// self speedrun\game\_leaderboards::saveTimes();
+	// self speedrun\game\_leaderboards::loadPersonBest();
 	// self speedrun\player\huds\_speedrun::updatePB();
 	// self speedrun\player\huds\_speedrun::updateWR();
 	self speedrun\player\huds\_speedrun::updateHud();
@@ -1237,9 +1236,9 @@ endTimer()
 		self.name, self.time.min, self.time.sec, self.time.milsec,
 		self.sr_speed, self.sr_way));
 
-	entry = self speedrun\game\_leaderboard::makeEntry();
-	if (speedrun\game\_leaderboard::isValidEntry(entry))
-		self speedrun\game\_leaderboard::saveEntry(entry);
+	entry = self speedrun\game\_leaderboards::makeEntry();
+	if (speedrun\game\_leaderboards::isValidEntry(entry))
+		self speedrun\game\_leaderboards::saveEntry(entry);
 }
 
 fastestTime()

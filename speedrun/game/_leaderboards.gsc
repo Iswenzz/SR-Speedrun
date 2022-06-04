@@ -20,18 +20,16 @@ menu_Open(arg)
 	self display();
 }
 
-menu_Leaderboard(arg)
+menu_Leaderboard(args)
 {
-	args = strTok(arg, ":");
 	way = args[1];
 
 	self.leaderboard_way = way;
 	self display();
 }
 
-menu_Filter(arg)
+menu_Filter(args)
 {
-	args = strTok(arg, ":");
 	filter = args[1];
 
 	self.leaderboard_filter = filter;

@@ -12,10 +12,11 @@ main()
 
 	sr\_main::main();
 	speedrun\game\_callbacks::main();
+	speedrun\game\_menus::main();
 	braxi\_mod::main();
 
 	thread sr\game\weapons\_main::main();
-	thread speedrun\game\_leaderboard::main();
+	thread speedrun\game\_leaderboards::main();
 	thread sr\game\fx\_trigger::init();
 	thread sr\sys\_admins::initAdmins();
 	thread sr\sys\mapsetting::init();
@@ -359,7 +360,7 @@ onConnect()
 	if (!self.isBot)
 		self thread sr\player\_id::checkid();
 
-	// self speedrun\game\_leaderboard::loadPersonBest();
+	// self speedrun\game\_leaderboards::loadPersonBest();
 	self thread sr\api\_map::way_name_default();
 	self thread sr\api\_map::way_name();
 	self thread getFps();

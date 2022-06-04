@@ -22,5 +22,5 @@ TestClient()
 		wait .05;
 
 	wait 0.05;
-	self notify("menuresponse", game["menu_team"], "axis");
+	self notify("menuresponse", level.menus["team"], "axis");
 }

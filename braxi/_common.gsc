@@ -324,10 +324,10 @@ delayedMenu()
 	if (!isDefined(self.canplay))
 	{
 		self.canplay = true;
-		self openMenu(game["menu_welcome"]);
+		self openMenu(level.menus["sr_welcome"]);
 	}
 	else
-		self openMenu(game["menu_team"]);
+		self openMenu(level.menus["team"]);
 }
 
 waitTillNotMoving()
