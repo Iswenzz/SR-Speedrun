@@ -109,7 +109,7 @@ onMenuResponse()
 		{
 			self closeMenu();
 			self closeInGameMenu();
-			self thread sr\sys\_rank::prestige();
+			self thread sr\game\_rank::prestige();
 		}
 
 		else if (menu == game["menu_quickstuff"])

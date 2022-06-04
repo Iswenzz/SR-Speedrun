@@ -206,7 +206,7 @@ givePlacementXP(placement)
 	if (placement == 0 || !isDefined(level.leaderboard_xps[placement - 1]))
 		return;
 
-	self sr\sys\_rank::giveRankXP("", level.leaderboard_xps[placement - 1]);
+	self sr\game\_rank::giveRankXP("", level.leaderboard_xps[placement - 1]);
 }
 
 worldRecord(entry)

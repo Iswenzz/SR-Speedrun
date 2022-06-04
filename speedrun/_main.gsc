@@ -351,13 +351,6 @@ onConnect()
 	self.voteCoolDown = getTime();
 	self.sr_cheatmode = false;
 	self.sr_practise = false;
-	self.raceWon = 0;
-	self.kzWon = false;
-	self.kzWonCount = 0;
-	self.inRaceDead = false;
-	self.inRaceFinish = false;
-	self.inRace = false;
-	self.inKz = false;
 	self.sr_savePos = [];
 
 	self setClientDvar("cl_maxpackets", 125);

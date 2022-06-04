@@ -410,33 +410,6 @@ PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 
 	self.statusicon = "hud_status_dead";
 	self.sessionstate = "spectator";
-
-	if (isPlayer(attacker) && self.inKz && level.kzStarted)
-	{
-		if (attacker != self)
-		{
-			braxi\_rank::processXpReward(sMeansOfDeath, attacker, self);
-
-			attacker.kills++;
-			attacker.pers["kills"]++;
-			if (sHitLoc == "head" && sMeansOfDeath != "MOD_MELEE")
-				attacker thread braxi\_rank::giveRankXP(10);
-			else if (sMeansOfDeath == "MOD_MELEE")
-				attacker thread braxi\_rank::giveRankXP(7);
-			else
-				attacker thread braxi\_rank::giveRankXP(5);
-		}
-	}
-
-	if (self.inKz && level.kzStarted)
-	{
-		if (isPlayer(attacker))
-			attacker.kzWon = true;
-		deaths = self maps\mp\gametypes\_persistence::statGet("deaths");
-		self maps\mp\gametypes\_persistence::statSet("deaths", deaths + 1);
-		self.deaths++;
-		self.pers["deaths"]++;
-	}
 	self.died = true;
 	self thread cleanUp();
 
