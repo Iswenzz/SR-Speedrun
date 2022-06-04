@@ -8,8 +8,8 @@ main()
 
 cmd_Speed()
 {
-    speed = Ternary(self.sr_speed == 190, 210, 190);
-    self.sr_speed = speed;
+    speed = Ternary(self.sr_mode == "190", "210", "190");
+    self.sr_mode = speed;
     self pm(fmt("Move speed set to %d", speed));
     self suicide();
 }

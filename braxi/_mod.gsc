@@ -6,10 +6,9 @@
 
 main()
 {
-	braxi\_dvar::setupDvars();
+	braxi\_dvar::init();
 	precache();
 	init_spawns();
-	braxi\_cod4stuff::main();
 
 	game["DeathRunVersion"] = 12;
 	level.mapName = toLower(getDvar("mapname"));
@@ -75,7 +74,7 @@ main()
 	thread maps\mp\gametypes\_quickmessages::init();
 	thread maps\mp\_weapons::init();
 
-	thread braxi\_scoreboard::init();
+	thread speedrun\game\_scoreboard::init();
 
 	level thread gameLogic();
 	level thread serverMessages();
@@ -834,7 +833,7 @@ endMap(winningteam, map)
 
 	playFx(level.fx["endgame"], level.spawn["spectator"].origin - (0, 0, 50));
 
-	braxi\_credits::main();
+	sr\game\_credits::main();
 
 	players = getAllPlayers();
 	for (i = 0; i < players.size; i++)
@@ -1216,14 +1215,6 @@ endTimer()
 		return;
 	}
 
-	if (!isDefined(level.new_leaderboard))
-	{
-		if (!self.sr_secret)
-			self.sr_way = "ns0";
-		if (self.sr_secret)
-			self.sr_way = "s0";
-	}
-
 	self.time = sr\utils\_common::originToTime(getSysTime() - self.time.origin);
 
 	// self speedrun\game\_leaderboards::saveTimes();
@@ -1232,9 +1223,9 @@ endTimer()
 	// self speedrun\player\huds\_speedrun::updateWR();
 	self speedrun\player\huds\_speedrun::updateHud();
 
-	iPrintLn(fmt("%s finished the map in %d:%d.%d - %d / %s",
+	iPrintLn(fmt("%s finished the map in %d:%d.%d - %s / %s",
 		self.name, self.time.min, self.time.sec, self.time.milsec,
-		self.sr_speed, self.sr_way));
+		self.sr_mode, self.sr_way));
 
 	entry = self speedrun\game\_leaderboards::makeEntry();
 	if (speedrun\game\_leaderboards::isValidEntry(entry))

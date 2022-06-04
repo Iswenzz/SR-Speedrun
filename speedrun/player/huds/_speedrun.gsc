@@ -27,7 +27,7 @@ hud()
 	self.huds.speedrun[0].glowAlpha = 1;
 
  	self.huds.speedrun[1] = addHud(self, 4, 18, 1, "left", "top", 1.8);
-	self.huds.speedrun[1] setText(self.sr_speed);
+	self.huds.speedrun[1] setText(self.sr_mode);
 	self.huds.speedrun[1].hidewheninmenu = true;
 	self.huds.speedrun[1].sort = 99;
 
@@ -80,12 +80,12 @@ updateWR()
 	if (!isDefined(level.secret_way) || !isDefined(level.secret_way.size))
 		return;
 
-	speed = self.sr_speed;
+	mode = self.sr_mode;
 	way = self.sr_way;
 
 	for (i = 0; i < level.normal_way.size; i++)
 	{
-		if (way == "ns" + i && speed == 190)
+		if (way == "ns" + i && mode == 190)
 		{
 			self.huds.speedrun[3] setText("(WR)");
 
@@ -96,7 +96,7 @@ updateWR()
 				self.huds.speedrun[3] setText("(WR)                 ^2" + level.normal_way_info_190[i][0]["time"].min + ":" + level.normal_way_info_190[i][0]["time"].sec + "." + level.normal_way_info_190[i][0]["time"].milsec);
 		}
 
-		if (way == "ns" + i && speed == 210)
+		if (way == "ns" + i && mode == 210)
 		{
 			self.huds.speedrun[3] setText("(WR)");
 
@@ -110,7 +110,7 @@ updateWR()
 
 	for (i = 0; i < level.secret_way.size; i++)
 	{
-		if (way == "s" + i && speed == 190)
+		if (way == "s" + i && mode == 190)
 		{
 			self.huds.speedrun[3] setText("(WR)");
 
@@ -121,7 +121,7 @@ updateWR()
 				self.huds.speedrun[3] setText("(WR)                 ^2" + level.secret_way_info_190[i][0]["time"].min + ":" + level.secret_way_info_190[i][0]["time"].sec + "." + level.secret_way_info_190[i][0]["time"].milsec);
 		}
 
-		if (way == "s" + i && speed == 210)
+		if (way == "s" + i && mode == 210)
 		{
 			self.huds.speedrun[3] setText("(WR)");
 
@@ -143,12 +143,12 @@ updatePB()
 	if (!isDefined(level.secret_way) || !isDefined(level.secret_way.size))
 		return;
 
-	speed = self.sr_speed;
+	mode = self.sr_mode;
 	way = self.sr_way;
 
 	for (i = 0; i < level.normal_way.size; i++)
 	{
-		if (way == "ns" + i && speed == 190)
+		if (way == "ns" + i && mode == 190)
 		{
 			self.huds.speedrun[2] setText("(PB)");
 
@@ -159,7 +159,7 @@ updatePB()
 				self.huds.speedrun[2] setText("(PB)                  ^3" + self.pb_190["ns_" + i]["time"].min + ":" + self.pb_190["ns_" + i]["time"].sec + "." + self.pb_190["ns_" + i]["time"].milsec);
 		}
 
-		if (way == "ns" + i && speed == 210)
+		if (way == "ns" + i && mode == 210)
 		{
 			self.huds.speedrun[2] setText("(PB)");
 
@@ -176,7 +176,7 @@ updatePB()
 		if (!isDefined(self.pb_190["s_" + i]))
 			continue;
 
-		if (way == "s" + i && speed == 190)
+		if (way == "s" + i && mode == 190)
 		{
 			self.huds.speedrun[2] setText("(PB)");
 
@@ -184,7 +184,7 @@ updatePB()
 				self.huds.speedrun[2] setText("(PB)                  ^3" + self.pb_190["s_" + i]["time"].min + ":" + self.pb_190["s_" + i]["time"].sec + "." + self.pb_190["s_" + i]["time"].milsec);
 		}
 
-		if (way == "s" + i && speed == 210)
+		if (way == "s" + i && mode == 210)
 		{
 			self.huds.speedrun[2] setText("(PB)");
 

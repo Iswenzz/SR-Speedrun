@@ -101,17 +101,15 @@ freeRunTimer()
 canStartRound(min)
 {
 	count = 0;
-
 	players = getAllPlayers();
+
 	for (i = 0; i < players.size; i++)
 	{
 		if (players[i] isPlaying())
 			count++;
 	}
-
 	if (count >= min)
 		return true;
-
 	return false;
 }
 
@@ -121,14 +119,15 @@ waitForPlayers(requiredPlayersCount)
 	while (!quit)
 	{
 		wait 0.5;
+
 		count = 0;
 		players = getAllPlayers();
+
 		for (i = 0; i < players.size; i++)
 		{
 			if (players[i] isPlaying())
 				count++;
 		}
-
 		if (count >= requiredPlayersCount)
 			break;
 	}
@@ -138,10 +137,8 @@ canSpawn()
 {
 	if (level.freeRun || self.pers["lifes"])
 		return true;
-
 	if (!level.allowSpawn)
 		return false;
-
 	if (self.died)
 		return false;
 	return true;
@@ -175,10 +172,8 @@ loadWeapon(name, attachments, image)
 		for (i = 0; i < addon.size; i++)
 			array[array.size] = name + "_" + addon[i];
 	}
-
 	for (i = 0; i < array.size; i++)
 		precacheItem(array[i] + "_mp");
-
 	if (isDefined(image))
 		precacheShader(image);
 }
@@ -201,16 +196,8 @@ makeActivator(time)
 
 thirdPerson()
 {
-	if (!isDefined(self.tp))
-	{
-		self.tp = true;
-		self setClientDvar("cg_thirdPerson", 1);
-	}
-	else
-	{
-		self.tp = undefined;
-		self setClientDvar("cg_thirdPerson", 0);
-	}
+	self.tp = Ternary(!isDefined(self.tp), true, undefined);
+	self setClientDvar("cg_thirdPerson", IfUndef(self.tp, 0));
 }
 
 getBestPlayerFromScore(type)
@@ -220,8 +207,8 @@ getBestPlayerFromScore(type)
 
 	score = 0;
 	guy = undefined;
-
 	players = getAllPlayers();
+
 	for (i = 0; i < players.size; i++)
 	{
 		if (players[i].pers[type] >= score)
@@ -237,9 +224,7 @@ playSoundOnAllPlayers(soundAlias)
 {
 	players = getAllPlayers();
 	for (i = 0; i < players.size; i++)
-	{
 		players[i] playLocalSound(soundAlias);
-	}
 }
 
 delayStartRagdoll(ent, sHitLoc, vDir, sWeapon, eInflictor, sMeansOfDeath)
@@ -250,7 +235,6 @@ delayStartRagdoll(ent, sHitLoc, vDir, sWeapon, eInflictor, sMeansOfDeath)
 		if (animhasnotetrack(deathAnim, "ignore_ragdoll"))
 			return;
 	}
-
 	wait (0.2);
 
 	if (!isDefined(vDir))
@@ -258,13 +242,10 @@ delayStartRagdoll(ent, sHitLoc, vDir, sWeapon, eInflictor, sMeansOfDeath)
 
 	explosionPos = ent.origin + (0, 0, getHitLocHeight(sHitLoc));
 	explosionPos -= vDir * 20;
-	//thread debugLine(ent.origin + (0,0,(explosionPos[2] - ent.origin[2])), explosionPos);
 	explosionRadius = 40;
 	explosionForce = .75;
 	if (sMeansOfDeath == "MOD_IMPACT" || sMeansOfDeath == "MOD_EXPLOSIVE" || isSubStr(sMeansOfDeath, "MOD_GRENADE") || isSubStr(sMeansOfDeath, "MOD_PROJECTILE") || sHitLoc == "object" || sHitLoc == "helmet")
-	{
 		explosionForce = 2.9;
-	}
 	ent startragdoll(1);
 
 	wait .05;
@@ -272,7 +253,7 @@ delayStartRagdoll(ent, sHitLoc, vDir, sWeapon, eInflictor, sMeansOfDeath)
 	if (!isDefined(ent))
 		return;
 
-	// apply extra physics force to make the ragdoll go crazy
+	// Apply extra physics force to make the ragdoll go crazy
 	physicsExplosionSphere(explosionPos, explosionRadius, explosionRadius / 2, explosionForce);
 	return;
 }
@@ -284,7 +265,7 @@ getHitLocHeight(sHitLoc)
 		case "helmet":
 		case "object":
 		case "neck":
-		return 60;
+			return 60;
 
 		case "torso_upper":
 		case "right_arm_upper":
@@ -294,23 +275,22 @@ getHitLocHeight(sHitLoc)
 		case "right_hand":
 		case "left_hand":
 		case "gun":
-		return 48;
+			return 48;
 
 		case "torso_lower":
-		return 40;
+			return 40;
 
 		case "right_leg_upper":
 		case "left_leg_upper":
-		return 32;
+			return 32;
 
 		case "right_leg_lower":
 		case "left_leg_lower":
-		return 10;
+			return 10;
 
 		case "right_foot":
 		case "left_foot":
-		return 5;
-
+			return 5;
 	}
 	return 48;
 }
@@ -319,7 +299,6 @@ delayedMenu()
 {
 	self endon("disconnect");
 	wait 0.05;
- //waitillframeend;
 
 	if (!isDefined(self.canplay))
 	{
@@ -386,24 +365,22 @@ dropPlayer(player, method, msg1, msg2)
 	switch (method)
 	{
 		case "kick":
-		kick(num);
-		break;
+			kick(num);
+			break;
 
 		case "ban":
-		ban(num);
-		break;
+			ban(num);
+			break;
 
 		case "disconnect":
-		clientCmd("disconnect");
-		break;
-
+			clientCmd("disconnect");
+			break;
 	}
 }
 
 removeColorFromString(string)
 {
 	output = "";
-
 	for (i = 0; i < string.size; i++)
 	{
 		if (string[i] == "^")

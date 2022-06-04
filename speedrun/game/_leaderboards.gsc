@@ -4,18 +4,27 @@
 main()
 {
 	level.leaderboards = [];
+	level.leaderboard_modes = [];
+	level.leaderboard_max_page = 7;
 	level.leaderboard_max_entries = 30;
 	level.leaderboard_xps = xpTable();
 
+	addMode("190");
+	addMode("210");
+
 	menu("sr_leaderboard", "open", ::menu_Open);
 	menu_multiple("sr_leaderboard", "way", ::menu_Leaderboard);
-	menu_multiple("sr_leaderboard", "filter", ::menu_Filter);
+	menu_multiple("sr_leaderboard", "mode", ::menu_Mode);
+
+	event("connect", ::onConnect);
+
+	load();
 }
 
 menu_Open(arg)
 {
 	self.leaderboard_way = IfUndef(self.leaderboard_way, "ns0");
-	self.leaderboard_filter = IfUndef(self.leaderboard_filter, "190");
+	self.leaderboard_mode = IfUndef(self.leaderboard_mode, "190");
 
 	self display();
 }
@@ -28,17 +37,39 @@ menu_Leaderboard(args)
 	self display();
 }
 
-menu_Filter(args)
+menu_Mode(args)
 {
-	filter = args[1];
+	mode = args[1];
 
-	self.leaderboard_filter = filter;
+	self.leaderboard_mode = mode;
 	self display();
+}
+
+onConnect()
+{
+	names = getArrayKeys(level.leaderboards);
+
+	// Default
+	for (i = 0; i < level.leaderboard_max_page; i++)
+	{
+		self setClientDvar(fmt("normal_%d", i), "0");
+		self setClientDvar(fmt("normal_%d_name", i), "-");
+		self setClientDvar(fmt("secret_%d", i), "0");
+		self setClientDvar(fmt("secret_%d_name", i), "-");
+	}
+
+	// Registred
+	for (i = 0; i < names.size; i++)
+	{
+		leaderboard = level.leaderboards[names[i]];
+		self setClientDvar(leaderboard.id, "1");
+		self setClientDvar(fmt("%s_name", leaderboard.id), "-");
+	}
 }
 
 load()
 {
-	sr\sys\_mysql::prepare("SELECT speed, way, time, name FROM speedrun_leaderboards WHERE map = ?");
+	sr\sys\_mysql::prepare("SELECT mode, way, time, name FROM speedrun_leaderboards WHERE map = ?");
 	SQL_BindParam(getDvar("mapname"), level.MYSQL_TYPE_STRING);
 	SQL_BindResult(level.MYSQL_TYPE_STRING, 3);
 	SQL_BindResult(level.MYSQL_TYPE_LONG);
@@ -50,17 +81,14 @@ load()
 	rows = SQL_FetchRowsDict();
 	for (i = 0; i < rows.size; i++)
 	{
-		speed = rows[i]["speed"];
+		mode = rows[i]["mode"];
 		way = rows[i]["way"];
-		name = fmt("times_%d_%s", speed, way);
+		name = getLeaderboardName(mode, way);
 
-		if (!isDefined(level.leaderboards[name]))
-			level.leaderboards[name] = [];
-
-		level.leaderboards[name][i]["speed"] = speed;
-		level.leaderboards[name][i]["way"] = way;
-		level.leaderboards[name][i]["time"] = originToTime(rows[i]["time"]);
-		level.leaderboards[name][i]["name"] = rows[i]["name"];
+		level.leaderboards[name].entries[i]["mode"] = mode;
+		level.leaderboards[name].entries[i]["way"] = way;
+		level.leaderboards[name].entries[i]["time"] = originToTime(rows[i]["time"]);
+		level.leaderboards[name].entries[i]["name"] = rows[i]["name"];
 	}
 }
 
@@ -71,14 +99,14 @@ makeEntry()
 	entry["id"] = self.id;
 	entry["runId"] = self.runId;
 	entry["way"] = self.sr_way;
-	entry["speed"] = self.sr_speed;
+	entry["mode"] = self.sr_mode;
 	entry["time"] = originToTime(self.time);
 	return entry;
 }
 
 isValidEntry(entry)
 {
-	entries = getLeaderboardEntries(entry["speed"], entry["way"]);
+	entries = getLeaderboardEntries(entry["mode"], entry["way"]);
 	return getEntryPlacement(entry, entries) <= level.leaderboard_max_entries;
 }
 
@@ -86,7 +114,7 @@ saveEntry(entry)
 {
 	self endon("disconnect");
 
-	entries = getLeaderboardEntries(entry["speed"], entry["way"]);
+	entries = getLeaderboardEntries(entry["mode"], entry["way"]);
 	entries[entries.size] = entry;
 	entries = sortEntries(entries);
 
@@ -95,30 +123,48 @@ saveEntry(entry)
 	if (placement == 1)
 		self thread worldRecord();
 
-	// // Update
-	// sr\sys\_mysql::prepare("UPDATE speedrun_leaderboards SET time = ?, name = ?, runId = ? WHERE map = ?, id = ?, speed = ?, way = ?");
-	// SQL_BindParam(entry["time"], level.MYSQL_TYPE_LONG);
-	// SQL_BindParam(entry["name"], level.MYSQL_TYPE_STRING);
-	// SQL_BindParam(entry["runId"], level.MYSQL_TYPE_LONG);
-	// SQL_BindParam(getDvar("mapname"), level.MYSQL_TYPE_STRING);
-	// SQL_BindParam(entry["id"], level.MYSQL_TYPE_LONG);
-	// SQL_BindParam(entry["speed"], level.MYSQL_TYPE_LONG);
-	// SQL_BindParam(entry["way"], level.MYSQL_TYPE_STRING);
-	// sr\sys\_mysql::execute();
+	// Update
+	sr\sys\_mysql::prepare("UPDATE speedrun_leaderboards SET time = ?, name = ?, runId = ? WHERE map = ?, id = ?, mode = ?, way = ?");
+	SQL_BindParam(entry["time"], level.MYSQL_TYPE_LONG);
+	SQL_BindParam(entry["name"], level.MYSQL_TYPE_STRING);
+	SQL_BindParam(entry["runId"], level.MYSQL_TYPE_LONG);
+	SQL_BindParam(getDvar("mapname"), level.MYSQL_TYPE_STRING);
+	SQL_BindParam(entry["id"], level.MYSQL_TYPE_LONG);
+	SQL_BindParam(entry["mode"], level.MYSQL_TYPE_LONG);
+	SQL_BindParam(entry["way"], level.MYSQL_TYPE_STRING);
+	sr\sys\_mysql::execute();
 
-	// // Insert
-	// if (!SQL_AffectedRows())
-	// {
-	// 	sr\sys\_mysql::prepare("INSERT INTO speedrun_leaderboards (map, time, name, speed, way, id, runId) VALUES (?, ?, ?, ?, ?, ?, ?)");
-	// 	SQL_BindParam(getDvar("mapname"), level.MYSQL_TYPE_STRING);
-	// 	SQL_BindParam(entry["time"], level.MYSQL_TYPE_LONG);
-	// 	SQL_BindParam(entry["name"], level.MYSQL_TYPE_STRING);
-	// 	SQL_BindParam(entry["speed"], level.MYSQL_TYPE_LONG);
-	// 	SQL_BindParam(entry["way"], level.MYSQL_TYPE_STRING);
-	// 	SQL_BindParam(entry["id"], level.MYSQL_TYPE_LONG);
-	// 	SQL_BindParam(entry["runId"], level.MYSQL_TYPE_LONG);
-	// 	sr\sys\_mysql::execute();
-	// }
+	// Insert
+	if (!SQL_AffectedRows())
+	{
+		sr\sys\_mysql::prepare("INSERT INTO speedrun_leaderboards (map, time, name, mode, way, id, runId) VALUES (?, ?, ?, ?, ?, ?, ?)");
+		SQL_BindParam(getDvar("mapname"), level.MYSQL_TYPE_STRING);
+		SQL_BindParam(entry["time"], level.MYSQL_TYPE_LONG);
+		SQL_BindParam(entry["name"], level.MYSQL_TYPE_STRING);
+		SQL_BindParam(entry["mode"], level.MYSQL_TYPE_LONG);
+		SQL_BindParam(entry["way"], level.MYSQL_TYPE_STRING);
+		SQL_BindParam(entry["id"], level.MYSQL_TYPE_LONG);
+		SQL_BindParam(entry["runId"], level.MYSQL_TYPE_LONG);
+		sr\sys\_mysql::execute();
+	}
+}
+
+addMode(name)
+{
+	level.leaderboard_modes[level.leaderboard_modes.size] = name;
+}
+
+addWay(id, name)
+{
+	modes = level.leaderboard_modes;
+	for (i = 0; i < modes.size; i++)
+	{
+		name = getLeaderboardName(modes[i], id);
+		level.leaderboards[name] = spawnStruct();
+		level.leaderboards[name].entries = [];
+		level.leaderboards[name].id = id;
+		level.leaderboards[name].name = name;
+	}
 }
 
 display()
@@ -134,7 +180,7 @@ display()
 		self setClientDvar("leaderboard_values_" + i, "");
 	}
 
-	entries = getLeaderboardEntries(self.leaderboard_way, self.leaderboard_filter);
+	entries = getLeaderboardEntries(self.leaderboard_way, self.leaderboard_mode);
 	for (i = 1; i <= entries.size; i++)
     {
         numbers += "#" + i + "\n";
@@ -183,10 +229,15 @@ xpTable()
 	return Reverse(xp);
 }
 
-getLeaderboardEntries(speed, way)
+getLeaderboardName(mode, way)
 {
-	name = fmt("times_%d_%s", speed, way);
-	return level.leaderboards[name];
+	return fmt("times_%s_%s", mode, way);
+}
+
+getLeaderboardEntries(mode, way)
+{
+	name = getLeaderboardName(mode, way);
+	return level.leaderboards[name].entries;
 }
 
 getEntryPlacement(entry, entries)
@@ -211,7 +262,7 @@ worldRecord(entry)
 {
 	players = getAllPlayers();
 
-	iPrintLnBold(fmt("^5New ^2WR ^7on ^6%d ^2%s ^7By ^5%s", entry["speed"], entry["way"], self.shortName));
+	iPrintLnBold(fmt("^5New ^2WR ^7on ^6%s ^2%s ^7By ^5%s", entry["mode"], entry["way"], self.shortName));
 
 	for (i = 0; i < players.size; i++)
 		players[i] thread effects();

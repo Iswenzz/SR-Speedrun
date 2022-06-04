@@ -348,11 +348,17 @@ onConnect()
 		}
 	}
 
-	self.sr_speed = 190;
+	self.sr_mode = "190";
 	self.voteCoolDown = getTime();
 	self.sr_cheatmode = false;
 	self.sr_practise = false;
 	self.sr_savePos = [];
+	self setClientDvar("ui_3dwaypointtext", "1");
+	self.enable3DWaypoints = true;
+	self setClientDvar("ui_deathicontext", "1");
+	self.enableDeathIcons = true;
+	self.classType = undefined;
+	self.selectedClass = false;
 
 	self setClientDvar("cl_maxpackets", 125);
 	self setClientDvar("rate", 25000);
@@ -360,9 +366,6 @@ onConnect()
 	if (!self.isBot)
 		self thread sr\player\_id::checkid();
 
-	// self speedrun\game\_leaderboards::loadPersonBest();
-	self thread sr\api\_map::way_name_default();
-	self thread sr\api\_map::way_name();
 	self thread getFps();
 	self thread getXpBar();
 }
@@ -625,10 +628,10 @@ setSpeed()
 	{
 		speed = 1.0;
 
-		if (self.sr_speed == 210)
+		if (self.sr_mode == "210")
 			speed = 1.8;
 
-		else if (self.sr_speed == 190)
+		else if (self.sr_mode == "190")
 			speed = 1.0;
 
 		self setgravity(1000);
@@ -639,7 +642,7 @@ setSpeed()
 	}
 	speed = 1.05;
 
-	if (self.sr_speed == 210)
+	if (self.sr_mode == "210")
 	{
 		self setmovespeed(210);
 		if (!isDefined(level.fixedgrav))
@@ -647,7 +650,7 @@ setSpeed()
 		speed = 1.12;
 	}
 
-	else if (self.sr_speed == 190)
+	else if (self.sr_mode == "190")
 	{
 		self setmovespeed(190);
 		if (!isDefined(level.fixedgrav))
@@ -659,40 +662,6 @@ setSpeed()
 }
 
 watchWay()
-{
-	self endon("disconnect");
-	self endon("death");
-	self endon("joined_spectators");
-
-	if (isDefined(level.new_leaderboard))
-	{
-		self thread watchWay_new();
-		return;
-	}
-	x = self.sr_secret;
-
-	while (true)
-	{
-		if (x != self.sr_secret)
-		{
-			x = self.sr_secret;
-
-			if (!self.sr_secret)
-				self.sr_way = "ns0";
-			if (self.sr_secret)
-				self.sr_way = "s0";
-
-			self thread speedrun\player\huds\_speedrun::updatePB();
-			self thread speedrun\player\huds\_speedrun::updateWR();
-
-			if (isDefined(self.huds.speedrun[5]))
-				self.huds.speedrun[5] setText(level.secret_way[0].name);
-		}
-		wait 0.1;
-	}
-}
-
-watchWay_new()
 {
 	self endon("disconnect");
 	self endon("death");

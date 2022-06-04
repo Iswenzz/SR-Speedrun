@@ -1,5 +1,15 @@
 CodeCallback_StartGameType()
 {
+	level.splitscreen = isSplitScreen();
+	level.xenon = false;
+	level.ps3 = false;
+	level.onlineGame = true;
+	level.console = false;
+	level.rankedMatch = getDvarInt("sv_pure");
+	level.teamBased = true;
+	level.oldschool = false;
+	level.gameEnded = false;
+
 	printLn("^5===================================");
 	printLn("^5SR Mod (c) Iswenzz 2016-2022");
 	printLn("^5Visit: iswenzz.com" );
