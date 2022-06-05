@@ -25,14 +25,14 @@ thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createSecretWays("^2Easy Secret;^1Hard Secret");
 thread sr\api\_map::createSpawn((-84, -43, 9), 90);
 
-thread sr\api\_speedrun::createTeleporter((-336, -55, 9), 100, 150, 
+thread sr\api\_speedrun::createTeleporter((-336, -55, 9), 100, 150,
 	(-1892, 7650, -1647), 270, "freeze", "green", "secret_0");
-thread sr\api\_speedrun::createTeleporter((145, -37, 9), 100, 150, 
+thread sr\api\_speedrun::createTeleporter((145, -37, 9), 100, 150,
 	(-3468, -383, 404), 180, "freeze", "darkred", "secret_1");
 
  maps\mp\_load::main();
  maps\mp\_compass::setupMiniMap("compass_map_mp_dr_mirrors_edge");
- 
+
  level._effect[ "waterfall" ] = loadfx( "misc/custom_waterfall_1" );
  level._effect[ "waterfall_s" ] = loadfx( "misc/custom_waterfall_s" );
  level._effect[ "waterexp" ] = loadfx( "misc/custom_waterxp_1" );
@@ -50,14 +50,14 @@ thread sr\api\_speedrun::createTeleporter((145, -37, 9), 100, 150,
  level._effect[ "electricsparks" ] = LoadFX ( "light/electric_sparks" );
  level._effect[ "lightningboltimpact" ] = LoadFX ( "viruzfx/lightning_bolt_impact_fl" );
  level._effect[ "bird" ] = LoadFX ( "misc/bird_seagull_flock_large" );
- 
+
  game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"] = "desert";
- 
+
  level.trig1used=false;
  level.trig2used=false;
  level.trig3used=false;
@@ -65,7 +65,7 @@ thread sr\api\_speedrun::createTeleporter((145, -37, 9), 100, 150,
  level.trig5used=false;
  level.trig6used=false;
  level.trig7used=false;
- 
+
  level.hint1 = getEnt("hint1","targetname");
  level.hint2 = getEnt("hint2","targetname");
  level.hint3 = getEnt("hint3","targetname");
@@ -73,7 +73,7 @@ thread sr\api\_speedrun::createTeleporter((145, -37, 9), 100, 150,
  level.hint5 = getEnt("hint5","targetname");
  level.hint6 = getEnt("hint6","targetname");
  level.hint7 = getEnt("hint7","targetname");
- 
+
  level.hint1 triggerOff();
  level.hint2 triggerOff();
  level.hint3 triggerOff();
@@ -81,43 +81,43 @@ thread sr\api\_speedrun::createTeleporter((145, -37, 9), 100, 150,
  level.hint5 triggerOff();
  level.hint6 triggerOff();
  level.hint7 triggerOff();
- 
+
  roofvent = getEntArray("roofpref_helice_turn","targetname");
  for(i = 0;i < roofvent.size;i++)
  roofvent[i] thread roofventil();
- 
+
  roofvent2 = getEntArray("roofpref_helice_turn2","targetname");
  for(i = 0;i < roofvent2.size;i++)
  roofvent2[i] thread roofventil2();
- 
+
  roofvent3 = getEntArray("roofpref_helice_turn3","targetname");
  for(i = 0;i < roofvent3.size;i++)
  roofvent3[i] thread roofventil3();
- 
+
  roofvent4 = getEntArray("ventil2_sfx","targetname");
  for(i = 0;i < roofvent4.size;i++)
  roofvent4[i] thread roofventil4();
- 
+
  ttl = getEntArray("turn_left","targetname");
  for(i = 0;i < ttl.size;i++)
  ttl[i] thread textturnl();
- 
+
  ttr = getEntArray("turn_right","targetname");
  for(i = 0;i < ttr.size;i++)
  ttr[i] thread textturnr();
- 
+
  rel = getEntArray("fx_end","targetname");
  for(i = 0;i < rel.size;i++)
  rel[i] thread finfxng();
- 
+
  ac1sfx = getEntArray("ac1_sfx","targetname");
  for(i = 0;i < ac1sfx.size;i++)
  ac1sfx[i] playLoopSound("ac1");
- 
+
  gassfx = getEntArray("gas_sfx","targetname");
  for(i = 0;i < gassfx.size;i++)
  gassfx[i] playLoopSound("gas");
- 
+
  // level endon("mirror_start");
  // thread SetTimeLimit( 8 );
 
@@ -314,7 +314,7 @@ bspawn()
 ff() //ng
 {
 	ft = getEnt("force_dvar","targetname");
-	
+
 	for(;;)
 	{
 		ft waittill("trigger",player);
@@ -426,8 +426,8 @@ giverpg()
 	{
 	rpg2give waittill("trigger", player);
 	 player giveweapon("rpg_mp");
-	player switchtoweapon("rpg_mp"); 
-	player givemaxammo("rpg_mp"); 
+	player switchtoweapon("rpg_mp");
+	player givemaxammo("rpg_mp");
 	wait 0.2;
 	}
 }
@@ -613,7 +613,7 @@ countdown1()
             self notify("finished");
             /* [AUTO DELETE] self iPrintLn("You failed secret"); */
         }
-		
+
         self.time_hud1 setText( self.timelimit1 );
     }
 }
@@ -724,7 +724,7 @@ secretentng(player, entrori)
  //        {
  //            player thread countdown1();
  //            player.timerstarted1 = true;
-            
+
  //            player thread on_death1();
  //        }
 	// player.secretonce1 = true;
@@ -772,7 +772,7 @@ easyfinng(player, easyfinn, eefin)
 		wait .1;
 		player freezeControls(false);
 	}
-	
+
 	if( !isDefined (player.easyfin) )
 	{
         if(isDefined(player.timerstarted1))
@@ -809,7 +809,7 @@ hhfin = getEnt("hardfinish_ori","targetname");
 
 hardfinng(player, hardfinn, hhfin)
 {
-	
+
 	if( isDefined (player.hardfin) )
 	{
 		if(isDefined(player.timerstarted2))
@@ -826,7 +826,7 @@ hardfinng(player, hardfinn, hhfin)
 		wait .1;
 		player freezeControls(false);
 	}
-	
+
 	if( !isDefined (player.hardfin) )
 	{
 		if(isDefined(player.timerstarted2))
@@ -863,7 +863,7 @@ hhtp = getEnt("tphardori1","targetname");
  //        {
  //            player thread countdown2();
  //            player.timerstarted2 = true;
-            
+
  //            player thread on_death2();
  //        }
 	// 	if(isDefined(player.time_hud1))
@@ -890,7 +890,7 @@ itp = getEnt("int_ori_tp","targetname");
 	// player setOrigin(itp.origin);
 	// player setPlayerAngles(itp.angles);
 	// player freezeControls(true);
-	//  [AUTO DELETE] wait .1; 
+	//  [AUTO DELETE] wait .1;
 	// player freezeControls(false);
 	player thread sr\api\_speedrun::finishWay("secret_0");
 	}
@@ -1088,7 +1088,7 @@ bags()
 {
     thread bagng();
     level.bag = [];
- 
+
     level.bag[0]=getent("bag_script_0","targetname");
     level.bag[1]=getent("bag_script_1","targetname");
     level.bag[2]=getent("bag_script_2","targetname");
@@ -1098,10 +1098,10 @@ bags()
     level.bag[6]=getent("bag_script_6","targetname");
     level.bag[7]=getent("bag_script_7","targetname");
     level.bag[8]=getent("bag_script_8","targetname");
-   
+
     level.bag_left = level.bag.size;
     level.bagtrig = [];
- 
+
     level.bagtrig[0]=getent("bag_trig_script_0","targetname");
     level.bagtrig[1]=getent("bag_trig_script_1","targetname");
     level.bagtrig[2]=getent("bag_trig_script_2","targetname");
@@ -1163,7 +1163,7 @@ deletebag(bag1, bag2, bag3, bag4, bag5)
     level.bagtrig[bag5] delete();
 }
 
- 
+
 trigwait(bag, bagnum)
 {
     self waittill( "trigger", player );
@@ -1177,11 +1177,11 @@ trigwait(bag, bagnum)
     wait 0.2;
 }
 
- 
+
 bagng()
 {
 level.found = 0;
- 
+
     while(level.found<4)
     {
     wait(5);
@@ -1288,7 +1288,7 @@ startdoor()
 {
 	sdoor = getEnt("c_startdoor","targetname");
 	sclip = getEnt("clip_startdoor","targetname");
-	
+
 	wait 13.6;
 	sdoor moveZ(-500,4 ,1 ,0);
 	wait 0.4;
@@ -1307,7 +1307,7 @@ ambientspawn()
 	{
 		if( level.day == 1 && players[i].musiclocal == 0 )
 		{
-		 players[i] playLocalSound("ambient_daysp1"); 
+		 players[i] playLocalSound("ambient_daysp1");
 		}
 	}
 }
@@ -1404,14 +1404,14 @@ openMusicMenu()
 {
 
     self openMenu("musicmenu");
- 
+
     for(;;)
     {
         self waittill("menuresponse", menu, response);
 
         if(menu == "musicmenu")
         {
-       
+
             if(!isDefined(self.musicon))
             {
                 self stopLocalSound("ambient_daysp1");
@@ -1420,7 +1420,7 @@ openMusicMenu()
                 self.currentmusic = response;
                 self loops(response);
             }
-            else if(self.musicon == 1 && response != self.currentmusic) 
+            else if(self.musicon == 1 && response != self.currentmusic)
             {
                 self stopLocalSound(self.currentmusic);
                 self notify("musicstopped");
@@ -1428,14 +1428,14 @@ openMusicMenu()
                 self loops(response);
             }
          }
-       
+
         wait 0.05;
     }
 
 }
 
 
- 
+
 loops(response)
 {
     switch(response)
@@ -1456,10 +1456,10 @@ loops(response)
             self thread s1(230, response);
             break;
     }
-   
+
 }
 
- 
+
 s1(time,response)
 {
     self endon("musicstopped");
@@ -1506,697 +1506,697 @@ sgray = getEnt("day_godray1","targetname");
 
 
 rainfx()
-{	
+{
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 0, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 0, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 0, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 2500, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 2500, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 2500, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 5000, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 5000, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 5000, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 7500, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 7500, -2500);
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 7500, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 10000, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 10000, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 10000, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 12500, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 12500, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 12500, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 15000, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 15000, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 15000, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 17500, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 17500, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 17500, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 20000, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 20000, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 20000, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 0, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 0, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 0, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 2500, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 2500, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 2500, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 5000, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 5000, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 5000, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 7500, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 7500, 2500);
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 7500, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 10000, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 10000, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 10000, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 12500, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 12500, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 12500, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 15000, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 15000, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 15000, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 17500, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 17500, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 17500, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 20000, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 20000, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 20000, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 0, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 0, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 0, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 2500, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 2500, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 2500, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 5000, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 5000, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 5000, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 7500, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 7500, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 7500, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 10000, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 10000, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 10000, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 12500, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 12500, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 12500, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 15000, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 15000, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 15000, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 17500, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 17500, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 17500, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 0, 20000, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 2500, 20000, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 20000, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 7500, 10000, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 7500, 10000, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 7500, 10000, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 5000, 7500, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 5000, 7500, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 5000, 7500, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( 5000, 10000, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -5000, 2500, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -5000, 2500, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -5000, 2500, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -5000, 5000, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -5000, 5000, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -5000, 5000, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -10000, 2500, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -10000, 2500, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -10000, 2500, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -10000, 0, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -10000, 0, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -10000, 0, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 15000, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 15000, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 15000, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -2500, 15000, -5000 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -5000, 9000, 1000 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -5000, 9000, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -1300, 21000, -1000 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -1300, 21000, -3500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -1300, 21000, -4500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -1000, 21000, -2000 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -1000, 21000, -4500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "rain_heavy_mist" );
 	ent.v[ "origin" ] = ( -3400, 18500, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "rain_heavy_mist";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "lightning" );
 	ent.v[ "origin" ] = ( -2500, 17500, 0 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "lightning";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "lightning" );
 	ent.v[ "origin" ] = ( -2500, 17500, 2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "lightning";
 	ent.v[ "delay" ] = -15;
-	
+
 	ent = maps\mp\_utility::createOneshotEffect( "lightning" );
 	ent.v[ "origin" ] = ( -2500, 17500, -2500 );
 	ent.v[ "angles" ] = ( 270, 0, 0 );
 	ent.v[ "fxid" ] = "lightning";
 	ent.v[ "delay" ] = -15;
-	
+
 	rainfx = spawn("script_origin", (0, 0, 0));
 	rainfx playLoopSound("ambient_ambush_ext0_sur");
 }
@@ -2885,7 +2885,7 @@ wait 3;
 	{
 	fxw1[i] thread fxw1ng();
 	wait 0.2;
-		
+
 		if(level.trap5water == 1)
 			break;
 	}
@@ -2900,7 +2900,7 @@ self playLoopSound("waterfall_small");
 	{
 	wait 1.4;
 	playFX(level._effect[ "waterfall" ], self.origin);
-	
+
 		if(level.trap5water == 1)
 			break;
 	}
@@ -3065,7 +3065,7 @@ pusher4 = getEntArray("m_trap6_spike_array_4","targetname");
 pusher5 = getEntArray("m_trap6_spike_array_5","targetname");
 
 wait .05;
-	
+
 	while(1)
 	{
 	random = randomint(5);
@@ -3080,7 +3080,7 @@ wait .05;
 					pusher1[randomInt(pusher1.size)] moveZ(-60, 0.5, 0.2, 0.2);
 					pusher2[randomInt(pusher2.size)] moveZ(-60, 0.5, 0.2, 0.2);
 					break;
-					
+
 			case 1:
 					wait 0.5;
 					pusher2[randomInt(pusher2.size)] moveZ(60, 0.5, 0.2, 0.2);
@@ -3088,8 +3088,8 @@ wait .05;
 					wait 0.6;
 					pusher2[randomInt(pusher2.size)] moveZ(-60, 0.5, 0.2, 0.2);
 					pusher4[randomInt(pusher4.size)] moveZ(-60, 0.5, 0.2, 0.2);
-					break;				
-	
+					break;
+
 			case 2:
 					wait 0.5;
 					pusher3[randomInt(pusher3.size)] moveZ(60, 0.5, 0.2, 0.2);
@@ -3098,7 +3098,7 @@ wait .05;
 					pusher3[randomInt(pusher3.size)] moveZ(-60, 0.5, 0.2, 0.2);
 					pusher1[randomInt(pusher1.size)] moveZ(-60, 0.5, 0.2, 0.2);
 					break;
-					
+
 			case 3:
 					wait 0.5;
 					pusher4[randomInt(pusher4.size)] moveZ(60, 0.5, 0.2, 0.2);
@@ -3107,7 +3107,7 @@ wait .05;
 					pusher4[randomInt(pusher4.size)] moveZ(-60, 0.5, 0.2, 0.2);
 					pusher5[randomInt(pusher5.size)] moveZ(-60, 0.5, 0.2, 0.2);
 					break;
-					
+
 			case 4:
 					wait 0.5;
 					pusher5[randomInt(pusher5.size)] moveZ(60, 0.5, 0.2, 0.2);
@@ -3709,14 +3709,14 @@ self.maxhealth = 900000;
 self.health = self.maxhealth;
 if(!isdefined(self.chopperlink))
 	self.chopperlink=true;
-	
+
 	while(self.chopperlink)
 	{
 	wait .4;
 	if ( self.health < self.maxhealth )
 	self.health = self.maxhealth;
 	}
-	
+
 if(self.chopperlink==false)
 	self.health = 100;
 }
@@ -3791,15 +3791,15 @@ StartHelicopter()
 {
 	if(level.pick == 1)
 		return;
-	
+
 	heliclipfull = getEnt("heli_fly_fullclip","targetname");
-	
+
 	self endon( "disconnect" );
 	self endon( "death" );
-		
+
 	if( !isDefined( self ) || !isAlive( self ) || !isPlayer( self ) )
 		return;
-	
+
 	path = [];
 	orig = getEntArray();
 	if( self.pers["team"] == "allies" )
@@ -3843,14 +3843,14 @@ StartHelicopter()
 	chopper setNearGoalNotifyDist( 96 );
 	//chopper thread DamageMonitor();
 	chopper endon( "crashed" );
-	
+
 	pathnum = 0;
-	
+
 	self setOrigin( chopper.linker.origin );
 	self LinkTo( chopper.linker );
 	/* [AUTO DELETE] self TakeAllWeapons(); */
 	self thread pickng();
-		
+
 		//trap1
 		chopper setVehGoalPos( (1904, 3168 ,-32), true );
 		chopper waittill("goal");
@@ -3863,10 +3863,10 @@ StartHelicopter()
 				level waittill("move1");
 			}
 		}
-		
+
 		if(level.pick == 1)
 			return;
-		
+
 		//trap15
 		level.hint1 delete();
 		/* [AUTO DELETE] wait 2; */
@@ -3890,10 +3890,10 @@ StartHelicopter()
 				level waittill("move2");
 			}
 		}
-		
+
 		if(level.pick == 1)
 			return;
-		
+
 		//trap2
 		level.hint2 delete();
 		/* [AUTO DELETE] wait 2; */
@@ -3908,10 +3908,10 @@ StartHelicopter()
 				level waittill("move3");
 			}
 		}
-		
+
 		if(level.pick == 1)
 			return;
-		
+
 		//trap4
 		level.hint3 delete();
 		/* [AUTO DELETE] wait 2; */
@@ -3926,10 +3926,10 @@ StartHelicopter()
 				level waittill("move4");
 			}
 		}
-		
+
 		if(level.pick == 1)
 			return;
-		
+
 		//trap5
 		level.hint4 delete();
 		/* [AUTO DELETE] wait 2; */
@@ -3948,10 +3948,10 @@ StartHelicopter()
 				level waittill("move5");
 			}
 		}
-		
+
 		if(level.pick == 1)
 			return;
-		
+
 		//trap6
 		level.hint5 delete();
 		/* [AUTO DELETE] wait 5; */
@@ -3966,10 +3966,10 @@ StartHelicopter()
 				level waittill("move6");
 			}
 		}
-		
+
 		if(level.pick == 1)
 			return;
-		
+
 		//trap7
 		level.hint6 delete();
 		/* [AUTO DELETE] wait 4; */
@@ -3986,17 +3986,17 @@ StartHelicopter()
 				level waittill("move7");
 			}
 		}
-		
+
 		if(level.pick == 1)
 			return;
-		
+
 		//END
 		level.hint7 delete();
 		/* [AUTO DELETE] wait 2; */
-		
+
 		if(level.pick == 1)
 			return;
-		
+
 	if( !isDefined( self ) || !isAlive( self ) )
 		chopper notify( "damage", 3000, undefined );
 }
@@ -4039,23 +4039,23 @@ ori10tiro = getEnt("ori10_tiro1","targetname");
 ori11tiro = getEnt("ori11_tiro1","targetname");
 ori12tiro = getEnt("ori12_tiro1","targetname");
 ori13tiro = getEnt("ori13_tiro1","targetname");
-self.disableAntiEle = true;
+self.disableAntiElevator = true;
 if(level.trap1 == 1)
 	thread tirong();
-	
+
 	if(!isDefined(self.tiro2))
 	{
 	self.tiro2 = true;
     self endon("joined_spectators");
     self setOrigin( (-296, 4304, -528) );
     self setPlayerAngles( (20, 90, 0) );
-   
+
     self disableWeapons();
     self freezeControls(true);
-   
+
     self.linker = spawn("script_origin", self getOrigin());
     self linkTo(self.linker);
-   
+
     self.linker moveto( ori1tiro.origin, 0.4);
     wait .2;
     self thread cameraYtiro1( self );
@@ -4091,7 +4091,7 @@ if(level.trap1 == 1)
 	self.tiro = undefined;
 	self.tiro2 = undefined;
 	}
-    self.disableAntiEle = undefined;
+    self.disableAntiElevator = undefined;
 }
 
 
@@ -4247,7 +4247,7 @@ wait 1;
 
 while(1)
 	{
-	
+
 		/* [AUTO DELETE] iPrintLn("^1Report any bugs"); */
 		wait 4;
 		/* [AUTO DELETE] iPrintLn("^1Steam: ^7iswenzz1528 / SuX Lolz :]"); */
@@ -4258,7 +4258,7 @@ while(1)
 		wait 4;
 		/* [AUTO DELETE] iPrintLn("^3Map Made By: ^5SuX ^7Lolz :]"); */
 		wait 8;
-	
+
 	}
 }
 
@@ -4289,7 +4289,7 @@ for(;;)
 			wait 3;
 		}
 
-	
+
 }
 }
 
@@ -4337,7 +4337,7 @@ for(;;)
 			wait 3;
 		}
 
-	
+
 }
 }
 
@@ -4397,16 +4397,16 @@ new_ending_hud( align, fade_in_time, x_off, y_off )
 credits()
 {
         self endon( "disconnect" );
- 
+
         if( isDefined( self.credits_text ) )
                 self.credits_text Destroy();
- 
+
         self.credits_text = newHudElem();
         self.credits_text.y = 10;
         self.credits_text.alignX = "center";
         self.credits_text.alignY = "middle";
         self.credits_text.horzAlign = "center";
- 
+
         self.credits_text.alpha = 0;
         self.credits_text.sort = -3;
         self.credits_text.fontScale = 1.6;
@@ -4430,7 +4430,7 @@ credits()
 credit_roll( msg, time )
 {
         self endon( "disconnect" );
- 
+
         self.credits_text fadeOverTime(1);
         self.credits_text.alpha = 1;
         self.credits_text setText( msg );
@@ -4495,7 +4495,7 @@ water_hud_on(trig)
                 self.water_vision = newClientHudElem(self);
                 self.water_vision setshader ("white", 640, 480);
                 self.water_vision.x = 0;
-                self.water_vision.y = 0;   
+                self.water_vision.y = 0;
                 self.water_vision.alignX = "left";
                 self.water_vision.alignY = "top";
                 self.water_vision.horzAlign = "fullscreen";
@@ -4594,7 +4594,7 @@ games()
 
 // player SetPlayerAngles( games.angles );
 // player setOrigin( games.origin );
-//  [AUTO DELETE] iPrintlnBold( " ^1" + player.name + " ^7has ^1entered ^7the ^1game ^7selection !" ); 
+//  [AUTO DELETE] iPrintlnBold( " ^1" + player.name + " ^7has ^1entered ^7the ^1game ^7selection !" );
 // /* [AUTO DELETE] player TakeAllWeapons(); */
 // player antiglitch();
 
@@ -4606,10 +4606,10 @@ games()
 }
 
 antiglitch()
-{ 
+{
 self common_scripts\utility::waittill_any("death","disconnect");
-/* [AUTO DELETE] iPrintlnBold("^1"+self.name+" ^7is ^1dead"); */ 
-/* [AUTO DELETE] iPrintlnBold("^1Selection ^7Room is now ^1open ^7!"); */ 
+/* [AUTO DELETE] iPrintlnBold("^1"+self.name+" ^7is ^1dead"); */
+/* [AUTO DELETE] iPrintlnBold("^1Selection ^7Room is now ^1open ^7!"); */
 }
 
 
@@ -4728,7 +4728,7 @@ sniperjumperfail()
 	tpsniperjumperfail = getEnt("origin_jumper_snip", "targetname");
 	tpsniperactifail = getEnt("origin_acti_snip", "targetname");
 	i = randomintrange(0, 1);
-	
+
 	for (;;)
 	{
 	sniperjumperfail waittill("trigger", player);
@@ -4921,7 +4921,7 @@ bouncejumperfail()
 {
 	bouncejumperfail = getEnt("trigger_respawnjumper_bounce", "targetname");
 	tpbouncejumperfail = getEnt("origin_jumper_bounce", "targetname");
-	
+
 	for (;;)
 	{
 		bouncejumperfail waittill("trigger", player);
@@ -4935,7 +4935,7 @@ bounceactifail()
 {
 	bounceactifail = getEnt("trigger_respawnacti_bounce", "targetname");
 	tpbounceactifail = getEnt("origin_acti_bounce", "targetname");
-	
+
 	for (;;)
 	{
 		bounceactifail waittill("trigger", player);

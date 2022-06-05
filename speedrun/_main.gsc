@@ -114,7 +114,7 @@ noclip_check()
 		{
 			if (self.noclip_isLinked)
 			{
-				self.disableAntiEle = true;
+				self.disableAntiElevator = true;
 				self.noclip_isLinked = false;
 				self unlink();
 			}
@@ -126,7 +126,7 @@ noclip_check()
 			if (!self.noclip_isLinked)
 			{
 				self.noclip_isLinked = true;
-				self.disableAntiEle = false;
+				self.disableAntiElevator = false;
 				self.noclip_ent.origin = self getOrigin();
 				self linkTo(self.noclip_ent);
 			}
@@ -622,7 +622,7 @@ getFps()
 
 setSpeed()
 {
-	if (isDefined(level.slide_map) && isDefined(level.slide_map_multiplier))
+	if (isDefined(level.map_slide) && isDefined(level.map_slide_multiplier))
 	{
 		speed = 1.0;
 
@@ -635,7 +635,7 @@ setSpeed()
 		self setgravity(1000);
 		self setjumpheight(70);
 		self setMoveSpeedScale(speed);
-		self setmovespeed(190 * level.slide_map_multiplier);
+		self setmovespeed(190 * level.map_slide_multiplier);
 		return;
 	}
 	speed = 1.05;

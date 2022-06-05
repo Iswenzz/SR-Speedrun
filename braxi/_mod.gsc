@@ -513,7 +513,7 @@ afterFirstFrame()
 	self thread playerTimer();
 	self thread sprayLogo();
 
-	if (isDefined(level.sr_CJ) && level.sr_CJ)
+	if (isDefined(level.map_cj) && level.map_cj)
 	{
 		self SetActionSlot(4, "weapon", "rpg_mp");
 		self giveWeapon("rpg_mp");

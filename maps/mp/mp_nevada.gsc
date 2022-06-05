@@ -14,8 +14,7 @@ main()
 
         thread way_connect();
 
-    speedrun\maptriggers::cj_dvar(); // CJ MAP
-
+    thread sr\api\_speedrun::cj();
 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
@@ -32,7 +31,7 @@ main()
 way_connect()
 {
     wait 0.05;
-	
+
     level.masterSpawn = spawn("script_origin",(-2789,-1452,-308-60));
 	level.masterSpawn.angles = (0,0,0);
 
@@ -40,11 +39,11 @@ way_connect()
 
     sr\api\_speedrun::createNormalWays("Easy Way;");
 	sr\api\_speedrun::createSecretWays("Hard Way;");
-	
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
-        
+
     }
 }
 
@@ -80,7 +79,7 @@ secret_1_end()
 	for(;;)
 	{
 		trig waittill("trigger",player);
-		
+
 		if(isDefined(player.sr_secret) && player.sr_secret)
 			player thread braxi\_mod::endTimer();
 	}
