@@ -28,7 +28,7 @@ transporter(i)
 		}
 		if(!isDefined(player.secret_1) && self.target == "gohere11")
 		{
-			player sr\api\_map::startSecret(); //Speedrun Copy Paste
+			player sr\api\_speedrun::changeWay("secret_0");
 			player.secret_1 = true;
 			entTarget = getEnt( self.target, "targetname" );
 			player setOrigin( entTarget.origin );

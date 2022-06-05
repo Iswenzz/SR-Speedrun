@@ -50,15 +50,15 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_map::createWay("normal", "Spicy Way", "1");
-    sr\api\_map::createWay("secret", "Weiner Way", "1");
+    sr\api\_speedrun::createNormalWays("Spicy Way;");
+    sr\api\_speedrun::createSecretWays("Weiner Way;");
 	
 	thread tp_1();
 	
     for(;;)
     {
         level waittill( "connected", player );
-        player thread sr\api\_map::way_name();
+        
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -131,7 +131,7 @@ target = getEnt ("teleport1", "targetname");
 for(;;) 
 { 
 trig waittill ("trigger", player);
-player sr\api\_map::startSecret(); //Speedrun Copy Paste
+player sr\api\_speedrun::changeWay("secret_0");
 player SetOrigin(target.origin); 
 player SetPlayerAngles( target.angles ); 
 	

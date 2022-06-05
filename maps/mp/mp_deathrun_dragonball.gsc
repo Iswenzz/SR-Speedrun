@@ -17,16 +17,16 @@ main()
 trigger = spawn("trigger_radius", (-19136.2, 13545.1, 256.125), 0, 325, 110);
 trigger.targetname = "endmap_trig";
 trigger.radius = 325;
-	thread sr\api\_map::create_normal_way("Normal Way;");
-	thread sr\api\_map::create_secret_way("Secret Way;");
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	maps\mp\_load::main();	
-	thread sr\api\_map::create_spawn((1572, 99, -4),180);
-	thread sr\api\_map::create_tp((-16829, 13474, -355), 100, 150, 
+	thread sr\api\_map::createSpawn((1572, 99, -4),180);
+	thread sr\api\_speedrun::createTeleporter((-16829, 13474, -355), 100, 150, 
 		(-16800, 13170, 124), 270, "freeze");
 
 	spot=getent("secretspot","targetname");
-	thread sr\api\_map::create_tp((1402, 404, -4), 100, 150,
-		spot.origin, 360, "freeze", "blue", "s0");
+	thread sr\api\_speedrun::createTeleporter((1402, 404, -4), 100, 150,
+		spot.origin, 360, "freeze", "blue", "secret_0");
 
 	SetDvar( "player_meleerange", "100" );
 
@@ -160,7 +160,7 @@ trigger waittill("trigger", player);
 // iPrintLnBold(player.name+ " has finished the secret !"); //Change the message if you want
 // player GiveWeapon("ak74u_mp");
 // player SwitchToWeapon( "ak74u_mp" );
-player thread sr\api\_map::finish_way("s0");
+player thread sr\api\_speedrun::finishWay("secret_0");
 }
 }
 

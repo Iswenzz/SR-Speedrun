@@ -1,10 +1,10 @@
 main()
 {
-	thread sr\api\_map::create_endmap((3988, 3257, 156), 100, 150);
-	thread sr\api\_map::create_normal_way("Normal Way;");
+	thread sr\api\_speedrun::createEndMap((3988, 3257, 156), 100, 150);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread sr\api\_map::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
+		thread sr\api\_map::createSpawn(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 	maps\mp\_load::main();
 	
 	game["allies"] = "marines";

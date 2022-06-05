@@ -21,14 +21,14 @@
 
 main()
 {
-thread sr\api\_map::create_normal_way("Normal Way;");
-thread sr\api\_map::create_secret_way("^2Easy Secret;^1Hard Secret");
-thread sr\api\_map::create_spawn((-84, -43, 9), 90);
+thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread sr\api\_speedrun::createSecretWays("^2Easy Secret;^1Hard Secret");
+thread sr\api\_map::createSpawn((-84, -43, 9), 90);
 
-thread sr\api\_map::create_tp((-336, -55, 9), 100, 150, 
-	(-1892, 7650, -1647), 270, "freeze", "green", "s0");
-thread sr\api\_map::create_tp((145, -37, 9), 100, 150, 
-	(-3468, -383, 404), 180, "freeze", "darkred", "s1");
+thread sr\api\_speedrun::createTeleporter((-336, -55, 9), 100, 150, 
+	(-1892, 7650, -1647), 270, "freeze", "green", "secret_0");
+thread sr\api\_speedrun::createTeleporter((145, -37, 9), 100, 150, 
+	(-3468, -383, 404), 180, "freeze", "darkred", "secret_1");
 
  maps\mp\_load::main();
  maps\mp\_compass::setupMiniMap("compass_map_mp_dr_mirrors_edge");
@@ -802,7 +802,7 @@ hhfin = getEnt("hardfinish_ori","targetname");
 	{
 	hardfinn waittill("trigger",player);
 	// player thread hardfinng(player, hardfinn, hhfin);
-	player thread sr\api\_map::finish_way("s1");
+	player thread sr\api\_speedrun::finishWay("secret_1");
 	}
 }
 
@@ -892,7 +892,7 @@ itp = getEnt("int_ori_tp","targetname");
 	// player freezeControls(true);
 	//  [AUTO DELETE] wait .1; 
 	// player freezeControls(false);
-	player thread sr\api\_map::finish_way("s0");
+	player thread sr\api\_speedrun::finishWay("secret_0");
 	}
 }
 

@@ -23,7 +23,7 @@ transporter(i)
 			if(!isDefined(player.secret_1))
 			{
 				player.secret_1 = true;
-				player sr\api\_map::startSecret(); //Speedrun Copy Paste
+				player sr\api\_speedrun::changeWay("secret_0");
 				entTarget = getEnt( self.target, "targetname" );
 				player setOrigin( entTarget.origin );
 				player setplayerangles( entTarget.angles );

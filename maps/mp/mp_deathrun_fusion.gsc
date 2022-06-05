@@ -11,10 +11,10 @@ main()
 level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin);
 level.masterSpawn.angles = level.spawn["allies"][0].angles;
 level.masterSpawn placeSpawnPoint();
-	thread sr\api\_map::create_normal_way("Normal Way;");
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
-	thread sr\api\_map::create_spawn((-632, -9, 3884), 180);
-	thread sr\api\_map::create_endmap((1662, -274, 3772), 100, 150);
+	thread sr\api\_map::createSpawn((-632, -9, 3884), 180);
+	thread sr\api\_speedrun::createEndMap((1662, -274, 3772), 100, 150);
 
 	maps\mp\_load::main();
 	

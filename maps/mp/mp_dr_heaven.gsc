@@ -11,16 +11,16 @@
 
 main()
 {
-	thread sr\api\_map::create_normal_way("Normal Way;");
-	thread sr\api\_map::create_secret_way("Secret Way;");
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread sr\api\_map::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
+		thread sr\api\_map::createSpawn(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 	maps\mp\_load::main();	
 
 	end = getEnt ("secret_enter_go", "targetname");
-	thread sr\api\_map::create_tp((60, -649, 76), 100, 150, 
-		end.origin, end.angles[1], "freeze", "blue", "s0");
+	thread sr\api\_speedrun::createTeleporter((60, -649, 76), 100, 150, 
+		end.origin, end.angles[1], "freeze", "blue", "secret_0");
 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
@@ -494,7 +494,7 @@ secret_end()
 	// player.secretTimer destroy(); 
 	// player SetOrigin(end.origin);
  //        player SetPlayerAngles( end.angles );
-        player thread sr\api\_map::finish_way("s0");
+        player thread sr\api\_speedrun::finishWay("secret_0");
 	/* [AUTO DELETE] iPrintlnBold (" ^5" + player.name + " ^7 Finished the secret"); */
 	/* [AUTO DELETE] player braxi\_rank::giveRankXP("", 500); */
 	}

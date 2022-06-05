@@ -55,9 +55,9 @@ main()
 	addTriggerToList( "trig_trap7" );
 	addTriggerToList( "trig_trap8" );
 
-	thread sr\api\_map::create_spawn((-213, 981, 220), 270);
-	thread sr\api\_map::create_normal_way("Normal Way;");
-	// thread sr\api\_map::create_endmap((-1287, 1923, 480), 120, 100);
+	thread sr\api\_map::createSpawn((-213, 981, 220), 270);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	// thread sr\api\_speedrun::createEndMap((-1287, 1923, 480), 120, 100);
 	
 }
 	

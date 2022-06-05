@@ -1,15 +1,15 @@
 main()
 {
-	thread sr\api\_map::create_normal_way("Normal Way;");
-	thread sr\api\_map::create_secret_way("Secret Way;");
-	thread sr\api\_map::create_spawn((25, 100, 76),360);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread sr\api\_map::createSpawn((25, 100, 76),360);
 
  level._effect["fire_trap"] = loadfx( "custome/fire_trap" );
 	
     thread end();
 
-    thread sr\api\_map::create_tp((235, -23, 76), 50, 15, (-4376, -5640, 573), 0, "freeze", "blue", "s0");
-    thread sr\api\_map::create_endmap((-574, -3435, 269), 150, 15, "s0");
+    thread sr\api\_speedrun::createTeleporter((235, -23, 76), 50, 15, (-4376, -5640, 573), 0, "freeze", "blue", "secret_0");
+    thread sr\api\_speedrun::createEndMap((-574, -3435, 269), 150, 15, "secret_0");
 
 
 	addTriggerToList( "trigger_t_" );

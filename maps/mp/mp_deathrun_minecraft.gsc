@@ -3,10 +3,10 @@ main()
 trigger = spawn("trigger_radius", (-656.331, 1533.39, -31.875), 0, 96, 48);
 trigger.targetname = "endmap_trig";
 trigger.radius = 96;
-	thread sr\api\_map::create_normal_way("Normal Way;");
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread sr\api\_map::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
+		thread sr\api\_map::createSpawn(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 	
 	level.trap["lasermine"] = LoadFX("rednose/lasermine");
 	level.trap["lasermine_dirt"] = LoadFX("rednose/lasermine_dirt");

@@ -1,9 +1,9 @@
 main()
 {
-	thread sr\api\_map::create_normal_way("^2Easy Way; ^9Training Way; ^1Hard Way");
+	thread sr\api\_speedrun::createNormalWays("^2Easy Way; ^9Training Way; ^1Hard Way");
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread sr\api\_map::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
+		thread sr\api\_map::createSpawn(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
     maps\mp\_load::main();
 
     game["allies"] = "marines";
@@ -13,7 +13,7 @@ main()
     game["allies_soldiertype"] = "desert";
     game["axis_soldiertype"] = "desert";
 
-    thread sr\api\_map::create_endmap((9572, -487, 988), 100, 150);
+    thread sr\api\_speedrun::createEndMap((9572, -487, 988), 100, 150);
 
     /* [AUTO DELETE] ambientPlay("mapsong2"); */
 
@@ -407,7 +407,7 @@ teleport_e()
      trig waittill ("trigger", player); 
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
-     player thread sr\api\_map::change_way("ns0");
+     player thread sr\api\_speedrun::changeWay("normal_0");
       }
 }
 
@@ -422,7 +422,7 @@ teleport_t()
      trig waittill ("trigger", player); 
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
-     player thread sr\api\_map::change_way("ns1");
+     player thread sr\api\_speedrun::changeWay("normal_1");
       }
 }
 
@@ -437,7 +437,7 @@ teleport_h()
      trig waittill ("trigger", player); 
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
-     player thread sr\api\_map::change_way("ns2");
+     player thread sr\api\_speedrun::changeWay("normal_2");
       }
 }
 
@@ -452,7 +452,7 @@ treaning_finish()
      trig waittill ("trigger", player); 
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
-     player thread sr\api\_map::finish_way("ns1");
+     player thread sr\api\_speedrun::finishWay("normal_1");
       }
 }
 
@@ -467,7 +467,7 @@ hard_finish()
      trig waittill ("trigger", player); 
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
-     player thread sr\api\_map::finish_way("ns2");
+     player thread sr\api\_speedrun::finishWay("normal_2");
       }
 }
 

@@ -266,7 +266,7 @@ rift_entrance()
 		player thread maps\mp\mp_dr_train_rush\_fx::forcedvar_once();
 		player thread countdown();
 		player thread getvel();
-		player sr\api\_map::startSecret(); //Speedrun Copy Paste 
+		player sr\api\_speedrun::changeWay("secret_0");
 	}
 }
 

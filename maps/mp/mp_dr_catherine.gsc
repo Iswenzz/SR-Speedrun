@@ -105,8 +105,8 @@ main()
 	thread pure_strafe();
 	thread blocks();
 
-	// thread sr\api\_map::create_spawn((-213, 981, 220), 270);
-	thread sr\api\_map::create_normal_way("Normal Way;");
+	// thread sr\api\_map::createSpawn((-213, 981, 220), 270);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 }
 
 /*

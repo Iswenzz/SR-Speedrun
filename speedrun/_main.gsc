@@ -19,8 +19,6 @@ main()
 	thread speedrun\game\_leaderboards::main();
 	thread sr\game\fx\_trigger::init();
 	thread sr\sys\_admins::initAdmins();
-	thread sr\sys\mapsetting::init();
-	thread sr\sys\maptriggers::init();
 	thread sr\game\minigames\_race::init();
 	thread sr\game\minigames\_kz::init();
 	thread vipList();

@@ -66,7 +66,7 @@ transporter() {
 		entTarget = getEnt( self.target, "targetname" );
 		if ( self.target == "auto35") {
 			iprintlnbold("entered secret");
-			player sr\api\_map::startSecret();
+			player sr\api\_speedrun::changeWay("secret_0");
 		}
 		player setOrigin( entTarget.origin );
 		player setplayerangles( entTarget.angles );

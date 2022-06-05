@@ -60,13 +60,13 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_map::createWay("normal", "Normal Way", "1");
-	sr\api\_map::createWay("secret", "Secret Way", "1");
+    sr\api\_speedrun::createNormalWays("Normal Way;");
+	sr\api\_speedrun::createSecretWays("Secret Way;");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        player thread sr\api\_map::way_name();
+        
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -104,7 +104,7 @@ secret()
 	for(;;)
 	{
 	    trig waittill("trigger", player);
-	    player sr\api\_map::startSecret(); //Speedrun Copy Paste
+	    player sr\api\_speedrun::changeWay("secret_0");
 		player setOrigin(target.origin);
 	}
 }

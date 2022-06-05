@@ -144,7 +144,7 @@ secret()
         player setorigin(targ.origin);
         player setplayerangles(targ.angles);
         player freezecontrols(0);
-		player sr\api\_map::startSecret(); //Speedrun Copy Paste
+		player sr\api\_speedrun::changeWay("secret_0");
     }
 }
 

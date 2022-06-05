@@ -109,11 +109,11 @@ level.masterSpawn.angles = (0,0,0);
 {
     wait 0.05;
     
-    sr\api\_map::createWay("normal", "Normal Way", "1");
+    sr\api\_speedrun::createNormalWays("Normal Way;");
     for(;;) 
     {
         level waittill( "connected", player );
-        player thread sr\api\_map::way_name();
+        
     }
 }
 	

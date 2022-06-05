@@ -18,17 +18,17 @@
 
 main()
 {
-	thread sr\api\_map::create_normal_way("Normal Way;");
-	thread sr\api\_map::create_secret_way("Secret Way;");
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread sr\api\_map::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin - (0,0,30), auto_spawn[int(auto_spawn.size / 2)].angles[1]);
+		thread sr\api\_map::createSpawn(auto_spawn[int(auto_spawn.size / 2)].origin - (0,0,30), auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 	maps\mp\_load::main();
 	// thread ambient();
 
-	thread sr\api\_map::create_endmap((2336, -1354, -196), 200, 150);
+	thread sr\api\_speedrun::createEndMap((2336, -1354, -196), 200, 150);
 
-	thread sr\api\_map::create_tp((3856, -1057, -145), 100, 150, 
+	thread sr\api\_speedrun::createTeleporter((3856, -1057, -145), 100, 150, 
 		(3844, -1297, 284), 270, "freeze");
 	
 	
@@ -508,7 +508,7 @@ secrettrap2()
 		/* [AUTO DELETE] player iprintlnbold ("Welcome to the Secret Room, good luck!"); */
 
 		player SetOrigin(target.origin);
-		player thread sr\api\_map::change_way("s0");
+		player thread sr\api\_speedrun::changeWay("secret_0");
 		player SetPlayerAngles( target.angles );
 	}
 }
@@ -554,7 +554,7 @@ ausgang()
 	for(;;)
 	{
 		trigger waittill ("trigger", user);
-		user thread sr\api\_map::finish_way("s0");
+		user thread sr\api\_speedrun::finishWay("secret_0");
 		/* [AUTO DELETE] iPrintlnBold( " ^6" + user.name + " ^5 HAS FINISHED THE SECRET ROOM^1!" ); */
 		// user SetOrigin(target.origin);
 		// user SetPlayerAngles( target.angles );

@@ -22,7 +22,7 @@ main()
 	setDvar("bg_falldamagemaxheight", 99999999 );
 	setDvar("bg_falldamageminheight", 9999999 );
 	
-	thread sr\api\_map::create_endmap((-10009,-8192,-2116), 250, 400);
+	thread sr\api\_speedrun::createEndMap((-10009,-8192,-2116), 250, 400);
 
 	thread way_connect();
 	// thread message();
@@ -48,15 +48,15 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_map::createWay("normal", "Normal Way", "1");
-	sr\api\_map::createWay("secret", "Secret Way", "1");
+    sr\api\_speedrun::createNormalWays("Normal Way;");
+	sr\api\_speedrun::createSecretWays("Secret Way;");
 
 	thread secret_1();
 	
     for(;;)
     {
         level waittill( "connected", player );
-        player thread sr\api\_map::way_name();
+        
         player thread onPlayerSpawn();
     }
 }
@@ -81,7 +81,7 @@ secret_trig()
 	while(isDefined(self) && !self isTouching(trig))
 		wait .05;
 	
-	self sr\api\_map::startSecret(); //Speedrun Copy Paste
+	self sr\api\_speedrun::changeWay("secret_0");
 }
 
 secret_1()
@@ -101,7 +101,7 @@ secret_1()
 	
 	    player SetPlayerAngles( target.angles );
         player setOrigin( target.origin );
-		player sr\api\_map::startSecret(); //Speedrun Copy Paste
+		player sr\api\_speedrun::changeWay("secret_0");
 	}
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////

@@ -46,12 +46,12 @@ way_connect()
 {
     wait 0.05;
 
-    sr\api\_map::createWay("normal", "Cock Way", "1");
+    sr\api\_speedrun::createNormalWays("Cock Way;");
 
     for(;;)
     {
         level waittill( "connected", player );
-        player thread sr\api\_map::way_name();
+        
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////

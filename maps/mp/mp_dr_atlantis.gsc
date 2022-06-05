@@ -246,8 +246,8 @@ maps\mp\_load::main();
 	addTriggerToList("trig_trap6");
 	addTriggerToList("trig_trap7");
 
-	thread sr\api\_map::create_spawn((-266, 10990, 1635), 180);
-	thread sr\api\_map::create_normal_way("Normal Way;");
+	thread sr\api\_map::createSpawn((-266, 10990, 1635), 180);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	
 }
 

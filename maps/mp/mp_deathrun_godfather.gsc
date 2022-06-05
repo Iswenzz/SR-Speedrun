@@ -18,7 +18,7 @@ main()
 	thread start();
 	//thread jukeBox();
 	//thread music();
-    thread sr\api\_map::create_normal_way("^1G^2O^3D^4F^5A^6T^1H^2E^3R");
+    thread sr\api\_speedrun::createNormalWays("^1G^2O^3D^4F^5A^6T^1H^2E^3R");
 
 	
 }
