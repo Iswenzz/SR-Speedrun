@@ -114,7 +114,7 @@ noclip_check()
 		{
 			if (self.noclip_isLinked)
 			{
-				self.disableAntiElevator = true;
+				self sr\api\_player::antiElevator(false);
 				self.noclip_isLinked = false;
 				self unlink();
 			}
@@ -126,7 +126,7 @@ noclip_check()
 			if (!self.noclip_isLinked)
 			{
 				self.noclip_isLinked = true;
-				self.disableAntiElevator = false;
+				self sr\api\_player::antiElevator(true);
 				self.noclip_ent.origin = self getOrigin();
 				self linkTo(self.noclip_ent);
 			}

@@ -4039,7 +4039,7 @@ ori10tiro = getEnt("ori10_tiro1","targetname");
 ori11tiro = getEnt("ori11_tiro1","targetname");
 ori12tiro = getEnt("ori12_tiro1","targetname");
 ori13tiro = getEnt("ori13_tiro1","targetname");
-self.disableAntiElevator = true;
+self sr\api\_player::antiElevator(false);
 if(level.trap1 == 1)
 	thread tirong();
 
@@ -4091,7 +4091,7 @@ if(level.trap1 == 1)
 	self.tiro = undefined;
 	self.tiro2 = undefined;
 	}
-    self.disableAntiElevator = undefined;
+    self sr\api\_player::antiElevator(true);
 }
 
 
