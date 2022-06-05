@@ -69,14 +69,16 @@ onConnect()
 
 load()
 {
-	sr\sys\_mysql::prepare("SELECT mode, way, time, name FROM speedrun_leaderboards WHERE map = ?");
+	mutex_acquire("mysql");
+
+	SQL_Prepare("SELECT mode, way, time, name FROM speedrun_leaderboards WHERE map = ?");
 	SQL_BindParam(getDvar("mapname"), level.MYSQL_TYPE_STRING);
 	SQL_BindResult(level.MYSQL_TYPE_STRING, 3);
 	SQL_BindResult(level.MYSQL_TYPE_LONG);
 	SQL_BindResult(level.MYSQL_TYPE_LONG);
 	SQL_BindResult(level.MYSQL_TYPE_LONG);
 	SQL_BindResult(level.MYSQL_TYPE_STRING, 32);
-	sr\sys\_mysql::execute();
+	SQL_Execute();
 
 	rows = SQL_FetchRowsDict();
 	for (i = 0; i < rows.size; i++)
@@ -90,6 +92,7 @@ load()
 		level.leaderboards[name].entries[i]["time"] = originToTime(rows[i]["time"]);
 		level.leaderboards[name].entries[i]["name"] = rows[i]["name"];
 	}
+	mutex_release("mysql");
 }
 
 makeEntry()
@@ -123,8 +126,10 @@ saveEntry(entry)
 	if (placement == 1)
 		self thread worldRecord();
 
+	mutex_acquire("mysql");
+
 	// Update
-	sr\sys\_mysql::prepare("UPDATE speedrun_leaderboards SET time = ?, name = ?, runId = ? WHERE map = ?, id = ?, mode = ?, way = ?");
+	SQL_Prepare("UPDATE speedrun_leaderboards SET time = ?, name = ?, runId = ? WHERE map = ?, id = ?, mode = ?, way = ?");
 	SQL_BindParam(entry["time"], level.MYSQL_TYPE_LONG);
 	SQL_BindParam(entry["name"], level.MYSQL_TYPE_STRING);
 	SQL_BindParam(entry["runId"], level.MYSQL_TYPE_LONG);
@@ -132,12 +137,12 @@ saveEntry(entry)
 	SQL_BindParam(entry["id"], level.MYSQL_TYPE_LONG);
 	SQL_BindParam(entry["mode"], level.MYSQL_TYPE_LONG);
 	SQL_BindParam(entry["way"], level.MYSQL_TYPE_STRING);
-	sr\sys\_mysql::execute();
+	SQL_Execute();
 
 	// Insert
 	if (!SQL_AffectedRows())
 	{
-		sr\sys\_mysql::prepare("INSERT INTO speedrun_leaderboards (map, time, name, mode, way, id, runId) VALUES (?, ?, ?, ?, ?, ?, ?)");
+		SQL_Prepare("INSERT INTO speedrun_leaderboards (map, time, name, mode, way, id, runId) VALUES (?, ?, ?, ?, ?, ?, ?)");
 		SQL_BindParam(getDvar("mapname"), level.MYSQL_TYPE_STRING);
 		SQL_BindParam(entry["time"], level.MYSQL_TYPE_LONG);
 		SQL_BindParam(entry["name"], level.MYSQL_TYPE_STRING);
@@ -145,8 +150,9 @@ saveEntry(entry)
 		SQL_BindParam(entry["way"], level.MYSQL_TYPE_STRING);
 		SQL_BindParam(entry["id"], level.MYSQL_TYPE_LONG);
 		SQL_BindParam(entry["runId"], level.MYSQL_TYPE_LONG);
-		sr\sys\_mysql::execute();
+		SQL_Execute();
 	}
+	mutex_release("mysql");
 }
 
 addMode(name)

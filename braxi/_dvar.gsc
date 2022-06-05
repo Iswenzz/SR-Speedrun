@@ -60,5 +60,5 @@ init()
 
 addDvar(scriptName, varname, vardefault, min, max, type)
 {
-	sr\sys\_events::addDvar(scriptName, varname, vardefault, min, max, type);
+	sr\sys\_dvar::addDvar(scriptName, varname, vardefault, min, max, type);
 }

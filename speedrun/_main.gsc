@@ -319,7 +319,7 @@ onConnect()
 	// if (self checkBanned())
 	// 	return;
 
-	self thread sr\player\_id::checkid();
+	self thread sr\player\_id::load();
 	self thread speedrun\_main::checkVIP();
 	// self thread setGroup();
 	self thread sr\player\_settings::onConnect();
@@ -362,7 +362,7 @@ onConnect()
 	self setClientDvar("rate", 25000);
 
 	if (!self.isBot)
-		self thread sr\player\_id::checkid();
+		self thread sr\player\_id::load();
 
 	self thread getFps();
 	self thread getXpBar();
@@ -700,4 +700,44 @@ watchWay()
 
 		wait 0.1;
 	}
+}
+
+check_lowfps()
+{
+	self endon("disconnect");
+
+	if (isDefined(self.admin_group) && self.admin_group == "owner")
+		return;
+
+	self.check_lowfps = true;
+	wait 0.05;
+
+	if (self.fps < 1)
+	{
+		if (self.pers["team"] == "allies")
+			self suicide();
+	}
+	self.check_lowfps = false;
+}
+
+check_ele()
+{
+	if (self.sr_cheatmode)
+		return;
+
+	self endon("disconnect");
+
+	self.check_ele = true;
+	before = self.origin;
+	wait 0.05;
+
+	if (!isDefined(self.real_velocity))
+		return;
+
+	if (self.origin[2] != before[2] && self.real_velocity == (0,0,0) && !self isOnGround() && !self isOnLadder() && !self isMantling())
+	{
+		if (self.pers["team"] == "allies" && self.antiElevator)
+			self suicide();
+	}
+	self.check_ele = false;
 }
