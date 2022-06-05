@@ -18,6 +18,10 @@
 
 main()
 {
+del = getEnt("endmap_trig","targetname");
+del delete();
+trig = getEnt("finaldoor", "targetname");
+trig.targetname = "endmap_trig";
   	maps\mp\_load::main();
 	maps\mp\mp_fnrp_iceland_fx::main();
 	maps\createfx\mp_fnrp_iceland_fx::main();

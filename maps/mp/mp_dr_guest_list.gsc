@@ -3,6 +3,8 @@
 
 main()
 {
+level.masterSpawn = spawn("script_origin",(-30,642,130));
+level.masterSpawn.angles = (0,270,0);
  maps\mp\_load::main();
  
  game["allies"] = "marines";

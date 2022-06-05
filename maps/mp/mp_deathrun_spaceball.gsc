@@ -1,5 +1,7 @@
 main()
 {
+level.masterSpawn = spawn("script_origin",(9,-43,4037));
+level.masterSpawn.angles = (0,0,0);
 	thread sr\api\_map::create_normal_way("Normal Way;");
   thread sr\api\_map::create_secret_way("Secret Way;");
 

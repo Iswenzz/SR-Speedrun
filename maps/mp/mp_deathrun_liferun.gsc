@@ -3,6 +3,9 @@
 // Do not Change anything please if you want to change ask me before! xfire:wespatrick
 main()
 {
+trigger = spawn("trigger_radius", (-279.875, 4833.46, 168.125), 0, 96, 48);
+trigger.targetname = "endmap_trig";
+trigger.radius = 96;
 
 	//Cod4 Stuff
 	maps\mp\_load::main();

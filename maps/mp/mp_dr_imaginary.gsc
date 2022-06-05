@@ -1,6 +1,9 @@
 main()
 
 {
+level.masterSpawn = spawn("script_origin", level.spawn["allies"][3].origin);
+level.masterSpawn.angles = level.spawn["allies"][3].angles;
+level.masterSpawn placeSpawnPoint();
 maps\mp\_load::main();
 
   precacheItem("m40a3_mp"); 

@@ -1,5 +1,7 @@
 main()
 {
+level.masterSpawn = spawn("script_origin",(825,368,200));
+level.masterSpawn.angles = (0,270,0);
 	thread way_connect();
 	maps\mp\_load::main();
 	level.tweakfile = true;

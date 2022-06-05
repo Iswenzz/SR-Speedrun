@@ -5,6 +5,8 @@ xfire: paap15
 */
 main()
 {
+level.masterSpawn = spawn("script_origin", level.spawn["allies"][5].origin - (159,0,0));
+level.masterSpawn.angles = level.spawn["allies"][5].angles;
 	thread way_connect();
      maps\mp\_load::main();
 	 level.triangle = loadFX("deathrun/triangle");

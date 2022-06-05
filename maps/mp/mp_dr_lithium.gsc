@@ -1,5 +1,8 @@
 main()
 {
+trigger = spawn("trigger_radius", (6899.93, -2205.18, -223.875), 0, 120, 185);
+trigger.targetname = "endmap_trig";
+trigger.radius = 120;
 
 level.fire2 = loadFX("deathrun/fire2"); 	   
 maps\mp\_load::main();

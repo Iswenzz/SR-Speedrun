@@ -1,6 +1,6 @@
 main()
 {
-level.masterSpawn = spawn("script_origin",(-3008,-656,2552));
+level.masterSpawn = spawn("script_origin",(-3072,448,-671));
 level.masterSpawn.angles = (0,0,0);
     maps\mp\_load::main();
  
@@ -16,9 +16,10 @@ level.masterSpawn.angles = (0,0,0);
     setdvar("r_glowbloomintensity1",".25");
     setdvar("r_glowskybleedintensity0",".3");
     setdvar("compassmaxrange","1800");
+	setdvar("bg_falldamagemaxheight", 3280000); 
+	setdvar("bg_falldamageminheight", 1280000);
 
     thread way_connect();
-
 	thread secret();
 }
 
@@ -26,50 +27,59 @@ level.masterSpawn.angles = (0,0,0);
 way_connect()
 {
     wait 0.05;
-	
+    
     sr\api\_map::createWay("normal", "Normal Way", "1");
-	sr\api\_map::createWay("secret", "Secret Way", "1");
-	
+    sr\api\_map::createWay("secret", "Secret Way", "1");
+    
     for(;;) 
     {
         level waittill( "connected", player );
         player thread sr\api\_map::way_name();
+        player thread onPlayer();
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+onPlayer()
+{
+    for(;;)
+    {
+        self waittill("spawned_player");
+		self setjumpheight(125);
+    }
+}
 
 secret()
 {
-	thread secret_end();
+	trig = getEnt("secret_enter", "targetname");
+	end = getEnt("secret_enter_go", "targetname");
 
-	trig = getEnt ("secret_enter", "targetname");
-	end = getEnt ("secret_enter_go", "targetname");
+    thread secret_end();
 
-	wait 1;
-	thread speedrun\_triggerfx::createTrigFx(trig, "secret");
-	
+    wait 1;
+    thread speedrun\_triggerfx::createTrigFx(trig, "secret");
+
 	while(1)
-    	{
-        trig waittill ("trigger", player); 
-        player sr\api\_map::startSecret(); //Speedrun Copy Paste       
-		player SetOrigin(end.origin);
+    {
+        trig waittill ("trigger", player);        
+    	player SetOrigin(end.origin);
         player SetPlayerAngles( end.angles );
+        player sr\api\_map::startSecret(); //Speedrun Copy Paste
 	}
-
 }
 
 secret_end()
 {
-	trig = getEnt("secretend_trig","targetname");
+    trig = getEnt("secretend_trig","targetname");
 
-	wait 1;
-	thread speedrun\_triggerfx::createTrigFx(trig, "secret");
+    wait 1;
+    thread speedrun\_triggerfx::createTrigFx(trig, "secret");
 
-	for(;;)
-	{
-		trig waittill("trigger",player);
+    for(;;)
+    {
+        trig waittill ("trigger", player);
 
-		if(isDefined(player.sr_secret) && player.sr_secret)
-			player thread braxi\_mod::endTimer();
-	}
+        if(isDefined(player.sr_secret) && player.sr_secret)
+            player thread braxi\_mod::endTimer();
+    }
 }

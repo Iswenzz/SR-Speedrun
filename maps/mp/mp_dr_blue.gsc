@@ -6,6 +6,12 @@
 																   // Add amb2.mp3 to mp_dr_blue.iwd/sound/ if you wish (its linked to soundaliases "skrillex") 
 main()
 {
+level.masterSpawn = spawn("script_origin", level.spawn["allies"][6].origin);
+level.masterSpawn.angles = level.spawn["allies"][6].angles;
+level.masterSpawn placeSpawnPoint();
+trigger = spawn("trigger_radius", (4582, 2556, -1714), 0, 300, 300);
+trigger.targetname = "endmap_trig";
+trigger.radius = 300;
              //Please Use without Permission ©
     maps\mp\_load::main();
 	// setExpFog(500, 1000, 0.4, 0.425, 0.44, 0.0);

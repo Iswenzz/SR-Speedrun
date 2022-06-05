@@ -1,5 +1,8 @@
 main()//Made by Phill580
 {
+trigger = spawn("trigger_radius", (553, -611, 92), 0, 300, 300);
+trigger.targetname = "endmap_trig";
+trigger.radius = 300;
           maps\mp\_load::main();
 
           PreCacheItem("brick_blaster_mp");

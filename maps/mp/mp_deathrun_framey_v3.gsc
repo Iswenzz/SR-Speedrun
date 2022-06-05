@@ -3,6 +3,8 @@
 
 main()
 {
+trig=getent("activator_door_trig","targetname");
+trig.targetname = "endmap_trig";
 	//maps\mp\_load::main();
 	
 	// setExpFog(800, 2500, 255/255, 250/255, 250/255, 0.0); //dit is voor enviroment fog 

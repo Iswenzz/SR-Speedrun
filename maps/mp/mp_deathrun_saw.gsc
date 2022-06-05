@@ -1,5 +1,8 @@
 main()
 {
+level.masterSpawn = spawn("script_origin", (-494,3,82));
+level.masterSpawn.angles = (0,0,0);
+level.masterSpawn placeSpawnPoint();
 	thread sr\api\_map::create_normal_way("Normal Way;");
 	thread sr\api\_map::create_secret_way("Secret Way;Epic Secret Way");
 

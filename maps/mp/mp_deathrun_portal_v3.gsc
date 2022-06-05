@@ -1,5 +1,8 @@
 main()
 {
+trigger = spawn("trigger_radius", (-4064.87, 1593.28, -63.875), 0, 96, 48);
+trigger.targetname = "endmap_trig";
+trigger.radius = 96;
 	maps\mp\_load::main();
 	maps\mp\_teleportal::main();
 	maps\mp\_teleportal2::main();

@@ -1,5 +1,7 @@
 main()
 {
+level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin);
+level.masterSpawn.angles = level.spawn["allies"][0].angles;
 	thread sr\api\_map::create_normal_way("Normal Way;");
     thread sr\api\_map::create_secret_way("Secret Way;");
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");

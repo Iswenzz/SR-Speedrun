@@ -1,6 +1,12 @@
 //exec deatehrun.cfg +set fs_game Mods/deathrun_updated +set scr_game_playerwaittime 0 +set scr_game_matchstarttime 0 +exec deathrun.cfg +developer 0 +devmap mp_deathrun_skypillar
 main()
 {
+level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin);
+level.masterSpawn.angles = level.spawn["allies"][0].angles;
+level.masterSpawn placeSpawnPoint();
+trigger = spawn("trigger_radius", (-2044.31, -338.131, 1057.13), 0, 96, 48);
+trigger.targetname = "endmap_trig";
+trigger.radius = 96;
 	maps\mp\_load::main();
 	
 	// ambientPlay("ambient1");

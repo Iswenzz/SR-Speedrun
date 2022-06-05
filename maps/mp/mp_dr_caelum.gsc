@@ -9,6 +9,8 @@
 
 main()
 {
+level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin);
+level.masterSpawn.angles = level.spawn["allies"][0].angles;
 	thread way_connect();
 	maps\mp\_load::main();
 	
