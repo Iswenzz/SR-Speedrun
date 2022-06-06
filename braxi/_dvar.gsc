@@ -1,7 +1,5 @@
-init()
+initDvars()
 {
-	level.dvar["logPrint"] = 1;
-
 	addDvar("time_limit", "dr_timelimit", 5, 0, 60, "int");
 	addDvar("round_limit", "dr_rounds", 15, 1, 30, "int");
 	addDvar("spawn_time", "dr_spawn_time", 4, 1, 30, "int");
@@ -24,6 +22,7 @@ init()
 	addDvar("bunnyhoop", "dr_bunnyhoop_pro", 0, 0, 1, "int");
 	addDvar("freerun", "dr_freerun_round", 1, 0, 1, "int");
 	addDvar("freerun_time", "dr_freerun_time", 600, 5, 7200, "int");
+	addDvar("time", "sr_time", 1800, 60, 7200, "int");
 	addDvar("bots", "g_bots", 0, 0, 64, "int");
 	addDvar("dev", "g_moddev", 0, 0, 1, "int");
 	addDvar("mapvote", "dr_map_vote", 1, 0, 1, "int");

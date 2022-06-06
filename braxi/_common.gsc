@@ -24,12 +24,6 @@ cleanScreen()
 	}
 }
 
-restrictSpawnAfterTime(time)
-{
-	wait time;
-	level.allowSpawn = false;
-}
-
 getBestPlayerFromTime()
 {
 	score = 999999999;
@@ -85,20 +79,7 @@ deleteAfterTime(time)
 		self delete();
 }
 
-restartLogic()
-{
-	level notify("kill logic");
-	wait .05;
-	level thread braxi\_mod::gameLogic();
-}
-
-freeRunTimer()
-{
-	wait level.dvar["freerun_time"];
-	level thread braxi\_mod::endRound("Free Run round has ended", "jumpers");
-}
-
-canStartRound(min)
+canStartGame(min)
 {
 	count = 0;
 	players = getAllPlayers();
@@ -295,7 +276,7 @@ getHitLocHeight(sHitLoc)
 	return 48;
 }
 
-delayedMenu()
+welcomeMenu()
 {
 	self endon("disconnect");
 	wait 0.05;
@@ -337,21 +318,6 @@ addBan(guid, reason)
 	level.blackList[level.blackList.size] = spawnStruct();
 	level.blackList[level.blackList.size - 1].guid = guid;
 	level.blackList[level.blackList.size - 1].reason = reason;
-}
-
-bxLogPrint(text)
-{
-	if (level.dvar["logPrint"])
-		logPrint(text + "\n");
-}
-
-warning(msg)
-{
-	if (!level.dvar["dev"])
-		return;
-	iPrintlnBold("^3WARNING: " + msg);
-	println("^3WARNING: " + msg);
-	bxLogPrint("WARNING:" + msg);
 }
 
 dropPlayer(player, method, msg1, msg2)

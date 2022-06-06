@@ -1,67 +1,31 @@
 #include maps\mp\_utility;
 #include common_scripts\utility;
 #include maps\mp\gametypes\_hud_util;
+
 #include braxi\_common;
 #include braxi\_dvar;
 
+#include sr\sys\_events;
+#include sr\utils\_math;
+
 main()
 {
-	braxi\_dvar::init();
+	initDvars();
 	precache();
-	init_spawns();
+	placeSpawns();
 
-	game["DeathRunVersion"] = 12;
+	game["roundsplayed"] = 1;
+
 	level.mapName = toLower(getDvar("mapname"));
-	level.jumpers = 0;
-	level.activators = 0;
-	level.activatorKilled = false;
-	level.freeRun = false;
-	level.allowSpawn = true;
+	level.freeRun = level.dvar["freerun"];
 	level.tempEntity = spawn("script_model", (0, 0, 0));
 	level.colliders = [];
 	level.trapsDisabled = false;
-	level.canCallFreeRun = true;
-	level.color_cool_green = (0.8, 2.0, 0.8);
-	level.color_cool_green_glow = (0.3, 0.6, 0.3);
-	level.hudYOffset = 10;
-	level.firstBlood = false;
-	level.lastJumper = false;
-	level.mapHasTimeTrigger = false;
-
-	if (!isDefined(game["roundsplayed"]))
-		game["roundsplayed"] = 1;
-	game["roundStarted"] = false;
-	game["state"] = "readyup";
-
-	if (game["roundsplayed"] == 1)
-	{
-		game["playedmaps"] = strTok(level.dvar["playedmaps"], ";");
-		addMap = true;
-		if (game["playedmaps"].size)
-		{
-			for (i = 0; i < game["playedmaps"].size; i++)
-			{
-				if (game["playedmaps"][i] == level.mapName)
-				{
-					addMap = false;
-					break;
-				}
-			}
-		}
-		if (addMap)
-		{
-			appendToDvar("dr_playedmaps", level.mapName + ";");
-			level.dvar["playedmaps"] = getDvar("dr_playedmaps");
-			game["playedmaps"] = strTok(level.dvar["playedmaps"], ";");
-		}
-		if (level.dvar["freerun"])
-			level.freeRun = true;
-	}
 
 	setDvar("jump_slowdownEnable", 0);
 	setDvar("bullet_penetrationEnabled", 0);
-	setDvar("mod_author", "BraXi");
-	makeDvarServerInfo("mod_author", "BraXi");
+	setDvar("mod_author", "SuX Lolz");
+	makeDvarServerInfo("mod_author", "SuX Lolz");
 
 	thread maps\mp\gametypes\_hud::init();
 	thread maps\mp\gametypes\_hud_message::init();
@@ -77,16 +41,15 @@ main()
 	thread speedrun\game\_scoreboard::init();
 
 	level thread gameLogic();
-	level thread serverMessages();
 	level thread doHudTime();
-	level thread fastestTime();
+	level thread disableTraps();
 
 	visionSetNaked(level.mapName, 0);
 }
 
 precache()
 {
-	level.text = [];
+	level.texts = [];
 	level.fx = [];
 
 	precacheModel("german_sheperd_dog");
@@ -123,7 +86,6 @@ precache()
 	precacheShader("stance_stand");
 	precacheShader("hudstopwatch");
 	precacheShader("score_icon");
-
 	precacheShader("minesweeper_square");
 	precacheShader("minesweeper_smile");
 	precacheShader("minesweeper_minered");
@@ -132,48 +94,43 @@ precache()
 	precacheShader("minesweeper_flag");
 	precacheShader("minesweeper_dead");
 	precacheShader("minesweeper_board");
-
-	PreCacheShader("key_w");
-	PreCacheShader("key_a");
-	PreCacheShader("key_s");
-	PreCacheShader("key_d");
-
+	precacheShader("key_w");
+	precacheShader("key_a");
+	precacheShader("key_s");
+	precacheShader("key_d");
 	precacheStatusIcon("vip_status");
 	precacheShader("vip_status");
 	precacheShader("vip_gold");
-
 	precacheShader("sr_shop");
 	precacheShader("sr_dice");
 	precacheShader("sr_vip");
 	precacheShader("sr_insert");
-
 	precacheShader("speedrunner_logo");
+	precacheShader("fps_20");
+	precacheShader("fps_30");
+	precacheShader("fps_125");
+	precacheShader("fps_142");
+	precacheShader("fps_166");
+	precacheShader("fps_250");
+	precacheShader("fps_333");
+	precacheShader("fps_500");
+	precacheShader("fps_1000");
 
-	precacheshader("fps_20");
-	precacheshader("fps_30");
-	precacheshader("fps_125");
-	precacheshader("fps_142");
-	precacheshader("fps_166");
-	precacheshader("fps_250");
-	precacheshader("fps_333");
-	precacheshader("fps_500");
-	precacheshader("fps_1000");
-
-	PreCacheShellShock("flashbang");
+	preCacheShellShock("flashbang");
 
 	precacheStatusIcon("hud_status_connecting");
 	precacheStatusIcon("hud_status_dead");
 	precacheHeadIcon("headicon_admin");
 
-	level.text["round_begins_in"] = &"BRAXI_ROUND_BEGINS_IN";
-	level.text["waiting_for_players"] = &"BRAXI_WAITING_FOR_PLAYERS";
-	level.text["jumpers_count"] = &"BRAXI_ALIVE_JUMPERS";
-	level.text["call_freeround"] = &"BRAXI_CALL_FREEROUND";
+	level.texts["round_begins_in"] = &"BRAXI_ROUND_BEGINS_IN";
+	level.texts["waiting_for_players"] = &"BRAXI_WAITING_FOR_PLAYERS";
+	level.texts["jumpers_count"] = &"BRAXI_ALIVE_JUMPERS";
+	level.texts["call_freeround"] = &"BRAXI_CALL_FREEROUND";
 
-	precacheString(level.text["round_begins_in"]);
-	precacheString(level.text["waiting_for_players"]);
-	precacheString(level.text["jumpers_count"]);
-	precacheString(level.text["call_freeround"]);
+	precacheString(level.texts["round_begins_in"]);
+	precacheString(level.texts["waiting_for_players"]);
+	precacheString(level.texts["jumpers_count"]);
+	precacheString(level.texts["call_freeround"]);
 	precacheString(&"Your Time: ^2&&1");
 
 	level.fx["endgame"] = loadFx("deathrun/endgame_fx");
@@ -196,14 +153,13 @@ precache()
 	level.fx["viptrail4"] = loadFx("deathrun/vip_trail4");
 	level.fx["viptrail5"] = loadFx("deathrun/vip_trail5");
 	level.fx["startnstop"] = loadFx("deathrun/flare_startnstop");
-	level.jetpack = loadFx("smoke/jetpack");
-
-	level.meteorfx = LoadFX("fire/tank_fire_engine");
-	level.expbullt = loadfx("explosions/grenadeExp_concrete_1");
-	level.flame = loadfx("fire/tank_fire_engine");
+	level.fx["jetpack"] = loadFx("smoke/jetpack");
+	level.fx["meteor"] = loadFX("fire/tank_fire_engine");
+	level.fx["explosion"] = loadfx("explosions/grenadeExp_concrete_1");
+	level.fx["flame"] = loadfx("fire/tank_fire_engine");
 }
 
-init_spawns()
+placeSpawns()
 {
 	level.spawn = [];
 	level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
@@ -239,34 +195,28 @@ init_spawns()
 		x += level.spawn["allies"][i].origin[2];
 	}
 
-	x = x / level.spawn["allies"].size;
-	y = y / level.spawn["allies"].size;
-	z = z / level.spawn["allies"].size;
+	x /= level.spawn["allies"].size;
+	y /= level.spawn["allies"].size;
+	z /= level.spawn["allies"].size;
 
 	level.masterSpawn = spawn("script_origin", (x, y, z));
 	level.masterSpawn.angles = level.spawn["allies"][0].angles;
 	level.masterSpawn placeSpawnPoint();
-
 }
 
-playerConnect() // Called when player is connecting to server
+playerConnect()
 {
-	comprintln("what");
 	level notify("connected", self);
 
-
-	self thread cleanUp();
+	self cleanUp();
 	self.canDamage = undefined;
 	self.guid = self getGuid();
 	self.number = self getEntityNumber();
 	self.statusicon = "hud_status_connecting";
 	self.died = false;
 	self.doingNotify = false;
- //for hud logic
 	self setClientDvar("cl_maxpackets", 125);
 	self setStat(2360, 0);
-
-	self thread speedrun\_main::onConnect();
 
 	if (!isDefined(self.name))
 		self.name = "undefined name";
@@ -313,21 +263,17 @@ playerConnect() // Called when player is connecting to server
 		spawnPlayer();
 		return;
 	}
-	else
-	{
-		self spawnSpectator(level.spawn["spectator"].origin, level.spawn["spectator"].angles);
-		self thread delayedMenu();
-		logPrint("J;" + self.guid + ";" + self.number + ";" + self.name + "\n");
-	}
+	self spawnSpectator(level.spawn["spectator"].origin, level.spawn["spectator"].angles);
+	logPrint("J;" + self.guid + ";" + self.number + ";" + self.name + "\n");
 	self setClientDvars("cg_drawSpectatorMessages", 1, "ui_hud_hardcore", 1, "player_sprintTime", 4, "ui_uav_client", 0, "g_scriptMainMenu", level.menus["team"]);
+	self welcomeMenu();
 }
 
-playerDisconnect() // Called when player disconnect from server
-
+playerDisconnect()
 {
 	level notify("disconnected", self);
-	self thread cleanUp();
-	self thread speedrun\_main::stoprecord_disconnect();
+	self cleanUp();
+	// self thread speedrun\_main::stoprecord_disconnect();
 
 	if (isDefined(self.clone))
 		self.clone delete();
@@ -361,7 +307,6 @@ PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vP
 	if (isPlayer(eAttacker) && sMeansOfDeath == "MOD_MELEE" && isWallKnifing(eAttacker, self))
 		return;
 
-	// damage modifier
 	if (sMeansOfDeath != "MOD_MELEE")
 	{
 		modifier = getDvarFloat("dr_damageMod_" + sWeapon);
@@ -395,7 +340,7 @@ PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 
 	level notify("player_killed", self, eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration);
 
-	self thread speedrun\_main::stoprecord_death();
+	// self thread speedrun\_main::stoprecord_death();
 
 	if (level.dvar["giveXpForKill"] && !level.trapsDisabled)
 	{
@@ -409,19 +354,8 @@ PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 	self.statusicon = "hud_status_dead";
 	self.sessionstate = "spectator";
 	self.died = true;
-	self thread cleanUp();
-
-	if (self.inKz)
-		return;
-
-	self thread respawn();
-}
-
-after_time_lower()
-{
-	self endon("disconnect");
-	wait 3;
-	self clearLowerMessage();
+	self cleanUp();
+	self respawn();
 }
 
 spawnPlayer(origin, angles)
@@ -430,7 +364,7 @@ spawnPlayer(origin, angles)
 		return;
 
 	level notify("jumper", self);
-	self thread cleanUp();
+	self cleanUp();
 	resettimeout();
 
 	self.team = self.pers["team"];
@@ -442,8 +376,6 @@ spawnPlayer(origin, angles)
 	self.psoffsettime = 0;
 	self.statusicon = "";
 	self.finishedMap = undefined;
-
-	self thread speedrun\_main::onPlayerSpawned();
 
 	self sr\game\_teams::setPlayerModel();
 
@@ -477,26 +409,11 @@ spawnPlayer(origin, angles)
 		self setSpawnWeapon(self.pers["weapon"]);
 		self giveMaxAmmo(self.pers["weapon"]);
 	}
-	if (self.isBot)
-		self takeAllWeapons();
 
-	self thread sr\game\_teams::setHealth();
-	self thread afterFirstFrame();
+	self sr\game\_teams::setHealth();
 
 	self notify("spawned_player");
 	level notify("player_spawn", self);
-}
-
-afterFirstFrame()
-{
-	self endon("disconnect");
-	self endon("joined_spectators");
-	self endon("death");
-	waittillframeend;
-	wait 0.1;
-
-	if (!self isPlaying())
-		return;
 
 	if (game["state"] == "readyup")
 	{
@@ -521,30 +438,6 @@ afterFirstFrame()
 	}
 }
 
-makeMeNotSolid()
-{
-	self endon("disconnect");
-	self endon("spawned_player");
-	self endon("joined_spectators");
-	self endon("death");
-
-	self setClientDvar("g_playerCollisionEjectSpeed", 1);
-	while (self isReallyAlive())
-	{
-		wait 0.05;
-		self setContents(0);
-	}
-}
-
-isAngleOk(angles, min, max)
-{
-	diff = distance(angles, self.angles);
-	iprintln("diff:" + diff);
-	if (diff >= min && diff <= max)
-		return true;
-	return false;
-}
-
 sprayLogo()
 {
 	self endon("disconnect");
@@ -565,7 +458,7 @@ sprayLogo()
 
 		angles = self getPlayerAngles();
 		eye = self getTagOrigin("j_head");
-		forward = eye + vector_scale(anglesToForward(angles), 70);
+		forward = eye + vectorScale(anglesToForward(angles), 70);
 		trace = bulletTrace(eye, forward, false, self);
 
 		if (trace["fraction"] == 1)
@@ -574,7 +467,7 @@ sprayLogo()
 			continue;
 		}
 
-		position = trace["position"] - vector_scale(anglesToForward(angles), -2);
+		position = trace["position"] - vectorScale(anglesToForward(angles), -2);
 		angles = vectorToAngles(eye - position);
 		forward = anglesToForward(angles);
 		up = anglesToUp(angles);
@@ -596,39 +489,6 @@ sprayLogo()
 		else
 			wait level.dvar["sprays_delay"];
 	}
-}
-
-endRound(reasonText, team)
-{
-	level endon("endmap");
-
-	if (game["state"] == "round ended" || !game["roundStarted"])
-		return;
-
-	level notify("round_ended", reasonText, team);
-	level notify("endround");
-	level notify("kill logic");
-
-	game["state"] = "round ended";
-	game["roundsplayed"]++;
-
-	if (isDefined(level.huds.time))
-		level.huds.time destroy();
-
-	players = getAllPlayers();
-	for (i = 0; i < players.size; i++)
-		players[i] setClientDvars("r_blur", 2.0, "show_hud", "false");
-
-	if (game["roundsplayed"] >= (level.dvar["round_limit"] + 1))
-	{
-		level endMap("Game has ended");
-		return;
-	}
-	else
-		level thread endRoundAnnoucement(reasonText, (0, 1, 0));
-
-	wait 10;
-	map_restart(true);
 }
 
 addTextHud(who, x, y, alpha, alignX, alignY, fontScale)
@@ -669,7 +529,7 @@ spawnSpectator(origin, angles)
 
 	self notify("joined_spectators");
 
-	self thread cleanUp();
+	self cleanUp();
 	resettimeout();
 	self.sessionstate = "spectator";
 	self.spectatorclient = -1;
@@ -686,25 +546,13 @@ cleanUp()
 	self notify("kill afk monitor");
 	self setClientDvars("cg_thirdperson", 0, "cg_thirdpersonrange", 80, "r_blur", 0, "ui_healthbar", 1, "bg_viewKickMax", 90, "bg_viewKickMin", 5, "bg_viewKickRandom", 0.4, "bg_viewKickScale", 0.2);
 	self unLink();
-
-	self.bh = 0;
-	self.doingBH = false;
 	self enableWeapons();
-
-	if (isDefined(self.huds.freeround))
-		self.huds.freeround destroy();
-	if (isDefined(self.huds.freeround_time))
-		self.huds.freeround_time destroy();
 }
 
-gameLogic()
+matchStart()
 {
 	level endon("endround");
-	level endon("kill logic");
-	waittillframeend;
-
 	level.allowSpawn = true;
-	warning = false;
 
 	visionSetNaked("mpIntro", 0);
 	if (isDefined(level.matchStartText))
@@ -715,17 +563,41 @@ gameLogic()
 	level.matchStartText = createServerFontString("objective", 1.5);
 	level.matchStartText setPoint("CENTER", "CENTER", 0, -20);
 	level.matchStartText.sort = 1001;
-	level.matchStartText setText(level.text["waiting_for_players"]);
+	level.matchStartText setText(level.texts["waiting_for_players"]);
 	level.matchStartText.foreground = false;
 	level.matchStartText.hidewheninmenu = true;
 
-	min = 1;
-
 	roundStartTimer();
+}
 
-	if (!canStartRound(min))
+matchStartPlayers()
+{
+	visionSetNaked(level.mapName, 2.0);
+
+	players = getAllPlayers();
+	for (i = 0; i < players.size; i++)
 	{
-		thread restartLogic();
+		if (players[i] isPlaying())
+		{
+			players[i] freezeControls(0);
+			players[i] unLink();
+			players[i] enableWeapons();
+		}
+	}
+}
+
+gameLogic()
+{
+	level endon("endround");
+	level notify("kill logic");
+	level endon("kill logic");
+	waittillframeend;
+
+	matchStart();
+
+	if (!canStartGame(1))
+	{
+		level thread gameLogic();
 		return;
 	}
 
@@ -734,126 +606,8 @@ gameLogic()
 	game["state"] = "playing";
 	game["roundStarted"] = true;
 
-	visionSetNaked(level.mapName, 2.0);
-
-	players = getAllPlayers();
-	for (i = 0; i < players.size; i++)
-	{
-		if (players[i] isPlaying())
-		{
-			players[i] FreezeControls(0);
-			players[i] unLink();
-			players[i] enableWeapons();
-		}
-	}
-
-	if (level.freeRun)
-	{
-		level.huds.time setTimer(level.dvar["freerun_time"]);
-		thread sr\game\_timer::hud(level.dvar["freerun_time"], ::endRound);
-	}
-}
-
-checkTimeLimit()
-{
-	level endon("endround");
-	level endon("game over");
-
-	if (!level.dvar["time_limit"])
-		return;
-
-	time = 60 * level.dvar["time_limit"];
-	level.huds.time setTimer(time);
-	wait time;
-	level thread endRound("Time limit reached", "activators");
-}
-
-endmap_rng_song()
-{
-	r = RandomIntRange(2, 11);
-	return "end_map" + r;
-}
-
-endmap_song()
-{
-	wait 1;
-	ambientPlay(endmap_rng_song(), 0);
-}
-
-endmap_earthquake()
-{
-	while (true)
-	{
-		Earthquake(0.05, 0.05, level.spawn["spectator"].origin, 20000);
-		wait 0.05;
-	}
-}
-
-endMap(winningteam, map)
-{
-	game["state"] = "endmap";
-	level notify("intermission");
-	level notify("game over");
-
-	setDvar("g_deadChat", 1);
-
-	if (isDefined(level.huds.jumpers))
-		level.huds.jumpers destroy();
-
-	AmbientStop(2);
-
-	visionSetNaked("mp_dr_sm64", 4);
-
-	thread endmap_song();
-
-	players = getAllPlayers();
-	for (i = 0; i < players.size; i++)
-	{
-		players[i] closeMenu();
-		players[i] closeInGameMenu();
-		players[i] freezeControls(true);
-		players[i] cleanUp();
-		players[i] suicide();
-	}
-	wait .05;
-
-	players = getAllPlayers();
-	for (i = 0; i < players.size; i++)
-	{
-		players[i] spawnSpectator(level.spawn["spectator"].origin, level.spawn["spectator"].angles);
-		players[i] allowSpectateTeam("allies", false);
-		players[i] allowSpectateTeam("axis", false);
-		players[i] allowSpectateTeam("freelook", false);
-		players[i] allowSpectateTeam("none", true);
-	}
-
-	thread endmap_earthquake();
-
-	wait 5;
-
-	playFx(level.fx["endgame"], level.spawn["spectator"].origin - (0, 0, 50));
-
-	sr\game\_credits::main();
-
-	players = getAllPlayers();
-	for (i = 0; i < players.size; i++)
-	{
-		players[i] spawnSpectator(level.spawn["spectator"].origin, level.spawn["spectator"].angles);
-		players[i].sessionstate = "intermission";
-	}
-	wait 15;
-
-	if (!isDefined(map))
-	{
-		setDvar("sv_maprotationcurrent", "gametype deathrun map " + sr\commands\game\_vote::load(false)[RandomInt(sr\commands\game\_vote::load(false).size)]);
-		ExitLevel(false);
-	}
-
-	if (isDefined(map))
-	{
-		setDvar("sv_maprotationcurrent", "gametype deathrun map " + map);
-		ExitLevel(false);
-	}
+	matchStartPlayers();
+	sr\game\_map::timer(level.dvar["time"], sr\game\_map::end);
 }
 
 respawn()
@@ -867,15 +621,6 @@ respawn()
 	return;
 }
 
-kickAfterTime(time)
-{
-	self endon("disconnect");
-	wait time;
-
-	if (isDefined(self))
-		kick(self getEntityNumber());
-}
-
 roundStartTimer()
 {
 	if (isDefined(level.matchStartText))
@@ -884,7 +629,7 @@ roundStartTimer()
 	level.matchStartText = createServerFontString("objective", 1.5);
 	level.matchStartText setPoint("CENTER", "CENTER", 0, -20);
 	level.matchStartText.sort = 1001;
-	level.matchStartText setText(level.text["round_begins_in"]);
+	level.matchStartText setText(level.texts["round_begins_in"]);
 	level.matchStartText.foreground = false;
 	level.matchStartText.hidewheninmenu = true;
 
@@ -901,90 +646,6 @@ roundStartTimer()
 	level.matchStartTimer destroyElem();
 }
 
-freeRunChoice()
-{
-	self endon("disconnect");
-	self endon("spawned_player");
-	self endon("joined_spectators");
-	self endon("death");
-
-	if (!level.dvar["freeRunChoice"] || level.trapsDisabled)
-		return;
-
-	self.huds.freeround = newClientHudElem(self);
-	self.huds.freeround.elemType = "font";
-	self.huds.freeround.x = 320;
-	self.huds.freeround.y = 370;
-	self.huds.freeround.alignX = "center";
-	self.huds.freeround.alignY = "middle";
-	self.huds.freeround.alpha = 1;
-	self.huds.freeround.font = "default";
-	self.huds.freeround.fontScale = 1.8;
-	self.huds.freeround.sort = 0;
-	self.huds.freeround.foreground = true;
-	self.huds.freeround.label = level.text["call_freeround"];
-
-	self.huds.freeround_time = newClientHudElem(self);
-	self.huds.freeround_time.elemType = "font";
-	self.huds.freeround_time.x = 320;
-	self.huds.freeround_time.y = 390;
-	self.huds.freeround_time.alignX = "center";
-	self.huds.freeround_time.alignY = "middle";
-	self.huds.freeround_time.alpha = 1;
-	self.huds.freeround_time.font = "default";
-	self.huds.freeround_time.fontScale = 1.8;
-	self.huds.freeround_time.sort = 0;
-	self.huds.freeround_time.foreground = true;
-	self.huds.freeround_time setTimer(level.dvar["freeRunChoiceTime"]);
-
-	wait 1;
-	freeRun = false;
-	for (i = 0; i < 10 * level.dvar["freeRunChoiceTime"]; i++)
-	{
-		if (!level.canCallFreeRun)
-		{
-			self.huds.freeround destroy();
-			self.huds.freeround_time destroy();
-			return;
-		}
-		if (self attackButtonPressed())
-		{
-			freeRun = true;
-			level endon("kill_free_run_choice");
-			break;
-		}
-		wait 0.1;
-	}
-	level endon("kill_free_run_choice");
-
-	if (isDefined(self.huds.freeround))
-		self.huds.freeround destroy();
-	if (isDefined(self.huds.freeround_time))
-		self.huds.freeround_time destroy();
-
-	if (freeRun)
-	{
-		thread drawInformation(800, 0.8, 1, "FREE RUN");
-		thread drawInformation(800, 0.8, -1, "FREE RUN");
-
-		level disableTraps();
-
-		players = getAllPlayers();
-		for (i = 0; i < players.size; i++)
-		{
-			if (players[i] isPlaying())
-			{
-				players[i] takeAllWeapons();
-				weapon = "knife_mp";
-				players[i] giveWeapon(weapon);
-				players[i] giveMaxAmmo(weapon);
-				players[i] switchToWeapon(weapon);
-			}
-		}
-		level notify("round_freerun");
-	}
-}
-
 disableTraps()
 {
 	level.trapsDisabled = true;
@@ -992,33 +653,6 @@ disableTraps()
 		if (isDefined(level.trapTriggers[i]))
 		level.trapTriggers[i].origin = level.trapTriggers[i].origin - (0, 0, 10000);
 	level notify("traps_disabled");
-}
-
-serverMessages()
-{
-	if (!level.dvar["messages_enable"])
-		return;
-
-	messages = strTok(level.dvar["messages"], ";");
-	lastMessage = messages.size - 1;
-	if (!isDefined(game["msg_time"]))
-		game["msg_time"] = 0;
-	if (!isDefined(game["msg"]))
-		game["msg"] = 0;
-
-	while (true)
-	{
-		if (game["msg_time"] == level.dvar["messages_delay"])
-		{
-			game["msg_time"] = 0;
-			iPrintln("^1>>^7 " + messages[game["msg"]]);
-			game["msg"]++;
-			if (game["msg"] > lastMessage)
-				game["msg"] = 0;
-		}
-		wait 1;
-		game["msg_time"]++;
-	}
 }
 
 isWallKnifing(attacker, victim)
@@ -1031,7 +665,7 @@ isWallKnifing(attacker, victim)
 	return true;
 }
 
-new_ending_hud(align, fade_in_time, x_off, y_off)
+endingHud(align, fade_in_time, x_off, y_off)
 {
 	hud = newHudElem();
 	hud.foreground = true;
@@ -1041,14 +675,11 @@ new_ending_hud(align, fade_in_time, x_off, y_off)
 	hud.alignY = "middle";
 	hud.horzAlign = align;
 	hud.vertAlign = "middle";
-
 	hud.fontScale = 3;
-
 	hud.color = (0.8, 1.0, 0.8);
 	hud.font = "objective";
 	hud.glowColor = (0.3, 0.6, 0.3);
 	hud.glowAlpha = 1;
-
 	hud.alpha = 0;
 	hud fadeovertime(fade_in_time);
 	hud.alpha = 1;
@@ -1060,7 +691,7 @@ new_ending_hud(align, fade_in_time, x_off, y_off)
 drawInformation(start_offset, movetime, mult, text)
 {
 	start_offset *= mult;
-	hud = new_ending_hud("center", 0.1, start_offset, 90);
+	hud = endingHud("center", 0.1, start_offset, 90);
 	hud setText(text);
 	hud moveOverTime(movetime);
 	hud.x = 0;
@@ -1071,26 +702,6 @@ drawInformation(start_offset, movetime, mult, text)
 
 	wait movetime;
 	hud destroy();
-}
-
-gib_splat()
-{
-	self playSound("gib_splat");
-	playFx(level.fx["gib_splat"], self.origin + (0, 0, 20));
-	self delete();
-}
-
-initScoresStat(num, name)
-{
-	level.bestScores[num]["name"] = name;
-	level.bestScores[num]["value"] = 0;
-	level.bestScores[num]["player"] = " ";
-	level.bestScores[num]["guid"] = "123";
-}
-
-appendToDvar(dvar, string)
-{
-	setDvar(dvar, getDvar(dvar) + string);
 }
 
 watchItems()
@@ -1122,40 +733,27 @@ watchItems()
 
 		if (!self isOnGround() || distance(self.origin, pos) > 48)
 		{
-			self iPrintlnBold("^1You can't use insertion here");
+			self iPrintln("^1You can't use insertion here");
 			entity delete();
 			continue;
 		}
 
 		entity.flareloop = true;
-		entity thread flarefx();
-		self cleanUpInsertion();
-		self.insertion = entity;
+		entity thread flareFx();
 
-		self iPrintlnBold("^2Insertion at " + pos);
+		self iPrintln("^2Insertion at " + pos);
 	}
 }
 
-flarefx()
+flareFx()
 {
 	self endon("disconnect");
 
 	while (isDefined(self))
 	{
-		if (!self.flareloop)
-			break;
-
-		if (isDefined(self))
-			playFxOnTag(level.fx["startnstop"], self, "tag_fx");
-
+		playFxOnTag(level.fx["startnstop"], self, "tag_fx");
 		wait 0.2;
 	}
-}
-
-cleanUpInsertion()
-{
-	if (isDefined(self.insertion))
-		self.insertion delete();
 }
 
 giveLife() { }
@@ -1167,13 +765,13 @@ playerTimer()
 	self endon("joined_spectators");
 	self endon("death");
 
-	if (!level.mapHasTimeTrigger || isDefined(self.finishedMap))
+	if (isDefined(self.finishedMap))
 		return;
 
 	while (game["state"] != "playing")
 		wait 0.05;
 
-	self.time = sr\utils\_common::originToTime(getSysTime());
+	self.time = sr\utils\_common::originToTime(getTime());
 }
 
 doHudTime()
@@ -1202,20 +800,16 @@ endTimer()
 		return;
 
 	self.finishedMap = true;
-	runtest = int(self.runNumber);
 
 	if (self.isBot)
-		self notify("menuresponse", level.menus["team"], "spectator");
-
-	// don't save time if in cheat mode
-	if (self.sr_cheatmode || runtest == 0)
 	{
-		if (!self.inRace && !self.inKz)
-			self iprintlnbold("^1Your time was not saved!");
+		self notify("menuresponse", level.menus["team"], "spectator");
 		return;
 	}
+	if (self.sr_cheatmode || runtest == 0)
+		return;
 
-	self.time = sr\utils\_common::originToTime(getSysTime() - self.time.origin);
+	self.time = sr\utils\_common::originToTime(getTime() - self.time.origin);
 
 	// self speedrun\game\_leaderboards::saveTimes();
 	// self speedrun\game\_leaderboards::loadPersonBest();
@@ -1230,29 +824,4 @@ endTimer()
 	entry = self speedrun\game\_leaderboards::makeEntry();
 	if (speedrun\game\_leaderboards::isValidEntry(entry))
 		self speedrun\game\_leaderboards::saveEntry(entry);
-}
-
-fastestTime()
-{
-	trig = getEntArray("endmap_trig", "targetname");
-
-	if (!trig.size || trig.size > 1)
-	{
-		iPrintln("^1NO END TRIG!! CREATE ONE!");
-		return;
-	}
-
-	level.mapHasTimeTrigger = true;
-
-	trig = trig[0];
-
-	while (true)
-	{
-		trig waittill("trigger", user);
-
-		if (!user isReallyAlive())
-			continue;
-
-		user thread endTimer();
-	}
 }
