@@ -1,4 +1,4 @@
-init()
+main()
 {
 	setDvar("g_TeamName_Allies", "^5Speedrun");
 	setDvar("g_TeamIcon_Allies", "");

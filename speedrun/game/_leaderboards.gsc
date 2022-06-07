@@ -17,6 +17,7 @@ main()
 	menu_multiple("sr_leaderboard", "mode", ::menu_Mode);
 
 	event("connect", ::onConnect);
+	event("spawn", ::playerTimer)
 
 	load();
 }
@@ -47,6 +48,9 @@ menu_Mode(args)
 
 onConnect()
 {
+	self.sr_mode = "190";
+	self.sr_way = "normal_0";
+
 	names = getArrayKeys(level.leaderboards);
 
 	// Default
@@ -286,4 +290,45 @@ effects()
 		PlayFX(level.fx["wr_event"], self.origin);
 		wait 0.5;
 	}
+}
+
+playerTimer()
+{
+	self endon("disconnect");
+	self endon("spawned_player");
+	self endon("joined_spectators");
+	self endon("death");
+
+	if (self.finishedMap)
+		return;
+
+	while (game["state"] != "playing")
+		wait 0.05;
+
+	self.time = sr\utils\_common::originToTime(getTime());
+}
+
+endTimer()
+{
+	if (self.finishedMap || self.sr_cheat)
+		return;
+
+	self.finishedMap = true;
+
+	if (self.isBot)
+	{
+		self notify("menuresponse", level.menus["team"], "spectator");
+		return;
+	}
+
+	self.time = originToTime(getTime() - self.time.origin);
+	self speedrun\player\huds\_speedrun::updateTime();
+
+	iPrintLn(fmt("%s finished the map in %d:%d.%d - %s / %s",
+		self.name, self.time.min, self.time.sec, self.time.milsec,
+		self.sr_mode, self.sr_way));
+
+	entry = self makeEntry();
+	if (isValidEntry(entry))
+		saveEntry(entry);
 }

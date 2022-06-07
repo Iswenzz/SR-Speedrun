@@ -2,29 +2,231 @@
 
 main()
 {
-	flags();
-
-	event("connect", 	braxi\_mod::playerConnect);
-	event("disconnect", braxi\_mod::playerDisconnect);
-	event("laststand", 	braxi\_mod::playerLastStand);
-	event("damage", 	braxi\_mod::playerDamage);
-	event("killed", 	braxi\_mod::playerKilled);
-	event("command", 	sr\sys\_admins::command);
+	event("connect", 	::playerConnect);
+	event("disconnect", ::playerDisconnect);
+	event("laststand", 	::playerLastStand);
+	event("damage", 	::playerDamage);
+	event("killed", 	::playerKilled);
+	event("spectator",	::playerSpectator);
 
 	level.allies 	= ::allies;
 	level.axis 		= ::axis;
 	level.spectator = ::spectator;
 }
 
-flags()
+playerConnect()
 {
-	level.iDFLAGS_RADIUS				= 1;
-	level.iDFLAGS_NO_ARMOR				= 2;
-	level.iDFLAGS_NO_KNOCKBACK			= 4;
-	level.iDFLAGS_PENETRATION			= 8;
-	level.iDFLAGS_NO_TEAM_PROTECTION 	= 16;
-	level.iDFLAGS_NO_PROTECTION			= 32;
-	level.iDFLAGS_PASSTHRU				= 64;
+	level notify("connected", self);
+
+	self setClientDvar("ui_3dwaypointtext", "1");
+	self setClientDvar("ui_deathicontext", "1");
+	self setClientDvar("cl_maxpackets", 125);
+	self setClientDvar("rate", 25000);
+	self setClientDvar("show_hud", "true");
+	self setClientDvar("ip", getDvar("net_ip"));
+	self setClientDvar("port", getDvar("net_port"));
+	self setClientDvar("show_hud", "true");
+	self setClientDvar("cg_drawSpectatorMessages", 1);
+	self setClientDvar("ui_hud_hardcore", 1);
+	self setClientDvar("player_sprintTime", 4);
+	self setClientDvar("ui_uav_client", 0);
+	self setClientDvar("g_scriptMainMenu", level.menus["team"]);
+
+	self clientCmd("setu com_maxfps 125");
+	self clientCmd("setu sr_xp_bar 0")
+
+	self.enable3DWaypoints = true;
+	self.enableDeathIcons = true;
+	self.classType = undefined;
+	self.selectedClass = false;
+	self.teamKill = false;
+	self.guid = getSubStr(player getGuid(), 24, 32);
+	self.shortName = getSubStr(player.name, 0, 15);
+	self.number = self getEntityNumber();
+	self.statusicon = "hud_status_connecting";
+	self.died = false;
+	self.sessionstate = Ternary(game["state"] == "endmap", "intermission", "spectator");
+	self.team = "spectator";
+	self.pers["team"] = "spectator";
+	self.pers["score"] = 0;
+	self.pers["kills"] = 0;
+	self.pers["deaths"] = 0;
+	self.pers["assists"] = 0;
+	self.pers["lifes"] = 0;
+	self.pers["headshots"] = 0;
+	self.pers["knifes"] = 0;
+	self.pers["activator"] = 0;
+	self.pers["isDog"] = false;
+	self.score = self.pers["score"];
+	self.kills = self.pers["kills"];
+	self.assists = self.pers["assists"];
+	self.deaths = self.pers["deaths"];
+
+	self playerSpectator();
+	logPrint(fmt("J;%s;%d;%s\n", self.guid, self.number, self.name));
+
+	if (game["state"] == "endmap")
+		return;
+
+	self welcomeMenu();
+}
+
+playerDisconnect()
+{
+	level notify("disconnected", self);
+	self cleanUp();
+
+	if (isDefined(self.clone))
+		self.clone delete();
+
+	iPrintln(self.name + " ^7left the game");
+	logPrint(fmt("Q;%s;%d;%s\n", self.guid, self.number, self.name));
+}
+
+playerLastStand(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration)
+{
+	self suicide();
+}
+
+playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime)
+{
+	if (self.sessionteam == "spectator" || game["state"] == "endmap")
+		return;
+
+	level notify("player_damage", self, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime);
+
+	if (isPlayer(eAttacker) && !eAttacker.teamKill)
+		return;
+
+	if (isPlayer(eAttacker) && sMeansOfDeath == "MOD_MELEE" && isWallKnifing(eAttacker, self))
+		return;
+
+	if (!isDefined(vDir))
+		iDFlags |= level.iDFLAGS_NO_KNOCKBACK;
+
+	if (!(iDFlags & level.iDFLAGS_NO_PROTECTION))
+	{
+		if (iDamage < 1)
+			iDamage = 1;
+
+		self finishPlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime);
+	}
+}
+
+playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration)
+{
+	self endon("spawned");
+	self notify("killed_player");
+	self notify("death");
+
+	if (self.sessionteam == "spectator" || game["state"] == "endmap")
+		return;
+
+	level notify("player_killed", self, eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration);
+
+	if (level.dvar["giveXpForKill"] && !level.trapsDisabled)
+	{
+		if (isDefined(level.activ) && level.activ != self && level.activ isReallyAlive())
+		{
+			if (sMeansOfDeath == "MOD_UNKNOWN" || sMeansOfDeath == "MOD_FALLING" || sMeansOfDeath == "MOD_SUICIDE")
+				level.activ braxi\_rank::giveRankXP("jumper_died");
+		}
+	}
+	if (sHitLoc == "head" && sMeansOfDeath != "MOD_MELEE")
+		sMeansOfDeath = "MOD_HEAD_SHOT";
+
+	self.statusicon = "hud_status_dead";
+	self.sessionstate = "spectator";
+	self.died = true;
+	self respawn();
+}
+
+playerSpawn()
+{
+	if (game["state"] == "endmap")
+		return;
+
+	level notify("jumper", self);
+	self cleanUp();
+
+	self.team = self.pers["team"];
+	self.sessionteam = self.team;
+	self.sessionstate = "playing";
+	self.spectatorclient = -1;
+	self.killcamentity = -1;
+	self.archivetime = 0;
+	self.psoffsettime = 0;
+	self.statusicon = "";
+	self.finishedMap = false;
+
+	self sr\game\_teams::setPlayerModel();
+	self sr\game\_teams::setHealth();
+	self spawn(level.masterSpawn.origin, level.masterSpawn.angles);
+
+	self.pers["weapon"] = level.assets["weapon"][self getStat(981)]["item"];
+	self.pers["knife"] = level.assets["knife"][self getStat(982)]["item"];
+	self.pers["knife_skin"] = int(level.assets["knifeSkin"][self getStat(983)]["item"]);
+
+	if (self.model == "german_sheperd_dog")
+		self.pers["weapon"] = "dog_mp";
+
+	weapon = Ternary(!self.settings["player_knife"], self.pers["weapon"], self.pers["knife"]);
+	if (!self.settings["player_knife"])
+		self giveWeapon(self.pers["knife"], self.pers["knife_skin"]);
+	self giveWeapon(weapon);
+	self setSpawnWeapon(weapon);
+	self giveMaxAmmo(weapon);
+
+	if (sr\api\_speedrun::isCJ())
+	{
+		self setActionSlot(4, "weapon", "rpg_mp");
+		self giveWeapon("rpg_mp");
+		self giveMaxAmmo("rpg_mp");
+	}
+
+	self notify("spawned_player");
+	level notify("player_spawn", self);
+
+	if (game["state"] == "readyup")
+	{
+		self freezeControls(true);
+		self disableWeapons();
+	}
+	if (self getStat(988) == 1)
+		self setClientDvar("cg_thirdperson", 1);
+}
+
+playerSpectator()
+{
+	self notify("joined_spectators");
+
+	self cleanUp();
+	self.sessionstate = "spectator";
+	self.spectatorclient = -1;
+	self.statusicon = "";
+	self spawn(level.spawn["spectator"].origin, level.spawn["spectator"].angles);
+	self sr\game\_teams::setSpectatePermissions();
+
+	level notify("player_spectator", self);
+}
+
+cleanUp()
+{
+	self clearLowerMessage();
+	self notify("kill afk monitor");
+	self setClientDvars("cg_thirdperson", 0, "cg_thirdpersonrange", 80, "r_blur", 0, "ui_healthbar", 1, "bg_viewKickMax", 90, "bg_viewKickMin", 5, "bg_viewKickRandom", 0.4, "bg_viewKickScale", 0.2);
+	self unLink();
+	self enableWeapons();
+}
+
+isWallKnifing(attacker, victim)
+{
+	start = attacker getEye();
+	end = victim getEye();
+
+	if (bulletTracePassed(start, end, false, attacker) == 1)
+		return false;
+	return true;
 }
 
 allies()

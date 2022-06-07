@@ -10,6 +10,14 @@ CodeCallback_StartGameType()
 	level.oldschool = false;
 	level.gameEnded = false;
 
+	level.iDFLAGS_RADIUS				= 1;
+	level.iDFLAGS_NO_ARMOR				= 2;
+	level.iDFLAGS_NO_KNOCKBACK			= 4;
+	level.iDFLAGS_PENETRATION			= 8;
+	level.iDFLAGS_NO_TEAM_PROTECTION 	= 16;
+	level.iDFLAGS_NO_PROTECTION			= 32;
+	level.iDFLAGS_PASSTHRU				= 64;
+
 	printLn("^5===================================");
 	printLn("^5SR Mod (c) Iswenzz 2016-2022");
 	printLn("^5Visit: iswenzz.com" );

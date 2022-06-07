@@ -18,7 +18,7 @@ cmd_Practise()
 {
     state = !self.sr_practise;
     self.sr_practise = state;
-    self.sr_cheatmode = state;
+    self.sr_cheat = state;
 
     if (self.sr_practise)
     {
