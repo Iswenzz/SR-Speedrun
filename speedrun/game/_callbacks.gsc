@@ -1,4 +1,5 @@
 #include sr\sys\_events;
+#include sr\utils\_common;
 
 main()
 {
@@ -33,15 +34,15 @@ playerConnect()
 	self setClientDvar("g_scriptMainMenu", level.menus["team"]);
 
 	self clientCmd("setu com_maxfps 125");
-	self clientCmd("setu sr_xp_bar 0")
+	self clientCmd("setu sr_xp_bar 0");
 
 	self.enable3DWaypoints = true;
 	self.enableDeathIcons = true;
 	self.classType = undefined;
 	self.selectedClass = false;
 	self.teamKill = false;
-	self.guid = getSubStr(player getGuid(), 24, 32);
-	self.shortName = getSubStr(player.name, 0, 15);
+	self.guid = getSubStr(self getGuid(), 24, 32);
+	self.shortName = getSubStr(self.name, 0, 15);
 	self.number = self getEntityNumber();
 	self.statusicon = "hud_status_connecting";
 	self.died = false;
@@ -129,7 +130,7 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 		if (isDefined(level.activ) && level.activ != self && level.activ isReallyAlive())
 		{
 			if (sMeansOfDeath == "MOD_UNKNOWN" || sMeansOfDeath == "MOD_FALLING" || sMeansOfDeath == "MOD_SUICIDE")
-				level.activ braxi\_rank::giveRankXP("jumper_died");
+				level.activ sr\game\_rank::giveRankXP("jumper_died");
 		}
 	}
 	if (sHitLoc == "head" && sMeansOfDeath != "MOD_MELEE")
@@ -138,7 +139,7 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 	self.statusicon = "hud_status_dead";
 	self.sessionstate = "spectator";
 	self.died = true;
-	self respawn();
+	self eventSpawn();
 }
 
 playerSpawn()
@@ -156,12 +157,13 @@ playerSpawn()
 	self.killcamentity = -1;
 	self.archivetime = 0;
 	self.psoffsettime = 0;
-	self.statusicon = "";
+	self.statusicon = Ternary(self sr\sys\_admins::isVIP(), "vip_status", "");
 	self.finishedMap = false;
 
 	self sr\game\_teams::setPlayerModel();
 	self sr\game\_teams::setHealth();
-	self spawn(level.masterSpawn.origin, level.masterSpawn.angles);
+	spawn = IfUndef(self.spawnPoint, level.masterSpawn);
+	self spawn(spawn.origin, spawn.angles);
 
 	self.pers["weapon"] = level.assets["weapon"][self getStat(981)]["item"];
 	self.pers["knife"] = level.assets["knife"][self getStat(982)]["item"];
@@ -200,23 +202,9 @@ playerSpectator()
 {
 	self notify("joined_spectators");
 
-	self cleanUp();
-	self.sessionstate = "spectator";
-	self.spectatorclient = -1;
-	self.statusicon = "";
-	self spawn(level.spawn["spectator"].origin, level.spawn["spectator"].angles);
-	self sr\game\_teams::setSpectatePermissions();
+	self sr\game\_map::spawnSpectator();
 
 	level notify("player_spectator", self);
-}
-
-cleanUp()
-{
-	self clearLowerMessage();
-	self notify("kill afk monitor");
-	self setClientDvars("cg_thirdperson", 0, "cg_thirdpersonrange", 80, "r_blur", 0, "ui_healthbar", 1, "bg_viewKickMax", 90, "bg_viewKickMin", 5, "bg_viewKickRandom", 0.4, "bg_viewKickScale", 0.2);
-	self unLink();
-	self enableWeapons();
 }
 
 isWallKnifing(attacker, victim)
@@ -227,6 +215,20 @@ isWallKnifing(attacker, victim)
 	if (bulletTracePassed(start, end, false, attacker) == 1)
 		return false;
 	return true;
+}
+
+welcomeMenu()
+{
+	self endon("disconnect");
+	wait 0.05;
+
+	if (!isDefined(self.canplay))
+	{
+		self.canplay = true;
+		self openMenu(level.menus["sr_welcome"]);
+	}
+	else
+		self openMenu(level.menus["team"]);
 }
 
 allies()

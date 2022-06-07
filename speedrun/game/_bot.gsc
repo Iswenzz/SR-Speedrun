@@ -1,6 +1,6 @@
-init()
+main()
 {
-	start();
+
 }
 
 start()

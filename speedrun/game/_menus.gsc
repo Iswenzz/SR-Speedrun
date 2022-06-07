@@ -1,5 +1,5 @@
-#include braxi\_common;
 #include sr\sys\_events;
+#include sr\utils\_common;
 
 main()
 {
@@ -75,5 +75,5 @@ menu_Team(arg)
 		return;
 
 	if (self canSpawn())
-		self braxi\_mod::spawnPlayer();
+		self eventSpawn();
 }

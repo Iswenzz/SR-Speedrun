@@ -1,9 +1,8 @@
-#include maps\mp\_utility;
 #include maps\mp\gametypes\_hud_util;
-#include common_scripts\utility;
 
 #include sr\sys\_events;
 #include sr\utils\_math;
+#include sr\utils\_common;
 
 main()
 {
@@ -13,6 +12,11 @@ main()
 	level.trapsDisabled = false;
 
 	disableTraps();
+}
+
+endTimer()
+{
+	self speedrun\game\_leaderboards::endTimer();
 }
 
 addTextHud(who, x, y, alpha, alignX, alignY, fontScale)

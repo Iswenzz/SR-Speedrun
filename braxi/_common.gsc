@@ -79,21 +79,6 @@ deleteAfterTime(time)
 		self delete();
 }
 
-canStartGame(min)
-{
-	count = 0;
-	players = getAllPlayers();
-
-	for (i = 0; i < players.size; i++)
-	{
-		if (players[i] isPlaying())
-			count++;
-	}
-	if (count >= min)
-		return true;
-	return false;
-}
-
 waitForPlayers(requiredPlayersCount)
 {
 	quit = false;
@@ -274,20 +259,6 @@ getHitLocHeight(sHitLoc)
 			return 5;
 	}
 	return 48;
-}
-
-welcomeMenu()
-{
-	self endon("disconnect");
-	wait 0.05;
-
-	if (!isDefined(self.canplay))
-	{
-		self.canplay = true;
-		self openMenu(level.menus["sr_welcome"]);
-	}
-	else
-		self openMenu(level.menus["team"]);
 }
 
 waitTillNotMoving()

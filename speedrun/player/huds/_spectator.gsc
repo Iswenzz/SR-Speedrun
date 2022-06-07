@@ -37,12 +37,14 @@ hud()
 
 hudFps()
 {
+	self.huds["spectator_fps"] = [];
 	self.huds["spectator_fps"] = addhud(self, 0, 50, 1, "center", "top", 1.8);
 	self.huds["spectator_fps"].archived = false;
 	self.huds["spectator_fps"].horzAlign = "center";
 	self.huds["spectator_fps"].vertAlign = "top";
 	self.huds["spectator_fps"].hidewheninmenu = true;
 
+	self.huds["spectator_velocity"] = [];
 	self.huds["spectator_velocity"] = addhud(self, 0, 0, 1, "center", "bottom", 1.8);
 	self.huds["spectator_velocity"].archived = false;
 	self.huds["spectator_velocity"].horzAlign = "center";
@@ -86,10 +88,6 @@ clear()
 	}
 	if (isDefined(self.huds["spectator_velocity"]))
 		self.huds["spectator_velocity"] destroy();
-
-	self.huds["spectator_keys"] = undefined;
-	self.huds["spectator_fps"] = undefined;
-	self.huds["spectator_velocity"] = undefined;
 }
 
 updateKeys(player)
