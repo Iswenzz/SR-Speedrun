@@ -1,12 +1,16 @@
 #include sr\sys\_events;
 #include sr\utils\_common;
 
-main()
+initLeaderboards()
 {
+	if (isDefined(level.leaderboard_loaded))
+		return;
+
 	level.leaderboards = [];
 	level.leaderboard_modes = [];
 	level.leaderboard_max_page = 7;
 	level.leaderboard_max_entries = 30;
+	level.leaderboard_loaded = true;
 	level.leaderboard_xps = xpTable();
 
 	addMode("190");
@@ -166,6 +170,8 @@ addMode(name)
 
 addWay(id, name)
 {
+	initLeaderboards();
+
 	modes = level.leaderboard_modes;
 	for (i = 0; i < modes.size; i++)
 	{

@@ -50,6 +50,9 @@ endRoundAnnoucement(text, color)
 
 disableTraps()
 {
+	if (!isDefined(level.trapTriggers))
+		return;
+
 	level.trapsDisabled = true;
 	for (i = 0; i < level.trapTriggers.size; i++)
 		if (isDefined(level.trapTriggers[i]))
