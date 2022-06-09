@@ -3,16 +3,13 @@
 
 main()
 {
-	precacheString(&"MP_HOST_ENDED_GAME");
-	precacheString(&"MP_HOST_ENDGAME_RESPONSE");
-
 	menu("-1", 			"dog", 			::menu_Dog);
 	menu("-1", 			"back", 		::menu_Back);
 	menu("quickstuff", 	"3rdperson", 	::menu_3rdPerson);
 	menu("quickstuff", 	"suicide", 		::menu_Suicide);
-	menu("team", 		"allies", 		::menu_Team);
-	menu("team", 		"axis", 		::menu_Team);
-	menu("team", 		"autoassign", 	::menu_Team);
+	menu("team_select", "allies", 		::menu_Team);
+	menu("team_select", "axis", 		::menu_Team);
+	menu("team_select", "autoassign", 	::menu_Team);
 
 	menu_callback("quickcommands",	 	maps\mp\gametypes\_quickmessages::quickcommands);
 	menu_callback("quickstatements", 	maps\mp\gametypes\_quickmessages::quickstatements);
@@ -68,11 +65,6 @@ menu_Team(arg)
 	}
 
 	self sr\game\_teams::setTeam("allies");
-
-	if (self.pers["team"] == "allies" && self.sessionstate != "playing" && self.pers["lifes"])
-		return;
-	if (self.sessionstate == "playing" || game["state"] == "round ended")
-		return;
 
 	if (self canSpawn())
 		self eventSpawn();

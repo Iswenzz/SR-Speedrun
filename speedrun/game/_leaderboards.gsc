@@ -323,7 +323,7 @@ endTimer()
 
 	if (self.isBot)
 	{
-		self notify("menuresponse", level.menus["team"], "spectator");
+		self notify("menuresponse", "team_select", "spectator");
 		return;
 	}
 

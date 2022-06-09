@@ -2,7 +2,6 @@ initDvars()
 {
 	addDvar("time_limit", "dr_timelimit", 5, 0, 60, "int");
 	addDvar("round_limit", "dr_rounds", 15, 1, 30, "int");
-	addDvar("spawn_time", "dr_spawn_time", 4, 1, 30, "int");
 	addDvar("damage_messages", "dr_damage_messages", 1, 0, 1, "int");
 	addDvar("displayBestPlayers", "dr_draw_best_players", 1, 0, 1, "int");
 	addDvar("insertion", "dr_insertion", 1, 0, 1, "int");
@@ -43,7 +42,6 @@ initDvars()
 	addDvar("messages_delay", "dr_messages_delay", 25, 5, 999, "int");
 	addDvar("messages", "dr_messages", "", "", "", "string");
 	addDvar("lastmessage", "dr_lastmessage", "", "", "", "string");
-	addDvar("usePlugins", "dr_usePlugins", 1, 0, 1, "int");
 	addDvar("warns_stat", "dr_warns_stat", 2360, 1, 9999, "int");
 	addDvar("warns_max", "dr_maxwarns", 5, 2, 20, "int");
 	addDvar("show_guids", "dr_show_guids", 1, 0, 1, "int");

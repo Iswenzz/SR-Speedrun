@@ -100,9 +100,9 @@ updateKeys(player)
 
 updateFps(player)
 {
-	player.fps = ToInt(player getUserInfo("com_maxfps"));
+	fps = player GetFPS();
 
-	switch (player.fps)
+	switch (fps)
 	{
 		case 20:
 		case 30:
@@ -113,7 +113,7 @@ updateFps(player)
 		case 333:
 		case 500:
 		case 1000:
-			self.huds["spectator_fps"] setShader("fps_" + player.fps, 90, 60);
+			self.huds["spectator_fps"] setShader("fps_" + fps, 90, 60);
 			break;
 	}
 }

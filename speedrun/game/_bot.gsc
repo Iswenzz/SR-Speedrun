@@ -14,14 +14,14 @@ start()
 		bot.isBot = true;
 		bot.sr_cheat = true;
 		bot.runId = "^5Speedrun Bot";
-		bot notify("menuresponse", level.menus["team"], "axis");
+		bot notify("menuresponse", "team_select", "axis");
 
 		wait 0.1;
 		bot hide();
 
 		wait 2;
 
-		self notify("menuresponse", level.menus["team"], "spectator");
+		self notify("menuresponse", "team_select", "spectator");
 	}
 }
 

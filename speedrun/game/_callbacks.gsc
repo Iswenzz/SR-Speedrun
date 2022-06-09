@@ -3,6 +3,7 @@
 
 main()
 {
+	event("spawn",		::playerSpawn);
 	event("connect", 	::playerConnect);
 	event("disconnect", ::playerDisconnect);
 	event("laststand", 	::playerLastStand);
@@ -31,9 +32,7 @@ playerConnect()
 	self setClientDvar("ui_hud_hardcore", 1);
 	self setClientDvar("player_sprintTime", 4);
 	self setClientDvar("ui_uav_client", 0);
-	self setClientDvar("g_scriptMainMenu", level.menus["team"]);
-
-	self clientCmd("setu com_maxfps 125");
+	self setClientDvar("g_scriptMainMenu", "team_select");
 	self clientCmd("setu sr_xp_bar 0");
 
 	self.enable3DWaypoints = true;
@@ -185,10 +184,6 @@ playerSpawn()
 		self giveWeapon("rpg_mp");
 		self giveMaxAmmo("rpg_mp");
 	}
-
-	self notify("spawned_player");
-	level notify("player_spawn", self);
-
 	if (game["state"] == "readyup")
 	{
 		self freezeControls(true);
@@ -196,6 +191,8 @@ playerSpawn()
 	}
 	if (self getStat(988) == 1)
 		self setClientDvar("cg_thirdperson", 1);
+
+	level notify("player_spawn", self);
 }
 
 playerSpectator()
@@ -225,10 +222,10 @@ welcomeMenu()
 	if (!isDefined(self.canplay))
 	{
 		self.canplay = true;
-		self openMenu(level.menus["sr_welcome"]);
+		self openMenu("sr_welcome");
 	}
 	else
-		self openMenu(level.menus["team"]);
+		self openMenu("team_select");
 }
 
 allies()
