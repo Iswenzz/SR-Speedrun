@@ -53,8 +53,8 @@ way_connect()
 {
     wait 0.05;
 
-	// sr\api\_speedrun::createNormalWays("Normal Way;");
-	// sr\api\_speedrun::createSecretWays("Secret Way;");
+	sr\api\_speedrun::createNormalWays("Normal Way;");
+	sr\api\_speedrun::createSecretWays("Secret Way;");
 
 	thread secret_1();
 

@@ -13,7 +13,7 @@ Callback_StartGameType()
 	if (!isDefined(game["axis"] ))
 		game["axis"] = "opfor";
 
-	speedrun\_main::main();
+	speedrun\_mod::main();
 
 	allowed[0] = "war";
 	maps\mp\gametypes\_gameobjects::main(allowed);

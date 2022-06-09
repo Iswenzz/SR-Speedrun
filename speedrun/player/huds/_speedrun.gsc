@@ -46,7 +46,7 @@ hud()
 	self.huds["speedrun"]["time"] setTenthsTimerUp(0.0001);
 	self.huds["speedrun"]["time"].hidewheninmenu = true;
 
-	way = Ternary(isDefined(level.normal_way[0]), level.normal_way[0].name, "");
+	way = IfUndef(self.sr_way, "");
  	self.huds["speedrun"]["name"] = addHud(self, 3, 0, 1, "left", "top", 1.4);
 	self.huds["speedrun"]["name"] setText(way);
 	self.huds["speedrun"]["name"].hidewheninmenu = true;

@@ -3,9 +3,6 @@
 
 initLeaderboards()
 {
-	if (isDefined(level.leaderboard_loaded))
-		return;
-
 	level.leaderboards = [];
 	level.leaderboard_modes = [];
 	level.leaderboard_max_page = 7;
@@ -21,7 +18,7 @@ initLeaderboards()
 	menu_multiple("sr_leaderboard", "mode", ::menu_Mode);
 
 	event("connect", ::onConnect);
-	event("spawn", ::playerTimer)
+	event("spawn", ::playerTimer);
 
 	load();
 }
@@ -111,7 +108,7 @@ makeEntry()
 	entry["runId"] = self.runId;
 	entry["way"] = self.sr_way;
 	entry["mode"] = self.sr_mode;
-	entry["time"] = originToTime(self.time);
+	entry["time"] = self.time;
 	return entry;
 }
 
@@ -170,8 +167,6 @@ addMode(name)
 
 addWay(id, name)
 {
-	initLeaderboards();
-
 	modes = level.leaderboard_modes;
 	for (i = 0; i < modes.size; i++)
 	{

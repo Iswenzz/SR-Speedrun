@@ -9,8 +9,8 @@ main()
 	game["state"] = "readyup";
 	game["roundStarted"] = true;
 
-	huds();
-	start();
+	thread huds();
+	thread start();
 }
 
 start()

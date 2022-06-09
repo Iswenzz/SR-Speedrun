@@ -4,6 +4,26 @@ main()
 {
 	event("spawn", ::setSpeed);
 	event("spawn", ::watchWay);
+
+	thread endmapTrig();
+}
+
+endmapTrig()
+{
+	array = getEntArray("endmap_trig", "targetname");
+	if (!array.size)
+	{
+		iPrintLnBold("^1Error: No endmap_trig found.");
+		return;
+	}
+
+	trigger = array[0];
+	thread sr\game\fx\_trigger::createTrigFx(trigger, "red");
+	while (true)
+	{
+		trigger waittill("trigger", player);
+		player speedrun\game\_leaderboards::endTimer();
+	}
 }
 
 setSpeed()
