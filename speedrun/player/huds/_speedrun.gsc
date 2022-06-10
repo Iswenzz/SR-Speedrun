@@ -52,9 +52,9 @@ hud()
 	self.huds["speedrun"]["name"].hidewheninmenu = true;
 	self.huds["speedrun"]["name"].sort = 99;
 
- 	self.huds["speedrun"]["group"] = addHud(self, 142, 18, 1, "left", "top", 1.8);
-	self.huds["speedrun"]["group"] setText(self sr\sys\_admins::getGroupString());
-	self.huds["speedrun"]["group"].hidewheninmenu = true;
+ 	self.huds["speedrun"]["role"] = addHud(self, 142, 18, 1, "left", "top", 1.8);
+	self.huds["speedrun"]["role"] setText(self sr\sys\_admins::getRoleName());
+	self.huds["speedrun"]["role"].hidewheninmenu = true;
 
 	self updateWay();
 }

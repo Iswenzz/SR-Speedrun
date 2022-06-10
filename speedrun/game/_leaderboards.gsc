@@ -76,11 +76,10 @@ load()
 {
 	mutex_acquire("mysql");
 
-	SQL_Prepare("SELECT mode, way, time, name FROM speedrun_leaderboards WHERE map = ?");
+	SQL_Prepare("SELECT mode, way, time, name FROM leaderboards WHERE map = ?");
 	SQL_BindParam(getDvar("mapname"), level.MYSQL_TYPE_STRING);
-	SQL_BindResult(level.MYSQL_TYPE_STRING, 3);
-	SQL_BindResult(level.MYSQL_TYPE_LONG);
-	SQL_BindResult(level.MYSQL_TYPE_LONG);
+	SQL_BindResult(level.MYSQL_TYPE_STRING, 20);
+	SQL_BindResult(level.MYSQL_TYPE_STRING, 20);
 	SQL_BindResult(level.MYSQL_TYPE_LONG);
 	SQL_BindResult(level.MYSQL_TYPE_STRING, 32);
 	SQL_Execute();
@@ -126,34 +125,34 @@ saveEntry(entry)
 	entries[entries.size] = entry;
 	entries = sortEntries(entries);
 
-	placement = getEntryPlacement(entry, entries);
-	self givePlacementXP(placement);
-	if (placement == 1)
-		self thread worldRecord();
+	// placement = getEntryPlacement(entry, entries);
+	// self givePlacementXP(placement);
+	// if (placement == 1)
+	// 	self thread worldRecord();
 
 	mutex_acquire("mysql");
 
 	// Update
-	SQL_Prepare("UPDATE speedrun_leaderboards SET time = ?, name = ?, runId = ? WHERE map = ?, id = ?, mode = ?, way = ?");
+	SQL_Prepare("UPDATE leaderboards SET time = ?, name = ?, runId = ? WHERE map = ? AND player = ? AND mode = ? AND way = ?");
 	SQL_BindParam(entry["time"], level.MYSQL_TYPE_LONG);
 	SQL_BindParam(entry["name"], level.MYSQL_TYPE_STRING);
 	SQL_BindParam(entry["runId"], level.MYSQL_TYPE_LONG);
 	SQL_BindParam(getDvar("mapname"), level.MYSQL_TYPE_STRING);
-	SQL_BindParam(entry["id"], level.MYSQL_TYPE_LONG);
-	SQL_BindParam(entry["mode"], level.MYSQL_TYPE_LONG);
+	SQL_BindParam(entry["id"], level.MYSQL_TYPE_STRING);
+	SQL_BindParam(entry["mode"], level.MYSQL_TYPE_STRING);
 	SQL_BindParam(entry["way"], level.MYSQL_TYPE_STRING);
 	SQL_Execute();
 
 	// Insert
 	if (!SQL_AffectedRows())
 	{
-		SQL_Prepare("INSERT INTO speedrun_leaderboards (map, time, name, mode, way, id, runId) VALUES (?, ?, ?, ?, ?, ?, ?)");
+		SQL_Prepare("INSERT INTO leaderboards (map, time, name, mode, way, player, runId) VALUES (?, ?, ?, ?, ?, ?, ?)");
 		SQL_BindParam(getDvar("mapname"), level.MYSQL_TYPE_STRING);
 		SQL_BindParam(entry["time"], level.MYSQL_TYPE_LONG);
 		SQL_BindParam(entry["name"], level.MYSQL_TYPE_STRING);
-		SQL_BindParam(entry["mode"], level.MYSQL_TYPE_LONG);
+		SQL_BindParam(entry["mode"], level.MYSQL_TYPE_STRING);
 		SQL_BindParam(entry["way"], level.MYSQL_TYPE_STRING);
-		SQL_BindParam(entry["id"], level.MYSQL_TYPE_LONG);
+		SQL_BindParam(entry["id"], level.MYSQL_TYPE_STRING);
 		SQL_BindParam(entry["runId"], level.MYSQL_TYPE_LONG);
 		SQL_Execute();
 	}
@@ -253,10 +252,10 @@ getLeaderboardEntries(mode, way)
 
 getEntryPlacement(entry, entries)
 {
-	for (i = 1; i <= entries.size; i++)
+	for (i = 0; i < entries.size; i++)
 	{
 		if (entries[i]["id"] == entry["id"] && entries[i]["runId"] == entry["runId"])
-			return i;
+			return i + 1;
 	}
 	return 0;
 }
