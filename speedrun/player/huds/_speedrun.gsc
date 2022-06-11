@@ -46,7 +46,7 @@ hud()
 	self.huds["speedrun"]["time"] setTenthsTimerUp(0.0001);
 	self.huds["speedrun"]["time"].hidewheninmenu = true;
 
-	way = IfUndef(self.sr_way, "");
+	way = speedrun\game\_leaderboards::getLeaderboardName(self.sr_mode, self.sr_way);
  	self.huds["speedrun"]["name"] = addHud(self, 3, 0, 1, "left", "top", 1.4);
 	self.huds["speedrun"]["name"] setText(way);
 	self.huds["speedrun"]["name"].hidewheninmenu = true;
@@ -61,10 +61,7 @@ hud()
 
 updateTime()
 {
-	if (!isDefined(self.huds["speedrun"][4]))
-		return;
-
-	self.huds["speedrun"]["time"] setText(self.time.min + ":" + self.time.sec + "." + self.time.milsec);
+	self.huds["speedrun"]["time"] setText(self.time.min + ":" + self.time.sec + "." + self.time.ms);
 	self.huds["speedrun"]["time"].fontScale = 1.4;
 	self.huds["speedrun"]["time"].x = 73;
 	self.huds["speedrun"]["time"].y = 21;
@@ -72,10 +69,7 @@ updateTime()
 
 updateWay()
 {
-	if (!isDefined(self.huds["speedrun"][4]))
-		return;
-
-	name = speedrun\game\_leaderboards::getLeaderboardName(self.sr_mode, self.sr_way);
+	name = speedrun\game\_leaderboards::getLeaderboardIndex(self.sr_mode, self.sr_way);
 	self.huds["speedrun"]["name"] setText(level.leaderboards[name].name);
 }
 
