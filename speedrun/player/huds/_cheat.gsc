@@ -11,7 +11,7 @@ hud()
 	self endon("disconnect");
 	self endon("death");
 
-	self.runId = randomInt(999999);
+	self.runId = randomInt(999999999);
 
 	self setClientDvar("sr_anticheat_player_id", self.id);
 	self setClientDvar("sr_anticheat_player_name", self.shortName);
@@ -34,8 +34,8 @@ spec()
 
 		if (player.isBot)
 		{
-			player.guid = "^84201337";
-			player.id = "0000000";
+			player.guid = "^5Speedrun";
+			player.id = "^8BOT";
 		}
 
 		self setClientDvar("sr_anticheat_player_id", player.id);

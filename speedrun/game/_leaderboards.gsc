@@ -274,7 +274,7 @@ display()
 		names += fmt("%s%s^7\n", color, entries[i]["name"]);
 		times += fmt("^7%d:%d.%d\n", entries[i]["time"].min, entries[i]["time"].sec, entries[i]["time"].ms);
 
-		if (!(placement % 10) || entries.size < 10)
+		if (!(placement % 10) || i == entries.size - 1)
 		{
 			self setClientDvar("leaderboard_numbers_" + stringIndex, numbers);
 			self setClientDvar("leaderboard_names_" + stringIndex, names);

@@ -10,6 +10,7 @@ main()
 	menu("team_select", "allies", 		::menu_Team);
 	menu("team_select", "axis", 		::menu_Team);
 	menu("team_select", "autoassign", 	::menu_Team);
+	menu("team_select", "spectator", 	::menu_Spectator);
 
 	menu_callback("quickcommands",	 	maps\mp\gametypes\_quickmessages::quickcommands);
 	menu_callback("quickstatements", 	maps\mp\gametypes\_quickmessages::quickstatements);
@@ -66,6 +67,21 @@ menu_Team(arg)
 
 	self sr\game\_teams::setTeam("allies");
 
+	comPrintLn("state: %d %s %d", self.died, self.sessionstate, self canSpawn());
 	if (self canSpawn())
 		self eventSpawn();
+}
+
+menu_Spectator(arg)
+{
+	self closeMenu();
+	self closeInGameMenu();
+
+	if(self.pers["team"] == "axis")
+	{
+		self iPrintln("^1Nice try.");
+		return;
+	}
+	self sr\game\_teams::setTeam("spectator");
+	self eventSpectator();
 }

@@ -34,6 +34,7 @@ playerConnect()
 	self setClientDvar("ui_uav_client", 0);
 	self setClientDvar("g_scriptMainMenu", "team_select");
 	self clientCmd("setu sr_xp_bar 0");
+	self clientCmd("setu com_maxfps 125");
 
 	self.enable3DWaypoints = true;
 	self.enableDeathIcons = true;
@@ -138,7 +139,9 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 	self.statusicon = "hud_status_dead";
 	self.sessionstate = "spectator";
 	self.died = true;
-	self eventSpawn();
+
+	if (self.pers["team"] == "allies" && self canSpawn())
+		self eventSpawn();
 }
 
 playerSpawn()
@@ -197,9 +200,15 @@ playerSpawn()
 
 playerSpectator()
 {
-	self notify("joined_spectators");
+	self endon("disconnect");
 
-	self sr\game\_map::spawnSpectator();
+	self cleanUp();
+	self.sessionstate = "spectator";
+	self.spectatorclient = -1;
+	self.statusicon = "";
+	spawn = IfUndef(self.spawnPoint, level.spawn["spectator"]);
+	self spawn(spawn.origin, spawn.angles);
+	self sr\game\_teams::setSpectatePermissions();
 
 	level notify("player_spectator", self);
 }

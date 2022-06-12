@@ -70,7 +70,7 @@ timer(time, callbackEnd)
 		else if (level.time <= 60 && level.time > 10 && level.time % 2 == 0)
 		{
 			clock playSound("ui_mp_timer_countdown");
-			level.huds["time"].color = (1, 140 / 255, 0);
+			level.huds["time"].color = (1, 0.55, 0);
 		}
 		else if (level.time <= 10)
 		{
