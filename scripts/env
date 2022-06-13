@@ -1,0 +1,21 @@
+#!/bin/bash
+export NAME=sr_speedrun
+export GAME="/home/iswenzz/Desktop/games/cod4"
+export MOD="$GAME/mods/$NAME"
+export SR="$MOD/sr"
+
+case "$(uname -s)" in
+	Linux)					
+		export BIN_PREFIX=""
+		export BIN_START="wine"
+	;;
+	CYGWIN*|MSYS*|MINGW*)	
+		export BIN_PREFIX=".exe"
+		export BIN_START="start"
+	;;
+esac
+
+function win_binary
+{
+	eval "$BIN_START $1.exe"
+}
