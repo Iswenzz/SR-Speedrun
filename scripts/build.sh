@@ -1,61 +1,60 @@
 #!/bin/bash
-source env
+source cod4env
 
 # Cleanup
-cd $MOD
-rm mod.ff
+cd "$MOD"
+rm -v mod.ff
 
 # SR
-cd $SR/assets
-cp -R animtrees $GAME/raw/animtrees
-cp -R english $GAME/raw/english
-cp -R fx $GAME/raw/fx
-cp -R images $GAME/raw/images
-cp -R maps $GAME/raw/maps
-cp -R material_properties $GAME/raw/material_properties
-cp -R materials $GAME/raw/materials
-cp -R info $GAME/raw/info
-cp -R mp $GAME/raw/mp
-cp -R soundaliases $GAME/raw/soundaliases
-cp -R sound $GAME/raw/sound
-cp -R ui $GAME/raw/ui
-cp -R ui_mp $GAME/raw/ui_mp
-cp -R weapons_maps weapons
-cp -R weapons_mod weapons
-cp -R weapons $GAME/raw/weapons
-cp -R vision $GAME/raw/vision
-cp -R xanim $GAME/raw/xanim
-cp -R xmodel $GAME/raw/xmodel
-cp -R xmodelparts $GAME/raw/xmodelparts
-cp -R xmodelsurfs $GAME/raw/xmodelsurfs
+cd "$SR/assets"
+cp -rv animtrees "$GAME/raw"
+cp -rv english "$GAME/raw"
+cp -rv fx "$GAME/raw"
+cp -rv images "$GAME/raw"
+cp -rv maps "$GAME/raw"
+cp -rv material_properties "$GAME/raw"
+cp -rv materials "$GAME/raw"
+cp -rv info "$GAME/raw"
+cp -rv mp "$GAME/raw"
+cp -rv soundaliases "$GAME/raw"
+cp -rv sound "$GAME/raw"
+cp -rv ui "$GAME/raw"
+cp -rv ui_mp "$GAME/raw"
+cp -v weapons_maps/* weapons
+cp -v weapons_mod/* weapons
+cp -rv weapons "$GAME/raw"
+cp -rv vision "$GAME/raw"
+cp -rv xanim "$GAME/raw"
+cp -rv xmodel "$GAME/raw"
+cp -rv xmodelparts "$GAME/raw"
+cp -rv xmodelsurfs "$GAME/raw"
 
 # Assets
-cd $MOD/assets
-cp mod.csv $GAME/zone_source
-cp -R animtrees $GAME/raw/animtrees
-cp -R english $GAME/raw/english
-cp -R fx $GAME/raw/fx
-cp -R images $GAME/raw/images
-cp -R maps $GAME/raw/maps
-cp -R material_properties $GAME/raw/material_properties
-cp -R materials $GAME/raw/materials
-cp -R info $GAME/raw/info
-cp -R mp $GAME/raw/mp
-cp -R soundaliases $GAME/raw/soundaliases
-cp -R sound $GAME/raw/sound
-cp -R ui $GAME/raw/ui
-cp -R ui_mp $GAME/raw/ui_mp
-cp -R weapons_maps weapons
-cp -R weapons_mod weapons
-cp -R weapons $GAME/raw/weapons
-cp -R vision $GAME/raw/vision
-cp -R xanim $GAME/raw/xanim
-cp -R xmodel $GAME/raw/xmodel
-cp -R xmodelparts $GAME/raw/xmodelparts
-cp -R xmodelsurfs $GAME/raw/xmodelsurfs
+cd "$MOD/assets"
+cp -v mod.csv "$GAME/zone_source"
+cp -rv animtrees "$GAME/raw"
+cp -rv english "$GAME/raw"
+cp -rv fx "$GAME/raw"
+cp -rv images "$GAME/raw"
+cp -rv maps "$GAME/raw"
+cp -rv material_properties "$GAME/raw"
+cp -rv materials "$GAME/raw"
+cp -rv info "$GAME/raw"
+cp -rv mp "$GAME/raw"
+cp -rv soundaliases "$GAME/raw"
+cp -rv sound "$GAME/raw"
+cp -rv ui "$GAME/raw"
+cp -rv ui_mp "$GAME/raw"
+cp -rv weapons_maps/* weapons
+cp -rv weapons_mod/* weapons
+cp -rv weapons "$GAME/raw"
+cp -rv vision "$GAME/raw"
+cp -rv xanim "$GAME/raw"
+cp -rv xmodel "$GAME/raw"
+cp -rv xmodelparts "$GAME/raw"
+cp -rv xmodelsurfs "$GAME/raw"
 
 # Compile
-cd $GAME/bin
-linker_pc.exe -language english -compress -cleanup mod
-copy $GAME/zone/english/mod.ff $MOD/mod.ff
-cd $MOD/scripts
+cd "$GAME/bin"
+$BIN_START linker_pc -language english -compress -cleanup mod
+cp -v "$GAME/zone/english/mod.ff" "$MOD/mod.ff"

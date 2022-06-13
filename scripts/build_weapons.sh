@@ -1,25 +1,28 @@
 #!/bin/bash
-source env
+source cod4env
 
 # Cleanup
-cd $MOD
-rm mod.ff
+cd "$MOD"
+rm -v mod.ff
 
 # SR
-cd $SR/assets
-cp -R weapons_maps weapons
-cp -R weapons_mod weapons
-cp -R weapons $GAME/raw/weapons
+cd "$SR/assets"
+cp -rv animtrees "$GAME/raw"
+cp -rv mp "$GAME/raw"
+cp -rv weapons_maps/* weapons
+cp -rv weapons_mod/* weapons
+cp -rv weapons "$GAME/raw"
 
 # Assets
-cd $MOD/assets
-cp mod.csv $GAME/zone_source
-cp -R weapons_maps weapons
-cp -R weapons_mod weapons
-cp -R weapons $GAME/raw/weapons
+cd "$MOD/assets"
+cp -v mod.csv "$GAME/zone_source"
+cp -rv animtrees "$GAME/raw"
+cp -rv mp "$GAME/raw"
+cp -rv weapons_maps/* weapons
+cp -rv weapons_mod/* weapons
+cp -rv weapons "$GAME/raw"
 
 # Compile
-cd $GAME/bin
-linker_pc.exe -language english -compress -cleanup mod
-copy $GAME/zone/english/mod.ff $MOD/mod.ff
-cd $MOD/scripts
+cd "$GAME/bin"
+$BIN_START linker_pc -language english -compress -cleanup mod
+cp -v "$GAME/zone/english/mod.ff" "$MOD/mod.ff"

@@ -1,29 +1,28 @@
 #!/bin/bash
-source env
+source cod4env
 
 # Cleanup
-cd $MOD
-rm mod.ff
+cd "$MOD"
+rm -v mod.ff
 
 # SR
-cd $SR/assets
-cp -R english $GAME/raw/english
-cp -R info $GAME/raw/info
-cp -R mp $GAME/raw/mp
-cp -R ui $GAME/raw/ui
-cp -R ui_mp $GAME/raw/ui_mp
+cd "$SR/assets"
+cp -rv english "$GAME/raw"
+cp -rv info "$GAME/raw"
+cp -rv mp "$GAME/raw"
+cp -rv ui "$GAME/raw"
+cp -rv ui_mp "$GAME/raw"
 
 # Assets
-cd $MOD/assets
-cp mod.csv $GAME/zone_source
-cp -R english $GAME/raw/english
-cp -R info $GAME/raw/info
-cp -R mp $GAME/raw/mp
-cp -R ui $GAME/raw/ui
-cp -R ui_mp $GAME/raw/ui_mp
+cd "$MOD/assets"
+cp -v mod.csv "$GAME/zone_source"
+cp -rv english "$GAME/raw"
+cp -rv info "$GAME/raw"
+cp -rv mp "$GAME/raw"
+cp -rv ui "$GAME/raw"
+cp -rv ui_mp "$GAME/raw"
 
 # Compile
-cd $GAME/bin
-linker_pc$BIN_PREFIX -language english -compress -cleanup mod
-copy $GAME/zone/english/mod.ff $MOD/mod.ff
-cd $MOD/scripts
+cd "$GAME/bin"
+$BIN_START linker_pc -language english -compress -cleanup mod
+cp -v "$GAME/zone/english/mod.ff" "$MOD/mod.ff"
