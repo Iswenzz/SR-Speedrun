@@ -24,8 +24,6 @@ initDvars()
 	addDvar("time", "sr_time", 1800, 60, 7200, "int");
 	addDvar("bots", "g_bots", 0, 0, 64, "int");
 	addDvar("dev", "g_moddev", 0, 0, 1, "int");
-	addDvar("mapvote", "dr_map_vote", 1, 0, 1, "int");
-	addDvar("mapvote_time", "dr_map_vote_time", 15, 5, 240, "int");
 	addDvar("allies_health", "dr_jumpers_health", 100, 1, 1000, "int");
 	addDvar("axis_health", "dr_activators_health", 100, 1, 1000, "int");
 	addDvar("allies_speed", "dr_jumpers_speed", 1.2, 0.1, 2, "float");

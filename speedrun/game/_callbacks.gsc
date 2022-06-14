@@ -102,7 +102,7 @@ playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vP
 
 	level notify("player_damage", self, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime);
 
-	if (isPlayer(eAttacker) && !eAttacker.teamKill)
+	if (isPlayer(eInflictor) && isPlayer(eAttacker) && eInflictor.pers["team"] == eAttacker.pers["team"] && !eAttacker.teamKill)
 		return;
 
 	if (isPlayer(eAttacker) && sMeansOfDeath == "MOD_MELEE" && isWallKnifing(eAttacker, self))
@@ -207,15 +207,7 @@ playerSpawn()
 playerSpectator()
 {
 	self endon("disconnect");
-
-	self cleanUp();
-	self.sessionstate = "spectator";
-	self.spectatorclient = -1;
-	self.statusicon = "";
-	spawn = IfUndef(self.spawnPoint, level.spawn["spectator"]);
-	self spawn(spawn.origin, spawn.angles);
-	self sr\game\_teams::setSpectatePermissions();
-
+	self sr\game\_map::spawnSpectator();
 	level notify("player_spectator", self);
 }
 

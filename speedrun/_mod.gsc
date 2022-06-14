@@ -14,7 +14,7 @@ main()
 	sr\player\customize\_main::initCustomize();
 
 	speedrun\commands\_speedrun::main();
-	speedrun\game\_match::main();
+	sr\game\_match::main();
 	speedrun\game\_bot::main();
 	speedrun\game\_callbacks::main();
 	speedrun\game\_menus::main();
