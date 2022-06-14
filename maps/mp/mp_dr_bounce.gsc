@@ -214,16 +214,6 @@ transporter(i)
 	{
 		self waittill( "trigger", player );
 		
-		// iprintlnbold(i);
-		// iprintlnbold(self.target);
-
-		// if(!isDefined(player.secret_1_endtrig) && self.target == "auto19")
-		// {
-		// 	player.secret_1_endtrig = true;
-			
-		// 	if(isDefined(player.sr_secret))
-		// 		player thread braxi\_mod::endTimer();
-		// }
 		
 		if(self.target == "auto16")
 			player sr\api\_speedrun::changeWay("secret_0");

@@ -309,7 +309,6 @@ secret_hard_fail1()
 		player setorigin(ori.origin);
 		player freezeControls(false);
 		wait 0.05;
-player.sr_secret = true;
 }
 }
 
@@ -325,7 +324,6 @@ secret_hard_fail2()
 		player setorigin(ori.origin);
 		wait 0.05;
 		player freezeControls(false);
-player.sr_secret = true;
 }
 }
 
@@ -341,7 +339,6 @@ secret_hard_fail3()
 		player setorigin(ori.origin);
 		player freezeControls(false);
 		wait 0.05;
-player.sr_secret = true;
 }
 }
 
@@ -351,8 +348,7 @@ secret_hard_finish()
 	ori=getent("secret_hard_end_ori", "targetname");
 	while(1){
 		trig waittill("trigger", player);
-		if(isDefined(player.sr_secret))
-			player thread braxi\_mod::endTimer();
+		player thread sr\api\_speedrun::finishWay("secret_0");
 	}
 }
 

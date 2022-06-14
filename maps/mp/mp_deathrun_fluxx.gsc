@@ -850,8 +850,7 @@ trig waittill ("trigger", player);
 
 player SetOrigin(target.origin); 
 player SetPlayerAngles( target.angles ); 
-if(isDefined(player.sr_secret))
-	player thread braxi\_mod::endTimer();
+player thread sr\api\_speedrun::finishWay("secret_0");
 } 
 }
 

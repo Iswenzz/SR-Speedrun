@@ -22,12 +22,6 @@ start()
 
 	matchStart();
 
-	if (!canStartGame(1))
-	{
-		level thread start();
-		return;
-	}
-
 	game["roundsplayed"] = 1;
 	level notify("round_started", game["roundsplayed"]);
 	level notify("game started");

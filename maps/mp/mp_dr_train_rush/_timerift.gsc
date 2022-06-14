@@ -190,8 +190,7 @@ rift_exit()
 			player thread maps\mp\mp_dr_train_rush\_fx::forcedvar_once();
 			if (isDefined(player.hud_time_secret))
 				player.hud_time_secret Destroy();
-			if (isDefined(player.sr_secret) && player.sr_secret)
-				player thread braxi\_mod::endTimer();
+			player thread sr\api\_speedrun::finishWay("secret_0");
 		}
 		else
 			player setOrigin((1776, -9061, 25160));

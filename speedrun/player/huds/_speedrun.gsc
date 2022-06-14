@@ -18,14 +18,6 @@ hud()
 		ToRGB(self getStat(1650), self getStat(1651), self getStat(1652)),
 		(0, 0, 0));
 
-	wr = "";
-	pb = "";
-	leaderboard = speedrun\game\_leaderboards::getLeaderboard(self.sr_mode, self.sr_way);
-	entries = leaderboard.entries;
-
-	if (entries.size)
-		wr = fmt("%d:%d.%d", entries[0]["time"].min, entries[0]["time"].sec, entries[0]["time"].ms);
-
 	self.huds["speedrun"] = [];
  	self.huds["speedrun"]["background"] = addHud(self, 0, 0, 1, "left", "top", 1.8);
 	self.huds["speedrun"]["background"] setShader("time_hud", 142, 80);
@@ -42,12 +34,10 @@ hud()
  	self.huds["speedrun"]["pb"] = addHud(self, 5, 42, 1, "left", "top", 1.4);
 	self.huds["speedrun"]["pb"].hidewheninmenu = true;
 	self.huds["speedrun"]["pb"].sort = 99;
-	self.huds["speedrun"]["pb"] setText(fmt("(PB)                 ^3%s", pb));
 
  	self.huds["speedrun"]["wr"] = addHud(self, 5, 61, 1, "left", "top", 1.4);
 	self.huds["speedrun"]["wr"].hidewheninmenu = true;
 	self.huds["speedrun"]["wr"].sort = 99;
-	self.huds["speedrun"]["wr"] setText(fmt("(WR)                 ^2%s", wr));
 
  	self.huds["speedrun"]["time"] = addHud(self, 72, 18, 1, "left", "top", 1.8);
 	self.huds["speedrun"]["time"].sort = 99;
@@ -57,7 +47,6 @@ hud()
 	self.huds["speedrun"]["time"].hidewheninmenu = true;
 
  	self.huds["speedrun"]["name"] = addHud(self, 3, 0, 1, "left", "top", 1.4);
-	self.huds["speedrun"]["name"] setText(leaderboard.name);
 	self.huds["speedrun"]["name"].hidewheninmenu = true;
 	self.huds["speedrun"]["name"].sort = 99;
 
@@ -66,6 +55,20 @@ hud()
 	self.huds["speedrun"]["role"].hidewheninmenu = true;
 
 	self updateWay();
+}
+
+updateRecords()
+{
+	wr = "";
+	pb = "";
+	leaderboard = speedrun\game\_leaderboards::getLeaderboard(self.sr_mode, self.sr_way);
+	entries = leaderboard.entries;
+
+	if (entries.size)
+		wr = fmt("%d:%d.%d", entries[0]["time"].min, entries[0]["time"].sec, entries[0]["time"].ms);
+
+	self.huds["speedrun"]["pb"] setText(fmt("(PB)                 ^3%s", pb));
+	self.huds["speedrun"]["wr"] setText(fmt("(WR)                 ^2%s", wr));
 }
 
 updateTime()
@@ -78,8 +81,9 @@ updateTime()
 
 updateWay()
 {
-	name = speedrun\game\_leaderboards::getLeaderboardIndex(self.sr_mode, self.sr_way);
-	self.huds["speedrun"]["name"] setText(level.leaderboards[name].name);
+	name = speedrun\game\_leaderboards::getLeaderboardName(self.sr_mode, self.sr_way);
+	self.huds["speedrun"]["name"] setText(name);
+	self updateRecords();
 }
 
 clear()

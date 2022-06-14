@@ -175,8 +175,6 @@ isValidEntry(entry)
 
 saveEntry(entry)
 {
-	self endon("disconnect");
-
 	index = getLeaderboardIndex(entry["mode"], entry["way"]);
 	entries = level.leaderboards[index].entries;
 	level.leaderboards[index].entries = addEntry(entry, entries);
@@ -422,6 +420,7 @@ onSpawn()
 {
 	self endon("disconnect");
 
+	self.sr_way = "normal_0";
 	self [[level.leaderboard_modes[self.sr_mode].callback]]();
 	self playerTimer();
 }
@@ -436,8 +435,8 @@ playerTimer()
 	if (self.finishedMap)
 		return;
 
-	while (game["state"] != "playing")
-		wait 0.05;
+	if (game["state"] != "playing")
+		level waittill("round_started");
 
 	wait 0.1; // Spastic delay caused by bad modding, too bad...
 

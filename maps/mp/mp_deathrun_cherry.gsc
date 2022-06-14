@@ -212,8 +212,7 @@ srct()
 end_wait()
 {
 	wait 0.05;
-	if(isDefined(self.sr_secret) && self.sr_secret)
-	self thread braxi\_mod::endTimer();
+	self thread sr\api\_speedrun::finishWay("secret_0");
 }
 
 secsee()

@@ -613,8 +613,7 @@ secret_exit()
         player setplayerangles(targ.angles);
         player freezecontrols(0);
 		
-		if(isDefined(player.sr_secret))
-			player thread braxi\_mod::endTimer();
+		player thread sr\api\_speedrun::finishWay("secret_0");
     }
 }
 

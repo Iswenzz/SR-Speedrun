@@ -560,8 +560,7 @@ secret_tele2(){
 	
 	while(1){
 		trig waittill ("trigger",player);
-		 if(isDefined(player.sr_secret) && player.sr_secret)
-         player thread braxi\_mod::endTimer();
+		 player thread sr\api\_speedrun::finishWay("secret_0");
       }
 }
 
