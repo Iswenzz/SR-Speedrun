@@ -18,6 +18,9 @@ hud()
 	self endon("disconnect");
 	self endon("spawned_player");
 
+	if (!self.settings["hud_spectator"])
+		return;
+
 	self hudKeys();
 	self hudFps();
 
