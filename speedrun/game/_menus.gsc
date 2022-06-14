@@ -67,7 +67,6 @@ menu_Team(arg)
 
 	self sr\game\_teams::setTeam("allies");
 
-	comPrintLn("state: %d %s %d", self.died, self.sessionstate, self canSpawn());
 	if (self canSpawn())
 		self eventSpawn();
 }

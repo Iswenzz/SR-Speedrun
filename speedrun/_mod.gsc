@@ -22,6 +22,7 @@ main()
 	speedrun\game\_leaderboards::initLeaderboards();
 	speedrun\player\huds\_cheat::main();
 	speedrun\player\huds\_player::main();
-	// speedrun\player\huds\_spectator::main();
+	speedrun\player\huds\_spectator::main();
 	speedrun\player\huds\_speedrun::main();
+	sr\player\modes\_practise::main();
 }

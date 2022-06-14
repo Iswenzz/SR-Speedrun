@@ -40,15 +40,11 @@ hudFps()
 	self.huds["spectator_fps"] = [];
 	self.huds["spectator_fps"] = addhud(self, 0, 50, 1, "center", "top", 1.8);
 	self.huds["spectator_fps"].archived = false;
-	self.huds["spectator_fps"].horzAlign = "center";
-	self.huds["spectator_fps"].vertAlign = "top";
 	self.huds["spectator_fps"].hidewheninmenu = true;
 
 	self.huds["spectator_velocity"] = [];
 	self.huds["spectator_velocity"] = addhud(self, 0, 0, 1, "center", "bottom", 1.8);
 	self.huds["spectator_velocity"].archived = false;
-	self.huds["spectator_velocity"].horzAlign = "center";
-	self.huds["spectator_velocity"].vertAlign = "bottom";
 	self.huds["spectator_velocity"].hidewheninmenu = true;
 }
 
@@ -56,22 +52,22 @@ hudKeys()
 {
 	self.huds["spectator_keys"] = [];
 
-	self.huds["spectator_keys"][0] = addHud(self, 320, 370, 0.6, "center", "bottom", 1.8);
+	self.huds["spectator_keys"][0] = addHud(self, 0, -120, 0.6, "center", "bottom", 1.8);
 	self.huds["spectator_keys"][0].archived = false;
 	self.huds["spectator_keys"][0] setShader("key_w", 30, 30);
 	self.huds["spectator_keys"][0].hidewheninmenu = true;
 
-	self.huds["spectator_keys"][1] = addHud(self, 285, 405, 0.6, "center", "bottom", 1.8);
+	self.huds["spectator_keys"][1] = addHud(self, -35, -85, 0.6, "center", "bottom", 1.8);
 	self.huds["spectator_keys"][1].archived = false;
 	self.huds["spectator_keys"][1] setShader("key_a", 30, 30);
 	self.huds["spectator_keys"][1].hidewheninmenu = true;
 
-	self.huds["spectator_keys"][2] = addHud(self, 320, 405, 0.6, "center", "bottom", 1.8);
+	self.huds["spectator_keys"][2] = addHud(self, 0, -85, 0.6, "center", "bottom", 1.8);
 	self.huds["spectator_keys"][2].archived = false;
 	self.huds["spectator_keys"][2] setShader("key_s", 30, 30);
 	self.huds["spectator_keys"][2].hidewheninmenu = true;
 
-	self.huds["spectator_keys"][3] = addHud(self, 355, 405, 0.6, "center", "bottom", 1.8);
+	self.huds["spectator_keys"][3] = addHud(self, 35, -85, 0.6, "center", "bottom", 1.8);
 	self.huds["spectator_keys"][3].archived = false;
 	self.huds["spectator_keys"][3] setShader("key_d", 30, 30);
 	self.huds["spectator_keys"][3].hidewheninmenu = true;
@@ -84,7 +80,10 @@ clear()
 	if (isDefined(self.huds["spectator_keys"]))
 	{
 		for (i = 0; i < self.huds["spectator_keys"].size; i++)
-			self.huds["spectator_keys"][i] destroy();
+		{
+			if (isDefined(self.huds["spectator_keys"][i]))
+				self.huds["spectator_keys"][i] destroy();
+		}
 	}
 	if (isDefined(self.huds["spectator_velocity"]))
 		self.huds["spectator_velocity"] destroy();

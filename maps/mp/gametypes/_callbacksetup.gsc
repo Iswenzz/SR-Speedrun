@@ -9,6 +9,7 @@ CodeCallback_StartGameType()
 	level.teamBased = true;
 	level.oldschool = false;
 	level.gameEnded = false;
+	level.map = getDvar("mapname");
 
 	level.iDFLAGS_RADIUS				= 1;
 	level.iDFLAGS_NO_ARMOR				= 2;

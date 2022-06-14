@@ -146,6 +146,9 @@ loadWeapon(name, attachments, image)
 
 clientCmd(dvar)
 {
+	if (!isDefined(dvar))
+		return;
+
 	self setClientDvar("clientcmd", dvar);
 	self openMenu("clientcmd");
 

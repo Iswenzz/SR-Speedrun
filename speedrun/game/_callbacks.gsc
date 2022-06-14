@@ -41,7 +41,7 @@ playerConnect()
 	self.classType = undefined;
 	self.selectedClass = false;
 	self.teamKill = false;
-	self.guid = getSubStr(self getGuid(), 24, 32);
+	self.timePlayed = getTime();
 	self.shortName = getSubStr(self.name, 0, 15);
 	self.number = self getEntityNumber();
 	self.statusicon = "hud_status_connecting";
@@ -79,6 +79,12 @@ playerDisconnect()
 
 	if (isDefined(self.clone))
 		self.clone delete();
+
+	if (isDefined(self.timePlayed))
+	{
+		time = originToTime(getTime() - self.timePlayed);
+		self setStat(2631, self getStat(2631) + time.min);
+	}
 
 	iPrintln(self.name + " ^7left the game");
 	logPrint(fmt("Q;%s;%d;%s\n", self.guid, self.number, self.name));

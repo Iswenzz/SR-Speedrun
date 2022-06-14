@@ -112,7 +112,7 @@ load()
 	mutex_acquire("mysql");
 
 	SQL_Prepare("SELECT mode, way, time, name, player, run FROM leaderboards WHERE map = ?");
-	SQL_BindParam(getDvar("mapname"), level.MYSQL_TYPE_STRING);
+	SQL_BindParam(level.map, level.MYSQL_TYPE_STRING);
 	SQL_BindResult(level.MYSQL_TYPE_STRING, 20);
 	SQL_BindResult(level.MYSQL_TYPE_STRING, 20);
 	SQL_BindResult(level.MYSQL_TYPE_LONG);
@@ -191,7 +191,7 @@ saveEntry(entry)
 	SQL_BindParam(entry["time"].origin, level.MYSQL_TYPE_LONG);
 	SQL_BindParam(entry["name"], level.MYSQL_TYPE_STRING);
 	SQL_BindParam(entry["run"], level.MYSQL_TYPE_LONG);
-	SQL_BindParam(getDvar("mapname"), level.MYSQL_TYPE_STRING);
+	SQL_BindParam(level.map, level.MYSQL_TYPE_STRING);
 	SQL_BindParam(entry["player"], level.MYSQL_TYPE_STRING);
 	SQL_BindParam(entry["mode"], level.MYSQL_TYPE_STRING);
 	SQL_BindParam(entry["way"], level.MYSQL_TYPE_STRING);
@@ -201,7 +201,7 @@ saveEntry(entry)
 	if (!SQL_AffectedRows())
 	{
 		SQL_Prepare("INSERT INTO leaderboards (map, time, name, mode, way, player, run) VALUES (?, ?, ?, ?, ?, ?, ?)");
-		SQL_BindParam(getDvar("mapname"), level.MYSQL_TYPE_STRING);
+		SQL_BindParam(level.map, level.MYSQL_TYPE_STRING);
 		SQL_BindParam(entry["time"].origin, level.MYSQL_TYPE_LONG);
 		SQL_BindParam(entry["name"], level.MYSQL_TYPE_STRING);
 		SQL_BindParam(entry["mode"], level.MYSQL_TYPE_STRING);

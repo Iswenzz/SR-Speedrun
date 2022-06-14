@@ -120,7 +120,7 @@ matchStart()
 
 matchStartPlayers()
 {
-	visionSetNaked(toLower(getDvar("mapname")), 2.0);
+	visionSetNaked(toLower(level.map), 2.0);
 
 	players = getAllPlayers();
 	for (i = 0; i < players.size; i++)
