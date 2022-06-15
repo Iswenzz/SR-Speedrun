@@ -25,4 +25,6 @@ main()
 	speedrun\player\huds\_spectator::main();
 	speedrun\player\huds\_speedrun::main();
 	sr\player\modes\_practise::main();
+
+	speedrun\_tests::runTests();
 }

@@ -103,7 +103,7 @@ onConnect()
 	{
 		leaderboard = level.leaderboards[names[i]];
 		self setClientDvar(leaderboard.id, "1");
-		self setClientDvar(fmt("%s_name", leaderboard.id), leaderboard.name);
+		self setClientDvar(fmt("%s_name", leaderboard.id), IfUndef(leaderboard.name, ""));
 	}
 }
 
