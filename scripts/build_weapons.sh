@@ -24,5 +24,5 @@ cp -rv weapons "$GAME/raw"
 
 # Compile
 cd "$GAME/bin"
-$BIN_START linker_pc -language english -compress -cleanup mod
+./linker_pc -language english -compress -cleanup mod
 cp -v "$GAME/zone/english/mod.ff" "$MOD/mod.ff"
