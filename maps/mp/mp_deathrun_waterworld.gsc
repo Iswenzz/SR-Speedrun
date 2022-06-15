@@ -104,7 +104,7 @@ secret1()
 {
 	s1 = spawn( "trigger_radius", (2250.36, -105.584, -15.875), 0, 115, 120 );
 	s1.radius = 115;
-	thread speedrun\_triggerfx::createTrigFx(s1, "secret");
+	thread sr\api\_map::createTriggerFx(s1, "secret");
 	
 	for(;;)
 	{

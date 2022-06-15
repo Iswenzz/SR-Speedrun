@@ -518,7 +518,7 @@ MovingBlocks()
 	trig.radius = 150;
 
 	wait 1;
-	thread speedrun\_triggerfx::createTrigFx(trig, "red");
+	thread sr\api\_map::createTriggerFx(trig, "red");
 
 	ori = spawn("script_origin",(5938,6,-124));
 	ori.angles = (0,360,0);

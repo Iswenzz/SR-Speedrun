@@ -57,7 +57,7 @@ secret()
     thread secret_end();
 
     wait 1;
-    thread speedrun\_triggerfx::createTrigFx(trig, "secret");
+    thread sr\api\_map::createTriggerFx(trig, "secret");
 
 	while(1)
     {
@@ -73,7 +73,7 @@ secret_end()
     trig = getEnt("secretend_trig","targetname");
 
     wait 1;
-    thread speedrun\_triggerfx::createTrigFx(trig, "secret");
+    thread sr\api\_map::createTriggerFx(trig, "secret");
 
     for(;;)
     {

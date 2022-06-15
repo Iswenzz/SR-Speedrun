@@ -83,7 +83,7 @@ secret_1()
 	
 	wait 1;
 	trigger.radius = 20;
-	thread speedrun\_triggerfx::createTrigFx(trigger, "secret");
+	thread sr\api\_map::createTriggerFx(trigger, "secret");
 	
 	for(;;)
 	{

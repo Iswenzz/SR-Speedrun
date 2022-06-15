@@ -103,7 +103,7 @@ secret_1()
 	wait 1;
 	// trigger.inAir = true;
 	trigger.radius = 30;
-	thread speedrun\_triggerfx::createTrigFx(trigger, "secret");
+	thread sr\api\_map::createTriggerFx(trigger, "secret");
 
 	for(;;)
 	{

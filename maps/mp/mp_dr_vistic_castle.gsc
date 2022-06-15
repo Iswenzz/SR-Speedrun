@@ -128,7 +128,7 @@ sr_tp()
 	ori_t = getEnt("tele1_go","targetname");
 
 	wait 1;
-	thread speedrun\_triggerfx::createTrigFx(trig, "endtrig");
+	thread sr\api\_map::createTriggerFx(trig, "endtrig");
 
 	for(;;)
 	{

@@ -202,7 +202,7 @@ teleport()
 			entTransporter[i] thread transporter(i);
 			// if(i == 4)
 			// {
-			// 	thread speedrun\_triggerfx::createTrigFx(entTransporter[4], "secret");
+			// 	thread sr\api\_map::createTriggerFx(entTransporter[4], "secret");
 			// }
 		}
 	}

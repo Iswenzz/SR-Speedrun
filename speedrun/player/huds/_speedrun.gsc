@@ -94,6 +94,9 @@ clear()
 	{
 		huds = getArrayKeys(self.huds["speedrun"]);
 		for (i = 0; i < huds.size; i++)
-			self.huds["speedrun"][huds[i]] destroy();
+		{
+			if (isDefined(self.huds["speedrun"][huds[i]]))
+				self.huds["speedrun"][huds[i]] destroy();
+		}
 	}
 }

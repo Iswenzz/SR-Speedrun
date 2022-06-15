@@ -408,7 +408,7 @@ endmapTrig()
 	}
 
 	trigger = array[0];
-	thread sr\game\fx\_trigger::createTrigFx(trigger, "red");
+	thread sr\game\fx\_trigger::effect(trigger, "red");
 	while (true)
 	{
 		trigger waittill("trigger", player);

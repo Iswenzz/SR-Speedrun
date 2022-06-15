@@ -121,7 +121,7 @@ secret_1()
 
 	wait 1;
 	secret.radius = 100;
-	thread speedrun\_triggerfx::createTrigFx(secret, "secret");
+	thread sr\api\_map::createTriggerFx(secret, "secret");
 
 	while(1)
     {

@@ -105,7 +105,7 @@ tp_1()
 
 	wait 1;
 	trig.radius = 100;
-	thread speedrun\_triggerfx::createTrigFx(trig, "endtrig");
+	thread sr\api\_map::createTriggerFx(trig, "endtrig");
 
 	for(;;)
 	{

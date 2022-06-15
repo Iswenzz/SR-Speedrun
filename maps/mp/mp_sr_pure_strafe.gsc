@@ -91,7 +91,7 @@ secret_1()
 
 	wait 1;
 	trig.radius = 80;
-	thread sr\game\fx\_trigger::createTrigFx(trig, "secret");
+	thread sr\api\_map::createTriggerFx(trig, "secret");
 
 	for(;;)
 	{

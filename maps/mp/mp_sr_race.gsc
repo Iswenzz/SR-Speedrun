@@ -74,7 +74,7 @@ secret_1()
     ori = getEnt("hard_origin","targetname");
 
     wait 1;
-    thread speedrun\_triggerfx::createTrigFx(trig, "secret");
+    thread sr\api\_map::createTriggerFx(trig, "secret");
 
     for(;;)
     {
@@ -91,7 +91,7 @@ secret_1_end()
     trig.radius = 250;
 
     wait 1;
-    thread speedrun\_triggerfx::createTrigFx(trig, "secret");
+    thread sr\api\_map::createTriggerFx(trig, "secret");
 
     for(;;)
     {

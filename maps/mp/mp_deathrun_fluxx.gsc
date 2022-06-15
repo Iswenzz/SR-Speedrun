@@ -81,7 +81,7 @@ sr_tp()
 	trig = spawn("trigger_radius",(-1667,8608,-276),0,150,150);
 	trig.radius = 150;
 	wait 1;
-	thread speedrun\_triggerfx::createTrigFx(trig, "red");
+	thread sr\api\_map::createTriggerFx(trig, "red");
 
 	for(;;)
 	{
@@ -114,7 +114,7 @@ tp_1()
 	trig = spawn("trigger_radius",(97,6,-180),0,75,150);
 	trig.radius = 75;
 	wait 1;
-	thread speedrun\_triggerfx::createTrigFx(trig, "secret");
+	thread sr\api\_map::createTriggerFx(trig, "secret");
 
 	for(;;)
 	{
