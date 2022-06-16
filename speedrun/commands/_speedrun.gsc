@@ -16,13 +16,10 @@ cmd_Speed(args)
 
 cmd_Practise(args)
 {
+    self.modes["practise"] = !self.modes["practise"];
 	self suicide();
 
-    state = !self.sr_practise;
-    self.sr_practise = state;
-    self.sr_cheat = state;
-
-    if (self.sr_practise)
+    if (self.modes["practise"])
     {
         self pm("^2Practise mode enabled!");
         self iPrintLn("Press [{+melee}] to save position");
