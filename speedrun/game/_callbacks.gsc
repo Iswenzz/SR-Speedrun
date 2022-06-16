@@ -175,7 +175,7 @@ playerSpawn()
 
 	self.pers["weapon"] = level.assets["weapon"][self getStat(981)]["item"];
 	self.pers["knife"] = level.assets["knife"][self getStat(982)]["item"];
-	self.pers["knife_skin"] = int(level.assets["knifeSkin"][self getStat(983)]["item"]);
+	self.pers["knife_skin"] = int(level.assets["knife_skin"][self getStat(983)]["item"]);
 
 	if (self.model == "german_sheperd_dog")
 		self.pers["weapon"] = "dog_mp";
