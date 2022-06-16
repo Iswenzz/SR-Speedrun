@@ -79,7 +79,7 @@ mode_210()
 	self setMoveSpeedScale(1.12);
 	self setgravity(800);
 
-	self setMoveSpeed(500); // @TODO remove
+	// self setMoveSpeed(500); // @TODO remove
 }
 
 onConnect()

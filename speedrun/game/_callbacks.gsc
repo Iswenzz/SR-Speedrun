@@ -104,7 +104,8 @@ playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vP
 
 	if (isPlayer(eInflictor) && isPlayer(eAttacker) && eInflictor.pers["team"] == eAttacker.pers["team"] && !eAttacker.teamKill)
 		return;
-
+	if (isPlayer(self) && isDefined(self.godmode))
+		return;
 	if (isPlayer(eAttacker) && sMeansOfDeath == "MOD_MELEE" && isWallKnifing(eAttacker, self))
 		return;
 
