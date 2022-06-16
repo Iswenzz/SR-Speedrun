@@ -17,10 +17,10 @@ material,reticle_portal
 material,reticle_portal_blue
 material,reticle_portal_red
 material,reticle_portal_both
-material,dc_sunflare1
-material,dc_sunflare2
-material,dc_sunflare3
-material,dc_sunflare4
+xmodel,portal_blue
+xmodel,portal_red
+xmodel,portal_dummy_blue
+xmodel,portal_dummy_red
 xmodel,turret
 xmodel,turret_wing0
 xmodel,turret_wing1
@@ -31,12 +31,24 @@ xmodel,collision_sphere
 xmodel,cube
 xmodel,companion_cube
 xmodel,energy_ball
+fx,portal\portal_blue
+fx,portal\portal_red
+fx,portal\portal_blue_open
+fx,portal\portal_red_open
+fx,portal\portal_blue_close
+fx,portal\portal_red_close
+fx,portal\portal_blue_dummy
+fx,portal\portal_red_dummy
+fx,portal\portal_red_fail
+fx,portal\portal_blue_fail
 fx,portal\portal_ball_blue
 fx,portal\portal_ball_red
-fx,portal\portal_blue_fail
-fx,portal\portal_red_fail
-fx,portal\turret_explosion
 fx,portal\turret_flash
+fx,portal\turret_light_flash
+fx,portal\turret_explosion
+fx,portal\turret_sparks_pop
+fx,portal\turret_sparks
+fx,portal\turret_cookoff
 weapon,mp\portalgun_mp
 weapon,mp\portalgun
 
@@ -420,7 +432,7 @@ xmodel,superman
 //lara croft
 xmodel,lara_croft_cod4
 
-//css terrorist	
+//css terrorist
 xmodel,playermodel_css_badass_terrorist
 
 // MW2 Barret
