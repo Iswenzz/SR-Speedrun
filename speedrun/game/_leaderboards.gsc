@@ -96,6 +96,7 @@ onConnect()
 		self setClientDvar(fmt("normal_%d_name", i), "-");
 		self setClientDvar(fmt("secret_%d", i), "0");
 		self setClientDvar(fmt("secret_%d_name", i), "-");
+		wait 0.05;
 	}
 
 	// Registred
@@ -252,6 +253,7 @@ display()
 		self setClientDvar("leaderboard_numbers_" + i, "");
 		self setClientDvar("leaderboard_names_" + i, "");
 		self setClientDvar("leaderboard_values_" + i, "");
+		wait 0.05;
 	}
 	self setClientDvar("leaderboard_name", fmt("%s ^7%s", self.leaderboard_mode, leaderboard.name));
 
@@ -282,6 +284,8 @@ display()
 			names = "";
 			times = "";
 			stringIndex++;
+
+			wait 0.05;
 		}
     }
 }

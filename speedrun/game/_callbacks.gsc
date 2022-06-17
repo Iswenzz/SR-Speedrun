@@ -27,7 +27,6 @@ playerConnect()
 	self setClientDvar("show_hud", "true");
 	self setClientDvar("ip", getDvar("net_ip"));
 	self setClientDvar("port", getDvar("net_port"));
-	self setClientDvar("show_hud", "true");
 	self setClientDvar("cg_drawSpectatorMessages", 1);
 	self setClientDvar("ui_hud_hardcore", 1);
 	self setClientDvar("player_sprintTime", 4);
