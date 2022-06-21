@@ -31,20 +31,20 @@ hud()
 	self.huds["speedrun"]["mode"].hidewheninmenu = true;
 	self.huds["speedrun"]["mode"].sort = 99;
 
- 	self.huds["speedrun"]["pb"] = addHud(self, 5, 42, 1, "left", "top", 1.4);
-	self.huds["speedrun"]["pb"].hidewheninmenu = true;
-	self.huds["speedrun"]["pb"].sort = 99;
+	self.huds["speedrun"]["row1"] = addHud(self, 72, 18, 1, "left", "top", 1.8);
+	self.huds["speedrun"]["row1"].sort = 99;
+	self.huds["speedrun"]["row1"] setText(" ");
+	self.huds["speedrun"]["row1"].label = &"^5&&1";
+	self.huds["speedrun"]["row1"] setTenthsTimerUp(0.0001);
+	self.huds["speedrun"]["row1"].hidewheninmenu = true;
 
- 	self.huds["speedrun"]["wr"] = addHud(self, 5, 61, 1, "left", "top", 1.4);
-	self.huds["speedrun"]["wr"].hidewheninmenu = true;
-	self.huds["speedrun"]["wr"].sort = 99;
+ 	self.huds["speedrun"]["row2"] = addHud(self, 5, 42, 1, "left", "top", 1.4);
+	self.huds["speedrun"]["row2"].hidewheninmenu = true;
+	self.huds["speedrun"]["row2"].sort = 99;
 
- 	self.huds["speedrun"]["time"] = addHud(self, 72, 18, 1, "left", "top", 1.8);
-	self.huds["speedrun"]["time"].sort = 99;
-	self.huds["speedrun"]["time"] setText(" ");
-	self.huds["speedrun"]["time"].label = &"^5&&1";
-	self.huds["speedrun"]["time"] setTenthsTimerUp(0.0001);
-	self.huds["speedrun"]["time"].hidewheninmenu = true;
+ 	self.huds["speedrun"]["row3"] = addHud(self, 5, 61, 1, "left", "top", 1.4);
+	self.huds["speedrun"]["row3"].hidewheninmenu = true;
+	self.huds["speedrun"]["row3"].sort = 99;
 
  	self.huds["speedrun"]["name"] = addHud(self, 3, 0, 1, "left", "top", 1.4);
 	self.huds["speedrun"]["name"].hidewheninmenu = true;
@@ -60,25 +60,25 @@ hud()
 
 updateRecords()
 {
-	if (!isDefined(self.huds["speedrun"]["wr"]))
+	if (!isDefined(self.huds["speedrun"]["row3"]))
 		return;
 
 	wr = speedrun\game\_leaderboards::getWorldRecord(self.sr_mode, self.sr_way);
 	pb = speedrun\game\_pbs::getPersonalBest(self.sr_mode, self.sr_way);
 
-	self.huds["speedrun"]["pb"] setText(fmt("(PB)                  ^3%s", pb));
-	self.huds["speedrun"]["wr"] setText(fmt("(WR)                 ^2%s", wr));
+	self.huds["speedrun"]["row2"] setText(fmt("(PB)                  ^3%s", pb));
+	self.huds["speedrun"]["row3"] setText(fmt("(WR)                 ^2%s", wr));
 }
 
 updateTime()
 {
-	if (!isDefined(self.huds["speedrun"]["time"]))
+	if (!isDefined(self.huds["speedrun"]["row1"]))
 		return;
 
-	self.huds["speedrun"]["time"] setText(self.time.min + ":" + self.time.sec + "." + self.time.ms);
-	self.huds["speedrun"]["time"].fontScale = 1.4;
-	self.huds["speedrun"]["time"].x = 73;
-	self.huds["speedrun"]["time"].y = 21;
+	self.huds["speedrun"]["row1"] setText(self.time.min + ":" + self.time.sec + "." + self.time.ms);
+	self.huds["speedrun"]["row1"].fontScale = 1.4;
+	self.huds["speedrun"]["row1"].x = 73;
+	self.huds["speedrun"]["row1"].y = 21;
 }
 
 updateWay()
