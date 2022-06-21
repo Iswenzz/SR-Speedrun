@@ -46,8 +46,6 @@ playerConnect()
 	self.statusicon = "hud_status_connecting";
 	self.died = false;
 	self.sessionstate = Ternary(game["state"] == "endmap", "intermission", "spectator");
-	self.team = "spectator";
-	self.pers["team"] = "spectator";
 	self.pers["score"] = 0;
 	self.pers["kills"] = 0;
 	self.pers["deaths"] = 0;
@@ -158,13 +156,6 @@ playerSpawn()
 	level notify("jumper", self);
 	self cleanUp();
 
-	self.team = self.pers["team"];
-	self.sessionteam = self.team;
-	self.sessionstate = "playing";
-	self.spectatorclient = -1;
-	self.killcamentity = -1;
-	self.archivetime = 0;
-	self.psoffsettime = 0;
 	self.statusicon = Ternary(self sr\sys\_admins::isVIP(), "vip_status", "");
 	self.finishedMap = false;
 
@@ -172,6 +163,7 @@ playerSpawn()
 	self sr\game\_teams::setHealth();
 	spawn = IfUndef(self.spawnPoint, level.masterSpawn);
 	self spawn(spawn.origin, spawn.angles);
+	self.spawnPoint = undefined;
 
 	self.pers["weapon"] = level.assets["weapon"][self getStat(981)]["item"];
 	self.pers["knife"] = level.assets["knife"][self getStat(982)]["item"];

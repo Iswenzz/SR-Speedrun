@@ -32,12 +32,6 @@ spec()
 		if (!isDefined(player))
 			continue;
 
-		if (player.isBot)
-		{
-			player.guid = "^5Speedrun";
-			player.id = "^8BOT";
-		}
-
 		self setClientDvar("sr_anticheat_player_id", player.id);
 		self setClientDvar("sr_anticheat_player_name", player.shortName);
 		self setClientDvar("sr_anticheat_player_run", player.runId);

@@ -10,18 +10,13 @@ initLeaderboards()
 	level.leaderboard_loaded = true;
 	level.leaderboard_xps = xpTable();
 
-	addMode("190", ::mode_190);
-	addMode("210", ::mode_210);
-
 	menu("sr_leaderboard", "open", ::menu_Open);
 	menu_multiple("sr_leaderboard", "way", ::menu_Leaderboard);
 	menu_multiple("sr_leaderboard", "mode", ::menu_Mode);
 
 	event("connect", ::onConnect);
-	event("spawn", ::onSpawn);
 
 	load();
-	thread endmapTrig();
 }
 
 menu_Open(arg)
@@ -46,40 +41,6 @@ menu_Mode(args)
 
 	self.leaderboard_mode = mode;
 	self display();
-}
-
-mode_190()
-{
-	if (sr\api\_speedrun::isSlide())
-	{
-		self setMoveSpeedScale(1.0);
-		self setGravity(1000);
-		self setJumpHeight(70);
-		self setMoveSpeed(190 * level.map_slide_multiplier);
-		return;
-	}
-	self setMoveSpeed(190);
-	self setMoveSpeedScale(1.05);
-	self setgravity(800);
-
-	self setMoveSpeed(500); // @TODO remove
-}
-
-mode_210()
-{
-	if (sr\api\_speedrun::isSlide())
-	{
-		self setMoveSpeedScale(1.8);
-		self setGravity(1000);
-		self setJumpHeight(70);
-		self setMoveSpeed(190 * level.map_slide_multiplier);
-		return;
-	}
-	self setMoveSpeed(210);
-	self setMoveSpeedScale(1.12);
-	self setgravity(800);
-
-	// self setMoveSpeed(500); // @TODO remove
 }
 
 onConnect()
@@ -176,6 +137,9 @@ isValidEntry(entry)
 
 saveEntry(entry)
 {
+	if (!isValidEntry(entry))
+		return;
+
 	index = getLeaderboardIndex(entry["mode"], entry["way"]);
 	entries = level.leaderboards[index].entries;
 	level.leaderboards[index].entries = addEntry(entry, entries);
@@ -377,6 +341,17 @@ givePlacementXP(placement)
 	self sr\game\_rank::giveRankXP("", level.leaderboard_xps[placement - 1]);
 }
 
+getWorldRecord(mode, way)
+{
+	entries = getLeaderboard(self.sr_mode, self.sr_way).entries;
+
+	if (!entries.size)
+		return "";
+
+	wr = entries[0]["time"];
+	return fmt("%d:%d.%d", wr.min, wr.sec, wr.ms);
+}
+
 worldRecord(entry)
 {
 	players = getAllPlayers();
@@ -400,75 +375,4 @@ effects()
 		PlayFX(level.fx["wr_event"], self.origin);
 		wait 0.5;
 	}
-}
-
-endmapTrig()
-{
-	array = getEntArray("endmap_trig", "targetname");
-	if (!array.size)
-	{
-		iPrintLnBold("^1Error: No endmap_trig found.");
-		return;
-	}
-
-	trigger = array[0];
-	thread sr\game\fx\_trigger::effect(trigger, "red");
-	while (true)
-	{
-		trigger waittill("trigger", player);
-		player speedrun\game\_leaderboards::endTimer();
-	}
-}
-
-onSpawn()
-{
-	self endon("disconnect");
-
-	self.sr_way = "normal_0";
-	self [[level.leaderboard_modes[self.sr_mode].callback]]();
-	self playerTimer();
-}
-
-playerTimer()
-{
-	self endon("disconnect");
-	self endon("spawned_player");
-	self endon("joined_spectators");
-	self endon("death");
-
-	if (self.finishedMap)
-		return;
-
-	if (game["state"] != "playing")
-		level waittill("round_started");
-
-	wait 0.1; // Spastic delay caused by bad modding, too bad...
-
-	self.time = sr\utils\_common::originToTime(getTime());
-}
-
-endTimer()
-{
-	if (self.finishedMap || self.sr_cheat)
-		return;
-
-	self.finishedMap = true;
-
-	if (self.isBot)
-	{
-		self notify("menuresponse", "team_select", "spectator");
-		return;
-	}
-
-	self.time = originToTime(getTime() - self.time.origin);
-	self speedrun\player\huds\_speedrun::updateTime();
-
-	way = getLeaderboardName(self.sr_mode, self.sr_way);
-	iPrintLn(fmt("%s finished the map in %d:%d.%d - %s / %s",
-		self.name, self.time.min, self.time.sec, self.time.ms,
-		self.sr_mode, way));
-
-	entry = self makeEntry();
-	if (isValidEntry(entry))
-		saveEntry(entry);
 }

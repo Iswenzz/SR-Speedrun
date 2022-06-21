@@ -589,7 +589,7 @@ watchrespawners()
 {
 	while(1)
 	{
-		level waittill("player_spawned",player);
+		level waittill("player_spawn",player);
 		player.teleported=false;
 	}
 }

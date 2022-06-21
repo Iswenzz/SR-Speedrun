@@ -16,7 +16,7 @@ main()
 
 endTimer()
 {
-	self speedrun\game\_leaderboards::endTimer();
+	self speedrun\game\_run::endTimer();
 }
 
 addTextHud(who, x, y, alpha, alignX, alignY, fontScale)

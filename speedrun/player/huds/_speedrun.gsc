@@ -55,24 +55,26 @@ hud()
 	self.huds["speedrun"]["role"].hidewheninmenu = true;
 
 	self updateWay();
+	self notify("speedrun_hud");
 }
 
 updateRecords()
 {
-	wr = "";
-	pb = "";
-	leaderboard = speedrun\game\_leaderboards::getLeaderboard(self.sr_mode, self.sr_way);
-	entries = leaderboard.entries;
+	if (!isDefined(self.huds["speedrun"]["wr"]))
+		return;
 
-	if (entries.size)
-		wr = fmt("%d:%d.%d", entries[0]["time"].min, entries[0]["time"].sec, entries[0]["time"].ms);
+	wr = speedrun\game\_leaderboards::getWorldRecord(self.sr_mode, self.sr_way);
+	pb = speedrun\game\_pbs::getPersonalBest(self.sr_mode, self.sr_way);
 
-	self.huds["speedrun"]["pb"] setText(fmt("(PB)                 ^3%s", pb));
+	self.huds["speedrun"]["pb"] setText(fmt("(PB)                  ^3%s", pb));
 	self.huds["speedrun"]["wr"] setText(fmt("(WR)                 ^2%s", wr));
 }
 
 updateTime()
 {
+	if (!isDefined(self.huds["speedrun"]["time"]))
+		return;
+
 	self.huds["speedrun"]["time"] setText(self.time.min + ":" + self.time.sec + "." + self.time.ms);
 	self.huds["speedrun"]["time"].fontScale = 1.4;
 	self.huds["speedrun"]["time"].x = 73;
@@ -81,6 +83,9 @@ updateTime()
 
 updateWay()
 {
+	if (!isDefined(self.huds["speedrun"]["name"]))
+		return;
+
 	name = speedrun\game\_leaderboards::getLeaderboardName(self.sr_mode, self.sr_way);
 	self.huds["speedrun"]["name"] setText(name);
 	self updateRecords();
