@@ -43,8 +43,18 @@ CodeCallback_PlayerSpawned()
 	{
 		self waittill("spawned_player");
 
+		self.team = self.pers["team"];
+		self.sessionteam = self.team;
+		self.sessionstate = "playing";
+		self.spectatorclient = -1;
+		self.killcamentity = -1;
+		self.archivetime = 0;
+		self.psoffsettime = 0;
+
 		for (i = 0; isDefined(level.events["spawn"]) && i < level.events["spawn"].size; i++)
 			self thread [[level.events["spawn"][i]]]();
+
+		self notify("end_spawned_player");
 	}
 }
 
@@ -56,8 +66,13 @@ CodeCallback_PlayerSpectator()
 	{
 		self waittill("joined_spectators");
 
+		self.sessionstate = "spectator";
+		self.spectatorclient = -1;
+
 		for (i = 0; isDefined(level.events["spectator"]) && i < level.events["spectator"].size; i++)
 			self thread [[level.events["spectator"][i]]]();
+		
+		self notify("end_joined_spectators");
 	}
 }
 
@@ -79,6 +94,9 @@ CodeCallback_PlayerConnect()
 	self endon("disconnect");
 	self waittill("begin");
 	level notify("connecting", self);
+
+	self.team = "spectator";
+	self.pers["team"] = "spectator";
 
 	self thread CodeCallback_PlayerSpawned();
 	self thread CodeCallback_PlayerSpectator();
