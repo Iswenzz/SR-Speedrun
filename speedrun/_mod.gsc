@@ -29,10 +29,4 @@ main()
 	sr\player\modes\_practise::main();
 
 	speedrun\_tests::runTests();
-
-	// @TODO Remove
-	wait 6;
-	bots = sr\utils\_common::spawnBots(1);
-	for (i = 0; i < bots.size; i++)
-		bots[i] sr\sys\_admins::command("killzone");
 }
