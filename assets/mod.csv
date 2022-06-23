@@ -267,7 +267,6 @@ menufile,ui_mp/pc_joinchoosegamemode.menu
 menufile,ui_mp/joinserver.menu
 menufile,ui_mp/connect.menu
 menufile,ui_mp/scriptmenus/sr_settings.menu
-menufile,ui_mp/scriptmenus/minesweeper.menu
 menufile,ui_mp/hud.menu
 menufile,ui_mp/main.menu
 menufile,ui_mp/wm_quickmessage.menu
@@ -582,16 +581,6 @@ xanim,vm_raid_ppsh_reload_empty
 xanim,vm_raid_ppsh_sprint_in
 xanim,vm_raid_ppsh_sprint_loop
 xanim,vm_raid_ppsh_sprint_out
-
-// Minesweeper
-material,minesweeper_square
-material,minesweeper_smile
-material,minesweeper_minered
-material,minesweeper_mine
-material,minesweeper_glasses
-material,minesweeper_flag
-material,minesweeper_dead
-material,minesweeper_board
 
 // Ghost Stuff
 xmodel,vm_raid_ghostrun_deagle
