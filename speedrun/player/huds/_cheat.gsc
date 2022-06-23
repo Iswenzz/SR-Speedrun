@@ -11,8 +11,6 @@ hud()
 	self endon("disconnect");
 	self endon("death");
 
-	self.runId = randomInt(999999999);
-
 	self setClientDvar("sr_anticheat_player_id", self.id);
 	self setClientDvar("sr_anticheat_player_name", self.shortName);
 	self setClientDvar("sr_anticheat_player_run", self.runId);

@@ -42,6 +42,8 @@ menu_Mode(args)
 
 onConnect()
 {
+	self endon("disconnect");
+
 	waitMapLoad(1);
 
 	names = getArrayKeys(level.leaderboards);
@@ -163,8 +165,11 @@ saveEntry(entry)
 
 	placement = getEntryPlacement(entry, entries);
 	self givePlacementXP(placement);
+
 	if (placement == 1)
 		self thread worldRecord(entry);
+	if (placement <= 5)
+		self sr\game\_demo::recordSave();
 
 	mutex_acquire("mysql");
 
