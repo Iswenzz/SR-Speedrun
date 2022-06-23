@@ -6,7 +6,7 @@ main()
 {
     event("spawn", ::onSpawn);
 
-    addMode("190", ::mode_190);
+	addMode("190", ::mode_190);
 	addMode("210", ::mode_210);
 
     thread endmapTrig();
@@ -50,7 +50,9 @@ onSpawn()
 {
 	self endon("disconnect");
 
+	self.sr_mode = IfUndef(self.sr_mode, "190");
 	self.sr_way = "normal_0";
+	
 	self startMode();
 	self playerTimer();
 }
@@ -62,6 +64,8 @@ startMode()
 
 endmapTrig()
 {
+	wait 5;
+	
 	array = getEntArray("endmap_trig", "targetname");
 	if (!array.size)
 	{

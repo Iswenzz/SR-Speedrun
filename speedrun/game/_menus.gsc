@@ -38,7 +38,7 @@ menu_3rdPerson(arg)
 
 menu_Suicide(arg)
 {
-	if (self sr\game\minigames\_main::isInAnyQueue() || !game["roundStarted"] || self.pers["team"] == "axis")
+	if (self sr\game\minigames\_main::isInAnyQueue() || self.pers["team"] == "axis")
 	{
 		self iPrintLn("^1Suicide disabled");
 		return;
@@ -59,7 +59,7 @@ menu_Team(arg)
 	self closeMenu();
 	self closeInGameMenu();
 
-	if (self sr\game\minigames\_main::isInAnyQueue() || !game["roundStarted"] || self.pers["team"] == "axis")
+	if (self sr\game\minigames\_main::isInAnyQueue() || self.pers["team"] == "axis")
 	{
 		self iPrintLn("^1Suicide disabled");
 		return;

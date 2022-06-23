@@ -3,11 +3,8 @@
 
 initLeaderboards()
 {
-	level.leaderboards = [];
-	level.leaderboard_modes = [];
 	level.leaderboard_max_page = 7;
 	level.leaderboard_max_entries = 30;
-	level.leaderboard_loaded = true;
 	level.leaderboard_xps = xpTable();
 
 	menu("sr_leaderboard", "open", ::menu_Open);
@@ -16,7 +13,7 @@ initLeaderboards()
 
 	event("connect", ::onConnect);
 
-	load();
+	thread load();
 }
 
 menu_Open(arg)
@@ -45,8 +42,7 @@ menu_Mode(args)
 
 onConnect()
 {
-	self.sr_mode = "190";
-	self.sr_way = "normal_0";
+	waitMapLoad(1);
 
 	names = getArrayKeys(level.leaderboards);
 
@@ -71,6 +67,27 @@ onConnect()
 
 load()
 {
+	waitMapLoad();
+
+	level.leaderboards = [];
+	modes = getArrayKeys(level.leaderboard_modes);
+	ways = getArrayKeys(level.leaderboard_ways);
+
+	for (i = 0; i < modes.size; i++)
+	{
+		for (j = 0; j < ways.size; j++)
+		{
+			mode = level.leaderboard_modes[modes[i]];
+			way = level.leaderboard_ways[ways[j]];
+			index = getLeaderboardIndex(mode.id, way.id);
+
+			level.leaderboards[index] = spawnStruct();
+			level.leaderboards[index].entries = [];
+			level.leaderboards[index].id = way.id;
+			level.leaderboards[index].name = way.name;
+		}
+	}
+
 	mutex_acquire("mysql");
 
 	SQL_Prepare("SELECT mode, way, time, name, player, run FROM leaderboards WHERE map = ?");
@@ -180,6 +197,8 @@ saveEntry(entry)
 
 addMode(mode, callback)
 {
+	if (!isDefined(level.leaderboard_modes))
+		level.leaderboard_modes = [];
 	level.leaderboard_modes[mode] = spawnStruct();
 	level.leaderboard_modes[mode].id = mode;
 	level.leaderboard_modes[mode].callback = callback;
@@ -187,20 +206,11 @@ addMode(mode, callback)
 
 addWay(way, name)
 {
-	modes = getArrayKeys(level.leaderboard_modes);
-	for (i = 0; i < modes.size; i++)
-	{
-		index = getLeaderboardIndex(modes[i], way);
-
-		if (!isDefined(level.leaderboards[index]))
-		{
-			level.leaderboards[index] = spawnStruct();
-			level.leaderboards[index].entries = [];
-		}
-
-		level.leaderboards[index].id = way;
-		level.leaderboards[index].name = name;
-	}
+	if (!isDefined(level.leaderboard_ways))
+		level.leaderboard_ways = [];
+	level.leaderboard_ways[way] = spawnStruct();
+	level.leaderboard_ways[way].id = way;
+	level.leaderboard_ways[way].name = name;
 }
 
 display()
@@ -299,6 +309,8 @@ xpTable()
 
 getLeaderboard(mode, way)
 {
+	if (!isDefined(level.leaderboards) || !level.leaderboards.size)
+		return undefined;
 	return level.leaderboards[getLeaderboardIndex(mode, way)];
 }
 
@@ -309,7 +321,10 @@ getLeaderboardIndex(mode, way)
 
 getLeaderboardName(mode, way)
 {
-	return getLeaderboard(mode, way).name;
+	leaderboard = getLeaderboard(mode, way);
+	if (isDefined(leaderboard))
+		return leaderboard.name;
+	return "Loading...";
 }
 
 getEntryPlacement(entry, entries)
@@ -343,8 +358,11 @@ givePlacementXP(placement)
 
 getWorldRecord(mode, way)
 {
-	entries = getLeaderboard(self.sr_mode, self.sr_way).entries;
+	leaderboard = getLeaderboard(self.sr_mode, self.sr_way);
+	if (!isDefined(leaderboard))
+		return "";
 
+	entries = leaderboard.entries;
 	if (!entries.size)
 		return "";
 
