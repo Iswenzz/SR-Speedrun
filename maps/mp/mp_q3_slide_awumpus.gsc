@@ -22,7 +22,9 @@ Email Pro: suxlolz@outlook.fr
 
 main()
 {
-level.masterSpawn = spawn("script_origin",(4608,-7776,0));
+level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
+	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
+	level.masterSpawn = spawn("script_origin",(4608,-7776,0));
 level.masterSpawn.angles = (0,360,0);
 	maps\mp\_load::main();
 	maps\mp\_compass::setupMiniMap("compass_mp_q3_slide_awumpus");

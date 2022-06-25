@@ -20,7 +20,9 @@
 #include braxi\_common;
 main()
 {
-level.masterSpawn = spawn("script_origin", level.spawn["allies"][2].origin + (125,0,0));
+level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
+	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
+	level.masterSpawn = spawn("script_origin", level.spawn["allies"][2].origin + (125,0,0));
 level.masterSpawn.angles = (0,270,0);
 del = getEnt("endmap_trig","targetname");
 del delete();

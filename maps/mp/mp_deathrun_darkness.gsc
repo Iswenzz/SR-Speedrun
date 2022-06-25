@@ -9,7 +9,9 @@
 
 main()
 {
-level.masterSpawn = spawn("script_origin",(-4, -197, 0));
+level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
+	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
+	level.masterSpawn = spawn("script_origin",(-4, -197, 0));
 level.masterSpawn.angles = (0,90,0);
 level.trapTriggers[level.trapTriggers.size] = getEnt("t1", "targetname");
 level.trapTriggers[level.trapTriggers.size] = getEnt("t2", "targetname");

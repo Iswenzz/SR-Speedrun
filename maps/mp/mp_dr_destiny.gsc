@@ -1,6 +1,8 @@
 main()
 {
-level.masterSpawn = spawn("script_origin",(825,368,200));
+level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
+	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
+	level.masterSpawn = spawn("script_origin",(825,368,200));
 level.masterSpawn.angles = (0,270,0);
 	thread way_connect();
 	maps\mp\_load::main();

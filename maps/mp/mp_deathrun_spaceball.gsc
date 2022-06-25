@@ -1,6 +1,8 @@
 main()
 {
-level.masterSpawn = spawn("script_origin",(9,-43,4037));
+level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
+	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
+	level.masterSpawn = spawn("script_origin",(9,-43,4037));
 level.masterSpawn.angles = (0,0,0);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
   thread sr\api\_speedrun::createSecretWays("Secret Way;");

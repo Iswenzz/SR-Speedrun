@@ -22,7 +22,9 @@ Email Pro: suxlolz@outlook.fr
 
 main()
 {
-level.masterSpawn = spawn("script_origin",(-713,-7372.6,384));
+level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
+	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
+	level.masterSpawn = spawn("script_origin",(-713,-7372.6,384));
 level.masterSpawn.angles = (0,360,0);
 	maps\mp\_load::main();
 	maps\mp\enter_teleport\_teleport::main();

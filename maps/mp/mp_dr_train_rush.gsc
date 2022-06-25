@@ -17,7 +17,9 @@ Email Pro: suxlolz@outlook.fr
 */
 main()
 {
-level.masterSpawn = spawn("script_origin",(0, -19544, 192));
+level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
+	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
+	level.masterSpawn = spawn("script_origin",(0, -19544, 192));
 level.masterSpawn.angles = (0,90,0);
 	maps\mp\_load::main();
 	maps\mp\_compass::setupMiniMap("compass_map_mp_dr_train_rush");

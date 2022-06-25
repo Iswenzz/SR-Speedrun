@@ -3,7 +3,9 @@
 // Do not Change anything please if you want to change ask me before! xfire:wespatrick
 main()
 {
-level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin - (0,49,0));
+level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
+	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
+	level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin - (0,49,0));
 level.masterSpawn.angles = (0,180,0);
 trigger = spawn("trigger_radius", (-4908.72, 447.658, 218.524), 0, 96, 48);
 trigger.targetname = "endmap_trig";

@@ -8,7 +8,9 @@
 //vehicle_mi17_woodland_fly_static
 main()
 {
-level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin);
+level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
+	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
+	level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin);
 level.masterSpawn.angles = level.spawn["allies"][0].angles;
 level.masterSpawn placeSpawnPoint();
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");

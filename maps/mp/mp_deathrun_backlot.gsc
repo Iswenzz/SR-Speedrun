@@ -1,6 +1,8 @@
 main()
 {
-level.masterSpawn = spawn("script_origin", (-450,1515,126));
+level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
+	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
+	level.masterSpawn = spawn("script_origin", (-450,1515,126));
 level.masterSpawn.angles = level.spawn["allies"][0].angles;
 level.masterSpawn placeSpawnPoint();
 trigger = spawn("trigger_radius", (-939.774, 222.606, 106.125), 0, 96, 48);

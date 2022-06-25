@@ -5,7 +5,9 @@
 //Enjoy
 main()
 {
-level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin);
+level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
+	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
+	level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin);
 level.masterSpawn.angles = (0,90,0);
 trigger = spawn("trigger_radius", (-1663.35, 16682.4, -143.875), 0, 210, 75);
 trigger.targetname = "endmap_trig";

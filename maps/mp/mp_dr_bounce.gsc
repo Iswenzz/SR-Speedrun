@@ -1,6 +1,8 @@
 main()
 {
-level.masterSpawn = spawn("script_origin", level.spawn["allies"][3].origin);
+level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
+	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
+	level.masterSpawn = spawn("script_origin", level.spawn["allies"][3].origin);
 level.masterSpawn.angles = level.spawn["allies"][3].angles;
 level.masterSpawn placeSpawnPoint();
 
