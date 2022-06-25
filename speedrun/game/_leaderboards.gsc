@@ -227,14 +227,17 @@ display()
 	leaderboard = getLeaderboard(self.leaderboard_mode, self.leaderboard_way);
 	entries = leaderboard.entries;
 
-	for (i = 0; i < level.leaderboard_max_entries / 10; i++)
+	self setClientDvar("leaderboard_name", fmt("%s ^7%s", self.leaderboard_mode, leaderboard.name));
+
+	if (!isDefined(entries))
+		return;
+
+	for (i = 0; i < int(level.leaderboard_max_entries / 10); i++)
 	{
 		self setClientDvar("leaderboard_numbers_" + i, "");
 		self setClientDvar("leaderboard_names_" + i, "");
 		self setClientDvar("leaderboard_values_" + i, "");
-		wait 0.05;
 	}
-	self setClientDvar("leaderboard_name", fmt("%s ^7%s", self.leaderboard_mode, leaderboard.name));
 
 	stringIndex = 0;
 	for (i = 0; i < entries.size; i++)
@@ -263,10 +266,8 @@ display()
 			names = "";
 			times = "";
 			stringIndex++;
-
-			wait 0.05;
 		}
-    }
+	}
 }
 
 addEntry(entry, entries)
