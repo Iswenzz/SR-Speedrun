@@ -25,8 +25,6 @@ mode_190()
 	self setMoveSpeed(190);
 	self setMoveSpeedScale(1.05);
 	self setgravity(800);
-
-	self setMoveSpeed(500); // @TODO remove
 }
 
 mode_210()
@@ -42,8 +40,6 @@ mode_210()
 	self setMoveSpeed(210);
 	self setMoveSpeedScale(1.12);
 	self setgravity(800);
-
-	// self setMoveSpeed(500); // @TODO remove
 }
 
 onSpawn()
