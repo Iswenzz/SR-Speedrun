@@ -60,12 +60,13 @@ playerConnect()
 	self.assists = self.pers["assists"];
 	self.deaths = self.pers["deaths"];
 
-	self playerSpectator();
 	logPrint(fmt("J;%s;%d;%s\n", self.guid, self.number, self.name));
 
 	if (game["state"] == "endmap")
 		return;
 
+	if (self canSpawn())
+		self eventSpawn();
 	self welcomeMenu();
 }
 
