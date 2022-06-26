@@ -32,10 +32,10 @@ hud()
 
 	while (self.sessionstate != "spectator")
 	{
-		wait 0.05;
-
 		self updateFps();
 		self updateVelocity();
+		
+		wait 0.05;
 	}
 }
 

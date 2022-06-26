@@ -65,8 +65,7 @@ playerConnect()
 	if (game["state"] == "endmap")
 		return;
 
-	if (self canSpawn())
-		self eventSpawn();
+	self eventSpectator();
 	self welcomeMenu();
 }
 
