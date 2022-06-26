@@ -18,9 +18,7 @@ hud()
 	self endon("disconnect");
 	self endon("spawned_player");
 
-	if (!self.settings["hud_spectator"])
-		return;
-
+	self clear();
 	self hudKeys();
 	self hudFps();
 
@@ -29,6 +27,11 @@ hud()
 		wait 0.05;
 		player = self getSpectatorClient();
 
+		if (!self.settings["hud_spectator"])
+		{
+			self clear();
+			break;
+		}
 		if (!isDefined(player))
 			continue;
 

@@ -14,6 +14,8 @@ hud()
 	self endon("disconnect");
 	self endon("joined_spectators");
 
+	self clear();
+
 	color = Ternary(self sr\sys\_admins::isVIP(),
 		ToRGB(self getStat(1650), self getStat(1651), self getStat(1652)),
 		(0, 0, 0));

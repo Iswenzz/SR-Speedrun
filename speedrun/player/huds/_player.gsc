@@ -27,6 +27,7 @@ hud()
 	if (self.isBot)
 		return;
 
+	self clear();
 	self hudPlayer();
 
 	while (self.sessionstate != "spectator")
