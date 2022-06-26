@@ -27,7 +27,4 @@ main()
 	speedrun\player\huds\_speedrun::main();
 
 	speedrun\_tests::runTests();
-
-	sr\utils\_common::waitMapLoad();
-	bots = sr\utils\_common::spawnBots(3);
 }
