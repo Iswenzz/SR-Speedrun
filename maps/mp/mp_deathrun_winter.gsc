@@ -4,7 +4,7 @@ main()
   thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread sr\api\_map::createSpawn(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
+		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 level.teleport = loadFX("misc/ui_pickup_available"); 
 level.snow = loadFX("weather/snow_light"); 
  
