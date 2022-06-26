@@ -99,7 +99,7 @@ playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vP
 
 	level notify("player_damage", self, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime);
 
-	if (isPlayer(eInflictor) && isPlayer(eAttacker) && eInflictor.pers["team"] == eAttacker.pers["team"] && !eAttacker.teamKill)
+	if (isPlayer(self) && isPlayer(eAttacker) && self.pers["team"] == eAttacker.pers["team"] && !eAttacker.teamKill)
 		return;
 	if (isPlayer(self) && isDefined(self.godmode))
 		return;
