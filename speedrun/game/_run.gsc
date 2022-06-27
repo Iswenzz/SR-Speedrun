@@ -14,32 +14,44 @@ main()
 
 mode_190()
 {
+	self.moveSpeedScale = 1.05;
+	self.gravity = 800;
+	self.jumpHeight = 39;
+	self.speed = 190;
+
 	if (sr\api\_speedrun::isSlide())
 	{
-		self setMoveSpeedScale(1.0);
-		self setGravity(1000);
-		self setJumpHeight(70);
-		self setMoveSpeed(190 * level.map_slide_multiplier);
-		return;
+		self.moveSpeedScale = 1.0;
+		self.gravity = 1000;
+		self.jumpHeight = 70;
+		self.speed = 190 * level.map_slide_multiplier;
 	}
-	self setMoveSpeed(190);
-	self setMoveSpeedScale(1.05);
-	self setgravity(800);
+
+	self setMoveSpeedScale(self.moveSpeedScale);
+	self setGravity(self.gravity);
+	self setJumpHeight(self.jumpHeight);
+	self setMoveSpeed(self.speed);
 }
 
 mode_210()
 {
+	self.moveSpeedScale = 1.12;
+	self.gravity = 800;
+	self.jumpHeight = 39;
+	self.speed = 210;
+
 	if (sr\api\_speedrun::isSlide())
 	{
-		self setMoveSpeedScale(1.8);
-		self setGravity(1000);
-		self setJumpHeight(70);
-		self setMoveSpeed(190 * level.map_slide_multiplier);
-		return;
+		self.moveSpeedScale = 1.8;
+		self.gravity = 1000;
+		self.jumpHeight = 70;
+		self.speed = 190 * level.map_slide_multiplier;
 	}
-	self setMoveSpeed(210);
-	self setMoveSpeedScale(1.12);
-	self setgravity(800);
+	
+	self setMoveSpeedScale(self.moveSpeedScale);
+	self setGravity(self.gravity);
+	self setJumpHeight(self.jumpHeight);
+	self setMoveSpeed(self.speed);
 }
 
 onSpawn()
