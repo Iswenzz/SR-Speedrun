@@ -22,9 +22,10 @@ main()
 	speedrun\game\_leaderboards::initLeaderboards();
 	speedrun\game\_pbs::initPBs();
 	speedrun\player\huds\_cheat::main();
-	speedrun\player\huds\_player::main();
-	speedrun\player\huds\_spectator::main();
 	speedrun\player\huds\_speedrun::main();
 
 	speedrun\_tests::runTests();
+
+	// sr\utils\_common::waitMapLoad(); // @TODO
+	// sr\utils\_common::spawnBots(3); // @TODO
 }
