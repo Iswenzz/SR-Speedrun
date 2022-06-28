@@ -88,9 +88,15 @@ updateWay()
 	if (!isDefined(self.huds["speedrun"]["name"]))
 		return;
 
+	self updateRecords();
+
+	if (self sr\game\minigames\_main::isInAnyQueue())
+		return;
+	if (self sr\player\modes\_main::isInAnyMode())
+		return;
+
 	name = speedrun\game\_leaderboards::getLeaderboardName(self.sr_mode, self.sr_way);
 	self.huds["speedrun"]["name"] setText(name);
-	self updateRecords();
 }
 
 clear()
