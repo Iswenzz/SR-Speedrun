@@ -16,7 +16,10 @@ cmd_Speed(args)
 
 cmd_Practise(args)
 {
-    self.modes["practise"] = !self.modes["practise"];
+    if (self sr\player\modes\_main::isInOtherMode("practise"))
+		return;
+
+	self sr\player\modes\_main::toggleMode("practise");
 	self suicide();
 
     if (self.modes["practise"])
