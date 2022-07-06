@@ -51,6 +51,8 @@ initDvars()
 
 	if (getDvar("last_picked_player") == "")
 		setDvar("last_picked_player", ("bxownu" + randomInt(100)));
+
+	setDvar("g_deadChat", 1);
 }
 
 addDvar(scriptName, varname, vardefault, min, max, type)
