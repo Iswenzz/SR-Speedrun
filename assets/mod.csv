@@ -129,11 +129,7 @@ rawfile,mp/playeranimtypes.txt
 rawfile,mp/playeranim.script
 
 // Localized strings
-localize,srmenu
-localize,braxi
-localize,mapvote
-localize,drchallenge
-localize,drm
+localize,sr
 localize,weapon
 localize,perks
 
