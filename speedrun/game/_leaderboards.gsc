@@ -132,7 +132,7 @@ makeEntry()
 	entry = [];
 	entry["name"] = self.shortName;
 	entry["player"] = self.id;
-	entry["run"] = self.runId;
+	entry["run"] = self.run;
 	entry["way"] = self.sr_way;
 	entry["mode"] = self.sr_mode;
 	entry["time"] = self.time;

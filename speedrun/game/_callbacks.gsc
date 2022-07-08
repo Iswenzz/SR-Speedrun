@@ -45,7 +45,6 @@ playerConnect()
 	self.number = self getEntityNumber();
 	self.statusicon = "hud_status_connecting";
 	self.died = false;
-	self.sessionstate = Ternary(game["state"] == "endmap", "intermission", "spectator");
 	self.pers["score"] = 0;
 	self.pers["kills"] = 0;
 	self.pers["deaths"] = 0;

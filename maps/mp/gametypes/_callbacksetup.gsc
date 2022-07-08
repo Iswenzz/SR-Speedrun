@@ -71,7 +71,7 @@ CodeCallback_PlayerSpectator()
 
 		for (i = 0; isDefined(level.events["spectator"]) && i < level.events["spectator"].size; i++)
 			self thread [[level.events["spectator"][i]]]();
-		
+
 		self notify("end_joined_spectators");
 	}
 }
@@ -97,6 +97,7 @@ CodeCallback_PlayerConnect()
 
 	self.team = "spectator";
 	self.pers["team"] = "spectator";
+	self.sessionstate = Ternary(game["state"] == "endmap", "intermission", "spectator");
 
 	self thread CodeCallback_PlayerSpawned();
 	self thread CodeCallback_PlayerSpectator();
@@ -125,6 +126,8 @@ CodeCallback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath
 CodeCallback_PlayerKilled(eInflictor, eAttacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, timeOffset, deathAnimDuration)
 {
 	self endon("disconnect");
+
+	self.sessionstate = "dead";
 
 	for (i = 0; isDefined(level.events["killed"]) && i < level.events["killed"].size; i++)
 		self thread [[level.events["killed"][i]]](eInflictor, eAttacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, timeOffset, deathAnimDuration);

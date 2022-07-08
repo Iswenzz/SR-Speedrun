@@ -13,7 +13,7 @@ start()
 		bot = AddTestClient();
 		bot.isBot = true;
 		bot.sr_cheat = true;
-		bot.runId = "^5Speedrun Bot";
+		bot.run = "^5Speedrun Bot";
 		bot notify("menuresponse", "team_select", "axis");
 
 		wait 0.1;
