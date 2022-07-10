@@ -23,38 +23,49 @@ hud()
 	self.huds["speedrun"] = [];
  	self.huds["speedrun"]["background"] = addHud(self, 0, 0, 1, "left", "top", 1.8);
 	self.huds["speedrun"]["background"] setShader("time_hud", 142, 80);
-	self.huds["speedrun"]["background"].hidewheninmenu = true;
 	self.huds["speedrun"]["background"].color = color;
 	self.huds["speedrun"]["background"].glowColor = color;
 	self.huds["speedrun"]["background"].glowAlpha = 1;
 
- 	self.huds["speedrun"]["mode"] = addHud(self, 4, 18, 1, "left", "top", 1.8);
+ 	self.huds["speedrun"]["mode"] = addHud(self, 4, 18, 1, "left", "top", 1.8, 99);
 	self.huds["speedrun"]["mode"] setText(self.sr_mode);
-	self.huds["speedrun"]["mode"].hidewheninmenu = true;
-	self.huds["speedrun"]["mode"].sort = 99;
 
-	self.huds["speedrun"]["row1"] = addHud(self, 72, 18, 1, "left", "top", 1.8);
-	self.huds["speedrun"]["row1"].sort = 99;
-	self.huds["speedrun"]["row1"] setText(" ");
+	self.huds["speedrun"]["row1"] = addHud(self, 72, 18, 1, "left", "top", 1.8, 99);
 	self.huds["speedrun"]["row1"].label = &"^5&&1";
 	self.huds["speedrun"]["row1"] setTenthsTimerUp(0.0001);
-	self.huds["speedrun"]["row1"].hidewheninmenu = true;
 
- 	self.huds["speedrun"]["row2"] = addHud(self, 5, 42, 1, "left", "top", 1.4);
-	self.huds["speedrun"]["row2"].hidewheninmenu = true;
-	self.huds["speedrun"]["row2"].sort = 99;
-
- 	self.huds["speedrun"]["row3"] = addHud(self, 5, 61, 1, "left", "top", 1.4);
-	self.huds["speedrun"]["row3"].hidewheninmenu = true;
-	self.huds["speedrun"]["row3"].sort = 99;
-
- 	self.huds["speedrun"]["name"] = addHud(self, 3, 0, 1, "left", "top", 1.4);
-	self.huds["speedrun"]["name"].hidewheninmenu = true;
-	self.huds["speedrun"]["name"].sort = 99;
+ 	self.huds["speedrun"]["row2"] = addHud(self, 5, 42, 1, "left", "top", 1.4, 99);
+ 	self.huds["speedrun"]["row3"] = addHud(self, 5, 61, 1, "left", "top", 1.4, 99);
+ 	self.huds["speedrun"]["name"] = addHud(self, 3, 0, 1, "left", "top", 1.4, 99);
 
  	self.huds["speedrun"]["role"] = addHud(self, 142, 18, 1, "left", "top", 1.8);
 	self.huds["speedrun"]["role"] setText(self sr\sys\_admins::getRoleName());
-	self.huds["speedrun"]["role"].hidewheninmenu = true;
+
+	if (self sr\sys\_admins::isVIP())
+	{
+		self.huds["speedrun"]["vip"] = addHud(self, 144, -1, 1, "left", "top", 1.8);
+		self.huds["speedrun"]["vip"] setShader("vip_status", 24, 22);
+	}
+	if (isDefined(self.wrCount) && self.wrCount)
+	{
+		self.huds["speedrun"]["wr_icon"] = addHud(self, 170, 1, 1, "left", "top", 1.4);
+		self.huds["speedrun"]["wr_icon"] setShader("speedrunner_logo", 18, 18);
+		self.huds["speedrun"]["wr_icon_count"] = addHud(self, 182, 5, 1, "left", "top", 1.4);
+		self.huds["speedrun"]["wr_icon_count"] setText("^3" + self.wrCount);
+	}
+	if (isDefined(self.showRank) && self.showRank)
+	{
+		icon = level.assets["rank"][self.pers["rank"]];
+
+		if (self.pers["prestige"] > 0)
+		{
+			icon = level.assets["prestige"][self.pers["prestige"]];
+			self.huds["speedrun"]["rank"] = addHud(self, 197, 5, 1, "left", "top", 1.4, 81);
+			self.huds["speedrun"]["rank"] setValue(self.pers["rank"]);
+		}
+		self.huds["speedrun"]["rank_icon"] = addHud(self, 185, 1, 1, "left", "top", 1.4, 80);
+		self.huds["speedrun"]["rank_icon"] setShader(icon, 18, 18);
+	}
 
 	self updateWay();
 	self notify("speedrun_hud");

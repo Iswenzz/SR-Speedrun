@@ -46,6 +46,9 @@ onConnect()
 
 	waitMapLoad(1);
 
+	if (!mapHasLeaderboards())
+		return;
+
 	names = getArrayKeys(level.leaderboards);
 
 	// Default
@@ -70,6 +73,9 @@ onConnect()
 load()
 {
 	waitMapLoad();
+
+	if (!mapHasLeaderboards())
+		return;
 
 	level.leaderboards = [];
 	modes = getArrayKeys(level.leaderboard_modes);
@@ -154,9 +160,14 @@ isValidEntry(entry)
 	return entry["time"].origin <= previousEntry["time"].origin;
 }
 
+mapHasLeaderboards()
+{
+	return isDefined(level.leaderboard_ways) && isDefined(level.leaderboard_modes);
+}
+
 saveEntry(entry)
 {
-	if (!isValidEntry(entry))
+	if (!mapHasLeaderboards() || !isValidEntry(entry))
 		return;
 
 	index = getLeaderboardIndex(entry["mode"], entry["way"]);
@@ -220,6 +231,9 @@ addWay(way, name)
 
 display()
 {
+	if (!mapHasLeaderboards())
+		return;
+
 	numbers = "";
 	names = "";
 	times = "";

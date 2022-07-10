@@ -74,12 +74,11 @@ material,sr_vip
 material,sr_insert
 material,sr_dice
 xmodel,collision_sphere
-
-//spec hud
-material,key_w
-material,key_a
-material,key_s
-material,key_d
+material,arrow_w
+material,arrow_a
+material,arrow_s
+material,arrow_d
+material,crosshair
 material,fps_20
 material,fps_30
 material,fps_125
