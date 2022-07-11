@@ -98,6 +98,7 @@ CodeCallback_PlayerConnect()
 	self.team = "spectator";
 	self.pers["team"] = "spectator";
 	self.sessionstate = Ternary(game["state"] == "endmap", "intermission", "spectator");
+	self.run = 0;
 
 	self thread CodeCallback_PlayerSpawned();
 	self thread CodeCallback_PlayerSpectator();

@@ -25,14 +25,14 @@ spec()
 	while (self.sessionstate != "playing")
 	{
 		wait 0.1;
-		player = self getSpectatorClient();
+		self.player = self getSpectatorClient();
 
-		if (!isDefined(player))
+		if (!isDefined(self.player))
 			continue;
 
-		self setClientDvar("sr_anticheat_player_id", player.id);
-		self setClientDvar("sr_anticheat_player_name", player.shortName);
-		self setClientDvar("sr_anticheat_player_run", player.run);
-		self setClientDvar("sr_anticheat_player_guid", player.guid);
+		self setClientDvar("sr_anticheat_player_id", self.player.id);
+		self setClientDvar("sr_anticheat_player_name", self.player.shortName);
+		self setClientDvar("sr_anticheat_player_run", self.player.run);
+		self setClientDvar("sr_anticheat_player_guid", self.player.guid);
 	}
 }

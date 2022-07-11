@@ -175,7 +175,7 @@ saveEntry(entry)
 	level.leaderboards[index].entries = addEntry(entry, entries);
 
 	placement = getEntryPlacement(entry, entries);
-	self givePlacementXP(placement);
+	self givePlacementXP(entries.size, placement);
 
 	if (placement == 1)
 		self thread worldRecord(entry);
@@ -368,12 +368,13 @@ getPlayerEntry(entries)
 	return undefined;
 }
 
-givePlacementXP(placement)
+givePlacementXP(entriesCount, placement)
 {
 	if (placement == 0 || !isDefined(level.leaderboard_xps[placement - 1]))
 		return;
 
-	self sr\game\_rank::giveRankXP("", level.leaderboard_xps[placement - 1]);
+	multiplier = (entriesCount / 10) * Ternary(self sr\sys\_admins::isVIP(), 3, 1);
+	self sr\game\_rank::giveRankXP("", level.leaderboard_xps[placement - 1] * multiplier);
 }
 
 getWorldRecord(mode, way)

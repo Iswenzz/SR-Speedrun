@@ -43,14 +43,14 @@ hud()
 
 	if (self sr\sys\_admins::isVIP())
 	{
-		self.huds["speedrun"]["vip"] = addHud(self, 144, -1, 1, "left", "top", 1.8, true);
+		self.huds["speedrun"]["vip"] = addHud(self, 144, -1, 1, "left", "top", 1.8, 99, true);
 		self.huds["speedrun"]["vip"] setShader("vip_status", 24, 22);
 	}
 	if (isDefined(self.wrCount) && self.wrCount)
 	{
-		self.huds["speedrun"]["wr_icon"] = addHud(self, 170, 1, 1, "left", "top", 1.4, true);
+		self.huds["speedrun"]["wr_icon"] = addHud(self, 170, 1, 1, "left", "top", 1.4, 99, true);
 		self.huds["speedrun"]["wr_icon"] setShader("speedrunner_logo", 18, 18);
-		self.huds["speedrun"]["wr_icon_count"] = addHud(self, 182, 5, 1, "left", "top", 1.4, true);
+		self.huds["speedrun"]["wr_icon_count"] = addHud(self, 182, 5, 1, "left", "top", 1.4, 99, true);
 		self.huds["speedrun"]["wr_icon_count"] setText("^3" + self.wrCount);
 	}
 	if (isDefined(self.showRank) && self.showRank)
