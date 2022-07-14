@@ -1,13 +1,12 @@
 main()
 {
-level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
-	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
-	level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin + (121,0,0));
-level.masterSpawn.angles = (0,270,0);
-trigger = spawn("trigger_radius", (26.0624, 1312.15, 202.402), 0, 96, 48);
-trigger.targetname = "endmap_trig";
-trigger.inAir = true;
-trigger.radius = 96;
+	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
+	level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin + (121, 0, 0));
+	level.masterSpawn.angles = (0,270,0);
+	trigger = spawn("trigger_radius", (26.0624, 1312.15, 202.402), 0, 96, 48);
+	trigger.targetname = "endmap_trig";
+	trigger.inAir = true;
+	trigger.radius = 96;
 
 	//***************************//
 	thread way_connect();
@@ -40,9 +39,9 @@ trigger.radius = 96;
 	// thread RegisterTrapTrigger( "t21_" );
 	// thread RegisterTrapTrigger( "t22_" );
 	setdvar("compassmaxrange","1750");
-	
+
 	// AmbientPlay( "coldplay" );
-	
+
 	//***************************//
 
         game["allies"] = "sas";
@@ -53,7 +52,7 @@ trigger.radius = 96;
         game["axis_soldiertype"] = "woodland";
 
 	//setdvar( "r_specularcolorscale", "1" );
-	
+
 	//setdvar("r_glowbloomintensity0",".25");
 	//setdvar("r_glowbloomintensity1",".25");
 	//setdvar("r_glowskybleedintensity0",".3");
@@ -64,13 +63,13 @@ trigger.radius = 96;
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
-        
+
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////

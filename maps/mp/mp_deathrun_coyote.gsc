@@ -2,63 +2,62 @@
 main()
 {
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
 		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
-	
-	thread sr\api\_speedrun::createTeleporter((283, 378, 65), 100, 150,
-	 (-2695, 422, 2399), 180, "freeze", "green", "secret_0");
 
-	thread sr\api\_speedrun::createEndMap((3035, 3901, -1056), 100, 150);
+	thread sr\api\_speedrun::createTeleporter((283, 378, 65), 100, 150, (-2695, 422, 2399), 180, "freeze", "green", "secret_0");
+	thread sr\api\_speedrun::createEndMap((3035, 9626, -1056), 300, 150);
+	thread sr\api\_speedrun::createEndMap((-8029, 601, -52), 150, 150, "secret_0");
 
-	maps\mp\_load::main(); 
+	maps\mp\_load::main();
 
-	entTransporter = getentarray( "bounce_enter", "targetname" );
-	if(isdefined(entTransporter))
-		for( i = 0; i < entTransporter.size; i++ )
-			entTransporter[i] thread transporter();
+	// entTransporter = getentarray( "bounce_enter", "targetname" );
+	// if(isdefined(entTransporter))
+	// 	for( i = 0; i < entTransporter.size; i++ )
+	// 		entTransporter[i] thread transporter();
 
-	entTransporter = getentarray( "bounce02_enter", "targetname" );
-	if(isdefined(entTransporter))
-		for( i = 0; i < entTransporter.size; i++ )
-			entTransporter[i] thread transporter02();	
+	// entTransporter = getentarray( "bounce02_enter", "targetname" );
+	// if(isdefined(entTransporter))
+	// 	for( i = 0; i < entTransporter.size; i++ )
+	// 		entTransporter[i] thread transporter02();
 
 	secwood = getent("wall_secret","targetname");
 	secwood delete();
-	
-	entTransporter = getentarray( "secret_entrance", "targetname" );
-	if(isdefined(entTransporter))
-		for( i = 0; i < entTransporter.size; i++ )
-			entTransporter[i] thread secret_69();
-	entTransporter = getentarray( "secret_fail", "targetname" );
-	if(isdefined(entTransporter))
-		for( i = 0; i < entTransporter.size; i++ )
-			entTransporter[i] thread secret_fail();
-	entTransporter = getentarray( "bounce_room_acti", "targetname" );
-	if(isdefined(entTransporter))
-		for( i = 0; i < entTransporter.size; i++ )
-			entTransporter[i] thread bounce_room_acti();
-	entTransporter = getentarray( "bounce_room_jumper", "targetname" );
-	if(isdefined(entTransporter))
-		for( i = 0; i < entTransporter.size; i++ )
-			entTransporter[i] thread bounce_room_jumper();
-	entTransporter = getentarray( "secret_finish", "targetname" );
-	if(isdefined(entTransporter))
-		for( i = 0; i < entTransporter.size; i++ )
-			entTransporter[i] thread secret_finish();
-	entTransporter = getentarray( "secret_21", "targetname" );
-	if(isdefined(entTransporter))
-		for( i = 0; i < entTransporter.size; i++ )
-			entTransporter[i] thread secret_21();
-	entTransporter = getentarray( "secret_21_out", "targetname" );
-	if(isdefined(entTransporter))
-		for( i = 0; i < entTransporter.size; i++ )
-			entTransporter[i] thread secret_21_out();
-	entTransporter = getentarray( "jumpers_secret1", "targetname" );
-	if(isdefined(entTransporter))
-		for( i = 0; i < entTransporter.size; i++ )
-			entTransporter[i] thread jumpers_secret1();
+
+	// entTransporter = getentarray( "secret_entrance", "targetname" );
+	// if(isdefined(entTransporter))
+	// 	for( i = 0; i < entTransporter.size; i++ )
+	// 		entTransporter[i] thread secret_69();
+	// entTransporter = getentarray( "secret_fail", "targetname" );
+	// if(isdefined(entTransporter))
+	// 	for( i = 0; i < entTransporter.size; i++ )
+	// 		entTransporter[i] thread secret_fail();
+	// entTransporter = getentarray( "bounce_room_acti", "targetname" );
+	// if(isdefined(entTransporter))
+	// 	for( i = 0; i < entTransporter.size; i++ )
+	// 		entTransporter[i] thread bounce_room_acti();
+	// entTransporter = getentarray( "bounce_room_jumper", "targetname" );
+	// if(isdefined(entTransporter))
+	// 	for( i = 0; i < entTransporter.size; i++ )
+	// 		entTransporter[i] thread bounce_room_jumper();
+	// entTransporter = getentarray( "secret_finish", "targetname" );
+	// if(isdefined(entTransporter))
+	// 	for( i = 0; i < entTransporter.size; i++ )
+	// 		entTransporter[i] thread secret_finish();
+	// entTransporter = getentarray( "secret_21", "targetname" );
+	// if(isdefined(entTransporter))
+	// 	for( i = 0; i < entTransporter.size; i++ )
+	// 		entTransporter[i] thread secret_21();
+	// entTransporter = getentarray( "secret_21_out", "targetname" );
+	// if(isdefined(entTransporter))
+	// 	for( i = 0; i < entTransporter.size; i++ )
+	// 		entTransporter[i] thread secret_21_out();
+	// entTransporter = getentarray( "jumpers_secret1", "targetname" );
+	// if(isdefined(entTransporter))
+	// 	for( i = 0; i < entTransporter.size; i++ )
+	// 		entTransporter[i] thread jumpers_secret1();
 
 
 
@@ -66,7 +65,7 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 
 	//setExpFog(500, 2200, 0.81, 0.75, 0.63, 0);
 	//VisionSetNaked( "mp_backlot" );
-	
+
 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
@@ -114,7 +113,7 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	thread trap06();
 	thread trap06mover();
 	thread trap5();
-	// thread  [AUTO DELETE] actisecret(); 
+	// thread  [AUTO DELETE] actisecret();
 	thread trap02();
 	/* [AUTO DELETE] thread bounce01(); */
 	thread trap03();
@@ -124,7 +123,7 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	thread trap07();
 	thread trap08();
 	thread trap09();
-	thread wall_start();
+	// thread wall_start();
 	thread trap10();
 	thread trap11_1();
 	thread trap11_2();
@@ -145,10 +144,10 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	thread creators();
 	/* [AUTO DELETE] thread knife_room_BATTLE(); */
 	/* [AUTO DELETE] thread sniper_room_BATTLE(); */
-	thread jump_room_BATTLE();
-	thread finished_map();
-	thread teddy_shoot();
-	thread acti_xp1();
+	// thread jump_room_BATTLE();
+	// thread finished_map();
+	// thread teddy_shoot();
+	// thread acti_xp1();
 	/* [AUTO DELETE] thread deagle_machine(); */
 	/* [AUTO DELETE] thread secret_21(); */
 	/* [AUTO DELETE] thread secret_21_key(); */
@@ -195,7 +194,7 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	object waittill("movedone");
 }
 
-	
+
 	trap06mover()
 {
 	level endon("trigger");
@@ -237,7 +236,7 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	}
 }
 
-	
+
 	actisecret()
 {
 	trigger = getent("trigger_actisecret","targetname");
@@ -274,7 +273,7 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 
 	trap03()
 {
-	level endon("trigger");	
+	level endon("trigger");
 	trigger = getent("trigger_trap03","targetname");
 	object = getent("trap03","targetname");
 	trigger waittill ("trigger" , player );
@@ -325,7 +324,7 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	wait(6);
 }
 
-	
+
 	trap03mover()
 {
 	level endon("trigger");
@@ -365,11 +364,11 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	object4 = getEnt ( "trap07_4", "targetname" );
 	object5 = getEnt ( "trap07_5", "targetname" );
 	object6 = getEnt ( "trap07_6", "targetname" );
-	
+
 	trigger waittill ( "trigger", player );
 	/* [AUTO DELETE] player braxi\_rank::giveRankXP("", 10); */
 	trigger SetHintString("^1Activated");
-	
+
 	i = randomintrange( 0, 6 );
 	if(i == 0)
 	{
@@ -385,19 +384,19 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	{
 		object3 notSolid();
 		object5 notSolid();
-		object4 notSolid();	
+		object4 notSolid();
 	}
 	else if(i == 3)
 	{
 		object4 notSolid();
 		object6 notSolid();
-		object2 notSolid();	
+		object2 notSolid();
 	}
 	else if(i == 4)
 	{
 		object5 notSolid();
 		object3 notSolid();
-		object1 notSolid();	
+		object1 notSolid();
 	}
 	else if(i == 5)
 	{
@@ -541,7 +540,7 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 
 	for(;;)
 	{
-		
+
 		object movez(-217,0.5);
 		object waittill("movedone");
 		wait(0.5);
@@ -552,7 +551,7 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 }
 
 
-	
+
 	transporter02()
 {
 	for(;;)
@@ -619,7 +618,7 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	trap14()
 {
 	level endon("trigger");
-	
+
 	trigger = getent("trigger_trap14","targetname");
 	object = getent("trap14","targetname");
 	killtrigger = getent ("killtrigger_trap14" , "targetname");
@@ -632,7 +631,7 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	object waittill("movedone");
 }
 
-	
+
 	trap15_1()
 {
 	level endon("trigger");
@@ -759,7 +758,7 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 {
 	trigger = getEnt ( "sniper_secret", "targetname" );
         level.HasGun = true;
-       
+
         while(level.HasGun)
         {
                 trigger waittill ( "trigger", player );
@@ -914,7 +913,7 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	while(1)
 	{
 		level.knife_trig waittill( "trigger", player );
-		if( !isDefined( level.knife_trig ) ) 
+		if( !isDefined( level.knife_trig ) )
 		return;
 
 		ambientStop("0");
@@ -930,12 +929,12 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 
 		level.jump_trig delete();
 		level.sniper_trig delete();
-        
+
 		player SetPlayerAngles( jump.angles );
 		player setOrigin( jump.origin );
 		/* [AUTO DELETE] player TakeAllWeapons(); */
 		/* [AUTO DELETE] player GiveWeapon( "knife_mp" ); */
-		
+
 
 		level.activ setPlayerangles( acti.angles );
 		level.activ setOrigin( acti.origin );
@@ -962,7 +961,7 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
                 player freezecontrols(false);
                 level.activ freezecontrols(false);
                 player died();
-	
+
 	}
 }
 
@@ -976,7 +975,7 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	while(1)
 	{
 		level.sniper_trig waittill( "trigger", player );
-		if( !isDefined( level.sniper_trig ) ) 
+		if( !isDefined( level.sniper_trig ) )
 		return;
 
 		ambientStop("0");
@@ -991,12 +990,12 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 
 		level.jump_trig delete();
 		level.knife_trig delete();
-        
+
 		player SetPlayerAngles( jump.angles );
 		player setOrigin( jump.origin );
 		/* [AUTO DELETE] player TakeAllWeapons(); */
 		/* [AUTO DELETE] player GiveWeapon( "remington700_mp" ); */
-		/* [AUTO DELETE] player givemaxammo( "remington700_mp" ); */      
+		/* [AUTO DELETE] player givemaxammo( "remington700_mp" ); */
 
 
 		level.activ setPlayerangles( acti.angles );
@@ -1026,7 +1025,7 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
                 player freezecontrols(false);
                 level.activ freezecontrols(false);
                 player died();
-	
+
 	}
 }
 
@@ -1040,7 +1039,7 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	while(1)
 	{
 		level.jump_trig waittill( "trigger", player );
-		if( !isDefined( level.jump_trig ) ) 
+		if( !isDefined( level.jump_trig ) )
 		return;
 
 		ambientStop("0");
@@ -1055,12 +1054,12 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 
 		level.knife_trig delete();
 		level.sniper_trig delete();
-        
+
 		player SetPlayerAngles( jump.angles );
 		player setOrigin( jump.origin );
 		/* [AUTO DELETE] player TakeAllWeapons(); */
 		/* [AUTO DELETE] player GiveWeapon( "knife_mp" ); */
-		
+
 
 		level.activ setPlayerangles( acti.angles );
 		level.activ setOrigin( acti.origin );
@@ -1087,7 +1086,7 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
                 player freezecontrols(false);
                 level.activ freezecontrols(false);
                 player died();
-	
+
 	}
 }
 
@@ -1095,7 +1094,7 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	died()
 {
         self endon("disconnect");
- 
+
         self waittill("death");
         /* [AUTO DELETE] iPrintlnBold("^2"+self.name+" ^5died^1!"); */
 }
@@ -1196,7 +1195,7 @@ thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	wall solid();
 	object movez(300,0.1);
 	object waittill("movedone");
-	
+
 }
 
 	jumpers_secret1()
