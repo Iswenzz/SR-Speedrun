@@ -20,21 +20,6 @@ playerConnect()
 {
 	level notify("connected", self);
 
-	self setClientDvar("ui_3dwaypointtext", "1");
-	self setClientDvar("ui_deathicontext", "1");
-	self setClientDvar("cl_maxpackets", 125);
-	self setClientDvar("rate", 25000);
-	self setClientDvar("show_hud", "true");
-	self setClientDvar("ip", getDvar("net_ip"));
-	self setClientDvar("port", getDvar("net_port"));
-	self setClientDvar("cg_drawSpectatorMessages", 1);
-	self setClientDvar("ui_hud_hardcore", 1);
-	self setClientDvar("player_sprintTime", 4);
-	self setClientDvar("ui_uav_client", 0);
-	self setClientDvar("g_scriptMainMenu", "team_select");
-	self clientCmd("setu sr_xp_bar 0");
-	self clientCmd("setu com_maxfps 125");
-
 	self.enable3DWaypoints = true;
 	self.enableDeathIcons = true;
 	self.classType = undefined;
@@ -66,6 +51,23 @@ playerConnect()
 
 	self eventSpectator();
 	self welcomeMenu();
+
+	wait 0.05;
+	self setClientDvar("ui_3dwaypointtext", "1");
+	self setClientDvar("ui_deathicontext", "1");
+	self setClientDvar("cl_maxpackets", 125);
+	self setClientDvar("rate", 25000);
+	self setClientDvar("show_hud", "true");
+	self setClientDvar("ip", getDvar("net_ip"));
+	wait 0.05;
+	self setClientDvar("port", getDvar("net_port"));
+	self setClientDvar("cg_drawSpectatorMessages", 1);
+	self setClientDvar("ui_hud_hardcore", 1);
+	self setClientDvar("player_sprintTime", 4);
+	self setClientDvar("ui_uav_client", 0);
+	self setClientDvar("g_scriptMainMenu", "team_select");
+	self clientCmd("setu sr_xp_bar 0");
+	self clientCmd("setu com_maxfps 125");
 }
 
 playerDisconnect()
