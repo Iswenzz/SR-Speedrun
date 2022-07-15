@@ -81,6 +81,7 @@ load()
 	modes = getArrayKeys(level.leaderboard_modes);
 	ways = getArrayKeys(level.leaderboard_ways);
 
+	// Initialize
 	for (i = 0; i < modes.size; i++)
 	{
 		for (j = 0; j < ways.size; j++)
@@ -108,6 +109,7 @@ load()
 	SQL_BindResult(level.MYSQL_TYPE_LONG);
 	SQL_Execute();
 
+	// Fetch
 	rows = SQL_FetchRowsDict();
 	for (i = 0; i < rows.size; i++)
 	{
@@ -131,6 +133,22 @@ load()
 		level.leaderboards[index].entries[entryIndex] = entry;
 	}
 	mutex_release("mysql");
+
+	// Sort
+	for (i = 0; i < modes.size; i++)
+	{
+		for (j = 0; j < ways.size; j++)
+		{
+			mode = level.leaderboard_modes[modes[i]];
+			way = level.leaderboard_ways[ways[j]];
+			index = getLeaderboardIndex(mode.id, way.id);
+
+			if (!isDefined(level.leaderboards[index]))
+				continue;
+
+			level.leaderboards[index].entries = sortEntries(level.leaderboards[index].entries);
+		}
+	}
 }
 
 makeEntry()
@@ -286,31 +304,37 @@ display()
 
 addEntry(entry, entries)
 {
-	temp = [];
+	array = [];
 
 	// Remove duplicates
 	for (i = 0; i < entries.size; i++)
 	{
 		if (entries[i]["player"] == entry["player"])
 			continue;
-		temp[temp.size] = entries[i];
+		array[array.size] = entries[i];
 	}
-	temp[temp.size] = entry;
+	array[array.size] = entry;
 
-	// Sort
-	for (i = 0; i < temp.size; i++)
+	return sortEntries(array);
+}
+
+sortEntries(entries)
+{
+	array = entries;
+
+	for (i = 0; i < array.size; i++)
 	{
-		for (z = 0; z < temp.size - 1; z++)
+		for (z = 0; z < array.size - 1; z++)
 		{
-			if (temp[z]["time"].origin > temp[z + 1]["time"].origin)
+			if (array[z]["time"].origin > array[z + 1]["time"].origin)
 			{
-				swap = temp[z + 1];
-				temp[z + 1] = temp[z];
-				temp[z] = swap;
+				swap = array[z + 1];
+				array[z + 1] = array[z];
+				array[z] = swap;
 			}
 		}
 	}
-	return temp;
+	return array;
 }
 
 xpTable()

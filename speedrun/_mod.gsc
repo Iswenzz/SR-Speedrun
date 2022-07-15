@@ -27,5 +27,5 @@ main()
 	speedrun\_tests::runTests();
 
 	// sr\utils\_common::waitMapLoad(); // @TODO
-	// sr\utils\_common::spawnBots(3); // @TODO
+	// bots = sr\utils\_common::spawnBots(5); // @TODO
 }
