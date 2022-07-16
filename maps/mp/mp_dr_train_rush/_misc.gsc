@@ -31,7 +31,7 @@ main()
 	thread last_plat();
 	// thread plat_xp_useless();
 	// thread plat_xps();
-	// thread plat_move();
+	thread plat_move();
 	// thread fall_plat();
 
 	// thread chariot();
