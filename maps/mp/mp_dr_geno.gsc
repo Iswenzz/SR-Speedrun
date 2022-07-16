@@ -1,0 +1,174 @@
+main() 
+{
+maps\mp\_load::main();
+ 
+game["allies"] = "sas";
+game["axis"] = "russian";
+game["attackers"] = "axis";
+game["defenders"] = "allies";
+game["allies_soldiertype"] = "woodland";
+game["axis_soldiertype"] = "woodland";
+ 	
+    setdvar( "r_specularcolorscale", "1" );
+	setdvar("r_glowbloomintensity0",".1");
+	setdvar("r_glowbloomintensity1",".1");
+	setdvar("r_glowskybleedintensity0",".1");
+	
+	precacheItem( "rpg_mp" );
+	precacheItem( "winchester1200_grip_mp" );
+	precacheItem( "skorpion_silencer_mp" );
+	precacheItem( "m4_reflex_mp" );
+	precacheItem( "g36c_silencer_mp" );
+	precacheItem( "ak47_reflex_mp" );
+	precacheItem( "m14_acog_mp" );
+	precacheItem( "deserteagle_mp" );
+	
+thread speedrun\_way_name::create_spawn((-232,-15,76),360);
+thread speedrun\_way_name::create_normal_way("Easy Way;Hard Way;");
+thread speedrun\_way_name::create_secret_way("Acti Secret;Jumper Secret;");
+thread speedrun\_way_name::create_endmap((22833.9, 300.328, -8606.88), 245, 10, "ns0");
+thread speedrun\_way_name::create_tp((6.28732, -605.196, 16.125), 275, 20, (1506, -553, 76), 270, "freeze", "cyan", "ns1");
+thread speedrun\_way_name::create_tp((24.2553, 67.478, 16.125), 55, 10, (7951, -18949, -7410), 180, "freeze", "yellow", "s0");
+thread speedrun\_way_name::create_tp((24.5169, -95.8473, 16.125), 55, 10, (10052, -18389, -6180), 270, "freeze", "blue", "s1");
+
+thread startdoors();
+thread hardmode();
+thread easy_secret_checkpoints();
+thread eztptofinish();
+thread hardfinish();
+thread actisecfinish();
+thread jumpersecfinish();
+	
+}
+
+startdoors() 
+{
+startdoor_1 = getent("startdoor1", "targetname"); 
+startdoor_2 = getent("startdoor2", "targetname"); 
+	
+wait 0.1;
+startdoor_1 moveZ(-400, 5);
+startdoor_2 moveZ(-400, 5);
+}
+
+hardmode() 
+{
+lasers = getEnt("hardmode_lasers", "targetname");
+hurt = getEnt("hardmode_laser_kill", "targetname");
+
+lasers Solid();
+lasers show();
+hurt enablelinkto();
+hurt linkto (lasers);
+
+level waittill("round_started");
+
+wait 0.1;
+lasers delete();
+hurt delete();
+
+}
+
+easy_secret_checkpoints() 
+{ // Checkpoint system by GenoSen
+	start_trigger = getEnt("start_trig", "targetname");
+	
+	// Pair checkpoint triggers with their teleport location
+	thread checkpoint("sec_cp1_trig", "sec_cp1");
+	thread checkpoint("sec_cp2_trig", "sec_cp2");
+	thread checkpoint("sec_cp3_trig", "sec_cp3");
+	thread checkpoint("sec_cp4_trig", "sec_cp4");
+	thread checkpoint("sec_cp5_trig", "sec_cp5");
+	thread checkpoint("sec_cp6_trig", "sec_cp6");
+	
+	// Set these triggers to teleport the player to the location of 'player.cp'
+	thread tp_triggers("sec_trig");
+	thread tp_triggers("sec_trig2");
+	thread tp_triggers("sec_trig3");
+	thread tp_triggers("sec_trig4");
+	thread tp_triggers("sec_trig5");
+	thread tp_triggers("sec_trig6");
+	
+	while(1) {
+		// Initialize player.cp
+		start_trigger waittill( "trigger", player );
+		player.cp = "sec_bounce1";
+	}
+}
+
+tp_triggers(trigger_name)
+{
+	tp_trigger = getEnt(trigger_name, "targetname");
+	
+	while (1){
+		tp_trigger waittill( "trigger", player );
+		tp = getEnt(player.cp, "targetname");
+			
+		player SetOrigin ( tp.origin );
+		player SetPlayerAngles ( tp.angles );	
+	}
+}
+
+checkpoint(trig, cp)
+{
+	cp_trigger = getEnt(trig, "targetname");
+	tp = cp;
+	
+	while (1){
+		cp_trigger waittill( "trigger", player );
+		player.cp = cp;
+	}
+}
+
+eztptofinish()
+{
+   trig = getent("trig_lastroom_easy", "targetname");
+   tele1 = getent ("endtele_too", "targetname");
+
+   for(;;)
+    {   
+    trig waittill("trigger", player);
+	player setOrigin(tele1.origin);
+    player setPlayerAngles(tele1.angles);
+    }
+    
+}
+
+hardfinish()
+{ 
+   trig = getent("trig_hard_endroom", "targetname");
+
+   for(;;)
+    {   
+    trig waittill("trigger", player);
+
+    player thread speedrun\_way_name::finish_way("ns1");
+    }
+    
+}
+
+actisecfinish()
+{
+   trig = getent("trig_acti_sec2", "targetname");
+
+   for(;;)
+    {   
+    trig waittill("trigger", player);
+
+    player thread speedrun\_way_name::finish_way("s0");
+    }
+    
+}
+
+jumpersecfinish()
+{  
+   trig = getent("endtrig_easy_sec", "targetname");
+
+   for(;;)
+    {   
+    trig waittill("trigger", player);
+
+    player thread speedrun\_way_name::finish_way("s1");
+    }
+    
+}

@@ -69,8 +69,8 @@ main()
 	thread secret_check_5();
 	thread secret_check_6();
 	thread secret_fail();
-	//thread end();
-	//thread opening();
+	thread end();
+	thread opening();
 	//thread musicBox();
 	//thread gap_fail_1();
 	//thread gap_fail_2();
@@ -563,22 +563,11 @@ end()
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
-		
+
+		player thread speedrun\_way_name::finish_way("ns0");
 		player setOrigin( dest.origin );
 		player setplayerangles( dest.angles );
-		if (!isDefined(level.endtriggered))
-			thread end_fxs();
 	}
-}
-
-end_fxs()
-{
-	level.endtriggered = true;
-	fxspawn1 = getEnt("fx_el","targetname");
-	fxspawn2 = GetEntArray("fx_elg","targetname");
-	PlayFX( level.endlight_fx, fxspawn1.origin );
-	for(i=0;i<fxspawn2.size;i++)
-		PlayFX( level.endlight_g_fx, fxspawn2[i].origin );
 }
 
 bounce_pickup_fx()
@@ -606,29 +595,14 @@ addTriggerToList(name)
 
 opening()
 {
-	sd1 = getEnt("startdoor1","targetname");
-	sd2 = getEnt("startdoor2","targetname");
-	sd3 = getEnt("startdoor3","targetname");
-	wait(15);
-	iPrintlnBold( "Opening the door in..." );
-	iPrintlnBold( "^65" );
-	wait(1);
-	iPrintlnBold( "^64" );
-	wait(1);
-	iPrintlnBold( "^63" );
-	wait(1);
-	iPrintlnBold( "^62" );
-	wait(1);
-	iPrintlnBold( "^61" );
-	wait(1);
-	sd1 delete();
-	level thread playSoundOnAllPlayers("blockvanish");
-	wait 0.7;
-	sd2 delete();
-	level thread playSoundOnAllPlayers("blockvanish");
-	wait 0.7;
-	sd3 delete();
-	level thread playSoundOnAllPlayers("blockvanish");
+sd1 = getEnt("startdoor1","targetname");
+sd2 = getEnt("startdoor2","targetname");
+sd3 = getEnt("startdoor3","targetname");
+
+wait 0.1;
+sd1 delete();
+sd2 delete();
+sd3 delete();
 }
 
 musicBox()
@@ -1435,16 +1409,6 @@ blocks()
 			}
 			}
 }
-
-
-
-
-
-
-
-
-
-
 
 addTestClients()
 {

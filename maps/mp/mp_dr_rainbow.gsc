@@ -1,8 +1,5 @@
 main()
 {
-
-	maps\mp\mp_dr_rainbow\_teleport::main();
-	
 	// ambientPlay("ambient_mp_dr_rainbow");
 
 	game["allies"] = "marines";
@@ -23,23 +20,26 @@ main()
 	
 	thread speedrun\_way_name::create_normal_way("^2Easy Way;^2Easy+ Way;^3Inter Way;^3Inter+ Way;^1Hard Way;");
 	thread speedrun\_way_name::create_secret_way("^2Easy Secret;^2Easy+ Secret;^3Inter Secret;^3Inter+ Secret;^1Hard Secret;");
+	thread speedrun\_way_name::create_tp((-2500.17, 4086.94, -159.875), 110, 15, (-4834, 4309, -356), 180, "freeze", "blue", "ns1");
+	thread speedrun\_way_name::create_tp((441.615, 10977, 496.125), 80, 15, (-2439, 10707, 556), 270, "freeze", "blue", "ns2");
+	thread speedrun\_way_name::create_tp((-4217.04, 9539.11, -751.875), 110, 15, (-4147, 11090, 396), 180, "freeze", "blue", "ns2");
 
 	thread message();
-	// thread Br11();
-	// thread Br12();
-	// thread Br21();
-	// thread Br22();
-	// thread Rpb1();
-	// 	thread Rpb21();
-	// 	thread Rpb22();
+	thread Br11();
+	thread Br12();
+	thread Br21();
+	thread Br22();
+	thread Rpb1();
+	thread Rpb21();
+	thread Rpb22();
 	// 	thread Rpb23();
 	// 	thread Rpb24();
 	// 	thread Rpb25();
 	// 	thread Rpb26();
 	// 	thread Rpb27();
-	// thread Rpb4();
-	// thread rpdb();
-	// thread rpdv();
+	thread Rpb4();
+	thread rpdb();
+	thread rpdv();
 		// thread adB();
 		// thread adV();
 		// thread adJ();
@@ -54,13 +54,13 @@ main()
 	// thread string();
 	
 	// thread tv1();
-	// thread tv2();
+	thread tv2();
 	// thread tv3();
 	// thread rpv1s();
 	// thread rpv2s();
-	// thread rpv3s();
+	thread rpv3s();
 	// thread rpj1();
-	// thread rpj2();
+	thread rpj2();
 	// thread tj1();
 	// thread tj2();
 	// thread to1();
@@ -126,7 +126,36 @@ main()
 	// level.music[2]["song"]	="Eljay - No Pressure";
 	// level.music[2]["alias"]	="song3";
 
-	
+	entTransporter = getentarray( "enter", "targetname" );
+
+	if(isdefined(entTransporter))
+		for( i = 0; i < entTransporter.size; i++ )
+			entTransporter[i] thread transporter();
+
+}
+
+transporter()
+{
+	for(;;)
+	{
+		self waittill( "trigger", player );
+
+		if(self.target == "Vo1")
+			player thread speedrun\_way_name::change_way("ns1");
+
+		if(self.target == "Jo1")
+			player thread speedrun\_way_name::change_way("ns2");
+
+		if(self.target == "Oo1")
+			player thread speedrun\_way_name::change_way("ns3");
+
+		if(self.target == "Ro1")
+			player thread speedrun\_way_name::change_way("ns4");
+
+		entTarget = getEnt( self.target, "targetname" );
+		player setOrigin( entTarget.origin );
+		player setplayerangles( entTarget.angles );
+	}
 }
 
 	onDisconnect()
@@ -294,100 +323,38 @@ message2()
 
 Br11()
 {
-	o1=getent("o1","targetname");
 	o2=getent("o2","targetname");
-	p1=getent("p1","targetname");
 	p2=getent("p2","targetname");
-	r=getent("r","targetname");
 	
-	X=0;
-	
-	o1 linkto(r);
-	o2 linkto(r);
-	
-	while (1)
-	{
-		r RotatePitch(-360, 15);
-		
-		while (X<150)
-		{
-			p1 moveto(o1.origin,0.1);
-			p2 moveto(o2.origin,0.1);
-			X=X+1;
-			wait 0.1;
-		}
-		X=0;
-	}
-	
+    level waittill("round_started");
+	o2 RotatePitch(15, 0.1);
+	p2 RotatePitch(15, 0.1);	
 	
 }
 
 Br12()
 {
-	ao1=getent("ao1","targetname");
 	ao2=getent("ao2","targetname");
-	ap1=getent("ap1","targetname");
 	ap2=getent("ap2","targetname");
-	ar=getent("ar","targetname");
 	
-	X=0;
-	
-	ao1 linkto(ar);
-	ao2 linkto(ar);
-	
-	while (1)
-	{
-		ar RotatePitch(360, 15);
+	level waittill("round_started");
+	ao2 RotatePitch(15, 0.1);
+	ap2 RotatePitch(15, 0.1);
 		
-		while (X<150)
-		{
-			ap1 moveto(ao1.origin,0.1);
-			ap2 moveto(ao2.origin,0.1);
-			X=X+1;
-			wait 0.1;
-		}
-		X=0;
-	}
-	
-	
 }
 
 Br21()
 {
 	r3p1=getent("r3p1","targetname");
 	r3o1=getent("r3o1","targetname");
-	r3r1=getent("r3r1","targetname");
 	
-	X=0;
+	level waittill("round_started");
 
-	r3o1 linkto(r3r1);
-	
-	
-	while (1)
-	{
-		r3r1 RotatePitch(180, 7.5, 2.5, 2.5);
-		
-		while (X<75)
-		{
-			r3p1 moveto(r3o1.origin,0.1);
-			X=X+1;
-			wait 0.1;
-		}
-		X=0;
-		
-		r3r1 RotatePitch(-180, 7.5, 2.5, 2.5);
-		
-		while (X<75)
-		{
-			r3p1 moveto(r3o1.origin,0.1);
-			X=X+1;
-			wait 0.1;
-		}
-		X=0;
-		
-		
-	}
-	
+    r3p1 MoveX(-1000,0.1);
+	r3o1 MoveX(-1000,0.1);
+	wait 0.2;
+	r3p1 RotateYaw(270,0.1);
+	r3o1 RotateYaw(270,0.1);
 	
 }
 
@@ -395,44 +362,17 @@ Br22()
 {
 	r3p2=getent("r3p2","targetname");
 	r3o2=getent("r3o2","targetname");
-	r3r2=getent("r3r2","targetname");
 	
-	X=0;
+    level waittill("round_started");
 
-	r3o2 linkto(r3r2);
-	
-	
-	while (1)
-	{
-		r3r2 RotatePitch(-180, 7.5, 2.5, 2.5);
-		
-		while (X<75)
-		{
-			r3p2 moveto(r3o2.origin,0.1);
-			X=X+1;
-			wait 0.1;
-		}
-		X=0;
-		
-		r3r2 RotatePitch(180, 7.5, 2.5, 2.5);
-		
-		while (X<75)
-		{
-			r3p2 moveto(r3o2.origin,0.1);
-			X=X+1;
-			wait 0.1;
-		}
-		X=0;
-		
-		
-	}
+	r3p2 RotatePitch(15,0.1);
+	r3o2 RotatePitch(15,0.1);
 	
 	
 }
 
 Rpb1()
 {
-	rpb1t=getent("rpb1t","targetname");
 	rpp11=getent("rpp11","targetname");
 	rpp12=getent("rpp12","targetname");
 	rpp13=getent("rpp13","targetname");
@@ -450,80 +390,38 @@ Rpb1()
 	rpp27=getent("rpp27","targetname");
 	rpp28=getent("rpp28","targetname");
 
-	while (1)
-	{
-		rpb1t waittill("trigger", player);
-		{
 		rpp11 MoveY(-192, .5);
-		rpp21 MoveY(192, .5);
-		
-		wait .75;
-		
+		 wait 0.05;
 		rpp12 MoveY(-192, .5);
-		rpp22 MoveY(192, .5);
-		
-		wait .75;
-		
+		 wait 0.05;
 		rpp13 MoveY(-192, .5);
-		rpp23 MoveY(192, .5);
-		
-		rpp11 MoveY(192, .5);
-		rpp21 MoveY(-192, .5);
-		
-		wait .75;
-		
+		 wait 0.05;
 		rpp14 MoveY(-192, .5);
-		rpp24 MoveY(192, .5);
-		
-		rpp12 MoveY(192, .5);
-		rpp22 MoveY(-192, .5);
-		
-		wait .75;
-		
+		 wait 0.05;
 		rpp15 MoveY(-192, .5);
-		rpp25 MoveY(192, .5);
-		
-		rpp13 MoveY(192, .5);
-		rpp23 MoveY(-192, .5);
-		
-		wait .75;
-		
+		 wait 0.05;
 		rpp16 MoveY(-192, .5);
-		rpp26 MoveY(192, .5);
-		
-		rpp14 MoveY(192, .5);
-		rpp24 MoveY(-192, .5);
-		
-		wait .75;
-		
+		 wait 0.05;
 		rpp17 MoveY(-192, .5);
-		rpp27 MoveY(192, .5);
-		
-		rpp15 MoveY(192, .5);
-		rpp25 MoveY(-192, .5);
-		
-		wait .75;
-		
+		 wait 0.05;
 		rpp18 MoveY(-192, .5);
+		 wait 0.05;
+        rpp21 MoveY(192, .5);
+		 wait 0.05;
+		rpp22 MoveY(192, .5);
+		 wait 0.05;
+		rpp23 MoveY(192, .5);
+		 wait 0.05;
+		rpp24 MoveY(192, .5);
+		 wait 0.05;
+		rpp25 MoveY(192, .5);
+		 wait 0.05;
+		rpp26 MoveY(192, .5);
+		 wait 0.05;
+		rpp27 MoveY(192, .5);
+		 wait 0.05;
 		rpp28 MoveY(192, .5);
-		
-		rpp16 MoveY(192, .5);
-		rpp26 MoveY(-192, .5);
-		
-		wait .75;
-		
-		rpp17 MoveY(192, .5);
-		rpp27 MoveY(-192, .5);
-		
-		wait .75;
-		
-		rpp18 MoveY(192, .5);
-		rpp28 MoveY(-192, .5);
-		
-		wait 1;
-	}
-	}
-	
+
 }
 
 Rpb21()
@@ -531,41 +429,42 @@ Rpb21()
 	rpb2o1=getent("rpb2o1","targetname");
 	rpb2o2=getent("rpb2o2","targetname");
 	rpb2p1=getent("rpb2p1","targetname");
+	rpb2p2=getent("rpb2p2","targetname");
 
-	
-	while (1)
-	{
-		rpb2p1 show();
-		rpb2p1 MoveTo(rpb2o2.origin, 10);
-		wait 12;
-		rpb2p1 hide();
-		rpb2p1 MoveTo(rpb2o1.origin, .1);
-		wait 2;
-	}
-	
-	
-	
+	level waittill("round_started");
+
+    rpb2o1 moveZ(900,0.1);
+	rpb2o2 moveZ(850,0.1);
+	rpb2p1 moveZ(900,0.1);
+	rpb2p2 moveZ(850,0.1);
+	wait 0.3;
+	rpb2o2 moveX(-600,0.1);
+	rpb2p2 moveX(-600,0.1);
 }
 
 Rpb22()
 {
-	rpb2o1=getent("rpb2o1","targetname");
-	rpb2o2=getent("rpb2o2","targetname");
-	rpb2p2=getent("rpb2p2","targetname");
+	rpb2p3=getent("rpb2p3","targetname");
+	rpb2p4=getent("rpb2p4","targetname");
+	rpb2p5=getent("rpb2p5","targetname");
+	rpb2p6=getent("rpb2p6","targetname");
 
-	wait 2;
-	while (1)
-	{
-		
-		rpb2p2 show();
-		rpb2p2 MoveTo(rpb2o2.origin, 10);
-		wait 12;
-		rpb2p2 hide();
-		rpb2p2 MoveTo(rpb2o1.origin, .1);
-		wait 2;
-	}
-	
-	
+    level waittill("round_started");
+
+	rpb2p3 moveZ(810,0.1);
+	rpb2p4 moveZ(810,0.1);
+	rpb2p5 moveZ(810,0.1);
+	rpb2p6 moveZ(810,0.1);
+	wait 0.4;
+	rpb2p3 moveY(-1000,0.1);
+	rpb2p4 moveY(-1000,0.1);
+	rpb2p5 moveY(-1000,0.1);
+	rpb2p6 moveY(-1000,0.1);
+	wait 0.4;
+	rpb2p3 moveX(3500,0.1);
+	rpb2p4 moveX(4050,0.1);
+	rpb2p5 moveX(5500,0.1);
+	rpb2p6 moveX(6050,0.1);
 	
 }
 
@@ -685,21 +584,8 @@ Rpb4()
 {
 	rpb4p1=getent("rpb4p1","targetname");
 	rpb4p2=getent("rpb4p2","targetname");
-	
-	while (1)
-	{
-		rpb4p1 MoveX(-544, 6,2,2);
-		rpb4p2 MoveX(544, 6,2,2);
 		
-		wait 6;
-		
-		rpb4p1 MoveX(544, 6,2,2);
-		rpb4p2 MoveX(-544, 6,2,2);
-		
-		wait 6;
-	}
 }
-
 
 rpdb()
 {
@@ -711,18 +597,14 @@ rpdb()
 	rpdb2=getent("rpdb2","targetname");
 	rpdb3=getent("rpdb3","targetname");
 	
-	rpdb1t SetHintString("^3[USE]");
-	rpdb1t waittill("trigger");
-		rpdb1 RotateYaw(90, 3, 0, 1);
-		rpdb1t delete();
-		rpdb2t SetHintString("^3[USE]");
-		rpdb2t waittill("trigger");
-			rpdb2 RotateYaw(90, 3, 0, 1);
-			rpdb2t delete();
-			rpdb3t SetHintString("^3[USE]");
-			rpdb3t waittill("trigger");
-				rpdb3 RotateYaw(90, 3, 0, 1);
-				rpdb3t delete();
+    level waittill ("round_started");
+
+	rpdb1t delete();
+	rpdb2t delete();
+	rpdb3t delete();
+	rpdb1 delete();
+	rpdb2 delete();
+	rpdb3 delete();
 
 }
 
@@ -737,18 +619,14 @@ rpdv()
 	rpdv2=getent("rpdv2","targetname");
 	rpdv3=getent("rpdv3","targetname");
 	
-	rpdv1t SetHintString("^3[USE]");
-	rpdv1t waittill("trigger");
-		rpdv1 RotateYaw(90, 3, 0, 1);
-		rpdv1t delete();
-		rpdv2t SetHintString("^3[USE]");
-		rpdv2t waittill("trigger");
-			rpdv2 RotateYaw(90, 3, 0, 1);
-			rpdv2t delete();
-			rpdv3t SetHintString("^3[USE]");
-			rpdv3t waittill("trigger");
-				rpdv3 RotateYaw(90, 3, 0, 1);
-				rpdv3t delete();
+	level waittill ("round_started");
+
+	rpdv1t delete();
+	rpdv2t delete();
+	rpdv3t delete();
+	rpdv1 delete();
+	rpdv2 delete();
+	rpdv3 delete();
 
 }
 
@@ -882,23 +760,14 @@ tv1()
 
 tv2()
 {
-	tv2p1=getent("tv2p1","targetname");
 	tv2p2=getent("tv2p2","targetname");
-	tv2pt=getent("tv2pt","targetname");
 	
-	tv2pt SetHintString("^3[USE]");
-	tv2pt waittill("trigger");
-	tv2pt delete();
+	level waittill("round_started");
+
+	tv2p2 RotatePitch(390,0.1);
+	wait 0.1;
+	tv2p2 moveZ(-150,0.1);
 	
-	while(1)
-	{
-	tv2p1 RotateRoll(360, 4, 1, 1);
-	tv2p2 RotateRoll(360, 4, 1, 1);
-	wait 10;
-	tv2p1 RotateRoll(-360, 4, 1, 1);
-	tv2p2 RotateRoll(-360, 4, 1, 1);
-	wait 10;
-	}
 	
 }
 
@@ -969,18 +838,12 @@ rpv2s()
 
 rpv3s()
 {
-	rpv3=getent("rpv3", "targetname");
 	rpv3p=getent("rpv3p", "targetname");
-	rpv3 waittill("trigger");
-	rpv3 delete();
 	
-	while(1)
-	{
-	rpv3p movez(452, 3, 1, 1);	
-	wait 3;
-	rpv3p movez(-452, 3, 1, 1);
-	wait 3;
-	}
+	level waittill("round_started");
+
+	rpv3p RotatePitch(390,0.1);
+	rpv3p moveZ(200,0.1);
 }
 
 rpj1()
@@ -1002,19 +865,12 @@ rpj1()
 rpj2()
 {
 	rpj2p=getent("rpj2p", "targetname");
-	rpj2o1=getent("rpj2o1", "targetname");
 	rpj2o2=getent("rpj2o2", "targetname");
-	rpj2t=getent("rpj2t", "targetname");
-	rpj2t waittill("trigger");
-	rpj2t delete();
 	
-	while(1)
-	{
-	rpj2p moveto(rpj2o2.origin, 5, 2, 2);
-	wait 10;
-	rpj2p moveto(rpj2o1.origin, 5, 2, 2);
-	wait 10;
-	}
+	level waittill("round_started");
+
+	rpj2p moveto(rpj2o2.origin,0.1);
+
 }
 
 

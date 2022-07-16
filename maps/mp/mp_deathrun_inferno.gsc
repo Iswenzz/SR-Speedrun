@@ -1,26 +1,5 @@
-/*                                         ╔═╗
-	   ╔═════╗ ╔══════╗ ╔═════╗ ╔═╗ ╔═╗ ╔══╝ ╚═╗ ╔══════╗ ╔═╗  ╔═╗ ╔═╗
-	   ╚╣ ╔╗ ║ ║  ╔═╗ ║ ║ ╔╗  ║ ║ ║ ║ ║ ║ ╔════╝ ║ ╔══╗ ║ ║ ║  ║ ║ ║ ║
-		║ ║║ ║ ║  ╚═╝ ║ ║ ╚╝  ║ ║ ╚═╝/╝ ║ ╚════╗ ║ ║  ║ ║ ║ ║  ║ ║ ║ ║
-		║ ║║ ║ ║ ╔══╗ ║ ║ ╔═ ║  ║ ╔═╗\  ╚════╗ ║ ║ ║  ║ ║ ║ ║  ║ ║ ║ ║
-	   ╔╣ ╚╝ ║ ║ ║  ║ ║ ║ ║ ║ ║ ║ ║ ║ ║ ╔════╝ ║ ║ ╚══╝ ║ ║ ╚══╝ ║ ║ ╚════╗
-	   ╚═════╝ ╚═╝  ╚═╝ ╚═╝ ╚═╝ ╚═╝ ╚═╝ ╚══╗ ╔═╝ ╚══════╝ ╚══════╝ ╚══════╝
-                                           ╚═╝
-	[If you use these scripts, make sure to give me credit pl0x. k thx. bai.]
-*/
 main()
 {
-	level.mortar = loadFX("explosions/artilleryExp_dirt_brown_low");
-	level.rainbowfire = loadFX("deathrun/rainbowfire");
-	level.fire1 = loadFX("deathrun/fire1");
-	
-	precacheItem("p90_reflex_mp");
-	precacheItem("ak47_mp");
-	precacheItem("m40a3_mp");
-	precacheItem("remington700_mp");
-	precacheItem("p90_mp");
-	precacheItem("rpg_mp");
-	
 	maps\mp\_load::main();
 	
 	game["allies"] = "marines";
@@ -29,28 +8,16 @@ main()
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
-	/* [AUTO DELETE] game["menu_inferno"] = "inferno"; */
-	
-	/* [AUTO DELETE] precacheMenu(game["menu_inferno"]); */
-	
-	/* [AUTO DELETE] //precacheMenu( "inferno" ); */
-	
-	playLoopedFX(level.rainbowfire, 0.05, (-1248, 1948, 316));
-	playLoopedFX(level.rainbowfire, 0.05, (-1248, 1380, 316));
-	playLoopedFX(level.fire1, 0.05, (104, 1472, 412));
-	playLoopedFX(level.fire1, 0.05, (104, 1872, 412));
-	
-	setDvar("r_drawDecals", "1");
-	setDvar("fx_enable", "1");
 
 	thread speedrun\_way_name::create_tp((4008.59, -1001.81, -351.375), 60, 10, (-10626, 4346, 317), 90, "freeze", "blue", "s0");
 	thread speedrun\_way_name::create_tp((4280.52, -993.475, -351.375), 60, 10, (-10596, 4230, 317), 0, "freeze", "red", "s1");
 	thread speedrun\_way_name::create_spawn((4092,-1379,-291),179);
 	thread speedrun\_way_name::create_normal_way("Normal Way;");
 	thread speedrun\_way_name::create_secret_way("Easy Secret;Hard Secret;");
-	thread speedrun\_way_name::create_endmap((2842.12, 1646.42, 272.125), 275, 120);
-	thread speedrun\_way_name::create_tp((460.247, -3209.09, -47.875), 90, 7, (236, -3230, 380), 179, "freeze");
+	thread speedrun\_way_name::create_endmap((2842.12, 1646.42, 272.125), 275, 120, "ns0");
+	thread speedrun\_way_name::create_tp((460.247, -3209.09, -47.875), 90, 7, (236, -3230, 380), 179, "freeze", "ns0");
+	thread speedrun\_way_name::create_tp((-1288.44, -3216.06, 216.125), 90, 20, (-2631, -3216, 276), 180, "freeze", "ns0");
+	thread speedrun\_way_name::create_tp((-2907.25, 1655.54, 264.125), 95, 20, (-2009, 1672, 324), 360, "freeze", "ns0");
 
 	// thread Traps();
 	thread OtherShit();
@@ -598,9 +565,6 @@ EasyEnd()
 	for(;;)
 	{
 		trig waittill ("trigger", player);
-		/* [AUTO DELETE] iPrintlnBold(" ^1" + player.name + "^5 has completed the Easy Room^5!"); */
-		/* [AUTO DELETE] player giveWeapon("deserteagle_mp"); */
-		/* [AUTO DELETE] player switchToWeapon("deserteagle_mp"); */
 		player thread speedrun\_way_name::finish_way("s0");
 
 	}
@@ -617,12 +581,6 @@ HardEnd()
 		
 		player setOrigin(hardend.origin);
 		player setPlayerAngles(hardend.angles );
-		/* [AUTO DELETE] wait 0.1; */
-		/* [AUTO DELETE] iPrintlnBold(" ^1" + player.name + "^5 has completed the Hard Room^5!"); */
-		/* [AUTO DELETE] wait 0.1; */
-		/* [AUTO DELETE] player giveWeapon("deserteagle_mp"); */
-		/* [AUTO DELETE] player switchToWeapon("deserteagle_mp"); */
-		/* [AUTO DELETE] player giveMaxAmmo("deserteagle_mp"); */
 		player thread speedrun\_way_name::finish_way("s1");
 
 	}
@@ -902,9 +860,9 @@ SecretRpg1()
 	{
 		trig waittill("trigger", player);
 	
-		 player giveWeapon( "rpg_mp" ); */
-		 player giveMaxAmmo( "rpg_mp" ); */
-		 player switchToWeapon( "rpg_mp" ); */
+		 player giveWeapon( "rpg_mp" ); 
+		 player giveMaxAmmo( "rpg_mp" ); 
+		 player switchToWeapon( "rpg_mp" );
 	}
 }
 
@@ -916,9 +874,9 @@ SecretRpg2()
 	{
 		trig waittill("trigger", player);
 		
-		 player giveWeapon( "rpg_mp" ); */
-		 player giveMaxAmmo( "rpg_mp" ); */
-		 player switchToWeapon( "rpg_mp" ); */
+		 player giveWeapon( "rpg_mp" ); 
+		 player giveMaxAmmo( "rpg_mp" ); 
+		 player switchToWeapon( "rpg_mp" );
 	}
 }
 
@@ -930,9 +888,9 @@ SecretRpg3()
 	{
 		trig waittill("trigger", player);
 		
-		 player giveWeapon( "rpg_mp" ); */
-		 player giveMaxAmmo( "rpg_mp" ); */
-		 player switchToWeapon( "rpg_mp" ); */
+		 player giveWeapon( "rpg_mp" ); 
+		 player giveMaxAmmo( "rpg_mp" ); 
+		 player switchToWeapon( "rpg_mp" );
 	}
 }
 
@@ -1160,11 +1118,6 @@ Enddoors()
 Rooms()
 {
 	 thread SecretRoom();
-	// thread Bounce();
-	// thread Sniper();
-	// thread Ak47();
-	// thread Inferno();
-	// thread Old();
 }
 
 SecretRoom()
@@ -1191,204 +1144,6 @@ SecretRoom()
 		}
 	}
 }
-
-Bounce()
-{
-	level.bounce_trig = getEnt( "trigger_bounce", "targetname");
-	jump = getEnt( "bounce_jumper", "targetname" );
-	acti = getEnt( "bounce_acti", "targetname" );
-	
-	while(1)
-    {
-        level.bounce_trig waittill( "trigger", player );
-        if( !isDefined( level.bounce_trig ) )
-            return;
-        level.ak_trig delete(); //change this
-		level.snipe_trig delete(); //change this
-		level.old_trig delete(); //change this
-		level.inferno_trig delete(); //change this
-        if(isDefined(player) && isAlive(player)) //checks if player is defined and alive
-        {
-            player setPlayerAngles( jump.angles );
-            player setOrigin( jump.origin );
-            player takeAllWeapons();
-            player giveWeapon( "knife_mp" );
-            player giveMaxAmmo( "knife_mp" );
-            player switchToWeapon( "knife_mp" );
-        }
-        if(isDefined(level.activ) && isAlive(level.activ)) //Checks if level.activ is defined and activator is alive
-        {
-            level.activ setPlayerAngles( acti.angles );
-            level.activ setOrigin( acti.origin );
-            level.activ takeAllWeapons();
-            level.activ giveWeapon( "knife_mp" );
-            level.activ giveMaxAmmo( "knife_mp" );
-            level.activ switchToWeapon( "knife_mp" );
-        }
-        if(isDefined(player))
-            iPrintlnBold( " ^1" + player.name + " ^7has chosen Bounce Room" );
-        while( isDefined( player ) && isAlive( player ) )
-            wait 1;
-        if(isDefined(player))
-            iPrintlnBold(player.name + " has Died.");
-    }
-}
-
-Sniper()
-{
-	level.snipe_trig = getEnt( "trigger_sniper", "targetname");
-	jump = getEnt( "sniper_jumper", "targetname" );
-	acti = getEnt( "sniper_acti", "targetname" );
-	
-	while(1)
-    {
-        level.snipe_trig waittill( "trigger", player );
-        if( !isDefined( level.snipe_trig ) )
-            return;
-        level.ak_trig delete(); //change this
-		level.bounce_trig delete(); //change this
-		level.old_trig delete(); //change this
-		level.inferno_trig delete(); //change this
-        if(isDefined(player) && isAlive(player)) //checks if player is defined and alive
-        {
-            player setPlayerAngles( jump.angles );
-            player setOrigin( jump.origin );
-            player takeAllWeapons();
-            player giveWeapon( "m40a3_mp" );
-			player giveWeapon( "remington700_mp");
-            player giveMaxAmmo( "remington700_mp" );
-            player giveMaxAmmo( "m40a3_mp" );
-            player switchToWeapon( "m40a3_mp" );
-        }
-        if(isDefined(level.activ) && isAlive(level.activ)) //Checks if level.activ is defined and activator is alive
-        {
-            level.activ setPlayerAngles( acti.angles );
-            level.activ setOrigin( acti.origin );
-            level.activ takeAllWeapons();
-            level.activ giveWeapon( "m40a3_mp" );
-            level.activ giveWeapon( "remington700_mp" );
-            level.activ giveMaxAmmo( "remington700_mp" );
-            level.activ giveMaxAmmo( "m40a3_mp" );
-            level.activ switchToWeapon( "m40a3_mp" );
-        }
-        if(isDefined(player))
-            iPrintlnBold( " ^1" + player.name + " ^7has chosen Sniper Room" );
-        while( isDefined( player ) && isAlive( player ) )
-            wait 1;
-        if(isDefined(player))
-            iPrintlnBold(player.name + " has Died.");
-    }
-}
-
-Ak47()
-{
-	level.ak_trig = getEnt( "trigger_ak47", "targetname");
-	jump = getEnt( "ak47_jumper", "targetname" );
-	acti = getEnt( "ak47_acti", "targetname" );
-	
-	while(1)
-    {
-        level.ak_trig waittill( "trigger", player );
-        if( !isDefined( level.ak_trig ) )
-            return;
-        level.snipe_trig delete(); //change this
-		level.bounce_trig delete(); //change this
-		level.old_trig delete(); //change this
-		level.inferno_trig delete(); //change this
-        if(isDefined(player) && isAlive(player)) //checks if player is defined and alive
-        {
-            player setPlayerAngles( jump.angles );
-            player setOrigin( jump.origin );
-            player takeAllWeapons();
-            player giveWeapon( "ak47_mp" );
-            player giveMaxAmmo( "ak47_mp" );
-            player switchToWeapon( "ak47_mp" );
-        }
-        if(isDefined(level.activ) && isAlive(level.activ)) //Checks if level.activ is defined and activator is alive
-        {
-            level.activ setPlayerAngles( acti.angles );
-            level.activ setOrigin( acti.origin );
-            level.activ takeAllWeapons();
-            level.activ giveWeapon( "ak47_mp" );
-            level.activ giveMaxAmmo( "ak47_mp" );
-            level.activ switchToWeapon( "ak47_mp" );
-        }
-        if(isDefined(player))
-            iPrintlnBold( " ^1" + player.name + " ^7has chosen AK47 Room" );
-        while( isDefined( player ) && isAlive( player ) )
-            wait 1;
-        if(isDefined(player))
-            iPrintlnBold(player.name + " has Died.");
-    }
-}
-
-Inferno()
-{
-	level.inferno_trig = getEnt( "trigger_inferno", "targetname");
-	jump = getEnt( "inferno_jumper", "targetname" );
-	acti = getEnt( "inferno_acti", "targetname" );
-	
-	while(1)
-    {
-        level.inferno_trig waittill( "trigger", player );
-        if( !isDefined( level.inferno_trig ) )
-            return;
-        level.snipe_trig delete(); //change this
-		level.bounce_trig delete(); //change this
-		level.old_trig delete(); //change this
-		level.ak_trig delete(); //change this
-        if(isDefined(player) && isAlive(player)) //checks if player is defined and alive
-        {
-            player setPlayerAngles( jump.angles );
-            player setOrigin( jump.origin );
-            player takeAllWeapons();
-            player giveWeapon( "knife_mp" );
-            player giveMaxAmmo( "knife_mp" );
-            player switchToWeapon( "knife_mp" );
-        }
-        if(isDefined(level.activ) && isAlive(level.activ)) //Checks if level.activ is defined and activator is alive
-        {
-            level.activ setPlayerAngles( acti.angles );
-            level.activ setOrigin( acti.origin );
-            level.activ takeAllWeapons();
-            level.activ giveWeapon( "knife_mp" );
-            level.activ giveMaxAmmo( "knife_mp" );
-            level.activ switchToWeapon( "knife_mp" );
-        }
-        if(isDefined(player))
-            iPrintlnBold( " ^1" + player.name + " ^7has chosen Inferno Room" );
-        while( isDefined( player ) && isAlive( player ) )
-            wait 1;
-        if(isDefined(player))
-            iPrintlnBold(player.name + " has Died.");
-    }
-}
-
-Old()
-{
-	level.old_trig = getEnt( "trigger_olddoor", "targetname");
-	brush1 = getEnt("olddoor_1", "targetname");
-	brush2 = getEnt("olddoor_2", "targetname");
-	
-	level.old_trig waittill( "trigger", player );
-	
-	level.snipe_trig delete();
-    level.bounce_trig delete();
-	level.ak_trig delete();
-	level.inferno_trig delete();
-	level.old_trig delete();
-	
-	brush1 moveZ (-276, 4);
-	brush2 moveZ (276, 4);
-	brush1 waittill ("movedone");
-	brush2 waittill ("movedone");
-}
-
-
-
-
-
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

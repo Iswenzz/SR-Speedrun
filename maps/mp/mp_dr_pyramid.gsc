@@ -4,11 +4,10 @@ main()
 	thread speedrun\_way_name::create_secret_way("Secret Way;");
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread speedrun\_way_name::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
+	thread speedrun\_way_name::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 	maps\mp\_load::main();
-
-	thread speedrun\_way_name::create_tp((0, 0, 0), 100, 150, 
-		(0, 0, 0), 0, "freeze", "blue", "s0");
+    thread speedrun\_way_name::create_tp((-336.27, -973.907, 15.9623), 50, 15, (558, 1355, -1300), 270, "freeze", "blue", "s0");
+    thread speedrun\_way_name::create_endmap((1871.13, -285.334, -1502.88),85,30, "s0");  
 
 	PreCacheItem("brick_blaster_mp");
 	PreCacheItem("ak47_mp");
@@ -71,15 +70,15 @@ main()
 	// thread actimsg();
 
 	addTriggerToList("trigger1");
-    	addTriggerToList("trigger2");
-    	addTriggerToList("trigger3");
-    	addTriggerToList("trigger5");
-    	addTriggerToList("trigger6");
-    	addTriggerToList("trigger7");
-    	addTriggerToList("trigger8");
-    	addTriggerToList("trigger9");
-    	addTriggerToList("trigger10");
-    	addTriggerToList("trigger11");
+    addTriggerToList("trigger2");
+    addTriggerToList("trigger3");
+    addTriggerToList("trigger5");
+    addTriggerToList("trigger6");
+    addTriggerToList("trigger7");
+    addTriggerToList("trigger8");
+    addTriggerToList("trigger9");
+    addTriggerToList("trigger10");
+    addTriggerToList("trigger11");
 	addTriggerToList("trigger12");
 	addTriggerToList("trigger13");
 	addTriggerToList("trigger14");

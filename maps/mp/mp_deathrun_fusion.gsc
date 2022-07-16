@@ -1,23 +1,17 @@
-/* 
- MM  MMM  MM IMM. MMM  MM   ~MMMMM  MMMMMM   MMMMMZ   MMMMMN                    
- MM. MMM MM  OMM  MMMM MM  MMM         MMM  MM~  MMM  MM .MM                    
-  MMMMMM MM  MMM  MMMMMMM  MM  MMM   :MM    MM    MM .MMMMM                     
-  MMM,DMMM   MMM  MM MMMM  MMM  MM  MMM     MM7  MMM  MM MM                     
-  MMM  MMM   MMM  MM  MMM   NMMMMM  MMMMMM   NMMMM .  MM MMM                    
-*/
-//vehicle_mi17_woodland_fly_static
 main()
 {
 	thread speedrun\_way_name::create_normal_way("Normal Way;");
+	thread speedrun\_way_name::create_normal_way("Secret Way;");
 
 	thread speedrun\_way_name::create_spawn((-632, -9, 3884), 180);
-	thread speedrun\_way_name::create_endmap((1662, -274, 3772), 100, 150);
+	thread speedrun\_way_name::create_tp((-1026.65, -379.717, 3823.63), 55, 20, (6892, -2975, 2697), 360, "freeze", "blue", "s0");
+	thread speedrun\_way_name::create_tp((5694.28, -1310.13, 493.125), 1600, 100, (6892, -2975, 2697), 360, "freeze", "blue", "s0");
+	thread speedrun\_way_name::create_endmap((1662, -274, 3772), 100, 150, "ns0");
+	thread speedrun\_way_name::create_endmap((4988.19, 1197.95, 2209.13),75,20, "s0"); 
 
 	maps\mp\_load::main();
 	
-	//setExpFog(600, 600, 1, 1, 1, 0);
 	setExpFog(100, 1000, 0.2, 0.225, 0.24, 0.0);
-	/* [AUTO DELETE] //ambientPlay("soundalias"); */
 
 	game["allies"] = "sas";
 	game["axis"] = "russian";
@@ -28,7 +22,6 @@ main()
 
 	
 	//////////dvars/////////////////////////////
-	/* [AUTO DELETE] level.dvar["time_limit"]=4.5; */
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
@@ -36,33 +29,20 @@ main()
 	SetDvar( "env_fog", "1" );
 	SetDvar( "env_fog_start_distance", "200" );
 	SetDvar( "env_fog_half_distance", "480" );
+	setDvar("bg_falldamagemaxheight", 99999);
+    setDvar("bg_falldamageminheight", 99998);
 	
-	///////////variable////////////////////
 
-	level.lighting_fx = loadfx("weather/lightning");
-	level._effect["lightning"] = loadfx("fusion/lightingrings");
-	level.soulFX = loadfx("fusion/wp_spawnfx");
-	level.lightzy = loadfx("misc/cgoshp_lights_cr");
-	level.shiplight = loadfx("misc/aircraft_light_cockpit_red");
-	level.shiplightblue = loadfx("misc/aircraft_light_cockpit_blue");
-	level.impact_fx = loadfx("explosions/grenadeExp_concrete_1");
+
 	level.blur = 1;
-	
-	//////////////caches////////////////
-	precacheModel( "eliza_BR2" );
-	
-	
-	
-	
-	//////////////threads////////////////
+
 	//thread watchtime();
-	thread shiplights();
+	//thread shiplights();
 	//thread startSpecialintro();
 	thread startlift();
 	// thread introbase();
 	/* [AUTO DELETE] thread oldgame(); */
 	//thread easydoor();
-	/* [AUTO DELETE] thread secretdone(); */
 	thread setacti_model();
 	thread ropedown_chop1();
 	thread ropedown_chop2();
@@ -83,7 +63,7 @@ main()
 	
 	thread createRandomOrigin();
 	thread createRandomOriginMoveTo();
-	thread soulSpawn();
+	//thread soulSpawn();
 	thread demonotify();
 	
 	////////endgames/////////////
@@ -1074,21 +1054,6 @@ catchcounter()
 		rotatefloor_brush waittill("rotatedone");
 		wait(1);
 	}
-}
-
-
-
-secretdone()
-{
-trigger=getent("secretfinished","targetname");
-spot=getent("secretdone","targetname");
-while(1)
-{
-trigger waittill("trigger", player);
-/* [AUTO DELETE] iPrintln(player.name+ " finished the secret !"); */
-player SetOrigin( spot.origin );
-player setplayerangles( spot.angles );
-}
 }
 
 

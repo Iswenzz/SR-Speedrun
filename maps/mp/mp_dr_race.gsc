@@ -110,7 +110,7 @@ tools() {
 startDoor() {
     door = getEnt("startDoor", "targetname");
     trig = getEnt("startTrig", "targetname");
-    door moveZ(125, 2);
+    door delete();
 }
 
 bottomMessages() {

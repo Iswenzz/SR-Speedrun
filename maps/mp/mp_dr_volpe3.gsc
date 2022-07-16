@@ -45,7 +45,7 @@ main()
 	thread speedrun\_way_name::create_spawn((-521,390,68),89);
 	thread speedrun\_way_name::create_tp((-780, 555, 68), 60, 80, (-5637, 1157, 260), 89 , "freeze", "blue", "s0");
 	thread speedrun\_way_name::create_tp((-784, 350, 68), 60, 80, (-5637, 1157, 260), 89 , "freeze", "red", "s1");
-	thread speedrun\_way_name::create_secret_way("Hard Secret;Easy Secret;");
+	thread speedrun\_way_name::create_secret_way("Easy Secret;Hard Secret;");
 	thread speedrun\_way_name::create_normal_way("Normal Way;");
 
 	precacheModel("playermodel_vcfox_fox");

@@ -17,6 +17,7 @@ maps\mp\_load::main();
 
 thread speedrun\_way_name::create_endmap((33733, -2495, 2300), 300, 150);
 thread speedrun\_way_name::create_normal_way("Normal Way;");
+thread speedrun\_way_name::create_secret_way("Secret Way;");
 
 game["allies"] = "marines";
 game["axis"] = "opfor";
@@ -25,12 +26,8 @@ game["defenders"] = "allies";
 game["allies_soldiertype"] = "desert";
 game["axis_soldiertype"] = "desert";
 
-	setdvar("g_speed" ,"210");
 	setdvar("r_drawDecals" ,"1");
-	setdvar("dr_jumpers_speed" ,"1");
-	
 	setdvar("r_specularcolorscale" ,"1");
-	
 	setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
 	setdvar("r_glowskybleedintensity0",".1");
@@ -144,8 +141,8 @@ game["axis_soldiertype"] = "desert";
 	thread bounce_retry();
 	thread jump();
 	thread makelastbouncesafe();
-	thread stuck();
-	thread stuck2();
+	// thread stuck();
+	// thread stuck2();
 }
 
 
@@ -554,25 +551,20 @@ teleport4()
 	}
 }
 
-
 teleport5()
 {
 	trig = getent("trigger_teleport5", "targetname");
 	tele5 = getent("origin_teleport5", "targetname");
-	secret = getent("secret", "targetname");
 	ladder = getent("ladder", "targetname");
 	ladder2 = getent("ladder2", "targetname");
 	
-	secret waittill("trigger", player);
 	ladder moveZ(-900, 0.1);
 	ladder2 moveZ(-900, 0.1);
-	/* [AUTO DELETE] player iPrintlnBold("^4What Happened To Those Trees ?!"); */
-	/* [AUTO DELETE] iPrintln("^4First Secret Entrance Opened !"); */
-	secret delete();
-	
+
 	for(;;)
 	{
 		trig waittill("trigger", player);
+		player thread speedrun\_way_name::change_way("s0");
 		player setPlayerAngles(tele5.angles);
 		player setOrigin(tele5.origin);
 		/* [AUTO DELETE] iprintlnBold("^5" + player.name + " ^4Has Found The ^5First Secret ^4!"); */
@@ -634,6 +626,8 @@ teleport9()
 	for(;;)
 	{
 		trig waittill("trigger", player);
+
+		player thread speedrun\_way_name::finish_way("s0");
 		
 		player.secret_finished = true;
         player.secret_timer Destroy();

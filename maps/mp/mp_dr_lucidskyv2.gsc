@@ -21,7 +21,7 @@ main() {
 
     thread speedrun\_way_name::create_normal_way("Normal Way");
     thread speedrun\_way_name::create_secret_way("Secret Way");
-    // thread speedrun\_way_name::create_spawn((-74,-9,60),360);
+    thread speedrun\_way_name::create_spawn((-74,-9,60),360);
     thread speedrun\_way_name::create_tp((452.335, 208.407, 0.125), 80, 80, (4071, 1945, 412), 134, "freeze", "blue", "s0");
 
     // Other
@@ -56,7 +56,7 @@ main() {
     thread spawndoor();
     // thread trap1();
     // thread trap2();
-    // thread trap3();
+    thread trap3();
     // thread trap4();
     // thread trap5();
     // thread trap6();
@@ -433,13 +433,12 @@ acti_tele_4() {
     }
 }
 
-spawndoor() {
-    level waittill( "round_started" );
-    door = getEnt( "startdoor", "targetname" );
+spawndoor() 
+{
+door = getEnt( "startdoor", "targetname" );
 
-        door moveZ( -300, 4, .25, .25 );
-        door waittill( "movedone" );
-        door delete();
+wait 0.1;     
+door delete();
 }
 
 trap1() {
@@ -504,29 +503,14 @@ trap2() {
     }
 }
 
-trap3() {
-    trig = getEnt( "trap3_trig", "targetname" );
-    c1 = getEnt( "trap3_1", "targetname" );
-    c2 = getEnt( "trap3_2", "targetname" );
-    c3 = getEnt( "trap3_3", "targetname" );
+trap3() 
+{
+c3 = getEnt( "trap3_3", "targetname" );
 
-    trig SetHintString( "^7Press ^8&&1 ^7To Activate" );
-    trig waittill( "trigger", player );
-    trig SetHintString( "^8Activated" );    
+wait 0.1;
+c3 moveX(900,0.1);
 
-    c1 rotateYaw( 1080, 3, 1, 1 );
-    c2 rotateYaw( 1080, 3, 1, 1 );
-    c3 rotateYaw( 1080, 3, 1, 1 );
-    wait 5;
-
-    while( 1 ) {
-        c1 rotateYaw( 1080, 2, 1, 1 );
-        wait 2;
-        c2 rotateYaw( 1080, 2, 1, 1 );
-        wait 2;
-        c3 rotateYaw( 1080, 2, 1, 1 );
-        wait 2;
-    }
+   
 }
 
 trap4() {

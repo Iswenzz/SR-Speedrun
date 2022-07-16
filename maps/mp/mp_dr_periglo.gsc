@@ -30,14 +30,14 @@ main()
 	precacheMenu("songs");
 	precacheShader("loadscreen_mp_dr_periglo");
 	
-	thread trap1();
-	thread trap2();
-	thread trap3();
-	thread trap4();
-	thread trap5();
-	thread trap6();
+	//thread trap1();
+	//thread trap2();
+	//thread trap3();
+	//thread trap4();
+	//thread trap5();
+	//thread trap6();
 	thread trap7();
-	thread trap8();
+	//thread trap8();
 	thread door();
 	thread secret();
 	thread secretweap();
@@ -71,14 +71,9 @@ main()
 startdoor()
 {
 door = getEnt("startdoor", "targetname");
-wait 10;
-iprintlnbold("^2Map by Obamini");
-wait 3;
-iprintln("^3Discord: Obamini#4695");
-wait 2;
-door moveZ(-1400, 8);
-iprintln("^2START OPENED");
-wait 2;
+
+wait 0.1;
+door delete();
 
 }
 
@@ -452,23 +447,11 @@ gonzales10 delete();
 
 trap7()
 {
-trig = getent("trig_trap7", "targetname");
 boom1 = getent("trap7a", "targetname");
-boom2 = getent("trap7b", "targetname");
-boom = getent("origin", "targetname");
-trig sethintstring ("^2 Press &&1 to activate!");
-trig waittill ("trigger", player);
-trig sethintstring ("^2 Activated!");
 
-{
-boom1 moveZ (-176,1);
-boom2 moveZ (-176,1);
-wait 1;
-PlayFX( level.boom_fx, boom.origin );
-wait 3;
-boom1 moveZ (176,1);
-boom2 moveZ (176,1);
-}
+wait 0.1;
+boom1 moveZ (-250,0.1);
+
 
 }
 
@@ -491,15 +474,9 @@ floor2 moveZ (288,1);
 door()
 {
 door = getent ("finaldoor", "targetname");
-trig = getent ("finaldoor_trig", "targetname");
-trig waittill ("trigger", player);
 
-{
-wait 1;
-door moveZ (-160,2);
-wait 2;
+wait 0.1;
 door delete();
-}
 
 }
 

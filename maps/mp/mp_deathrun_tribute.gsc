@@ -16,14 +16,6 @@ main()
 	setdvar("r_glowskybleedintensity0",".3");
 	setDvar( "compassmaxrange", "1024" );
 
-
-	level.spark_fx = LoadFx("impacts/tank_round_spark");
-	level.afterburn_fx = LoadFx("smoke/tribute");
-	level.chicken_fx = LoadFx("explosions/default_explosion");
-	level.water_fx = LoadFx("explosions/mortarExp_water");
-	level.fire_fx = LoadFX("fire/firelp_barrel_pm");
-	level.break_fx = LoadFX("break");
-
 	precacheModel( "com_wall_fan" );
 	precacheModel( "chicken" );
 	precacheModel( "icbm_elevatorswitch" );
@@ -167,9 +159,6 @@ trap3()
 	trig waittill ("trigger");
 	trig delete();
 	
-	sound PlayloopSound ("fan");
-	sound PlayloopSound ("fan");
-	sound PlayloopSound ("fan");
 	
 	timeElapsed = 0;
 	seconds = 10;
@@ -216,7 +205,6 @@ trap4()  // Thx for BraXi
 
 	trafficLightGreen hide();
 	trafficLightRed show(); //red light now
-	trafficLightRed PlaySound ("stuck");
 	wait 0.2;
 
 	timeElapsed = 0;
@@ -237,8 +225,6 @@ trap4()  // Thx for BraXi
 				{
 					if( distance( players[i].safePosition, players[i].origin ) > 3 ) // then can move only 3 units
 					{	
-						//playFx( SomeNiceFx, players[i] getTagOrigin( "j_spine" ) );
-						//players[i] playSound( "SomeNiceSound" );
 						players[i] suicide();
 						players[i].safePosition = undefined;
 					}
@@ -252,14 +238,12 @@ trap4()  // Thx for BraXi
 		{
 			trafficLightRed hide();
 			trafficLightYellow show();
-			trafficLightRed PlaySound ("stuck");
 		}
 	}
 
 	trafficLightRed delete();
 	trafficLightYellow delete();
 	trafficLightGreen show();
-	trafficLightGreen PlaySound ("stuck");
 
 	area delete();
 
@@ -292,13 +276,9 @@ trap7()
 
 	trig waittill ("trigger");
 	trig delete();
-	csirke PlaySound ("csirke");
 
 	wait 0.7;
-	csirke PlaySound ("csirke2");
-	PlayFX( level.chicken_fx, csirke.origin );
-	RadiusDamage( csirke.origin, 135, 150, 70);
-	Earthquake( 2, 1, csirke.origin, 250);
+
 	csirke delete();
 }
 
@@ -307,7 +287,6 @@ trap8()
 	trig = getent("trap8_trig", "targetname");
 	point = getent("smoke", "targetname");
 	dmg = getent("trap8_dmg", "targetname");
-	fxObj1 = SpawnFx( level.afterburn_fx, point.origin);
 
 	dmg delete();
 		
@@ -320,10 +299,8 @@ trap9()
 
 	trig waittill ("trigger");
 	trig delete();
-	trap PlaySound ("elevator_down");
 	trap movex ( -221, 0.5);
 	wait 4;
-	trap PlaySound ("elevator_down");
 	trap movex ( 221, 0.5);
 }
 
@@ -395,12 +372,10 @@ trap14()
 	trig waittill ("trigger");
 	trig delete();
 
-	trap PlaySound ("stuck");
 	lamp show();
 	trap notsolid();
 
 	wait 5;
-	trap PlaySound ("stuck");
 	lamp hide();
 	trap solid();
 }
@@ -429,13 +404,10 @@ trap16()
 
 	trap1 notsolid();
 	trap movex (-280,0.5);
-	trap PlaySound ("th3");
-
 	
 	wait 5;
 	trap1 solid();
 	trap movex (280,0.5);
-	trap PlaySound ("th3");
 
 }
 
@@ -453,15 +425,11 @@ trap17()
 	x = RandomInt(100);
 		if( x < 50 )
 		{
-		trap1 PlaySound ("metal_break");
-		PlayFX( level.break_fx, trap1.origin );
 		wait 0.1;
 		trap1 delete();
 		}
 		if( x > 49  )
 		{
-		trap2 PlaySound ("metal_break");
-		PlayFX( level.break_fx, trap2.origin );
 		wait 0.1;
 		trap2 delete();
 		}
@@ -476,7 +444,6 @@ trap18()
 	dmg enablelinkto();
 	dmg linkto(trap);
 	
-	trap PlaySound ("th1");
 	trap movez (180,0.1);
 
 	trig waittill ("trigger");
@@ -484,9 +451,6 @@ trap18()
 
 	trap movez (-180, 0.2);
 	wait 0.2;
-	trap PlaySound ("glass");
-	trap PlaySound ("th2");
-	Earthquake( 2, 1, trap.origin, 250);
 }
 
 final()
@@ -501,10 +465,8 @@ final()
 	who SwitchToWeapon( "uzi_mp" );
 	trig delete();
 	thread final_check();
-	door playsound ("door_start");
 	door movez ( -128,0.5);
 	wait 0.5;
-	door playsound ("door_close");
 }
 
 final_check()
@@ -515,10 +477,8 @@ final_check()
 	{
 		if( getTeamPlayersAlive("allies") == 1 )
 		{
-		door playsound ("door_start");
 		door movez ( -128,0.5);
 		wait 0.5;
-		door playsound ("door_close");
 		level notify ("check_stop");
 		}
 		wait 5;

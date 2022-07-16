@@ -36,10 +36,6 @@ thread speedrun\_way_name::create_tp((-11539, 2404, 76), 100, 150,
 thread speedrun\_way_name::create_tp((-11986, 2404, 76), 100, 150, 
 	htp.origin, htp.angles[1], "freeze", "darkred", "s1");
 
- 
- level._effect[ "bluepartic" ] = loadfx( "fire/custom_fire" );
- level._effect[ "c4" ] = loadfx( "explosions/custom_explo_small" );
- level._effect[ "lightning" ] = loadfx( "weather/lightning_mp_farm" );
  level.knockback = getDvarInt("g_knockback");
  
  game["allies"] = "marines";
@@ -88,8 +84,6 @@ thread speedrun\_way_name::create_tp((-11986, 2404, 76), 100, 150,
 	thread tplvl4();
 	thread tplvl5();
 	thread tubetp();
-	thread blueparticles();
-	thread lightningfxl();
 	thread trap1();
 	thread trap2();
 	thread trap3();
@@ -610,7 +604,6 @@ trap4()
 {
 	level endon("trigger");
 trig = getent("trig_trap4","targetname");
-level._effect["c4"] = loadfx("explosions/custom_explo_small");
 trig waittill("trigger" , user );
 if(user.pers["team"] != "axis")
 {
@@ -632,10 +625,8 @@ thread trap4b();
 trap4a()
 {
 trap = getEnt("trap4a","targetname");
-level._effect["c4"] = loadfx("explosions/custom_explo_small");
 wait 0.2;
 trap PlaySound("grenade_explode_metal");
-playFx(level._effect["c4"],trap.origin);
 players = getEntArray("player","classname");	
 for(k=0;k<players.size;k++)
 {
@@ -659,10 +650,8 @@ for(k=0;k<players.size;k++)
 trap4b()
 {
 trap1 = getEnt("trap4b","targetname");
-level._effect["c4"] = loadfx("explosions/custom_explo_small");
 wait 0.2;
 trap1 PlaySound("grenade_explode_metal");
-playFx(level._effect["c4"],trap1.origin);
 players = getEntArray("player","classname");	
 for(k=0;k<players.size;k++)
 {
@@ -948,7 +937,7 @@ random = randomint(2);
 }
 
 
-actitpsetup() //TP ACTI & FX
+actitpsetup() //TP ACTI
 {
 
 thread actitp1();
@@ -1075,91 +1064,6 @@ startc = getEnt("startdoor_c","targetname");
 	wait 0.2;
 	startc hide();
 	startc notsolid();
-	}
-}
-
-
-blueparticles()
-{
-bluepartic1 = getEnt("fx_bluefall1", "targetname");
-bluepartic2 = getEnt("fx_bluefall2", "targetname");
-bluepartic3 = getEnt("fx_bluefall3", "targetname");
-bluepartic4 = getEnt("fx_bluefall4", "targetname");
-bluepartic5 = getEnt("fx_bluefall5", "targetname");
-bluepartic6 = getEnt("fx_bluefall6", "targetname");
-bluepartic7 = getEnt("fx_bluefall7", "targetname");
-bluepartic8 = getEnt("fx_bluefall8", "targetname");
-bluepartic9 = getEnt("fx_bluefall9", "targetname");
-bluepartic10 = getEnt("fx_bluefall10", "targetname");
-bluepartic11 = getEnt("fx_bluefall11", "targetname");
-bluepartic12 = getEnt("fx_bluefall12", "targetname");
-bluepartic13 = getEnt("fx_bluefall13", "targetname");
-bluepartic14 = getEnt("fx_bluefall14", "targetname");
-bluepartic15 = getEnt("fx_bluefall15", "targetname");
-bluepartic16 = getEnt("fx_bluefall16", "targetname");
-bluepartic17 = getEnt("fx_bluefall17", "targetname");
-bluepartic18 = getEnt("fx_bluefall18", "targetname");
-bluepartic19 = getEnt("fx_bluefall19", "targetname");
-bluepartic20 = getEnt("fx_bluefall20", "targetname");
-bluepartic21 = getEnt("fx_bluefall21", "targetname");
-bluepartic22 = getEnt("fx_bluefall22", "targetname");
-bluepartic23 = getEnt("fx_bluefall23", "targetname");
-bluepartic24 = getEnt("fx_bluefall24", "targetname");
-bluepartic25 = getEnt("fx_bluefall25", "targetname");
-bluepartic26 = getEnt("fx_bluefall26", "targetname");
-bluepartic27 = getEnt("fx_bluefall27", "targetname");
-bluepartic28 = getEnt("fx_bluefall28", "targetname");
-bluepartic29 = getEnt("fx_bluefall29", "targetname");
-level._effect[ "bluepartic" ] = loadfx( "fire/custom_fire" );
-	
-	while(1)
-	{
-	playFx(level._effect["bluepartic"],bluepartic1.origin);
-	playFx(level._effect["bluepartic"],bluepartic2.origin);
-	playFx(level._effect["bluepartic"],bluepartic3.origin);
-	playFx(level._effect["bluepartic"],bluepartic4.origin);
-	playFx(level._effect["bluepartic"],bluepartic5.origin);
-	playFx(level._effect["bluepartic"],bluepartic6.origin);
-	playFx(level._effect["bluepartic"],bluepartic7.origin);
-	playFx(level._effect["bluepartic"],bluepartic8.origin);
-	playFx(level._effect["bluepartic"],bluepartic9.origin);
-	playFx(level._effect["bluepartic"],bluepartic10.origin);
-	playFx(level._effect["bluepartic"],bluepartic11.origin);
-	playFx(level._effect["bluepartic"],bluepartic12.origin);
-	playFx(level._effect["bluepartic"],bluepartic13.origin);
-	playFx(level._effect["bluepartic"],bluepartic14.origin);
-	playFx(level._effect["bluepartic"],bluepartic15.origin);
-	playFx(level._effect["bluepartic"],bluepartic16.origin);
-	playFx(level._effect["bluepartic"],bluepartic17.origin);
-	playFx(level._effect["bluepartic"],bluepartic18.origin);
-	playFx(level._effect["bluepartic"],bluepartic19.origin);
-	playFx(level._effect["bluepartic"],bluepartic20.origin);
-	playFx(level._effect["bluepartic"],bluepartic21.origin);
-	playFx(level._effect["bluepartic"],bluepartic22.origin);
-	playFx(level._effect["bluepartic"],bluepartic23.origin);
-	playFx(level._effect["bluepartic"],bluepartic24.origin);
-	playFx(level._effect["bluepartic"],bluepartic25.origin);
-	playFx(level._effect["bluepartic"],bluepartic26.origin);
-	playFx(level._effect["bluepartic"],bluepartic27.origin);
-	playFx(level._effect["bluepartic"],bluepartic28.origin);
-	playFx(level._effect["bluepartic"],bluepartic29.origin);
-	wait 1;
-	}
-}
-
-
-lightningfxl()
-{
-fxlightning1 = getEnt("fx_lightning1","targetname");
-fxlightning2 = getEnt("fx_lightning2","targetname");
-level._effect[ "lightning" ] = loadfx( "weather/lightning_mp_farm" );
-
-	while(1)
-	{
-	playFx(level._effect["lightning"],fxlightning1.origin);
-	wait 6;
-	playFx(level._effect["lightning"],fxlightning2.origin);
-	wait 6;
 	}
 }
 
@@ -1492,160 +1396,18 @@ onDisconnect() //Music Term.
 	self cleanUp();
 }
 
-
 watterFX()
 {
 
-	drown_waterage = getentarray("drown_water","targetname");
-	if (isDefined("drown_waterage"))
+	trig = getent("drown_water","targetname");
+
+    for (;;)
 	{
-		precacheShader("black");
-		precacheShader("white");
+	trig  waittill ("trigger", player);
 
-
-
-		level.barsize = 288;
-		level.drown_watertime = 2;
-		level.hurttime = 1;
-
-		for(d = 0; d < drown_waterage.size; d++)
-		{
-			drown_waterage[d] thread water();
-		}
+	player suicide();
 	}
 }
-
-
-Water()
-{
-while (1)
-	{
-	self waittill("trigger", other);
-
-	if(isPlayer(other) && other istouching(self))
-		other thread drown_water(self);
-	}
-}
-	
-drown_water(trigger)
-{
-	dceiling = getent(trigger.target,"targetname");
-	water_vision = undefined;
-	while (self istouching(trigger) && !self istouching(dceiling))
-	{
-		wait .125;
-		if(isDefined(self.drown_watering))
-			return;		
-		self.drown_watering = true;
-
-	if(!isDefined(water_vision))
-	{
-		water_vision = newClientHudElem(self);
-		water_vision.x = 0;
-		water_vision.y = 0;
-		water_vision setshader ("white", 640, 480);
-		water_vision.alignX = "left";
-		water_vision.alignY = "top";
-		water_vision.horzAlign = "fullscreen";
-		water_vision.vertAlign = "fullscreen";
-		water_vision.color = (.16, .38, .5);
-		water_vision.alpha = .75;
-	}
-
-
-	level.barincrement = (level.barsize / (20.0 * level.drown_watertime));
-//	level.player allowProne(false);
-	if(!isDefined(self.progressbackground))
-	{
-		self.progressbackground = newClientHudElem(self);				
-		self.progressbackground.alignX = "center";
-		self.progressbackground.alignY = "middle";
-		self.progressbackground.x = 320;
-		self.progressbackground.y = 385;
-		self.progressbackground.alpha = 0.5;
-	}
-	self.progressbackground setShader("black", (level.barsize + 4), 14);		
-
-	if(!isDefined(self.progressbar))
-	{
-		self.progressbar = newClientHudElem(self);				
-		self.progressbar.alignX = "left";
-		self.progressbar.alignY = "middle";
-		self.progressbar.x = (320 - (level.barsize / 2.0));
-		self.progressbar.y = 385;
-	}
-	self.progressbar setShader("white", 0, 8);			
-	self.progressbar scaleOverTime(level.drown_watertime, level.barsize, 8);
-
-	self.progresstime = 0;
-	d = 0;
-	f = 0;
-
-	while(isalive(self) && self istouching(trigger) && !self istouching(dceiling) && (self.progresstime < level.drown_watertime))
-	{		
-		d ++;
-		f ++;
-		
-		wait 0.05;
-		self.progresstime += 0.05;
-
-
-		if(self.progresstime >= level.hurttime)					
-			{
-			if(f >= 4)
-				{
-				radiusDamage(self.origin,9, 1, 1);
-				f = 0;
-				}
-			}
-	}
-
-	if(isalive(self) && self istouching(trigger) && !self istouching(dceiling) && (self.progresstime >= level.drown_watertime))
-	{
-
-		self.progressbackground destroy();
-		self.progressbar destroy();
-
-		wait 0.025;
-		radiusDamage(self.origin,22, 3000, 3000);
-
-		self.drown_watering = undefined;
-		self.sounder = undefined;
-
-
-
-		randb = randomInt(2);
-		deathmethod1 = " Drowned";	
-		deathmethod2 = " That's water, It Kills.";
-		deathmethod3 = " Swallowed Some Water";
-		deathmethod4 = " That's water, It Kills.";
-		
-		if (randb == 0)
-		/* [AUTO DELETE] iPrintLn( self.name, deathmethod1); */
-		if (randb == 1)
-		/* [AUTO DELETE] iPrintLn( self.name, deathmethod2); */
-		if (randb == 2)
-		/* [AUTO DELETE] iPrintLn( self.name, deathmethod3); */
-		if (randb == 3)
-		/* [AUTO DELETE] iPrintLn( self.name, deathmethod4); */
-		wait .05;
-		water_vision destroy();
-	}
-	else
-	{
-		water_vision.alpha = .5;
-		water_vision fadeOverTime(3);
-		water_vision.alpha = 0;
-		wait 0.05;
-		self.progressbackground destroy();
-		self.progressbar destroy();
-		self.drown_watering = undefined;
-		self.sounder = undefined;
-	}			
-	wait .05;
-	}
-}
-
 
 createhud(messages)
 {
@@ -1662,7 +1424,6 @@ hud_start.fontscale = 2;
 hud_start.glowalpha = 1;
 hud_start.glowcolor = (1,0,0);
 hud_start setText(messages);
-hud_start SetPulseFX( 100, 4000, 500 );
 wait 7;
 if(isdefined(hud_start))
 	hud_start destroy();

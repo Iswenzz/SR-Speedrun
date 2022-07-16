@@ -6,7 +6,7 @@ _|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|
       _|  _|    _|    _|  _|        _|        _|    _|  _|    _|      
 _|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|  
 
-Map and GSC Made By SuX Lolz.
+Map and GSC Made By SuX Lolz. Car destruction fixed by CM'death.
 
 Steam: http://steamcommunity.com/profiles/76561198163403316/
 Discord: https://discord.gg/76aHfGF
@@ -43,4 +43,22 @@ main()
 	thread speedrun\_way_name::create_spawn((-440, 2230, 300), 280);
 	thread speedrun\_way_name::create_normal_way("Normal Way");
 	thread speedrun\_way_name::create_endmap((1574, -1649, 286), 120, 100);
+
+	thread car();
+}
+
+car()
+{
+car=getEntArray("destructible","targetname");
+
+level waittill ("round_started");
+
+car[0] notsolid();
+car[1] notsolid();
+car[3] notsolid();
+car[4] notsolid();
+car[5] notsolid();
+car[6] notsolid();
+car[7] notsolid();
+car[8] notsolid();
 }

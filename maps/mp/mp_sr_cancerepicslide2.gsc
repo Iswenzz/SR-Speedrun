@@ -24,17 +24,17 @@ main()
  
 	thread speedrun\_way_name::create_spawn((-208,-40,60),90);
 	thread speedrun\_way_name::create_normal_way("Normal Way");
-	 thread speedrun\_way_name::create_endmap((10542.3, -23567.5, -2295.88), 315, 10,"s1");
-	 thread speedrun\_way_name::create_endmap((-7884.32, 8498.37, -5223.88), 380, 10,"s0");
-	  thread speedrun\_way_name::create_secret_way("Cancer1;Cancer2;");
+    thread speedrun\_way_name::create_secret_way("Bounce Way;Stairs Way;");
+    thread speedrun\_way_name::create_endmap((10568.8, -23523.9, -2295.88), 220, 40, "s0");
+	thread speedrun\_way_name::create_endmap((-7901.41, 8498.06, -5223.88), 300, 30, "s1");
     	
  level.knockback = getDvarInt("g_knockback");
 	bounce   = getEntArray("bounce", "targetname");    
     for(i = 0;i < bounce.size;i++)
     bounce[i] thread doublebounce();
 	
- thread slide();
- thread slide1();
+    thread slide();
+    thread slide1();
 	thread qube();
 	thread stairs();
 	thread stairsslide();

@@ -19,71 +19,56 @@ main()
 
 	thread speedrun\_way_name::create_normal_way("Normal Way");
 	thread speedrun\_way_name::create_spawn((-159,200,68),359);
-	thread door1 ();
-	//thread trap1 ();
-	//thread trap2 ();
+	thread door1();
+	thread trap1();
+	thread trap2();
 	//thread trap3 ();
    // thread trap4 ();
 	//thread trap5 ();
 	//thread trap6 ();
 	//thread pushers ();
-	//thread trap7 ();
+	thread trap7 ();
 	//thread trap8 ();
 //	thread trap9 ();
 	//thread movingbrushs ();
 	//thread lastdoor1 ();
 }
 
-door1 ()
+door1()
 {
 door_1 = getEnt ("firstdoor","targetname");
 trigg = getEnt ("triga","targetname");
+
+level waittill("round_started");
+
 trigg delete();
 door_1 delete();
 }
 
-trap1 () 
+trap1() 
 {
-trig_1 = getent ("trig_1","targetname");
 brush1a = getent ("brush1a","targetname");
 brush1 = getent ("brush1","targetname");
 killtrig = getent ("killtrig","targetname");
-trig_1 waittill ("trigger");
-trig_1 delete ();
-killtrig enablelinkto ();
-killtrig linkto (brush1a);
-brush1a linkto (brush1);
-brush1 rotateroll (-90 , 0.5);
-wait 0.6 ; 
-while (1)
-{
-brush1 rotateroll (180 , 1);
-wait 1.1;
-brush1 rotateroll (-180 , 1);
-wait 1.1 ;
-}
+
+level waittill("round_started");
+
+brush1a delete();
+brush1 delete();
+killtrig delete();
+
 }
 
- trap2 ()
- {
- brush2 = getent ("brush2","targetname");
- brush2a = getent ("brush2a","targetname");
- trig_2 = getent ("trig_2","targetname");
- trig_2 waittill ("trigger");
- trig_2 delete ();
- while (1)
- {
- brush2 rotateyaw (1080 , Randomfloat( 3 )+1 );
- brush2a rotateyaw (-720 , Randomfloat( 4 )+1);
- wait 4.1;
- brush2 rotateyaw (-360 , Randomfloat( 1.5 )+1 );
-   brush2a rotateyaw (360 , Randomfloat( 2 )+1);
- wait 2 ;
-  brush2a rotateyaw (-720 , Randomfloat( 2 )+1);
-  brush2 rotateyaw (1080 , Randomfloat( 4 )+1 );
-  wait 2 ;
- }
- }
+trap2()
+{
+brush2 = getent ("brush2","targetname");
+brush2a = getent ("brush2a","targetname");
+ 
+level waittill("round_started");
+brush2 delete();
+brush2a delete();
+}
+
  trap3 ()
  {
  rock = getent ("rock","targetname");
@@ -157,20 +142,23 @@ wait 1.1 ;
 			wait 0.8 ;
 			}
 			}
-			trap7 ()
-			{
-			m1= getentarray ("m1","targetname");
-			trig_7 = getent ("trig_7","targetname");
-			trig_7 waittill ("trigger");
-			trig_7 delete ();
-			for (i=0;i<m1.size;i++)
-			{
-			m1[i] movey (-170 , randomfloat (1)+0.5);
-			wait 2 ; 
-			m1[i] movey (170 , randomfloat (1)+0.5);
-			wait 2 ;
-			}
-			}
+
+trap7 ()
+{
+m1= getentarray ("m1","targetname");
+			
+level waittill("round_started");
+
+m1[0] delete();
+m1[1] delete();
+m1[2] delete();
+m1[3] delete();
+m1[4] delete();
+m1[5] delete();
+m1[6] delete();
+m1[7] delete();
+}
+
 			trap8 ()
 			{
 			trig_8 = getent ("trig_8","targetname");

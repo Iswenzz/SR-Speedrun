@@ -1,46 +1,37 @@
-/*
-
-  _|_|_|            _|      _|      _|                  _|            
-_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|  
-  _|_|    _|    _|      _|          _|        _|    _|  _|      _|    
-      _|  _|    _|    _|  _|        _|        _|    _|  _|    _|      
-_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|  
-
-Map and GSC Made By SuX Lolz.
-
-Steam: http://steamcommunity.com/profiles/76561198163403316/
-Discord: https://discord.gg/76aHfGF
-Youtube: https://www.youtube.com/channel/UC1vxOXBzEF7W4g7TRU0C1rw
-Paypal: suxlolz@outlook.fr
-Email Pro: suxlolz@outlook.fr
-
-*/
-
-#include maps\mp\_utility;
-#include maps\mp\gametypes\_hud_util;
-#include common_scripts\utility;
-
 main()
 {
-	maps\mp\_load::main();
-	maps\mp\_compass::setupMiniMap("compass_mp_sr_pure_cancer");
- 
-	game["allies"] = "marines";
-	game["axis"] = "opfor";
-	game["attackers"] = "axis";
-	game["defenders"] = "allies";
-	game["allies_soldiertype"] = "desert";
-	game["axis_soldiertype"] = "desert";
- 
-	setdvar("r_specularcolorscale","1");
-	setdvar("compassmaxrange","1600");
-	setdvar("r_glowbloomintensity0",".1");
-	setdvar("r_glowbloomintensity1",".1");
-	setdvar("r_glowskybleedintensity0",".1");
-	setDvar("bg_falldamagemaxheight", 20000000 );
-	setDvar("bg_falldamageminheight", 15000000 );
+maps\mp\_load::main();
 
-	// thread speedrun\_way_name::create_spawn((670, -474, 76), 180);
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_endmap((-1287, 1923, 480), 120, 100);
+game["allies"] = "marines";
+game["axis"] = "opfor";
+game["attackers"] = "axis";
+game["defenders"] = "allies";
+game["allies_soldiertype"] = "desert";
+game["axis_soldiertype"] = "desert";
+ 
+setdvar("r_specularcolorscale","1");
+setdvar("compassmaxrange","1600");
+setdvar("r_glowbloomintensity0",".1");
+setdvar("r_glowbloomintensity1",".1");
+setdvar("r_glowskybleedintensity0",".1");
+setDvar("bg_falldamagemaxheight", 20000000 );
+setDvar("bg_falldamageminheight", 15000000 );
+
+thread speedrun\_way_name::create_spawn((1292, -310, 130), 270);
+thread speedrun\_way_name::create_normal_way("Normal Way;");
+thread speedrun\_way_name::create_endmap((-3137.81, -10.0093, 81.125), 100, 10);
+
+thread doors();
+}
+
+doors() 
+{
+door = getent("startdoor", "targetname"); 
+door1 = getent("porte1", "targetname"); 
+door2 = getent("porte2", "targetname"); 
+	
+wait 0.1;
+door delete();
+door1 delete();
+door2 delete();
 }

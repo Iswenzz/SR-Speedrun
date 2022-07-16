@@ -1,16 +1,3 @@
-//////////////////////////////////////////////////////////
-//														//
-//	Maker: quaK											//
-//														//
-//	Steam: https://steamcommunity.com/id/Joelrau/		//
-//	Discord: Joel#0426									//
-//														//
-//////////////////////////////////////////////////////////
-//
-//	Thanks to everyone who made maps before me, I was able to make this map thanks to looking at other peoples scripts and improving upon them!
-//	Feel free to do the same!
-//
-
 #include common_scripts\utility;
 #include braxi\_common;
 #include braxi\_rank;
@@ -118,10 +105,11 @@ main()
 
 	//miscs------------------------
 	thread speedrun\_way_name::create_normal_way("Normal Way;");
+	thread speedrun\_way_name::create_secret_way("^1Hard Way;^2Easy Way;");
 	thread speedrun\_way_name::create_spawn((667,581,68),0);
 	thread speedrun\_way_name::create_tp((591.033, 346.256, 8.125), 70, 40, (-37892, -8888, 1100), 90, "freeze", "blue", "s0");
+	thread speedrun\_way_name::create_tp((796.85, 336.657, 8.125), 70, 40, (-23551, -6691, 1260), 90, "freeze", "yellow", "s1");
 	thread speedrun\_way_name::create_tp((6660.33, 4146.93, 320.125), 60, 60, (6564, 6750, 59), 180, "freeze");
-	thread speedrun\_way_name::create_secret_way("Secret Way;");
 	// thread whenPlayerConnected();
 	// thread whenSpawned();
 	// thread whenRoundStarted();
@@ -153,7 +141,7 @@ main()
 	//-----------------------------
 
 	//secret-----------------------
-	// thread secret1();
+	thread secret1();
 	thread secret2();
 	//-----------------------------
 
@@ -495,7 +483,7 @@ rupeespin(targetname, rotation, time)
 startFence()
 {
     fence = getEnt ("starting_fence", "targetname");
-    fence moveZ(320, 6);
+    fence delete();
 
 }
 
@@ -1108,56 +1096,7 @@ secretTimerStop(waitill)
 
 secret1()
 {
-	thread secret1Enter();
-
-	thread secret1CheckpointDefault();
-	thread secret1Checkpoint("trig_secret_easy_checkpoint1", "orig_secret_easy_checkpoint1");
-	thread secret1Checkpoint("trig_secret_easy_checkpoint2", "orig_secret_easy_checkpoint2");
-	thread secret1Checkpoint("trig_secret_easy_checkpoint3", "orig_secret_easy_checkpoint3");
-
-	thread secret1Finish();
-}
-
-secret1Enter()
-{
-	trig = getEnt ("trig_secret_easy", "targetname");
-	secret = getEnt ("orig_secret_easy", "targetname");
-
-	while (1)
-	{
-		trig waittill ("trigger", player);
-
-	}
-}
-
-secret1CheckpointDefault()
-{
-	trig = getEnt ("trig_secret_easy_checkpoint_default", "targetname");
-	checkpoint = getEnt ("orig_secret_easy", "targetname");
-
-	while (1)
-	{
-		trig waittill ("trigger", player);
-
-		player setOrigin (checkpoint.origin);
-		player setPlayerAngles (checkpoint.angles);
-		player thread resetVelocity();
-	}
-}
-
-secret1Checkpoint(trigger, checkpoint)
-{
-	trig = getEnt (trigger, "targetname");
-	checkpoint = getEnt (checkpoint, "targetname");
-
-	while (1)
-	{
-		trig waittill ("trigger", player);
-
-		player setOrigin (checkpoint.origin);
-		player setPlayerAngles (checkpoint.angles);
-		player thread resetVelocity();
-	}
+    thread secret1Finish();
 }
 
 secret1Finish()
@@ -1172,9 +1111,7 @@ secret1Finish()
 		player setOrigin (location.origin);
 		player setPlayerAngles (location.angles);
 		player thread resetVelocity();
-		iPrintLnBold ("^4" + player.name + "^7 Has finished the ^2EASY ^7secret room!");
 
-		player braxi\_rank::giveRankXP("", 500);
 		
 		if (isDefined( level.trapsDisabled ) && level.trapsDisabled == false)
 		{
@@ -1182,7 +1119,7 @@ secret1Finish()
 			player giveMaxAmmo ("deserteaglegold_mp");
 			player switchToWeapon ("deserteaglegold_mp");
 		}
-		player thread secretTimerStop();
+		player thread speedrun\_way_name::finish_way("s1");
 	}
 }
 
@@ -1270,9 +1207,6 @@ secret2Finish()
 		player setOrigin (location.origin);
 		player setPlayerAngles (location.angles);
 		player thread resetVelocity();
-		iPrintLnBold ("^4" + player.name + "^7 Has finished the ^1HARD ^7secret room!");
-
-		player braxi\_rank::giveRankXP("", 1000);
 		
 		player takeWeapon("rpg_mp");
 		if (isDefined( level.trapsDisabled ) && level.trapsDisabled == false)

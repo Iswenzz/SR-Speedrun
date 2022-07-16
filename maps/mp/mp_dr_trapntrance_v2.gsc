@@ -1,26 +1,14 @@
-/*	 _    ___      __  _                               ______  
-	| |  / (_)____/ /_(_)____                         / _____\ 
-	| | / / / ___/ __/ / ___/                        / / ___/ |
-	| |/ / (__  ) /_/ / /__                         / / /__  / 
-	|___/_/____/\__/_/\___/  __    ____            |  \___/ /  
-	   / __ \___  ____ _/ /_/ /_  / __ \__  ______  \______/   
-	  / / / / _ \/ __ `/ __/ __ \/ /_/ / / / / __ \            
-	 / /_/ /  __/ /_/ / /_/ / / / _, _/ /_/ / / / /            
-	/_____/\___/\__,_/\__/_/ /_/_/ |_|\__,_/_/ /_/             
-	                                                           
-	mp_dr_trapntrance_v2 - Blade & Niko (uNI) ©
-
-	Discord: 
-			Blade #6504
-			Niko #2926
-*/
 main()
 {
 	maps\mp\_load::main();
 
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
+	thread speedrun\_way_name::create_normal_way("Trap Way;Trance Way;");
+	thread speedrun\_way_name::create_secret_way("Secret Way;");
 	thread speedrun\_way_name::create_spawn((-3721, 1758, 570), -90);
-
+	thread speedrun\_way_name::create_tp((-1414.99, -6929.17, 496.125), 80, 10, (-1419, -7578, 556), 270, "freeze", "blue", "ns0");
+	thread speedrun\_way_name::create_tp((-3712.56, -155.318, 496.125), 80, 10, (-3722, -1835, 556), 270, "freeze", "blue", "ns1");
+    thread speedrun\_way_name::create_endmap((-2288.99, -8639.36, 496.125),70,40, "ns0");
+	thread speedrun\_way_name::create_endmap((-3712.56, -155.318, 496.125),70,40, "ns1");
 	// ================ Game Settings ================ //
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
@@ -42,30 +30,13 @@ main()
   	// ================== Precache =================== //
   	precachemodel("vistic_logo");
 
-  	precacheitem("winchester1200_mp");
-  	precacheitem("knife_mp");
-  	precacheitem("deserteagle_mp");
-  	precacheitem("deserteaglegold_mp");
-  	precacheitem("m40a3_mp");
-  	precacheitem("remington700_mp");
-
-  	// =================== Effects =================== //
-  	level.tnt_red_embers = loadfx("vistic/red_embers");
-  	level.tnt_cyan_embers = loadfx("vistic/cyan_embers");
-  	level.tnt_purple_embers = loadfx("vistic/purple_embers");
-  	level.tnt_red_light = loadfx("vistic/purple_light");
-  	level.tnt_purple_fire = loadfx("vistic/blue_fire");
-
   	// =================== Scripts =================== //
   	thread doors();
-  	thread trapntrancehud();
-  	thread texts();
-  	thread tnt_endmap();
   	thread tnt_secret();
-  	thread tnt_rooms();
 
-  	thread trap_traps();
-  	thread trance_traps();
+  	//thread tnt_rooms();
+  	//thread trap_traps();
+  	//thread trance_traps();
 }
 
 doors()
@@ -73,371 +44,10 @@ doors()
 	trap = getent("trap_door","targetname");
 	trance = getent("trance_door","targetname");
 
-	acti_trap = getent("acti_trap","targetname");
-	acti_trance = getent("acti_trance","targetname");
-
-	level waittill("round_started");
-
-	thread map_effects();
-
-	wait 1;
-	thread welcomecucc();
-
-	if(level.freerun)
-	{
-		vc = randomint(4);
-		if(vc == 0)
-			ambientplay("trap0",2);
-		else if(vc == 1)
-			ambientplay("trap1",2);
-		else if(vc == 2)
-			ambientplay("trance0",2);
-		else 
-			ambientplay("trance1",2);
-
-		trap movez(-200,5);
-		trance movez(-200,5);
-
-		wait 5;
-
-		trap delete();
-		trance delete();
-	}
-	else 
-	{
-		thread trap_way();
-		thread trance_way();
-		thread random_way();
-
-		wait 10;
-
-		if(!isdefined(level.tnt_way))
-		{
-			level.tnt_way = true;
-
-			level.trap_trig delete();
-			level.trance_trig delete();
-			level.random_trig delete();
-
-			iprintlnbold("^2Activator^7 appears to be AFK!");
-
-			vc = randomint(6);
-			if(vc == 0 || vc == 2 || vc == 4)
-			{
-				level.trap_n_trance.glowcolor = (0,0,1);
-				level.trap_n_trance settext("Trap");
-
-				iprintln("^5Trap^7 Way opened");
-
-				level.activ setorigin(acti_trap.origin);
-				level.activ setplayerangles(acti_trap.angles);
-
-				vc = randomint(2);
-
-				ambientplay("trap"+vc,2);
-
-				trap movez(-200,5);
-				wait 5;
-				trap delete();
-			}
-			else 
-			{
-				level.trap_n_trance.glowcolor = (0,1,0);
-				level.trap_n_trance settext("Trance");
-
-				iprintlnbold("^2Trance^7 Way opened");
-
-				level.activ setorigin(acti_trance.origin);
-				level.activ setplayerangles(acti_trance.angles);
-
-				vc = randomint(2);
-
-				ambientplay("trance"+vc,2);
-
-				trance movez(-200,5);
-				wait 5;
-				trance delete();
-			}
-		}
-	}
-}
-
-trapntrancehud()
-{
-	if(isdefined(level.trap_n_trance))
-		level.trap_n_trance destroy();
-
-	level.trap_n_trance = newhudelem();
-	level.trap_n_trance.alignx = "center";
-	level.trap_n_trance.aligny = "bottom";
-	level.trap_n_trance.horzalign = "center";
-	level.trap_n_trance.vertalign = "bottom";
-	level.trap_n_trance.y = -7;
-	level.trap_n_trance.x = 0;
-	level.trap_n_trance.font = "objective";
-	level.trap_n_trance.fontscale = 1.6;
-	level.trap_n_trance.glowalpha = 1;
-	level.trap_n_trance.label = &"Map Way: &&1";
-
-	level.trap_n_trance.glowcolor = (1,0,0);
-	level.trap_n_trance settext("... pending ...");
-}
-
-trap_way()
-{
-	level.trap_trig = getent("acti_trapway","targetname");
-	trap = getent("trap_door","targetname");
-	acti_trap = getent("acti_trap","targetname");
-
-	level.trap_trig sethintstring("Press [^5&&1^7] to choose a ^5Trap ^7Way");
-	level.trap_trig waittill("trigger");
-
-	if(!isdefined(level.tnt_way))
-	{
-		level.tnt_way = true;
-
-		level.trance_trig delete();
-		level.random_trig delete();
-
-		vc = randomint(2);
-
-		ambientplay("trap"+vc,2);
-	}
-
-	level.trap_n_trance.glowcolor = (0,0,1);
-	level.trap_n_trance settext("Trap");
-
-	iprintln("^5Trap^7 Way opened");
-
-	level.activ setorigin(acti_trap.origin);
-	level.activ setplayerangles(acti_trap.angles);
-
-	trap movez(-200,5);
-	wait 5;
+	wait 0.1;
 	trap delete();
-}
-
-trance_way()
-{
-	level.trance_trig = getent("acti_tranceway","targetname");
-	trance = getent("trance_door","targetname");
-	acti_trance = getent("acti_trance","targetname");
-
-	level.trance_trig sethintstring("Press [^2&&1^7] to choose a ^2Trance ^7Way");
-	level.trance_trig waittill("trigger");
-
-	if(!isdefined(level.tnt_way))
-	{
-		level.tnt_way = true;
-
-		level.trap_trig delete();
-		level.random_trig delete();
-
-		vc = randomint(2);
-
-		ambientplay("trance"+vc,2);
-	}
-
-	level.trap_n_trance.glowcolor = (0,1,0);
-	level.trap_n_trance settext("Trance");
-
-	iprintln("^2Trance^7 Way opened");
-
-	level.activ setorigin(acti_trance.origin);
-	level.activ setplayerangles(acti_trance.angles);
-
-	trance movez(-200,5);
-	wait 5;
 	trance delete();
 }
-
-random_way()
-{
-	level.random_trig = getent("acti_randomway","targetname");
-	trap = getent("trap_door","targetname");
-	trance = getent("trance_door","targetname");
-
-	acti_trap = getent("acti_trap","targetname");
-	acti_trance = getent("acti_trance","targetname");
-
-	level.random_trig sethintstring("Press [^3&&1^7] to choose a Random Way");
-	level.random_trig waittill("trigger");
-
-	if(!isdefined(level.tnt_way))
-	{
-		level.tnt_way = true;
-
-		level.trap_trig delete();
-		level.trance_trig delete();
-
-		iprintlnbold("^2Activator^7 decided a Random Way");
-
-		vc = randomint(6);
-		if(vc == 0 || vc == 2 || vc == 4)
-		{
-			level.trap_n_trance.glowcolor = (0,0,1);
-			level.trap_n_trance settext("Trap");
-
-			iprintln("^5Trap^7 Way opened");
-
-			level.activ setorigin(acti_trap.origin);
-			level.activ setplayerangles(acti_trap.angles);
-
-			vc = randomint(2);
-
-			ambientplay("trap"+vc,2);
-
-			trap movez(-200,5);
-			wait 5;
-			trap delete();
-		}
-		else 
-		{
-			level.trap_n_trance.glowcolor = (0,1,0);
-			level.trap_n_trance settext("Trance");
-
-			iprintln("^2Trance^7 Way opened");
-
-			level.activ setorigin(acti_trance.origin);
-			level.activ setplayerangles(acti_trance.angles);
-
-			vc = randomint(2);
-
-			ambientplay("trance"+vc,2);
-
-			trance movez(-200,5);
-			wait 5;
-			trance delete();
-		}
-	}
-}
-
-texts()
-{
-	trap_start = getent("trap_start","targetname");
-	trap_end = getent("trap_end","targetname");
-
-	trance_start = getent("trance_start","targetname");
-	trance_end = getent("trance_end","targetname");
-
-	while(1)
-	{
-		trap_start rotateyaw(-360,6);
-		trap_end rotateyaw(-360,6);
-
-		trance_start rotateyaw(360,6);
-		trance_end rotateyaw(360,6);
-
-		wait 6;
-	}
-}
-
-map_effects()
-{
-	red_embers = getentarray("tnt_red_embers","targetname");
-	purple_embers = getentarray("tnt_blue_fire","targetname");
-	cyan_embers = getentarray("tnt_green_fire","targetname");
-
-	red_fx = undefined;
-	purple_fx = undefined;
-	cyan_fx = undefined;
-
-	for(i=0;i<red_embers.size;i++)
-	{
-		red_fx[i] = spawnfx(level.tnt_red_embers,red_embers[i].origin);
-		triggerfx(red_fx[i]);
-	}
-
-	for(i=0;i<purple_embers.size;i++)
-	{
-		purple_fx[i] = spawnfx(level.tnt_purple_embers,purple_embers[i].origin);
-		triggerfx(purple_fx[i]);
-	}
-
-	for(i=0;i<cyan_embers.size;i++)
-	{
-		cyan_fx[i] = spawnfx(level.tnt_cyan_embers,cyan_embers[i].origin);
-		triggerfx(cyan_fx[i]);
-	}
-}
-
-tnt_endmap()
-{
-	trig = getent("tnt_endmap","targetname");
-	targ = getent("tnt_endmap_origin","targetname");
-
-	while(1)
-	{
-		trig waittill("trigger",who);
-
-		if(!isdefined(trig))
-			return;
-
-		if(!isdefined(level.tnt_endmap_first))
-		{
-			level.tnt_endmap_first = true;
-			iprintlnbold("^5"+who.name+"^7 has entered the ^5Endgame Selection ^7First!");
-			who braxi\_rank::giverankxp(undefined,150);
-		}
-		else 
-			iprintlnbold("^2"+who.name+"^7 has entered the ^5Endgame Selection^7!");
-
-		who thread tnt_secret_tp(targ);
-		who takeallweapons();
-
-		while(isalive(who) && isdefined(who))
-			wait 1;
-
-		iprintlnbold("^5"+who.name+"^7 has been killed.");
-	}
-}
-
-welcomecucc()
-{
-	wait 2;
-	thread welcomecuc(getdvar("mapname"));
-	wait 6;
-	thread welcomecuc("Map & Script - VC' Blade" );
-	wait 6;
-	thread welcomecuc("Design & Textures - VC' Niko" );
-}
-
-welcomecuc(text)
-{
-	welcomehud = new_hud( "center", 0.1, 1000, 100 );
-	welcomehud setText( text );
-	welcomehud moveOverTime( 2 );
-	welcomehud.x = 0;
-	wait( 4 );
-	welcomehud moveOverTime( 2 );
-	welcomehud.x = 1000 * -1;
-	wait 1;
-	welcomehud destroy();
-}
-
-new_hud( align, fade_in_time, x_off, y_off )
-{
-	welcomehud2 = newHudElem();
-    welcomehud2.foreground = true;
-	welcomehud2.x = x_off;
-	welcomehud2.y = y_off;
-	welcomehud2.alignX = align;
-	welcomehud2.alignY = "middle";
-	welcomehud2.horzAlign = align;
-	welcomehud2.vertAlign = "middle";
- 	welcomehud2.fontScale = 2;
-	welcomehud2.color = (1, 1, 1);
-	welcomehud2.font = "objective";
-	welcomehud2.glowColor = (0, 0.5, 1);
-	welcomehud2.glowAlpha = 1;
-	welcomehud2.alpha = 0;
-	welcomehud2 fadeovertime( fade_in_time );
-	welcomehud2.alpha = 1;
-	welcomehud2.hidewheninmenu = true;
-	welcomehud2.sort = 10;
-	return welcomehud2;
-}
-
 
 trap_traps()
 {
@@ -1090,7 +700,6 @@ bounce_jump_weapon()
 	trig = getent("bounce_jump_weap","targetname");
 	logo = getent("bounce_jump_logo","targetname");
 
-	logo thread rotate_logo();
 	playfx(level.tnt_red_light,(3568,288,-1000));
 
 	for(;;)
@@ -1112,7 +721,6 @@ bounce_acti_weapon()
 	trig = getent("bounce_acti_weap","targetname");
 	logo = getent("bounce_acti_logo","targetname");
 
-	logo thread rotate_logo();
 	playfx(level.tnt_red_light,(2464,-1824,-1000));
 
 	for(;;)
@@ -1156,36 +764,20 @@ room_setup(targ,weap,weap2,health,freeze)
 
 tnt_secret()
 {
-	thread tnt_secret_open();
+    thread tnt_secret_open();
+	thread tnt_secret_enter();
 	thread tnt_secret_exit();
 }
 
 tnt_secret_open()
 {
-	triga = getent("tnt_secret_open1","targetname");
-	trigb = getent("tnt_secret_open2","targetname");
 	logo = getent("tnt_secret_logo","targetname");
-	fx = getent("tnt_secret_fx","targetname");
 
-	triga waittill("trigger");
-	iprintln("^1MAN");
-	triga delete();
-
-	trigb waittill("trigger");
-	iprintln("^2GO");
-	trigb delete();
-
-	wait 2;
+    wait 0.1;
 	rot_logo = spawn("script_model",logo.origin);
 	rot_logo setmodel("vistic_logo");
+	rot_logo movez(-240,0.1);
 	rot_logo thread rotate_logo();
-
-	wait 2;
-	rot_logo movez(-240,5);
-	wait 6;
-
-	playfx(level.tnt_red_light,fx.origin);
-	thread tnt_secret_enter();
 }
 
 rotate_logo()
@@ -1204,8 +796,9 @@ tnt_secret_enter()
 
 	for(;;)
 	{
-		trig waittill("trigger",who);
-		who thread tnt_secret_tp(targ);
+		trig waittill("trigger",player);
+		player thread speedrun\_way_name::change_way("s0");
+		player thread tnt_secret_tp(targ);
 	}
 }
 
@@ -1213,16 +806,13 @@ tnt_secret_exit()
 {
 	trig = getent("tnt_secret_end","targetname");
 	targ = getent("tnt_secret_endorigin","targetname");
-	fx = getent("secret_end_fx","targetname");
-	logo = getent("tnt_secret_endlogo","targetname");
 
-	logo thread rotate_logo();
-	playfx(level.tnt_red_light,fx.origin);
 
 	for(;;)
 	{
-		trig waittill("trigger",who);
-		who thread tnt_secret_tp(targ);
+		trig waittill("trigger",player);
+		player thread speedrun\_way_name::finish_way("s0");
+		player thread tnt_secret_tp(targ);
 	}
 }
 
@@ -1231,6 +821,6 @@ tnt_secret_tp(orig)
 	self freezecontrols(1);
 	self setorigin(orig.origin);
 	self setplayerangles(orig.angles);
-	wait 1;
+	wait 0.05;
 	self freezecontrols(0);
 }

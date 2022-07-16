@@ -1,25 +1,3 @@
-/*
-
-  _|_|_|            _|      _|      _|                  _|            
-_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|  
-  _|_|    _|    _|      _|          _|        _|    _|  _|      _|    
-      _|  _|    _|    _|  _|        _|        _|    _|  _|    _|      
-_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|  
-
-Map and GSC Made By SuX Lolz.
-
-Steam: http://steamcommunity.com/profiles/76561198163403316/
-Discord: https://discord.gg/76aHfGF
-Youtube: https://www.youtube.com/channel/UC1vxOXBzEF7W4g7TRU0C1rw
-Paypal: suxlolz@outlook.fr
-Email Pro: suxlolz@outlook.fr
-
-*/
-
-#include maps\mp\_utility;
-#include maps\mp\gametypes\_hud_util;
-#include common_scripts\utility;
-
 main()
 {
 	maps\mp\_load::main();
@@ -40,7 +18,31 @@ main()
 	setDvar("bg_falldamagemaxheight", 20000000 );
 	setDvar("bg_falldamageminheight", 15000000 );
 
-	thread speedrun\_way_name::create_spawn((-10696, -4743, -32100), 90);
+	thread speedrun\_way_name::create_spawn((-10682, -6165, -20876), 270);
 	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_endmap((-1287, 1923, 480), 120, 100);
+	thread speedrun\_way_name::create_endmap((6488.62, -20289.6, -19815.9), 205, 30, "ns0");
+
+	thread tp1();
+}
+
+tp1()
+{
+   trig = getent("enter", "targetname");
+   ori = spawn("script_origin",(5480,-18762,-19756));
+   ori.angles = (0,267,0);
+
+   for(;;)
+    {   
+     trig waittill("trigger", player);
+	 player thread sr_tp_safe(ori);
+    }
+}
+
+sr_tp_safe(ori)
+{
+	self setOrigin(ori.origin);
+	self SetPlayerAngles(ori.angles);
+	self FreezeControls(1);
+	wait 0.05;
+	self FreezeControls(0);
 }

@@ -1,25 +1,3 @@
-/*
-
-  _|_|_|            _|      _|      _|                  _|            
-_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|  
-  _|_|    _|    _|      _|          _|        _|    _|  _|      _|    
-      _|  _|    _|    _|  _|        _|        _|    _|  _|    _|      
-_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|  
-
-Map and GSC Made By SuX Lolz.
-
-Steam: http://steamcommunity.com/profiles/76561198163403316/
-Discord: https://discord.gg/76aHfGF
-Youtube: https://www.youtube.com/channel/UC1vxOXBzEF7W4g7TRU0C1rw
-Paypal: suxlolz@outlook.fr
-Email Pro: suxlolz@outlook.fr
-
-*/
-
-#include maps\mp\_utility;
-#include maps\mp\gametypes\_hud_util;
-#include common_scripts\utility;
-
 main()
 {
 	maps\mp\_load::main();
@@ -40,7 +18,8 @@ main()
 	setDvar("bg_falldamagemaxheight", 20000000 );
 	setDvar("bg_falldamageminheight", 15000000 );
 
-	// thread speedrun\_way_name::create_spawn((670, -474, 76), 180);
+	thread speedrun\_way_name::create_spawn((-17753, -7288, 3629), 180);
 	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_endmap((-1287, 1923, 480), 120, 100);
+	thread speedrun\_way_name::create_tp((-18005.1, -8482.77, 3057.16), 165, 35, (-15810, -8393, 2732), 270, "freeze", "blue");
+	thread speedrun\_way_name::create_endmap((-12914.6, -5392.06, 903.675), 180, 40, "ns0");
 }

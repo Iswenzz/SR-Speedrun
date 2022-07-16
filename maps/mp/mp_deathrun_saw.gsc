@@ -14,7 +14,8 @@ main()
 	game["defenders"] = "axis";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-
+    
+	thread speedrun\_way_name::create_tp((-480.799, -405.218, 584.125), 40, 20, (-479, -1063, 639), 270, "freeze", "cyan", "ns0");
 	thread speedrun\_way_name::create_tp((-173, -227, 80), 100, 150, 
 		(-1596, -4293, -418), 180, "freeze", "blue", "s0");
 	thread speedrun\_way_name::create_tp((-616, -215, 80), 100, 150, 
@@ -155,10 +156,11 @@ main()
 	}
 	
 	thread startdoor();
-	// thread platform();
-	// thread platform2();
-	// thread platform3();
-	// thread platform4();
+	thread platform();
+	thread platform2();
+	thread platform3();
+	thread platform4();
+	thread elevator();
 	// thread trap1();
 	// thread trap2();
 	// thread trap3();
@@ -188,9 +190,10 @@ addTriggerToList( name )
 startdoor()
 {
 door = getent("rise1","targetname");
-iPrintLnBold("^4 Start Door is opening"); //Change the message if you want
-door movez(200,10,1,9);
-door waittill ("movedone");
+
+wait 0.1;
+door delete();
+
 }
 
 
@@ -202,3 +205,49 @@ trigger = getEnt("trigger_secret", "targetname");
 self delete();
 }
 
+platform()
+{
+plat = getent("platform","targetname");
+
+wait 0.1;	
+plat moveX(-200,0.1);
+
+}
+
+platform2()
+{
+plat = getent("platform2","targetname");
+
+wait 0.1;	
+plat moveX(160,0.1);
+
+}
+
+platform3()
+{
+plat = getent("platform3","targetname");
+
+wait 0.1;
+plat moveY(-60,0.1);
+
+}
+
+platform4()
+{
+plat = getent("platform4","targetname");
+
+wait 0.1;
+plat moveY(440,0.1);
+
+}
+
+elevator()
+{
+ele = getentArray("elevator4","targetname");
+
+wait 0.1;
+ele[0] moveZ(-130,0.1);
+wait 0.2;
+ele[1] moveZ(-130,0.1);
+
+}

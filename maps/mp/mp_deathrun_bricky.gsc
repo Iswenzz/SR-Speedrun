@@ -51,6 +51,8 @@ main()
 	level._effect["blii"] = loadfx("custom/end_blitz");
 	level._effect["fireway"] = loadfx("custom/fire");
 
+    thread speedrun\_way_name::create_tp((-287.357, -163.664, 16.125), 55, 25, (1616, 6695, -1924), 270, "freeze", "blue", "s0");
+    
 	thread way_connect();
 	thread door();
 	// thread credit();
@@ -77,7 +79,6 @@ main()
 	// thread nade();
 	// thread rpg();
 	// thread weapon();
-	thread secrettp();
 	thread secretfail();
 	thread secretback();
 
@@ -455,20 +456,6 @@ whos1st()
 
 }
 
-secrettp()
-{
-    trig = getEnt ("tp_trig", "targetname");
-    end = getEnt ("tp_end", "targetname");    
-    while(1)
-    {
-        trig waittill ("trigger", player);     
-	
-        player SetOrigin(end.origin);
-        player SetPlayerAngles( end.angles );
-		player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
-    }
-}
-
 secretback()
 {
     trig = getEnt ("back_trig", "targetname");
@@ -477,9 +464,10 @@ secretback()
     
     while(1)
     {
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
+
+		player thread speedrun\_way_name::finish_way("s0");          
 		
-        player thread braxi\_mod::endTimer();
 	}
 }
 

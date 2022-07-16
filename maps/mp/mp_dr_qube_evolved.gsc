@@ -1,23 +1,12 @@
-// Thanks To Mikey and IMtroll and Lossy and Slaya for Script help !!!!
-
 main()
 {
-
-	maps\mp\_load::main();
-	maps\mp\_teleport::main();
+maps\mp\_load::main();
+maps\mp\_teleport::main();
 
 	thread speedrun\_way_name::create_spawn((483, -340, 316), 360);
 	thread speedrun\_way_name::create_normal_way("Normal Way;");
-
-	addTriggerToList( "trigger_redlift" );
-	addTriggerToList( "trigger_weewee" );
-	addTriggerToList( "trigger_spinner" );
-	addTriggerToList( "trigger_deathroll" );
-	addTriggerToList( "trigger_cubejump" );
-	addTriggerToList( "trigger_slam" );
-	addTriggerToList( "trigger_pillar" );
-	addTriggerToList( "trigger_bridgedelete" );
-	addTriggerToList( "trigger_cube1" );
+	thread speedrun\_way_name::create_secret_way("Secret Way;");
+	thread speedrun\_way_name::create_tp((794.87, -66.6879, 256.125), 60, 10, (-3006, -60, 2604), 360, "freeze", "blue", "s0");
 
 	level.dvar["bunnyhoop"] = false;
 	level.knockback = getDvarInt("g_knockback");
@@ -45,232 +34,53 @@ main()
 
 	thread speed(speed[i]);
 	thread startdoor();
+	thread entdel();
 	thread bounceopen();
 	thread redlift();
 	thread flip();
 	thread flip2();
-	thread redring();
-	thread redring2();
+	//thread redring();
+	//thread redring2();
 	thread lift2();
 	thread secondlift();
 	thread triangledoor();
-	thread jasper();
-	thread spinner();
+	//thread spinner();
 	thread weewee();
 	thread deathroll();
-	thread cubejump();
-	thread printCredits();
-	thread pillar();
-	thread song();
-	thread dna();
+	//thread pillar();
+	//thread dna();
 	thread wall();
 	thread wall2();
 	thread wall3();
-	thread give_m402();
 	thread theend();
 	thread wall4();
-	thread slam();
+	//thread slam();
 	thread bridge();
-	thread give_m40();
-    thread give_alien();
-	thread kilo();
-	thread killcube();
-	thread teleportjump();
-	thread easy3();
+	//thread killcube();
 	thread spin();
-	thread igloo();
+	//thread jump();
+	//thread jump_reset();
 	thread jump();
-	thread r();
-	thread teleportsniper();
-	thread teleportbounce();
-	thread teleportknife();
-	thread teleportzombjumper();
-	thread jump_reset();
-	thread moon();
-	thread onPlayerSpawn();
 	thread easy1();
-	thread addTestClients();
 
 }
-
-addTestClients()
-{
-    setDvar("scr_testclients", "");
-    wait 1;
-    for(;;)
-    {
-        if(getdvarInt("scr_testclients") > 0)
-            break;
-        wait 1;
-    }
-    testclients = getdvarInt("scr_testclients");
-    setDvar( "scr_testclients", 0 );
-    for(i=0;i<testclients;i++)
-    {
-        ent[i] = addtestclient();
-
-        if (!isdefined(ent[i]))
-        {
-            println("Could not add test client");
-            wait 1;
-            continue;
-        }
-        ent[i].pers["isBot"] = true;
-        ent[i] thread TestClient("autoassign");
-    }
-    thread addTestClients();
-}
-TestClient(team)
-{
-    self endon( "disconnect" );
-
-    while(!isdefined(self.pers["team"]))
-        wait .05;
-
-    self notify("menuresponse", game["menu_team"], team);
-    wait 0.5;
-}
-
-onPlayerSpawn() {
-    for(;;) {
-        level waittill("player_spawn", player);
-		if (player.pers["team"] == "allies") {
-        	player thread setZombieVision();
-		}
-    }
-}
-
-setZombieVision() {
-    self endon("death");
-    self endon("disconnect");
-
-    self freezeControls(true);
-
-    self thread cleanupZombieVision();
-    self.zombieVision = newClientHudElem(self);
-    self.zombieVision.x = 0;
-    self.zombieVision.y = 0;
-    self.zombieVision.alignX = "left";
-    self.zombieVision.alignY = "top";
-    self.zombieVision.horzAlign = "fullscreen";
-    self.zombieVision.vertAlign = "fullscreen";
-    self.zombieVision.alpha = 0;
-    self.zombieVision.color = (0, 0, 0);
-    self.zombieVision setShader("white", 640, 480);
-    self.zombieVision.alpha = 1;
-    wait 5;
-    self.zombieVision fadeOverTime(6);
-    self.zombieVision.alpha = 0;
-
-    self shellShock("frag_grenade_mp", 3);
-    self thread text();
-    self freezeControls(false);
-
-    wait 6;
-    self.zombieVision destroy();
-}
-
-cleanupZombieVision() {
-    self waittill("death");
-    if (isDefined(self.zombieVision)) {
-        self.zombieVision destroy();
-    }
-}
-
-text() {
-    noti = spawnStruct();
-    noti.alignX = "center";
-    noti.alignY = "center";
-    noti.horzalign = "center";
-    noti.vertalign = "center";
-    noti.x = 0;
-    noti.y = 0;
-    noti.titleText = "^0Map Made By Xenon";
-    noti.notifyText = "^0Find The Black Qube";
-    noti.duration = 10;
-    noti.glowcolor = (1, 0, 0);
-    // noti setPulseFX(40, 5400, 200);
-    self thread maps\mp\gametypes\_hud_message::notifyMessage(noti);
-}
-
-		moon()
-		{
-trigger = getEnt("moon", "targetname");
-object = getEnt("moonmove", "targetname");
-object2 = getEnt("moonmove2", "targetname");
-object3 = getEnt("moonmove3", "targetname");
-object4 = getEnt("moonmove5", "targetname");
-object5 = getEnt("moonhide", "targetname");
-object5 hide();
-trigger waittill ("trigger" , player );
-VisionSetNaked( "qube2", 1 );
-AmbientStop( 1 );
-Ambientplay( "D" );
-self thread Text2();
-trigger delete();
-wait(1);
-object movez(1000, 3, 1, 2);
-object2 rotateyaw(360,5);
-player braxi\_rank::giveRankXP("", 1000);
-object2 movez(300, 3, 1, 2);
-object3 movez(58, 3, 1, 2);
-wait 0.5;
-object4 movez(150, 3, 1, 2);
-wait 15;
-object5 show();
-while(1)
-{
-object5 rotateyaw(360, 2, 1, 1);
-object5 rotatepitch(360, 2, 1, 1);
-object5 waittill ("rotatedone");
-wait 0.1;
-object5 rotateyaw(-360, 2, 1, 1);
-object5 rotatepitch(-360, 2, 1, 1);
-object5 waittill ("rotatedone");
-		}
-		}
-
-
-		text2()
-{
-    noti = SpawnStruct();
-	noti.alignX = "center";
-	noti.alignY = "center";
-	noti.horzalign = "center";
-	noti.vertalign = "center";
-	noti.x = 0;
-	noti.y = 0;
-	noti.titleText = "^8The Stranger Gazed At The Moon";
-	noti.notifyText = "";
-	noti.duration = 10;
-	noti.glowcolor = (1,0,0);
-	// noti SetPulseFX( 40, 5400, 200 );
-	players = getentarray("player", "classname");
-	for(i=0;i<players.size;i++)
-		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-		//self thread gem();
-
-		}
-
-		addTriggerToList( name )
-{
-    if( !isDefined( level.trapTriggers ) )
-        level.trapTriggers = [];
-    level.trapTriggers[level.trapTriggers.size] = getEnt( name, "targetname" );
-}
-
 startdoor()
 {
-AmbientPlay( "wave" );
-wait(7);
 doorleft = getent("leftopen","targetname");
 doorright = getent("rightopen","targetname");
-wait(5);
-doorleft movey(200,10,1,9);
-doorright movey(-200,10,1,9);
-doorleft waittill ("movedone");
-doorright waittill ("movedone");
-wait 0.5;
+
+wait 0.1;
+doorleft delete();
+doorright delete();
+}
+
+entdel()
+{
+   tele = getent ("gohere101", "targetname");
+
+    level waittill("round_started");
+	
+	tele delete();
 }
 
 redlift()
@@ -279,17 +89,9 @@ trigger = getEnt("trigger_redlift", "targetname");
 object = getEnt("redlift", "targetname");
 object2 = getEnt ("movetrap1", "targetname");
 trigger waittill ("trigger" , player );
+
 trigger delete();
-object2 movez(-12, 3, 1, 2);
-while(1)
-{
-object movez(205, 3, 1, 2);
-object waittill("movedone");
-wait(5);
-object movez(-205, 3, 1, 2);
-object waittill("movedone");
-wait(5);
-}
+
 }
 
 redring()
@@ -297,18 +99,9 @@ redring()
 trigger = getEnt("trigger_redring", "targetname");
 object = getEnt("redring", "targetname");
 trigger waittill ("trigger" , player );
+
 trigger delete();
-while(1)
-{
-object rotatepitch(360,5);
-object movey(-2370, 6, 1, 3);
-object waittill("movedone");
-wait(5);
-object rotatepitch(360,5);
-object movey(2370, 6, 1, 3);
-object waittill("movedone");
-wait(5);
-}
+
 }
 
 dna()
@@ -346,7 +139,6 @@ wait 2;
 }
 }
 
-
 redring2()
 {
 trigger = getEnt("trigger_redring2", "targetname");
@@ -365,8 +157,6 @@ object waittill("movedone");
 wait(5);
 }
 }
-
-
 
 lift2()
 {
@@ -387,107 +177,69 @@ wait(5);
 
 secondlift()
 {
-trigger = getEnt("trigger_secondlift", "targetname");
 object = getEnt("secondlift", "targetname");
-trigger waittill ("trigger" , player );
-trigger delete();
-while(1)
-{
-object movez(-1320, 8, 1, 3);
-object waittill("movedone");
-wait(5);
-object movez(1320, 6, 1, 3);
-object waittill("movedone");
-wait(5);
-}
+
+wait 0.1;
+object delete();
+
 }
 
 triangledoor()
 {
-trigger = getEnt("trigger_seconddoor", "targetname");
 object1 = getEnt("tri1", "targetname");
 object2 = getEnt("tri2", "targetname");
 object3 = getEnt("tri3", "targetname");
 object4 = getEnt("tri4", "targetname");
-trigger waittill ("trigger" , player );
-trigger delete();
-wait 1;
-{
-object2 movez(100, 0.5);
-object2 waittill("movedone");
-object3 movex(120, 0.5);
-object3 waittill("movedone");
-object4 movex(-120, 0.5);
-object4 waittill("movedone");
-object1 movez(-100, 0.5);
-object1 waittill("movedone");
-wait 1;
-}
+
+wait 0.1;
+object1 delete();
+object2 delete();
+object3 delete();
+object4 delete();
+
 }
 
 spinner()
 {
-	trigger = getent ("trigger_spinner", "targetname");
-	brush = getent ("spinner", "targetname");
-	object2 = getEnt ("movetrap3", "targetname");
-	brush2 = getent ("spinner2", "targetname");
-	brush3 = getent ("spinner3", "targetname");
-	brush4 = getent ("spinner4", "targetname");
-	brush5 = getent ("spinner5", "targetname");
-	brush6 = getent ("spinner6", "targetname");
-	brush7 = getent ("spinner7", "targetname");
-	//killtrigger1 = getent ("killtrig1" , "targetname");
+brush = getent ("spinner", "targetname");
+object2 = getEnt ("movetrap3", "targetname");
+brush2 = getent ("spinner2", "targetname");
+brush3 = getent ("spinner3", "targetname");
+brush4 = getent ("spinner4", "targetname");
+brush5 = getent ("spinner5", "targetname");
+brush6 = getent ("spinner6", "targetname");
+brush7 = getent ("spinner7", "targetname");
 
-	trigger waittill ("trigger", player );
-	trigger delete();
-	object2 movez(-12, 3, 1, 2);
+wait 0.1;
+brush delete();
+brush2 delete();
+brush3 delete();
+brush4 delete();
+brush5 delete();
+brush6 delete();
+brush7 delete();
+object2 delete();
+	
+}
 
-		while(1)
-		    {
-			brush6 rotateyaw(-360,1);
-			brush7 rotateyaw(-360,1);
-	 		//killtrigger1 enablelinkto ();
-	        //killtrigger1 linkto (brush);
-			brush rotateyaw(-360,2);
-			brush waittill ("rotatedone");
-			brush2 rotateyaw(360,2);
-			//brush2 waittill ("rotatedone");
-			brush3 rotateyaw(360,2);
-			brush3 waittill ("rotatedone");
-			brush4 rotateyaw(-360,2);
-			//brush4 waittill ("rotatedone");
-			brush5 rotateyaw(-360,2);
-			brush5 waittill ("rotatedone");
-			wait 0.1;
-		    }
-			}
-
-			weewee()
+weewee()
 {
-	trigger = getent ("trigger_weewee", "targetname");
-	brush = getent ("weewee", "targetname");
-	object2 = getEnt ("movetrap2", "targetname");
-	killtrigger2 = getent ("killtrig2" , "targetname");
-	killtrigger3 = getent ("killtrig3" , "targetname");
-	killtrigger2 enablelinkto ();
-	killtrigger2 linkto (brush);
-	killtrigger3 enablelinkto ();
-	killtrigger3 linkto (brush);
+brush = getent ("weewee", "targetname");
+object2 = getEnt ("movetrap2", "targetname");
+killtrigger2 = getent ("killtrig2" , "targetname");
+killtrigger3 = getent ("killtrig3" , "targetname");
 
-	trigger waittill ("trigger", player );
-	trigger delete();
-    object2 movez(-12, 3, 1, 2);
+wait 0.1;
 
-		while(1)
-		    {
-			brush rotatepitch(-360,3);
-			wait 0.01;
-		    }
-			}
+brush delete();
+object2 delete();
+killtrigger2 delete();
+killtrigger3 delete();
 
+	
+}
 
-
-			bridge()
+bridge()
 {
 	trigger = getent ("trigger_bridgedelete", "targetname");
 	object2 = getEnt ("movetrap7", "targetname");
@@ -498,119 +250,21 @@ spinner()
 	object2 movez(-12, 3, 1, 2);
 	brush delete();
 
-		    }
+}
 
-			jasper()
+bounceopen()
 {
-	trigger = getent ("jasper", "targetname");
-	object2 = getEnt ("jasper2", "targetname");
-	trigger waittill ("trigger", player );
-	player braxi\_rank::giveRankXP("", 100);
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
+object2 = getEnt ("bounceopen2", "targetname");
 
-
-	trigger delete();
-	object2 delete();
-	self thread Text3();
-
-		    }
-
-			text3()
+while(1)
 {
-    noti = SpawnStruct();
-	noti.alignX = "center";
-	noti.alignY = "center";
-	noti.horzalign = "center";
-	noti.vertalign = "center";
-	noti.x = 0;
-	noti.y = 0;
-	noti.titleText = "^8.-.. --- --- -.- / ..- .--.";
-	noti.notifyText = "^8This Is Simply A Glitch...... Ignore It";
-	noti.duration = 10;
-	noti.glowcolor = (1,0,0);
-	// noti SetPulseFX( 40, 5400, 200 );
-	players = getentarray("player", "classname");
-	for(i=0;i<players.size;i++)
-		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-		//self thread gem();
+level waittill("round_started");
+object2 show();
+object2 solid();
+}
+}
 
-		}
-
-		bounceopen()
-{
-	trigger = getent ("bounceopen", "targetname");
-	object2 = getEnt ("bounceopen2", "targetname");
-
-	trigger waittill ("trigger", player );
-	player braxi\_rank::giveRankXP("", 30);
-
-	trigger delete();
-	object2 delete();
-	self thread Text4();
-
-		    }
-
-			text4()
-{
-    noti = SpawnStruct();
-	noti.alignX = "center";
-	noti.alignY = "center";
-	noti.horzalign = "center";
-	noti.vertalign = "center";
-	noti.x = 0;
-	noti.y = 0;
-	noti.titleText = "^8Your Wish Is Granted.";
-	noti.duration = 5;
-	noti.glowcolor = (1,0,0);
-	// noti SetPulseFX( 40, 5400, 200 );
-	players = getentarray("player", "classname");
-	for(i=0;i<players.size;i++)
-		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-		//self thread gem();
-
-		}
-
-
-			killcube()
+killcube()
 {
 	trigger = getent ("trigger_cube1", "targetname");
 	brush = getent ("killcube1", "targetname");
@@ -647,9 +301,9 @@ spinner()
 			brush waittill ("movedone");
 			wait 3;
 		    }
-			}
+}
 
-			spin()
+spin()
 {
 	trigger = getent ("trigger_endspin1", "targetname");
 
@@ -676,9 +330,9 @@ spinner()
 			object3 movez(100,9);
 			wait 9;
 		    }
-			}
+}
 
-			pillar()
+pillar()
 {
 trigger = getEnt("trigger_pillar", "targetname");
 object = getEnt("pillar1", "targetname");
@@ -697,228 +351,20 @@ while(1)
 			object2 movey(80, 3);
 			wait 15;
 		    }
-			}
-
-			kilo()
-{
-	trigger = getent ("kilo", "targetname");
-	object2 = getEnt ("kilo2", "targetname");
-
-	trigger waittill ("trigger", player );
-	player braxi\_rank::giveRankXP("", 100);
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-
-
-	trigger delete();
-	object2 delete();
-	self thread Text5();
-
-		    }
-
-			text5()
-{
-    noti = SpawnStruct();
-	noti.alignX = "center";
-	noti.alignY = "center";
-	noti.horzalign = "center";
-	noti.vertalign = "center";
-	noti.x = 0;
-	noti.y = 0;
-	noti.titleText = "^8Moon";
-	noti.duration = 10;
-	noti.glowcolor = (1,0,0);
-	// noti SetPulseFX( 40, 5400, 200 );
-	players = getentarray("player", "classname");
-	for(i=0;i<players.size;i++)
-		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-		//self thread gem();
-
-		}
-
-		give_m40()
-{
-trigger = getent ("give_m40_trig","targetname");
-while(1)
-{
-trigger waittill ("trigger",user);
-wait(0.2);
-user iprintlnbold("^8You Have Taken The M40A3");
-wait(0.1);
-user giveWeapon( "m40a3_mp");
-user giveMaxammo("m40a3_mp");
-wait 0.1;
-user switchToWeapon("m40a3_mp");
-wait 0.1;
-trigger delete();
-}
-}
-
-give_m402()
-{
-trigger = getent ("givem402","targetname");
-while(1)
-{
-trigger waittill ("trigger",user);
-wait(0.2);
-user iprintlnbold("^8You Have Taken The M40A3");
-wait(0.1);
-user giveWeapon( "m40a3_mp");
-user giveMaxammo("m40a3_mp");
-wait 0.1;
-user switchToWeapon("m40a3_mp");
-wait 0.1;
-trigger delete();
-}
-}
-
-give_alien()
-{
-trigger = getent ("givealien","targetname");
-while(1)
-{
-trigger waittill ("trigger",user);
-wait(0.2);
-user iprintlnbold("^7Wtf is this thing");
-wait(0.1);
-user giveWeapon( "mp44_mp");
-user giveMaxammo("mp44_mp");
-wait 0.1;
-user switchToWeapon("mp44_mp");
-wait 0.1;
-}
 }
 
 
-
-			deathroll()
+deathroll()
 {
-	trigger = getent ("trigger_deathroll", "targetname");
-	brush3 = getent ("deathroll", "targetname");
-	object2 = getEnt ("movetrap4", "targetname");
-	killtrigger4 = getent ("deathroll_kill1" , "targetname");
-	killtrigger5 = getent ("deathroll_kill2" , "targetname");
-	killtrigger6 = getent ("deathroll_kill3" , "targetname");
-	killtrigger7 = getent ("deathroll_kill4" , "targetname");
-	if (isDefined(killtrigger4)) {
-		killtrigger4 enablelinkto ();
-		killtrigger4 linkto (brush3);
-	}
-	if (isDefined(killtrigger5)) {
-		killtrigger5 enablelinkto ();
-		killtrigger5 linkto (brush3);
-	}
-	if (isDefined(killtrigger6)) {
-		killtrigger6 enablelinkto ();
-		killtrigger6 linkto (brush3);
-	}
-	if (isDefined(killtrigger7)) {
-		killtrigger7 enablelinkto ();
-		killtrigger7 linkto (brush3);
-	}
+brush3 = getent ("deathroll", "targetname");
+object2 = getEnt ("movetrap4", "targetname");
 
-	trigger waittill ("trigger", player );
-	trigger delete();
-	object2 movez(-12, 3, 1, 2);
+wait 0.1;
+brush3 delete();
+object2 delete();
+}
 
-		while(1)
-		    {
-			brush3 rotateroll(360,8);
-			brush3 movey(-937, 6);
-			wait 8;
-			brush3 rotateroll(-360,8);
-			brush3 movey(937, 6);
-			wait 8;
-		    }
-			}
-
-			cubejump()
-{
-	trigger = getent ("trigger_cubejump", "targetname");
-	brush = getent ("cubejump1", "targetname");
-	brush2 = getent ("cubejump2", "targetname");
-	brush3 = getent ("cubejump3", "targetname");
-	brush4 = getent ("cubejump4", "targetname");
-	brush5 = getent ("cubejump5", "targetname");
-
-	object2 = getEnt ("movetrap5", "targetname");
-
-	trigger waittill ("trigger", player );
-	trigger delete();
-	object2 movez(-12, 3, 1, 2);
-
-		while(1)
-		    {
-			brush rotateyaw(-90,1);
-			brush4 rotateyaw(-90,1);
-			brush5 rotateyaw(-90,1);
-			wait 3;
-			brush2 rotateyaw(90,1);
-			brush3 rotateyaw(90,1);
-			wait 1;
-			brush rotateyaw(-90,1);
-			brush4 rotateyaw(-90,1);
-			brush5 rotateyaw(-90,1);
-			wait 3;
-			brush2 rotateyaw(90,1);
-			brush3 rotateyaw(90,1);
-			wait 1;
-			brush rotateyaw(90,1);
-			brush4 rotateyaw(90,1);
-			brush5 rotateyaw(90,1);
-			wait 3;
-			brush2 rotateyaw(90,1);
-			brush3 rotateyaw(90,1);
-			wait 1;
-			brush rotateyaw(90,1);
-			brush4 rotateyaw(90,1);
-			brush5 rotateyaw(90,1);
-			wait 3;
-			brush2 rotateyaw(90,1);
-			brush3 rotateyaw(90,1);
-			wait 1;
-		    }
-			}
-
-			jump()
+jump()
 {
 	trigger = getEnt ("tele_jumper", "targetname"); // give it le targetname
 	origin = getEnt ("gohere_jumper", "targetname"); // the target you want to teleport the jumper
@@ -960,7 +406,7 @@ tele_acti()
 	}
 }
 
-			slam()
+slam()
 {
 trigger = getEnt("trigger_slam", "targetname");
 object1 = getEnt("slam1", "targetname");
@@ -1074,83 +520,6 @@ wait(3);
 }
 }
 
-igloo()
-{
-	trigger = getent ("igloo_trigger", "targetname");
-	object2 = getEnt ("igloo", "targetname");
-
-	trigger waittill ("trigger", player );
-	player braxi\_rank::giveRankXP("", 100);
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "invert", 0.5 );
-	wait 0.1;
-	VisionSetNaked( "qube", 0.5 );
-
-
-	trigger delete();
-	object2 delete();
-	self thread Text6();
-
-		    }
-
-			text6()
-{
-    noti = SpawnStruct();
-	noti.alignX = "center";
-	noti.alignY = "center";
-	noti.horzalign = "center";
-	noti.vertalign = "center";
-	noti.x = 0;
-	noti.y = 0;
-	noti.titleText = "^8This Leads To Nothing";
-	noti.duration = 10;
-	noti.glowcolor = (1,0,0);
-	// noti SetPulseFX( 40, 5400, 200 );
-	players = getentarray("player", "classname");
-	for(i=0;i<players.size;i++)
-		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-		//self thread gem();
-
-		}
-
-
-
 flip()
 {
 flip = getent("flip1","targetname");
@@ -1186,17 +555,6 @@ tele()
 
 }
 }
-
-r()
-{
-	trigger = getent ("trigger_removethis", "targetname");
-	object2 = getEnt ("removethis", "targetname");
-
-	trigger waittill ("trigger", player );
-
-    trigger delete();
-	object2 delete();
-	}
 
 flip2()
 {
@@ -1234,298 +592,6 @@ tele2()
 }
 }
 
-teleportsniper()
-{
-level.teleactorigin4 = getEnt("sniperact", "targetname");
-telesniperorigin = getEnt("telesniper", "targetname");
-level.snipertrigger = getEnt("teleportsniperroom", "targetname");
-for(;;)
-{
-level.snipertrigger waittill("trigger", player);
-if (isDefined(level.jumpertrigger)) {
-	level.jumpertrigger delete();
-}
-if (isDefined(level.bouncetrigger)) {
-	level.bouncetrigger delete();
-}
-if (isDefined(level.teleportTrigger)) {
-	level.teleportTrigger delete();
-}
-if (isDefined(level.knifetrigger)) {
-	level.knifetrigger delete();
-}
-wait(0.05);
-player SetOrigin( telesniperorigin.origin );
-player setplayerangles( telesniperorigin.angles );
-player TakeAllWeapons();
-player GiveWeapon( "m40a3_mp" );
-player Giveweapon( "remington700_mp" );
-wait(0.05);
-level.activ SetOrigin (level.teleactorigin4.origin);
-level.activ setplayerangles (level.teleactorigin4.angles);
-level.activ TakeAllWeapons();
-level.activ GiveWeapon( "m40a3_mp" );
-level.activ Giveweapon( "remington700_mp" );
-wait(0.05);
-player switchToWeapon( "m40a3_mp" );
-level.activ SwitchToWeapon( "m40a3_mp" );
-if (isDefined(level.teleorigin)) {
-	level.teleorigin delete();
-}
-iPrintLnBold(player.name+ "^0 has entered the ^0Sniper Room"); //Change the message if you want
-//AmbientStop( 2 );
-		//ambientplay( "snipe" );
-while( isAlive( player ) && isDefined( player ) )
-            wait 1;
-}
-}
-
-teleportjump()
-{
-level.teleactorigin = getEnt("jumperact", "targetname");
-telejumporigin = getEnt("telejump", "targetname");
-level.jumpertrigger = getEnt("teleportjumproom", "targetname");
-for(;;)
-{
-level.jumpertrigger waittill("trigger", player);
-if (isDefined(level.snipertrigger)) {
-	level.snipertrigger delete();
-}
-if (isDefined(level.bouncetrigger)) {
-	level.bouncetrigger delete();
-}
-if (isDefined(level.teleportTrigger)) {
-	level.teleportTrigger delete();
-}
-if (isDefined(level.knifetrigger)) {
-	level.knifetrigger delete();
-}
-wait(0.05);
-player SetOrigin( telejumporigin.origin );
-player setplayerangles( telejumporigin.angles );
-player TakeAllWeapons();
-player GiveWeapon( "knife_mp" ); 
-wait(0.05);
-level.activ SetOrigin (level.teleactorigin.origin);
-level.activ setplayerangles (level.teleactorigin.angles);
-level.activ TakeAllWeapons();
-level.activ GiveWeapon( "knife_mp" ); 
-wait(0.05);
-player switchToWeapon( "knife_mp" );
-level.activ SwitchToWeapon( "knife_mp" );
-level.telejumporigin delete();
-iPrintLnBold(player.name+ "^0 has entered the ^0Trampoline Room"); //Change the message if you want
-//AmbientStop( 2 );
-		//ambientplay( "knife" );
-while( isAlive( player ) && isDefined( player ) )
-            wait 1;
-}
-}
-
-teleportbounce()
-{
-level.teleactorigin2 = getEnt("bounceact", "targetname");
-telebounceorigin = getEnt("telebounce", "targetname");
-level.bouncetrigger = getEnt("teleportbounceroom", "targetname");
-for(;;)
-{
-level.bouncetrigger waittill("trigger", player);
-if (isDefined(level.jumpertrigger)) {
-	level.jumpertrigger delete();
-}
-if (isDefined(level.knifetrigger)) {
-	level.knifetrigger delete();
-}
-if (isDefined(level.snipertrigger)) {
-	level.snipertrigger delete();
-}
-if (isDefined(level.teleportTrigger)) {
-	level.teleportTrigger delete();
-}
-wait(0.05);
-player SetOrigin( telebounceorigin.origin );
-player setplayerangles( telebounceorigin.angles );
-player TakeAllWeapons();
-player GiveWeapon( "knife_mp" );
-wait(0.05);
-level.activ SetOrigin (level.teleactorigin2.origin);
-level.activ setplayerangles (level.teleactorigin2.angles);
-level.activ TakeAllWeapons();
-level.activ GiveWeapon( "knife_mp" );
-wait(0.05);
-player switchToWeapon( "knife_mp" );
-level.activ SwitchToWeapon( "knife_mp" );
-level.telebounceorigin delete();
-iPrintLnBold(player.name+ "^0 has entered the ^0Bounce Room"); //Change the message if you want
-//AmbientStop( 2 );
-		//ambientplay( "bounce" );
-while( isAlive( player ) && isDefined( player ) )
-            wait 1;
-}
-}
-
-teleportzombjumper()
-{
-    level.teleportTrigger = getEnt("teleportzombroom", "targetname");
-
-    activatorOrigin = getEnt("zombact", "targetname");
-    playerOrigin    = getEnt("telezomb", "targetname");
-
-    level.teleportTrigger waittill("trigger", playerWhoTriggered);
-    level.teleportTrigger delete();
-	if (isDefined(level.jumpertrigger)) {
-		level.jumpertrigger delete();
-	}
-	if (isDefined(level.knifetrigger)) {
-		level.knifetrigger delete();
-	}
-	if (isDefined(level.snipertrigger)) {
-		level.snipertrigger delete();
-	}
-	if (isDefined(level.bouncetrigger)) {
-		level.bouncetrigger delete();
-	}
-
-	AmbientStop( 2 );
-    Ambientplay( "snipe" );
-
-
-    players = braxi\_common::getPlayingPlayers(); // support raid ghostrun
-
-    row = 0; col = 0; maxPerRow = 8;
-    for( i = 0; i < players.size; i ++ ) {
-        player = players[i];
-
-        // Supports ghost run for common plugins. If custom, add your own [entity].[ghost delcaration] to this statement
-        if( players[i].pers["team"] != "allies" || ((isdefined(player.ghost) && player.ghost) || (isdefined(player.ghostRun) && player.ghostRun)) )
-            continue;
-
-        if( row > maxPerRow ) {
-            row = 0;
-            col ++;
-        }
-
-        player setOrigin(playerOrigin.origin + ((col * 32), (((maxPerRow / 2) * 32) * -1) + (row * 32), 0));
-        player setPlayerAngles(playerOrigin.angles);
-
-        giveMp44Back = player hasWeapon("mp44_mp");
-
-        player takeAllWeapons();
-        player.maxhealth = 250;
-        player.health = 250;
-        player GiveWeapon("knife_mp");
-        player giveWeapon("smoke_grenade_mp");
-        player giveMaxAmmo("smoke_grenade_mp");
-        player SwitchToWeapon("knife_mp");
-
-        if( giveMp44Back ) {
-    player giveWeapon("mp44_mp");
-    player giveMaxAmmo("mp44_mp");
-    player SwitchToWeapon("mp44_mp");
-    }
-        row ++;
-    }
-
-    for( i = 0; i < players.size; i ++ ) {
-        if( players[i].pers["team"] != "axis" )
-            continue;
-
-        players[i] setOrigin(activatorOrigin.origin);
-        players[i] setPlayerAngles(activatorOrigin.angles);
-
-        players[i] TakeAllWeapons();
-        players[i] GiveWeapon("m1014_mp");
-        players[i] SwitchToWeapon("m1014_mp");
-		players[i] giveMaxAmmo("m1014_mp");
-
-        break;
-    }
-
-    iPrintLnBold(playerWhoTriggered.name+ "^0 has entered the ^0Horde Room");
-}
-
-teleportknife()
-{
-level.teleactorigin3 = getEnt("knifeact", "targetname");
-teleknifeorigin = getEnt("teleknife", "targetname");
-level.knifetrigger = getEnt("teleportkniferoom", "targetname");
-for(;;)
-{
-level.knifetrigger waittill("trigger", player);
-if (isDefined(level.bouncetrigger)) {
-	level.bouncetrigger delete();
-}
-if (isDefined(level.snipertrigger)) {
-	level.snipertrigger delete();
-}
-if (isDefined(level.teleportTrigger)) {
-	level.teleportTrigger delete();
-}
-wait(0.05);
-player SetOrigin( teleknifeorigin.origin );
-player setplayerangles( teleknifeorigin.angles );
-player TakeAllWeapons();
-player GiveWeapon( "knife_mp" );
-wait(0.05);
-level.activ SetOrigin (level.teleactorigin3.origin);
-level.activ setplayerangles (level.teleactorigin3.angles);
-level.activ TakeAllWeapons();
-level.activ GiveWeapon( "knife_mp" );
-wait(0.05);
-player switchToWeapon( "knife_mp" );
-level.activ SwitchToWeapon( "knife_mp" );
-level.teleknifeorigin delete();
-iPrintLnBold(player.name+ "^0 has entered the ^0Knife Room"); //Change the message if you want
-while( isAlive( player ) && isDefined( player ) )
-            wait 1;
-}
-}
-
-printCredits()
-{
-	if( isDefined( self.logoText ) )
-		self.logoText destroy();
-
-	self.logoText = newHudElem();
-	self.logoText.y = 10;
-	self.logoText.alignX = "center";
-	self.logoText.alignY = "middle";
-	self.logoText.horzAlign = "center_safearea";
-
-	self.logoText.alpha = 0;
-	self.logoText.sort = -3;
-	self.logoText.fontScale = 1.6;
-	self.logoText.archieved = true;
-
-	for(;;)
-	{
-		self.logoText fadeOverTime(1);
-		self.logoText.alpha = 1;
-		self.logoText setText("^8---Map Made By Xenon---");
-		wait 5;
-		self.logoText fadeOverTime(1);
-		self.logoText.alpha = 0;
-		wait 1;
-		self.logoText fadeOverTime(1);
-		self.logoText.alpha = 1;
-		self.logoText setText("^8---Thanks To Mikey,iMtroll,Mist,ERIK,Lossy---");
-		wait 10;
-		self.logoText fadeOverTime(1);
-		self.logoText.alpha = 0;
-		wait 1;
-		self.logoText fadeOverTime(1);
-		self.logoText.alpha = 0;
-		wait 1;
-		self.logoText fadeOverTime(1);
-		self.logoText.alpha = 1;
-		self.logoText setText("");
-		wait 5;
-		self.logoText fadeOverTime(1);
-		self.logoText.alpha = 0;
-		wait 1;
-	}
-}
-
 jump_reset()
 {
 	trigger = getEnt ("jump_reset", "targetname");
@@ -1550,43 +616,12 @@ jump_reset()
 
 easy1()
 {
-	et11 = getent("easy1","targetname");
-	org11 = getent(et11.target, "targetname").origin;
-	while (1)
+	trig = getent("easy1","targetname");
+
+	for(;;)
 	{
-			et11 waittill ("trigger", user );
-
-			user.easy_teleport = newClientHudElem(user);
-			user.easy_teleport.x = 0;
-			user.easy_teleport.y = 0;
-			user.easy_teleport.alignX = "left";
-			user.easy_teleport.alignY = "top";
-			user.easy_teleport.horzAlign = "fullscreen";
-			user.easy_teleport.vertAlign = "fullscreen";
-			user.easy_teleport.alpha = 0;
-			user.easy_teleport.color = (0,0,0);
-			user.easy_teleport setshader("white", 640, 480);
-
-			user.easy_teleport fadeOverTime(0.75);
-			user.easy_teleport.alpha = 1;
-			wait 1.25;
-
-			user setOrigin(org11);
-
-			user.easy_teleport fadeOverTime(0.75);
-			user.easy_teleport.alpha = 0;
-			wait 1;
-
-			PlayFxOnTag( level.yes2_fx, user, "j_knee_le" );
-	        PlayFxOnTag( level.yes2_fx, user, "j_knee_ri" );
-	        PlayFxOnTag( level.yes2_fx, user, "j_ankle_le" );
-	        PlayFxOnTag( level.yes2_fx, user, "j_ankle_ri" );
-
-			user braxi\_rank::giveRankXP("", 100);
-			iPrintLnBold(user.name+ "^8  Did The Hard CJ Secret, Fucking Nerd");
-
-			user.easy_teleport destroy();
-
+    trig waittill("trigger", player);
+    player thread speedrun\_way_name::finish_way("s0");
 	}
 }
 
@@ -1599,81 +634,6 @@ theend()
 
     trigger delete();
 	object2 delete();
-	}
-
-	song()
-	{
-	trigger = getent ("song", "targetname");
-
-	trigger waittill ("trigger", player );
-
-	trigger delete();
-	AmbientStop( 1 );
-    Ambientplay( "doxx" );
-	self thread Text7();
-	}
-
-			text7()
-{
-    noti = SpawnStruct();
-	noti.alignX = "center";
-	noti.alignY = "center";
-	noti.horzalign = "center";
-	noti.vertalign = "center";
-	noti.x = 0;
-	noti.y = 0;
-	noti.titleText = "^8You Found Something ...... Old";
-	noti.duration = 10;
-	noti.glowcolor = (1,0,0);
-	// noti SetPulseFX( 40, 5400, 200 );
-	players = getentarray("player", "classname");
-	for(i=0;i<players.size;i++)
-		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-		//self thread gem();
-
-		}
-
-easy3()
-{
-	et12 = getent("easy3","targetname");
-	org11 = getent(et12.target, "targetname").origin;
-	while (1)
-	{
-			et12 waittill ("trigger", user );
-
-			user.easy_teleport = newClientHudElem(user);
-			user.easy_teleport.x = 0;
-			user.easy_teleport.y = 0;
-			user.easy_teleport.alignX = "left";
-			user.easy_teleport.alignY = "top";
-			user.easy_teleport.horzAlign = "fullscreen";
-			user.easy_teleport.vertAlign = "fullscreen";
-			user.easy_teleport.alpha = 0;
-			user.easy_teleport.color = (0,0,0);
-			user.easy_teleport setshader("white", 640, 480);
-
-			user.easy_teleport fadeOverTime(0.75);
-			user.easy_teleport.alpha = 1;
-			wait 1.25;
-
-			user setOrigin(org11);
-
-			user.easy_teleport fadeOverTime(0.75);
-			user.easy_teleport.alpha = 0;
-			wait 1;
-
-
-			user braxi\_rank::giveRankXP("", 100);
-
-			user.easy_teleport destroy();
-
-			while(isAlive(user))
-	{
-		playFx( level.lostFX , user.origin );
-		wait .1;
-	}
-
-	}
 }
 
 speed( trigger )
@@ -1750,79 +710,7 @@ object17 = getEnt("wall17", "targetname");
 
 trigger waittill ("trigger" , player );
 trigger delete();
-while(1)
-{
-object1 movey(40 , 0.1);
-object1 waittill("movedone");
-object2 movey(40 , 0.1);
-object2 waittill("movedone");
-object3 movey(40 , 0.1);
-object3 waittill("movedone");
-object4 movey(40 , 0.1);
-object4 waittill("movedone");
-object5 movey(40 , 0.1);
-object5 waittill("movedone");
-object6 movey(40 , 0.1);
-object6 waittill("movedone");
-object7 movey(40 , 0.1);
-object7 waittill("movedone");
-object8 movey(40 , 0.1);
-object8 waittill("movedone");
-object9 movey(40 , 0.1);
-object9 waittill("movedone");
-object10 movey(40 , 0.1);
-object10 waittill("movedone");
-object11 movey(40 , 0.1);
-object11 waittill("movedone");
-object12 movey(40 , 0.1);
-object12 waittill("movedone");
-object13 movey(40 , 0.1);
-object13 waittill("movedone");
-object14 movey(40 , 0.1);
-object14 waittill("movedone");
-object15 movey(40 , 0.1);
-object15 waittill("movedone");
-object16 movey(40 , 0.1);
-object16 waittill("movedone");
-object17 movey(40 , 0.1);
-object17 waittill("movedone");
-wait 0.1;
-object1 movey(-40 , 0.1);
-object1 waittill("movedone");
-object2 movey(-40 , 0.1);
-object2 waittill("movedone");
-object3 movey(-40 , 0.1);
-object3 waittill("movedone");
-object4 movey(-40 , 0.1);
-object4 waittill("movedone");
-object5 movey(-40 , 0.1);
-object5 waittill("movedone");
-object6 movey(-40 , 0.1);
-object6 waittill("movedone");
-object7 movey(-40 , 0.1);
-object7 waittill("movedone");
-object8 movey(-40 , 0.1);
-object8 waittill("movedone");
-object9 movey(-40 , 0.1);
-object9 waittill("movedone");
-object10 movey(-40 , 0.1);
-object10 waittill("movedone");
-object11 movey(-40 , 0.1);
-object11 waittill("movedone");
-object12 movey(-40 , 0.1);
-object12 waittill("movedone");
-object13 movey(-40 , 0.1);
-object13 waittill("movedone");
-object14 movey(-40 , 0.1);
-object14 waittill("movedone");
-object15 movey(-40 , 0.1);
-object15 waittill("movedone");
-object16 movey(-40 , 0.1);
-object16 waittill("movedone");
-object17 movey(-40 , 0.1);
-object17 waittill("movedone");
-wait 0.1;
-}
+
 }
 
 wall2()
@@ -1848,79 +736,7 @@ object17 = getEnt("wall34", "targetname");
 
 trigger waittill ("trigger" , player );
 trigger delete();
-while(1)
-{
-object1 movey(40 , 0.1);
-object1 waittill("movedone");
-object2 movey(40 , 0.1);
-object2 waittill("movedone");
-object3 movey(40 , 0.1);
-object3 waittill("movedone");
-object4 movey(40 , 0.1);
-object4 waittill("movedone");
-object5 movey(40 , 0.1);
-object5 waittill("movedone");
-object6 movey(40 , 0.1);
-object6 waittill("movedone");
-object7 movey(40 , 0.1);
-object7 waittill("movedone");
-object8 movey(40 , 0.1);
-object8 waittill("movedone");
-object9 movey(40 , 0.1);
-object9 waittill("movedone");
-object10 movey(40 , 0.1);
-object10 waittill("movedone");
-object11 movey(40 , 0.1);
-object11 waittill("movedone");
-object12 movey(40 , 0.1);
-object12 waittill("movedone");
-object13 movey(40 , 0.1);
-object13 waittill("movedone");
-object14 movey(40 , 0.1);
-object14 waittill("movedone");
-object15 movey(40 , 0.1);
-object15 waittill("movedone");
-object16 movey(40 , 0.1);
-object16 waittill("movedone");
-object17 movey(40 , 0.1);
-object17 waittill("movedone");
-wait 0.1;
-object1 movey(-40 , 0.1);
-object1 waittill("movedone");
-object2 movey(-40 , 0.1);
-object2 waittill("movedone");
-object3 movey(-40 , 0.1);
-object3 waittill("movedone");
-object4 movey(-40 , 0.1);
-object4 waittill("movedone");
-object5 movey(-40 , 0.1);
-object5 waittill("movedone");
-object6 movey(-40 , 0.1);
-object6 waittill("movedone");
-object7 movey(-40 , 0.1);
-object7 waittill("movedone");
-object8 movey(-40 , 0.1);
-object8 waittill("movedone");
-object9 movey(-40 , 0.1);
-object9 waittill("movedone");
-object10 movey(-40 , 0.1);
-object10 waittill("movedone");
-object11 movey(-40 , 0.1);
-object11 waittill("movedone");
-object12 movey(-40 , 0.1);
-object12 waittill("movedone");
-object13 movey(-40 , 0.1);
-object13 waittill("movedone");
-object14 movey(-40 , 0.1);
-object14 waittill("movedone");
-object15 movey(-40 , 0.1);
-object15 waittill("movedone");
-object16 movey(-40 , 0.1);
-object16 waittill("movedone");
-object17 movey(-40 , 0.1);
-object17 waittill("movedone");
-wait 0.1;
-}
+
 }
 
 wall3()
@@ -1946,79 +762,7 @@ object17 = getEnt("wall51", "targetname");
 
 trigger waittill ("trigger" , player );
 trigger delete();
-while(1)
-{
-object1 movey(40 , 0.1);
-object1 waittill("movedone");
-object2 movey(40 , 0.1);
-object2 waittill("movedone");
-object3 movey(40 , 0.1);
-object3 waittill("movedone");
-object4 movey(40 , 0.1);
-object4 waittill("movedone");
-object5 movey(40 , 0.1);
-object5 waittill("movedone");
-object6 movey(40 , 0.1);
-object6 waittill("movedone");
-object7 movey(40 , 0.1);
-object7 waittill("movedone");
-object8 movey(40 , 0.1);
-object8 waittill("movedone");
-object9 movey(40 , 0.1);
-object9 waittill("movedone");
-object10 movey(40 , 0.1);
-object10 waittill("movedone");
-object11 movey(40 , 0.1);
-object11 waittill("movedone");
-object12 movey(40 , 0.1);
-object12 waittill("movedone");
-object13 movey(40 , 0.1);
-object13 waittill("movedone");
-object14 movey(40 , 0.1);
-object14 waittill("movedone");
-object15 movey(40 , 0.1);
-object15 waittill("movedone");
-object16 movey(40 , 0.1);
-object16 waittill("movedone");
-object17 movey(40 , 0.1);
-object17 waittill("movedone");
-wait 0.1;
-object1 movey(-40 , 0.1);
-object1 waittill("movedone");
-object2 movey(-40 , 0.1);
-object2 waittill("movedone");
-object3 movey(-40 , 0.1);
-object3 waittill("movedone");
-object4 movey(-40 , 0.1);
-object4 waittill("movedone");
-object5 movey(-40 , 0.1);
-object5 waittill("movedone");
-object6 movey(-40 , 0.1);
-object6 waittill("movedone");
-object7 movey(-40 , 0.1);
-object7 waittill("movedone");
-object8 movey(-40 , 0.1);
-object8 waittill("movedone");
-object9 movey(-40 , 0.1);
-object9 waittill("movedone");
-object10 movey(-40 , 0.1);
-object10 waittill("movedone");
-object11 movey(-40 , 0.1);
-object11 waittill("movedone");
-object12 movey(-40 , 0.1);
-object12 waittill("movedone");
-object13 movey(-40 , 0.1);
-object13 waittill("movedone");
-object14 movey(-40 , 0.1);
-object14 waittill("movedone");
-object15 movey(-40 , 0.1);
-object15 waittill("movedone");
-object16 movey(-40 , 0.1);
-object16 waittill("movedone");
-object17 movey(-40 , 0.1);
-object17 waittill("movedone");
-wait 0.1;
-}
+
 }
 
 wall4()
@@ -2045,89 +789,5 @@ object18 = getEnt("wall69", "targetname");
 
 trigger waittill ("trigger" , player );
 trigger delete();
-while(1)
-{
-object1 movey(40 , 0.1);
-object1 waittill("movedone");
-object2 movey(40 , 0.1);
-object2 waittill("movedone");
-object3 movey(40 , 0.1);
-object3 waittill("movedone");
-object4 movey(40 , 0.1);
-object4 waittill("movedone");
-object5 movey(40 , 0.1);
-object5 waittill("movedone");
-object6 movey(40 , 0.1);
-object6 waittill("movedone");
-object7 movey(40 , 0.1);
-object7 waittill("movedone");
-object8 movey(40 , 0.1);
-object8 waittill("movedone");
-object9 movey(40 , 0.1);
-object9 waittill("movedone");
-object10 movey(40 , 0.1);
-object10 waittill("movedone");
-object11 movey(40 , 0.1);
-object11 waittill("movedone");
-object12 movey(40 , 0.1);
-object12 waittill("movedone");
-object13 movey(40 , 0.1);
-object13 waittill("movedone");
-object14 movey(40 , 0.1);
-object14 waittill("movedone");
-if (isDefined(object15)) {
-	object15 movey(40 , 0.1);
-	object15 waittill("movedone");
-}
-if (isDefined(object16)) {
-	object16 movey(40 , 0.1);
-	object16 waittill("movedone");
-}
-object17 movey(40 , 0.1);
-object17 waittill("movedone");
-object18 movey(40 , 0.1);
-object18 waittill("movedone");
-wait 0.1;
-object1 movey(-40 , 0.1);
-object1 waittill("movedone");
-object2 movey(-40 , 0.1);
-object2 waittill("movedone");
-object3 movey(-40 , 0.1);
-object3 waittill("movedone");
-object4 movey(-40 , 0.1);
-object4 waittill("movedone");
-object5 movey(-40 , 0.1);
-object5 waittill("movedone");
-object6 movey(-40 , 0.1);
-object6 waittill("movedone");
-object7 movey(-40 , 0.1);
-object7 waittill("movedone");
-object8 movey(-40 , 0.1);
-object8 waittill("movedone");
-object9 movey(-40 , 0.1);
-object9 waittill("movedone");
-object10 movey(-40 , 0.1);
-object10 waittill("movedone");
-object11 movey(-40 , 0.1);
-object11 waittill("movedone");
-object12 movey(-40 , 0.1);
-object12 waittill("movedone");
-object13 movey(-40 , 0.1);
-object13 waittill("movedone");
-object14 movey(-40 , 0.1);
-object14 waittill("movedone");
-if (isDefined(object15)) {
-	object15 movey(-40 , 0.1);
-	object15 waittill("movedone");
-}
-if (isDefined(object16)) {
-	object16 movey(-40 , 0.1);
-	object16 waittill("movedone");
-}
-object17 movey(-40 , 0.1);
-object17 waittill("movedone");
-object18 movey(-40 , 0.1);
-object18 waittill("movedone");
-wait 0.1;
-}
+
 }

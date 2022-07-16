@@ -1,0 +1,120 @@
+main()
+{
+ 
+ game["allies"] = "marines"; 
+ game["axis"] = "opfor";
+ game["attackers"] = "axis";
+ game["defenders"] = "allies";
+ game["allies_soldiertype"] = "desert";
+ game["axis_soldiertype"] = "desert";
+   
+ thread speedrun\_way_name::create_spawn((-100,-183,60),270);
+ thread speedrun\_way_name::create_normal_way("^2Easy Way;^1Hard Way;");
+ thread speedrun\_way_name::create_secret_way("Secret Way;");
+ thread speedrun\_way_name::create_tp((1784.85, 2237.77, -2727.88), 80, 35, (6249, 2205, -2674), 1, "freeze", "blue");
+
+ thread startdoor();
+ thread tp1();
+ thread tp2();
+ thread hardtp();
+ thread hardfinish();
+ thread sectp();
+ thread secfinish();
+
+  setDvar("bg_falldamagemaxheight", 300000 );
+  setDvar("bg_falldamageminheight", 128000 );
+  setDvar("r_lightTweakSunColor", "1 0.921569 0.878431 1");
+  setDvar("r_lightTweakSunDirection", "-50 136 1");
+  setDvar("r_lightTweakSunLight", "1");
+}
+
+startdoor()
+{
+ door = getEnt("gate","targetname");
+ trig = getEnt("gate_trig","targetname");
+ 
+ door delete();
+ trig delete();
+}
+
+tp1()
+{
+   trig = getent("enter2", "targetname");
+   tele = getent ("gohere2", "targetname");
+
+   for(;;)
+    {   
+     trig waittill("trigger", player);
+	 player setOrigin(tele.origin);
+     player setPlayerAngles(tele.angles);
+    }
+}
+
+tp2()
+{
+   trig = getent("enter9", "targetname");
+   tele = getent ("gohere9", "targetname");
+
+   for(;;)
+    {   
+     trig waittill("trigger", player);
+	 player setOrigin(tele.origin);
+     player setPlayerAngles(tele.angles);
+    }
+}
+
+hardtp()
+{
+   trig = getent("enter", "targetname");
+   tele = getent ("gohere", "targetname");
+
+   for(;;)
+    {   
+     trig waittill("trigger", player);
+
+	 player thread speedrun\_way_name::change_way("ns1");
+	 player setOrigin(tele.origin);
+     player setPlayerAngles(tele.angles);
+    }
+}
+
+hardfinish() 
+{ 
+trig = getEnt( "enter4", "targetname" ); 
+ 
+ for(;;)
+ { 
+  trig waittill ("trigger",player );
+  
+  player thread speedrun\_way_name::finish_way("ns1");
+
+ } 
+}
+
+sectp()
+{
+   trig = getent("enter3", "targetname");
+   tele = getent ("secret", "targetname");
+
+   for(;;)
+    {   
+     trig waittill("trigger", player);
+
+	 player thread speedrun\_way_name::change_way("s0");
+	 player setOrigin(tele.origin);
+     player setPlayerAngles(tele.angles);
+    }
+}
+
+secfinish() 
+{ 
+ trig = getEnt( "secret_finish", "targetname" ); 
+ 
+ for(;;)
+ { 
+  trig waittill ("trigger",player );
+
+  player thread speedrun\_way_name::finish_way("s0");
+ 
+ } 
+}

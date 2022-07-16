@@ -49,7 +49,6 @@ main()
 	thread constructionshaft();
 	thread checkwingzor();
 	// thread partymode();
-	thread precacheFX();
 	// thread text();
 	// thread text2();
 	// thread text3();
@@ -110,19 +109,6 @@ addTriggerToList( name )
   level.trapTriggers[level.trapTriggers.size] = getEnt( name, "targetname" );
 }
 
-precacheFX()
-{
-level._effect["lasershowtje"] = loadfx("lasers/light_show");
-}
-
-spawnFX()
-{
-playLoopedFx(level._effect["lasershowtje"], 4, (289,-200,500), 0, anglestoforward ((0,0,0)), anglestoup((0,0,0)));
-playLoopedFx(level._effect["lasershowtje"], 4, (1700,436,1459), 0, anglestoforward ((0,0,180)), anglestoup((0,0,0)));
-playLoopedFx(level._effect["lasershowtje"], 4, (263,-96,100), 0, anglestoforward ((0,0,0)), anglestoup((0,0,0)));
-playLoopedFx(level._effect["lasershowtje"], 4, (387,1553,481), 0, anglestoforward ((0,0,0)), anglestoup((0,0,0)));
-playLoopedFx(level._effect["lasershowtje"], 4, (0,0,481), 0, anglestoforward ((0,0,0)), anglestoup((0,0,0)));
-}
 
 text()
 {
@@ -330,7 +316,6 @@ partytrig waittill("trigger", player);
 		iPrintLnBold("^1P^2a^3r^4t^5y ^7mode !");
 		// ambientPlay("ambientparty");
 		level.ambientparty = 1;
-		thread spawnFX();
 		thread partymodebordjes();
                 }
 				else if( level.ambientparty == 0)
@@ -684,9 +669,6 @@ activator()
 	air3 = getent ("air13","targetname");
 	air4 = getent ("air14","targetname");
 
-	//level._effect[ "beacon_glow" ] = loadfx( "misc/ui_pickup_available" );
-	//maps\mp\_fx::loopfx("beacon_glow", (glow.origin), 3, (glow.origin) + (0, 0, 90));
-
 	time = 1;
 	for(;;)
 	{
@@ -804,8 +786,6 @@ scopeact()
 	air3scope = getent ("air3act","targetname");
 	air4scope = getent ("air4act","targetname");
 
-	level._effect[ "beacon_glow" ] = loadfx( "misc/ui_pickup_available" );
-	maps\mp\_fx::loopfx("beacon_glow", (glowscope.origin), 3, (glowscope.origin) + (0, 0, 90));
 
 	time = 1;
 	for(;;)
@@ -895,22 +875,11 @@ for(i=0;i<=players.size;i++)
 
 constructionshaft()
 {
-elevator = getentarray ("constructionplanelevator","targetname");
-if(isdefined(elevator))
-{
-for(i=0;i<elevator.size;i++)
-{
-while(1)
-{
-elevator[i] movez(160,3);
-elevator[i] waittill("movedone");
-wait(3);
-elevator[i] movez(-160,3);
-elevator[i] waittill("movedone");
-wait(2);
-}
-}
-}
+elevator = getent ("constructionplanelevator","targetname");
+
+wait 0.1;
+elevator movez(30,0.1);
+
 }
 
 oldgame()

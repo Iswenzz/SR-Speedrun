@@ -19,11 +19,9 @@ main()
     thread watch1(trigger3);
     thread watch1(trigger4);
     
-
-    //thread speedrun\_way_name::create_normal_way("^6Sheep ^4Is ^6Cool");
-    thread speedrun\_way_name::create_spawn((-116,1,28), 40);
-    thread speedrun\_way_name::create_normal_way("^6Sheep ^4Is ^6Cool;");
-    thread speedrun\_way_name::create_endmap((-1160,1000,28), 120, 100);
+    thread speedrun\_way_name::create_spawn((-128,-2,28), 1);
+    thread speedrun\_way_name::create_normal_way("Normal Way;");
+    thread speedrun\_way_name::create_endmap((-5938.95, 67.307, 0.125002), 85, 10);
 
     thread onConnect();
     

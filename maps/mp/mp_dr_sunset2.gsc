@@ -1,28 +1,3 @@
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////																									              ///////
-///////																									              ///////
-///////		////////	     //		/////////////	//	 //  ////////////  ////////////  //////////   /////////////   ///////
-///////		//		//    //   //   //         //	//  //   //	                //       //           //         //   ///////
-///////		//		//    //   //   ////////////    // //    //	                //       //           ////////////    ///////
-///////		//		//    ///////	//	  //	    ////     ////////////       //       //////////   //              ///////
-///////		//		//	  //   //	//	   //	    // //              //       //       //           //              ///////
-///////		//		//	  //   //	//		//      //  //             //       //       //           //              ///////
-///////		////////	  //   //   //		 //     //   //  ////////////       //       //////////   //              ///////
-///////																									              ///////
-///////																									              ///////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//Steam: ^5CAR ^0DarkSTEP
-//Discord: DarkSTEP#7390
-//YouTube: DarkSTEP
-//PayPal: paypal.me/darkstepdonations
-//Every donator will get lifetime VIP access to all my updated maps!
-//Minor thanks: CAR Nepo (this special thanks message ;D)
-//Feel free to copy without permission ;)
-//If you're from xM# and you're reading this then good luck trying to make this map work in your trash server :D
-
 #include maps\mp\_utility;
 #include maps\mp\gametypes\_hud_util;
 #include common_scripts\utility;
@@ -69,6 +44,7 @@ main()
 	thread speedrun\_way_name::create_normal_way("Normal Way");
 	thread speedrun\_way_name::create_secret_way("Secret Way");
 	thread speedrun\_way_name::create_spawn((-605,-1175,476),90);
+	thread speedrun\_way_name::create_tp((-318.49, -1076.84, 416.125), 60, 15, (-6184, -895, 16104), 360, "freeze", "blue", "s0");
 	thread startdoor();
 	//thread messages();
 	//thread musicbox();
@@ -102,16 +78,16 @@ main()
 	//thread trap7();
 	//thread trap8();
 	//thread trap9();
-	thread main210();
-	thread enter210();
-	thread b210();
-	thread c210();
-	thread d210();
-	thread e210();
-	thread f210();
-	thread g210();
-	thread h210();
-	thread secretend210();
+	//thread main210();
+	//thread enter210();
+	//thread b210();
+	//thread c210();
+	//thread d210();
+	//thread e210();
+	//thread f210();
+	//thread g210();
+	//thread h210();
+	thread secretend();
 	//thread vipcheck();
 	
 	addTriggerToList( "trig_trap1" );
@@ -1115,7 +1091,6 @@ enter210()
 	for(;;)
 	{
 		trig waittill("trigger", player);
-        thread speedrun\_way_name::change_way("s0");
 			player setOrigin(o.origin);
 			player setPlayerAngles(o.angles);
 			secret_stop = "secret_stop";
@@ -1260,8 +1235,7 @@ h210()
 	}
 }
 
-
-secretend210()
+secretend()
 {	
 	trig = getEnt("trig_210secretend", "targetname");
 	o = getEnt("o_210secretend", "targetname");
@@ -1269,12 +1243,8 @@ secretend210()
 	{
 		trig waittill("trigger", player);
         thread speedrun\_way_name::finish_way("s0");
-			player setOrigin(o.origin);
-			player setPlayerAngles(o.angles);
-			player show();
-			player.fasts = 1;
-			player notify("secret_stop");
-    player.secretTimer destroy();
+		player setOrigin(o.origin);
+		player setPlayerAngles(o.angles);
 }
 }
 

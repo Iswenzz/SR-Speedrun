@@ -1,34 +1,16 @@
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////																									///////
-///////																									///////
-///////		//			//	////////////	//////////	  /////////		//////////	/////////////		///////
-///////		//			//	//				//					//		//		//	/		   //		///////
-///////		//			//	//				//			 	   // 		//		//	////////////		///////
-///////		//			//	////////////	//////////		  //		//		//	//	  //			///////
-///////		//			//	//				//				 //			//		//	//	   //			///////
-///////		//			//	//				//			    //			//		//	//		//			///////
-///////		/////////	//	//				///////////	   /////////	//////////	//		 //			///////
-///////																									///////
-///////																									///////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//map made by Lifezor.
-//Map made exclusively for boss deathrun.
-//fixed...
-//re-written(x2) script by Lifezor. 
-
 main()
 {
 	//maps\mp\_load::main();
 	thread speedrun\_way_name::create_normal_way("Normal Way;");
+	thread speedrun\_way_name::create_secret_way("Secret Way;");
 	// spawn auto placement
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
 		thread speedrun\_way_name::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin,
 			90);
 	
+thread speedrun\_way_name::create_tp((-107.477, 243.677, -1487.88), 50, 25, (-7256, 9127, -2276), 90, "freeze", "cyan", "s0");
+
 	game["allies"] = "sas";
 	game["axis"] = "russian";
 	game["attackers"] = "allies";
@@ -45,24 +27,21 @@ main()
 
 	// thread credits();
 	// thread mapper();
-	thread actitele1();
+	//thread actitele1();
 	thread startdoor();
 	thread actidoor();
-	// thread secretenter();
-	// thread secretrespawn();
-	// thread secretend();
-	// thread secretrespawn2();
+	thread secretend();
 	// thread music();
 	// thread addTestClients();
 	
 ////////////			Traps			\\\\\\\\\\\\\\\\\\\
 
 	thread trap1();
-	thread trap2();
-	thread trap3();
-	thread trap4();
-	thread trap5();
-	thread trap6();
+	//thread trap2();
+	//thread trap3();
+	//thread trap4();
+	//thread trap5();
+	//thread trap6();
 	
 ////////////			Rooms			\\\\\\\\\\\\\\\\\\\\
 
@@ -153,44 +132,32 @@ actitele1()
 
 startdoor()
 {
-    door=getent("spawndoor","targetname");
-    // wait(8);
-    /* [AUTO DELETE] iPrintLnBold("^4Door is opening"); */
-    door movez(256,10,1,9);
-    door waittill ("movedone");
+door=getent("spawndoor","targetname");
+  
+wait 0.1;
+door delete();
 }
 
 
 actidoor()
 {
-    door=getent("actidoor","targetname");
-    // wait(8);
-    door movez(256,10,1,9);
-    door waittill ("movedone");
-}
+door=getent("actidoor","targetname");
 
+wait 0.1;
+door delete();
+}
 
 trap1()
 {
-	level endon("trigger");
-	trig = getent("trap1_trig", "targetname");
-	brush = getent("notsolid1", "targetname");
-	brush2 = getent("notsolid2", "targetname");
-	brush3 = getent("notsolid3", "targetname");
-	trig waittill("trigger", player);
-	trig delete();
-	x = randomInt(3);
-		if(x == 0)
-			brush notsolid();
-		else if(x == 1)
-			brush2 notsolid();
-		else if(x == 2)
-			brush3 notsolid();
-		else
-		{
-		brush notsolid();
-		brush2 notsolid();
-		}
+brush = getent("solid1", "targetname");
+
+wait 0.1;
+brush moveY(-2820,0.1);
+wait 0.2;
+brush moveZ(-97,0.1);
+wait 0.6;
+brush moveX(-30,0.1);
+
 }
 
 
@@ -276,59 +243,19 @@ trap5()
 		}
 }
 
-
-secretenter()
-{
-	trig = getEnt("secretenter", "targetname");
-	target = getEnt("secretenter_origin", "targetname");
-	
-	while(1)
-	{
-		trig waittill("trigger", player);
-		
-		{
-			/* [AUTO DELETE] player iPrintLnBold(" ^6Welcome to secret."); */
-			player setOrigin( target.origin );
-			player setPlayerAngles( target.angles );
-		}
-	}
-}
-
-
-secretrespawn()
-{
-    trig = getEnt("secretrespawn", "targetname");
-    target = getEnt("secretrespawn_origin", "targetname");
-           
-        while(1)
-        {
-            trig waittill("trigger", player);
-                   
-            {
-				/* [AUTO DELETE] player iPrintLnBold("^2Respawned."); */
-                player setOrigin( target.origin );
-                player setPlayerAngles( target.angles );
-            }
-        }
-}
-
-
 secretend()
 {
 	trig = getEnt("backtomap", "targetname");
 	target = getEnt("backtomap_origin", "targetname");
 	
-	while(1)
+	for(;;)
 	{
-		trig waittill("trigger", player);
-		
-		{
-		    /* [AUTO DELETE] iPrintLnBold(player.name + " ^2Finished the secret."); */
-			player setOrigin( target.origin );
-			player setPlayerAngles( target.angles );
-			/* [AUTO DELETE] player braxi\_rank::giveRankXP("", 100); */
-			
-		}
+	trig waittill("trigger", player);
+		 
+	player thread speedrun\_way_name::finish_way("s0");
+	player setOrigin( target.origin );
+	player setPlayerAngles( target.angles );
+					
 	}
 }
 
@@ -568,25 +495,6 @@ trap6b()
 		brush2 waittill("movedone");
 		}
 }
-
-
-secretrespawn2()
-{
-    trig = getEnt("secretrespawn2", "targetname");
-    target = getEnt("secretrespawn2_origin", "targetname");
-           
-        while(1)
-        {
-            trig waittill("trigger", player);
-                   
-            {
-				/* [AUTO DELETE] player iPrintLnBold("^2Respawned."); */
-                player setOrigin( target.origin );
-                player setPlayerAngles( target.angles );
-            }
-        }
-}
-
 
 music()
 {

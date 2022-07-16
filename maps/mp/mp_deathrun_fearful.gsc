@@ -9,11 +9,19 @@ main()
 	for( i = 0; i < entTransporter.size; i++ )
 	entTransporter[i] 
 
-thread speedrun\_way_name::create_normal_way("Normal Way");
+thread speedrun\_way_name::create_normal_way("Normal Way;");
+thread speedrun\_way_name::create_secret_way("Short Way;Secret Way;");
 thread speedrun\_way_name::create_spawn((-35,127,60),270);
-thread speedrun\_way_name::create_tp((-1519.45, -92.6955, 0.125), 60, 125, (-3203, -335, -116), 90, "freeze");
-thread speedrun\_way_name::create_endmap((-3165.76, 11672.2, -411.875), 140, 140);
-thread transporter();
+thread speedrun\_way_name::create_tp((113.205, 43.3896, 0.124999), 50, 35, (580, 7968, -852), 270, "freeze", "yellow", "s0");
+thread speedrun\_way_name::create_tp((-189.235, 45.48, 0.125), 50, 35, (1042, 325, -514), 270, "freeze", "darkred", "s1");
+thread speedrun\_way_name::create_endmap((-3169.31, 11666.3, -411.875), 100, 25, "ns0");
+thread speedrun\_way_name::create_endmap((604.504, 1967.92, -1163.88), 70, 40, "s0");
+thread speedrun\_way_name::create_endmap((2384.8, 258.146, -1647.88), 35, 15, "s1");
+
+thread tp1();
+thread tp2();
+
+//thread transporter();
 //thread trap01();
 //thread trap03();
 //thread trap04();
@@ -131,6 +139,42 @@ addTriggerToList( name )
     level.trapTriggers[level.trapTriggers.size] = getEnt( name, "targetname" );
 }
 	
+tp1()
+{
+	trig = spawn("trigger_radius",(-1517.71, -40.2321, 0.125), 0, 70, 40);
+	trig.radius = 70;
+	ori_t = getEnt("gohere","targetname");
+
+	wait 1;
+	thread speedrun\_triggerfx::createTrigFx(trig, "blue");
+
+	for(;;)
+	{
+		trig waittill("trigger",player);
+
+		player SetOrigin(ori_t.origin);
+		player SetPlayerAngles(ori_t.angles);
+	}
+}
+
+tp2()
+{
+	trig = spawn("trigger_radius",(2168.09, 234.79, -1647.88), 0, 130, 30);
+	trig.radius = 130;
+	ori_t = getEnt("gohere36","targetname");
+
+	wait 1;
+	thread speedrun\_triggerfx::createTrigFx(trig, "blue");
+
+	for(;;)
+	{
+		trig waittill("trigger",player);
+
+		player SetOrigin(ori_t.origin);
+		player SetPlayerAngles(ori_t.angles);
+	}
+}
+
 transporter()
 {
 	for(;;)
@@ -753,11 +797,9 @@ lol2()
 {                          
 lol2 = getent("lol2","targetname");               
 trigger = getent("trigger_lol1","targetname");         
-
-trigger waittill("trigger", user);       
-trigger delete();
-                    
-lol2 NotSolid(); 
+    
+trigger delete();          
+lol2 delete();
 }
 
 secret()                   
@@ -776,14 +818,10 @@ secret00()
 secret00 = getent("secret00","targetname");               
 trigger = getent("trigger_secret00","targetname");         
 
-trigger waittill("trigger", user);       
+wait 0.1;
 trigger delete();                        
+secret00 moveX(55,0.1); 
 
-secret00 moveX(55,2); 
-wait 0.5;
-iPrintlnBold( "^5OHHH some one has found the way out" );  
-wait 1; 
-iPrintlnBold( "^5GOOD FOR HIM ^1:D" );    
 }
 
 snip()

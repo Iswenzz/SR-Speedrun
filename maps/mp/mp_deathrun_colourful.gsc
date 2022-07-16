@@ -1,15 +1,5 @@
-//////////////////////////////////////////////////////////////
-/////Do not use any of these scripts with out my permission///
-////xfire:xlossx steam:xlossxftw//////////////////////////////
-////My website: www.lossycreation.weebly.com//////////////////
-////Helped by Fearz///////////////////////////////////////////
-//////////////////////////////////////////////////////////////
-
 main()
 {
-	if( getDvar( "net_ip" ) == "91.121.54.64" || getDvar( "net_ip" ) == "94.125.250.47"){while(1) { iprintlnbold("Wanna be hackers not allowed^1!"); wait 1; } }
-	
-	
     maps\mp\_load::main();
 	
 	game["allies"] = "sas";
@@ -19,13 +9,6 @@ main()
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
 	
-	
-	//fire
-	level.effect1 = LoadFX("fire/lossyflame");
-	level.effect2 = LoadFX("fire/lossyred");
-	level.effect3 = LoadFX("fire/lossypurple");
-	level.effect4 = LoadFX("fire/credit_rain");
-	level.effect5 = LoadFX("fire/flame_head");
 	
 	////weapons
 	PreCacheItem("deserteagle_mp");
@@ -44,7 +27,6 @@ main()
 	
 	thread speedrun\_way_name::create_normal_way("Normal Way");
     thread speedrun\_way_name::create_spawn((431,-1157,44),91);
-	thread fire();//315
 	
 	//secrets
 	//thread porntrap();
@@ -165,7 +147,6 @@ minigame()
 	hud_clock.glowalpha = 1;
 	hud_clock.glowcolor = (1,0,0);
 	hud_clock.label = &"Welcome to Jumper";
-	hud_clock SetPulseFX( 40, 5400, 200 );
 	wait 2;
 	hud_clock.alignX = "center";
 	hud_clock.alignY = "middle";
@@ -179,7 +160,6 @@ minigame()
 	hud_clock.glowalpha = 1;
 	hud_clock.glowcolor = (1,1,0);
 	hud_clock.label = &"You must jump over the bar and try to survive longer than your opponent";
-	hud_clock SetPulseFX( 40, 5400, 200 );
 	hud_clock = NewHudElem();
 	hud_clock.alignX = "left";
 	hud_clock.alignY = "top";
@@ -194,7 +174,6 @@ minigame()
 	hud_clock.glowcolor = (1,1,0);
 	hud_clock.label = &"Jumper starts in: &&1...";
 	hud_clock SetTimer(6);
-	hud_clock SetPulseFX( 40, 5400, 200 );	
 	wait 6;
 	hud_clock = NewHudElem();
 	hud_clock.alignX = "center";
@@ -209,7 +188,6 @@ minigame()
 	hud_clock.glowalpha = 1;
 	hud_clock.glowcolor = (1,1,0);
 	hud_clock.label = &"Start Jumping !!";
-	hud_clock SetPulseFX( 40, 5400, 200 );
 	wait 1;
 	
 	thread DoJumpRoll();
@@ -236,7 +214,6 @@ DoJumpRoll()
 	hud_clock.glowcolor = (1,0,0);
 	hud_clock.label = &"Speed increasing in: &&1...";
 	hud_clock SetTimer(5);
-	hud_clock SetPulseFX( 40, 5400, 200 );
 	wait 5;	
 	jump RotateYaw( 2880, 30 );
 	wait 15;
@@ -254,7 +231,6 @@ DoJumpRoll()
 	hud_clock.glowcolor = (1,0,0);
 	hud_clock.label = &"Speed increasing in: &&1...";
 	hud_clock SetTimer(5);
-	hud_clock SetPulseFX( 40, 5400, 200 );
 	wait 5;	
 	jump RotateYaw( 2880, 20 );
 	wait 15;
@@ -272,7 +248,6 @@ DoJumpRoll()
 	hud_clock.glowcolor = (1,0,0);
 	hud_clock.label = &"Speed increasing in: &&1...";
 	hud_clock SetTimer(5);
-	hud_clock SetPulseFX( 40, 5400, 200 );
 	wait 5;
 	jump RotateYaw( 2880, 15);
 	wait 10;
@@ -290,7 +265,6 @@ DoJumpRoll()
 	hud_clock.glowcolor = (1,0,0);
 	hud_clock.label = &"Speed increasing in: &&1...";
 	hud_clock SetTimer(5);
-	hud_clock SetPulseFX( 40, 5400, 200 );
 	wait 5;
 	jump RotateYaw( 2880, 14 );
 	wait 9;
@@ -308,7 +282,6 @@ DoJumpRoll()
 	hud_clock.glowcolor = (1,0,0);
 	hud_clock.label = &"Speed increasing in: &&1...";
 	hud_clock SetTimer(5);
-	hud_clock SetPulseFX( 40, 5400, 200 );
 	wait 5;
 	jump RotateYaw( 2880, 13);
 	wait 8;
@@ -326,7 +299,6 @@ DoJumpRoll()
 	hud_clock.glowcolor = (1,0,0);
 	hud_clock.label = &"Speed increasing in: &&1...";
 	hud_clock SetTimer(5);
-	hud_clock SetPulseFX( 40, 5400, 200 );
 	wait 5;
 	jump RotateYaw( 2880, 12 );
 	wait 7;
@@ -344,7 +316,6 @@ DoJumpRoll()
 	hud_clock.glowcolor = (1,0,0);
 	hud_clock.label = &"Speed increasing in: &&1...";
 	hud_clock SetTimer(5);
-	hud_clock SetPulseFX( 40, 5400, 200 );
 	wait 5;
 	jump RotateYaw( 2880, 11.5 );
 	wait 6.5;	
@@ -361,7 +332,6 @@ DoJumpRoll()
 	hud_clock.glowalpha = 1;
 	hud_clock.glowcolor = (1,0,0);
 	hud_clock.label = &"This is the final speed. Good luck !";
-	hud_clock SetPulseFX( 40, 5400, 200 );
 	wait 5;
 	
 	while(1)
@@ -788,7 +758,6 @@ secret()
 	
 	while(isAlive(who))
 	{
-		playFx( level._effect5 ["flame_head"], who.origin );
 		wait .1;
 	}
 }
@@ -800,133 +769,7 @@ onDeath1()
 	self waittill("death");
 }
 
-////////////////////////End Of Secrets/////////////////////////
 
-////////////////////////FIRE///////////////////////////////////
-fire()
-{
-	trig = getEnt ("lossyflame_trig", "targetname");
-	fire1 = getEnt ("lossyflame_efx", "targetname");
-	fire2 = getEnt ("lossyflame_efx1", "targetname");
-	fire3 = getEnt ("lossyflame_efx2", "targetname");
-	fire4 = getEnt ("lossyflame_efx3", "targetname");
-	fire5 = getEnt ("lossyflame_efx4", "targetname");
-	fire6 = getEnt ("lossyflame_efx5", "targetname");
-	fire7 = getEnt ("lossyflame_efx6", "targetname");
-	fire8 = getEnt ("lossyflame_efx7", "targetname");
-	fire9 = getEnt ("lossyflame_efx8", "targetname");
-	fire10 = getEnt ("lossyflame_efx9", "targetname");
-	fire11 = getEnt ("lossyflame_efx10", "targetname");
-	fire12 = getEnt ("lossyflame_efx11", "targetname");
-	fire13 = getEnt ("lossyflame_efx12", "targetname");
-	fire14 = getEnt ("lossyflame_efx13", "targetname");
-	fire15 = getEnt ("lossyflame_efx14", "targetname");
-	fire16 = getEnt ("lossyflame_efx15", "targetname");
-	fire17 = getEnt ("lossyflame_efx16", "targetname");
-	fire18 = getEnt ("lossyflame_efx17", "targetname");
-	fire19 = getEnt ("lossyflame_efx18", "targetname");
-	fire20 = getEnt ("lossyflame_efx19", "targetname");
-	fire21 = getEnt ("lossyflame_efx20", "targetname");
-	fire22 = getEnt ("lossyflame_efx21", "targetname");
-	fire23 = getEnt ("lossyflame_efx22", "targetname");
-	fire24 = getEnt ("lossyflame_efx23", "targetname");
-	fire25 = getEnt ("lossyflame_efx24", "targetname");
-	fire26 = getEnt ("lossyflame_efx25", "targetname");
-	fire27 = getEnt ("lossyflame_efx26", "targetname");
-	fire28 = getEnt ("lossyflame_efx27", "targetname");
-	fire29 = getEnt ("lossyflame_efx28", "targetname");
-	fire30 = getEnt ("lossyflame_efx29", "targetname");
-	fire31 = getEnt ("lossyflame_efx30", "targetname");
-	fire32 = getEnt ("lossyflame_efx31", "targetname");
-	fire33 = getEnt ("lossyflame_efx32", "targetname");
-	fire34 = getEnt ("lossyred_efx", "targetname");
-	fire35 = getEnt ("lossyred_efx1", "targetname");
-	fire36 = getEnt ("lossyred_efx2", "targetname");
-	fire37 = getEnt ("lossyred_efx3", "targetname");
-	fire38 = getEnt ("lossyred_efx4", "targetname");
-	fire39 = getEnt ("lossyred_efx5", "targetname");
-	fire40 = getEnt ("lossypurple_efx", "targetname");
-	fire41 = getEnt ("lossypurple_efx1", "targetname");
-	fire42 = getEnt ("lossypurple_efx2", "targetname");
-	fire43 = getEnt ("lossypurple_efx3", "targetname");
-	fire44 = getEnt ("lossypurple_efx4", "targetname");
-	fire45 = getEnt ("lossypurple_efx5", "targetname");
-	fire46 = getEnt ("lossypurple_efx6", "targetname");
-	fire47 = getEnt ("lossypurple_efx7", "targetname");
-	fire48 = getEnt ("lossypurple_efx8", "targetname");
-	fire49 = getEnt ("lossypurple_efx9", "targetname");
-	fire50 = getEnt ("lossypurple_efx10", "targetname");
-	fire51 = getEnt ("lossypurple_efx11", "targetname");
-	fire52 = getEnt ("lossypurple_efx12", "targetname");
-	fire53 = getEnt ("lossypurple_efx13", "targetname");
-	fire54 = getEnt ("lossypurple_efx14", "targetname");
-	fire55 = getEnt ("lossypurple_efx15", "targetname");
-	fire56 = getEnt ("lossypurple_efx16", "targetname");
-
-	trig waittill ("trigger");
-	trig delete();
-	{
-		playFx( level.effect1, fire1.origin );
-		playFx( level.effect1, fire2.origin );
-		playFx( level.effect1, fire3.origin );
-		playFx( level.effect1, fire4.origin );
-		playFx( level.effect1, fire5.origin );
-		playFx( level.effect1, fire6.origin );
-		playFx( level.effect1, fire7.origin );
-		playFx( level.effect1, fire8.origin );
-		playFx( level.effect1, fire9.origin );
-		playFx( level.effect1, fire10.origin );
-		playFx( level.effect1, fire11.origin );
-		playFx( level.effect1, fire12.origin );
-		playFx( level.effect1, fire13.origin );
-		playFx( level.effect1, fire14.origin );
-		playFx( level.effect1, fire15.origin );
-		playFx( level.effect1, fire16.origin );
-		playFx( level.effect1, fire17.origin );
-		playFx( level.effect1, fire18.origin );
-		playFx( level.effect1, fire19.origin );
-		playFx( level.effect1, fire20.origin );
-		playFx( level.effect1, fire21.origin );
-		playFx( level.effect1, fire22.origin );
-		playFx( level.effect1, fire23.origin );
-		playFx( level.effect1, fire24.origin );
-		playFx( level.effect1, fire25.origin );
-		playFx( level.effect1, fire26.origin );
-		playFx( level.effect1, fire27.origin );
-		playFx( level.effect1, fire28.origin );
-		playFx( level.effect1, fire29.origin );
-		playFx( level.effect1, fire30.origin );
-		playFx( level.effect1, fire31.origin );
-		playFx( level.effect1, fire32.origin );
-		playFx( level.effect1, fire33.origin );
-		playFx( level.effect2, fire34.origin );
-		playFx( level.effect2, fire35.origin );
-		playFx( level.effect2, fire36.origin );
-		playFx( level.effect2, fire37.origin );
-		playFx( level.effect2, fire38.origin );
-		playFx( level.effect2, fire39.origin );
-		playFx( level.effect3, fire40.origin );
-		playFx( level.effect3, fire41.origin );
-		playFx( level.effect3, fire42.origin );
-		playFx( level.effect3, fire43.origin );
-		playFx( level.effect3, fire44.origin );
-		playFx( level.effect3, fire45.origin );
-		playFx( level.effect3, fire46.origin );
-		playFx( level.effect3, fire47.origin );
-		playFx( level.effect3, fire48.origin );
-		playFx( level.effect3, fire49.origin );
-		playFx( level.effect3, fire50.origin );
-		playFx( level.effect3, fire51.origin );
-		playFx( level.effect3, fire52.origin );
-		playFx( level.effect3, fire53.origin );
-		playFx( level.effect3, fire54.origin );
-		playFx( level.effect3, fire55.origin );
-		playFx( level.effect3, fire56.origin );
-
-	}
-}
-////////////////////////END OF FIRE///////////////////////
-////////////////////////FALL/////////////////////////////
 fall1()
 {
 	trig = getEnt ("fall_1", "targetname");
@@ -1603,7 +1446,6 @@ credit()
 	
 	while(1)
 	{
-		playFx( level.effect4, rain.origin);
 		wait .1;
 	}
 }

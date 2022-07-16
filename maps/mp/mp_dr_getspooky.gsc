@@ -1,34 +1,3 @@
-/*
-  __  __               __                                ___
- /\ \/\ \  __         /\ \__  __                        /\_ \
- \ \ \ \ \/\_\    ____\ \ ,_\/\_\    ___             ___\//\ \      __      ___
-  \ \ \ \ \/\ \  /',__\\ \ \/\/\ \  /'___\ _______  /'___\\ \ \   /'__`\  /' _ `\
-   \ \ \_/ \ \ \/\__, `\\ \ \_\ \ \/\ \__//\______\/\ \__/ \_\ \_/\ \L\.\_/\ \/\ \
-    \ `\___/\ \_\/\____/ \ \__\\ \_\ \____\/______/\ \____\/\____\ \__/.\_\ \_\ \_\
-     `\/__/  \/_/\/___/   \/__/ \/_/\/____/         \/____/\/____/\/__/\/_/\/_/\/_/
-
-
-
-  ______
- /\  _  \
- \ \ \L\ \    ____  __  __    ___      __     _ __   _ __   __  __
-  \ \  __ \  /',__\/\ \/\ \ /' _ `\  /'__`\  /\`'__\/\`'__\/\ \/\ \
-   \ \ \/\ \/\__, `\ \ \_\ \/\ \/\ \/\ \L\.\_\ \ \/ \ \ \/ \ \ \_\ \
-    \ \_\ \_\/\____/\ \____/\ \_\ \_\ \__/.\_\\ \_\  \ \_\  \/`____ \
-     \/_/\/_/\/___/  \/___/  \/_/\/_/\/__/\/_/ \/_/   \/_/   `/___/> \
-                                                                /\___/
-                                                                \/__/
-
-
-	Map by: Asunarry
-	Vistic Clan
-
-	Do not copy anything...
-	Do not modify anything...
-
-	Thanks to everyone who helped me to make this map! <3
-*/
-
 #include maps\mp\dr_getspooky\mp_dr_getspooky_teleports;
 #include maps\mp\dr_getspooky\mp_dr_getspooky_traps;
 #include maps\mp\dr_getspooky\mp_dr_getspooky_rooms;
@@ -144,19 +113,35 @@ main() {
 
   //threads
   thread speedrun\_way_name::create_normal_way("Spooky Way");
+  thread speedrun\_way_name::create_normal_way("Secret Way");
   thread speedrun\_way_name::create_spawn((-495,62,108),359);
+  thread speedrun\_way_name::create_tp((-109.459, -493.118, 32.125), 50, 15, (11378, 4574, 1085), 180, "freeze", "blue", "s0");
+  thread speedrun\_way_name::create_endmap((11990.7, -1964.3, 865.145),90,25,"s0");
   //thread credits();
   //thread music();
   //thread onPlayerSpawn();
   thread pumpkinSpawn();
   //thread soulpoint_init();
   //thread secretGhost_init();
-  thread hangYourself();
+  //thread hangYourself();
   thread teleports();
   //thread traps();
   //thread rooms();
   thread locationTrig_init();
   thread bounce_f();
+  thread trigdelete();
+
+}
+
+trigdelete()
+{
+triga = getent("trig_secretEnter","targetname");
+trigb = getent("trig_secOut","targetname");
+
+level waittill( "round_started");
+
+triga delete();
+trigb delete();
 
 }
 
