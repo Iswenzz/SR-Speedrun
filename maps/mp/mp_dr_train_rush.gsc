@@ -1,10 +1,10 @@
 /*
 
-  _|_|_|            _|      _|      _|                  _|            
-_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|  
-  _|_|    _|    _|      _|          _|        _|    _|  _|      _|    
-	  _|  _|    _|    _|  _|        _|        _|    _|  _|    _|      
-_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|  
+  _|_|_|            _|      _|      _|                  _|
+_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|
+  _|_|    _|    _|      _|          _|        _|    _|  _|      _|
+	  _|  _|    _|    _|  _|        _|        _|    _|  _|    _|
+_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|
 
 Map and GSC Made By SuX Lolz.
 
@@ -15,20 +15,23 @@ Paypal: suxlolz@outlook.fr
 Email Pro: suxlolz@outlook.fr
 
 */
+#include maps\mp\_utility;
+#include common_scripts\utility;
+
 main()
 {
 level.masterSpawn = spawn("script_origin",(0, -19544, 192));
 level.masterSpawn.angles = (0,90,0);
 	maps\mp\_load::main();
 	maps\mp\_compass::setupMiniMap("compass_map_mp_dr_train_rush");
- 
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
- 
+
 	setdvar("r_specularcolorscale", "1");
 	setdvar("compassmaxrange", "1600");
 	setdvar("r_glowbloomintensity0", ".1");
@@ -82,13 +85,13 @@ level.masterSpawn.angles = (0,90,0);
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
 
 	thread secret_1();
 
-    for(;;) 
+    for(;;)
     {
         level waittill( "connected", player );
 
@@ -99,7 +102,7 @@ secret_1()
 {
 	trigger = spawn( "trigger_radius", (150,-19371,253), 0, 30, 90 );
 	ori = getEnt("rift_enter_ori","targetname");
-	
+
 	wait 1;
 	// trigger.inAir = true;
 	trigger.radius = 30;
@@ -135,6 +138,7 @@ init_spawn()
 
 	if (isDefined(self.hud_time_secret))
 		self.hud_time_secret Destroy();
+
 	self.settings_tweaks = true;
 	self.secret = false;
 	self.bounced = false;
@@ -142,12 +146,15 @@ init_spawn()
 	self.secret_plat = [];
 	for (i = 0; i < 5; i++) self.secret_plat[i] = false;
 	self.secret_plat_count = 0;
+
+	wait 0.1;
 	self thread maps\mp\mp_dr_train_rush\_fx::forcedvar_once();
 	self thread maps\mp\mp_dr_train_rush\_fx::dead_reset();
 	self thread maps\mp\mp_dr_train_rush\_fx::spec_tweak();
 
 	if (isDefined(self.settings_music))
 		return;
+
 	self thread maps\mp\mp_dr_train_rush\_misc::music_loop(level.picked_music);
 	self.music_spawn = true;
 	self.settings_music = true;
@@ -159,7 +166,7 @@ onConnect()
 	while (true)
 	{
 		level waittill("connected", player);
-		player thread spawn_settings();
+		// player thread spawn_settings();
 	}
 }
 

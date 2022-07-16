@@ -1,10 +1,10 @@
 /*
 
-  _|_|_|            _|      _|      _|                  _|            
-_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|  
-  _|_|    _|    _|      _|          _|        _|    _|  _|      _|    
-	  _|  _|    _|    _|  _|        _|        _|    _|  _|    _|      
-_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|  
+  _|_|_|            _|      _|      _|                  _|
+_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|
+  _|_|    _|    _|      _|          _|        _|    _|  _|      _|
+	  _|  _|    _|    _|  _|        _|        _|    _|  _|    _|
+_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|
 
 Map and GSC Made By SuX Lolz.
 
@@ -24,11 +24,11 @@ main()
 	VisionSetNaked("mp_dr_train_rush", 0);
 	SetExpFog(50000, 2500, 0.6, 0.59, 0.1, 3);
 
-	thread fx_world();
-	thread junk();
-	thread yarn();
+	// thread fx_world();
+	// thread junk();
+	// thread yarn();
 	thread world_moving();
-	thread rotate_train_wheels();
+	// thread rotate_train_wheels();
 }
 
 // move the world
@@ -40,18 +40,24 @@ world_moving()
 	rail = getEnt("rail", "targetname");
 	rocks = getEntArray("rocks", "targetname");
 	wind = getEnt("fx_wind", "targetname");
-	
+
 	mountain thread maps\mp\mp_dr_train_rush\_misc::move("y", -30000, 25);
 	for (i = 0; i < rocks.size; i++)
 		rocks[i] thread maps\mp\mp_dr_train_rush\_misc::move("y", -30000, 10);
-	
+
 	while (true)
 	{
 		water moveY(-30000, 10);
 		sand moveY(-30000, 10);
 		rail moveY(-30000, 10);
 		wind moveY(-30000, 10);
+
 		wait 10;
+
+		water.origin = (water.origin[0], water.origin[1] + 30000, water.origin[2]);
+		sand.origin = (sand.origin[0], sand.origin[1] + 30000, sand.origin[2]);
+		rail.origin = (rail.origin[0], rail.origin[1] + 30000, rail.origin[2]);
+		wind.origin = (wind.origin[0], wind.origin[1] + 30000, wind.origin[2]);
 	}
 }
 
@@ -59,6 +65,8 @@ world_moving()
 forcedvar_once()
 {
 	self endon("disconnect");
+
+	wait 0.1;
 
 	if (self.secret)
 	{
@@ -68,6 +76,7 @@ forcedvar_once()
 		self setClientDvar("r_detail", "1");
 		self setClientDvar("r_specular", "1");
 		self setClientDvar("r_normal", "1");
+		wait 0.05;
 		self setClientDvar("r_drawdecals", "1");
 		self setClientDvar("r_drawsun", "0");
 		self setClientDvar("r_specularmap", "2");
@@ -81,6 +90,7 @@ forcedvar_once()
 		self setClientDvar("r_dof_nearend", "60");
 		self setClientDvar("r_dof_nearstart", "10");
 		self setClientDvar("r_dof_tweak", "1");
+		wait 0.05;
 		self setClientDvar("r_dof_viewmodelend", "8");
 		self setClientDvar("r_dof_viewmodelstart", "2");
 		self setClientDvar("scr_dof_enable", "1");
@@ -94,6 +104,7 @@ forcedvar_once()
 		self setClientDvar("r_filmusetweaks", "1");
 		self setClientDvar("r_blur", "0.5");
 		self setClientDvar("r_glow_allowed", "1");
+		wait 0.05;
 		self setClientDvar("r_glow_enable", "1");
 		self setClientDvar("r_glowtweakenable", "0");
 		self setClientDvar("r_glowusetweaks", "0");
@@ -106,32 +117,35 @@ forcedvar_once()
 		self setClientDvar("r_detail", "1");
 		self setClientDvar("r_specular", "1");
 		self setClientDvar("r_normal", "1");
+		wait 0.05;
 		self setClientDvar("r_drawdecals", "1");
 		self setClientDvar("r_drawsun", "0");
 		self setClientDvar("r_specularmap", "3");
-		wait 0.05;
 		self setClientDvar("r_dof_bias", "0.5");
 		self setClientDvar("r_dof_enable", "1");
 		self setClientDvar("r_dof_farblur", "2.5");
+		wait 0.05;
 		self setClientDvar("r_dof_farend", "7000");
 		self setClientDvar("r_dof_farstart", "1000");
 		self setClientDvar("r_dof_nearblur", "6");
 		self setClientDvar("r_dof_nearend", "60");
 		self setClientDvar("r_dof_nearstart", "10");
 		self setClientDvar("r_dof_tweak", "1");
+		wait 0.05;
 		self setClientDvar("r_dof_viewmodelend", "8");
 		self setClientDvar("r_dof_viewmodelstart", "2");
 		self setClientDvar("scr_dof_enable", "1");
 		self setClientDvar("r_filmtweakcontrast", "1.4");
-		wait 0.05;
 		self setClientDvar("r_filmtweaklighttint", "1.9 1.6 1.4");
 		self setClientDvar("r_filmtweakdarktint", "1.2 1.2 1.2");
+		wait 0.05;
 		self setClientDvar("r_filmtweakbrightness", "0");
 		self setClientDvar("r_filmtweakdesaturation", "0");
 		self setClientDvar("r_filmtweakenable", "1");
 		self setClientDvar("r_filmusetweaks", "1");
 		self setClientDvar("r_blur", "0");
 		self setClientDvar("r_glow_allowed", "1");
+		wait 0.05;
 		self setClientDvar("r_glow_enable", "1");
 		self setClientDvar("r_glowtweakenable", "0");
 		self setClientDvar("r_glowusetweaks", "0");

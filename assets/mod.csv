@@ -141,9 +141,9 @@ stringtable,mp/itemTable.csv
 stringtable,mp/themeTable.csv
 stringtable,mp/knifeTable.csv
 stringtable,mp/knifeSkinTable.csv
-stringtable,mp/ranktable.csv
+stringtable,mp/rankTable.csv
 stringtable,mp/abilityTable.csv
-stringtable,mp/rankicontable.csv
+stringtable,mp/rankIconTable.csv
 stringtable,mp/playerStatsTable.csv
 stringtable,mp/challengetable.csv
 stringtable,mp/challengetable_tier1.csv
