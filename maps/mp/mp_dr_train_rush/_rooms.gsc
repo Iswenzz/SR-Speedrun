@@ -1,10 +1,10 @@
 /*
 
-  _|_|_|            _|      _|      _|                  _|            
-_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|  
-  _|_|    _|    _|      _|          _|        _|    _|  _|      _|    
-	  _|  _|    _|    _|  _|        _|        _|    _|  _|    _|      
-_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|  
+  _|_|_|            _|      _|      _|                  _|
+_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|
+  _|_|    _|    _|      _|          _|        _|    _|  _|      _|
+	  _|  _|    _|    _|  _|        _|        _|    _|  _|    _|
+_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|
 
 Map and GSC Made By SuX Lolz.
 
@@ -21,18 +21,18 @@ Email Pro: suxlolz@outlook.fr
 
 main()
 {
-	thread games();
+	// thread games();
 
-	thread room_setup("sniper_trig", "room_wep_jumper", "room_wep_activ", ::sniper_callback);
-	thread room_setup("knife_trig", "room_wep_jumper", "room_wep_activ", ::knife_callback);
-	thread room_setup("shotgun_trig", "room_wep_jumper", "room_wep_activ", ::shotgun_callback);
-	thread room_setup("wavegun_trig", "room_wep_jumper", "room_wep_activ", ::wavegun_callback);
-	thread room_setup("ppsh_trig", "room_wep_jumper", "room_wep_activ", ::ppsh_callback);
-	thread room_setup("weapons_trig", "room_wep_jumper", "room_wep_activ", ::weapons_callback);
-	thread room_setup("bounce_trig", "room_bounce_jumper", "room_bounce_activ", ::bounce_callback);
+	// thread room_setup("sniper_trig", "room_wep_jumper", "room_wep_activ", ::sniper_callback);
+	// thread room_setup("knife_trig", "room_wep_jumper", "room_wep_activ", ::knife_callback);
+	// thread room_setup("shotgun_trig", "room_wep_jumper", "room_wep_activ", ::shotgun_callback);
+	// thread room_setup("wavegun_trig", "room_wep_jumper", "room_wep_activ", ::wavegun_callback);
+	// thread room_setup("ppsh_trig", "room_wep_jumper", "room_wep_activ", ::ppsh_callback);
+	// thread room_setup("weapons_trig", "room_wep_jumper", "room_wep_activ", ::weapons_callback);
+	// thread room_setup("bounce_trig", "room_bounce_jumper", "room_bounce_activ", ::bounce_callback);
 
-	thread bounce_gun();
-	thread wep_respawn();
+	// thread bounce_gun();
+	// thread wep_respawn();
 }
 
 // create hud used when player enter a room
@@ -350,8 +350,8 @@ waitdead()
 	self common_scripts\utility::waittill_any("death", "disconnect");
 	level.activ freezeControls(false);
 
-	iPrintlnBold("^3" + self.name + " ^7is ^1dead"); 
-	iPrintlnBold("^3Selection ^7Room ^2is ^5now ^7open^1!!"); 
+	iPrintlnBold("^3" + self.name + " ^7is ^1dead");
+	iPrintlnBold("^3Selection ^7Room ^2is ^5now ^7open^1!!");
 }
 
 // bounce room give sniper loop

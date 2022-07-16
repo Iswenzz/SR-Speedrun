@@ -1,10 +1,10 @@
 /*
 
-  _|_|_|            _|      _|      _|                  _|            
-_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|  
-  _|_|    _|    _|      _|          _|        _|    _|  _|      _|    
-	  _|  _|    _|    _|  _|        _|        _|    _|  _|    _|      
-_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|  
+  _|_|_|            _|      _|      _|                  _|
+_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|
+  _|_|    _|    _|      _|          _|        _|    _|  _|      _|
+	  _|  _|    _|    _|  _|        _|        _|    _|  _|    _|
+_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|
 
 Map and GSC Made By SuX Lolz.
 
@@ -23,20 +23,20 @@ main()
 	level.fall_validate = 0;
 
 	thread startdoor();
-	thread guidcheckgod();
-	thread music();
-	thread end_music();
+	// thread guidcheckgod();
+	// thread music();
+	// thread end_music();
 	thread bouncePlayerWatch();
 
 	thread last_plat();
-	thread plat_xp_useless();
-	thread plat_xps();
-	thread plat_move();
-	thread fall_plat();
+	// thread plat_xp_useless();
+	// thread plat_xps();
+	// thread plat_move();
+	// thread fall_plat();
 
-	thread chariot();
+	// thread chariot();
 	thread destruct_part();
-	thread arrow_move();
+	// thread arrow_move();
 
 	thread tp(1, undefined);
 	thread tp(2, undefined);
@@ -49,19 +49,19 @@ arrow_move()
 	a1 = getEntArray("arrow_1", "targetname");
 	a2 = getEntArray("arrow_2", "targetname");
 	a3 = getEntArray("arrow_3", "targetname");
-	
+
 	for (i = 0; i < a1.size; i++) a1[i] hide();
 	for (i = 0; i < a2.size; i++) a2[i] hide();
 	for (i = 0; i < a3.size; i++) a3[i] hide();
-	
+
 	wait 0.5;
 	for (i = 0; i < a1.size; i++)
 		a1[i] thread arrow_move_script();
-	
+
 	wait 1;
 	for (i = 0; i < a2.size; i++)
 		a2[i] thread arrow_move_script();
-	
+
 	wait 1;
 	for (i = 0; i < a3.size; i++)
 		a3[i] thread arrow_move_script();
@@ -167,21 +167,21 @@ messages()
 credits()
 {
 	self endon("disconnect");
- 
+
 	if (isDefined(self.credits_text))
 		self.credits_text Destroy();
- 
+
 	self.credits_text = newHudElem();
 	self.credits_text.y = 10;
 	self.credits_text.alignX = "center";
 	self.credits_text.alignY = "middle";
 	self.credits_text.horzAlign = "center";
- 
+
 	self.credits_text.alpha = 0;
 	self.credits_text.sort = -3;
 	self.credits_text.fontScale = 1.6;
 	self.credits_text.archieved = true;
- 
+
 	self credit_roll("^7Mapped ^1& ^7scripted by Sr- ^3SuX ^7Lolz o/", 5);
 	self credit_roll("^7Visit ^3Sr- ^7Discord: https://discord.gg/76aHfGF !!", 5);
 	self credit_roll("^1Steam:^7 steamcommunity.com/profiles/76561198163403316/", 5);
@@ -192,7 +192,7 @@ credits()
 credit_roll(msg, time)
 {
 	self endon("disconnect");
- 
+
 	self.credits_text fadeOverTime(1);
 	self.credits_text.alpha = 1;
 	self.credits_text setText(msg);
@@ -228,7 +228,7 @@ fall_plat()
 	trig = getEntArray("fall_trig", "targetname");
 	clip = getEntArray("fall_clip", "targetname");
 	valid = getEntArray("fall_valid", "targetname");
-	
+
 	for (i = 0; i < trig.size; i++)
 	{
 		on[i] hide();
@@ -240,11 +240,11 @@ fall_plat()
 
 // fall plat callback
 fall_plat_on(on, off, clip, valid)
-{	
+{
 	self waittill("trigger");
 	self triggerOff();
 	level.fall_validate++;
-		
+
 	off hide();
 	on show();
 }
@@ -276,7 +276,7 @@ check_fall_validate_on()
 	on = getEntArray("fall_on", "targetname");
 	off = getEntArray("fall_off", "targetname");
 	trig = getEntArray("fall_trig", "targetname");
-	
+
 	wait 0.5;
 	for (i = 0; i < trig.size; i++)
 	{
@@ -285,7 +285,7 @@ check_fall_validate_on()
 		off[i] hide();
 		valid[i] show();
 	}
-	
+
 	wait 10;
 	for (i = 0; i < trig.size; i++)
 	{
@@ -300,7 +300,7 @@ last_plat()
 	off = getEntArray("plat_xp_off", "targetname");
 	on = getEntArray("plat_xp_on", "targetname");
 	trig = getEntArray("plat_xp_trig", "targetname");
-	
+
 	last_t1 = getEnt("last_plat_trig_1", "targetname");
 	last_t2 = getEnt("last_plat_trig_2", "targetname");
 	last_t3 = getEnt("last_plat_trig_3", "targetname");
@@ -308,38 +308,38 @@ last_plat()
 	last_4 = getEnt("last_plat_4", "targetname");
 	last_t5 = getEnt("last_plat_trig_5", "targetname");
 	last_5 = getEnt("last_plat_5", "targetname");
-	
+
 	wait 1;
 	for (i = 0; i < trig.size; i++)
 		off[i].realOrigin = off[i].origin;
 	last_4.realOrigin = last_4.origin;
-	
+
 	wait 1;
 	for (i = 0; i < trig.size; i++)
 		off[i] moveZ(-500, 0.1);
 	last_4 moveZ(-700, 0.1);
-	
+
 	wait 1;
 	// last_t1 waittill("trigger");
 	for (i = 0; i < 7; i++)
 		off[i] moveto(off[i].realOrigin, 1, 0.4, 0.4);
-	
+
 	wait 1.05;
 	// last_t2 waittill("trigger");
 	for (i = 7; i < 12; i++)
 		off[i] moveto(off[i].realOrigin, 1, 0.4, 0.4);
-	
+
 	wait 1.05;
 	// last_t3 waittill("trigger");
 	last_4 moveto(last_4.realOrigin, 1, 0.4, 0.4);
 	for (i = 12; i < 16; i++)
 		off[i] moveto(off[i].realOrigin, 1, 0.4, 0.4);
-	
+
 	wait 1.05;
 	// last_t4 waittill("trigger");
 	for (i = 16; i < 22; i++)
 		off[i] moveto(off[i].realOrigin, 1, 0.4, 0.4);
-	
+
 	wait 1.05;
 	// last_t5 waittill("trigger");
 	last_5 moveZ(-600, 0.7, 0.3, 0.3);
@@ -351,7 +351,7 @@ plat_xps()
 	off = getEntArray("plat_xp_off", "targetname");
 	on = getEntArray("plat_xp_on", "targetname");
 	trig = getEntArray("plat_xp_trig", "targetname");
-	
+
 	for (i = 0; i < trig.size; i++)
 	{
 		trig[i] thread plat_xps_acti(off[i], on[i]);
@@ -364,7 +364,7 @@ plat_xps_acti(off, on)
 {
 	self waittill("trigger", player);
 	player braxi\_rank::giveRankXP("", 10);
-	
+
 	off hide();
 	on show();
 	self delete();
@@ -376,7 +376,7 @@ plat_xp_useless()
 	off = getEntArray("plat_xp_off_useless", "targetname");
 	on = getEntArray("plat_xp_on_useless", "targetname");
 	trig = getEntArray("plat_xp_trig_useless", "targetname");
-	
+
 	for (i = 0; i < trig.size; i++)
 	{
 		trig[i] thread plat_xps_acti_useless(off[i], on[i]);
@@ -389,7 +389,7 @@ plat_xps_acti_useless(off, on)
 {
 	self waittill("trigger", player);
 	player braxi\_rank::giveRankXP("", 25);
-	
+
 	off hide();
 	on show();
 	self delete();
@@ -400,28 +400,28 @@ plat_move()
 {
 	p0 = getEnt("plat_move_0", "targetname");
 	t1 = getEnt("plat_move_1_trig", "targetname");
-	
+
 	p0 moveZ(-127, 0.1);
 	// t1 waittill("trigger");
 	wait 2;
-	
+
 	thread plat_move_1();
 	thread plat_move_2();
-	
+
 	p0 moveZ(127, 1, 0.5, 0.5);
 }
 
 plat_move_1()
 {
 	p1 = getEnt("plat_move_1","targetname");
-	
+
 	p1 moveX(112,1);
 }
 
 plat_move_2()
 {
 	p2 = getEnt("plat_move_2","targetname");
-	
+
 	p2 moveZ(50,1); // maybe edit
 }
 
@@ -445,13 +445,13 @@ bouncePlayer()
 	self endon("disconnect");
 	self endon("death");
 	self.bounced = true;
-	
+
 	if (self isTouching(level.bounceTrigger))
 	{
 		for (i = 0; i < 3; i++)
 		{
 			self.health += 1000;
-			self finishPlayerDamage(self, self, 1000, 0, "MOD_PROJECTILE", "bh_mp", 
+			self finishPlayerDamage(self, self, 1000, 0, "MOD_PROJECTILE", "bh_mp",
 				self.origin, AnglesToForward((-90, 0, 0)), "none", 0);
 		}
 	}
@@ -503,13 +503,13 @@ end_music()
 // replay the map music on death (used in rooms/secret)
 ondeath_music_playback()
 {
-	
+
 }
 
 // init music
 music_loop(picked)
 {
-	
+
 }
 
 // chariot init
@@ -519,22 +519,22 @@ chariot()
 	b2 = getEntArray("chariot_2", "targetname");
 	wh = getEntArray("chariot_wheel", "targetname");
 	ori = getEntArray("chariot_origin", "targetname");
-	
+
 	ori2 = getEntArray("chariot_origin_2", "targetname");
 	sc1 = getEntArray("chariot_script", "targetname");
 	sc2 = getEntArray("chariot_script_2", "targetname");
-	
+
 	j = 0;
 	k = 0;
-	
+
 	while (isDefined(ori[j]))
 	{
 		sc1[j] linkto(ori2[j]);
 		sc2[j] linkto(ori2[j]);
-		
+
 		b1[j] linkto(ori[j]);
 		b2[j] linkto(ori[j]);
-		
+
 		wh[k] linkto(ori[j]); k++;
 		wh[k] linkto(ori[j]); k++;
 		wh[k] linkto(ori[j]); k++;
@@ -546,7 +546,7 @@ chariot()
 	ori[5] thread chariot_move(3, 0.4, 0.1, 0.1, ori2[5], wh[20], wh[21], wh[22], wh[23]);
 
 	// level waittill("chariot_0_1");
-	
+
 	// wait 0.5;
 	// ori[0] thread chariot_move(-365, 0.4, 0.1, 0.1, ori2[0], wh[0], wh[1], wh[2], wh[3]);
 	// wait 0.5;
@@ -559,7 +559,7 @@ chariot_move(z, time, fi, fo, ori2, w1, w2, w3, w4)
 	self moveZ(z, time, fi, fo);
 	ori2 moveZ(z, time, fi, fo);
 	ori2 rotateRoll(-30, 0.1, 0.05, 0.05);
-	
+
 	wait time;
 	thread chariot_wheel(w1, w2, w3, w4);
 	while (1)
@@ -578,7 +578,7 @@ chariot_wheel(w1, w2, w3, w4)
 	w2 unlink();
 	w3 unlink();
 	w4 unlink();
-	
+
 	while (1)
 	{
 		w1 rotatePitch(360, 0.25);
@@ -596,26 +596,26 @@ destruct_part()
 	destruct_2 = getEntArray("destruct_2", "targetname");
 	destruct_3 = getEntArray("destruct_3", "targetname");
 	destruct_4 = getEntArray("destruct_4", "targetname");
-	
+
 	destruct_1_trig = getEnt("destruct_1_trig", "targetname");
 	destruct_2_trig = getEnt("destruct_2_trig", "targetname");
 	destruct_3_trig = getEnt("destruct_3_trig", "targetname");
 	destruct_4_trig = getEnt("destruct_4_trig", "targetname");
-	
+
 	// destruct_1_trig waittill("trigger");
 	for (i = 0; i < destruct_1.size; i++)
 	{
-		destruct_1[i] thread destruct_move();
+		destruct_1[i] destruct_move();
 		wait 0.1;
 	}
-	
+
 	// destruct_2_trig waittill("trigger");
 	for (i = 0; i < destruct_2.size; i++)
 	{
-		destruct_2[i] thread destruct_move();
+		destruct_2[i] destruct_move();
 		wait 0.1;
 	}
-	
+
 	// destruct_3_trig waittill("trigger");
 	// wait 4;
 	// level notify("chariot_0_1");
@@ -624,7 +624,7 @@ destruct_part()
 	// 	destruct_3[i] thread destruct_move();
 	// 	wait 0.1;
 	// }
-	
+
 	// destruct_4_trig waittill("trigger");
 	// wait 6;
 	// for (i = 0; i < destruct_4.size; i++)
@@ -637,8 +637,8 @@ destruct_part()
 // brushes falling code
 destruct_move()
 {
-	self notsolid();
-	self moveZ(-2000, 3, 0.5, 0.5);
-	wait 3;
+	// self notsolid();
+	// self moveZ(-2000, 3, 0.5, 0.5);
+	// wait 3;
 	self delete();
 }

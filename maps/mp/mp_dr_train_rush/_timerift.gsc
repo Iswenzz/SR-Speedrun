@@ -1,10 +1,10 @@
 /*
 
-  _|_|_|            _|      _|      _|                  _|            
-_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|  
-  _|_|    _|    _|      _|          _|        _|    _|  _|      _|    
-	  _|  _|    _|    _|  _|        _|        _|    _|  _|    _|      
-_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|  
+  _|_|_|            _|      _|      _|                  _|
+_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|
+  _|_|    _|    _|      _|          _|        _|    _|  _|      _|
+	  _|  _|    _|    _|  _|        _|        _|    _|  _|    _|
+_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|
 
 Map and GSC Made By SuX Lolz.
 
@@ -115,7 +115,7 @@ rift_boost_player(trig, power, j)
 		for (i = 0; i < power; i++)
 		{
 			self.health += 1000;
-			self finishPlayerDamage(self, self, 1000, 0, "MOD_PROJECTILE", "bh_mp", 
+			self finishPlayerDamage(self, self, 1000, 0, "MOD_PROJECTILE", "bh_mp",
 				self.origin, AnglesToForward((-90, 0, 0)), "none", 0);
 		}
 	}
@@ -149,7 +149,7 @@ rift_bounce_player(trig, power, j)
 			for (i = 0; i < power; i++)
 			{
 				self.health += 1000;
-				self finishPlayerDamage(self, self, 1000, 0, "MOD_PROJECTILE", "bh_mp", 
+				self finishPlayerDamage(self, self, 1000, 0, "MOD_PROJECTILE", "bh_mp",
 					self.origin, AnglesToForward((-90, 0, 0)), "none", 0);
 			}
 			wait 0.5;
@@ -158,7 +158,7 @@ rift_bounce_player(trig, power, j)
 		}
 		self.health += 1000;
 		setDvar("g_knockback", (vel[2] * -5));
-		self finishPlayerDamage(self, self, 1000, 0, "MOD_UNKNOWN", "bounce", 
+		self finishPlayerDamage(self, self, 1000, 0, "MOD_UNKNOWN", "bounce",
 			self.origin, (0,0,1) , "none", 0);
 
 		wait 0.05;
@@ -265,7 +265,7 @@ rift_entrance()
 		player thread maps\mp\mp_dr_train_rush\_fx::forcedvar_once();
 		player thread countdown();
 		player thread getvel();
-		player sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste 
+		player sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste
 	}
 }
 

@@ -63,13 +63,13 @@ level.masterSpawn.angles = (0,90,0);
 	thread maps\mp\mp_dr_train_rush\_timerift::main();
 	thread maps\mp\mp_dr_train_rush\_traps::main();
 	thread maps\mp\mp_dr_train_rush\_misc::main();
-	// thread maps\mp\mp_dr_train_rush\_rooms::main();
+	thread maps\mp\mp_dr_train_rush\_rooms::main();
 	thread maps\mp\mp_dr_train_rush\_fx::main();
 
 	thread way_connect();
 	thread onConnect();
-	thread spawn_settings_trigger();
-	thread spawn_settings_activator();
+	// thread spawn_settings_trigger();
+	// thread spawn_settings_activator();
 
 	addTriggerToList("trap_1_trig");
 	addTriggerToList("trap_2_trig");
@@ -166,7 +166,7 @@ onConnect()
 	while (true)
 	{
 		level waittill("connected", player);
-		// player thread spawn_settings();
+		player thread spawn_settings();
 	}
 }
 

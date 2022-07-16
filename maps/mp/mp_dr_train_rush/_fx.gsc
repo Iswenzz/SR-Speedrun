@@ -41,10 +41,6 @@ world_moving()
 	rocks = getEntArray("rocks", "targetname");
 	wind = getEnt("fx_wind", "targetname");
 
-	mountain thread maps\mp\mp_dr_train_rush\_misc::move("y", -30000, 25);
-	for (i = 0; i < rocks.size; i++)
-		rocks[i] thread maps\mp\mp_dr_train_rush\_misc::move("y", -30000, 10);
-
 	while (true)
 	{
 		water moveY(-30000, 10);
@@ -52,13 +48,26 @@ world_moving()
 		rail moveY(-30000, 10);
 		wind moveY(-30000, 10);
 
+		mountain moveY(-30000, 10);
+		for (i = 0; i < rocks.size; i++)
+			rocks[i] moveY(-30000, 10);
+
 		wait 10;
 
-		water.origin = (water.origin[0], water.origin[1] + 30000, water.origin[2]);
-		sand.origin = (sand.origin[0], sand.origin[1] + 30000, sand.origin[2]);
-		rail.origin = (rail.origin[0], rail.origin[1] + 30000, rail.origin[2]);
-		wind.origin = (wind.origin[0], wind.origin[1] + 30000, wind.origin[2]);
+		mountain moving_world_spastic(30000);
+		for (i = 0; i < rocks.size; i++)
+			rocks[i] moving_world_spastic(30000);
+
+		water moving_world_spastic(30000);
+		sand moving_world_spastic(30000);
+		rail moving_world_spastic(30000);
+		wind moving_world_spastic(30000);
 	}
+}
+
+moving_world_spastic(v)
+{
+	self.origin = (self.origin[0], self.origin[1] + v, self.origin[2]);
 }
 
 // vision & film tweaks
@@ -66,7 +75,7 @@ forcedvar_once()
 {
 	self endon("disconnect");
 
-	wait 0.1;
+	wait 1;
 
 	if (self.secret)
 	{

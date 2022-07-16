@@ -1,10 +1,10 @@
 /*
 
-  _|_|_|            _|      _|      _|                  _|            
-_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|  
-  _|_|    _|    _|      _|          _|        _|    _|  _|      _|    
-	  _|  _|    _|    _|  _|        _|        _|    _|  _|    _|      
-_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|  
+  _|_|_|            _|      _|      _|                  _|
+_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|
+  _|_|    _|    _|      _|          _|        _|    _|  _|      _|
+	  _|  _|    _|    _|  _|        _|        _|    _|  _|    _|
+_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|
 
 Map and GSC Made By SuX Lolz.
 
@@ -44,7 +44,7 @@ setupTrap(trigname, xp)
 
 	if (user.pers["team"] != "axis" || level.trapsdisabled)
 		return false;
-	
+
 	user braxi\_rank::giveRankXP("", xp);
 	trig SetHintString("^2Activated");
 	return true;
@@ -103,7 +103,7 @@ trap3()
 	// 	for (i = 0; i < 4; i++)
 	// 	{
 	// 		player.health += 40000;
-	// 		player finishPlayerDamage(player, player, 40000, 0, "MOD_PROJECTILE", "bh_mp", 
+	// 		player finishPlayerDamage(player, player, 40000, 0, "MOD_PROJECTILE", "bh_mp",
 	// 			player.origin, (0, 90, 0), "none", 0);
 	// 	}
 	// }
@@ -211,7 +211,7 @@ trap8()
 	// thread trap8_alternate();
 	// thread ball_start(24, 36, level.ball_explode[5], 4, 0.5, "trap8_off");
 	// thread ball_start(36, 48, level.ball_explode[6], 4, 0.5, "trap8_off");
-	// thread ball_start(48, 60, level.ball_explode[7], 4, 0.5, "trap8_off"); 
+	// thread ball_start(48, 60, level.ball_explode[7], 4, 0.5, "trap8_off");
 	// thread ball_start(60, 72, level.ball_explode[8], 4, 0.5, "trap8_on");
 	// thread ball_start(72, 84, level.ball_explode[9], 4, 0.5, "trap8_on");
 
@@ -222,7 +222,7 @@ trap8()
 
 	// 	thread ball_start(24, 36, level.ball_explode[5], 4, 0.5, "trap8_off");
 	// 	thread ball_start(36, 48, level.ball_explode[6], 4, 0.5, "trap8_off");
-	// 	thread ball_start(48, 60, level.ball_explode[7], 4, 0.5, "trap8_off"); 
+	// 	thread ball_start(48, 60, level.ball_explode[7], 4, 0.5, "trap8_off");
 	// 	thread ball_start(60, 72, level.ball_explode[8], 4, 0.5, "trap8_on");
 	// 	thread ball_start(72, 84, level.ball_explode[9], 4, 0.5, "trap8_on");
 	// }
