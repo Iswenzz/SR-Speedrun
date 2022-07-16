@@ -14,6 +14,9 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 */
 main()
 {
+trigger = spawn( "trigger_radius", (-19136.2, 13545.1, 256.125), 0, 325, 110 );
+trigger.targetname = "endmap_trig";
+trigger.radius = 325;
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	maps\mp\_load::main();	

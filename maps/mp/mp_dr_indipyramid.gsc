@@ -1,5 +1,11 @@
 main()
 {
+level.masterSpawn = spawn("script_origin", (-3046,155,-308));
+level.masterSpawn.angles = level.spawn["allies"][0].angles;
+level.masterSpawn placeSpawnPoint();
+trigger = spawn( "trigger_radius", (-273.908, 87.884, -229.875), 0, 196, 48 );
+trigger.targetname = "endmap_trig";
+trigger.radius = 196;
 //////////////////////////////thready////////////
   		// ambientPlay("indipyramid");
 	

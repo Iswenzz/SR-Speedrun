@@ -1,5 +1,11 @@
 main()
 {
+spawnCollision( (112,3440,24), 70, 16 );
+spawnCollision( (16,3696,28), 70, 16 );
+spawnCollision( (-112,3440,28), 70, 16 );
+spawnCollision( (-112,3440,28), 70, 16 );
+spawnCollision( (1136,3936,28), 110, 16 );
+spawnCollision( (304,-352,20), 110, 48 );
 	maps\createart\mp_deathrun_long_art::main();
 	maps\mp\mp_deathrun_long_fx::main();
 	maps\mp\_load::main();

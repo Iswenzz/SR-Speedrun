@@ -1,5 +1,11 @@
 main()
 {
+level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin + (121,0,0));
+level.masterSpawn.angles = (0,270,0);
+trigger = spawn( "trigger_radius", (26.0624, 1312.15, 202.402), 0, 96, 48 );
+trigger.targetname = "endmap_trig";
+trigger.inAir = true;
+trigger.radius = 96;
 
 	//***************************//
 	thread way_connect();

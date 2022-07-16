@@ -4,6 +4,9 @@
 #include common_scripts\utility;
 main()
 {
+level.masterSpawn = spawn("script_origin", level.spawn["allies"][3].origin);
+level.masterSpawn.angles = level.spawn["allies"][3].angles;
+level.masterSpawn placeSpawnPoint();
 
 level.heli_crash_paths = [];
 maps\mp\_load::main();

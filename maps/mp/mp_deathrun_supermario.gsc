@@ -1,6 +1,9 @@
 /* Script map supermario beta by MR-X*/
 main()
 {
+trigger = spawn( "trigger_radius", (293.538, -1472, 8.12501), 0, 40, 50 );
+trigger.targetname = "endmap_trig";
+trigger.radius = 40;
 	//maps\mp\mp_deathrun_supermario_fx::main();
 	maps\mp\_load::main();
 	//maps\mp\_compass::setupMiniMap("compass_map_mp_deathrun_supermario");

@@ -11,6 +11,9 @@ ___________.__           .____    .__          _____          ____    __________
 
 main()
 {
+level.masterSpawn = spawn("script_origin", level.spawn["allies"][10].origin);
+level.masterSpawn.angles = level.spawn["allies"][10].angles;
+level.masterSpawn placeSpawnPoint();
 	maps\mp\_load::main();	
 
 	// Map dvars

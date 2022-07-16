@@ -5,6 +5,9 @@ xfire: paap15
 */
 main()
 {
+trigger = spawn( "trigger_radius", (-612.406, -2376.85, -2087.88), 0, 75, 95 );
+trigger.targetname = "endmap_trig";
+trigger.radius = 75;
      maps\mp\_load::main();
 	 maps\mp\mp_deathrun_island\teleport::main();
 	 //maps\mp\mp_deathrun_island\traps::main();

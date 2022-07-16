@@ -1,6 +1,8 @@
 
 main()
 {
+level.masterSpawn = spawn("script_origin",(-161, 1547, 95));
+level.masterSpawn.angles = (0,360,0);
 	maps\mp\_load::main();
 	
 	

@@ -27,6 +27,8 @@
 #include maps\mp\_utility; /* necessary for simple trigger settings */
 main()
 {
+level.masterSpawn = spawn("script_origin",(-7, 45, 0));
+level.masterSpawn.angles = (0,0,0);
 	maps\mp\_load::main();
 	
 	/*Weapons*/

@@ -9,6 +9,8 @@
 
 main()
 {
+level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin);
+level.masterSpawn.angles = level.spawn["allies"][0].angles;
 	thread way_connect();
 	maps\mp\_load::main();
 	
@@ -216,7 +218,7 @@ fog()
 	
 	iprintlnbold("fog is coming up...");
 	SetExpFog(1,250,0.9,0.9,0.9,30);
-	//auch möglich überall clouds big zu loopen!
+	//auch mï¿½glich ï¿½berall clouds big zu loopen!
 	//visionSetNaked("fog",5);
 	*/
 }

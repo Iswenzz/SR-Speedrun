@@ -1,5 +1,8 @@
 main()
 {
+trigger = spawn( "trigger_radius", (1295.09, 1986.1, -632.477), 0, 200, 20 );
+trigger.targetname = "endmap_trig";
+trigger.radius = 200;
     maps\mp\_load::main();
 
 	game["allies"] = "sas";

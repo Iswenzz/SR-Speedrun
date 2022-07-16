@@ -1,5 +1,11 @@
 main()
 {
+level.masterSpawn = spawn("script_origin",(2316, 71, 0));
+level.masterSpawn.angles = (0,0,0);
+trigger = spawn( "trigger_radius", (7557,-1010,364), 0, 100, 400 );
+trigger.targetname = "endmap_trig";
+trigger.radius = 100;
+thread sr\api\_speedrun::cj();
 	maps\mp\_load::main();
 	ambientPlay("amb_airplane0v1_lr");
 	game["allies"] = "sas";

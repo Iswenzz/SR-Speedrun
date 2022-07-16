@@ -1,5 +1,11 @@
 main()
-{	
+{
+level.masterSpawn = spawn("script_origin", (-450,1515,126));
+level.masterSpawn.angles = level.spawn["allies"][0].angles;
+level.masterSpawn placeSpawnPoint();
+trigger = spawn( "trigger_radius", (-939.774, 222.606, 106.125), 0, 96, 48 );
+trigger.targetname = "endmap_trig";
+trigger.radius = 96;	
 	maps\mp\_load::main();	
 	
 	

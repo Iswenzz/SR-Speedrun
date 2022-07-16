@@ -1,5 +1,8 @@
 main()
 {
+trigger = spawn( "trigger_radius", (328, 1018, -211), 0, 300, 300 );
+trigger.targetname = "endmap_trig";
+trigger.radius = 300;
 
 /*
 MAP CREATED AND SCRIPTED BY CHUBBS317

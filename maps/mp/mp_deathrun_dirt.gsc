@@ -1,5 +1,8 @@
 main()
 {
+trigger = spawn( "trigger_radius", (-30.625, -839.474, 768.125), 0, 96, 48 );
+trigger.targetname = "endmap_trig";
+trigger.radius = 96;
 	    
         thread sr\api\_speedrun::createNormalWays("Normal Way");
         thread sr\api\_map::createSpawn((-498,-394,76),90);

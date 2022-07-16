@@ -17,6 +17,14 @@ THANKS ;)
 
 main() 
 {
+level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin);
+level.masterSpawn.angles = level.spawn["allies"][0].angles;
+level.masterSpawn placeSpawnPoint();
+trigger = spawn( "trigger_radius", (170.32, 1645.52, -76.9696), 0, 220, 150 );
+trigger.targetname = "endmap_trig";
+trigger.radius = 220;
+trigger.inAirCustom = true;
+trigger.inAirValue = 20;
 	maps\mp\_load::main();
 		
 		thread bricky_fix();

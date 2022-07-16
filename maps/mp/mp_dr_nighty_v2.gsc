@@ -21,6 +21,11 @@
 
 main()
 {
+level.masterSpawn = spawn("script_origin",(-6512,824,1144));
+level.masterSpawn.angles = (0,270,0);
+trigger = spawn( "trigger_radius", (-3883,8317,6316), 0, 150, 400 );
+trigger.targetname = "endmap_trig";
+trigger.radius = 150;
  maps\mp\_load::main();
  maps\mp\_compass::setupMiniMap("compass_map_mp_surf_nighty");
  

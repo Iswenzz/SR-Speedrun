@@ -3,6 +3,9 @@
 #include common_scripts\utility;
 main()
 {
+trigger = spawn( "trigger_radius", (6869.81, 512.292, 544.125), 0, 315, 80 );
+trigger.targetname = "endmap_trig";
+trigger.radius = 315;
         maps\mp\_load::main();
 
         thread sr\api\_map::createSpawn((-1009,536,604),359);

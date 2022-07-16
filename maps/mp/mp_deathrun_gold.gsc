@@ -1,5 +1,8 @@
 main()
 {
+level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin);
+level.masterSpawn.angles = (0,270,0);
+level.masterSpawn placeSpawnPoint();
 	maps\mp\_load::main();
 	// maps\mp\teleporter::teleporter();
 	// ambientPlay("lol");

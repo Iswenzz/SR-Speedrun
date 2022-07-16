@@ -22,6 +22,8 @@ Email Pro: suxlolz@outlook.fr
 
 main()
 {
+level.masterSpawn = spawn("script_origin",(2384,-8031,344));
+level.masterSpawn.angles = (0,180,0);
 	maps\mp\_load::main();
 	maps\mp\_compass::setupMiniMap("compass_mp_q3_slide_dfwc2017_2");
  

@@ -1,5 +1,7 @@
 main()
 {
+level.masterSpawn = spawn("script_origin",(-3008,-656,2552));
+level.masterSpawn.angles = (0,0,0);
     maps\mp\_load::main();
  
     game["allies"] = "sas";

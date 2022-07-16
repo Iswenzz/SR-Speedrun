@@ -1,5 +1,8 @@
 main()
-{;
+{
+trigger = spawn( "trigger_radius", (106.077, 2241.14, 64.125), 0, 55, 50 );
+trigger.targetname = "endmap_trig";
+trigger.radius = 55;;
 	maps\mp\_load::main();
 	
 	//maps\mp\_compass::setupMiniMap("compass_map_mp_dusk");

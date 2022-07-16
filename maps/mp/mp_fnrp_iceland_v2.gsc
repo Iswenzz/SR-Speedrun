@@ -18,6 +18,15 @@
 
 main()
 {
+trig = getEnt("finaldoor", "targetname");
+level.mapHasTimeTrigger = true;
+wait 1;
+thread speedrun\_triggerfx::createTrigFx(trig, "endtrig");
+while(1)
+{
+trig waittill("trigger", player);
+player thread braxi\_mod::endTimer();
+}
   	maps\mp\_load::main();
 	maps\mp\mp_fnrp_iceland_fx::main();
 	maps\createfx\mp_fnrp_iceland_fx::main();

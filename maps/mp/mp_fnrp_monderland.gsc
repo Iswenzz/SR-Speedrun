@@ -18,6 +18,13 @@
 
 main()
 {
+trig=getEnt("finaldoor", "targetname");
+level.mapHasTimeTrigger = true;
+while(1)
+{
+trig waittill("trigger", player);
+player thread braxi\_mod::endTimer();
+}
   	maps\mp\_load::main();
 	maps\mp\mp_fnrp_monderland_fx::main();
 	maps\createfx\mp_fnrp_monderland_fx::main();

@@ -1,5 +1,8 @@
 main()
 {
+trigger = spawn( "trigger_radius", (-465.821, 975.085, 16.125), 0, 96, 48 );
+trigger.targetname = "endmap_trig";
+trigger.radius = 96;
 	maps\mp\_load::main();
 
 	

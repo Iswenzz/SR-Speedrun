@@ -7,6 +7,9 @@ MMMMMMM MMMMMM  MMMMMM  MMMMMM   MMMMMM8  MMMMMM
 
 main()
 {
+trigger = spawn( "trigger_radius", (6840, 506, -821), 0, 300, 300 );
+trigger.targetname = "endmap_trig";
+trigger.radius = 300;
 	maps\mp\_load::main();
 	
 	addTriggerToList( "trap1_trig" );

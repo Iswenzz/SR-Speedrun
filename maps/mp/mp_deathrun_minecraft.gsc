@@ -1,5 +1,8 @@
 main()
 {
+trigger = spawn( "trigger_radius", (-656.331, 1533.39, -31.875), 0, 96, 48 );
+trigger.targetname = "endmap_trig";
+trigger.radius = 96;
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)

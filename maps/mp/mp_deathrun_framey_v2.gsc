@@ -1,5 +1,8 @@
 main()
 {
+trigger = spawn( "trigger_radius", (-2423.35, 794.684, 4.90718), 0, 96, 48 );
+trigger.targetname = "endmap_trig";
+trigger.radius = 96;
 	maps\mp\_load::main();
 	
 	// ambientplay("sound_1");
