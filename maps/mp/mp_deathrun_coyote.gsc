@@ -1,15 +1,71 @@
 #include maps\mp\_utility;
 main()
 {
-    maps\mp\_load::main(); 
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
+	if(auto_spawn.size > 0)
+		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 
-	thread sr\api\_map::createSpawn((195,588,65),360);
-	thread sr\api\_speedrun::createNormalWays("Glitch Way;Normal Way;");
-    thread sr\api\_speedrun::createNormalWays("Secret Way;Acti Secret;");
-	thread sr\api\_speedrun::createTeleporter((361.928, 583.768, 9.06468), 50, 20, (459, 583, 224), 360, "freeze", "yellow", "normal_1");
-    thread sr\api\_speedrun::createTeleporter((283, 378, 65), 100, 150, (-2695, 422, 2399), 180, "freeze", "blue", "secret_0");
-	thread sr\api\_speedrun::createTeleporter((368.671, 715.178, 6.87894), 50, 25, (5537, -175, -643), 270, "freeze", "cyan", "secret_1");
-	thread sr\api\_speedrun::createEndMap((2847.91, 9298.08, -1115.88),60,20, "normal_0");  
+	thread sr\api\_speedrun::createTeleporter((283, 378, 65), 100, 150, (-2695, 422, 2399), 180, "freeze", "green", "secret_0");
+	thread sr\api\_speedrun::createEndMap((3035, 9626, -1056), 300, 150);
+	thread sr\api\_speedrun::createEndMap((-8029, 601, -52), 150, 150, "secret_0");
+
+	maps\mp\_load::main();
+
+	// entTransporter = getentarray( "bounce_enter", "targetname" );
+	// if(isdefined(entTransporter))
+	// 	for( i = 0; i < entTransporter.size; i++ )
+	// 		entTransporter[i] thread transporter();
+
+	// entTransporter = getentarray( "bounce02_enter", "targetname" );
+	// if(isdefined(entTransporter))
+	// 	for( i = 0; i < entTransporter.size; i++ )
+	// 		entTransporter[i] thread transporter02();
+
+	secwood = getent("wall_secret","targetname");
+	secwood delete();
+
+	// entTransporter = getentarray( "secret_entrance", "targetname" );
+	// if(isdefined(entTransporter))
+	// 	for( i = 0; i < entTransporter.size; i++ )
+	// 		entTransporter[i] thread secret_69();
+	// entTransporter = getentarray( "secret_fail", "targetname" );
+	// if(isdefined(entTransporter))
+	// 	for( i = 0; i < entTransporter.size; i++ )
+	// 		entTransporter[i] thread secret_fail();
+	// entTransporter = getentarray( "bounce_room_acti", "targetname" );
+	// if(isdefined(entTransporter))
+	// 	for( i = 0; i < entTransporter.size; i++ )
+	// 		entTransporter[i] thread bounce_room_acti();
+	// entTransporter = getentarray( "bounce_room_jumper", "targetname" );
+	// if(isdefined(entTransporter))
+	// 	for( i = 0; i < entTransporter.size; i++ )
+	// 		entTransporter[i] thread bounce_room_jumper();
+	// entTransporter = getentarray( "secret_finish", "targetname" );
+	// if(isdefined(entTransporter))
+	// 	for( i = 0; i < entTransporter.size; i++ )
+	// 		entTransporter[i] thread secret_finish();
+	// entTransporter = getentarray( "secret_21", "targetname" );
+	// if(isdefined(entTransporter))
+	// 	for( i = 0; i < entTransporter.size; i++ )
+	// 		entTransporter[i] thread secret_21();
+	// entTransporter = getentarray( "secret_21_out", "targetname" );
+	// if(isdefined(entTransporter))
+	// 	for( i = 0; i < entTransporter.size; i++ )
+	// 		entTransporter[i] thread secret_21_out();
+	// entTransporter = getentarray( "jumpers_secret1", "targetname" );
+	// if(isdefined(entTransporter))
+	// 	for( i = 0; i < entTransporter.size; i++ )
+	// 		entTransporter[i] thread jumpers_secret1();
+
+
+
+
+
+	//setExpFog(500, 2200, 0.81, 0.75, 0.63, 0);
+	//VisionSetNaked( "mp_backlot" );
+
 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
@@ -31,7 +87,7 @@ main()
 	wall = getent("wall04","targetname");
 	wall notsolid();
 	wall = getent("swagster","targetname");
-	wall solid();
+	wall notsolid();
 
 	addTriggerToList("trigger_spikes");
         addTriggerToList("trigger_trap06");
@@ -53,50 +109,49 @@ main()
         addTriggerToList("trigger_trap17");
         addTriggerToList("trigger_trap18");
 
-    thread shortcut_secret();
 	thread spikes();
 	thread trap06();
-	//thread trap06mover();
-	//thread trap5();
-	// thread  [AUTO DELETE] actisecret(); 
-	//thread trap02();
+	thread trap06mover();
+	thread trap5();
+	// thread  [AUTO DELETE] actisecret();
+	thread trap02();
 	/* [AUTO DELETE] thread bounce01(); */
-	//thread trap03();
+	thread trap03();
 	thread spikes02();
 	//thread trap03mover();
-	//thread trap04();
-	//thread trap07();
-	//thread trap08();
-	//thread trap09();
-	//thread wall_start();
-	//thread trap10();
-	//thread trap11_1();
-	//thread trap11_2();
-	//thread trap11_3();
-	//thread trap12();
-	//thread trap13();
-	//thread trap13_2();
-	//thread trap14();
-	//thread trap15_1();
-	//thread trap15_2();
-	//thread trap15_3();
-	//thread trap16();
-	//thread trap17();
-	//thread trap18();
+	thread trap04();
+	thread trap07();
+	thread trap08();
+	thread trap09();
+	// thread wall_start();
+	thread trap10();
+	thread trap11_1();
+	thread trap11_2();
+	thread trap11_3();
+	thread trap12();
+	thread trap13();
+	thread trap13_2();
+	thread trap14();
+	thread trap15_1();
+	thread trap15_2();
+	thread trap15_3();
+	thread trap16();
+	thread trap17();
+	thread trap18();
 	/* [AUTO DELETE] thread bounce_room_gun(); */
 	/* [AUTO DELETE] thread secret_coyote_found(); */
-	thread secfinish(); 
-	//thread creators();
+	/* [AUTO DELETE] thread secret_finish(); */
+	thread creators();
 	/* [AUTO DELETE] thread knife_room_BATTLE(); */
 	/* [AUTO DELETE] thread sniper_room_BATTLE(); */
-	//thread jump_room_BATTLE();
-	thread finished_map();
-	//thread teddy_shoot();
-	//thread acti_xp1();
+	// thread jump_room_BATTLE();
+	// thread finished_map();
+	// thread teddy_shoot();
+	// thread acti_xp1();
 	/* [AUTO DELETE] thread deagle_machine(); */
 	/* [AUTO DELETE] thread secret_21(); */
 	/* [AUTO DELETE] thread secret_21_key(); */
-	thread secret_21_out();
+	/* [AUTO DELETE] thread secret_21_out(); */
 }
 
 
@@ -127,14 +182,19 @@ main()
 }
 
 
-trap06()
+	trap06()
 {
+	level endon("trigger");
+	trigger = getent("trigger_trap06","targetname");
 	object = getent("trap06","targetname");
-
-	object movez(300, 0.1);
+	trigger waittill ("trigger" , player );
+	/* [AUTO DELETE] player braxi\_rank::giveRankXP("", 10); */
+	trigger SetHintString("^1Activated");
+	object movez(632, 0.01);
+	object waittill("movedone");
 }
 
-	
+
 	trap06mover()
 {
 	level endon("trigger");
@@ -176,7 +236,7 @@ trap06()
 	}
 }
 
-	
+
 	actisecret()
 {
 	trigger = getent("trigger_actisecret","targetname");
@@ -213,7 +273,7 @@ trap06()
 
 	trap03()
 {
-	level endon("trigger");	
+	level endon("trigger");
 	trigger = getent("trigger_trap03","targetname");
 	object = getent("trap03","targetname");
 	trigger waittill ("trigger" , player );
@@ -264,7 +324,7 @@ trap06()
 	wait(6);
 }
 
-	
+
 	trap03mover()
 {
 	level endon("trigger");
@@ -304,11 +364,11 @@ trap06()
 	object4 = getEnt ( "trap07_4", "targetname" );
 	object5 = getEnt ( "trap07_5", "targetname" );
 	object6 = getEnt ( "trap07_6", "targetname" );
-	
+
 	trigger waittill ( "trigger", player );
 	/* [AUTO DELETE] player braxi\_rank::giveRankXP("", 10); */
 	trigger SetHintString("^1Activated");
-	
+
 	i = randomintrange( 0, 6 );
 	if(i == 0)
 	{
@@ -324,19 +384,19 @@ trap06()
 	{
 		object3 notSolid();
 		object5 notSolid();
-		object4 notSolid();	
+		object4 notSolid();
 	}
 	else if(i == 3)
 	{
 		object4 notSolid();
 		object6 notSolid();
-		object2 notSolid();	
+		object2 notSolid();
 	}
 	else if(i == 4)
 	{
 		object5 notSolid();
 		object3 notSolid();
-		object1 notSolid();	
+		object1 notSolid();
 	}
 	else if(i == 5)
 	{
@@ -379,8 +439,29 @@ trap06()
 	wall_start()
 {
 	object = getent("wall_start","targetname");
-	object delete();
-	
+	i = randomint(2);
+	if(i == 0)
+	{
+	wait 6;
+	/* [AUTO DELETE] ambientPlay("habits"); */
+	wait 9;
+	/* [AUTO DELETE] iprintln("<<< ^3Now playing ^2[[^5 Habits - Tove Lo (Cover by Our Last Night) ^2]] ^1>>>"); */
+	/* [AUTO DELETE] iprintln("<<< ^3Now playing ^2[[^5 Habits - Tove Lo (Cover by Our Last Night) ^2]] ^1>>>"); */
+	/* [AUTO DELETE] iprintln("<<< ^3Now playing ^2[[^5 Habits - Tove Lo (Cover by Our Last Night) ^2]] ^1>>>"); */
+	object movez(172, 7);
+	object waittill("movedone");
+	}
+	else if(i == 1)
+	{
+	wait 1;
+	/* [AUTO DELETE] ambientPlay("radio"); */
+	wait 14;
+	/* [AUTO DELETE] iprintln("<<< ^3Now playing ^2[[^5 Radioactive - Imagine Dragons (Cover by Our Last Night) ^2]] ^1>>>"); */
+	/* [AUTO DELETE] iprintln("<<< ^3Now playing ^2[[^5 Radioactive - Imagine Dragons (Cover by Our Last Night) ^2]] ^1>>>"); */
+	/* [AUTO DELETE] iprintln("<<< ^3Now playing ^2[[^5 Radioactive - Imagine Dragons (Cover by Our Last Night) ^2]] ^1>>>"); */
+	object movez(172, 7);
+	object waittill("movedone");
+	}
 
 }
 
@@ -459,7 +540,7 @@ trap06()
 
 	for(;;)
 	{
-		
+
 		object movez(-217,0.5);
 		object waittill("movedone");
 		wait(0.5);
@@ -470,7 +551,7 @@ trap06()
 }
 
 
-	
+
 	transporter02()
 {
 	for(;;)
@@ -537,7 +618,7 @@ trap06()
 	trap14()
 {
 	level endon("trigger");
-	
+
 	trigger = getent("trigger_trap14","targetname");
 	object = getent("trap14","targetname");
 	killtrigger = getent ("killtrigger_trap14" , "targetname");
@@ -550,7 +631,7 @@ trap06()
 	object waittill("movedone");
 }
 
-	
+
 	trap15_1()
 {
 	level endon("trigger");
@@ -677,7 +758,7 @@ trap06()
 {
 	trigger = getEnt ( "sniper_secret", "targetname" );
         level.HasGun = true;
-       
+
         while(level.HasGun)
         {
                 trigger waittill ( "trigger", player );
@@ -690,11 +771,13 @@ trap06()
 	}
 }
 
-shortcut_secret()
-{
-	wall = getent("wall02","targetname");
 
-	wall delete();
+	shortcut_secret()
+{
+	trigger = getent("trigger_secret","targetname");
+	wall = getent("wall02","targetname");
+	trigger waittill ("trigger" , player );
+	wall notsolid();
 }
 
 
@@ -787,17 +870,18 @@ shortcut_secret()
 		/* [AUTO DELETE] iPrintlnBold( " ^3" + player.name + " ^7found ^4the ^6Mysterious coyote ." ); */
 }
 
-secfinish()
-{
-    
-   trig = getent("secret_finish", "targetname");
 
-   for(;;)
-    {   
-    trig waittill("trigger", player);
-    player thread sr\api\_speedrun::finishWay("secret_0");
-    }
-    
+	secret_finish()
+{
+	for(;;)
+	{
+		self waittill( "trigger", player );
+		/* [AUTO DELETE] player braxi\_rank::giveRankXP("", 666); */
+		entTarget = getEnt( self.target, "targetname" );
+		player setOrigin( entTarget.origin );
+		player setplayerangles( entTarget.angles );
+		player thread sr\api\_speedrun::finishWay("secret_0");
+	}
 }
 
 
@@ -829,7 +913,7 @@ secfinish()
 	while(1)
 	{
 		level.knife_trig waittill( "trigger", player );
-		if( !isDefined( level.knife_trig ) ) 
+		if( !isDefined( level.knife_trig ) )
 		return;
 
 		ambientStop("0");
@@ -845,12 +929,12 @@ secfinish()
 
 		level.jump_trig delete();
 		level.sniper_trig delete();
-        
+
 		player SetPlayerAngles( jump.angles );
 		player setOrigin( jump.origin );
 		/* [AUTO DELETE] player TakeAllWeapons(); */
 		/* [AUTO DELETE] player GiveWeapon( "knife_mp" ); */
-		
+
 
 		level.activ setPlayerangles( acti.angles );
 		level.activ setOrigin( acti.origin );
@@ -877,7 +961,7 @@ secfinish()
                 player freezecontrols(false);
                 level.activ freezecontrols(false);
                 player died();
-	
+
 	}
 }
 
@@ -891,7 +975,7 @@ secfinish()
 	while(1)
 	{
 		level.sniper_trig waittill( "trigger", player );
-		if( !isDefined( level.sniper_trig ) ) 
+		if( !isDefined( level.sniper_trig ) )
 		return;
 
 		ambientStop("0");
@@ -906,12 +990,12 @@ secfinish()
 
 		level.jump_trig delete();
 		level.knife_trig delete();
-        
+
 		player SetPlayerAngles( jump.angles );
 		player setOrigin( jump.origin );
 		/* [AUTO DELETE] player TakeAllWeapons(); */
 		/* [AUTO DELETE] player GiveWeapon( "remington700_mp" ); */
-		/* [AUTO DELETE] player givemaxammo( "remington700_mp" ); */      
+		/* [AUTO DELETE] player givemaxammo( "remington700_mp" ); */
 
 
 		level.activ setPlayerangles( acti.angles );
@@ -941,7 +1025,7 @@ secfinish()
                 player freezecontrols(false);
                 level.activ freezecontrols(false);
                 player died();
-	
+
 	}
 }
 
@@ -955,7 +1039,7 @@ secfinish()
 	while(1)
 	{
 		level.jump_trig waittill( "trigger", player );
-		if( !isDefined( level.jump_trig ) ) 
+		if( !isDefined( level.jump_trig ) )
 		return;
 
 		ambientStop("0");
@@ -970,12 +1054,12 @@ secfinish()
 
 		level.knife_trig delete();
 		level.sniper_trig delete();
-        
+
 		player SetPlayerAngles( jump.angles );
 		player setOrigin( jump.origin );
 		/* [AUTO DELETE] player TakeAllWeapons(); */
 		/* [AUTO DELETE] player GiveWeapon( "knife_mp" ); */
-		
+
 
 		level.activ setPlayerangles( acti.angles );
 		level.activ setOrigin( acti.origin );
@@ -1002,7 +1086,7 @@ secfinish()
                 player freezecontrols(false);
                 level.activ freezecontrols(false);
                 player died();
-	
+
 	}
 }
 
@@ -1010,7 +1094,7 @@ secfinish()
 	died()
 {
         self endon("disconnect");
- 
+
         self waittill("death");
         /* [AUTO DELETE] iPrintlnBold("^2"+self.name+" ^5died^1!"); */
 }
@@ -1019,14 +1103,9 @@ secfinish()
 	finished_map()
 {
 	trigger = getent("finished_map","targetname");
-
-	for(;;)
-	{
-	trigger waittill ("trigger" , player );
-	player thread sr\api\_speedrun::finishWay("normal_1");
-
-	}
-		
+		trigger waittill ("trigger" , player );
+		/* [AUTO DELETE] player braxi\_rank::giveRankXP("", 69); */
+		/* [AUTO DELETE] iprintln( " ^6" + player.name + " ^5Finished map!" ); */
 }
 
 
@@ -1089,16 +1168,21 @@ secfinish()
 }
 
 
-secret_21_out()
+	secret_21_out()
 {
-	trig = getent("secret_21_out","targetname");
-
-    for(;;)
-	{
-	trig waittill( "trigger", player );
-	player thread sr\api\_speedrun::finishWay("secret_1");
-
-	}
+	trigger = getent("secret_21_out","targetname");
+	object = getent("secret_21_key","targetname");
+	self waittill( "trigger", player );
+	/* [AUTO DELETE] player braxi\_rank::giveRankXP("", 250); */
+	/* [AUTO DELETE] player GiveWeapon( "knife_mp" ); */
+	/* [AUTO DELETE] player switchToWeapon ( "knife_mp" ); */
+	entTarget = getEnt( self.target, "targetname" );
+	wait 0.1;
+	player setOrigin( entTarget.origin );
+	player setplayerangles( entTarget.angles );
+	wait 0.1;
+	object movex(69, 3);
+	/* [AUTO DELETE] player GiveWeapon( "knife_mp" ); */
 }
 
 
@@ -1111,7 +1195,7 @@ secret_21_out()
 	wall solid();
 	object movez(300,0.1);
 	object waittill("movedone");
-	
+
 }
 
 	jumpers_secret1()
