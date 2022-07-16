@@ -77,13 +77,13 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-	sr\api\_speedrun::createSecretWays("Secret Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
+	speedrun\_way_name::createWay("secret", "Secret Way", "1");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -814,7 +814,7 @@ secret_tp()
 	
         player SetOrigin(end.origin);
         player SetPlayerAngles( end.angles );
-		player sr\api\_speedrun::changeWay("secret_0");
+		player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
 		// iprintlnbold("^1" + player.name + " ^2Has Entered the ^0DEADZONE^3!");
     }
 }

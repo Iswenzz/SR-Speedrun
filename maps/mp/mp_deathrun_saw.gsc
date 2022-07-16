@@ -1,14 +1,9 @@
 main()
 {
-level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
-	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
-	level.masterSpawn = spawn("script_origin", (-494,3,82));
-level.masterSpawn.angles = (0,0,0);
-level.masterSpawn placeSpawnPoint();
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	thread sr\api\_speedrun::createSecretWays("Secret Way;Epic Secret Way");
+	thread speedrun\_way_name::create_normal_way("Normal Way;");
+	thread speedrun\_way_name::create_secret_way("Secret Way;Epic Secret Way");
 
-	thread sr\api\_map::createSpawn((-523, 171, 80), 320);
+	thread speedrun\_way_name::create_spawn((-523, 171, 80), 320);
 
 	maps\mp\_load::main();
 	// maps\mp\_teleport::main();
@@ -20,14 +15,14 @@ level.masterSpawn placeSpawnPoint();
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
 
-	thread sr\api\_speedrun::createTeleporter((-173, -227, 80), 100, 150, 
-		(-1596, -4293, -418), 180, "freeze", "blue", "secret_0");
-	thread sr\api\_speedrun::createTeleporter((-616, -215, 80), 100, 150, 
-		(-1749, -914, 132), 360, "freeze", "blue", "secret_1");
-	thread sr\api\_speedrun::createEndMap((-2252, -2005, 210), 100, 150);
-	thread sr\api\_speedrun::createEndMap((1650, 5839, -1744), 250, 50, "secret_0");
-	thread sr\api\_speedrun::createEndMap((-983, -2719, 875), 100, 50, "secret_1");
-	thread sr\api\_speedrun::createTeleporter((847, 1475, 188), 100, 150, (785, 1156, 639), 270, "freeze");
+	thread speedrun\_way_name::create_tp((-173, -227, 80), 100, 150, 
+		(-1596, -4293, -418), 180, "freeze", "blue", "s0");
+	thread speedrun\_way_name::create_tp((-616, -215, 80), 100, 150, 
+		(-1749, -914, 132), 360, "freeze", "blue", "s1");
+	thread speedrun\_way_name::create_endmap((-2252, -2005, 210), 100, 150);
+	thread speedrun\_way_name::create_endmap((1650, 5839, -1744), 250, 50, "s0");
+	thread speedrun\_way_name::create_endmap((-983, -2719, 875), 100, 50, "s1");
+	thread speedrun\_way_name::create_tp((847, 1475, 188), 100, 150, (785, 1156, 639), 270, "freeze");
 	
 	// elevatorparts = getentarray("elevator","targetname");
 	// if(isdefined(elevatorparts))

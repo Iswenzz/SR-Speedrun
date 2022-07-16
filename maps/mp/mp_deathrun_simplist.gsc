@@ -22,13 +22,13 @@
 //xfire: paap15
 main()
 {
-	thread sr\api\_speedrun::createNormalWays("^4Easy Way;^2Hard Way");
-	thread sr\api\_speedrun::createTeleporter((-53, -208, 76), 100, 150, (-969, -598, 16), 270, "freeze", "blue", "normal_0");
-	thread sr\api\_speedrun::createTeleporter((283, -208, 76), 100, 150, (1211, -595, 16), 270, "freeze", "green", "normal_1");
-	thread sr\api\_map::createSpawn((120, 108, 76), 270);
-	thread sr\api\_speedrun::createEndMap((137, -8308, 76), 100, 150);
-	thread sr\api\_speedrun::createEndMap((-957, -8273, 76), 100, 150, "normal_0");
-	thread sr\api\_speedrun::createEndMap((1283, -8353, -68), 100, 150, "normal_1");
+	thread speedrun\_way_name::create_normal_way("^4Easy Way;^2Hard Way");
+	thread speedrun\_way_name::create_tp((-53, -208, 76), 100, 150, (-969, -598, 16), 270, "freeze", "blue", "ns0");
+	thread speedrun\_way_name::create_tp((283, -208, 76), 100, 150, (1211, -595, 16), 270, "freeze", "green", "ns1");
+	thread speedrun\_way_name::create_spawn((120, 108, 76), 270);
+	thread speedrun\_way_name::create_endmap((137, -8308, 76), 100, 150);
+	thread speedrun\_way_name::create_endmap((-957, -8273, 76), 100, 150, "ns0");
+	thread speedrun\_way_name::create_endmap((1283, -8353, -68), 100, 150, "ns1");
 
      maps\mp\_load::main();
 	 level.flash = loadFX("deathrun/flash");

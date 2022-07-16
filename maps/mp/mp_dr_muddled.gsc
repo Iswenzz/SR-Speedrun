@@ -1,9 +1,6 @@
 	 
 main()
 {
-trigger = spawn("trigger_radius", (10297.4, 1450.59, -687.875), 0, 365, 75);
-trigger.targetname = "endmap_trig";
-trigger.radius = 365;
 	 
 	 maps\mp\_load::main();
 
@@ -50,15 +47,15 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Spicy Way;");
-    sr\api\_speedrun::createSecretWays("Weiner Way;");
+    speedrun\_way_name::createWay("normal", "Spicy Way", "1");
+    speedrun\_way_name::createWay("secret", "Weiner Way", "1");
 	
 	thread tp_1();
 	
     for(;;)
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -131,7 +128,7 @@ target = getEnt ("teleport1", "targetname");
 for(;;) 
 { 
 trig waittill ("trigger", player);
-player sr\api\_speedrun::changeWay("secret_0");
+player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
 player SetOrigin(target.origin); 
 player SetPlayerAngles( target.angles ); 
 	
@@ -179,7 +176,8 @@ trig waittill ("trigger", player);
 
 player SetOrigin(target.origin); 
 player SetPlayerAngles( target.angles ); 
-player thread sr\api\_speedrun::finishWay("secret_0");
+if(isDefined(player.sr_secret))
+	player thread braxi\_mod::endTimer();
 }
 }
 

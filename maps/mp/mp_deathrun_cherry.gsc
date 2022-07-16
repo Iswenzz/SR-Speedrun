@@ -2,17 +2,17 @@
 //Created for Braxi's Deathrun mod for CoD4
 //novacrew.eu, afterlifegaming.net, and braxi.org (braxi.boo.pl)
 //If you have decompiled this, dascoolbro. :>
-//________                                ______
-//___  __ \_____ ______________ _______  ____  /_
+//________                                ______  
+//___  __ \_____ ______________ _______  ____  /_ 
 //__  / / /  __ `/_  ___/_  __ `__ \  / / /_  __ \
 //_  /_/ // /_/ /_  /   _  / / / / / /_/ /_  / / /
-///_____/ \__,_/ /_/    /_/ /_/ /_/\__,_/ /_/ /_/
-
+///_____/ \__,_/ /_/    /_/ /_/ /_/\__,_/ /_/ /_/ 
+                                                
 
 main()
 {
  maps\mp\_load::main();
-
+ 
  /*
  precacheItem("knife_mp");
  precacheItem("cherry_bo_L96_mp");
@@ -35,7 +35,7 @@ main()
  setdvar("r_glowskybleedintensity0",".3");
  setdvar("compassmaxrange","1800");
 
-
+ 
  level.darmuh = "Darmuh"; //It's quite pointless to take my name but if you really want to use it you'll get a gold deagle rather than a normal deagle.
  level.irroy8 = "irRoy8";
  level.bjump1 = getEnt( "jb1", "targetname" );
@@ -47,7 +47,7 @@ main()
  level._spraysion[ "Sprode" ] = loadfx( "explosions/aerial_explosion_large" );
  level.firstenter=true;
 
-/*
+/* 
 addTriggerToList( "t1use" );
 addTriggerToList( "t2use" );
 addTriggerToList( "t3use" );
@@ -90,8 +90,8 @@ thread platform2();
 thread platform3();
 thread rblocks();
 //thread OldRoom();
-thread stahp();
-thread wutru();
+// thread stahp();
+// thread wutru();
 // thread doing();
 //thread sniperoom();
 //thread snipevator();
@@ -140,14 +140,14 @@ thread checktele();
 way_connect()
 {
     wait 0.05;
-
-    sr\api\_speedrun::createNormalWays("Cherry Way;");
-	sr\api\_speedrun::createSecretWays("Secret Way;");
-
+	
+    speedrun\_way_name::createWay("normal", "Cherry Way", "1");
+	speedrun\_way_name::createWay("secret", "Secret Way", "1");
+	
     for(;;)
     {
         level waittill( "connected", player );
-
+        player thread speedrun\_way_name::way_name();
 
     }
 }
@@ -202,7 +202,7 @@ srct()
 	for(;;)
 	{
 		trig waittill ( "trigger", player );
-		player sr\api\_speedrun::changeWay("secret_0");
+		player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
 		player thread end_wait();
 		// player setplayerangles( end.angles, 3 );
 		// player setorigin( end.origin , 3 );
@@ -212,7 +212,8 @@ srct()
 end_wait()
 {
 	wait 0.05;
-	self thread sr\api\_speedrun::finishWay("secret_0");
+	if(isDefined(self.sr_secret) && self.sr_secret)
+	self thread braxi\_mod::endTimer();
 }
 
 secsee()
@@ -255,7 +256,7 @@ signs()
  brusha = getent( "sign1", "targetname" );
  brushb = getent( "sign2", "targetname" );
  brushc = getent( "sign3", "targetname" );
-
+ 
 	for(;;)
 	{
 	    brusha show();
@@ -278,7 +279,7 @@ signs()
 	    brushc show();
 	    brushc solid();
 	    wait 4;
-	}
+	}	
 }
 
 startbutton()
@@ -286,7 +287,7 @@ startbutton()
  trig = getent("startbutton", "targetname");
  level.dermuh = "ffbb9d529c5fbeb275d1fcf8aedc2203";
  brush = getent("button", "targetname");
-
+	
 }
 
 startdoor()
@@ -297,7 +298,7 @@ startdoor()
 hover()
 {
  acti = getent("acticherry", "targetname");
-
+ 
     for(;;)
     {
 	acti movez ( -20, 1 );
@@ -316,7 +317,7 @@ gmove1()
 gmove2()
 {
  brush = getent("t5m2", "targetname");
-
+ 
 brush delete();
 }
 
@@ -329,7 +330,7 @@ gmove4()
 gmove3()
 {
  brush = getent("t5m3", "targetname");
-
+ 
    brush delete();
 }
 
@@ -354,7 +355,7 @@ trap1()
      trig waittill( "trigger", who );
      trig delete();
      who playsound ( "bttn" );
-
+     
 	for(;;)
 	{
 	    brush rotateyaw( -360, 5);
@@ -368,8 +369,8 @@ mtrap2()
  acti = getent("acticherry", "targetname");
  orgn = getent("t2m", "targetname");
  trig = getent("t1mt", "targetname");
-
-
+ 
+ 
 	trig waittill( "trigger", who );
 	trig delete();
 	who playsound ( "bttn" );
@@ -378,8 +379,8 @@ mtrap2()
 		acti rotateto (orgn.angles, 2);
 		acti waittill ("movedone");
 		thread mtrap3();
-
-
+		
+    
 }
 
 trap2()
@@ -393,7 +394,7 @@ trap2()
      solid notsolid();
      solid hide();
      who playsound ( "bttn" );
-
+     
 	for(;;)
 	{
 	    brush rotatepitch( -360, 4);
@@ -406,7 +407,7 @@ mtrap3()
  acti = getent("acticherry", "targetname");
  orgn = getent("t3m", "targetname");
  trig = getent("t2mt", "targetname");
-
+ 
 
 	trig waittill( "trigger", who );
 	trig delete();
@@ -416,8 +417,8 @@ mtrap3()
 		acti rotateto (orgn.angles, 2);
 		acti waittill ("movedone");
 		thread mtrap4();
-
-
+		
+    
 }
 
 trap3()
@@ -454,7 +455,7 @@ trap3()
 trap3a()
 {
  brush = getent( "t3rtate", "targetname" );
-
+ 
 	 brush movez(-400, 0.25);
 	 wait 0.5;
 	 brush movez(400, 0.25);
@@ -464,7 +465,7 @@ trap3a()
 trap3b()
 {
  brush = getent( "t3rtate2", "targetname" );
-
+ 
 	 brush movez(-400, 0.25);
 	 wait 0.5;
 	 brush movez(400, 0.25);
@@ -473,7 +474,7 @@ trap3b()
 trap3c()
 {
  brush = getent( "t3rtate3", "targetname" );
-
+ 
 	 brush movez(-400, 0.25);
 	 wait 0.5;
 	 brush movez(400, 0.25);
@@ -485,7 +486,7 @@ mtrap4()
  acti = getent("acticherry", "targetname");
  orgn = getent("t4m", "targetname");
  trig = getent("t3mt", "targetname");
-
+ 
 
 	trig waittill( "trigger", who );
 	trig delete();
@@ -495,8 +496,8 @@ mtrap4()
 		acti rotateto (orgn.angles, 2);
 		acti waittill ("movedone");
 		thread mtrap5();
-
-
+		
+    
 }
 
 trap4()
@@ -519,7 +520,7 @@ trap4()
 trap4a()
 {
  brush = getEnt( "t4r1", "targetname" );
-
+ 
 	for(;;)
 	{
 	    brush rotateyaw( 360, 3);
@@ -530,7 +531,7 @@ trap4a()
 trap4b()
 {
  brush = getEnt( "t4r2", "targetname" );
-
+ 
 	for(;;)
 	{
 	    brush rotateyaw( 360, 3);
@@ -541,7 +542,7 @@ trap4b()
 trap4c()
 {
  brush = getEnt( "t4r3", "targetname" );
-
+ 
 	for(;;)
 	{
 	    brush rotateyaw( 360, 3);
@@ -552,7 +553,7 @@ trap4c()
 trap4d()
 {
  brush = getEnt( "t4r4", "targetname" );
-
+ 
 	for(;;)
 	{
 	    brush rotateyaw( -360, 4);
@@ -563,7 +564,7 @@ trap4d()
 trap4e()
 {
  brush = getEnt( "t4r5", "targetname" );
-
+ 
 	for(;;)
 	{
 	    brush rotateyaw( -360, 4);
@@ -573,7 +574,7 @@ trap4e()
 trap4f()
 {
  brush = getEnt( "t4r6", "targetname" );
-
+ 
 	for(;;)
 	{
 	    brush rotateyaw( -360, 4);
@@ -584,7 +585,7 @@ trap4f()
 trap4g()
 {
  brush = getEnt( "t4ud", "targetname" );
-
+ 
 	for(;;)
 	{
 	    brush movez( 50, 2 );
@@ -599,7 +600,7 @@ mtrap5()
  acti = getent("acticherry", "targetname");
  orgn = getent("t5m", "targetname");
  trig = getent("t4mt", "targetname");
-
+ 
 
 	trig waittill( "trigger", who );
 	trig delete();
@@ -609,7 +610,7 @@ mtrap5()
 		acti rotateto (orgn.angles, 2);
 		acti waittill ("movedone");
 		thread mtrap6();
-
+    
 }
 
 trap5()
@@ -631,7 +632,7 @@ trap5a()
  sound = getent( "trap5_sound1", "targetname" );
 
 	sound thread machinesound();
-
+	
 	for(;;)
 	{
 	    brush rotateroll( 360, 4 );
@@ -645,7 +646,7 @@ trap5b()
  sound = getent( "trap5_sound2", "targetname" );
 
 	sound thread machinesound();
-
+	
 	for(;;)
 	{
 	    brush rotateroll( -360, 3 );
@@ -659,7 +660,7 @@ trap5c()
  sound = getent( "trap5_sound3", "targetname" );
 
 	sound thread machinesound();
-
+	
 	for(;;)
 	{
 	    brush rotateroll( 360, 4 );
@@ -711,7 +712,7 @@ trap6()
      who playsound ( "bttn" );
      solid notsolid();
      solid hide();
-
+     
 	for(;;)
 	{
 	    brush rotatepitch( -360, 3);
@@ -724,7 +725,7 @@ mtrap7()
  acti = getent("acticherry", "targetname");
  orgn = getent("t7m", "targetname");
  trig = getent("t6mt", "targetname");
-
+ 
 
 	trig waittill( "trigger", who );
 	trig delete();
@@ -734,8 +735,8 @@ mtrap7()
 		acti rotateto (orgn.angles, 2);
 		acti waittill ("movedone");
 		thread mtrap8();
-
-
+		
+    
 }
 
 trap7()
@@ -759,7 +760,7 @@ mtrap8()
  acti = getent("acticherry", "targetname");
  orgn = getent("t8m", "targetname");
  trig = getent("t7mt", "targetname");
-
+ 
 
 	trig waittill( "trigger", who );
 	trig delete();
@@ -769,8 +770,8 @@ mtrap8()
 		acti rotateto (orgn.angles, 2);
 		acti waittill ("movedone");
 		thread mtrap9();
-
-
+		
+    
 }
 
 trap8()
@@ -781,12 +782,12 @@ trap8()
      trig waittill( "trigger", who );
      trig delete();
      who playsound ( "bttn" );
-
+ 
 	    brush movez( -500, 1 );
 	    wait 5;
 	    brush movez( 500, 8 );
-
-
+	    
+	    
 }
 
 mtrap9()
@@ -794,7 +795,7 @@ mtrap9()
  acti = getent("acticherry", "targetname");
  orgn = getent("t9m", "targetname");
  trig = getent("t8mt", "targetname");
-
+ 
 
 	trig waittill( "trigger", who );
 	trig delete();
@@ -804,8 +805,8 @@ mtrap9()
 		acti rotateto (orgn.angles, 2);
 		acti waittill ("movedone");
 		thread mtrap10();
-
-
+		
+    
 }
 
 trap9()
@@ -844,7 +845,7 @@ mtrap10()
  acti = getent("acticherry", "targetname");
  orgn = getent("t10m", "targetname");
  trig = getent("t9mt", "targetname");
-
+ 
 
 		trig waittill( "trigger", who );
 		trig delete();
@@ -854,8 +855,8 @@ mtrap10()
 		acti rotateto (orgn.angles, 2);
 		acti waittill ("movedone");
 		thread mtrap11();
-
-
+		
+    
 }
 
 trap10()
@@ -894,7 +895,7 @@ mtrap11()
 		acti rotateto (orgn.angles, 0.1);
 		acti waittill ("movedone");
 		thread mtrap12();
-
+    
 }
 
 trap11()
@@ -905,7 +906,7 @@ trap11()
 	trig waittill( "trigger", who );
 	trig delete();
 	who playsound ( "bttn" );
-
+		
 	for(;;)
 	{
 		objecta movey (600,1);
@@ -924,7 +925,7 @@ mtrap12()
  acti = getent("acticherry", "targetname");
  orgn = getent("t12m", "targetname");
  trig = getent("t11mt", "targetname");
-
+ 
 
 		trig waittill( "trigger", who );
 		trig delete();
@@ -934,18 +935,18 @@ mtrap12()
 		acti rotateto (orgn.angles, 2);
 		acti waittill ("movedone");
 		thread mtrap13();
-
-
+		
+    
 }
 
 trap12()
 {
  trig = getent ("t12use", "targetname");
-
+	
 	trig waittill( "trigger", who );
 	trig delete();
 	who playsound ( "bttn" );
-
+	
 	thread trap12a();
 	thread trap12b();
 	thread trap12c();
@@ -954,42 +955,42 @@ trap12()
 trap12a()
 {
  spin = getent ("spin1", "targetname");
-
+ 
 	for(;;)
 	{
 	spin rotateyaw (360,6);
 	wait 6;
 	}
-}
-
+}	
+	
 trap12b()
 {
  spin = getent ("spin2", "targetname");
-
+ 
 	for(;;)
 	{
 	spin rotateyaw (-360,3);
 	wait 3;
 	}
-}
+}	
 
 trap12c()
 {
  spin = getent ("t12r1", "targetname");
-
+ 
 	for(;;)
 	{
 	spin rotateroll (360,4.5);
 	wait 4.5;
 	}
-}
+}	
 
 mtrap13()
 {
  acti = getent("acticherry", "targetname");
  orgn = getent("t13m", "targetname");
  trig = getent("t12mt", "targetname");
-
+ 
 
 		trig waittill( "trigger", who );
 		trig delete();
@@ -999,8 +1000,8 @@ mtrap13()
 		acti rotateto (orgn.angles, 2);
 		acti waittill ("movedone");
 		thread mtrap14();
-
-
+		
+    
 }
 
 trap13()
@@ -1034,8 +1035,8 @@ mtrap14()
 	who playsound ( "bttn" );
 	wait 2;
 		cherry rotateto (orgn.angles, 2);
-		cherry waittill ("movedone");
-
+		cherry waittill ("movedone");		
+    
 }
 
 
@@ -1044,7 +1045,7 @@ movefirst()
  acti = getent("acticherry", "targetname");
  orgn = getent("t1m", "targetname");
  trig = getent("cherrystart", "targetname");
-
+ 
 	trig waittill( "trigger", who );
 	trig delete();
 	orgn playsound ( "bttn" );
@@ -1062,7 +1063,7 @@ kniferoom()
  kjump = getEnt( "jumpk", "targetname" );
  kacti = getEnt( "actik", "targetname" );
  expl = getEnt( "meleesion", "targetname" );
-
+ 
         level.knife_trig waittill( "trigger", player );
         if( !isDefined( level.knife_trig ) )
             return;
@@ -1085,13 +1086,13 @@ kniferoom()
 	player TakeAllWeapons();
 	player giveweapon( "deserteagle_mp");
 	player SetWeaponAmmoClip( "deserteagle_mp", 0 );
-	player SetWeaponAmmoStock( "deserteagle_mp", 0 );
+	player SetWeaponAmmoStock( "deserteagle_mp", 0 );      
 	level.activ setPlayerangles( kacti.angles );
 	level.activ setOrigin( kacti.origin );
 	level.activ TakeAllWeapons();
 	level.activ giveweapon( "deserteagle_mp");
 	level.activ SetWeaponAmmoClip( "deserteagle_mp", 0 );
-	level.activ SetWeaponAmmoStock( "deserteagle_mp", 0 );
+	level.activ SetWeaponAmmoStock( "deserteagle_mp", 0 );       
 	player switchToWeapon( "deserteagle_mp" );
 	level.activ SwitchToWeapon( "deserteagle_mp" );
 	wait 1.9;
@@ -1101,22 +1102,22 @@ kniferoom()
 	iPrintlnBold( " ^5" + player.name + " ^3 picked ^1knife^7!" );
         player thread onDeath_knife();
         wait 0.1;
-
+       
     for(;;)
     {
-                wait .1;
+                wait .1;               
                 while(isAlive(player))
                 {
                         wait 1;
                 }
-
+               
     }
 }
-
+ 
 onDeath_knife()
 {
         self endon("disconnect");
-
+       
         self waittill("death");
         thread kniferoom();
 }
@@ -1133,7 +1134,7 @@ knifewwroom()
  kjump = getEnt( "jumpk", "targetname" );
  kacti = getEnt( "actik", "targetname" );
  expl = getEnt( "meleesion", "targetname" );
-
+	    
         level.sword_trig waittill( "trigger", player );
         if( !isDefined( level.sword_trig ) )
             return;
@@ -1161,22 +1162,22 @@ knifewwroom()
 	thread kickstarts();
         player thread onDeath_knifeww();
         wait 0.1;
-
+       
     for(;;)
     {
-                wait .1;
+                wait .1;               
                 while(isAlive(player))
                 {
                         wait 1;
                 }
-
+               
     }
 }
-
+ 
 onDeath_knifeww()
 {
         self endon("disconnect");
-
+       
         self waittill("death");
         thread knifewwroom();
 }
@@ -1185,7 +1186,7 @@ jumproom()
 {
  level.jump_trig = getEnt( "bounce", "targetname");
  expl = getEnt( "jumpsion", "targetname" );
-
+	    
     {
         level.jump_trig waittill( "trigger", player );
         if( !isDefined( level.jump_trig ) )
@@ -1200,7 +1201,7 @@ jumproom()
 		level.dog_trig delete();
 		level.firstenter=false;
 		}
-
+		
 	AmbientStop( 2 );
 	AmbientPlay( "skyfall" );
 	player SetPlayerAngles( level.bjump2.angles );
@@ -1223,7 +1224,7 @@ jumproom2()
 {
  level.jump_trig = getEnt( "bounce", "targetname");
 
- while(1)
+ while(1) 
     {
         level.jump_trig waittill( "trigger", player );
         if( !isDefined( level.jump_trig ) )
@@ -1352,7 +1353,7 @@ object delete();
 elevator()
 {
  brush = getent("elevator", "targetname");
-
+ 
      brush delete();
 }
 
@@ -1371,14 +1372,14 @@ sniperoom()
  level.asnipe = getEnt( "asnipe1", "targetname" );
  level.asnipe = getent( "asnipe2", "targetname");
  expl = getEnt( "snipesion", "targetname" );
-
-
-
+    
+    
+    
 
         level.snipe_trig waittill( "trigger", player );
         if( !isDefined( level.snipe_trig ) )
             return;
-
+			
 		if(level.firstenter==true)
 		{
 		level.spray_trig delete();
@@ -1406,22 +1407,22 @@ sniperoom()
 	thread intimept();
         player thread onDeath_snipe();
         wait 0.1;
-
+       
     for(;;)
     {
-                wait .1;
+                wait .1;               
                 while(isAlive(player))
                 {
                         wait 1;
                 }
-
+               
     }
 }
-
+ 
 onDeath_snipe()
 {
         self endon("disconnect");
-
+       
         self waittill("death");
         thread sniperoom();
 }
@@ -1429,7 +1430,7 @@ onDeath_snipe()
 snipevator()
 {
  brush = getent("snipevator", "targetname");
-
+ 
     for(;;)
     {
 	brush movez (440,5);
@@ -1443,7 +1444,7 @@ ammo()
 {
  level.ammotrig = getent("ammo1", "targetname");
  level.ammotrig = getent("ammo2", "targetname");
-
+	
 	thread ammo2();
 
 	while(1)
@@ -1451,7 +1452,7 @@ ammo()
 		level.ammotrig waittill( "trigger", player );
 
 		player iprintlnbold ("^3AMMO REPLENISHED");
-	    }
+	    }    
 }
 
 ammo2()
@@ -1461,14 +1462,14 @@ ammo2()
 	    {
 		level.ammo waittill( "trigger", player );
 		player iprintlnbold ("^3AMMO REPLENISHED");
-	    }
+	    }    
 }
 
 snipehover()
 {
  brusha = getent("sniphover1", "targetname");
  brushb = getent("sniphover2", "targetname");
-
+ 
      for(;;)
      {
 	brusha movez (-50,1);
@@ -1483,30 +1484,30 @@ snipehover()
 stahp()
 {
  trig = getent("sb2trig", "targetname");
-
+	
 	trig waittill ( "trigger", who );
-	// wait 1;
-	// iprintlnbold ("A button was ^3pressed^7");
-	// thread huh();
+	wait 1;
+	iprintlnbold ("A button was ^3pressed^7");
+	thread huh();
 }
 
 huh()
 {
  trig = getent("sb1trig", "targetname");
  brush = getent("sbttn2", "targetname");
-
-	// trig waittill ( "trigger", who );
-	// who playsound ( "bttn" );
-	// brush movey (-10,3);
-	// wait 3;
-	// thread magic();
-	// iprintlnbold ("^3Stahp pressing buttons! pff");
+	
+	trig waittill ( "trigger", who );
+	who playsound ( "bttn" );
+	brush movey (-10,3);
+	wait 3;
+	thread magic();
+	iprintlnbold ("^3Stahp pressing buttons! pff");
 }
 
 magic()
 {
  brush = getent("yeh", "targetname");
-
+	
 	brush hide();
 	brush notsolid();
 	thread mhmmm();
@@ -1546,7 +1547,7 @@ doing()
  brush = getent("sele1", "targetname");
  end = getent("sele2", "targetname");
  bck = getent("sele3", "targetname");
-
+ 
 	for(;;)
 	{
 		brush moveto ( end.origin, 2 );
@@ -1563,11 +1564,11 @@ sprayroom()
  level.jspray = getEnt( "jspray", "targetname" );
  level.aspray = getEnt( "aspray", "targetname" );
  expl = getEnt( "spraysion", "targetname" );
-
+    
         level.spray_trig waittill( "trigger", player );
         if( !isDefined( level.spray_trig ) )
             return;
-
+			
 		if(level.firstenter==true)
 		{
 		thread dynamic_wep_dmg();
@@ -1603,23 +1604,23 @@ sprayroom()
 	thread basscannon();
         player thread onDeath_spray();
         wait 0.1;
-
-
+       
+       
     for(;;)
     {
-                wait .1;
+                wait .1;               
                 while(isAlive(player))
                 {
                         wait 1;
                 }
-
+               
     }
 }
-
+ 
 onDeath_spray()
 {
         self endon("disconnect");
-
+       
         self waittill("death");
         thread sprayroom();
 }
@@ -1630,21 +1631,21 @@ basscannon()
 	iPrintln( "^7Now Playing: ^3Flux Pavilion - Bass Cannon" );
 }
 
-maxammo()
+maxammo() 
 {
 	self endon("disconnect");
 	self endon("death");
 	level endon("game over");
-
-        while ( 1 )
+	
+        while ( 1 ) 
         {
            wait 30;
 	   self iprintlnbold ("^7Reloading for you sir.");
            self takeweapon ( "cherry_minigun_mp" );
 	   wait 1;
 	   self GiveWeapon( "cherry_minigun_mp" );
-        }
-}
+        } 
+} 
 
 superpowers()  //Originally Written by Wingzor (Thanks buddy :>)
 {
@@ -1659,13 +1660,13 @@ jumpheight( strenght ) //Originally Written by Wingzor (Thanks buddy :>)
 	self endon("disconnect");
 	self endon("death");
 	level endon("game over");
-
+	
 	oldpos = self.origin;
 	jumped = false;
-
+	
 	if( !isDefined( strenght ) || strenght < 1 )
 		strenght = 1;
-
+	
 	while(1)
 	{
 		if((self.origin[2] - oldpos[2] ) > 10  && !self IsOnGround() && !jumped)
@@ -1707,7 +1708,7 @@ deagle()
  trig = getent("soda", "targetname");
  deagle = getent("deagle", "targetname");
  soda = getent("takedeagle", "targetname");
-
+ 
 	deagle hide();
 	soda hide();
 	trig waittill ( "trigger", player );
@@ -1722,12 +1723,12 @@ soda()
 
 	deagle show();
 	soda show();
-
+	
 	for(;;)
 	{
 	    soda waittill ( "trigger", player );
 		level.tempGuid = player getGUID();
-
+		
 		if( isDefined( level.trapsDisabled ) && level.trapsDisabled )
 		{
 		   iprintlnbold ("We're all out of soda. Sorry! -Management");
@@ -1749,16 +1750,16 @@ notfree()
 			self GiveWeapon("deserteaglegold_mp");
 			self switchToWeapon( "deserteaglegold_mp" );
 		}
-
+		
 		if( ( self.name == level.irRoy8 )  && ( level.tempGuid == level.dermuh ) )
 		{
 			self GiveWeapon("deserteaglegold_mp");
 			self switchToWeapon( "deserteaglegold_mp" );
 		}
-
+		
 		else
 		{
-			self iprintlnbold ("Enjoy the weapon!");
+			self iprintlnbold ("Enjoy the weapon!"); 
 			self GiveWeapon("deserteagle_mp");
 			self switchToWeapon( "deserteagle_mp" );
 		}
@@ -1775,7 +1776,7 @@ dogroom()
  kjump = getEnt( "jumpk", "targetname" );
  kacti = getEnt( "actik", "targetname" );
  expl = getEnt( "meleesion", "targetname" );
-
+	    
         level.dog_trig waittill( "trigger", player );
         if( !isDefined( level.dog_trig ) )
             return;
@@ -1796,13 +1797,13 @@ dogroom()
 	player detachAll();
 	player setModel("german_sheperd_dog");
 	player TakeAllWeapons();
-	player giveweapon( "dog_mp");
+	player giveweapon( "dog_mp");  
 	level.activ setPlayerangles( kacti.angles );
 	level.activ setOrigin( kacti.origin );
 	level.activ detachAll();
 	level.activ setModel("german_sheperd_dog");
 	level.activ TakeAllWeapons();
-	level.activ giveweapon( "dog_mp");
+	level.activ giveweapon( "dog_mp");   
 	player switchToWeapon( "dog_mp" );
 	level.activ SwitchToWeapon( "dog_mp" );
 	player freezeControls(true);
@@ -1815,22 +1816,22 @@ dogroom()
 	thread kickstarts();
         player thread onDeath_dog();
         wait 0.1;
-
+       
     for(;;)
     {
-                wait .1;
+                wait .1;               
                 while(isAlive(player))
                 {
                         wait 1;
                 }
-
+               
     }
 }
-
+ 
 onDeath_dog()
 {
         self endon("disconnect");
-
+       
         self waittill("death");
         thread dogroom();
 }
@@ -1838,7 +1839,7 @@ onDeath_dog()
 yayufinished() //pretty much written by Luk from Luk-Servers
 {
 	trig = getent("endmap_trig", "targetname");
-
+	
 	while(1)
 	{
 		trig waittill ( "trigger", player );
@@ -1850,7 +1851,7 @@ yayufinished() //pretty much written by Luk from Luk-Servers
 		}
 	}
 }
-
+	
 //Anything not otherwise credited was scripted and written by myself, Darmuh. Scripts may be similar as I do ask for help from time to time (Google is your friend). If you feel I have not properly credited someone feel free to mention it. I do not condone plagerism and never want to take credit for something I do not deserve credit for. Below are some more extensive credits.
 
 //Thankyou to Xenon, for being a great international friend and for your amazing skills @mapping. Without your help there would not be a flying Cherry on this map. Thanks man, I hope we end up doing a full map together in the future.

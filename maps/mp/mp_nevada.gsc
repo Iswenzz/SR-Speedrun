@@ -14,7 +14,8 @@ main()
 
         thread way_connect();
 
-    thread sr\api\_speedrun::cj();
+    speedrun\maptriggers::cj_dvar(); // CJ MAP
+
 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
@@ -31,21 +32,19 @@ main()
 way_connect()
 {
     wait 0.05;
-
-    level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
-	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
-	level.masterSpawn = spawn("script_origin",(-2789,-1452,-308-60));
+	
+    level.masterSpawn = spawn("script_origin",(-2789,-1452,-308-60));
 	level.masterSpawn.angles = (0,0,0);
 
 	thread secret_1();
 
-    sr\api\_speedrun::createNormalWays("Easy Way;");
-	sr\api\_speedrun::createSecretWays("Hard Way;");
-
-    for(;;)
+    speedrun\_way_name::createWay("normal", "Easy Way", "1");
+	speedrun\_way_name::createWay("secret", "Hard Way", "1");
+	
+    for(;;) 
     {
         level waittill( "connected", player );
-
+        player thread speedrun\_way_name::way_name();
     }
 }
 
@@ -59,12 +58,12 @@ secret_1()
 
 	wait 1;
 	trig.radius = 50;
-	thread sr\api\_map::createTriggerFx(trig, "secret");
+	thread speedrun\_triggerfx::createTrigFx(trig, "secret");
 
 	for(;;)
 	{
 		trig waittill("trigger",player);
-		player sr\api\_speedrun::changeWay("secret_0");
+		player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
 		player setOrigin(ori.origin);
 		player setPlayerAngles(ori.angles);
 	}
@@ -76,13 +75,14 @@ secret_1_end()
 
 	wait 1;
 	trig.radius = 50;
-	thread sr\api\_map::createTriggerFx(trig, "secret");
+	thread speedrun\_triggerfx::createTrigFx(trig, "secret");
 
 	for(;;)
 	{
 		trig waittill("trigger",player);
-
-		player thread sr\api\_speedrun::finishWay("secret_0");
+		
+		if(isDefined(player.sr_secret) && player.sr_secret)
+			player thread braxi\_mod::endTimer();
 	}
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////

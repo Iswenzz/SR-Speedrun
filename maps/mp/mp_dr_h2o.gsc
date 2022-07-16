@@ -83,8 +83,8 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-	sr\api\_speedrun::createSecretWays("Secret Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
+	speedrun\_way_name::createWay("secret", "Secret Way", "1");
 
 	trig = getEntArray("trigger_hurt","classname");
 	for(i=0;i<trig.size;i++)
@@ -93,7 +93,7 @@ way_connect()
     for(;;)
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -912,7 +912,7 @@ teleport_secret()
 		// player iprintlnbold ("Welcome to the secret");
 		player SetOrigin(target.origin);
 		player SetPlayerAngles( target.angles );
-		player sr\api\_speedrun::changeWay("secret_0");
+		player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
 	}
 }
 

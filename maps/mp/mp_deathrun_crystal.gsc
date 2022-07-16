@@ -27,9 +27,6 @@
 
 main()
 {
-trigger = spawn("trigger_radius", (5852.35, -3361.35, 96.125), 0, 315, 55);
-trigger.targetname = "endmap_trig";
-trigger.radius = 315;
 
     // addTriggerToList( "trig_trap1" );
     // addTriggerToList( "trig_trap2" );
@@ -119,13 +116,13 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-	sr\api\_speedrun::createSecretWays("Secret Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
+	speedrun\_way_name::createWay("secret", "Secret Way", "1");
 	
     for(;;) 
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////

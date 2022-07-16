@@ -32,7 +32,7 @@ main()
 	//maps\mp\_dynamic_foliage2::initdfs();
 	
 	
-	thread sr\api\_map::createSpawn((520, -1773, 124),87);
+	thread speedrun\_way_name::create_spawn((520, -1773, 124),87);
 
 	
 	game["allies"] = "sas";
@@ -93,12 +93,12 @@ way_connect()
 {
     wait 0.05;
 
-    sr\api\_speedrun::createNormalWays("Normal Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
 
     for(;;) 
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 

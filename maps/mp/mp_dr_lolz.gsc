@@ -27,21 +27,21 @@
 
 main()
 {
-	thread sr\api\_speedrun::createNormalWays("^2Easy Way;^1Hard Way");
-	thread sr\api\_speedrun::createSecretWays("^2Easy Secret;^1Hard Secret");
-	thread sr\api\_map::createSpawn((480, -234, 78), 180);
+	thread speedrun\_way_name::create_normal_way("^2Easy Way;^1Hard Way");
+	thread speedrun\_way_name::create_secret_way("^2Easy Secret;^1Hard Secret");
+	thread speedrun\_way_name::create_spawn((480, -234, 78), 180);
  maps\mp\_compass::setupMiniMap("compass_map_mp_dr_lolz");
  
-thread sr\api\_speedrun::createTeleporter((3135, 1674, -992), 100, 150, (8206, 1480, -992), 360, "freeze");
-thread sr\api\_speedrun::createTeleporter((410, -3385, 76), 100, 150, (409, -3562, 444), 270, "freeze");
-thread sr\api\_speedrun::createEndMap((817, -12816, -4852), 100, 150, "normal_1");
+thread speedrun\_way_name::create_tp((3135, 1674, -992), 100, 150, (8206, 1480, -992), 360, "freeze");
+thread speedrun\_way_name::create_tp((410, -3385, 76), 100, 150, (409, -3562, 444), 270, "freeze");
+thread speedrun\_way_name::create_endmap((817, -12816, -4852), 100, 150, "ns1");
 
 tpeasyori = getEnt("origin_easy_secret_1", "targetname");
-thread sr\api\_speedrun::createTeleporter((193, 14, 76), 100, 150, 
-	tpeasyori.origin, tpeasyori.angles[1], "freeze", "green", "secret_0");
+thread speedrun\_way_name::create_tp((193, 14, 76), 100, 150, 
+	tpeasyori.origin, tpeasyori.angles[1], "freeze", "green", "s0");
 tphardsecret = getEnt("hard_secret_ori", "targetname");
-thread sr\api\_speedrun::createTeleporter((193, -487, 76), 100, 150, 
-	tphardsecret.origin, tphardsecret.angles[1], "freeze", "darkred", "secret_1");
+thread speedrun\_way_name::create_tp((193, -487, 76), 100, 150, 
+	tphardsecret.origin, tphardsecret.angles[1], "freeze", "darkred", "s1");
 
 thread hardsec_cod4x();
 
@@ -2193,7 +2193,7 @@ ggnore = getEnt("trigger_hard_gg_no_re","targetname");
 	for(;;)
 	{
 	ggnore waittill("trigger", player);
-	player thread sr\api\_speedrun::finishWay("secret_1");
+	player thread speedrun\_way_name::finish_way("s1");
 	/* [AUTO DELETE] player braxi\_rank::giveRankXP("", 3000); */
 	/* [AUTO DELETE] iprintlnbold(player.name + " ^2Ended ^7the ^1HARD SECRET ^7noice"); */
 	// wait 2;
@@ -2321,7 +2321,7 @@ hardway() //TP to Hard Way
 		trighard waittill("trigger", player);
 		player setOrigin(tphard.origin);
 		player setPlayerAngles(tphard.angles);
-		player thread sr\api\_speedrun::changeWay("normal_1");
+		player thread speedrun\_way_name::change_way("ns1");
 
 	}
 }
@@ -2337,7 +2337,7 @@ easyway() //TP to Easy Way
 		trig waittill("trigger", player);
 		player setOrigin(tp.origin);
 		player setPlayerAngles(tp.angles);
-		player thread sr\api\_speedrun::changeWay("normal_0");
+		player thread speedrun\_way_name::change_way("ns0");
 	}
 }
 
@@ -2366,7 +2366,7 @@ tpeasysecret()
 	// 	tpeasytrig waittill("trigger", player);
 	// 	player setOrigin(tpeasyori.origin);
 	// 	player setPlayerAngles(tpeasyori.angles);
-	// 	player thread sr\api\_speedrun::changeWay("secret_0");
+	// 	player thread speedrun\_way_name::change_way("s0");
 	// }
 }
 
@@ -2381,7 +2381,7 @@ endeasysecret()
 		endeasytrig waittill("trigger", player);
 		// player setOrigin(endeasyori.origin);
 		// player setPlayerAngles(endeasyori.angles);
-		player thread sr\api\_speedrun::finishWay("secret_0");
+		player thread speedrun\_way_name::finish_way("s0");
 		/* [AUTO DELETE] player braxi\_rank::giveRankXP("", 666); */
 	}
 }

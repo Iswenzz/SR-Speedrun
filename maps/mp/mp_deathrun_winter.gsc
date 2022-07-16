@@ -1,16 +1,16 @@
 main()
 {
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-  thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread speedrun\_way_name::create_normal_way("Normal Way;");
+  thread speedrun\_way_name::create_secret_way("Secret Way;");
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
+		thread speedrun\_way_name::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 level.teleport = loadFX("misc/ui_pickup_available"); 
 level.snow = loadFX("weather/snow_light"); 
  
   target = getEnt( "scbacktp", "targetname");
-  thread sr\api\_speedrun::createTeleporter((4156, 2941, -4), 100, 150, 
-    target.origin, target.angles[1], "freeze", "blue", "secret_0");
+  thread speedrun\_way_name::create_tp((4156, 2941, -4), 100, 150, 
+    target.origin, target.angles[1], "freeze", "blue", "s0");
 
 maps\mp\_load::main();
 
@@ -731,7 +731,7 @@ end()
   {
      trig waittill ("trigger", player); 
 
-     player thread sr\api\_speedrun::finishWay("secret_0");
+     player thread speedrun\_way_name::finish_way("s0");
      /* [AUTO DELETE] player braxi\_rank::giveRankXp( "", 2000); */
      /* [AUTO DELETE] player iPrintlnBold( "^5Secret Prize: ^72000 ^5XP"); */
      /* [AUTO DELETE] iPrintlnBold( "^5" + player.name + " ^7has finished the secret room!!"); */

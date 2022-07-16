@@ -52,16 +52,16 @@ main()
 	setDvar("bg_falldamagemaxheight", 9999999 );
     setDvar("bg_falldamageminheight", 999999 );
 	
-	thread addTestClients();
+	//thread addTestClients();
 	
 	//GENERAL THREADS
-	thread bounce_givesniper();
-	thread bounce_snipers_models_anim();
+	//thread bounce_givesniper();
+	//thread bounce_snipers_models_anim();
 	thread secret();
 	thread secret_end();
-	thread sniper_fail();
-	thread bounce_fail();
-	thread blocks_fail();
+	//thread sniper_fail();
+	//thread bounce_fail();
+	//thread blocks_fail();
 	thread secret_check_1();
 	thread secret_check_2();
 	thread secret_check_3();
@@ -69,14 +69,14 @@ main()
 	thread secret_check_5();
 	thread secret_check_6();
 	thread secret_fail();
-	thread end();
-	thread opening();
-	thread musicBox();
-	thread gap_fail_1();
-	thread gap_fail_2();
-	thread gap_fail_3();
-	thread gap_fail_4();
-	thread gap_end();
+	//thread end();
+	//thread opening();
+	//thread musicBox();
+	//thread gap_fail_1();
+	//thread gap_fail_2();
+	//thread gap_fail_3();
+	//thread gap_fail_4();
+	//thread gap_end();
 	
 	//ACTIVATOR THREADS
 	addTriggerToList("trap1");
@@ -88,25 +88,27 @@ main()
 	addTriggerToList("trap7");
 	addTriggerToList("trap8");
 	
-	thread trap1();
-	thread trap2();
-	thread trap3();
-	thread trap4();
-	thread trap5();
-	thread trap6();
-	thread trap7();
-	thread trap8();
+	//thread trap1();
+	//thread trap2();
+	//thread trap3();
+	//thread trap4();
+	//thread trap5();
+	//thread trap6();
+	//thread trap7();
+	//thread trap8();
 	
 	//BATTLE THREADS
-	thread sniper();
-	thread knife();
-	thread bounce();
-	thread gap();
-	thread pure_strafe();
-	thread blocks();
-
-	// thread sr\api\_map::createSpawn((-213, 981, 220), 270);
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	//thread sniper();
+	//thread knife();
+//	thread bounce();
+	//thread gap();
+	//thread pure_strafe();
+	//thread blocks();
+	thread speedrun\_way_name::create_spawn((-6,-92,60),90);
+	thread speedrun\_way_name::create_normal_way("Normal Way");
+	thread speedrun\_way_name::create_secret_way("Secret_Way");
+	thread speedrun\_way_name::create_tp((180.874, -30.3021, 0.125001), 50, 95, (7797, 1317, 414), 359, "freeze", "blue", "s0");
+	
 }
 
 /*
@@ -399,6 +401,7 @@ secret_end()
 		player braxi\_rank::giveRankXP("", 500);
 		player setOrigin( dest.origin );
 		player setplayerangles( dest.angles );
+		player thread speedrun\_way_name::finish_way("s0");
 	}
 }
 

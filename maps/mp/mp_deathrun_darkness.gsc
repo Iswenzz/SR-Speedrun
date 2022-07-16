@@ -9,20 +9,6 @@
 
 main()
 {
-level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
-	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
-	level.masterSpawn = spawn("script_origin",(-4, -197, 0));
-level.masterSpawn.angles = (0,90,0);
-level.trapTriggers[level.trapTriggers.size] = getEnt("t1", "targetname");
-level.trapTriggers[level.trapTriggers.size] = getEnt("t2", "targetname");
-level.trapTriggers[level.trapTriggers.size] = getEnt("t3", "targetname");
-level.trapTriggers[level.trapTriggers.size] = getEnt("t4", "targetname");
-level.trapTriggers[level.trapTriggers.size] = getEnt("t5", "targetname");
-level.trapTriggers[level.trapTriggers.size] = getEnt("t6", "targetname");
-level.trapTriggers[level.trapTriggers.size] = getEnt("t7", "targetname");
-trigger = spawn("trigger_radius", (985.723, -587.125, 16.125), 0, 96, 48);
-trigger.targetname = "endmap_trig";
-trigger.radius = 96;
 	maps\mp\_load::main();
 
 	game["allies"] = "marines";
@@ -71,12 +57,12 @@ way_connect()
 {
     wait 0.05;
     
-    sr\api\_speedrun::createNormalWays("Normal Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
     
     for(;;) 
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 

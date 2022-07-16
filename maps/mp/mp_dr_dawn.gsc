@@ -1,14 +1,14 @@
 main()
 {
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-    thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread speedrun\_way_name::create_normal_way("Normal Way;");
+    thread speedrun\_way_name::create_secret_way("Secret Way;");
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);      
+		thread speedrun\_way_name::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);      
         maps\mp\_load::main();
 
-        thread sr\api\_speedrun::createTeleporter((766, 12079, -964), 100, 150, (766, 12315, 22), 90, "freeze");
-thread sr\api\_speedrun::createTeleporter((-133, 548, 68), 100, 150, (2210, 2370, 124), 270, "freeze", "blue", "secret_0");
+        thread speedrun\_way_name::create_tp((766, 12079, -964), 100, 150, (766, 12315, 22), 90, "freeze");
+thread speedrun\_way_name::create_tp((-133, 548, 68), 100, 150, (2210, 2370, 124), 270, "freeze", "blue", "s0");
        
         game["allies"] = "marines";
         game["axis"] = "opfor";
@@ -528,7 +528,7 @@ Secretend()
         for(;;)
         {
                 trig waittill("trigger", player);
-                player thread sr\api\_speedrun::finishWay("secret_0");
+                player thread speedrun\_way_name::finish_way("s0");
                 // player setOrigin(tele1.origin);	
                 // wait 0.01;
         }

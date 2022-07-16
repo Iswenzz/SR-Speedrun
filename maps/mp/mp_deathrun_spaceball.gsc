@@ -1,13 +1,9 @@
 main()
 {
-level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
-	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
-	level.masterSpawn = spawn("script_origin",(9,-43,4037));
-level.masterSpawn.angles = (0,0,0);
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-  thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread speedrun\_way_name::create_normal_way("Normal Way;");
+  thread speedrun\_way_name::create_secret_way("Secret Way;");
 
-  thread sr\api\_map::createSpawn((-1244, -59, 4065), 0);
+  thread speedrun\_way_name::create_spawn((-1244, -59, 4065), 0);
 
 maps\mp\_load::main();
 /* [AUTO DELETE] ambientPlay("fullmap"); */
@@ -183,7 +179,7 @@ teleport8()
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
 
-player thread sr\api\_speedrun::changeWay("secret_0");
+player thread speedrun\_way_name::change_way("s0");
       }
 }
 
@@ -210,7 +206,7 @@ teleport10()
   for(;;)
   {
      trig waittill ("trigger", player); 
-    player thread sr\api\_speedrun::finishWay("secret_0");
+    player thread speedrun\_way_name::finish_way("s0");
       }
 }
 

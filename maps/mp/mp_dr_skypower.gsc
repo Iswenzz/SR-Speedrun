@@ -2,9 +2,6 @@
  
 main()
  {
-trigger = spawn("trigger_radius", (1507, -871, -896), 0, 300, 300);
-trigger.targetname = "endmap_trig";
-trigger.radius = 300;
 	maps\mp\_load::main();
     // ambientPlay("main1234");
 	
@@ -56,13 +53,13 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-	sr\api\_speedrun::createSecretWays("Secret Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
+	speedrun\_way_name::createWay("secret", "Secret Way", "1");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -187,7 +184,7 @@ teleport1()
 		// iprintlnbold ("Gratz ^3" + player.name + " ^7found a secert! :o!");
 		player SetOrigin(target.origin);
 		player SetPlayerAngles( target.angles );
-		player sr\api\_speedrun::changeWay("secret_0");
+		player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
 	}
 }
 

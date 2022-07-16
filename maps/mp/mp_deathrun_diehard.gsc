@@ -1,8 +1,5 @@
 main()
 {
-trigger = spawn("trigger_radius", (-1095.76, -2331.43, 643.575), 0, 96, 48);
-trigger.targetname = "endmap_trig";
-trigger.radius = 96;
 	maps\mp\_load::main();
 	
 	
@@ -87,7 +84,7 @@ sr_tp()
 	trig = spawn("trigger_radius",(639,550,24),0,150,100);
 	trig.radius = 150;
 	wait 1;
-	thread sr\api\_map::createTriggerFx(trig, "red");
+	thread speedrun\_triggerfx::createTrigFx(trig, "red");
 
 	for(;;)
 	{
@@ -113,13 +110,13 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-	sr\api\_speedrun::createSecretWays("Secret Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
+	speedrun\_way_name::createWay("secret", "Secret Way", "1");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -291,7 +288,7 @@ for(;;)
 teleporter waittill("trigger", player);
 player SetOrigin( secret.origin );
 player setplayerangles( secret.angles );
-player sr\api\_speedrun::changeWay("secret_0");
+player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
 }
 }
 

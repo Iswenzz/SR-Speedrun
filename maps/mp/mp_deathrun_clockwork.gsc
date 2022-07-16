@@ -1,8 +1,5 @@
 main()
 {
-trigger = spawn("trigger_radius", (16593.9, -0.335908, 16.125), 0, 160, 135);
-trigger.targetname = "endmap_trig";
-trigger.radius = 160;
 	maps\mp\_load::main();
 //AUTO 	ambientPlay("tacos");
 	
@@ -11,8 +8,8 @@ trigger.radius = 160;
 	
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-		thread sr\api\_map::createSpawnOrigin(auto_spawn[0].origin, auto_spawn[0].angles[1]);
+	thread speedrun\_way_name::create_normal_way("Normal Way;");
+		thread speedrun\_way_name::create_spawn_auto(auto_spawn[0].origin, auto_spawn[0].angles[1]);
 	thread trap1();
 	thread trap2();
 	thread trap3();

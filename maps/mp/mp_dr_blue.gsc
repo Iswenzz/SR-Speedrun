@@ -6,14 +6,6 @@
 																   // Add amb2.mp3 to mp_dr_blue.iwd/sound/ if you wish (its linked to soundaliases "skrillex") 
 main()
 {
-level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
-	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
-	level.masterSpawn = spawn("script_origin", level.spawn["allies"][6].origin);
-level.masterSpawn.angles = level.spawn["allies"][6].angles;
-level.masterSpawn placeSpawnPoint();
-trigger = spawn("trigger_radius", (4582, 2556, -1714), 0, 300, 300);
-trigger.targetname = "endmap_trig";
-trigger.radius = 300;
              //Please Use without Permission ©
     maps\mp\_load::main();
 	// setExpFog(500, 1000, 0.4, 0.425, 0.44, 0.0);
@@ -102,12 +94,12 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////

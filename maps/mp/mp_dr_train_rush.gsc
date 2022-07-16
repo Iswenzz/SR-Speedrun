@@ -17,10 +17,6 @@ Email Pro: suxlolz@outlook.fr
 */
 main()
 {
-level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
-	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
-	level.masterSpawn = spawn("script_origin",(0, -19544, 192));
-level.masterSpawn.angles = (0,90,0);
 	maps\mp\_load::main();
 	maps\mp\_compass::setupMiniMap("compass_map_mp_dr_train_rush");
  
@@ -85,15 +81,15 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-	sr\api\_speedrun::createSecretWays("Secret Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
+	speedrun\_way_name::createWay("secret", "Secret Way", "1");
 
 	thread secret_1();
 
     for(;;) 
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 
@@ -105,7 +101,7 @@ secret_1()
 	wait 1;
 	// trigger.inAir = true;
 	trigger.radius = 30;
-	thread sr\api\_map::createTriggerFx(trigger, "secret");
+	thread speedrun\_triggerfx::createTrigFx(trigger, "secret");
 
 	for(;;)
 	{
@@ -117,7 +113,7 @@ secret_1()
 		player thread maps\mp\mp_dr_train_rush\_fx::forcedvar_once();
 		player thread maps\mp\mp_dr_train_rush\_timerift::countdown();
 		player thread maps\mp\mp_dr_train_rush\_timerift::getvel();
-		player sr\api\_speedrun::changeWay("secret_0");
+		player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
 	}
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////

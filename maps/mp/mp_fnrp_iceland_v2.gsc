@@ -18,10 +18,6 @@
 
 main()
 {
-del = getEnt("endmap_trig","targetname");
-del delete();
-trig = getEnt("finaldoor", "targetname");
-trig.targetname = "endmap_trig";
   	maps\mp\_load::main();
 	maps\mp\mp_fnrp_iceland_fx::main();
 	maps\createfx\mp_fnrp_iceland_fx::main();
@@ -67,12 +63,12 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
 	
     for(;;) 
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////

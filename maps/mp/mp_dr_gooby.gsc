@@ -1,8 +1,5 @@
 main()
 {
-trigger = spawn("trigger_radius", (328, 1018, -211), 0, 300, 300);
-trigger.targetname = "endmap_trig";
-trigger.radius = 300;
 
 /*
 MAP CREATED AND SCRIPTED BY CHUBBS317
@@ -72,13 +69,13 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-	sr\api\_speedrun::createSecretWays("Secret Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
+	speedrun\_way_name::createWay("secret", "Secret Way", "1");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -167,7 +164,7 @@ transporter()
 		player setplayerangles( entTarget.angles );
 		if(!isDefined(player.sec))
 		{
-			player sr\api\_speedrun::changeWay("secret_0");
+			player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
 			player.sec = true;
 		}
 	}

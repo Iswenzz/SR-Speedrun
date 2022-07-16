@@ -18,8 +18,6 @@
 
 main()
 {
-trig = getEnt("finaldoor", "targetname");
-trig.targetname = "endmap_trig";
   	maps\mp\_load::main();
 	maps\mp\mp_fnrp_monderland_fx::main();
 	maps\createfx\mp_fnrp_monderland_fx::main();
@@ -63,6 +61,7 @@ trig.targetname = "endmap_trig";
 
 	
 	// endtrig thread WatchEndTrigger();
+	speedrun\_way_name::createWay("normal", "Normal Way", "1");
 	
 }
 

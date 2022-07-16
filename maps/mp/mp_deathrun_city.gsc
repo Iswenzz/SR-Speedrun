@@ -1,12 +1,9 @@
 main()
 {
-trigger = spawn("trigger_radius", (1271.56, -847.444, 0.124998), 0, 96, 48);
-trigger.targetname = "endmap_trig";
-trigger.radius = 96;
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread speedrun\_way_name::create_normal_way("Normal Way;");
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
+		thread speedrun\_way_name::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 	
         thread teleport();
 

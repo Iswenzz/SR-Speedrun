@@ -7,12 +7,12 @@ main()
 {
    maps\mp\_load::main();
 
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	thread sr\api\_speedrun::createSecretWays("^2Easy Secret;^1Hard Secret");
+	thread speedrun\_way_name::create_normal_way("Normal Way;");
+	thread speedrun\_way_name::create_secret_way("^2Easy Secret;^1Hard Secret");
 
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
+		thread speedrun\_way_name::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 
 //    addTriggerToList( "trig_trap1" );
 // addTriggerToList( "trig_trap2" );
@@ -547,8 +547,8 @@ hardsectele()
         trig=getent("trig_hardsectele","targetname");
 	hardsectele=getent("hardsectele","targetname");
 
-	thread sr\api\_speedrun::createTeleporter((9, -203, 474), 50, 10,
-		hardsectele.origin, hardsectele.angles[1], "freeze", "darkred", "secret_1");
+	thread speedrun\_way_name::create_tp((9, -203, 474), 50, 10,
+		hardsectele.origin, hardsectele.angles[1], "freeze", "darkred", "s1");
 	
 // 	for(;;)
 // 	{
@@ -558,7 +558,7 @@ hardsectele()
 // 				 // player thread hardsecret_timer();
 // player setplayerangles( hardsectele.angles );
 //                 player setorigin (hardsectele.origin);
-//                 player thread sr\api\_speedrun::changeWay("secret_1");
+//                 player thread speedrun\_way_name::change_way("s1");
 
 // 	}
 }
@@ -638,7 +638,7 @@ hardsecend()
 	{
 		        
                 trig waittill ("trigger", player);
-                player thread sr\api\_speedrun::finishWay("secret_1");
+                player thread speedrun\_way_name::finish_way("s1");
 				
 // 				player.secretTimer2 destroy();
 // 				player notify("hardsecret_done");
@@ -658,8 +658,8 @@ ezsectele()
         trig=getent("trig_ezsectele","targetname");
 	ezsectele=getent("ezsectele","targetname");
 
-	thread sr\api\_speedrun::createTeleporter((435, -302, 474), 50, 10,
-		ezsectele.origin, ezsectele.angles[1], "freeze", "green", "secret_0");
+	thread speedrun\_way_name::create_tp((435, -302, 474), 50, 10,
+		ezsectele.origin, ezsectele.angles[1], "freeze", "green", "s0");
 	
 // 	for(;;)
 // 	{
@@ -669,7 +669,7 @@ ezsectele()
 // 				// player thread ezsecret_timer();
 // player setplayerangles( ezsectele.angles );
 //                 player setorigin (ezsectele.origin);
-//                 player thread sr\api\_speedrun::changeWay("secret_0");
+//                 player thread speedrun\_way_name::change_way("s0");
 
 // 	}
 }
@@ -780,7 +780,7 @@ ezsecend()
 	{
 		      
                 trig waittill ("trigger", player);
-                player thread sr\api\_speedrun::finishWay("secret_0");
+                player thread speedrun\_way_name::finish_way("s0");
 // 				player.secretTimer destroy();
 // 				   player notify("ezsecret_done");
 //                  iPrintlnBold( " ^8" + player.name + " ^4 has Finished ^2Hard Secret^8!" );

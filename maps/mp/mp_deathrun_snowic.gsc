@@ -1,19 +1,15 @@
 main()
 {
-level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
-	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
-	level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin);
-level.masterSpawn.angles = level.spawn["allies"][0].angles;
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-    thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread speedrun\_way_name::create_normal_way("Normal Way;");
+    thread speedrun\_way_name::create_secret_way("Secret Way;");
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
+		thread speedrun\_way_name::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
         maps\mp\_load::main(); 
        
        end = getEnt ("secret_teleport_go", "targetname");  
- thread sr\api\_speedrun::createTeleporter((20, -252, 1214), 100, 150, 
-    end.origin, end.angles[1], "freeze", "blue", "secret_0");
+ thread speedrun\_way_name::create_tp((20, -252, 1214), 100, 150, 
+    end.origin, end.angles[1], "freeze", "blue", "s0");
         //setExpFog(500, 2200, 0.81, 0.75, 0.63, 0);
         //VisionSetNaked( "mp_backlot" );
  

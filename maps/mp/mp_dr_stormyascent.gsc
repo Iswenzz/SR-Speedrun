@@ -1,39 +1,21 @@
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//            _____                    _____                    _____                    _____            //
-//           /\    \                  /\    \                  /\    \                  /\    \           //
-//          /::\    \                /::\    \                /::\    \                /::\    \          //
-//         /::::\    \              /::::\    \              /::::\    \              /::::\    \         //
-//        /::::::\    \            /::::::\    \            /::::::\    \            /::::::\    \        //
-//       /:::/\:::\    \          /:::/\:::\    \          /:::/\:::\    \          /:::/\:::\    \       //
-//      /:::/  \:::\    \        /:::/__\:::\    \        /:::/__\:::\    \        /:::/__\:::\    \      //
-//     /:::/    \:::\    \      /::::\   \:::\    \      /::::\   \:::\    \      /::::\   \:::\    \     //
-//    /:::/    / \:::\    \    /::::::\   \:::\    \    /::::::\   \:::\    \    /::::::\   \:::\    \    //
-//   /:::/    /   \:::\ ___\  /:::/\:::\   \:::\    \  /:::/\:::\   \:::\ ___\  /:::/\:::\   \:::\ ___\   //
-//  /:::/____/  ___\:::|    |/:::/  \:::\   \:::\____\/:::/__\:::\   \:::|    |/:::/__\:::\   \:::|    |  //
-//  \:::\    \ /\  /:::|____|\::/    \:::\  /:::/    /\:::\   \:::\  /:::|____|\:::\   \:::\  /:::|____|  //
-//   \:::\    /::\ \::/    /  \/____/ \:::\/:::/    /  \:::\   \:::\/:::/    /  \:::\   \:::\/:::/    /   //
-//    \:::\   \:::\ \/____/            \::::::/    /    \:::\   \::::::/    /    \:::\   \::::::/    /    //
-//     \:::\   \:::\____\               \::::/    /      \:::\   \::::/    /      \:::\   \::::/    /     //
-//      \:::\  /:::/    /               /:::/    /        \:::\  /:::/    /        \:::\  /:::/    /      //
-//       \:::\/:::/    /               /:::/    /          \:::\/:::/    /          \:::\/:::/    /       //
-//        \::::::/    /               /:::/    /            \::::::/    /            \::::::/    /        //
-//         \::::/    /               /:::/    /              \::::/    /              \::::/    /         //
-//          \::/____/                \::/    /                \::/____/                \::/____/          //
-//                                    \/____/                                                             //
-//                                                                                                        //
-// Steam: Gabb(Korean girl picture) Bnet: Gabb#2215 or PM on FNRP-Forums.                                 //                                                                      //
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-main(){
+main()
+{
 	maps\mp\_load::main();
-	maps\createfx\mp_dr_stormyascent_fx::main();
+
+	thread speedrun\_way_name::create_spawn((-1600,-1406,61),360);
+	thread speedrun\_way_name::create_normal_way("Normal Way;");
+	thread speedrun\_way_name::create_secret_way("Secret Way;Acti Secret;");
+	thread speedrun\_way_name::create_tp((-1357.19, -1617.64, 0.624997), 85, 20, (2892, 1214, 7744), 90, "freeze", "red", "s0");
+	thread speedrun\_way_name::create_tp((-1332.75, -1190.29, 0.625), 75, 20, (-2264, 1709, 7744), 270, "freeze", "blue", "s1");
+	thread speedrun\_way_name::create_endmap((4928.89, -4792.35, 6208.13),170,15,"s0");
+	thread speedrun\_way_name::create_endmap((-4286.45, -1847.55, 6208.13),185,20,"s1");
+	thread speedrun\_way_name::create_endmap((-30.31674, -1026.22, 2752.12),100,20, "ns0");
 
 	level.speed1 = 1;
 	level.speed2 = 0.125;
 	level.speed3 = 0.15;
 	level.speed4 = 0.15;
-	level.inEndRoom = false;
-	level.isFinished = false;
 	 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
@@ -42,71 +24,47 @@ main(){
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
 	
-	// addTriggerToList("trap1_trig");
-	// addTriggerToList("trap2_trig");
-	// addTriggerToList("trap3_trig");
-	// addTriggerToList("trap4_trig");
-	// addTriggerToList("trap6_trig");
-	// addTriggerToList("trap7_trig");	
+	addTriggerToList("trap1_trig");
+	addTriggerToList("trap2_trig");
+	addTriggerToList("trap3_trig");
+	addTriggerToList("trap4_trig");
+	addTriggerToList("trap6_trig");
+	addTriggerToList("trap7_trig");	
 	
-	precacheitem("rpg_mp");
-	precacheItem("ak74u_mp");
-	precacheitem("knife_mp");
-	precacheItem("remington700_mp");
-	precacheItem("m40a3_mp");
-	
-	thread way_connect();
-	// thread bounce_fail();
-	// thread bounce_sniper();
-	// thread endroom_old();
-	// thread endroom_bounce();
-	// thread endroom_snip();
-	// thread endroom_knife();
-	// thread acti_mover();
-	// thread ambient();
-	// thread acti_secret();
-	// thread acti_secretend();
-	// thread actisecret_fail();
-	// thread actisecret_cp();
-	thread secret1();
+
 	thread secret1fail();
-	thread secret1end();
-	thread secret1cp();
-	thread secret2();
+	thread actisecret_fail();
 	thread startround();
-	// thread w12();
-	// thread w34();
-	// thread ro1234();
-	// thread ro5678();
-	// thread ro910();
-	// thread trap1();
-	// thread trap2();
-	// thread trap3();
-	// thread trap4();	
-	// thread trap6();
-	// thread trap7();
-	// thread finish_trig();
-	// thread acti_triggerino();
-	// thread contact();
+	thread w12();
+	thread w34();
+	thread ro1234();
+	thread ro5678();
+	thread ro910();
+	thread trap1();
+	thread trap2();
+	thread trap3();
+	thread trap4();	
+	thread trap6();
+	thread trap7();
 
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-way_connect()
+actisecret_fail()
 {
-    wait 0.05;
-	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
-    for(;;)
-    {
-        level waittill( "connected", player );
-        
-    }
+	trig = getent("actisecret_fail","targetname");	
+	while(1)
+	{		
+		trig waittill("trigger",player);
+		player suicide();	
+	}
 }
-////////////////////////////////////////////////////////////////////////////////////////////////
-
+secret1fail(){
+	trig = getent("secret1_fail","targetname");	
+	while(1)
+	{		
+		trig waittill("trigger",player);
+		player suicide();
+	}
+}
 addTriggerToList(name)
 {
     if(!isDefined(level.trapTriggers))
@@ -114,431 +72,12 @@ addTriggerToList(name)
     level.trapTriggers[level.trapTriggers.size]=getEnt(name,"targetname");
 }
 
-acti_triggerino(){
-	trig = getent("acti_triggerino","targetname");
-	trig waittill("trigger",player);
-	trig delete();
-	player.isActi = true;
-}
-
-finish_trig(){
-	trig = getent("finish_trigger","targetname");
-	trig waittill("trigger",player);
-	trig delete();
-	tp = getent("acti_finish","targetname");
-	level.activ setorigin(tp.origin);
-	level.activ setplayerangles(tp.angles);
-	level.activ TakeAllWeapons();
-	level.activ giveWeapon("knife_mp");
-	level.activ switchtoweapon("knife_mp");
-	level.isFinished = true;
-}
-
-endroom_old(){
-	trig = getent("old_trig","targetname");
-	trig sethintstring("^8Old");
-	trig waittill("trigger",player);
-	trig delete();
-	trig = getent("snip_trig","targetname");
-	trig delete();
-	trig = getent("knife_trig","targetname");
-	trig delete();
-	trig = getent("bounce_trig","targetname");
-	trig delete();
-	plat = getent("old_plat","targetname");
-	plat movex(-256,1);	
-}
-
-endroom_bounce()
+trap1()
 {
-    endroom_template("bounce_trig", "bounce_jumper_start", "bounce_acti_start", "knife_mp", undefined, "Bounce", "dumdeedum");
-}
- 
-endroom_knife()
-{
-    endroom_template("knife_trig", "knife_jumper_start", "knife_acti_start", "knife_mp", undefined, "Knife", "amilli");
-}
- 
-endroom_snip()
-{
-    endroom_template("snip_trig", "snip_jumper_start", "snip_acti_start", "remington700_mp", "m40a3_mp", "Sniper", "heights");
-}
-
-endroom_template(trigger, jumper_origin, acti_origin, weapon, weapon2, weapon_room, song_name)
-{
-    trigger = getEnt(trigger, "targetname");
-	trigger SetHintString("^1"+weapon_room);
-    jumper = getEnt(jumper_origin, "targetname");
-    acti = getEnt(acti_origin, "targetname");
-	
-	
- 
-    while(1)
-    {
-        trigger waittill("trigger", player);
-		old_trig = getent("old_trig","targetname");
-		if(isdefined(old_trig)){
-			old_trig delete();
-		}		
-		
-        if(level.inEndRoom)
-            return;
-       
-        if (!isDefined(trigger))
-            return;
- 
-        level.inEndRoom = true;
- 
-        player setPlayerAngles(jumper.angles);
-        player setOrigin(jumper.origin);
-        player TakeAllWeapons();
-        player giveWeapon(weapon);
-		if(isDefined(weapon2)){
-			player giveWeapon(weapon2);
-			player giveMaxAmmo(weapon2);
-		}
-        player giveMaxAmmo(weapon);        
-        player switchToWeapon(weapon);
-		player.health = 100;
- 
-        level.activ setPlayerAngles(acti.angles);
-        level.activ setOrigin(acti.origin);
-        level.activ TakeAllWeapons();
-        level.activ giveWeapon(weapon);
-		if(isDefined(weapon2)){
-			level.activ giveWeapon(weapon2);
-			level.activ giveMaxAmmo(weapon2);
-		}
-        
-        level.activ giveMaxAmmo(weapon);        
-        level.activ switchToWeapon(weapon);
-		level.activ.health = 100;
- 
-        ambientstop();
-        ambientplay(song_name);
-		
-		if(song_name == "dumdeedum"){
-			iprintlnbold("^6Now Playing: ^5Keys N Krates - ^1Dum Dee Dum (JiKay Remix)");
-		}
-		
-		if(song_name == "heights"){
-			iprintlnbold("^6Now Playing: ^5Vadyr - ^1Heights");
-		}
-		
-		if(song_name == "amilli"){
-			iprintlnbold("^6Now Playing: ^5Lil Wayne - ^1A Milli (K Theory)");
-		}
- 
-        iPrintlnBold( " ^8" + player.name + " ^6Entered" + " ^9" + weapon_room + " ^6room." );
-        wait 0.05;
-        player freezecontrols(true);
-        level.activ freezecontrols(true);
-        wait 1;
-        player iPrintlnBold("^93");
-        level.activ iPrintlnBold("^93");
-        wait 1;
-        player iPrintlnBold("^82");
-        level.activ iPrintlnBold("^82");
-        wait 1;
-        player iPrintlnBold("^91");
-        level.activ iPrintlnBold("^91");
-        wait 1;
-        player iPrintlnBold("^8FIGHT^9!");
-        level.activ iPrintlnBold("^8FIGHT^9!");
-        player freezecontrols(false);
-        level.activ freezecontrols(false);
- 
-        while(isAlive(player) && isDefined(player)){
-            wait 0.1;
-		}
-		
-		level.inEndRoom = false;
-    }
-}
-
-bounce_fail(){
-	trig = getent("bounce_tp","targetname");
-	while(1){
-		trig waittill("trigger",player);
-		if(player.isActi == true){
-			tp = getent("bounce_acti_start","targetname");
-			player setorigin(tp.origin);
-			player setplayerangles(tp.angles);
-		} else {
-			tp = getent("bounce_jumper_start","targetname");
-			player setorigin(tp.origin);
-			player setplayerangles(tp.angles);
-		}
-		wait 0.1;
-	}	
-}
-
-bounce_sniper(){
-	trig = getent("bounce_snip_trig","targetname");
-	while(1){
-		trig waittill("trigger",player);
-		player giveweapon("m40a3_mp");
-		player givemaxammo("m40a3_mp");
-		player switchtoweapon("m40a3_mp");
-		wait 0.1;
-	}
-}
-
-acti_mover(){	
-	trig = getent("acti_1","targetname");
-	trig sethintstring("^5Move to next trap");
-	trig waittill("trigger",player);
-	trig delete();
-	tp = getent("acti_2_tp","targetname");
-	player setorigin(tp.origin);
-	player setplayerangles(tp.angles);
-	trig = getent("acti_2","targetname");
-	trig sethintstring("^5Move to next trap");
-	trig waittill("trigger",player);
-	trig delete();
-	tp = getent("acti_3_tp","targetname");
-	player setorigin(tp.origin);
-	player setplayerangles(tp.angles);
-	trig = getent("acti_3","targetname");
-	trig sethintstring("^5Move to next trap");
-	trig waittill("trigger",player);
-	trig delete();
-	tp = getent("acti_4_tp","targetname");
-	player setorigin(tp.origin);
-	player setplayerangles(tp.angles);
-	trig = getent("acti_4","targetname");
-	trig sethintstring("^5Move to next trap");
-	trig waittill("trigger",player);
-	trig delete();
-	tp = getent("acti_5_tp","targetname");
-	player setorigin(tp.origin);
-	player setplayerangles(tp.angles);
-	
-}
-
-secret_check(){
-	players = getentarray("player", "classname");
-	for(i=0;i<players.size;i++){
-		players[i].inSecret = false;
-		players[i].cp = false;
-		players[i].isActi = false;
-	}
-	wait 1;
-}
-
-//Timer by Lixfe/VC' Blade
-secret1_timer(){   
-	self endon("secret_done");
-    if(isdefined(self.secretTimer))
-        self.secretTimer destroy();
-    self.secretTimer=newclienthudelem(self);
-    self.secretTimer.foreground = true;
-    self.secretTimer.alignX = "center";
-    self.secretTimer.alignY = "bottom";
-    self.secretTimer.horzAlign = "center";
-    self.secretTimer.vertAlign = "bottom";
-    self.secretTimer.x = 0;
-    self.secretTimer.y = -7;
-    self.secretTimer.sort = 5;
-    self.secretTimer.fontScale = 1.6;
-    self.secretTimer.font = "default";
-    self.secretTimer.glowAlpha = 1;
-    self.secretTimer.hidewheninmenu = true;
-       self.secretTimer.label = &"Time left in secret: &&1";
-        
-    if(isdefined(level.randomcolor))
-        self.secretTimer.glowColor=level.randomcolor;
-    else 
-        self.secretTimer.glowColor=(0.25,0.87,0.82);
-    time= 90;
-    for(i=0;i<time;i++)
-    {
-        self.secretTimer setvalue(time-i);
-        wait 1;
-    }
-    self.secretTimer setvalue(0);
-    self suicide();
-    if(isdefined(self.secretTimer))
-        self.secretTimer destroy();
-}
-
-secret1(){
-	trig = getent("secret1_trig","targetname");
-	while(1){
-		trig waittill("trigger",player);
-		tp = getent("secret1_start","targetname");
-		player setorigin(tp.origin);
-		player setplayerangles(tp.angles);
-		player iprintlnbold("^9Welcome to the secret!");
-		player TakeAllWeapons();
-		player giveweapon("rpg_mp");
-		player givemaxammo("rpg_mp");
-		player switchtoweapon("rpg_mp");
-		player.inSecret = true;
-		player sr\api\_speedrun::changeWay("secret_0");
-		player thread giveRPGAmmo();
-		wait 1;
-	}
-}
-
-giveRPGAmmo(){
-	while(self.inSecret){
-		self givemaxammo("rpg_mp");		
-		wait 4;
-	}	
-}
-
-acti_secret(){
-	trig = getent("acti_secret","targetname");
-	trig sethintstring("^5!");
-	while(1){
-		trig waittill("trigger",player);
-		tp = getent("actisecret_start","targetname");
-		player setorigin(tp.origin);
-		player setplayerangles(tp.angles);
-		player iprintlnbold("^9Welcome to the secret!");
-		player TakeAllWeapons();
-		player giveweapon("rpg_mp");
-		player givemaxammo("rpg_mp");
-		player switchtoweapon("rpg_mp");
-		player.inSecret = true;		
-		player thread giveRPGAmmo();
-		wait 1;
-	}
-}
-
-acti_secretend(){
-	trig = getent("actisecret_end","targetname");
-	trig sethintstring("^8Press Use to Finish");
-	while(1){
-		trig waittill("trigger",player);
-		tp = getent("acti_finish","targetname");
-		player braxi\_rank::giveRankXP("", 250);
-		player setorigin(tp.origin);
-		player setplayerangles(tp.angles);
-		iprintlnbold(player.name+"^8 has finished the ^9acti secret!");
-		player.inSecret = false;
-		player takeweapon("rpg_mp");
-		player giveWeapon("knife_mp");
-		player switchtoweapon("knife_mp");
-		wait 1;
-	}
-}
-
-secret1end(){
-	trig = getent("secret1_end","targetname");
-	trig sethintstring("^8Press Use to Finish");
-	while(1){
-		trig waittill("trigger",player);
-		tp = getent("secret1_endtp","targetname");
-		player braxi\_rank::giveRankXP("", 250);
-		player setorigin(tp.origin);
-		player setplayerangles(tp.angles);
-		iprintlnbold(player.name+"^8 has finished the ^9secret!");
-		player.inSecret = false;
-		player notify("secret_done");
-		player.secretTimer destroy(); 
-		player takeweapon("rpg_mp");
-		player giveweapon("ak74u_mp");
-		player givemaxammo("ak74u_mp");
-		player switchtoweapon("ak74u_mp");
-		wait 1;
-	}
-}
-
-
-actisecret_fail(){
-	trig = getent("actisecret_fail","targetname");	
-	while(1){		
-		trig waittill("trigger",player);
-		if(player.cp == true){
-			tp = getent("acti_secret_cp","targetname");			
-		} else {
-			tp = getent("actisecret_start","targetname");			
-		}
-
-		player setorigin(tp.origin);
-		player setplayerangles(tp.angles);
-		player giveWeapon("rpg_mp");
-		player giveMaxAmmo("rpg_mp");
-		player switchtoweapon("rpg_mp");
-		wait 0.1;		
-	}
-}
-
-secret1fail(){
-	trig = getent("secret1_fail","targetname");	
-	while(1){		
-		trig waittill("trigger",player);
-		if(player.cp == true){
-			tp = getent("secret1_cpo","targetname");			
-		} else {
-			tp = getent("secret1_start","targetname");			
-		}
-		
-		player setorigin(tp.origin);
-		player setplayerangles(tp.angles);
-		player giveWeapon("rpg_mp");
-		player giveMaxAmmo("rpg_mp");
-		player switchtoweapon("rpg_mp");
-		wait 0.1;		
-	}
-}
-
-actisecret_cp(){
-	trig = getent("actisecret_cp","targetname");
-	while(1){
-		trig waittill("trigger",player);
-		player.cp = true;
-		wait 1;
-	}
-}
-
-secret1cp(){
-	trig = getent("secret1_cp","targetname");
-	while(1){
-		trig waittill("trigger",player);
-		player.cp = true;
-		wait 1;
-	}
-}
-
-secret2(){
-	s = getent("s","targetname");
-	s waittill("trigger",player);
-	iprintlnbold("^8S");
-	s delete();
-	e1 = getent("e1","targetname");
-	e1 waittill("trigger",player);
-	e1 delete();
-	iprintlnbold("^8E");
-	c = getent("c","targetname");
-	c waittill("trigger",player);
-	c delete();
-	iprintlnbold("^8C");
-	r = getent("r","targetname");
-	r waittill("trigger",player);
-	r delete();
-	iprintlnbold("^8R");
-	e2 = getent("e2","targetname");
-	e2 waittill("trigger",player);
-	e2 delete();
-	iprintlnbold("^8E");
-	t = getent("t","targetname");
-	t waittill("trigger",player);
-	t delete();
-	iprintlnbold("^8T");
-	iprintlnbold ("^6Secret opened!");
-	wait 3;
-	iprintlnbold("^6Lol jk, this isn't Vistic Castle");
-}
-
-trap1(){
+	level endon("triggera");
 	trig = getent("trap1_trig","targetname");
-	trig sethintstring("^9Activate Trap");
-	trig waittill("trigger",player);
+	trig waittill("triggera",player);
 	trig delete();
-	player braxi\_rank::giveRankXP("", 25);
 	
 	trap1 = getent("trap1_1","targetname");
 	trap3 = getent("trap1_3","targetname");
@@ -554,13 +93,13 @@ trap1(){
 	}
 }
 
-trap2(){
+trap2()
+{
+	level endon("triggerb");
 	trig = getent("trap2_trig","targetname");
-	trig sethintstring("^9Activate Trap");
-	trig waittill("trigger",player);
+	trig waittill("triggerb",player);
 	trig delete();
 	trap = getentarray("trap2","targetname");
-	player braxi\_rank::giveRankXP("", 25);
 	
 	while(1){
 		for(i = 0; i < trap.size; i++){
@@ -571,42 +110,38 @@ trap2(){
 }
 
 trap3(){
+	level endon("triggerc");
 	trig = getent("trap3_trig","targetname");
-	trig sethintstring("^9Activate Trap");
-	trig waittill("trigger",player);
+	trig waittill("triggerc",player);
 	trig delete();
-	player braxi\_rank::giveRankXP("", 25);
 	trap = getent("trap3","targetname");	
 	trap movey(-136,1);
 }
 
-trap4(){
+trap4()
+{
+	level endon("triggerazfz");
 	trig = getent("trap4_trig","targetname");
-	trig sethintstring("^9Activate Trap");
-	trig waittill("trigger",player);
+	trig waittill("triggerazfz",player);
 	trig delete();
-	player braxi\_rank::giveRankXP("", 25);
 	level.speed1 = 0.5;
 }
 
-
-
-trap6(){
+trap6()
+{
+	level endon("triggeradafafaf");
 	trig = getent("trap6_trig","targetname");
-	trig sethintstring("^9Activate Trap");
-	trig waittill("trigger",player);
+	trig waittill("triggeradafafaf",player);
 	trig delete();
-	player braxi\_rank::giveRankXP("", 25);
 	level.speed2 = 0.08;
 }
 
-trap7(){
+trap7()
+{
+	level endon("triggerawxv");
 	trig = getent("trap7_trig","targetname");
-	trig sethintstring("^9Activate Trap");	
-	trig waittill("trigger",player);
+	trig waittill("triggerawxv",player);
 	trig delete();
-	player braxi\_rank::giveRankXP("", 25);
-	//I tried to make it an array but it wouldn't work.
 	trap1 = getent("trap71","targetname");	
 	trap2 = getent("trap72","targetname");
 	trap3 = getent("trap73","targetname");
@@ -690,109 +225,13 @@ trap7(){
 		
 		
 }
-ambient(){
-	level waittill( "round_started" );  
-	
-	
-	possibility = randomIntRange(0,9);
-	
-	if(possibility == 0){
-		ambientPlay("lenka");	
-		while(level.isFinished == false){
-			iprintlnbold("^2Now playing: ^6Lenka - Blue Skies(REVOKE REMIX)");
-			wait 25;
-		}
-	}
-	
-	if(possibility == 1){
-		ambientPlay("jetta");	
-		while(level.isFinished == false){
-			iprintlnbold("^2Now playing: ^6Jetta - I'd Love to Change the World (Matstubs Remix)");
-			wait 25;		
-		}		
-	}
-	
-	if(possibility == 2){
-		ambientPlay("chain");	
-		while(level.isFinished == false){
-			iprintlnbold("^2Now playing: ^6The Chainsmokers - Dont Let Me Down (Illenium Remix)");
-			wait 25;
-		}		
-	}
-	
-	if(possibility == 3){
-		ambientPlay("stress");	
-		while(level.isFinished == false){
-			iprintlnbold("^2Now playing: ^6Twenty One Pilots - Stressed Out (Tomsize Remix)");
-			wait 25;
-		}		
-	}
-	
-	if(possibility == 4){
-		ambientPlay("7years");	
-		while(level.isFinished == false){
-			iprintlnbold("^2Now playing: ^6Lukas Graham - 7 Years (T-Mass Remix) [feat. Toby Romeo]");
-			wait 25;
-		}				
-	}
-	
-	if(possibility == 5){
-		ambientPlay("me");
-		while(level.isFinished == false){
-			iprintlnbold("^2Now playing: ^6G-Eazy & Bebe Rexha - Me, Myself & I (No Sleep Remix)");
-			wait 25;
-		}			
-	}
-	
-	if(possibility == 6){
-		ambientPlay("trndsttr");
-		while(level.isFinished == false){
-			iprintlnbold("^2Now playing: ^6Black Coast - TRNDSTTR (Lucian Remix)");
-			wait 25;
-		}
-	}
-	
-	if(possibility == 7){
-		ambientPlay("jetta2");
-		while(level.isFinished == false){
-			iprintlnbold("^2Now playing: ^6Jetta - Take It Easy (Matstubs Remix)");
-			wait 25;
-		}			
-	}
-	
-	if(possibility == 8){
-		ambientPlay("revolution");	
-		while(level.isFinished == false){
-			iprintlnbold("^2Now playing: ^6Diplo - Revolution (SEAN&BOBO REMIX)");
-			wait 25;		
-		}		
-	}			
-}
-	
-
-
-startround(){
-	level waittill( "round_started" );  
-	
+startround()
+{
 	door1 = getent("door1","targetname");
 	door2 = getent("door2","targetname");
 	
-	door1 movey(64,1);
-	door2 movey(-64,1);
-	secret_check();
-	wait 3;	
-}
-
-contact(){
-	wait 20;
-	while(1){
-		iprintlnbold("^3Steam: ^1Gabb (Korean Girl Picture)");
-		wait 2;
-		iprintlnbold("^3BNet: ^1Gabb#2215");
-		wait 2;
-		iprintlnbold("Or send me a pm on ^1FNRP-Forums");
-		wait 20;		
-	}
+	door1 delete();
+	door2 delete();
 }
 
 w12(){

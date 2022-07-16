@@ -101,15 +101,15 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-	sr\api\_speedrun::createSecretWays("Secret Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
+	speedrun\_way_name::createWay("secret", "Secret Way", "1");
 	
 	thread sec_1();
 	
     for(;;) 
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 
@@ -123,7 +123,7 @@ sec_1()
 		if(!isDefined(player.secret_1))
 		{
 			player.secret_1 = true;
-			player sr\api\_speedrun::changeWay("secret_0");
+			player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
 		}
 	}
 }
@@ -333,7 +333,7 @@ rp2()
 	trig.radius = 150;
 
 	wait 1;
-	thread sr\api\_map::createTriggerFx(trig, "red");
+	thread speedrun\_triggerfx::createTrigFx(trig, "red");
 
 	ori = spawn("script_origin",(4134,-4345,108));
 

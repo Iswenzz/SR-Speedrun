@@ -1,8 +1,5 @@
 main()
 {
-trigger = spawn("trigger_radius", (12701.4, 2072.74, -143.875), 0, 300, 300);
-trigger.targetname = "endmap_trig";
-trigger.radius = 300;
 
 	maps\mp\_load::main();
 	// maps\mp\_teleport1::main();
@@ -66,12 +63,12 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////

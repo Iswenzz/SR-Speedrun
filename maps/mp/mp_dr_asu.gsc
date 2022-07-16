@@ -3,11 +3,6 @@
 
 main()
 {
-level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
-	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
-	level.masterSpawn = spawn("script_origin", (-176,48,-52));
-level.masterSpawn.angles = level.spawn["allies"][0].angles;
-level.masterSpawn placeSpawnPoint();
  	maps\mp\_load::main();
  	maps\mp\mp_dr_asu_sound_fx::main();
  
@@ -86,13 +81,13 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-	sr\api\_speedrun::createSecretWays("Secret Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
+	speedrun\_way_name::createWay("secret", "Secret Way", "1");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -542,7 +537,7 @@ secenter()
 		while(1)
 		{
 		level.secenter_trigger waittill( "trigger", player );
-		 player sr\api\_speedrun::changeWay("secret_0");
+		 player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
 		//player thread secret_timer();
 		
 		player SetOrigin( telejumporigin.origin );

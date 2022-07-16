@@ -3,11 +3,6 @@
 
 main()
 {
-level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
-	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
-	level.masterSpawn = spawn("script_origin", level.spawn["allies"][3].origin);
-level.masterSpawn.angles = level.spawn["allies"][3].angles;
-level.masterSpawn placeSpawnPoint();
 	maps\mp\_load::main();
 
 	game["allies"] = "sas";
@@ -62,12 +57,12 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////

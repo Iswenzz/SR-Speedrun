@@ -144,7 +144,7 @@ secret()
         player setorigin(targ.origin);
         player setplayerangles(targ.angles);
         player freezecontrols(0);
-		player sr\api\_speedrun::changeWay("secret_0");
+		player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
     }
 }
 
@@ -613,7 +613,8 @@ secret_exit()
         player setplayerangles(targ.angles);
         player freezecontrols(0);
 		
-		player thread sr\api\_speedrun::finishWay("secret_0");
+		if(isDefined(player.sr_secret))
+			player thread braxi\_mod::endTimer();
     }
 }
 

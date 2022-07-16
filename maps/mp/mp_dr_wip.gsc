@@ -20,10 +20,10 @@ main()
     thread watch1(trigger4);
     
 
-    //thread sr\api\_speedrun::createNormalWays("^6Sheep ^4Is ^6Cool");
-    thread sr\api\_map::createSpawn((-116,1,28), 40);
-    thread sr\api\_speedrun::createNormalWays("^6Sheep ^4Is ^6Cool;");
-    thread sr\api\_speedrun::createEndMap((-1160,1000,28), 120, 100);
+    //thread speedrun\_way_name::create_normal_way("^6Sheep ^4Is ^6Cool");
+    thread speedrun\_way_name::create_spawn((-116,1,28), 40);
+    thread speedrun\_way_name::create_normal_way("^6Sheep ^4Is ^6Cool;");
+    thread speedrun\_way_name::create_endmap((-1160,1000,28), 120, 100);
 
     thread onConnect();
     

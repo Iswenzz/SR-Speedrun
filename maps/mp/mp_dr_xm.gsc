@@ -8,9 +8,6 @@ _____________________________________________
 */
 main()
 {
-trigger = spawn("trigger_radius", (-10213, 2535.82, -1423.88), 0, 110, 120);
-trigger.targetname = "endmap_trig";
-trigger.radius = 110;
 	level._effect["default_explosion"] = loadfx( "explosions/default_explosion" );
 	level._effect["start"] = loadfx( "xm/start" );
 
@@ -102,12 +99,12 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////

@@ -123,13 +123,13 @@ main()
 	thread sniper2();
 	thread snipermodel();
 
-	thread sr\api\_map::way_connect(1,1);
+	thread speedrun\_way_name::way_connect(1,1);
 
 	box = getEnt("wepbox","targetname");
 	box delete();
 
 	secretorigin = getent("secretspot","targetname");
-	thread sr\api\_map::create_secret((-561,562,53),100,150,secretorigin.origin,secretorigin.angles[1],"unfreeze");
+	thread speedrun\_way_name::create_secret((-561,562,53),100,150,secretorigin.origin,secretorigin.angles[1],"unfreeze");
 
 	// wait 5;
 	// iprintln("[^5Aincrad^7] - Welcome To Sword Art Online!");

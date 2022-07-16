@@ -21,7 +21,7 @@ setupTeleport(trigger_targetname, location, angle) //feel free to use this.
 	{
 		trig waittill ("trigger",player);
         if(trig.targetname == "secrettrig"){
-            player sr\api\_speedrun::changeWay("secret_0");
+            player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
         }
         if(trig.targetname == "secretend"){
             player braxi\_mod::endTimer();

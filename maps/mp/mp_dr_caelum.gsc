@@ -9,10 +9,6 @@
 
 main()
 {
-level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
-	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
-	level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin);
-level.masterSpawn.angles = level.spawn["allies"][0].angles;
 	thread way_connect();
 	maps\mp\_load::main();
 	
@@ -130,12 +126,12 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
 	
     for(;;) 
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -220,7 +216,7 @@ fog()
 	
 	iprintlnbold("fog is coming up...");
 	SetExpFog(1,250,0.9,0.9,0.9,30);
-	//auch mï¿½glich ï¿½berall clouds big zu loopen!
+	//auch möglich überall clouds big zu loopen!
 	//visionSetNaked("fog",5);
 	*/
 }

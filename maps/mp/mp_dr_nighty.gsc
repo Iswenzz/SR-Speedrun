@@ -21,20 +21,20 @@
 
 main()
 {
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	thread sr\api\_speedrun::createSecretWays("^2Easy Secret;^1Hard Secret;");
+	thread speedrun\_way_name::create_normal_way("Normal Way;");
+	thread speedrun\_way_name::create_secret_way("^2Easy Secret;^1Hard Secret;");
 	maps\mp\_load::main();
  maps\mp\_compass::setupMiniMap("compass_map_mp_dr_nighty");
 
 eztp = getEnt("secret1easy_tp","targetname");
 htp = getEnt("secret1hard_tp","targetname");
 
-thread sr\api\_map::createSpawn((-11760, 2603, 78), 270);
+thread speedrun\_way_name::create_spawn((-11760, 2603, 78), 270);
 
-thread sr\api\_speedrun::createTeleporter((-11539, 2404, 76), 100, 150, 
-	eztp.origin, eztp.angles[1], "freeze", "green", "secret_0");
-thread sr\api\_speedrun::createTeleporter((-11986, 2404, 76), 100, 150, 
-	htp.origin, htp.angles[1], "freeze", "darkred", "secret_1");
+thread speedrun\_way_name::create_tp((-11539, 2404, 76), 100, 150, 
+	eztp.origin, eztp.angles[1], "freeze", "green", "s0");
+thread speedrun\_way_name::create_tp((-11986, 2404, 76), 100, 150, 
+	htp.origin, htp.angles[1], "freeze", "darkred", "s1");
 
  
  level._effect[ "bluepartic" ] = loadfx( "fire/custom_fire" );
@@ -1850,7 +1850,7 @@ hardend()
 		// player setOrigin(hztp.origin);
 		// player setPlayerAngles(hztp.angles);
 		/* [AUTO DELETE] player braxi\_rank::giveRankXP("", 800); */
-		player thread sr\api\_speedrun::finishWay("secret_1");
+		player thread speedrun\_way_name::finish_way("s1");
 		player notify("finished");
 	}
 }
@@ -1965,7 +1965,7 @@ easyend()
 		// player setOrigin(ez0tp.origin);
 		// player setPlayerAngles(ez0tp.angles);
 		/* [AUTO DELETE] player braxi\_rank::giveRankXP("", 500); */
-		player thread sr\api\_speedrun::finishWay("secret_0");
+		player thread speedrun\_way_name::finish_way("s0");
 		player notify("finished");
 	}
 }

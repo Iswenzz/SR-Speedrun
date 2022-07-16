@@ -1,18 +1,6 @@
 /* Script map supermario beta by MR-X*/
 main()
 {
-level.trapTriggers[level.trapTriggers.size] = getEnt("trig1", "targetname");
-level.trapTriggers[level.trapTriggers.size] = getEnt("trig2", "targetname");
-level.trapTriggers[level.trapTriggers.size] = getEnt("trig3", "targetname");
-level.trapTriggers[level.trapTriggers.size] = getEnt("trig4", "targetname");
-level.trapTriggers[level.trapTriggers.size] = getEnt("trig5", "targetname");
-level.trapTriggers[level.trapTriggers.size] = getEnt("trig6", "targetname");
-level.trapTriggers[level.trapTriggers.size] = getEnt("trig7", "targetname");
-level.trapTriggers[level.trapTriggers.size] = getEnt("trig8", "targetname");
-level.trapTriggers[level.trapTriggers.size] = getEnt("trig9", "targetname");
-trigger = spawn("trigger_radius", (293.538, -1472, 8.12501), 0, 40, 50);
-trigger.targetname = "endmap_trig";
-trigger.radius = 40;
 	//maps\mp\mp_deathrun_supermario_fx::main();
 	maps\mp\_load::main();
 	//maps\mp\_compass::setupMiniMap("compass_map_mp_deathrun_supermario");
@@ -46,11 +34,11 @@ trigger.radius = 40;
 way_connect()
 {
 	wait 0.05;
-	sr\api\_speedrun::createNormalWays("Normal Way;");
+	speedrun\_way_name::createWay("normal", "Normal Way", "1");
 	for(;;)
 	{
 		level waittill( "connected", player );
-		
+		player thread speedrun\_way_name::way_name();
 	}
 }
 //Copy Paste (and maybe edit) on every map GSC.

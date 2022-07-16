@@ -1,10 +1,5 @@
 main()
 {
-level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
-	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
-	level.masterSpawn = spawn("script_origin", level.spawn["allies"][3].origin);
-level.masterSpawn.angles = level.spawn["allies"][3].angles;
-level.masterSpawn placeSpawnPoint();
 
 	maps\mp\_load::main();
 
@@ -76,13 +71,13 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Easy Way;");
-    sr\api\_speedrun::createSecretWays("Hard Way;");
+    speedrun\_way_name::createWay("normal", "Easy Way", "1");
+    speedrun\_way_name::createWay("secret", "Hard Way", "1");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -204,7 +199,7 @@ teleport()
 			entTransporter[i] thread transporter(i);
 			// if(i == 4)
 			// {
-			// 	thread sr\api\_map::createTriggerFx(entTransporter[4], "secret");
+			// 	thread speedrun\_triggerfx::createTrigFx(entTransporter[4], "secret");
 			// }
 		}
 	}
@@ -216,9 +211,19 @@ transporter(i)
 	{
 		self waittill( "trigger", player );
 		
+		// iprintlnbold(i);
+		// iprintlnbold(self.target);
+
+		// if(!isDefined(player.secret_1_endtrig) && self.target == "auto19")
+		// {
+		// 	player.secret_1_endtrig = true;
+			
+		// 	if(isDefined(player.sr_secret))
+		// 		player thread braxi\_mod::endTimer();
+		// }
 		
 		if(self.target == "auto16")
-			player sr\api\_speedrun::changeWay("secret_0");
+			player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
 
 		entTarget = getEnt( self.target, "targetname" );
 		player setOrigin( entTarget.origin );

@@ -1,15 +1,15 @@
 main()
 {
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	thread sr\api\_speedrun::createSecretWays("Secret Way;");
-	thread sr\api\_map::createSpawn((25, 100, 76),360);
+	thread speedrun\_way_name::create_normal_way("Normal Way;");
+	thread speedrun\_way_name::create_secret_way("Secret Way;");
+	thread speedrun\_way_name::create_spawn((25, 100, 76),360);
 
  level._effect["fire_trap"] = loadfx( "custome/fire_trap" );
 	
     thread end();
 
-    thread sr\api\_speedrun::createTeleporter((235, -23, 76), 50, 15, (-4376, -5640, 573), 0, "freeze", "blue", "secret_0");
-    thread sr\api\_speedrun::createEndMap((-574, -3435, 269), 150, 15, "secret_0");
+    thread speedrun\_way_name::create_tp((235, -23, 76), 50, 15, (-4376, -5640, 573), 0, "freeze", "blue", "s0");
+    thread speedrun\_way_name::create_endmap((-574, -3435, 269), 150, 15, "s0");
 
 
 	addTriggerToList( "trigger_t_" );
@@ -28,17 +28,17 @@ main()
 	addTriggerToList( "weapon_trig" );
 
 	maps\mp\_load::main();
-	maps\mp\_teleport1::main();
-	maps\mp\_teleport2::main();
-	maps\mp\_teleport3::main();
-	maps\mp\_teleport4::main();
-	maps\mp\_teleport5::main();
-	maps\mp\_teleport6::main();
-	maps\mp\_teleport7::main();
-	// maps\mp\_teleport8::main();
-	maps\mp\_teleport9::main();
-	maps\mp\_teleport10::main();
-	maps\mp\_rotate::main();
+	maps\mp\mp_deathrun_industry\_teleport1::main();
+	maps\mp\mp_deathrun_industry\_teleport2::main();
+	maps\mp\mp_deathrun_industry\_teleport3::main();
+	maps\mp\mp_deathrun_industry\_teleport4::main();
+	maps\mp\mp_deathrun_industry\_teleport5::main();
+	maps\mp\mp_deathrun_industry\_teleport6::main();
+	maps\mp\mp_deathrun_industry\_teleport7::main();
+	// maps\mp\mp_deathrun_industry\_teleport8::main();
+	maps\mp\mp_deathrun_industry\_teleport9::main();
+	maps\mp\mp_deathrun_industry\_teleport10::main();
+	maps\mp\mp_deathrun_industry\_rotate::main();
 	
 	game["allies"] = "sas";
 	game["axis"] = "opfor";

@@ -5,9 +5,6 @@
 
 main()
 {
-trigger = spawn("trigger_radius", (14345.2, 520.546, -13671.9), 0, 160, 70);
-trigger.targetname = "endmap_trig";
-trigger.radius = 160;
      maps\mp\_load::main();
 	 	 
 	 game["allies"] = "marines";
@@ -60,13 +57,13 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-	sr\api\_speedrun::createSecretWays("Secret Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
+	speedrun\_way_name::createWay("secret", "Secret Way", "1");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -104,7 +101,7 @@ secret()
 	for(;;)
 	{
 	    trig waittill("trigger", player);
-	    player sr\api\_speedrun::changeWay("secret_0");
+	    player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
 		player setOrigin(target.origin);
 	}
 }

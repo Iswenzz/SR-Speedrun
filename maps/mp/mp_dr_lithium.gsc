@@ -1,8 +1,5 @@
 main()
 {
-trigger = spawn("trigger_radius", (6899.93, -2205.18, -223.875), 0, 120, 185);
-trigger.targetname = "endmap_trig";
-trigger.radius = 120;
 
 level.fire2 = loadFX("deathrun/fire2"); 	   
 maps\mp\_load::main();
@@ -86,14 +83,14 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
 	
     thread tp_1();
 
     for(;;) 
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 
@@ -105,7 +102,7 @@ tp_1()
 
 	wait 1;
 	trig.radius = 100;
-	thread sr\api\_map::createTriggerFx(trig, "endtrig");
+	thread speedrun\_triggerfx::createTrigFx(trig, "endtrig");
 
 	for(;;)
 	{

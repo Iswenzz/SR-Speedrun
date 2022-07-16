@@ -5,9 +5,6 @@ xfire: paap15
 */
 main()
 {
-trigger = spawn("trigger_radius", (-612.406, -2376.85, -2087.88), 0, 75, 95);
-trigger.targetname = "endmap_trig";
-trigger.radius = 75;
      maps\mp\_load::main();
 	 maps\mp\mp_deathrun_island\teleport::main();
 	 //maps\mp\mp_deathrun_island\traps::main();
@@ -56,13 +53,13 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Island Way;");
-	sr\api\_speedrun::createSecretWays("Secret Way;");
+    speedrun\_way_name::createWay("normal", "Island Way", "1");
+	speedrun\_way_name::createWay("secret", "Secret Way", "1");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
 
     }
 }

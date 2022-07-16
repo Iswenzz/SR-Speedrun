@@ -23,11 +23,12 @@ transporter(i)
 		{
 			player.secret_1_endtrig = true;
 			
-			player thread sr\api\_speedrun::finishWay("secret_0");
+			if(isDefined(player.sr_secret))
+				player thread braxi\_mod::endTimer();
 		}
 		if(!isDefined(player.secret_1) && self.target == "gohere11")
 		{
-			player sr\api\_speedrun::changeWay("secret_0");
+			player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
 			player.secret_1 = true;
 			entTarget = getEnt( self.target, "targetname" );
 			player setOrigin( entTarget.origin );

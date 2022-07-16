@@ -1,8 +1,5 @@
 main()//Made by Phill580
 {
-trigger = spawn("trigger_radius", (553, -611, 92), 0, 300, 300);
-trigger.targetname = "endmap_trig";
-trigger.radius = 300;
           maps\mp\_load::main();
 
           PreCacheItem("brick_blaster_mp");
@@ -34,12 +31,12 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////

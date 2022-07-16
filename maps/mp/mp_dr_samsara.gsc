@@ -1,14 +1,14 @@
 main()
 {
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread speedrun\_way_name::create_normal_way("Normal Way;");
+	thread speedrun\_way_name::create_secret_way("Secret Way;");
 	maps\mp\_load::main();	
 	
 
-thread sr\api\_map::createSpawn((4386, 1, -2034), 360);
-thread sr\api\_speedrun::createEndMap((22320, 4971, -1716), 100, 150);
-thread sr\api\_speedrun::createTeleporter((4399, 324, -2034), 100, 150, 
-	(-1055, -1640, -1545), 360, "freeze", "blue", "secret_0");
+thread speedrun\_way_name::create_spawn((4386, 1, -2034), 360);
+thread speedrun\_way_name::create_endmap((22320, 4971, -1716), 100, 150);
+thread speedrun\_way_name::create_tp((4399, 324, -2034), 100, 150, 
+	(-1055, -1640, -1545), 360, "freeze", "blue", "s0");
 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
@@ -371,7 +371,7 @@ safe_ball_teleport()
 	while(1)
     	{
         trig waittill ("trigger", player);       
-           player thread sr\api\_speedrun::finishWay("secret_0");
+           player thread speedrun\_way_name::finish_way("s0");
 	// player SetOrigin(end.origin);
  //        player SetPlayerAngles( end.angles );
 	/* [AUTO DELETE] iPrintlnBold( " ^6" + player.name + " ^5Finished ^24^32^10" ); */

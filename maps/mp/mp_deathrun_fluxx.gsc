@@ -5,13 +5,6 @@
 //Enjoy
 main()
 {
-level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
-	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
-	level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin);
-level.masterSpawn.angles = (0,90,0);
-trigger = spawn("trigger_radius", (-1663.35, 16682.4, -143.875), 0, 210, 75);
-trigger.targetname = "endmap_trig";
-trigger.radius = 210;
 	thread way_connect();
      maps\mp\_load::main();
 	 level.blood = loadFX("deathrun/blood");
@@ -83,7 +76,7 @@ sr_tp()
 	trig = spawn("trigger_radius",(-1667,8608,-276),0,150,150);
 	trig.radius = 150;
 	wait 1;
-	thread sr\api\_map::createTriggerFx(trig, "red");
+	thread speedrun\_triggerfx::createTrigFx(trig, "red");
 
 	for(;;)
 	{
@@ -99,13 +92,13 @@ way_connect()
 	
     thread tp_1();
 
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-	sr\api\_speedrun::createSecretWays("Secret Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
+	speedrun\_way_name::createWay("secret", "Secret Way", "1");
 	
     for(;;) 
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 
@@ -116,7 +109,7 @@ tp_1()
 	trig = spawn("trigger_radius",(97,6,-180),0,75,150);
 	trig.radius = 75;
 	wait 1;
-	thread sr\api\_map::createTriggerFx(trig, "secret");
+	thread speedrun\_triggerfx::createTrigFx(trig, "secret");
 
 	for(;;)
 	{
@@ -130,7 +123,7 @@ tp_1_safe(ori)
 	self endon("death");
 	self endon("disconnect");
 
-	self sr\api\_speedrun::changeWay("secret_0");
+	self speedrun\_way_name::startSecret(); //Speedrun Copy Paste
 	self setOrigin(ori.origin);
 	self setPlayerangles(ori.angles);
 	self freezeControls(1);
@@ -837,7 +830,7 @@ trig waittill ("trigger", player);
 
 player SetOrigin(target.origin); 
 player SetPlayerAngles( target.angles ); 
-player sr\api\_speedrun::changeWay("secret_0");
+player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
 } 
 }
 
@@ -852,7 +845,8 @@ trig waittill ("trigger", player);
 
 player SetOrigin(target.origin); 
 player SetPlayerAngles( target.angles ); 
-player thread sr\api\_speedrun::finishWay("secret_0");
+if(isDefined(player.sr_secret))
+	player thread braxi\_mod::endTimer();
 } 
 }
 

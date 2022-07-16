@@ -28,9 +28,6 @@
 
 main()
 {
-trigger = spawn("trigger_radius", (3492.48, 3184.86, 32.125), 0, 65, 75);
-trigger.targetname = "endmap_trig";
-trigger.radius = 65;
 	maps\mp\_load::main();
 
 	game["allies"] = "sas";
@@ -55,12 +52,12 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////

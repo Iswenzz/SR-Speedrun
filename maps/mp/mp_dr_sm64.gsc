@@ -34,17 +34,17 @@ main()
 	setDvar("bg_falldamagemaxheight", 2000000 );
 	setDvar("bg_falldamageminheight", 1500000 );
 
-	thread sr\api\_map::createSpawn((-5963, -7623, 1452), 357);
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	thread sr\api\_speedrun::createSecretWays("^5Slide Secret;^1Hard Secret;");
+	thread speedrun\_way_name::create_spawn((-5963, -7623, 1452), 357);
+	thread speedrun\_way_name::create_normal_way("Normal Way;");
+	thread speedrun\_way_name::create_secret_way("^5Slide Secret;^1Hard Secret;");
 
 	eztp = getEnt("secret_slide_tp","targetname");
-	thread sr\api\_speedrun::createTeleporter((-5992, -8082, 1452), 100, 150, 
-		eztp.origin, eztp.angles[1], "freeze", "cyan", "secret_0");
+	thread speedrun\_way_name::create_tp((-5992, -8082, 1452), 100, 150, 
+		eztp.origin, eztp.angles[1], "freeze", "cyan", "s0");
 	htp = getEnt("hardsecret_enter_tp","targetname");
-	thread sr\api\_speedrun::createTeleporter((-5748, -8070, 1452), 100, 150, 
-		htp.origin, htp.angles[1], "freeze", "darkred", "secret_1");
-	//thread sr\api\_speedrun::createSecretWays("Slide Secret;Hard Secret;"); // TODO
+	thread speedrun\_way_name::create_tp((-5748, -8070, 1452), 100, 150, 
+		htp.origin, htp.angles[1], "freeze", "darkred", "s1");
+	//thread speedrun\_way_name::create_secret_way("Slide Secret;Hard Secret;"); // TODO
 
 	level.eggmove = 0;
 	thread bigdoor1();
@@ -596,7 +596,7 @@ h1tp = getEnt("hardsecret_finish_tp","targetname");
 	for(;;)
 	{
 	h1f waittill("trigger",player);
-	player thread sr\api\_speedrun::finishWay("secret_1");
+	player thread speedrun\_way_name::finish_way("s1");
 	// player notify("finished");
 	// player braxi\_rank::giveRankXp("", 600);
 	// iprintlnbold( player.name + " ^3Finished ^1HARD ^7Secret ^21 !!!!" );
@@ -613,7 +613,7 @@ h2tp = getEnt("hardsecret_finish_tp","targetname");
 	for(;;)
 	{
 	h2f waittill("trigger",player);
-	player thread sr\api\_speedrun::finishWay("secret_1");
+	player thread speedrun\_way_name::finish_way("s1");
 	// player notify("finished");
 	// player braxi\_rank::giveRankXp("", 800);
 	// iprintlnbold( player.name + " ^3Finished ^1HARD ^7Secret ^12 !!!!" );
@@ -757,7 +757,7 @@ slidefinishtp = getEnt("warp1_aftersecret","targetname");
 	{
 		easyfinish waittill( "trigger", user );
 
-			user thread sr\api\_speedrun::finishWay("secret_0");
+			user thread speedrun\_way_name::finish_way("s0");
 		// if( !user isReallyAlive() || user.pers["team"] == "axis" || isDefined( user.finishedEasySecret ) )
 		// 	continue;
 

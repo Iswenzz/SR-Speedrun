@@ -7,23 +7,23 @@
 
 main()
 {
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	thread sr\api\_speedrun::createSecretWays("^2Easy Secret;^1Hard Secret");
+	thread speedrun\_way_name::create_normal_way("Normal Way;");
+	thread speedrun\_way_name::create_secret_way("^2Easy Secret;^1Hard Secret");
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
+		thread speedrun\_way_name::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 	maps\mp\_load::main(); 
 
 	//<-- End Rooms -->
 
-	thread sr\api\_map::createSpawn((-517, -930, 124), 90);
+	thread speedrun\_way_name::create_spawn((-517, -930, 124), 90);
 
 	tele1 = getEnt("e_r_1", "targetname");
-	thread sr\api\_speedrun::createTeleporter((-737, -836, 124), 100, 150, 
-		tele1.origin, tele1.angles[1], "freeze", "green", "secret_0");
+	thread speedrun\_way_name::create_tp((-737, -836, 124), 100, 150, 
+		tele1.origin, tele1.angles[1], "freeze", "green", "s0");
 	tele2 = getEnt("h_r_1", "targetname");
-	thread sr\api\_speedrun::createTeleporter((-318, -836, 124), 100, 150, 
-		tele2.origin, tele2.angles[1], "freeze", "darkred", "secret_1");
+	thread speedrun\_way_name::create_tp((-318, -836, 124), 100, 150, 
+		tele2.origin, tele2.angles[1], "freeze", "darkred", "s1");
 
 	game["allies"] = "sas";
 	game["axis"] = "russian";
@@ -1096,7 +1096,7 @@ easy_finish()
 			// player.secretTimer destroy();
 			// player setOrigin(tele1.origin);
 			// player setPlayerAngles(tele1.angles);
-			player thread sr\api\_speedrun::finishWay("secret_0");
+			player thread speedrun\_way_name::finish_way("s0");
 			/* [AUTO DELETE] wait 0.01; */
 		}
 }
@@ -1539,7 +1539,7 @@ hard_finish()
 			// player setOrigin(tele1.origin);
 			// player setPlayerAngles(tele1.angles);
 			/* [AUTO DELETE] wait 0.01; */
-			player thread sr\api\_speedrun::finishWay("secret_1");
+			player thread speedrun\_way_name::finish_way("s1");
 		}
 }
 

@@ -24,16 +24,16 @@ main()
         precacheitem ("knife_mp");
         precacheitem ("raygun_mp");
 
-        thread sr\api\_speedrun::createNormalWays("Normal Way;");
-        thread sr\api\_speedrun::createSecretWays("Easy Secret;Hard Secret;");
+        thread speedrun\_way_name::create_normal_way("Normal Way;");
+        thread speedrun\_way_name::create_secret_way("Easy Secret;Hard Secret;");
 
-        thread sr\api\_map::createSpawn((-727,309,60),269);
+        thread speedrun\_way_name::create_spawn((-727,309,60),269);
 
-        thread sr\api\_speedrun::createTeleporter((-1007, 299, 60), 90, 15, (-479, -1478, -5828), 90, "freeze", "blue", "secret_0");
-        thread sr\api\_speedrun::createTeleporter((-502, 288, 60), 80, 15, (-9502, 4849, -5924), 0, "freeze", "red", "secret_1");
+        thread speedrun\_way_name::create_tp((-1007, 299, 60), 90, 15, (-479, -1478, -5828), 90, "freeze", "blue", "s0");
+        thread speedrun\_way_name::create_tp((-502, 288, 60), 80, 15, (-9502, 4849, -5924), 0, "freeze", "red", "s1");
 
-        thread sr\api\_speedrun::createEndMap((2655.22, 1895.58, -7503.88), 180, 80, "secret_0");
-        thread sr\api\_speedrun::createEndMap((-10431.3, -1686.65, -9007.88), 170, 80, "secret_1");
+        thread speedrun\_way_name::create_endmap((2655.22, 1895.58, -7503.88), 180, 80, "s0");
+        thread speedrun\_way_name::create_endmap((-10431.3, -1686.65, -9007.88), 170, 80, "s1");
        
         thread start_door();
         //thread credits();

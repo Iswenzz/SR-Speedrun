@@ -1,10 +1,10 @@
 /*
 
-  _|_|_|            _|      _|      _|                  _|
-_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|
-  _|_|    _|    _|      _|          _|        _|    _|  _|      _|
-      _|  _|    _|    _|  _|        _|        _|    _|  _|    _|
-_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|
+  _|_|_|            _|      _|      _|                  _|            
+_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|  
+  _|_|    _|    _|      _|          _|        _|    _|  _|      _|    
+      _|  _|    _|    _|  _|        _|        _|    _|  _|    _|      
+_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|  
 
 Map and GSC Made By SuX Lolz.
 
@@ -25,14 +25,14 @@ main()
 	maps\mp\_load::main();
 	maps\mp\enter_teleport\_teleport::main();
 	maps\mp\_compass::setupMiniMap("compass_mp_sr_pure_strafe");
-
+ 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-
+ 
 	setdvar("r_specularcolorscale","1");
 	setdvar("compassmaxrange","1600");
 	setdvar("r_glowbloomintensity0",".1");
@@ -52,16 +52,16 @@ main()
 way_connect()
 {
     wait 0.05;
-
-	sr\api\_speedrun::createNormalWays("Normal Way;");
-	sr\api\_speedrun::createSecretWays("Secret Way;");
+	
+	speedrun\_way_name::createWay("normal", "Normal Way", "1");
+	speedrun\_way_name::createWay("secret", "Secret Way", "1");
 
 	thread secret_1();
-
-    for(;;)
+	
+    for(;;) 
     {
         level waittill( "connected", player );
-
+        player thread speedrun\_way_name::way_name();
         player tweak_once();
     }
 }
@@ -91,7 +91,7 @@ secret_1()
 
 	wait 1;
 	trig.radius = 80;
-	thread sr\api\_map::createTriggerFx(trig, "secret");
+	thread speedrun\_triggerfx::createTrigFx(trig, "secret");
 
 	for(;;)
 	{
@@ -99,7 +99,7 @@ secret_1()
 
 		player setOrigin(ori.origin);
 		player setPlayerAngles(ori.angles);
-		player sr\api\_speedrun::changeWay("secret_0");
+		player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
 	}
 }
 
@@ -111,7 +111,8 @@ secret_1_end()
 	{
 		trig waittill("trigger",player);
 
-		player thread sr\api\_speedrun::finishWay("secret_0");
+		if(isDefined(player.sr_secret) && player.sr_secret)
+			player thread braxi\_mod::endTimer();
 	}
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////

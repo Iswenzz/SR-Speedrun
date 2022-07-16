@@ -1,14 +1,6 @@
 //exec deatehrun.cfg +set fs_game Mods/deathrun_updated +set scr_game_playerwaittime 0 +set scr_game_matchstarttime 0 +exec deathrun.cfg +developer 0 +devmap mp_deathrun_skypillar
 main()
 {
-level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
-	level.spawn["axis"] = getEntArray("mp_activator_spawn", "classname");
-	level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin);
-level.masterSpawn.angles = level.spawn["allies"][0].angles;
-level.masterSpawn placeSpawnPoint();
-trigger = spawn("trigger_radius", (-2044.31, -338.131, 1057.13), 0, 96, 48);
-trigger.targetname = "endmap_trig";
-trigger.radius = 96;
 	maps\mp\_load::main();
 	
 	// ambientPlay("ambient1");
@@ -95,13 +87,13 @@ way_connect()
 {
     wait 0.05;
 	
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-	sr\api\_speedrun::createSecretWays("Secret Way;");
+    speedrun\_way_name::createWay("normal", "Normal Way", "1");
+	speedrun\_way_name::createWay("secret", "Secret Way", "1");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        
+        player thread speedrun\_way_name::way_name();
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -158,7 +150,7 @@ creatorcredit()
 wait(10);
 thread drawInformation( 800, 0.8, 1, "Skypillar" );
 wait(4);
-thread drawInformation( 800, 0.8, 1, "ï¿½ Wingzor & Paradise" );
+thread drawInformation( 800, 0.8, 1, "© Wingzor & Paradise" );
 wait(4);
 }
 
@@ -719,7 +711,7 @@ for(;;)
 triggersecrettele waittill("trigger", player);
 player SetOrigin( level.secretenterorigin.origin );
 player setplayerangles( level.secretenterorigin.angles );
-player sr\api\_speedrun::changeWay("secret_0");
+player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
 }
 }
 

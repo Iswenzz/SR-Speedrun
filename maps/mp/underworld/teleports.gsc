@@ -233,7 +233,8 @@ teleport_secret_9()
 		trigger waittill ("trigger", player);
 		
 		// player iprintlnbold ("^2You finished the secret room!");
-		player thread sr\api\_speedrun::finishWay("secret_0");
+		if(isDefined(player.sr_secret))
+			player thread braxi\_mod::endTimer();
 	}
 }
 

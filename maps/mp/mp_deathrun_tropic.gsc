@@ -27,11 +27,11 @@ main()
 	// spawn auto placement
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin,
+		thread speedrun\_way_name::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin,
 			auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 
 	
-thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread speedrun\_way_name::create_normal_way("Normal Way;");
 
  maps\mp\_load::main();
  
