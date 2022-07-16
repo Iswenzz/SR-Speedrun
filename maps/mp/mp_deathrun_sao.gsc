@@ -32,11 +32,11 @@ maps\mp\mp_deathrun_sao\legendchallange::main();
 	setdvar("bg_fallDamageMaxHeight","400");
 	setdvar("bg_fallDamageMinHeight","200");
 
-thread speedrun\_way_name::create_spawn((-246,512,60),270);
-thread speedrun\_way_name::create_normal_way("Dungen Way;City Way;Ruby Way;");
-thread speedrun\_way_name::create_secret_way("Secret Way;");
+thread sr\api\_map::createSpawn((-246,512,60),270);
+thread sr\api\_speedrun::createNormalWays("Dungen Way;City Way;Ruby Way;");
+thread sr\api\_speedrun::createSecretWays("Secret Way;");
 secretorigin = getent("secretspot","targetname");
-thread speedrun\_way_name::create_secret((-561,562,53),100,150,secretorigin.origin,secretorigin.angles[1],"unfreeze");
+thread sr\api\_speedrun::createTeleporter((-561,562,53),100,150,secretorigin.origin,secretorigin.angles[1],"unfreeze", "secret_0");
 
 thread secfinish();
 thread door_on_edge();
@@ -65,7 +65,7 @@ secfinish()
    for(;;)
     {   
      trig waittill("trigger", player);
-    player thread speedrun\_way_name::finish_way("s0");
+    player thread sr\api\_speedrun::finishWay("secret_0");
     }
     
 }
@@ -111,7 +111,7 @@ dungen()
 	while(true)
 	{
 		trig waittill("trigger", player);
-		player thread speedrun\_way_name::change_way("ns0");
+		player thread sr\api\_speedrun::changeWay("normal_0");
 		player setOrigin( spot.origin );
 		player setplayerangles( spot.angles );
 	}
@@ -124,7 +124,7 @@ rubypalace()
 	while(true)
 	{
 		trig waittill("trigger", player);
-		player thread speedrun\_way_name::change_way("ns1");
+		player thread sr\api\_speedrun::changeWay("normal_1");
 		player setOrigin( spot.origin );
 		player setplayerangles( spot.angles );
 	}
@@ -137,7 +137,7 @@ city()
 	while(true)
 	{
 		trig waittill("trigger", player);
-		player thread speedrun\_way_name::change_way("ns2");
+		player thread sr\api\_speedrun::changeWay("normal_2");
 		player setOrigin( spot.origin );
 		player setplayerangles( spot.angles );
 	}
@@ -186,7 +186,7 @@ dungenendtp()
 	while(true)
 	{
 		trig waittill("trigger", player);
-		player thread speedrun\_way_name::finish_way("ns0");
+		player thread sr\api\_speedrun::finishWay("normal_0");
 		player setOrigin( level.mapfinish.origin );
 		player setplayerangles( level.mapfinish.angles );
 	}
@@ -198,7 +198,7 @@ cityendtp()
 	for(;;)
 	{
 		trig waittill("trigger", player);
-		player thread speedrun\_way_name::finish_way("ns1");
+		player thread sr\api\_speedrun::finishWay("normal_1");
 		player setOrigin(level.mapfinish.origin);
 		player setplayerangles(level.mapfinish.angles);
 	}
@@ -210,7 +210,7 @@ rubyendtp()
 	for(;;)
 	{
 		trig waittill("trigger", player);
-		player thread speedrun\_way_name::finish_way("ns2");
+		player thread sr\api\_speedrun::finishWay("normal_2");
 		player setOrigin(level.mapfinish.origin);
 		player setplayerangles(level.mapfinish.angles);
 	}

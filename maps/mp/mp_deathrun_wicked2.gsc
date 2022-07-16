@@ -37,9 +37,9 @@ main()
 	
 	//Traps//
 	
-	thread speedrun\_way_name::create_normal_way("Normal Way");
-	thread speedrun\_way_name::create_spawn((-239,9,-260),359);
-	thread speedrun\_way_name::create_tp((-2696.49, -3553.9, 368.125), 130, 105, (-1555, -3481, 428), 269, "freeze");
+	thread sr\api\_speedrun::createNormalWays("Normal Way");
+	thread sr\api\_map::createSpawn((-239,9,-260),359);
+	thread sr\api\_speedrun::createTeleporter((-2696.49, -3553.9, 368.125), 130, 105, (-1555, -3481, 428), 269, "freeze");
 	//thread trap1();
 	//thread trap2();
 	//thread trap3_pushers();
@@ -826,6 +826,8 @@ Siirrapelaaja( kuka, i1, i2, i3, i4, aika)
 			ilma delete();
 			kuka.ilmassa = undefined;
 
+		kuka sr\api\_player::antiElevator(true);
+
 }
 
 Siirtaja1()
@@ -846,21 +848,21 @@ for(;;)
 	
 	if( siirtaja == 0)
 	{
-		pelaaja.disableAntiEle = true;
+		pelaaja sr\api\_player::antiElevator(false);
 		if( pelaaja istouching( trigger ) && !isDefined( pelaaja.ilmassa ) )
 		thread Siirrapelaaja( pelaaja, "ts1_air_11", "ts1_air_12", "ts1_air_13", "ts1_air_14", 0.45);
 	}
 
 	if( siirtaja == 1)
 	{
-		pelaaja.disableAntiEle = true;
+		pelaaja sr\api\_player::antiElevator(false);
 		if( pelaaja istouching( trigger ) && !isDefined( pelaaja.ilmassa ) )
 		thread Siirrapelaaja( pelaaja, "ts1_air_21", "ts1_air_22", "ts1_air_23", "ts1_air_24", 0.45);
 	}
 	
 	if( siirtaja == 2)
 	{
-		pelaaja.disableAntiEle = true;
+		pelaaja sr\api\_player::antiElevator(false);
 		if( pelaaja istouching( trigger ) && !isDefined( pelaaja.ilmassa ) )
 		thread Siirrapelaaja( pelaaja, "ts1_air_31", "ts1_air_32", "ts1_air_33", "ts1_air_34", 0.45);
 	}

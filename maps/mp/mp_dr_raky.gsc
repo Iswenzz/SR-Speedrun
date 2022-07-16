@@ -15,9 +15,9 @@ main()
 	setDvar("bg_falldamagemaxheight", 20000000 );
 	setDvar("bg_falldamageminheight", 15000000 );
 
-    thread speedrun\_way_name::create_spawn((-106,139,81),270);
-    thread speedrun\_way_name::create_normal_way("Normal Way;");
-    thread speedrun\_way_name::create_secret_way("^1Hard Way;^2Easy Way;");
+    thread sr\api\_map::createSpawn((-106,139,81),270);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("^1Hard Way;^2Easy Way;");
 
     thread startdoor();
     thread elevator();
@@ -63,7 +63,7 @@ tele1 = getEnt("hard_ori", "targetname");
 		{
 		trig waittill("trigger", player);
 
-        player thread speedrun\_way_name::change_way("s0");
+        player thread sr\api\_speedrun::changeWay("secret_0");
 		player setOrigin(tele1.origin);
 		player setPlayerAngles(tele1.angles);		
         
@@ -79,7 +79,7 @@ tele1 = getEnt("hard_finish_ori", "targetname");
 		{
 		trig waittill("trigger", player);
 
-        player thread speedrun\_way_name::finish_way("s0");
+        player thread sr\api\_speedrun::finishWay("secret_0");
 		player setOrigin(tele1.origin);
 		player setPlayerAngles(tele1.angles);		
         
@@ -95,7 +95,7 @@ tele1 = getEnt("easy_ori", "targetname");
 		{
 		trig waittill("trigger", player);
 
-        player thread speedrun\_way_name::change_way("s1");
+        player thread sr\api\_speedrun::changeWay("secret_1");
 		player setOrigin(tele1.origin);
 		player setPlayerAngles(tele1.angles);		
         
@@ -111,7 +111,7 @@ tele1 = getEnt("easy_finish_ori", "targetname");
 		{
 		trig waittill("trigger", player);
 
-        player thread speedrun\_way_name::finish_way("s1");
+        player thread sr\api\_speedrun::finishWay("secret_1");
 		player setOrigin(tele1.origin);
 		player setPlayerAngles(tele1.angles);		
         

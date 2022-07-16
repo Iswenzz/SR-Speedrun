@@ -37,9 +37,9 @@ main()
 	addTriggerToList("trig_spikes");
 
 
-    thread speedrun\_way_name::create_normal_way("Normal Way");
-    thread speedrun\_way_name::create_endmap((-815.254, 4860.54, 305.192), 0, 275, 10 );
-    thread speedrun\_way_name::create_spawn((-53,-244,60),88);
+    thread sr\api\_speedrun::createNormalWays("Normal Way");
+    thread sr\api\_speedrun::createEndMap((-815.254, 4860.54, 305.192), 0, 275, 10 );
+    thread sr\api\_map::createSpawn((-53,-244,60),88);
 	thread start_door();
 	thread map_mover();
 	thread garage();

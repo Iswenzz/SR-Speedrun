@@ -6,7 +6,7 @@
 main()
 {
 	maps\mp\_load::main();
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	game["allies"] = "sas";
 	game["axis"] = "russian";
 	game["attackers"] = "axis";

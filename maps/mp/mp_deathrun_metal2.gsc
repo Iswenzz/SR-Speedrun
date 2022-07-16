@@ -17,8 +17,8 @@ main()
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
       	
-    thread speedrun\_way_name::create_spawn((-80,19,76),180);
-    thread speedrun\_way_name::create_normal_way("Normal Way;");
+    thread sr\api\_map::createSpawn((-80,19,76),180);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
 	thread start();
 	thread trap2();

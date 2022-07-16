@@ -76,7 +76,7 @@ sr_tp()
 	trig = spawn("trigger_radius",(-1667,8608,-276),0,150,150);
 	trig.radius = 150;
 	wait 1;
-	thread speedrun\_triggerfx::createTrigFx(trig, "red");
+	thread sr\api\_map::createTriggerFx(trig, "red");
 
 	for(;;)
 	{
@@ -92,13 +92,13 @@ way_connect()
 	
     thread tp_1();
 
-    speedrun\_way_name::createWay("normal", "Normal Way", "1");
-	speedrun\_way_name::createWay("secret", "Secret Way", "1");
+    sr\api\_speedrun::createNormalWays("Normal Way;");
+	sr\api\_speedrun::createSecretWays("Secret Way;");
 	
     for(;;) 
     {
         level waittill( "connected", player );
-        player thread speedrun\_way_name::way_name();
+
     }
 }
 
@@ -109,7 +109,7 @@ tp_1()
 	trig = spawn("trigger_radius",(97,6,-180),0,75,150);
 	trig.radius = 75;
 	wait 1;
-	thread speedrun\_triggerfx::createTrigFx(trig, "secret");
+	thread sr\api\_map::createTriggerFx(trig, "secret");
 
 	for(;;)
 	{
@@ -123,7 +123,7 @@ tp_1_safe(ori)
 	self endon("death");
 	self endon("disconnect");
 
-	self speedrun\_way_name::startSecret(); //Speedrun Copy Paste
+	self sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste
 	self setOrigin(ori.origin);
 	self setPlayerangles(ori.angles);
 	self freezeControls(1);
@@ -830,7 +830,7 @@ trig waittill ("trigger", player);
 
 player SetOrigin(target.origin); 
 player SetPlayerAngles( target.angles ); 
-player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
+player sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste
 } 
 }
 
@@ -845,8 +845,7 @@ trig waittill ("trigger", player);
 
 player SetOrigin(target.origin); 
 player SetPlayerAngles( target.angles ); 
-if(isDefined(player.sr_secret))
-	player thread braxi\_mod::endTimer();
+player thread sr\api\_speedrun::finishWay("secret_0");
 } 
 }
 

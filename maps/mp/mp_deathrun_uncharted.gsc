@@ -100,15 +100,15 @@ way_connect()
 {
     wait 0.05;
     
-    speedrun\_way_name::createWay("normal", "Normal Way", "1");
-    speedrun\_way_name::createWay("secret", "Secret Way", "1");
+    sr\api\_speedrun::createNormalWays("Normal Way;");
+    sr\api\_speedrun::createSecretWays("Secret Way;");
 
     thread secret_1();
     
     for(;;) 
     {
         level waittill( "connected", player );
-        player thread speedrun\_way_name::way_name();
+
     }
 }
 
@@ -119,12 +119,12 @@ secret_1()
 
 	wait 1;
 	secret.radius = 100;
-	thread speedrun\_triggerfx::createTrigFx(secret, "secret");
+	thread sr\api\_map::createTriggerFx(secret, "secret");
 
 	while(1)
     {
 		secret waittill("trigger", player);
-		player speedrun\_way_name::startSecret();
+		player sr\api\_speedrun::changeWay("secret_0");
 		player SetPlayerAngles( origin.angles );
 	    player setOrigin( origin.origin );
 	}
@@ -568,7 +568,7 @@ secret()
 	while(1)
         {
 	secret waittill("trigger", player);
-	player speedrun\_way_name::startSecret();
+	player sr\api\_speedrun::changeWay("secret_0");
 			player SetPlayerAngles( origin.angles );
 	        player setOrigin( origin.origin );
 }	
@@ -653,8 +653,7 @@ secretend()
 	while(1)
         {
 	secretend waittill("trigger", player);
-	if(isDefined(player.sr_secret) && player.sr_secret)
-         player thread braxi\_mod::endTimer();
+player thread sr\api\_speedrun::finishWay("secret_0");
 	
 			// player SetPlayerAngles( origin.angles );
 	  //       player setOrigin( origin.origin );

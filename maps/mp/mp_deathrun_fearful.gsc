@@ -9,14 +9,14 @@ main()
 	for( i = 0; i < entTransporter.size; i++ )
 	entTransporter[i] 
 
-thread speedrun\_way_name::create_normal_way("Normal Way;");
-thread speedrun\_way_name::create_secret_way("Short Way;Secret Way;");
-thread speedrun\_way_name::create_spawn((-35,127,60),270);
-thread speedrun\_way_name::create_tp((113.205, 43.3896, 0.124999), 50, 35, (580, 7968, -852), 270, "freeze", "yellow", "s0");
-thread speedrun\_way_name::create_tp((-189.235, 45.48, 0.125), 50, 35, (1042, 325, -514), 270, "freeze", "darkred", "s1");
-thread speedrun\_way_name::create_endmap((-3169.31, 11666.3, -411.875), 100, 25, "ns0");
-thread speedrun\_way_name::create_endmap((604.504, 1967.92, -1163.88), 70, 40, "s0");
-thread speedrun\_way_name::create_endmap((2384.8, 258.146, -1647.88), 35, 15, "s1");
+thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread sr\api\_speedrun::createSecretWays("Short Way;Secret Way;");
+thread sr\api\_map::createSpawn((-35,127,60),270);
+thread sr\api\_speedrun::createTeleporter((113.205, 43.3896, 0.124999), 50, 35, (580, 7968, -852), 270, "freeze", "yellow", "secret_0");
+thread sr\api\_speedrun::createTeleporter((-189.235, 45.48, 0.125), 50, 35, (1042, 325, -514), 270, "freeze", "darkred", "secret_1");
+thread sr\api\_speedrun::createEndMap((-3169.31, 11666.3, -411.875), 100, 25, "normal_0");
+thread sr\api\_speedrun::createEndMap((604.504, 1967.92, -1163.88), 70, 40, "secret_0");
+thread sr\api\_speedrun::createEndMap((2384.8, 258.146, -1647.88), 35, 15, "secret_1");
 
 thread tp1();
 thread tp2();
@@ -146,7 +146,7 @@ tp1()
 	ori_t = getEnt("gohere","targetname");
 
 	wait 1;
-	thread speedrun\_triggerfx::createTrigFx(trig, "blue");
+	thread sr\api\_map::createTriggerFx(trig, "blue");
 
 	for(;;)
 	{
@@ -164,7 +164,7 @@ tp2()
 	ori_t = getEnt("gohere36","targetname");
 
 	wait 1;
-	thread speedrun\_triggerfx::createTrigFx(trig, "blue");
+	thread sr\api\_map::createTriggerFx(trig, "blue");
 
 	for(;;)
 	{

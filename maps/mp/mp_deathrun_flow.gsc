@@ -3,16 +3,16 @@
 #include common_scripts\utility;
 main()
 {
-	thread speedrun\_way_name::create_spawn((-787,-127,76),89);
-	thread speedrun\_way_name::create_normal_way("Way 1;Way 2;Way 3;Way 4;Way 5;");
-	thread speedrun\_way_name::create_endmap((-1792.41, 8784.88, -239.875), 80, 100, "ns0");
-	thread speedrun\_way_name::create_endmap((-1319.51, 7104.87, 144.125), 100, 100, "ns1");
-	thread speedrun\_way_name::create_endmap((-797.81, 8495.07, 496.125), 95, 100, "ns2");
-	thread speedrun\_way_name::create_endmap((-312.31, 9363.85, 16.125), 125, 100, "ns3");
-	thread speedrun\_way_name::create_endmap((215.155, 9824.88, 352.125), 175, 100, "ns4");
-	thread speedrun\_way_name::create_tp((-1307.19, 2040.07, 144.125), 45, 100, (-1318, 2466, 204), 89,"freeze");
-	thread speedrun\_way_name::create_tp((-1300.21, 4424.46, 144.125), 105, 100, (-1317, 5349, 204), 90,"freeze");
-	thread speedrun\_way_name::create_tp((-799.761, 4271.27, 496.125), 95, 100, (-803, 5750, 556), 91,"freeze");
+	thread sr\api\_map::createSpawn((-787,-127,76),89);
+	thread sr\api\_speedrun::createNormalWays("Way 1;Way 2;Way 3;Way 4;Way 5;");
+	thread sr\api\_speedrun::createEndMap((-1792.41, 8784.88, -239.875), 80, 100, "normal_0");
+	thread sr\api\_speedrun::createEndMap((-1319.51, 7104.87, 144.125), 100, 100, "normal_1");
+	thread sr\api\_speedrun::createEndMap((-797.81, 8495.07, 496.125), 95, 100, "normal_2");
+	thread sr\api\_speedrun::createEndMap((-312.31, 9363.85, 16.125), 125, 100, "normal_3");
+	thread sr\api\_speedrun::createEndMap((215.155, 9824.88, 352.125), 175, 100, "normal_4");
+	thread sr\api\_speedrun::createTeleporter((-1307.19, 2040.07, 144.125), 45, 100, (-1318, 2466, 204), 89,"freeze");
+	thread sr\api\_speedrun::createTeleporter((-1300.21, 4424.46, 144.125), 105, 100, (-1317, 5349, 204), 90,"freeze");
+	thread sr\api\_speedrun::createTeleporter((-799.761, 4271.27, 496.125), 95, 100, (-803, 5750, 556), 91,"freeze");
 	
 	maps\mp\_load::main();
 
@@ -131,7 +131,7 @@ change_way1()
 	for(;;)
 	{
 		trigg waittill("trigger",player);
-		player thread speedrun\_way_name::change_way("ns0");
+		player thread sr\api\_speedrun::changeWay("normal_0");
 
 	}
 
@@ -143,7 +143,7 @@ change_way2()
 	for(;;)
 	{
 		trigg waittill("trigger",player);
-		player thread speedrun\_way_name::change_way("ns1");
+		player thread sr\api\_speedrun::changeWay("normal_1");
 
 	}
 
@@ -155,7 +155,7 @@ change_way3()
 	for(;;)
 	{
 		trigg waittill("trigger",player);
-		player thread speedrun\_way_name::change_way("ns2");
+		player thread sr\api\_speedrun::changeWay("normal_2");
 
 	}
 
@@ -167,7 +167,7 @@ change_way4()
 	for(;;)
 	{
 		trigg waittill("trigger",player);
-		player thread speedrun\_way_name::change_way("ns3");
+		player thread sr\api\_speedrun::changeWay("normal_3");
 
 	}
 
@@ -179,7 +179,7 @@ change_way5()
 	for(;;)
 	{
 		trigg waittill("trigger",player);
-		player thread speedrun\_way_name::change_way("ns4");
+		player thread sr\api\_speedrun::changeWay("normal_4");
 
 
 	}

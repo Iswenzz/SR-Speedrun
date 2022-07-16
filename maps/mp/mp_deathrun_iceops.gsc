@@ -1,13 +1,13 @@
 main() 
 {
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-  thread speedrun\_way_name::create_secret_way("Secret Way;");
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+  thread sr\api\_speedrun::createSecretWays("Secret Way;");
 
     thread weapon_fix();
 
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread speedrun\_way_name::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);	
+		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);	
        	maps\mp\_load::main();
 
 		maps\mp\_breakable_windows::main();
@@ -41,8 +41,8 @@ main()
 	
 
     entr = getEnt ("auto68", "targetname");
-    thread speedrun\_way_name::create_tp((316, -2160, -289), 100, 150, 
-      entr.origin, entr.angles[1], "freeze", "blue", "s0");
+    thread sr\api\_speedrun::createTeleporter((316, -2160, -289), 100, 150, 
+      entr.origin, entr.angles[1], "freeze", "blue", "secret_0");
 	
 	level._effect[ "exit_fx" ]		= loadfx( "deathrun/exit_fx" );
 	level.playerfx4 = loadfx ("misc/playerfx4");
@@ -75,7 +75,7 @@ entTransporter4 = getentarray("lasttele","targetname");
       entTransporter4[lp] thread Transporter4(); 
   }   
 	 
-   thread speedrun\_way_name::create_endmap((-1196, -32409, -1839), 200, 150);
+   thread sr\api\_speedrun::createEndMap((-1196, -32409, -1839), 200, 150);
 
     thread trap1();
 	thread trap2();
@@ -229,11 +229,11 @@ trap2()
 
 trap3_a()
 { 
-   s01 = getent("s1","targetname"); 
-   s02 = getent("s2","targetname");
-   s03 = getent("s3","targetname");
-   s04 = getent("s4","targetname");
-   s05 = getent("s5","targetname");
+   s01 = getent("secret_1","targetname"); 
+   s02 = getent("secret_2","targetname");
+   s03 = getent("secret_3","targetname");
+   s04 = getent("secret_4","targetname");
+   s05 = getent("secret_5","targetname");
    
    // while(1)
    // { 
@@ -1046,7 +1046,7 @@ secret2exit()
 		/* [AUTO DELETE] player giveMaxAmmo( "g36c_mp" ); */
 		/* [AUTO DELETE] player SwitchToWeapon( "g36c_mp" ); */
 		player playsound("mp_enemy_obj_captured");
-      player thread speedrun\_way_name::finish_way("s0");
+      player thread sr\api\_speedrun::finishWay("secret_0");
 	}
 }
 

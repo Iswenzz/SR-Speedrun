@@ -83,14 +83,14 @@ way_connect()
 {
     wait 0.05;
 	
-    speedrun\_way_name::createWay("normal", "Normal Way", "1");
+    sr\api\_speedrun::createNormalWays("Normal Way;");
 	
     thread tp_1();
 
     for(;;) 
     {
         level waittill( "connected", player );
-        player thread speedrun\_way_name::way_name();
+
     }
 }
 
@@ -102,7 +102,7 @@ tp_1()
 
 	wait 1;
 	trig.radius = 100;
-	thread speedrun\_triggerfx::createTrigFx(trig, "endtrig");
+	thread sr\api\_map::createTriggerFx(trig, "endtrig");
 
 	for(;;)
 	{

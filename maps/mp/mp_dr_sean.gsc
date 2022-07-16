@@ -40,11 +40,11 @@ main(){
 	addtriggertolist("trig_trap5");
 	addtriggertolist("trig_trap6");
 
-    thread speedrun\_way_name::create_normal_way("Normal Way");
-	thread speedrun\_way_name::create_secret_way("Secret Way");
-	thread speedrun\_way_name::create_spawn((-21,-640,68),90);
-	thread speedrun\_way_name::create_tp((-340.563, -589.741, 8.125), 75, 100, (-863, -3225, -324), 358, "freeze", "blue", "s0");
-	thread speedrun\_way_name::create_tp((-19.262, 6342.97, 0.125), 85, 110, (-36, 7733, 60), 90, "freeze");
+    thread sr\api\_speedrun::createNormalWays("Normal Way");
+	thread sr\api\_speedrun::createSecretWays("Secret Way");
+	thread sr\api\_map::createSpawn((-21,-640,68),90);
+	thread sr\api\_speedrun::createTeleporter((-340.563, -589.741, 8.125), 75, 100, (-863, -3225, -324), 358, "freeze", "blue", "secret_0");
+	thread sr\api\_speedrun::createTeleporter((-19.262, 6342.97, 0.125), 85, 110, (-36, 7733, 60), 90, "freeze");
 	//thread msg();
 	thread startDoor();
 	//thread platform();
@@ -216,7 +216,7 @@ sec_exit()
 	for(;;)
 		{
 			trig waittill("trigger", player);
-            player thread speedrun\_way_name::finish_way("s0");
+            player thread sr\api\_speedrun::finishWay("secret_0");
 		}
 }
 

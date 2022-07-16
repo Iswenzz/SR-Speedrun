@@ -1,17 +1,17 @@
 main()
 {
 
-thread speedrun\_way_name::create_normal_way("^2Easy Way;^1Hard Way");
-thread speedrun\_way_name::create_secret_way("^2Easy Secret;^1Hard Secret");
-thread speedrun\_way_name::create_spawn((-1069, -1034, 121), 90);
+thread sr\api\_speedrun::createNormalWays("^2Easy Way;^1Hard Way");
+thread sr\api\_speedrun::createSecretWays("^2Easy Secret;^1Hard Secret");
+thread sr\api\_map::createSpawn((-1069, -1034, 121), 90);
 
-	thread speedrun\_way_name::create_tp((-818, -851, 121), 100, 150, 
-		(-3550, -4793, 1486), 270, "freeze", "green", "s0");
+	thread sr\api\_speedrun::createTeleporter((-818, -851, 121), 100, 150, 
+		(-3550, -4793, 1486), 270, "freeze", "green", "secret_0");
 
-	thread speedrun\_way_name::create_tp((-1314, -777, 121), 100, 150, 
-		(5180, -8305, 1948), 90, "freeze", "darkred", "s1");
+	thread sr\api\_speedrun::createTeleporter((-1314, -777, 121), 100, 150, 
+		(5180, -8305, 1948), 90, "freeze", "darkred", "secret_1");
 
-thread speedrun\_way_name::create_tp((13476, -1683, 572), 100, 150, 
+thread sr\api\_speedrun::createTeleporter((13476, -1683, 572), 100, 150, 
 	(14853, -1680, 572), 360, "freeze");
 
  maps\mp\_load::main();
@@ -1019,7 +1019,7 @@ easytp()
 		trig waittill("trigger", player);
 
 		player setOrigin(tp.origin);
-		player thread speedrun\_way_name::change_way("ns0");
+		player thread sr\api\_speedrun::changeWay("normal_0");
 	}
  
 }
@@ -1246,7 +1246,7 @@ secret2_end()
 	{
 		trig waittill("trigger", player);
 		// wait 0.3;
-		player thread speedrun\_way_name::finish_way("s1");
+		player thread sr\api\_speedrun::finishWay("secret_1");
 		// player setOrigin(tp.origin);
 		/* [AUTO DELETE] iprintlnbold("^1"+player.name+" ^7Finished The ^1Second ^7Secret"); */
 
@@ -1352,7 +1352,7 @@ hardtp()
 	{
 		trig waittill("trigger", player);
 		player setOrigin(tp.origin);
-		player thread speedrun\_way_name::change_way("ns1");
+		player thread sr\api\_speedrun::changeWay("normal_1");
 	}
 
 }
@@ -1614,7 +1614,7 @@ finisheasysecret()
 		// wait 0.5;
 		// player setOrigin(tp.origin);
 		// player setplayerangles(tp.angles);
-		player thread speedrun\_way_name::finish_way("s0");
+		player thread sr\api\_speedrun::finishWay("secret_0");
 		/* [AUTO DELETE] iprintlnbold("^1"+player.name+" ^7Finished the ^1First ^7Secret"); */
 	}
 }

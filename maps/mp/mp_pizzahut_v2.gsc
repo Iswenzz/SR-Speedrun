@@ -13,16 +13,16 @@ main()
 	
 	
 	///////SR Stuff`
-	thread speedrun\_way_name::create_normal_way("Normal Way;Easy Way;Inter Way;Hard Way");
-	thread speedrun\_way_name::create_spawn((26754,2631,2572),360);
-	thread speedrun\_way_name::create_tp((26755, 3004, 2572), 60, 80, (26960, -10564, 2330), 359, "freeze", "blue", "ns1");
-	thread speedrun\_way_name::create_tp((26663, 2277, 2572), 60, 80, (19795, -1983, -3062), 268, "freeze", "blue", "ns2");
-	thread speedrun\_way_name::create_tp((9173, -1170, -6659), 60, 80, (11931, -632, -6797), 359, "freeze", "blue", "ns2");
-	thread speedrun\_way_name::create_tp((26846, 2280, 2572), 60, 80, (22301, 4646, -1002), 270, "freeze", "red", "ns3");
-	thread speedrun\_way_name::create_endmap((27652.6, -9902.94, -18123.9),70,5, "ns2");
-	thread speedrun\_way_name::create_endmap((21086.4, -968.617, -5030.38),115, 5,"ns1");
-	thread speedrun\_way_name::create_endmap((20607.9, -6476.54, -3141.88),55, 5,"ns3");
-	thread speedrun\_way_name::create_endmap((1569.05, -990.628, -17071.4),655, 5, "ns0");
+	thread sr\api\_speedrun::createNormalWays("Normal Way;Easy Way;Inter Way;Hard Way");
+	thread sr\api\_map::createSpawn((26754,2631,2572),360);
+	thread sr\api\_speedrun::createTeleporter((26755, 3004, 2572), 60, 80, (26960, -10564, 2330), 359, "freeze", "blue", "normal_1");
+	thread sr\api\_speedrun::createTeleporter((26663, 2277, 2572), 60, 80, (19795, -1983, -3062), 268, "freeze", "blue", "normal_2");
+	thread sr\api\_speedrun::createTeleporter((9173, -1170, -6659), 60, 80, (11931, -632, -6797), 359, "freeze", "blue", "normal_2");
+	thread sr\api\_speedrun::createTeleporter((26846, 2280, 2572), 60, 80, (22301, 4646, -1002), 270, "freeze", "red", "normal_3");
+	thread sr\api\_speedrun::createEndMap((27652.6, -9902.94, -18123.9),70,5, "normal_2");
+	thread sr\api\_speedrun::createEndMap((21086.4, -968.617, -5030.38),115, 5,"normal_1");
+	thread sr\api\_speedrun::createEndMap((20607.9, -6476.54, -3141.88),55, 5,"normal_3");
+	thread sr\api\_speedrun::createEndMap((1569.05, -990.628, -17071.4),655, 5, "normal_0");
 	
 	
 

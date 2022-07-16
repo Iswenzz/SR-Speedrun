@@ -6,7 +6,7 @@ main()
 
     auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 if(auto_spawn.size > 0)
-	thread speedrun\_way_name::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin,
+	thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin,
 		auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 
 
@@ -30,7 +30,7 @@ if(auto_spawn.size > 0)
 	thread xm();
 	
 	
-	thread speedrun\_way_name::create_normal_way("Nonce");
+	thread sr\api\_speedrun::createNormalWays("Nonce");
 
 
  

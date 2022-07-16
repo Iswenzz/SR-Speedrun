@@ -23,8 +23,8 @@
 	setDvar("bg_falldamageminheight", 15000000 );
 
 
-   thread speedrun\_way_name::create_normal_way("Normal Way;");
-    thread speedrun\_way_name::create_secret_way("190 Secret;210 Secret;");
+   thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("190 Secret;210 Secret;");
    thread secret1entrance();
    thread secret2entrance();
    thread secret1fail();
@@ -43,11 +43,11 @@ secret1entrance()
 	for(;;)
 	{
 		trig waittill("trigger", player);
-		if (player.sr_speed == 190)
+		if (player.speed == 190)
 		{
             player setPlayerAngles(ori.angles);
         player setOrigin(ori.origin);
-        player thread speedrun\_way_name::change_way("s0");
+        player thread sr\api\_speedrun::changeWay("secret_0");
         player.secret1 = 0;
         }
 	}
@@ -61,11 +61,11 @@ secret2entrance()
 	for(;;)
 	{
 	trig waittill("trigger", player);
-	if (player.sr_speed == 210)
+	if (player.speed == 210)
 	{
         player setPlayerAngles(ori.angles);
     player setOrigin(ori.origin);
-    player thread speedrun\_way_name::change_way("s1");
+    player thread sr\api\_speedrun::changeWay("secret_1");
     }
 	}
 
@@ -184,7 +184,7 @@ secret1end()
 	for(;;)
 	{
 		trig waittill("trigger", player);
-		player thread speedrun\_way_name::finish_way("s0");
+		player thread sr\api\_speedrun::finishWay("secret_0");
 	}
 }
 
@@ -195,7 +195,7 @@ secret2end()
 	for(;;)
 	{
 		trig waittill("trigger", player);
-	    player thread speedrun\_way_name::finish_way("s0");
+	    player thread sr\api\_speedrun::finishWay("secret_0");
 	}
 }
 

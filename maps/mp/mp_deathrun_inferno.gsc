@@ -9,15 +9,15 @@ main()
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
 
-	thread speedrun\_way_name::create_tp((4008.59, -1001.81, -351.375), 60, 10, (-10626, 4346, 317), 90, "freeze", "blue", "s0");
-	thread speedrun\_way_name::create_tp((4280.52, -993.475, -351.375), 60, 10, (-10596, 4230, 317), 0, "freeze", "red", "s1");
-	thread speedrun\_way_name::create_spawn((4092,-1379,-291),179);
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_secret_way("Easy Secret;Hard Secret;");
-	thread speedrun\_way_name::create_endmap((2842.12, 1646.42, 272.125), 275, 120, "ns0");
-	thread speedrun\_way_name::create_tp((460.247, -3209.09, -47.875), 90, 7, (236, -3230, 380), 179, "freeze", "ns0");
-	thread speedrun\_way_name::create_tp((-1288.44, -3216.06, 216.125), 90, 20, (-2631, -3216, 276), 180, "freeze", "ns0");
-	thread speedrun\_way_name::create_tp((-2907.25, 1655.54, 264.125), 95, 20, (-2009, 1672, 324), 360, "freeze", "ns0");
+	thread sr\api\_speedrun::createTeleporter((4008.59, -1001.81, -351.375), 60, 10, (-10626, 4346, 317), 90, "freeze", "blue", "secret_0");
+	thread sr\api\_speedrun::createTeleporter((4280.52, -993.475, -351.375), 60, 10, (-10596, 4230, 317), 0, "freeze", "red", "secret_1");
+	thread sr\api\_map::createSpawn((4092,-1379,-291),179);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Easy Secret;Hard Secret;");
+	thread sr\api\_speedrun::createEndMap((2842.12, 1646.42, 272.125), 275, 120, "normal_0");
+	thread sr\api\_speedrun::createTeleporter((460.247, -3209.09, -47.875), 90, 7, (236, -3230, 380), 179, "freeze", "normal_0");
+	thread sr\api\_speedrun::createTeleporter((-1288.44, -3216.06, 216.125), 90, 20, (-2631, -3216, 276), 180, "freeze", "normal_0");
+	thread sr\api\_speedrun::createTeleporter((-2907.25, 1655.54, 264.125), 95, 20, (-2009, 1672, 324), 360, "freeze", "normal_0");
 
 	// thread Traps();
 	thread OtherShit();
@@ -565,7 +565,7 @@ EasyEnd()
 	for(;;)
 	{
 		trig waittill ("trigger", player);
-		player thread speedrun\_way_name::finish_way("s0");
+		player thread sr\api\_speedrun::finishWay("secret_0");
 
 	}
 }
@@ -581,7 +581,7 @@ HardEnd()
 		
 		player setOrigin(hardend.origin);
 		player setPlayerAngles(hardend.angles );
-		player thread speedrun\_way_name::finish_way("s1");
+		player thread sr\api\_speedrun::finishWay("secret_1");
 
 	}
 }

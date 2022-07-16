@@ -53,10 +53,10 @@ main()
 	setdvar("bg_fallDamageMaxHeight","9999");
 	setdvar("bg_fallDamageMinHeight","9998");
 	
-	thread speedrun\_way_name::create_spawn((216,1368,76),0);
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_secret_way("Hard Secret;Easy Secret;");
-	thread speedrun\_way_name::create_tp((821, 1528, 76), 60, 80, (14935, 10821, 1756), 179, "freeze", "red", "s0");
+	thread sr\api\_map::createSpawn((216,1368,76),0);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Hard Secret;Easy Secret;");
+	thread sr\api\_speedrun::createTeleporter((821, 1528, 76), 60, 80, (14935, 10821, 1756), 179, "freeze", "red", "secret_0");
 	
 ////////////////		caches			\\\\\\\\\\\\\\\\\\\\\\	
 
@@ -192,7 +192,7 @@ secret()
     while(1)
     {
         trig waittill("trigger", player);
-		player thread speedrun\_way_name::change_way("s1");
+		player thread sr\api\_speedrun::changeWay("secret_1");
                    
         {
             player setOrigin( target.origin );
@@ -451,7 +451,7 @@ secrethardend()
             {
                 player setOrigin( target.origin );
                 player setPlayerAngles( target.angles );
-				player thread speedrun\_way_name::finish_way("s0");
+				player thread sr\api\_speedrun::finishWay("secret_0");
 	
             }
     }
@@ -577,7 +577,7 @@ easysecretend()
     while(1)
     {
 		trig waittill("trigger", player);
-		player thread speedrun\_way_name::finish_way("s1");
+		player thread sr\api\_speedrun::finishWay("secret_1");
                    
             {
 				iPrintLnBold (player.name + "Finished ^5Easy ^7Secret.");

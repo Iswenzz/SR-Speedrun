@@ -20,8 +20,8 @@ main()
     thread slide();
 	thread song1();
     thread song2();
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_spawn((126656.0, -126048.0, 828.0), 90);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_map::createSpawn((126656.0, -126048.0, 828.0), 90);
 }
 
 slide()

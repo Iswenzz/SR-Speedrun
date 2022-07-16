@@ -19,9 +19,9 @@ main()
     thread watch1(trigger3);
     thread watch1(trigger4);
     
-    thread speedrun\_way_name::create_spawn((-128,-2,28), 1);
-    thread speedrun\_way_name::create_normal_way("Normal Way;");
-    thread speedrun\_way_name::create_endmap((-5938.95, 67.307, 0.125002), 85, 10);
+    thread sr\api\_map::createSpawn((-128,-2,28), 1);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createEndMap((-5938.95, 67.307, 0.125002), 85, 10);
 
     thread onConnect();
     

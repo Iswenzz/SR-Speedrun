@@ -15,12 +15,12 @@ maps\mp\_load::main();
 	setdvar("r_glowbloomintensity1",".1");
 	setdvar("r_glowskybleedintensity0",".1");
 
-	thread speedrun\_way_name::create_spawn((230,1535,76),1);
-    thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_secret_way("Banana Way;");
-	thread speedrun\_way_name::create_tp((2066.02, 1550.5, 34.125), 50, 25, (1952, 1540, 252), 180, "freeze", "blue");
-	thread speedrun\_way_name::create_tp((502.587, 1802.51, 16.125), 60, 35, (1979, 1035, 496), 180, "freeze", "yellow", "s0");
-	thread speedrun\_way_name::create_endmap((-291.868, 1033.4, 436.125), 85, 35, "s0");
+	thread sr\api\_map::createSpawn((230,1535,76),1);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Banana Way;");
+	thread sr\api\_speedrun::createTeleporter((2066.02, 1550.5, 34.125), 50, 25, (1952, 1540, 252), 180, "freeze", "blue");
+	thread sr\api\_speedrun::createTeleporter((502.587, 1802.51, 16.125), 60, 35, (1979, 1035, 496), 180, "freeze", "yellow", "secret_0");
+	thread sr\api\_speedrun::createEndMap((-291.868, 1033.4, 436.125), 85, 35, "secret_0");
 
 	thread start();
 	thread movingplat();

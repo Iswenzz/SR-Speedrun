@@ -141,13 +141,13 @@ way_connect()
 {
     wait 0.05;
 	
-    speedrun\_way_name::createWay("normal", "Cherry Way", "1");
-	speedrun\_way_name::createWay("secret", "Secret Way", "1");
+    sr\api\_speedrun::createNormalWays("Cherry Way;");
+	sr\api\_speedrun::createSecretWays("Secret Way;");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        player thread speedrun\_way_name::way_name();
+
 
     }
 }
@@ -202,7 +202,7 @@ srct()
 	for(;;)
 	{
 		trig waittill ( "trigger", player );
-		player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
+		player sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste
 		player thread end_wait();
 		// player setplayerangles( end.angles, 3 );
 		// player setorigin( end.origin , 3 );
@@ -212,8 +212,7 @@ srct()
 end_wait()
 {
 	wait 0.05;
-	if(isDefined(self.sr_secret) && self.sr_secret)
-	self thread braxi\_mod::endTimer();
+self thread sr\api\_speedrun::finishWay("secret_0");
 }
 
 secsee()

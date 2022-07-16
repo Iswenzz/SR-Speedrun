@@ -4,7 +4,7 @@ main() {
 
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
     if(auto_spawn.size > 0)
-        thread speedrun\_way_name::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin,
+        thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin,
             auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 
 	setdvar( "r_specularcolorscale", "1"  );
@@ -15,8 +15,8 @@ main() {
 	setdvar("bg_fallDamageMaxHeight","9999999");
     setdvar("bg_fallDamageMinHeight","9999998");
 
-    thread speedrun\_way_name::create_normal_way("Normal Way;");
-    thread speedrun\_way_name::create_secret_way("Secret Way;");
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("Secret Way;");
 
 	thread teleport();
 	thread secret_enter();
@@ -45,7 +45,7 @@ secret_enter() {
 
     while( 1 ) {
         trig waittill("trigger", player);
-        player thread speedrun\_way_name::change_way("s0");
+        player thread sr\api\_speedrun::changeWay("secret_0");
         player SetPlayerAngles( dest.angles );
         player setOrigin( dest.origin );
     }    
@@ -68,7 +68,7 @@ secret_finish() {
 
     while( 1 ) {
         trig waittill("trigger", player);
-        player thread speedrun\_way_name::finish_way("s0");
+        player thread sr\api\_speedrun::finishWay("secret_0");
         player SetPlayerAngles( dest.angles );
         player setOrigin( dest.origin );
     }    

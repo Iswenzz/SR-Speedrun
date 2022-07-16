@@ -5,10 +5,10 @@ main()
 {
         maps\mp\_load::main();
 
-        thread speedrun\_way_name::create_spawn((-1009,536,604),359);
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-        thread speedrun\_way_name::create_secret_way("Secret Way;");
-        thread speedrun\_way_name::create_tp((-812.956, 795.077, 544.125), 95, 90, (-993, 2823, 828), 358, "freeze", "cyan", "s0");
+        thread sr\api\_map::createSpawn((-1009,536,604),359);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+        thread sr\api\_speedrun::createSecretWays("Secret Way;");
+        thread sr\api\_speedrun::createTeleporter((-812.956, 795.077, 544.125), 95, 90, (-993, 2823, 828), 358, "freeze", "cyan", "secret_0");
        
         thread trap1();
         thread trap2();
@@ -158,7 +158,7 @@ secret_end()
         for(;;)
         {
                 trig waittill ("trigger", user);
-                user thread speedrun\_way_name::finish_way("s0");
+                user thread sr\api\_speedrun::finishWay("secret_0");
 
         }
 }

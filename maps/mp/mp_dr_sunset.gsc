@@ -36,9 +36,9 @@ main()
 
 	PreCacheItem( "remington700_mp" );
 	
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_spawn((12,-10,68),89);
-    thread speedrun\_way_name::create_endmap((1640.16, 811.769, 343.825), 165, 170); 
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_map::createSpawn((12,-10,68),89);
+    thread sr\api\_speedrun::createEndMap((1640.16, 811.769, 343.825), 165, 170); 
 	thread Traps();
 	thread secret();
 	thread Old();

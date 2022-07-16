@@ -104,10 +104,10 @@ main()
 	//thread gap();
 	//thread pure_strafe();
 	//thread blocks();
-	thread speedrun\_way_name::create_spawn((-6,-92,60),90);
-	thread speedrun\_way_name::create_normal_way("Normal Way");
-	thread speedrun\_way_name::create_secret_way("Secret_Way");
-	thread speedrun\_way_name::create_tp((180.874, -30.3021, 0.125001), 50, 95, (7797, 1317, 414), 359, "freeze", "blue", "s0");
+	thread sr\api\_map::createSpawn((-6,-92,60),90);
+	thread sr\api\_speedrun::createNormalWays("Normal Way");
+	thread sr\api\_speedrun::createSecretWays("Secret_Way");
+	thread sr\api\_speedrun::createTeleporter((180.874, -30.3021, 0.125001), 50, 95, (7797, 1317, 414), 359, "freeze", "blue", "secret_0");
 	
 }
 
@@ -401,7 +401,7 @@ secret_end()
 		player braxi\_rank::giveRankXP("", 500);
 		player setOrigin( dest.origin );
 		player setplayerangles( dest.angles );
-		player thread speedrun\_way_name::finish_way("s0");
+		player thread sr\api\_speedrun::finishWay("secret_0");
 	}
 }
 
@@ -564,7 +564,7 @@ end()
 	{
 		trigger waittill ( "trigger", player );
 
-		player thread speedrun\_way_name::finish_way("ns0");
+		player thread sr\api\_speedrun::finishWay("normal_0");
 		player setOrigin( dest.origin );
 		player setplayerangles( dest.angles );
 	}

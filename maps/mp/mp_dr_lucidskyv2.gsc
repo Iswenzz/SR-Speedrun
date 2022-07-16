@@ -19,10 +19,10 @@ main() {
     preCacheItem( "m40a3_mp" );
     preCacheItem( "remington700_mp" );
 
-    thread speedrun\_way_name::create_normal_way("Normal Way");
-    thread speedrun\_way_name::create_secret_way("Secret Way");
-    thread speedrun\_way_name::create_spawn((-74,-9,60),360);
-    thread speedrun\_way_name::create_tp((452.335, 208.407, 0.125), 80, 80, (4071, 1945, 412), 134, "freeze", "blue", "s0");
+    thread sr\api\_speedrun::createNormalWays("Normal Way");
+    thread sr\api\_speedrun::createSecretWays("Secret Way");
+    thread sr\api\_map::createSpawn((-74,-9,60),360);
+    thread sr\api\_speedrun::createTeleporter((452.335, 208.407, 0.125), 80, 80, (4071, 1945, 412), 134, "freeze", "blue", "secret_0");
 
     // Other
     thread credits();
@@ -355,7 +355,7 @@ secret_finish() {
         iprintln( "^7Enjoy ^82K XP ");
         // player braxi\_rank::giveRankXp("trap_activation", 1000);
         // player braxi\_rank::giveRankXp("trap_activation", 1000);
-         player thread speedrun\_way_name::finish_way("s0");
+         player thread sr\api\_speedrun::finishWay("secret_0");
     }    
 }
 

@@ -49,8 +49,8 @@ main()
 	//ambientPlay("ambient_middleeast_ext"); 
 	
 	//////////////threads////////////////
-	thread speedrun\_way_name::create_normal_way("Normal Way");
-	thread speedrun\_way_name::create_spawn((498,-568,74), 92);
+	thread sr\api\_speedrun::createNormalWays("Normal Way");
+	thread sr\api\_map::createSpawn((498,-568,74), 92);
 	thread onConnected();
 	thread tourch_fire();
 	thread laser();

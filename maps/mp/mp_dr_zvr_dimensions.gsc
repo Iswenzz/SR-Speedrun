@@ -50,13 +50,13 @@ main()
 	precacheModel("viewhands_mw2_ranger");
 	
 	//Misc
-	thread speedrun\_way_name::create_normal_way("Normal Way");
-    thread speedrun\_way_name::create_secret_way("Secret Way");
-	thread speedrun\_way_name::create_spawn((7420,-8721,324),180);
-	thread speedrun\_way_name::create_tp((6612.88, -8703.59, 288.125), 475, 215, (3286, -2682, 92), 90, "freeze"); 
-	thread speedrun\_way_name::create_tp((3280.37, 3450.04, 224.125), 265, 215, (-5526, -2722, 92), 90, "freeze");
-    thread speedrun\_way_name::create_tp((-5564.51, 5415.39, 352.125), 390, 385, (-31004, -2669, 7580), 90, "freeze");
-    thread speedrun\_way_name::create_tp((-31023.3, 12575.3, 784.125), 400, 390, (-31220, 37981, 18946), 90, "freeze");
+	thread sr\api\_speedrun::createNormalWays("Normal Way");
+    thread sr\api\_speedrun::createSecretWays("Secret Way");
+	thread sr\api\_map::createSpawn((7420,-8721,324),180);
+	thread sr\api\_speedrun::createTeleporter((6612.88, -8703.59, 288.125), 475, 215, (3286, -2682, 92), 90, "freeze"); 
+	thread sr\api\_speedrun::createTeleporter((3280.37, 3450.04, 224.125), 265, 215, (-5526, -2722, 92), 90, "freeze");
+    thread sr\api\_speedrun::createTeleporter((-5564.51, 5415.39, 352.125), 390, 385, (-31004, -2669, 7580), 90, "freeze");
+    thread sr\api\_speedrun::createTeleporter((-31023.3, 12575.3, 784.125), 400, 390, (-31220, 37981, 18946), 90, "freeze");
 
 	//thread ab();
 	//thread vip_100();
@@ -1181,7 +1181,7 @@ secret_start()
 	 for(;;)
 	 {
 		 trig waittill("trigger", player);
-         player thread speedrun\_way_name::change_way("s0");
+         player thread sr\api\_speedrun::changeWay("secret_0");
 		 player setorigin(tele.origin);
 		 player setPlayerAngles (tele.angles);
 		 player freezeControls(1);
@@ -1199,7 +1199,7 @@ secret_end()
 	 for(;;)
 	 {
 		 trig waittill("trigger", player);
-         player thread speedrun\_way_name::finish_way("s0");
+         player thread sr\api\_speedrun::finishWay("secret_0");
 	 }
 }
 

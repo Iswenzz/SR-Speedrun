@@ -1,13 +1,13 @@
 main()
 {
-	thread speedrun\_way_name::create_normal_way("^2Easy Way;^1Hard Way;");
+	thread sr\api\_speedrun::createNormalWays("^2Easy Way;^1Hard Way;");
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread speedrun\_way_name::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
+		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 maps\mp\_load::main();
 setdvar( "r_specularcolorscale", "1" );
 
-thread speedrun\_way_name::create_endmap((1580, 1059, -364), 100, 150);
+thread sr\api\_speedrun::createEndMap((1580, 1059, -364), 100, 150);
 
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
@@ -274,7 +274,7 @@ transporter1()
                 player setplayerangles( entTarget.angles );
 
                 /* [AUTO DELETE] wait 0.1; */
-                player thread speedrun\_way_name::change_way("ns0");
+                player thread sr\api\_speedrun::changeWay("normal_0");
         }
 }
 
@@ -321,7 +321,7 @@ transporter3()
                 player setOrigin( entTarget.origin );
                 player setplayerangles( entTarget.angles );
                 /* [AUTO DELETE] wait 0.1; */
-                player thread speedrun\_way_name::change_way("ns1");
+                player thread sr\api\_speedrun::changeWay("normal_1");
         }
 }
 

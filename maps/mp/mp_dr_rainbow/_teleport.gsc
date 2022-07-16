@@ -14,16 +14,16 @@ transporter()
 		self waittill( "trigger", player );
 
 		if(self.target == "Vo1")
-			player thread speedrun\_way_name::change_way("ns1");
+			player thread sr\api\_speedrun::changeWay("normal_1");
 
 		if(self.target == "Jo1")
-			player thread speedrun\_way_name::change_way("ns2");
+			player thread sr\api\_speedrun::changeWay("normal_2");
 
 		if(self.target == "Oo1")
-			player thread speedrun\_way_name::change_way("ns3");
+			player thread sr\api\_speedrun::changeWay("normal_3");
 
 		if(self.target == "Ro1")
-			player thread speedrun\_way_name::change_way("ns4");
+			player thread sr\api\_speedrun::changeWay("normal_4");
 
 		entTarget = getEnt( self.target, "targetname" );
 		player setOrigin( entTarget.origin );

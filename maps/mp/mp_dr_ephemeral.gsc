@@ -22,12 +22,12 @@ main()
 	level.hardsecretxp = 250; //DONT CHANGE
 	level.impossible = 10000;
     
-    thread speedrun\_way_name::create_normal_way("Normal Way");
-    thread speedrun\_way_name::create_secret_way("Hard Secret;Easy Secret;");
-    thread speedrun\_way_name::create_spawn((-74,-9,60),360);
-    thread speedrun\_way_name::create_tp((452.335, 208.407, 0.125), 80, 80, (-27706, 12404, 1934), 222, "freeze", "darkred", "s0");
-    thread speedrun\_way_name::create_tp((456.802, -239.358, 0.125), 80, 80, (6594, -10694, 2012), 125, "freeze", "blue", "s1");
-    thread speedrun\_way_name::create_tp((-2864.63, 5696.1, -1519.88), 110, 105, (-3088, 5680, 180), 179, "freeze");
+    thread sr\api\_speedrun::createNormalWays("Normal Way");
+    thread sr\api\_speedrun::createSecretWays("Hard Secret;Easy Secret;");
+    thread sr\api\_map::createSpawn((-74,-9,60),360);
+    thread sr\api\_speedrun::createTeleporter((452.335, 208.407, 0.125), 80, 80, (-27706, 12404, 1934), 222, "freeze", "darkred", "secret_0");
+    thread sr\api\_speedrun::createTeleporter((456.802, -239.358, 0.125), 80, 80, (6594, -10694, 2012), 125, "freeze", "blue", "secret_1");
+    thread sr\api\_speedrun::createTeleporter((-2864.63, 5696.1, -1519.88), 110, 105, (-3088, 5680, 180), 179, "freeze");
     // thread music();
     thread startdoor();
 	// thread platform();
@@ -478,7 +478,7 @@ secretend() //if dont work then link
 		// player braxi\_rank::giveRankXp("trap_activation", level.hardsecretxp); //easily changable at top - wouldn't advise changing hard secret xp
 		player setOrigin( origin.origin );
 		player setplayerangles( origin.angles );
-        player thread speedrun\_way_name::finish_way("s1");
+        player thread sr\api\_speedrun::finishWay("secret_1");
         
     }
 
@@ -1188,7 +1188,7 @@ i_secretend() //if dont work then link
 		// player braxi\_rank::giveRankXp("trap_activation", level.impossible); //easily changable at top - wouldn't advise changing hard secret xp
 		player setOrigin( origin.origin );
 		player setplayerangles( origin.angles );
-         player thread speedrun\_way_name::finish_way("s0");
+         player thread sr\api\_speedrun::finishWay("secret_0");
 
     }
 }

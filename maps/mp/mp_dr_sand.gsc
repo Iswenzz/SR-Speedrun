@@ -22,7 +22,7 @@ main()
 	setDvar("bg_falldamagemaxheight", 99999999 );
 	setDvar("bg_falldamageminheight", 9999999 );
 
-	thread speedrun\_way_name::create_endmap((-10009,-8192,-2116), 250, 400);
+	thread sr\api\_speedrun::createEndMap((-10009,-8192,-2116), 250, 400);
 	
 	thread way_connect();
 	// thread message();
@@ -42,15 +42,15 @@ way_connect()
 {
     wait 0.05;
 	
-    speedrun\_way_name::createWay("normal", "Normal Way", "1");
-	speedrun\_way_name::createWay("secret", "Secret Way", "1");
+    sr\api\_speedrun::createNormalWays("Normal Way;");
+	sr\api\_speedrun::createSecretWays("Secret Way;");
 
 	thread secret_1();
 	
     for(;;)
     {
         level waittill( "connected", player );
-        player thread speedrun\_way_name::way_name();
+
         player thread onPlayerSpawn();
     }
 }
@@ -75,7 +75,7 @@ secret_trig()
 	while(isDefined(self) && !self isTouching(trig))
 		wait .05;
 	
-	self speedrun\_way_name::startSecret(); //Speedrun Copy Paste
+	self sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste
 }
 
 secret_1()
@@ -87,7 +87,7 @@ secret_1()
 	wait 1;
 	// trigger.inAir = true;
 	trigger.radius = 70;
-	thread speedrun\_triggerfx::createTrigFx(trigger, "secret");
+	thread sr\api\_map::createTriggerFx(trigger, "secret");
 	
 	while(1)
 	{
@@ -95,7 +95,7 @@ secret_1()
 	
 	    player SetPlayerAngles( target.angles );
         player setOrigin( target.origin );
-		player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
+		player sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste
 	}
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -303,7 +303,7 @@ secret_hard_fail1()
 		player setorigin(ori.origin);
 		player freezeControls(false);
 		wait 0.05;
-player.sr_secret = true;
+player changeWay("secret_0");
 }
 }
 
@@ -319,7 +319,7 @@ secret_hard_fail2()
 		player setorigin(ori.origin);
 		wait 0.05;
 		player freezeControls(false);
-player.sr_secret = true;
+player changeWay("secret_0");
 }
 }
 
@@ -335,7 +335,7 @@ secret_hard_fail3()
 		player setorigin(ori.origin);
 		player freezeControls(false);
 		wait 0.05;
-player.sr_secret = true;
+player changeWay("secret_0");
 }
 }
 
@@ -345,8 +345,7 @@ secret_hard_finish()
 	ori=getent("secret_hard_end_ori", "targetname");
 	while(1){
 		trig waittill("trigger", player);
-		if(isDefined(player.sr_secret))
-			player thread braxi\_mod::endTimer();
+player thread sr\api\_speedrun::finishWay("secret_0");
 	}
 }
 

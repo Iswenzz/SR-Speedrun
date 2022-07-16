@@ -14,10 +14,10 @@ setdvar("r_glowbloomintensity0",".1");
 setdvar("r_glowbloomintensity1",".1");
 setdvar("r_glowskybleedintensity0",".1");
 
-thread speedrun\_way_name::create_spawn((-33,-184,60),90);
-thread speedrun\_way_name::create_normal_way("Normal Way;");
-thread speedrun\_way_name::create_secret_way("Secret Way;");
-thread speedrun\_way_name::create_endmap((482.431, 5575.54, 912.125), 60, 15, "ns0");
+thread sr\api\_map::createSpawn((-33,-184,60),90);
+thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread sr\api\_speedrun::createSecretWays("Secret Way;");
+thread sr\api\_speedrun::createEndMap((482.431, 5575.54, 912.125), 60, 15, "normal_0");
 
 thread porte();
 thread secret();
@@ -59,7 +59,7 @@ secret()
       if(level.firstenter==true)
       wait(0.05);
 
-    player thread speedrun\_way_name::change_way("s0");
+    player thread sr\api\_speedrun::changeWay("secret_0");
     player SetOrigin( telejumporigin.origin );
     player setplayerangles( telejumporigin.angles );
     wait(0.05);
@@ -163,7 +163,7 @@ endsecret()
       if(level.firstenter==true)
       wait(0.05);
 
-   player thread speedrun\_way_name::finish_way("s0");
+   player thread sr\api\_speedrun::finishWay("secret_0");
    player SetOrigin( telejumporigin4.origin );
    player setplayerangles( telejumporigin4.angles );
    wait(0.05);

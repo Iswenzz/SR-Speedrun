@@ -15,10 +15,10 @@ setdvar("r_glowbloomintensity1",".25");
 setdvar("r_glowskybleedintensity0",".3");
 setDvar( "compassmaxrange", "1024" );
 
-thread speedrun\_way_name::create_spawn((-511,846,76),270);
-thread speedrun\_way_name::create_normal_way("Normal Way;");
-thread speedrun\_way_name::create_secret_way("Secret Way;");
-thread speedrun\_way_name::create_tp((-372.974, 596.419, 16.125), 50, 15, (2780, -3424, 156), 180, "freeze", "yellow", "s0");
+thread sr\api\_map::createSpawn((-511,846,76),270);
+thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread sr\api\_speedrun::createSecretWays("Secret Way;");
+thread sr\api\_speedrun::createTeleporter((-372.974, 596.419, 16.125), 50, 15, (2780, -3424, 156), 180, "freeze", "yellow", "secret_0");
 
 thread startdoor();
 thread trap1();
@@ -72,7 +72,7 @@ trig = getent("secret_exit", "targetname");
     for(;;)
     {   
     trig waittill("trigger", player);
-    player thread speedrun\_way_name::finish_way("s0");
+    player thread sr\api\_speedrun::finishWay("secret_0");
     }
     
 }

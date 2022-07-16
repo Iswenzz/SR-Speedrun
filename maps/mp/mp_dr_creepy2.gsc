@@ -14,11 +14,11 @@ maps\mp\_load::main();
     setdvar("r_glowbloomintensity1",".25");
     setdvar("r_glowskybleedintensity0",".3");
 
-thread speedrun\_way_name::create_spawn((-1513,-1690,-580),179);
-thread speedrun\_way_name::create_normal_way("Normal Way;");
-thread speedrun\_way_name::create_secret_way("Secret Way;");
-thread speedrun\_way_name::create_endmap((-27776.7, -1681.9, -1558.88), 100, 10, "ns0");
-thread speedrun\_way_name::create_tp((-20112.3, -1673.74, -2238.88), 435, 160, (-20065, -1679, -1499), 180, "freeze");
+thread sr\api\_map::createSpawn((-1513,-1690,-580),179);
+thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread sr\api\_speedrun::createSecretWays("Secret Way;");
+thread sr\api\_speedrun::createEndMap((-27776.7, -1681.9, -1558.88), 100, 10, "normal_0");
+thread sr\api\_speedrun::createTeleporter((-20112.3, -1673.74, -2238.88), 435, 160, (-20065, -1679, -1499), 180, "freeze");
 
 thread secretdoorinsta();
 thread startdoor();
@@ -56,7 +56,7 @@ secretenter()
 	while(1)
     	{
         trig waittill ("trigger", player);
-        player thread speedrun\_way_name::change_way("s0");          
+        player thread sr\api\_speedrun::changeWay("secret_0");          
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 		secret_stop = "secret_stop";
@@ -161,7 +161,7 @@ secretexit()
 	while(1)
     	{
         trig waittill ("trigger", player);
-        player thread speedrun\_way_name::finish_way("s0");          
+        player thread sr\api\_speedrun::finishWay("secret_0");          
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 		player notify("secret_stop");

@@ -61,7 +61,7 @@ main()
 
 	
 	// endtrig thread WatchEndTrigger();
-	speedrun\_way_name::createWay("normal", "Normal Way", "1");
+	sr\api\_speedrun::createNormalWays("Normal Way;");
 	
 }
 

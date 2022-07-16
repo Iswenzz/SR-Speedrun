@@ -15,10 +15,10 @@ main()
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
 
-	thread speedrun\_way_name::create_spawn((-44,-14,60),360);
-    thread speedrun\_way_name::create_normal_way("Normal Way;");
-    thread speedrun\_way_name::create_secret_way("Secret Way;");
-	thread speedrun\_way_name::create_tp((3837.89, -35.4303, 16.125), 55, 20, (5288, -1, 76), 360, "freeze", "blue");
+	thread sr\api\_map::createSpawn((-44,-14,60),360);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread sr\api\_speedrun::createTeleporter((3837.89, -35.4303, 16.125), 55, 20, (5288, -1, 76), 360, "freeze", "blue");
     
     thread sr_tp();
 	thread tp1();
@@ -37,13 +37,13 @@ sr_tp()
 	ori_t = getEnt("gohere5","targetname");
 
 	wait 1;
-	thread speedrun\_triggerfx::createTrigFx(trig, "blue");
+	thread sr\api\_map::createTriggerFx(trig, "blue");
 
 	for(;;)
 	{
 		trig waittill("trigger",player);
         
-		player thread speedrun\_way_name::change_way("s0");
+		player thread sr\api\_speedrun::changeWay("secret_0");
 		player freezecontrols(1);
 		player SetOrigin(ori_t.origin);
 		player SetPlayerAngles(ori_t.angles);
@@ -74,7 +74,7 @@ secfinish()
     {   
      trig waittill("trigger", player);
 
-	 player thread speedrun\_way_name::finish_way("s0");
+	 player thread sr\api\_speedrun::finishWay("secret_0");
 	 player setOrigin(tele.origin);
      player setPlayerAngles(tele.angles);
     }
@@ -117,7 +117,7 @@ trigger = GetEnt( "finish", "targetname" );
 	{
 	trigger waittill ("trigger", player);
 		
-    player thread speedrun\_way_name::finish_way("ns0");
+    player thread sr\api\_speedrun::finishWay("normal_0");
 	}
 }
 

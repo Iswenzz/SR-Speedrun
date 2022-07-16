@@ -19,10 +19,10 @@ main()
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
 	
-	thread speedrun\_way_name::create_normal_way("Normal Way");
-    thread speedrun\_way_name::create_secret_way("Secret Way");
+	thread sr\api\_speedrun::createNormalWays("Normal Way");
+    thread sr\api\_speedrun::createSecretWays("Secret Way");
 
-    //thread speedrun\_way_name::create_spawn((-215,527,76),300);
+    //thread sr\api\_map::createSpawn((-215,527,76),300);
 
 	//DISABLING FALLDAMAGE
 	setDvar("bg_falldamagemaxheight", 9999999 );
@@ -40,7 +40,7 @@ secret_start()
     while(1)
     {
         trig waittill("trigger",player);
-        player thread speedrun\_way_name::change_way("s0");
+        player thread sr\api\_speedrun::changeWay("secret_0");
         player setOrigin(org.origin);
         player setPlayerAngles(org.angles);
     }
@@ -53,6 +53,6 @@ secret_end()
     while(1)
     {
         trig waittill("trigger",player);
-        player thread speedrun\_way_name::finish_way("s0");
+        player thread sr\api\_speedrun::finishWay("secret_0");
     }
 }

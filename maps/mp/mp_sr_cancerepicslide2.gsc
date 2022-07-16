@@ -22,11 +22,11 @@ main()
 	setdvar("bg_fallDamageMaxHeight", "99999"); 
     setdvar("bg_FallDamageMinHeight","99998");
  
-	thread speedrun\_way_name::create_spawn((-208,-40,60),90);
-	thread speedrun\_way_name::create_normal_way("Normal Way");
-    thread speedrun\_way_name::create_secret_way("Bounce Way;Stairs Way;");
-    thread speedrun\_way_name::create_endmap((10568.8, -23523.9, -2295.88), 220, 40, "s0");
-	thread speedrun\_way_name::create_endmap((-7901.41, 8498.06, -5223.88), 300, 30, "s1");
+	thread sr\api\_map::createSpawn((-208,-40,60),90);
+	thread sr\api\_speedrun::createNormalWays("Normal Way");
+    thread sr\api\_speedrun::createSecretWays("Bounce Way;Stairs Way;");
+    thread sr\api\_speedrun::createEndMap((10568.8, -23523.9, -2295.88), 220, 40, "secret_0");
+	thread sr\api\_speedrun::createEndMap((-7901.41, 8498.06, -5223.88), 300, 30, "secret_1");
     	
  level.knockback = getDvarInt("g_knockback");
 	bounce   = getEntArray("bounce", "targetname");    
@@ -120,7 +120,7 @@ stairs()
     while(true)
     {
     trig waittill("trigger",player);
-	player thread speedrun\_way_name::change_way("s1");
+	player thread sr\api\_speedrun::changeWay("secret_1");
 	player freezeControls(true);
     player setPlayerangles( target.angles );
     player setOrigin( target.origin );
@@ -139,7 +139,7 @@ gay()
     while(true)
     {
     trig waittill("trigger",player);
-	 player thread speedrun\_way_name::change_way("s0");
+	 player thread sr\api\_speedrun::changeWay("secret_0");
 	player freezeControls(true);
     player setPlayerangles( target.angles );
     player setOrigin( target.origin );

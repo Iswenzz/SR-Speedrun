@@ -53,8 +53,8 @@ main()
 	addTriggerToList("trap4_trig");
 
 
-    thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_spawn((49,-1873,80),89);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_map::createSpawn((49,-1873,80),89);
 	thread start_door();
 	// thread old_room();
 	// thread northpole();

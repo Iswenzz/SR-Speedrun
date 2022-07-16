@@ -42,11 +42,11 @@ main()
 	setDvar("bg_falldamagemaxheight", 3000000);
 	setDvar("bg_falldamageminheight", 1280000);
 	
-	thread speedrun\_way_name::create_spawn((-521,390,68),89);
-	thread speedrun\_way_name::create_tp((-780, 555, 68), 60, 80, (-5637, 1157, 260), 89 , "freeze", "blue", "s0");
-	thread speedrun\_way_name::create_tp((-784, 350, 68), 60, 80, (-5637, 1157, 260), 89 , "freeze", "red", "s1");
-	thread speedrun\_way_name::create_secret_way("Easy Secret;Hard Secret;");
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
+	thread sr\api\_map::createSpawn((-521,390,68),89);
+	thread sr\api\_speedrun::createTeleporter((-780, 555, 68), 60, 80, (-5637, 1157, 260), 89 , "freeze", "blue", "secret_0");
+	thread sr\api\_speedrun::createTeleporter((-784, 350, 68), 60, 80, (-5637, 1157, 260), 89 , "freeze", "red", "secret_1");
+	thread sr\api\_speedrun::createSecretWays("Easy Secret;Hard Secret;");
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
 	precacheModel("playermodel_vcfox_fox");
 	preCacheModel("body_mp_sas_urban_sniper");
@@ -787,7 +787,7 @@ sec_hard_finish()
 	for(;;)
 		{
 			trig waittill("trigger", player);
-		    player thread speedrun\_way_name::finish_way("s1");
+		    player thread sr\api\_speedrun::finishWay("secret_1");
 			player setOrigin(tele1.origin);
 			player setPlayerAngles(tele1.angles);
 		}
@@ -801,7 +801,7 @@ sec_easy_finish()
 	for(;;)
 		{
 			trig waittill("trigger", player);
-			player thread speedrun\_way_name::finish_way("s0");
+			player thread sr\api\_speedrun::finishWay("secret_0");
 			player setOrigin(tele1.origin);
 			player setPlayerAngles(tele1.angles);
 

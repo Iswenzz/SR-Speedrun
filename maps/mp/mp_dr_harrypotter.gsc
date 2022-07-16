@@ -100,13 +100,13 @@ way_connect()
     level.masterSpawn = spawn("script_origin",(282,1,380-60));
 	level.masterSpawn.angles = (0,360,0);
 
-    speedrun\_way_name::createWay("normal", "Normal Way", "1");
-    speedrun\_way_name::createWay("secret", "Secret Way", "1");
+    sr\api\_speedrun::createNormalWays("Normal Way;");
+    sr\api\_speedrun::createSecretWays("Secret Way;");
     
     for(;;) 
     {
         level waittill( "connected", player );
-        player thread speedrun\_way_name::way_name();
+
     }
 }
 
@@ -560,8 +560,7 @@ secret_tele2(){
 	
 	while(1){
 		trig waittill ("trigger",player);
-		 if(isDefined(player.sr_secret) && player.sr_secret)
-         player thread braxi\_mod::endTimer();
+player thread sr\api\_speedrun::finishWay("secret_0");
       }
 }
 
@@ -575,7 +574,7 @@ secret_tele()
         pic3 waittill ("trigger", player);          
 		player SetOrigin(end.origin);
         player SetPlayerAngles( end.angles );
-        player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
+        player sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste
 	}
 }
 

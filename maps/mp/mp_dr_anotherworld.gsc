@@ -45,7 +45,10 @@ main()
 	//SETDVAR*
 	
 	//THREAD**
-	thread speedrun\_way_name::way_connect(1,1);
+	
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Secret Way;");
+
 	thread lift();
 	thread fireparticles();
 	thread startdoor();
@@ -66,7 +69,7 @@ transporter() {
 		entTarget = getEnt( self.target, "targetname" );
 		if ( self.target == "auto35") {
 			iprintlnbold("entered secret");
-			player speedrun\_way_name::startSecret();
+			player sr\api\_speedrun::changeWay("secret_0");
 		}
 		player setOrigin( entTarget.origin );
 		player setplayerangles( entTarget.angles );

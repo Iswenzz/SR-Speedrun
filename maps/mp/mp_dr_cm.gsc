@@ -7,10 +7,10 @@ main()
 {
 maps\mp\_load::main();
 //otherstuff
-thread speedrun\_way_name::create_spawn((94,-71,78),269);
-thread speedrun\_way_name::create_normal_way("Normal Way");
-thread speedrun\_way_name::create_secret_way("Secret Way");
-thread speedrun\_way_name::create_tp((340.535, -496.931, 18.125), 80, 120, (-2638, 3827, 8318), 93, "freeze", "blue", "s0");
+thread sr\api\_map::createSpawn((94,-71,78),269);
+thread sr\api\_speedrun::createNormalWays("Normal Way");
+thread sr\api\_speedrun::createSecretWays("Secret Way");
+thread sr\api\_speedrun::createTeleporter((340.535, -496.931, 18.125), 80, 120, (-2638, 3827, 8318), 93, "freeze", "blue", "secret_0");
 thread teleport1();
 thread teleport2();
 thread startdoor();
@@ -711,7 +711,7 @@ hardend=getent("origin_hardsecend", "targetname");
  for(;;)
   {
                trig waittill("trigger", player);
-                player thread speedrun\_way_name::finish_way("s0");
+                player thread sr\api\_speedrun::finishWay("secret_0");
 				player.secretTimer2 destroy();
 				player notify("hardsecret_done");
 				}

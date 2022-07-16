@@ -15,9 +15,9 @@ main()
 	setdvar("r_glowbloomintensity1",".1");
 	setdvar("r_glowskybleedintensity0",".1");
 
-thread speedrun\_way_name::create_spawn((386,-164,60),90);
-thread speedrun\_way_name::create_normal_way("Normal Way;");
-thread speedrun\_way_name::create_endmap((-1843.51, 775.788, 0.124999), 85, 10, "ns0");
+thread sr\api\_map::createSpawn((386,-164,60),90);
+thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread sr\api\_speedrun::createEndMap((-1843.51, 775.788, 0.124999), 85, 10, "normal_0");
 
 thread startdoor();
 thread exp();

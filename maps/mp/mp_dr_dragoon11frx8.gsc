@@ -15,8 +15,8 @@ maps\mp\_load::main();
     setdvar("r_glowskybleedintensity0",".3");
 	setdvar("r_fullbright","1");
 
-    thread speedrun\_way_name::create_spawn((59,92,76),270);
-    thread speedrun\_way_name::create_normal_way("Dragoon Way;");
+    thread sr\api\_map::createSpawn((59,92,76),270);
+    thread sr\api\_speedrun::createNormalWays("Dragoon Way;");
     
     thread startdoor();
 	thread mover();

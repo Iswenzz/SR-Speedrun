@@ -73,7 +73,7 @@ main()
 	thread pistol_room();
 	thread knife_room();
     thread selectionroom();
-    thread speedrun\_way_name::create_normal_way("NOOB way");
+    thread sr\api\_speedrun::createNormalWays("NOOB way");
 
 }
 addTriggerToList( name )

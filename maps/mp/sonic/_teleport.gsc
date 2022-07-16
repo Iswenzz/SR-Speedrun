@@ -26,8 +26,7 @@ transporter(i)
 		{
 			player.secret_1_endtrig = true;
 			
-			if(isDefined(player.sr_secret))
-				player thread braxi\_mod::endTimer();
+player thread sr\api\_speedrun::finishWay("secret_0");
 		}
 		
 		else

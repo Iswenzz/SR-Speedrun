@@ -3,14 +3,14 @@ main()
 {
 	maps\mp\_load::main();
 
-	thread speedrun\_way_name::create_spawn((-1600,-1406,61),360);
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_secret_way("Secret Way;Acti Secret;");
-	thread speedrun\_way_name::create_tp((-1357.19, -1617.64, 0.624997), 85, 20, (2892, 1214, 7744), 90, "freeze", "red", "s0");
-	thread speedrun\_way_name::create_tp((-1332.75, -1190.29, 0.625), 75, 20, (-2264, 1709, 7744), 270, "freeze", "blue", "s1");
-	thread speedrun\_way_name::create_endmap((4928.89, -4792.35, 6208.13),170,15,"s0");
-	thread speedrun\_way_name::create_endmap((-4286.45, -1847.55, 6208.13),185,20,"s1");
-	thread speedrun\_way_name::create_endmap((-30.31674, -1026.22, 2752.12),100,20, "ns0");
+	thread sr\api\_map::createSpawn((-1600,-1406,61),360);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Secret Way;Acti Secret;");
+	thread sr\api\_speedrun::createTeleporter((-1357.19, -1617.64, 0.624997), 85, 20, (2892, 1214, 7744), 90, "freeze", "red", "secret_0");
+	thread sr\api\_speedrun::createTeleporter((-1332.75, -1190.29, 0.625), 75, 20, (-2264, 1709, 7744), 270, "freeze", "blue", "secret_1");
+	thread sr\api\_speedrun::createEndMap((4928.89, -4792.35, 6208.13),170,15,"secret_0");
+	thread sr\api\_speedrun::createEndMap((-4286.45, -1847.55, 6208.13),185,20,"secret_1");
+	thread sr\api\_speedrun::createEndMap((-30.31674, -1026.22, 2752.12),100,20, "normal_0");
 
 	level.speed1 = 1;
 	level.speed2 = 0.125;

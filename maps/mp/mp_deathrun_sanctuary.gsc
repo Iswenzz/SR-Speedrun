@@ -87,13 +87,13 @@ way_connect()
 {
     wait 0.05;
 	
-    speedrun\_way_name::createWay("normal", "Normal Way", "1");
-	speedrun\_way_name::createWay("secret", "Secret Way", "1");
+    sr\api\_speedrun::createNormalWays("Normal Way;");
+	sr\api\_speedrun::createSecretWays("Secret Way;");
 	
     for(;;) 
     {
         level waittill( "connected", player );
-        player thread speedrun\_way_name::way_name();
+
 		player thread onPlayerSpawned();
     }
 }
@@ -389,7 +389,7 @@ rope1_ng(user)
     rop2 = getEnt ("rope1_targ2", "targetname");
     rop3 = getEnt ("rope1_targ3", "targetname");
 
-    user.disableAntiEle = true;
+    user sr\api\_player::antiElevator(false);
 	
 			rope1=spawn("script_model",(5,7,1));
             rope1.origin=user.origin;
@@ -409,7 +409,7 @@ rope1_ng(user)
             user EnableWeapons();
             wait 0.1;
 
-        user.disableAntiEle = undefined;
+        user sr\api\_player::antiElevator(true);
 }
 
 rope2()
@@ -440,7 +440,7 @@ rope2_ng(user)
     rop2 = getEnt ("rope2_targ2", "targetname");
     rop3 = getEnt ("rope2_targ3", "targetname");
 	
-    user.disableAntiEle = true;
+    user sr\api\_player::antiElevator(false);
 
 			rope2=spawn("script_model",(5,7,1));
             rope2.origin=user.origin;
@@ -460,7 +460,7 @@ rope2_ng(user)
             user EnableWeapons();
             wait 0.1;
 
-            user.disableAntiEle = undefined;
+            user sr\api\_player::antiElevator(true);
 }
 
 rope3()
@@ -491,7 +491,7 @@ rope3_ng(user)
     rop2 = getEnt ("rope3_targ2", "targetname");
     rop3 = getEnt ("rope3_targ3", "targetname");
 
-    user.disableAntiEle = true;
+    user sr\api\_player::antiElevator(false);
 	
 			rope3=spawn("script_model",(5,7,1));
             rope3.origin=user.origin;
@@ -510,7 +510,7 @@ rope3_ng(user)
             wait 0.2;
             user EnableWeapons();
             wait 0.1;  
-            user.disableAntiEle = undefined;
+            user sr\api\_player::antiElevator(true);
 }
 
 mplat1()

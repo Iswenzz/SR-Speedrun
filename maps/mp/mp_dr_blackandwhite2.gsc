@@ -17,13 +17,13 @@ maps\mp\_load::main();
 	setDvar("bg_falldamagemaxheight", 99999);
     setDvar("bg_falldamageminheight", 99998);
 	
-thread speedrun\_way_name::create_spawn((-3289,-1565,76),90);
-thread speedrun\_way_name::create_normal_way("Normal Way;");
-thread speedrun\_way_name::create_secret_way("Jumper Secret;Acti Secret;");
-thread speedrun\_way_name::create_endmap((11768.5, -1717.77, 120.125), 110, 10, "ns0");
-thread speedrun\_way_name::create_tp((9399.18, 2076.33, -527.875), 75, 10, (10508, 2080, -4), 360, "unfreeze", "blue", "ns0");
-thread speedrun\_way_name::create_tp((-3536.88, -1470.06, 16.125), 55, 10, (3561, -9381, 1715), 180, "freeze", "yellow", "s0");
-thread speedrun\_way_name::create_tp((-3026.35, -1526.19, 16.125), 55, 10, (10617, 7095, 1899), 1, "freeze", "cyan", "s1");
+thread sr\api\_map::createSpawn((-3289,-1565,76),90);
+thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread sr\api\_speedrun::createSecretWays("Jumper Secret;Acti Secret;");
+thread sr\api\_speedrun::createEndMap((11768.5, -1717.77, 120.125), 110, 10, "normal_0");
+thread sr\api\_speedrun::createTeleporter((9399.18, 2076.33, -527.875), 75, 10, (10508, 2080, -4), 360, "unfreeze", "blue", "normal_0");
+thread sr\api\_speedrun::createTeleporter((-3536.88, -1470.06, 16.125), 55, 10, (3561, -9381, 1715), 180, "freeze", "yellow", "secret_0");
+thread sr\api\_speedrun::createTeleporter((-3026.35, -1526.19, 16.125), 55, 10, (10617, 7095, 1899), 1, "freeze", "cyan", "secret_1");
 
 thread startdoor();
 thread ploop();
@@ -99,7 +99,7 @@ secretend()
   for (;;) 
   {	
 	trig waittill("trigger", player);
-	player thread speedrun\_way_name::finish_way("s0");
+	player thread sr\api\_speedrun::finishWay("secret_0");
   }
 } 
 
@@ -109,7 +109,7 @@ endactisecret()
   for (;;) 
   {	
 	trig waittill("trigger", player);
-	player thread speedrun\_way_name::finish_way("s1");
+	player thread sr\api\_speedrun::finishWay("secret_1");
   }
 }
  

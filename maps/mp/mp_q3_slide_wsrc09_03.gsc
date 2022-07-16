@@ -46,8 +46,7 @@ main()
 	thread way_connect();
 	thread boost_trig();
 
-	level.slide_map = true;
-	level.slide_map_multiplier = 5;
+	thread sr\api\_speedrun::slide(5);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,12 +57,12 @@ way_connect()
     level.masterSpawn = spawn("script_origin",(-56,2592,-320));
     level.masterSpawn.angles = (0,180,0);
 
-    speedrun\_way_name::createWay("normal", "Normal Way", "1");
+    sr\api\_speedrun::createNormalWays("Normal Way;");
 	
     for(;;) 
     {
         level waittill( "connected", player );
-        player thread speedrun\_way_name::way_name();
+
         player thread onPlayerSpawned();
     }
 }

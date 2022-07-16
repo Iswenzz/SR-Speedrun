@@ -25,15 +25,15 @@ main()
    precacheItem("deserteagle_mp");
    precacheItem("beretta_mp");
 
-   thread speedrun\_way_name::create_spawn((-431,127,-532),360);
-   thread speedrun\_way_name::create_normal_way("Normal Way;Hidden Way;");
-   thread speedrun\_way_name::create_secret_way("Jumper Secret;Acti Secret;");
-   thread speedrun\_way_name::create_tp((7216.45, 83.4312, -546.355), 65, 45, (9221, -897, -252), 180, "freeze", "yellow", "ns1");
-   thread speedrun\_way_name::create_tp((-441.43, 654.139, -591.875), 60, 35, (-1046, -2417, 572), 360, "freeze", "darkred", "s0");
-   thread speedrun\_way_name::create_tp((-447.257, -430.243, -591.875), 60, 35, (-874, -7521, 572), 360, "freeze", "blue", "s1");
-   thread speedrun\_way_name::create_endmap((14960.3, 123.528, 576.125), 105, 30, "ns1");
-   thread speedrun\_way_name::create_endmap((13493.5, -4224.57, -295.875), 175, 20, "s0");
-   thread speedrun\_way_name::create_endmap((13606.8, -9283.68, -583.875), 130, 20, "s1");
+   thread sr\api\_map::createSpawn((-431,127,-532),360);
+   thread sr\api\_speedrun::createNormalWays("Normal Way;Hidden Way;");
+   thread sr\api\_speedrun::createSecretWays("Jumper Secret;Acti Secret;");
+   thread sr\api\_speedrun::createTeleporter((7216.45, 83.4312, -546.355), 65, 45, (9221, -897, -252), 180, "freeze", "yellow", "normal_1");
+   thread sr\api\_speedrun::createTeleporter((-441.43, 654.139, -591.875), 60, 35, (-1046, -2417, 572), 360, "freeze", "darkred", "secret_0");
+   thread sr\api\_speedrun::createTeleporter((-447.257, -430.243, -591.875), 60, 35, (-874, -7521, 572), 360, "freeze", "blue", "secret_1");
+   thread sr\api\_speedrun::createEndMap((14960.3, 123.528, 576.125), 105, 30, "normal_1");
+   thread sr\api\_speedrun::createEndMap((13493.5, -4224.57, -295.875), 175, 20, "secret_0");
+   thread sr\api\_speedrun::createEndMap((13606.8, -9283.68, -583.875), 130, 20, "secret_1");
 
    thread sign1();
    thread sign2();

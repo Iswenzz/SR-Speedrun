@@ -41,7 +41,7 @@ main()
 	setDvar("bg_falldamagemaxheight", 20000000 );
 	setDvar("bg_falldamageminheight", 15000000 );
 
-	thread speedrun\_way_name::create_endmap((3607, -1532, -1916), 60, 15);
+	thread sr\api\_speedrun::createEndMap((3607, -1532, -1916), 60, 15);
 
 	// visionSetNaked("mp_dr_portal",0);
 
@@ -55,13 +55,13 @@ way_connect()
 {
     wait 0.05;
 	
-	speedrun\_way_name::createWay("normal", "Normal Way", "1");
-	// speedrun\_way_name::createWay("secret", "Secret Way", "1");
+	sr\api\_speedrun::createNormalWays("Normal Way;");
+	// sr\api\_speedrun::createSecretWays("Secret Way;");
 	
     for(;;) 
     {
         level waittill( "connected", player );
-        player thread speedrun\_way_name::way_name();
+
         player tweak_once();
     }
 }

@@ -64,8 +64,8 @@ main() {
     thread bounce_fail();
     thread boxing_room();
 
-    thread speedrun\_way_name::create_normal_way("Normal Way");
-    thread speedrun\_way_name::create_secret_way("Secret Way");
+    thread sr\api\_speedrun::createNormalWays("Normal Way");
+    thread sr\api\_speedrun::createSecretWays("Secret Way");
 
     // Trigger List
     addTriggerToList( "trap1_trig" ); 
@@ -134,7 +134,7 @@ secret_enter() {
 
     for( ;; ) {
         trig waittill( "trigger", player );
-         player thread speedrun\_way_name::change_way("s0"); 
+         player thread sr\api\_speedrun::changeWay("secret_0"); 
         player freezeControls( 1 );
         player setOrigin( origin_enter.origin );
         player setPlayerAngles( origin_enter.angles );
@@ -150,7 +150,7 @@ secret_finish() {
 
     while(1) {
         teleport1 waittill("trigger", player);
-        player thread speedrun\_way_name::finish_way("s0");
+        player thread sr\api\_speedrun::finishWay("secret_0");
         player SetPlayerAngles( origin1.angles );
         player setOrigin( origin1.origin );
         player braxi\_rank::giveRankXp("trap_activation", 1000);

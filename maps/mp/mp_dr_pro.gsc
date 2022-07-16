@@ -16,12 +16,12 @@ setdvar("r_glowskybleedintensity0",".1");
 setDvar("bg_falldamagemaxheight", 99999);
 setDvar("bg_falldamageminheight", 99998);
 
-thread speedrun\_way_name::create_spawn((-6,-137,194),270);
-thread speedrun\_way_name::create_normal_way("Normal Way;");
-thread speedrun\_way_name::create_secret_way("Easy Secret;Hard Secret;");
-thread speedrun\_way_name::create_endmap((-38725.4, -6125.01, 31968.1), 920, 50, "s0");
-thread speedrun\_way_name::create_tp((-192.529, -387.621, 135.005), 60, 10, (-11326, 14942, 48097), 270, "freeze", "cyan", "s0");
-thread speedrun\_way_name::create_tp((161.13, -384.396, 133.632), 60, 10, (12016, 20931, -4268), 180, "freeze", "yellow", "s1");
+thread sr\api\_map::createSpawn((-6,-137,194),270);
+thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread sr\api\_speedrun::createSecretWays("Easy Secret;Hard Secret;");
+thread sr\api\_speedrun::createEndMap((-38725.4, -6125.01, 31968.1), 920, 50, "secret_0");
+thread sr\api\_speedrun::createTeleporter((-192.529, -387.621, 135.005), 60, 10, (-11326, 14942, 48097), 270, "freeze", "cyan", "secret_0");
+thread sr\api\_speedrun::createTeleporter((161.13, -384.396, 133.632), 60, 10, (12016, 20931, -4268), 180, "freeze", "yellow", "secret_1");
 
 thread startdoor();
 //teleports
@@ -129,7 +129,7 @@ trig=getent("endmap_trig","targetname");
   for(;;)
 	{
 	trig waittill ("trigger", player);
-	player thread speedrun\_way_name::finish_way("ns0");
+	player thread sr\api\_speedrun::finishWay("normal_0");
 	}
    
  }  
@@ -682,6 +682,6 @@ trig=getent("hardsecend","targetname");
  for(;;)
 	{                
     trig waittill ("trigger", player);
-	player thread speedrun\_way_name::finish_way("s1");
+	player thread sr\api\_speedrun::finishWay("secret_1");
 	}
 }

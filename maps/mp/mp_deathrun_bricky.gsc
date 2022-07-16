@@ -51,7 +51,7 @@ main()
 	level._effect["blii"] = loadfx("custom/end_blitz");
 	level._effect["fireway"] = loadfx("custom/fire");
 
-    thread speedrun\_way_name::create_tp((-287.357, -163.664, 16.125), 55, 25, (1616, 6695, -1924), 270, "freeze", "blue", "s0");
+    thread sr\api\_speedrun::createTeleporter((-287.357, -163.664, 16.125), 55, 25, (1616, 6695, -1924), 270, "freeze", "blue", "secret_0");
     
 	thread way_connect();
 	thread door();
@@ -122,13 +122,13 @@ way_connect()
 {
     wait 0.05;
 	
-    speedrun\_way_name::createWay("normal", "Normal Way", "1");
-	speedrun\_way_name::createWay("secret", "Secret Way", "1");
+    sr\api\_speedrun::createNormalWays("Normal Way;");
+	sr\api\_speedrun::createSecretWays("Secret Way;");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        player thread speedrun\_way_name::way_name();
+
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -466,7 +466,7 @@ secretback()
     {
         trig waittill ("trigger", player);
 
-		player thread speedrun\_way_name::finish_way("s0");          
+		player thread sr\api\_speedrun::finishWay("secret_0");          
 		
 	}
 }

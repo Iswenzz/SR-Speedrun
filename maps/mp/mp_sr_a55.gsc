@@ -27,13 +27,13 @@ way_connect()
 {
     wait 0.05;
 	
-    speedrun\_way_name::createWay("normal", "Normal Way", "1");
-	speedrun\_way_name::createWay("secret", "Secret Way", "1");
+    sr\api\_speedrun::createNormalWays("Normal Way;");
+	sr\api\_speedrun::createSecretWays("Secret Way;");
 	
     for(;;) 
     {
         level waittill( "connected", player );
-        player thread speedrun\_way_name::way_name();
+
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,12 +46,12 @@ secret()
 	end = getEnt ("secret_enter_go", "targetname");
 
 	wait 1;
-	thread speedrun\_triggerfx::createTrigFx(trig, "secret");
+	thread sr\api\_map::createTriggerFx(trig, "secret");
 	
 	while(1)
     	{
         trig waittill ("trigger", player); 
-        player speedrun\_way_name::startSecret(); //Speedrun Copy Paste       
+        player sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste       
 		player SetOrigin(end.origin);
         player SetPlayerAngles( end.angles );
 	}
@@ -63,13 +63,12 @@ secret_end()
 	trig = getEnt("secretend_trig","targetname");
 
 	wait 1;
-	thread speedrun\_triggerfx::createTrigFx(trig, "secret");
+	thread sr\api\_map::createTriggerFx(trig, "secret");
 
 	for(;;)
 	{
 		trig waittill("trigger",player);
 
-		if(isDefined(player.sr_secret) && player.sr_secret)
-			player thread braxi\_mod::endTimer();
+player thread sr\api\_speedrun::finishWay("secret_0");
 	}
 }

@@ -73,8 +73,8 @@ main()
 	
 	
 	//SR Code
-	thread speedrun\_way_name::create_spawn((-1408,507,2892),179);
-	thread speedrun\_way_name::create_normal_way("Easy;Medium;Hard;");
+	thread sr\api\_map::createSpawn((-1408,507,2892),179);
+	thread sr\api\_speedrun::createNormalWays("Easy;Medium;Hard;");
 
 	//Credits n Text
 	thread iPrint();
@@ -119,7 +119,7 @@ main()
 		for(;;)
 		{
 			trig waittill("trigger", player);
-			player thread speedrun\_way_name::finish_way("ns2");
+			player thread sr\api\_speedrun::finishWay("normal_2");
 			
 		}
 }
@@ -130,7 +130,7 @@ main()
 		for(;;)
 		{
 			trig waittill("trigger", player);
-			player thread speedrun\_way_name::finish_way("ns1");	
+			player thread sr\api\_speedrun::finishWay("normal_1");	
 		}
 }
 
@@ -163,7 +163,7 @@ m()
 	for (;;)
 	{
 		trig waittill("trigger", player);
-		player thread speedrun\_way_name::change_way("ns1");
+		player thread sr\api\_speedrun::changeWay("normal_1");
 		//player iPrintLn("^1Medium Way\n^4Checkpoints = 1");
 		player freezeControls( 1 );
 		player setOrigin(o.origin);
@@ -181,7 +181,7 @@ hard()
 	for (;;)
 	{
 		trig waittill("trigger", player);
-		player thread speedrun\_way_name::change_way("ns2");
+		player thread sr\api\_speedrun::changeWay("normal_2");
 		//player iPrintLn("^1Hard Way\n^4Checkpoints = 5");
 		player freezeControls( 1 );
 		player setOrigin(o.origin);

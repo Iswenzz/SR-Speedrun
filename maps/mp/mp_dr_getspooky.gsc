@@ -112,11 +112,11 @@ main() {
   level.pickedBouWeap = false;
 
   //threads
-  thread speedrun\_way_name::create_normal_way("Spooky Way");
-  thread speedrun\_way_name::create_normal_way("Secret Way");
-  thread speedrun\_way_name::create_spawn((-495,62,108),359);
-  thread speedrun\_way_name::create_tp((-109.459, -493.118, 32.125), 50, 15, (11378, 4574, 1085), 180, "freeze", "blue", "s0");
-  thread speedrun\_way_name::create_endmap((11990.7, -1964.3, 865.145),90,25,"s0");
+  thread sr\api\_speedrun::createNormalWays("Spooky Way");
+  thread sr\api\_speedrun::createNormalWays("Secret Way");
+  thread sr\api\_map::createSpawn((-495,62,108),359);
+  thread sr\api\_speedrun::createTeleporter((-109.459, -493.118, 32.125), 50, 15, (11378, 4574, 1085), 180, "freeze", "blue", "secret_0");
+  thread sr\api\_speedrun::createEndMap((11990.7, -1964.3, 865.145),90,25,"secret_0");
   //thread credits();
   //thread music();
   //thread onPlayerSpawn();

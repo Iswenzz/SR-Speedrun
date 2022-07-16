@@ -12,9 +12,9 @@ maps\mp\_load::main();
 	setDvar("bg_falldamagemaxheight", 20000 );
 	setDvar("bg_falldamageminheight", 10000 );
 
-    thread speedrun\_way_name::create_spawn((1243,321,76),180);
-    thread speedrun\_way_name::create_normal_way("Normal Way;");
-    thread speedrun\_way_name::create_secret_way("Easy Secret;Hard Secret;");
+    thread sr\api\_map::createSpawn((1243,321,76),180);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("Easy Secret;Hard Secret;");
 
 	thread StartDoor();
 	thread Collectables();
@@ -119,7 +119,7 @@ HardSecretTP()
 		trig waittill("trigger", player);
 		player Teleport(trig, og);
 		player.secretPos = 1;
-		player thread speedrun\_way_name::change_way("s1");
+		player thread sr\api\_speedrun::changeWay("secret_1");
 	}
 }
 
@@ -132,7 +132,7 @@ EasySecretTP()
 	{
 		trig waittill("trigger", player);
 		player Teleport(trig, og);
-		player thread speedrun\_way_name::change_way("s0");
+		player thread sr\api\_speedrun::changeWay("secret_0");
 	}
 }
 
@@ -189,7 +189,7 @@ ezfinish()
     {   
     trig waittill("trigger", player);
 
-    player thread speedrun\_way_name::finish_way("s0");
+    player thread sr\api\_speedrun::finishWay("secret_0");
     }
 }
 
@@ -201,6 +201,6 @@ hardfinish()
     {   
     trig waittill("trigger", player);
 
-    player thread speedrun\_way_name::finish_way("s1");
+    player thread sr\api\_speedrun::finishWay("secret_1");
     }
 }  

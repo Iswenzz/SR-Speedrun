@@ -30,9 +30,9 @@ maps\mp\_load::main();
 	level.music[4]["song"]    ="PakisTRAP";
     level.music[4]["alias"]    ="song5";
     
-    thread speedrun\_way_name::create_normal_way("Normal Way");
-    thread speedrun\_way_name::create_secret_way("Secret Way");
-    thread speedrun\_way_name::create_spawn((-3021,-120,76),360);
+    thread sr\api\_speedrun::createNormalWays("Normal Way");
+    thread sr\api\_speedrun::createSecretWays("Secret Way");
+    thread sr\api\_map::createSpawn((-3021,-120,76),360);
     thread startdoor();
 	//thread messages();
 	//thread musicbox();
@@ -950,7 +950,7 @@ secretenter()
 	for(;;)
 		{
 			trig waittill("trigger", player);
-            player thread speedrun\_way_name::change_way("s0");
+            player thread sr\api\_speedrun::changeWay("secret_0");
 			player setOrigin(tele1.origin);
 			player setPlayerAngles(tele1.angles);
 		}
@@ -964,7 +964,7 @@ secretexit()
 	for(;;)
 		{
 			trig waittill("trigger", player);
-            player thread speedrun\_way_name::finish_way("s0");
+            player thread sr\api\_speedrun::finishWay("secret_0");
 			player setOrigin(tele1.origin);
 			player setPlayerAngles(tele1.angles);
 		}

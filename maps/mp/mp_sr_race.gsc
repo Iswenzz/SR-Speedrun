@@ -53,15 +53,15 @@ way_connect()
 {
     wait 0.05;
 	
-    speedrun\_way_name::createWay("normal", "Normal Way", "1");
-	speedrun\_way_name::createWay("secret", "Secret Way", "1");
+    sr\api\_speedrun::createNormalWays("Normal Way;");
+	sr\api\_speedrun::createSecretWays("Secret Way;");
 	
     thread secret_1();
 
     for(;;) 
     {
         level waittill( "connected", player );
-        player thread speedrun\_way_name::way_name();
+
         player.in_musicmenu = false;
     }
 }
@@ -74,14 +74,14 @@ secret_1()
     ori = getEnt("hard_origin","targetname");
 
     wait 1;
-    thread speedrun\_triggerfx::createTrigFx(trig, "secret");
+    thread sr\api\_map::createTriggerFx(trig, "secret");
 
     for(;;)
     {
         trig waittill("trigger",player);
         player setOrigin(ori.origin);
         player setPlayerAngles(ori.angles);
-        player speedrun\_way_name::startSecret();
+        player sr\api\_speedrun::changeWay("secret_0");
     }
 }
 
@@ -91,14 +91,13 @@ secret_1_end()
     trig.radius = 250;
 
     wait 1;
-    thread speedrun\_triggerfx::createTrigFx(trig, "secret");
+    thread sr\api\_map::createTriggerFx(trig, "secret");
 
     for(;;)
     {
         trig waittill("trigger",player);
 
-        if(isDefined(player.sr_secret) && player.sr_secret)
-            player thread braxi\_mod::endTimer();
+player thread sr\api\_speedrun::finishWay("secret_0");
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////

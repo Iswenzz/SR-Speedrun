@@ -81,13 +81,13 @@ way_connect()
 {
     wait 0.05;
 	
-    speedrun\_way_name::createWay("normal", "Normal Way", "1");
-	speedrun\_way_name::createWay("secret", "Secret Way", "1");
+    sr\api\_speedrun::createNormalWays("Normal Way;");
+	sr\api\_speedrun::createSecretWays("Secret Way;");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        player thread speedrun\_way_name::way_name();
+
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -537,7 +537,7 @@ secenter()
 		while(1)
 		{
 		level.secenter_trigger waittill( "trigger", player );
-		 player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
+		 player sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste
 		//player thread secret_timer();
 		
 		player SetOrigin( telejumporigin.origin );

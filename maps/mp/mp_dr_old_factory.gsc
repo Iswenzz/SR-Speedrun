@@ -38,10 +38,10 @@ maps\mp\_load::main();
 	setDvar("bg_falldamagemaxheight", 99999);
 	setDvar("bg_falldamageminheight", 99998 );
 	
-	thread speedrun\_way_name::create_spawn((-76,-4852,-92),360);
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_tp((262, -5789, -244), 60, 80, (5236, -8086, 835), 271 , "freeze", "red", "s0");
-	thread speedrun\_way_name::create_secret_way("Hard Secret;");
+	thread sr\api\_map::createSpawn((-76,-4852,-92),360);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createTeleporter((262, -5789, -244), 60, 80, (5236, -8086, 835), 271 , "freeze", "red", "secret_0");
+	thread sr\api\_speedrun::createSecretWays("Hard Secret;");
 
 
 
@@ -3160,7 +3160,7 @@ tpsecend() {
         trigger waittill ("trigger", player);  
         player SetOrigin(target.origin);
         player SetPlayerAngles( target.angles );
-		player thread speedrun\_way_name::finish_way("s0");
+		player thread sr\api\_speedrun::finishWay("secret_0");
         
     }
 }

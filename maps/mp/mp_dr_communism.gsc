@@ -16,11 +16,11 @@ maps\mp\_load::main();
 	setDvar("bg_falldamagemaxheight", 99999);
     setDvar("bg_falldamageminheight", 99998);
 	
-thread speedrun\_way_name::create_spawn((93,-762,-793),90);
-thread speedrun\_way_name::create_normal_way("Normal Way;");
-thread speedrun\_way_name::create_secret_way("Secret Way;");
-thread speedrun\_way_name::create_endmap((-4249.65, 1669.53, -269.375), 135, 10, "ns0");
-thread speedrun\_way_name::create_tp((-103.304, -711.028, -852.875), 60, 10, (5723, 3297, -3534), 360, "freeze", "blue", "s0");
+thread sr\api\_map::createSpawn((93,-762,-793),90);
+thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread sr\api\_speedrun::createSecretWays("Secret Way;");
+thread sr\api\_speedrun::createEndMap((-4249.65, 1669.53, -269.375), 135, 10, "normal_0");
+thread sr\api\_speedrun::createTeleporter((-103.304, -711.028, -852.875), 60, 10, (5723, 3297, -3534), 360, "freeze", "blue", "secret_0");
 
 thread bridge();
 thread lightningtrap();
@@ -86,6 +86,6 @@ secretend = GetEnt("secretend","targetname");
 	for(;;)
 	{
     secretend waittill("trigger", player);
-    player thread speedrun\_way_name::finish_way("s0");
+    player thread sr\api\_speedrun::finishWay("secret_0");
 	}
 }

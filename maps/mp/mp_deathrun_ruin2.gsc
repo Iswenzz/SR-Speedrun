@@ -79,12 +79,12 @@ way_connect()
 {
     wait 0.05;
 	
-    speedrun\_way_name::createWay("normal", "Normal Way", "1");
+    sr\api\_speedrun::createNormalWays("Normal Way;");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        player thread speedrun\_way_name::way_name();
+
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -515,7 +515,7 @@ MovingBlocks()
 	trig.radius = 150;
 
 	wait 1;
-	thread speedrun\_triggerfx::createTrigFx(trig, "red");
+	thread sr\api\_map::createTriggerFx(trig, "red");
 
 	ori = spawn("script_origin",(5938,6,-124));
 	ori.angles = (0,360,0);

@@ -1,12 +1,12 @@
 main()
 {
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_secret_way("Secret Way;");
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread speedrun\_way_name::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
+		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 
-	thread speedrun\_way_name::create_endmap((3187, -2843, -228), 100, 150);
+	thread sr\api\_speedrun::createEndMap((3187, -2843, -228), 100, 150);
 
 // Secret \\
 	thread secret();
@@ -270,7 +270,7 @@ transporter()
 		// wait(0.10);
 		player setorigin(entTarget.origin);
 		player setplayerangles(entTarget.angles);
-		player thread speedrun\_way_name::change_way("s0");
+		player thread sr\api\_speedrun::changeWay("secret_0");
 		/* [AUTO DELETE] player braxi\_rank::giveRankXP("", 10); */
 		/* [AUTO DELETE] player iprintln ("^5You have received ^710 ^5xp^7!"); */
 		// wait(0.10);
@@ -351,7 +351,7 @@ transporter1()
 		/* [AUTO DELETE] player braxi\_rank::giveRankXP("", 250); */
 		/* [AUTO DELETE] player iprintln ("^5You have received ^7250 ^5xp^7!"); */
 		// wait(0.10);
-		player thread speedrun\_way_name::finish_way("s0");
+		player thread sr\api\_speedrun::finishWay("secret_0");
 
 	}
 }

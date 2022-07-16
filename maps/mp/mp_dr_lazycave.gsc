@@ -40,8 +40,8 @@ main()
 	level.secret = false;
 	
 	//GENERAL THREADS
-    thread speedrun\_way_name::create_normal_way("Normal Way;");
-    thread speedrun\_way_name::create_spawn((123,-154,76), 2);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_map::createSpawn((123,-154,76), 2);
 	// thread musicBox();
 	thread opening();
 	// thread endingplatform();

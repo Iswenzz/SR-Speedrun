@@ -2,13 +2,13 @@ main()
 {
 	maps\mp\_load::main();
 
-	thread speedrun\_way_name::create_normal_way("Trap Way;Trance Way;");
-	thread speedrun\_way_name::create_secret_way("Secret Way;");
-	thread speedrun\_way_name::create_spawn((-3721, 1758, 570), -90);
-	thread speedrun\_way_name::create_tp((-1414.99, -6929.17, 496.125), 80, 10, (-1419, -7578, 556), 270, "freeze", "blue", "ns0");
-	thread speedrun\_way_name::create_tp((-3712.56, -155.318, 496.125), 80, 10, (-3722, -1835, 556), 270, "freeze", "blue", "ns1");
-    thread speedrun\_way_name::create_endmap((-2288.99, -8639.36, 496.125),70,40, "ns0");
-	thread speedrun\_way_name::create_endmap((-3712.56, -155.318, 496.125),70,40, "ns1");
+	thread sr\api\_speedrun::createNormalWays("Trap Way;Trance Way;");
+	thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread sr\api\_map::createSpawn((-3721, 1758, 570), -90);
+	thread sr\api\_speedrun::createTeleporter((-1414.99, -6929.17, 496.125), 80, 10, (-1419, -7578, 556), 270, "freeze", "blue", "normal_0");
+	thread sr\api\_speedrun::createTeleporter((-3712.56, -155.318, 496.125), 80, 10, (-3722, -1835, 556), 270, "freeze", "blue", "normal_1");
+    thread sr\api\_speedrun::createEndMap((-2288.99, -8639.36, 496.125),70,40, "normal_0");
+	thread sr\api\_speedrun::createEndMap((-3712.56, -155.318, 496.125),70,40, "normal_1");
 	// ================ Game Settings ================ //
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
@@ -797,7 +797,7 @@ tnt_secret_enter()
 	for(;;)
 	{
 		trig waittill("trigger",player);
-		player thread speedrun\_way_name::change_way("s0");
+		player thread sr\api\_speedrun::changeWay("secret_0");
 		player thread tnt_secret_tp(targ);
 	}
 }
@@ -811,7 +811,7 @@ tnt_secret_exit()
 	for(;;)
 	{
 		trig waittill("trigger",player);
-		player thread speedrun\_way_name::finish_way("s0");
+		player thread sr\api\_speedrun::finishWay("secret_0");
 		player thread tnt_secret_tp(targ);
 	}
 }

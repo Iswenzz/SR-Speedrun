@@ -17,8 +17,8 @@ main()
 
 	setdvar( "r_specularcolorscale", "1" );
 
-	thread speedrun\_way_name::create_normal_way("Normal Way");
-	thread speedrun\_way_name::create_spawn((-159,200,68),359);
+	thread sr\api\_speedrun::createNormalWays("Normal Way");
+	thread sr\api\_map::createSpawn((-159,200,68),359);
 	thread door1();
 	thread trap1();
 	thread trap2();

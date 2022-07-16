@@ -3,10 +3,10 @@ main()
 maps\mp\_load::main();
 maps\mp\_teleport::main();
 
-	thread speedrun\_way_name::create_spawn((483, -340, 316), 360);
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_secret_way("Secret Way;");
-	thread speedrun\_way_name::create_tp((794.87, -66.6879, 256.125), 60, 10, (-3006, -60, 2604), 360, "freeze", "blue", "s0");
+	thread sr\api\_map::createSpawn((483, -340, 316), 360);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread sr\api\_speedrun::createTeleporter((794.87, -66.6879, 256.125), 60, 10, (-3006, -60, 2604), 360, "freeze", "blue", "secret_0");
 
 	level.dvar["bunnyhoop"] = false;
 	level.knockback = getDvarInt("g_knockback");
@@ -621,7 +621,7 @@ easy1()
 	for(;;)
 	{
     trig waittill("trigger", player);
-    player thread speedrun\_way_name::finish_way("s0");
+    player thread sr\api\_speedrun::finishWay("secret_0");
 	}
 }
 

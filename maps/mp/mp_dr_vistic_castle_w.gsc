@@ -46,9 +46,9 @@ main()
 	level.music[5]["song"]	="L1mit - Vistic Antheme";
 	level.music[5]["alias"]	="vistic_antheme";
 
-    thread speedrun\_way_name::create_spawn((42,268,64),90);
-    thread speedrun\_way_name::create_normal_way("Normal Way;");
-    thread speedrun\_way_name::create_secret_way("^2Easy Secret;1Hard Secret;");
+    thread sr\api\_map::createSpawn((42,268,64),90);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("^2Easy Secret;1Hard Secret;");
 
 	thread startdoor();
 	thread tele1();
@@ -108,7 +108,7 @@ sr_tp()
 	ori_t = getEnt("tele1_go","targetname");
 
 	wait 1;
-	thread speedrun\_triggerfx::createTrigFx(trig, "blue");
+	thread sr\api\_map::createTriggerFx(trig, "blue");
 
 	for(;;)
 	{
@@ -126,7 +126,7 @@ sr_tp2()
 	ori_t = getEnt("secretrig_go","targetname");
 
 	wait 1;
-	thread speedrun\_triggerfx::createTrigFx(trig, "blue");
+	thread sr\api\_map::createTriggerFx(trig, "blue");
 
 	for(;;)
 	{
@@ -202,7 +202,7 @@ secretrig_e()
 	for(;;)
     {
     trig waittill ("trigger", player);
-	player thread speedrun\_way_name::change_way("s0");       
+	player thread sr\api\_speedrun::changeWay("secret_0");       
 	player SetOrigin(end.origin);
     player SetPlayerAngles( end.angles );
 	player freezeControls(1);
@@ -220,7 +220,7 @@ secretrig_h()
 	for(;;)
     {
     trig waittill ("trigger", player);
-	player thread speedrun\_way_name::change_way("s1");        
+	player thread sr\api\_speedrun::changeWay("secret_1");        
 	player SetOrigin(end.origin);
     player SetPlayerAngles( end.angles );
 	player freezeControls(1);
@@ -238,7 +238,7 @@ secret_e_end()
 	for(;;)
     {
     trig waittill ("trigger", player);
-	player thread speedrun\_way_name::finish_way("s0");
+	player thread sr\api\_speedrun::finishWay("secret_0");
 	player notify("secret1_done");
 	player SetOrigin(end.origin);
     player SetPlayerAngles( end.angles );
@@ -253,7 +253,7 @@ secret_h_end()
 	for(;;)
     {
     trig waittill ("trigger", player);
-	player thread speedrun\_way_name::finish_way("s1");
+	player thread sr\api\_speedrun::finishWay("secret_1");
 	player notify("secret2_done");
 	player SetOrigin(end.origin);
     player SetPlayerAngles( end.angles );

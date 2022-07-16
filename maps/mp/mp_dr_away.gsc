@@ -12,12 +12,12 @@ maps\mp\_load::main();
 
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread speedrun\_way_name::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin,
+		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin,
 			auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 
-thread speedrun\_way_name::create_endmap((33733, -2495, 2300), 300, 150);
-thread speedrun\_way_name::create_normal_way("Normal Way;");
-thread speedrun\_way_name::create_secret_way("Secret Way;");
+thread sr\api\_speedrun::createEndMap((33733, -2495, 2300), 300, 150);
+thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread sr\api\_speedrun::createSecretWays("Secret Way;");
 
 game["allies"] = "marines";
 game["axis"] = "opfor";
@@ -564,7 +564,7 @@ teleport5()
 	for(;;)
 	{
 		trig waittill("trigger", player);
-		player thread speedrun\_way_name::change_way("s0");
+		player thread sr\api\_speedrun::changeWay("secret_0");
 		player setPlayerAngles(tele5.angles);
 		player setOrigin(tele5.origin);
 		/* [AUTO DELETE] iprintlnBold("^5" + player.name + " ^4Has Found The ^5First Secret ^4!"); */
@@ -627,7 +627,7 @@ teleport9()
 	{
 		trig waittill("trigger", player);
 
-		player thread speedrun\_way_name::finish_way("s0");
+		player thread sr\api\_speedrun::finishWay("secret_0");
 		
 		player.secret_finished = true;
         player.secret_timer Destroy();

@@ -34,11 +34,11 @@ maps\mp\_load::main();
    thread secret_brick();
    thread endrotate();
 
-   thread speedrun\_way_name::create_spawn((214,-468,-452),90);
-   thread speedrun\_way_name::create_normal_way("Normal Way;");
-   thread speedrun\_way_name::create_secret_way("Secret Way;");
-   thread speedrun\_way_name::create_tp((3175.11, 2667.03, -447.875), 70, 40, (3263, 2035, 284), 270, "freeze", "blue", "ns0");
-   thread speedrun\_way_name::create_tp((-34.6931, -129.408, -511.875), 60, 40, (207,-426,-964), 180, "freeze", "yellow", "s0");
+   thread sr\api\_map::createSpawn((214,-468,-452),90);
+   thread sr\api\_speedrun::createNormalWays("Normal Way;");
+   thread sr\api\_speedrun::createSecretWays("Secret Way;");
+   thread sr\api\_speedrun::createTeleporter((3175.11, 2667.03, -447.875), 70, 40, (3263, 2035, 284), 270, "freeze", "blue", "normal_0");
+   thread sr\api\_speedrun::createTeleporter((-34.6931, -129.408, -511.875), 60, 40, (207,-426,-964), 180, "freeze", "yellow", "secret_0");
 
 
 }
@@ -85,7 +85,7 @@ endmap()
    for(;;)
     {   
     trig waittill("trigger", player);
-    player thread speedrun\_way_name::finish_way("ns0");
+    player thread sr\api\_speedrun::finishWay("normal_0");
     }
 }
 
@@ -119,7 +119,7 @@ secfinish()
    for(;;)
     {   
     trig waittill("trigger", player);
-    player thread speedrun\_way_name::finish_way("s0");
+    player thread sr\api\_speedrun::finishWay("secret_0");
     }
 }
 

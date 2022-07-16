@@ -59,10 +59,10 @@ maps\mp\_load::main();
 	level.gapmode = 0;
 	level.hardmode = false;
 	level.step4 = false;
-    thread speedrun\_way_name::create_normal_way("Normal Way");
-    thread speedrun\_way_name::create_secret_way("Secret Way");
-    thread speedrun\_way_name::create_spawn((-21,-263,77),89);
-    thread speedrun\_way_name::create_tp((-209.127, -393.911, 17.125), 60, 90, (-173, 22525, -7016), 360, "freeze", "blue", "s0");
+    thread sr\api\_speedrun::createNormalWays("Normal Way");
+    thread sr\api\_speedrun::createSecretWays("Secret Way");
+    thread sr\api\_map::createSpawn((-21,-263,77),89);
+    thread sr\api\_speedrun::createTeleporter((-209.127, -393.911, 17.125), 60, 90, (-173, 22525, -7016), 360, "freeze", "blue", "secret_0");
     thread startdoor();
 	//thread messages();
 	//thread musicbox();
@@ -1768,7 +1768,7 @@ secretend210()
 	for(;;)
 	{
 		trig waittill("trigger", player);
-            player thread speedrun\_way_name::finish_way("s0");
+            player thread sr\api\_speedrun::finishWay("secret_0");
 			player setOrigin(o.origin);
 			player setPlayerAngles(o.angles);
 			player.fasts = 1;

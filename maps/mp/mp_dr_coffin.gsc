@@ -22,10 +22,10 @@ main()
 	setDvar("bg_falldamagemaxheight", 99999);
     setDvar("bg_falldamageminheight", 99998);
 
-thread speedrun\_way_name::create_spawn((-100,-183,60),270);
-thread speedrun\_way_name::create_tp((243.684, -205.458, 0.125002), 55, 10, (4216, -160, 60), 360, "freeze", "yellow", "s1");
-thread speedrun\_way_name::create_normal_way("Normal Way;");
-thread speedrun\_way_name::create_secret_way("Jumper Secret;Acti Secret;");
+thread sr\api\_map::createSpawn((-100,-183,60),270);
+thread sr\api\_speedrun::createTeleporter((243.684, -205.458, 0.125002), 55, 10, (4216, -160, 60), 360, "freeze", "yellow", "secret_1");
+thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread sr\api\_speedrun::createSecretWays("Jumper Secret;Acti Secret;");
 
 ///DOORS AND MOVING PLATFORM
    thread startdoor();
@@ -99,7 +99,7 @@ sectp()
    for(;;)
     {   
      trig waittill("trigger", player);
-     player thread speedrun\_way_name::change_way("s0");
+     player thread sr\api\_speedrun::changeWay("secret_0");
 	 player setOrigin(tele1.origin);
      player setPlayerAngles(tele1.angles);
      player.sc_pos = 0;
@@ -124,7 +124,7 @@ secfinish()
 
      if(player != self)
         continue;
-    player thread speedrun\_way_name::finish_way("s0");
+    player thread sr\api\_speedrun::finishWay("secret_0");
     player notify("secret_done");
 	player setOrigin(tele1.origin);
     player setPlayerAngles(tele1.angles);
@@ -178,7 +178,7 @@ trig = getent("trig_actisecfinish", "targetname");
     {   
     trig waittill("trigger", player);
 
-    player thread speedrun\_way_name::finish_way("s1");
+    player thread sr\api\_speedrun::finishWay("secret_1");
 
     }
     

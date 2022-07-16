@@ -8,10 +8,10 @@ main()
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"] = "desert";
    
- thread speedrun\_way_name::create_spawn((-100,-183,60),270);
- thread speedrun\_way_name::create_normal_way("^2Easy Way;^1Hard Way;");
- thread speedrun\_way_name::create_secret_way("Secret Way;");
- thread speedrun\_way_name::create_tp((1784.85, 2237.77, -2727.88), 80, 35, (6249, 2205, -2674), 1, "freeze", "blue");
+ thread sr\api\_map::createSpawn((-100,-183,60),270);
+ thread sr\api\_speedrun::createNormalWays("^2Easy Way;^1Hard Way;");
+ thread sr\api\_speedrun::createSecretWays("Secret Way;");
+ thread sr\api\_speedrun::createTeleporter((1784.85, 2237.77, -2727.88), 80, 35, (6249, 2205, -2674), 1, "freeze", "blue");
 
  thread startdoor();
  thread tp1();
@@ -72,7 +72,7 @@ hardtp()
     {   
      trig waittill("trigger", player);
 
-	 player thread speedrun\_way_name::change_way("ns1");
+	 player thread sr\api\_speedrun::changeWay("normal_1");
 	 player setOrigin(tele.origin);
      player setPlayerAngles(tele.angles);
     }
@@ -86,7 +86,7 @@ trig = getEnt( "enter4", "targetname" );
  { 
   trig waittill ("trigger",player );
   
-  player thread speedrun\_way_name::finish_way("ns1");
+  player thread sr\api\_speedrun::finishWay("normal_1");
 
  } 
 }
@@ -100,7 +100,7 @@ sectp()
     {   
      trig waittill("trigger", player);
 
-	 player thread speedrun\_way_name::change_way("s0");
+	 player thread sr\api\_speedrun::changeWay("secret_0");
 	 player setOrigin(tele.origin);
      player setPlayerAngles(tele.angles);
     }
@@ -114,7 +114,7 @@ secfinish()
  { 
   trig waittill ("trigger",player );
 
-  player thread speedrun\_way_name::finish_way("s0");
+  player thread sr\api\_speedrun::finishWay("secret_0");
  
  } 
 }

@@ -9,12 +9,12 @@ main()
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
 
-    thread speedrun\_way_name::create_spawn((511,230,60),90);
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_secret_way("^1Hard Secret;^2Easy Secret;");
-	thread speedrun\_way_name::create_tp((-674.764, 5227.39, 448.125), 75, 20, (-675, 5543, 1020), 90, "freeze", "blue");
-	thread speedrun\_way_name::create_tp((-668.802, 8806.43, 960.125), 75, 20, (-671, 8530, 1596), 270, "freeze", "blue");
-	thread speedrun\_way_name::create_tp((828.968, 294.663, 0.125), 60, 15, (7332, 8383, 1020), 90, "freeze", "yellow", "s1");
+    thread sr\api\_map::createSpawn((511,230,60),90);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("^1Hard Secret;^2Easy Secret;");
+	thread sr\api\_speedrun::createTeleporter((-674.764, 5227.39, 448.125), 75, 20, (-675, 5543, 1020), 90, "freeze", "blue");
+	thread sr\api\_speedrun::createTeleporter((-668.802, 8806.43, 960.125), 75, 20, (-671, 8530, 1596), 270, "freeze", "blue");
+	thread sr\api\_speedrun::createTeleporter((828.968, 294.663, 0.125), 60, 15, (7332, 8383, 1020), 90, "freeze", "yellow", "secret_1");
    
     thread startdoor();
 	thread ele();
@@ -65,7 +65,7 @@ tele1 = getEnt("here4", "targetname");
 
 	trig waittill("trigger", player);
 
-	player thread speedrun\_way_name::change_way("s0");
+	player thread sr\api\_speedrun::changeWay("secret_0");
 
 	player setOrigin(tele1.origin);
 
@@ -91,7 +91,7 @@ tele1 = getEnt("here5", "targetname");
 
 	trig waittill("trigger", player);
 
-	player thread speedrun\_way_name::finish_way("s0");
+	player thread sr\api\_speedrun::finishWay("secret_0");
 
 	player setOrigin(tele1.origin);
 
@@ -111,7 +111,7 @@ tele1 = getEnt("here7", "targetname");
 
 	trig waittill("trigger", player);
 
-	player thread speedrun\_way_name::finish_way("s1");
+	player thread sr\api\_speedrun::finishWay("secret_1");
 
 	player setOrigin(tele1.origin);
 

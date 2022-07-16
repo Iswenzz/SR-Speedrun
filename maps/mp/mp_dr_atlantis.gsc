@@ -31,14 +31,14 @@ main()
 {
 	maps\mp\_load::main();
 
-	thread speedrun\_way_name::create_spawn((-531,11186,1636),180);
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_secret_way("Easy Secret;Hard Secret;");
-	thread speedrun\_way_name::create_tp((-541.037, 10870.6, 1576.13), 110, 75, (8599, 413, 1966), 359, "freeze", "blue", "s0");
-	thread speedrun\_way_name::create_tp((-881.141, 10927.7, 1576.13), 110, 75, (9998, 22167, 277), 60, "freeze", "red", "s1");
-	thread speedrun\_way_name::create_endmap((8183.27, 7359.79, 35.125),150,75,"s0");
-	thread speedrun\_way_name::create_endmap((2774.49, 9859.01, -6214.88),175,75,"s1");
-	thread speedrun\_way_name::create_endmap((-5693.92, 617.378, -2606.4),105,75,"ns0");
+	thread sr\api\_map::createSpawn((-531,11186,1636),180);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Easy Secret;Hard Secret;");
+	thread sr\api\_speedrun::createTeleporter((-541.037, 10870.6, 1576.13), 110, 75, (8599, 413, 1966), 359, "freeze", "blue", "secret_0");
+	thread sr\api\_speedrun::createTeleporter((-881.141, 10927.7, 1576.13), 110, 75, (9998, 22167, 277), 60, "freeze", "red", "secret_1");
+	thread sr\api\_speedrun::createEndMap((8183.27, 7359.79, 35.125),150,75,"secret_0");
+	thread sr\api\_speedrun::createEndMap((2774.49, 9859.01, -6214.88),175,75,"secret_1");
+	thread sr\api\_speedrun::createEndMap((-5693.92, 617.378, -2606.4),105,75,"normal_0");
 
  
 	game["allies"] = "marines";

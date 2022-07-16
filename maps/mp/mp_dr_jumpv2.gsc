@@ -15,10 +15,10 @@ main()
  setDvar("r_glowskybleedintensity0",".1");
  setdvar("compassmaxrange","1800");
 
-thread speedrun\_way_name::create_spawn((-40,-30,76),90);
-thread speedrun\_way_name::create_normal_way("Normal Way;");
-thread speedrun\_way_name::create_secret_way("Secret Way;");
-thread speedrun\_way_name::create_endmap((1779.72, 7043.54, -15.875),105,60,"ns0");
+thread sr\api\_map::createSpawn((-40,-30,76),90);
+thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread sr\api\_speedrun::createSecretWays("Secret Way;");
+thread sr\api\_speedrun::createEndMap((1779.72, 7043.54, -15.875),105,60,"normal_0");
 
 thread startdoor();
 thread jumpersecret();
@@ -59,7 +59,7 @@ secret()
       if(level.firstenter==true)
    wait(0.05);
     
-   player thread speedrun\_way_name::change_way("s0");
+   player thread sr\api\_speedrun::changeWay("secret_0");
    player SetOrigin( telejumporigin.origin );
    player setplayerangles( telejumporigin.angles );
    
@@ -149,7 +149,7 @@ endsecret()
       if(level.firstenter==true)
    wait(0.05);
    
-   player thread speedrun\_way_name::finish_way("s0");
+   player thread sr\api\_speedrun::finishWay("secret_0");
    player SetOrigin( telejumporigin2.origin );
    player setplayerangles( telejumporigin2.angles );
   

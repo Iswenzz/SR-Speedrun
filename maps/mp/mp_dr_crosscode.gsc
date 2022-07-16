@@ -21,8 +21,8 @@ main()
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
 
-    thread speedrun\_way_name::create_spawn((3584, -917, 92),90);
-    thread speedrun\_way_name::create_normal_way("Normal Way;");
+    thread sr\api\_map::createSpawn((3584, -917, 92),90);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
     if(!isdefined(level.music))
 	level.music=[];

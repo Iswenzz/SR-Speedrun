@@ -11,10 +11,10 @@ main()
     setDvar("bg_falldamagemaxheight", 20000000 );
 	setDvar("bg_falldamageminheight", 15000000 );
 
-    thread speedrun\_way_name::create_normal_way("Normal Way");
-    thread speedrun\_way_name::create_spawn((4,276,76),269);
-	thread speedrun\_way_name::create_secret_way("Secret Way");
-	thread speedrun\_way_name::create_tp((232.407, -247.559, 16.125), 80, 110, (-14427, -2991, -3011), 175, "freeze", "blue", "s0");
+    thread sr\api\_speedrun::createNormalWays("Normal Way");
+    thread sr\api\_map::createSpawn((4,276,76),269);
+	thread sr\api\_speedrun::createSecretWays("Secret Way");
+	thread sr\api\_speedrun::createTeleporter((232.407, -247.559, 16.125), 80, 110, (-14427, -2991, -3011), 175, "freeze", "blue", "secret_0");
 	//thread trap1();	
 	//thread trap2();
 	//thread trap3();
@@ -389,7 +389,7 @@ teleportsecret()
 	for(;;)
 {
 	trig waittill ("trigger", player);
-	player thread speedrun\_way_name::change_way("s0");
+	player thread sr\api\_speedrun::changeWay("secret_0");
 	
 	iprintlnbold ( " ^6" + player.name + " ^7has found the ^6SECRET^7!" );	
 	player iprintlnbold ("Woah! Good luck!");
@@ -408,7 +408,7 @@ teleport4()
 	for(;;)
 {
 	trig waittill ("trigger", player);
-	player thread speedrun\_way_name::finish_way("s0");
+	player thread sr\api\_speedrun::finishWay("secret_0");
 	//iprintlnbold ( " ^6" + player.name + " ^7has completed the ^6SECRET^7!" );
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );

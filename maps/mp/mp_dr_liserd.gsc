@@ -6,7 +6,7 @@ main() {
 
 	maps\mp\_load::main();
 
-	thread speedrun\_way_name::create_spawn((-536, 2602, 257), 90);
+	thread sr\api\_map::createSpawn((-536, 2602, 257), 90);
 
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
@@ -88,8 +88,8 @@ main() {
   //  thread trap15();
    // thread trap16();
 
-   thread speedrun\_way_name::create_normal_way("Normal Way");
-   thread speedrun\_way_name::create_secret_way("Secret Way");
+   thread sr\api\_speedrun::createNormalWays("Normal Way");
+   thread sr\api\_speedrun::createSecretWays("Secret Way");
 
     // Trigger List
     addTriggerToList( "trap1_trig" ); 
@@ -279,7 +279,7 @@ frog() {
 
     while( 1 ) {
         trig waittill( "trigger", player );
-        player thread speedrun\_way_name::change_way("s0");
+        player thread sr\api\_speedrun::changeWay("secret_0");
         player freezeControls( 1 );
         player setOrigin( org.origin );
         player setPlayerAngles( org.angles );
@@ -342,7 +342,7 @@ s_finish() {
 
     while(1) {
         trig waittill( "trigger", player );
-        player thread speedrun\_way_name::finish_way("s0");
+        player thread sr\api\_speedrun::finishWay("secret_0");
         player setOrigin( org.origin );
         player setPlayerAngles( org.angles );
         //iPrintlnBold( player.name + " has finished the ^8Secret!" );

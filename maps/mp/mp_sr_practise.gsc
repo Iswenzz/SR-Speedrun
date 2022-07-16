@@ -19,7 +19,7 @@ main()
    setDvar("bg_falldamageminheight", 99998);
  
 
-   thread speedrun\_way_name::create_normal_way("^7Strafe Way;^1Ladder Way;^2Angle Way;^3Bhop Way;^4Bounce Way;^5Fall Way;^6Stairs Way;");
+   thread sr\api\_speedrun::createNormalWays("^7Strafe Way;^1Ladder Way;^2Angle Way;^3Bhop Way;^4Bounce Way;^5Fall Way;^6Stairs Way;");
   
    thread welcome(); 
    thread pure_ladder_s();
@@ -99,7 +99,7 @@ pure_ladder_s()
     {
         trig waittill ("trigger", player);
 
-         player thread speedrun\_way_name::change_way("ns1");
+         player thread sr\api\_speedrun::changeWay("normal_1");
          player SetOrigin(orig.origin);
          player SetPlayerAngles(orig.angles );
          player FreezeControls(1);  /////To prevent 10 fps glitches////
@@ -118,7 +118,7 @@ pure_ladder_f()
     {
         trig waittill ("trigger", player);
 
-        player thread speedrun\_way_name::finish_way("ns1");
+        player thread sr\api\_speedrun::finishWay("normal_1");
          	
 	}
 }
@@ -133,7 +133,7 @@ pure_angle_s()
     {
         trig waittill ("trigger", player);
         
-         player thread speedrun\_way_name::change_way("ns2");
+         player thread sr\api\_speedrun::changeWay("normal_2");
          player SetOrigin(orig.origin);
          player SetPlayerAngles(orig.angles );
          player FreezeControls(1);  /////To prevent 10 fps glitches////
@@ -151,7 +151,7 @@ pure_angle_f()
     while(1)
     {
         trig waittill ("trigger", player);
-        player thread speedrun\_way_name::finish_way("ns2"); 	
+        player thread sr\api\_speedrun::finishWay("normal_2"); 	
 	}
 }
 
@@ -165,7 +165,7 @@ pure_bhop_s()
     {
         trig waittill ("trigger", player);
         
-         player thread speedrun\_way_name::change_way("ns3");
+         player thread sr\api\_speedrun::changeWay("normal_3");
          player SetOrigin(orig.origin);
          player SetPlayerAngles(orig.angles );
          player FreezeControls(1);  /////To prevent 10 fps glitches////
@@ -183,7 +183,7 @@ pure_bhop_f()
     while(1)
     {
         trig waittill ("trigger", player);
-        player thread speedrun\_way_name::finish_way("ns3");
+        player thread sr\api\_speedrun::finishWay("normal_3");
          	
 	}
 }
@@ -198,7 +198,7 @@ pure_bounce_s()
     {
         trig waittill ("trigger", player);
          
-         player thread speedrun\_way_name::change_way("ns4");
+         player thread sr\api\_speedrun::changeWay("normal_4");
          player SetOrigin(orig.origin);
          player SetPlayerAngles(orig.angles );
          player FreezeControls(1);  /////To prevent 10 fps glitches////
@@ -216,7 +216,7 @@ pure_bounce_f()
     while(1)
     {
         trig waittill ("trigger", player);
-        player thread speedrun\_way_name::finish_way("ns4");   	
+        player thread sr\api\_speedrun::finishWay("normal_4");   	
 	} 
 }
 
@@ -230,7 +230,7 @@ pure_fall_s()
     {
         trig waittill ("trigger", player);
          
-         player thread speedrun\_way_name::change_way("ns5");
+         player thread sr\api\_speedrun::changeWay("normal_5");
          player SetOrigin(orig.origin);
          player SetPlayerAngles(orig.angles );
          player FreezeControls(1);  /////To prevent 10 fps glitches////
@@ -248,7 +248,7 @@ pure_fall_f()
     while(1)
     {
         trig waittill ("trigger", player);
-        player thread speedrun\_way_name::finish_way("ns5");
+        player thread sr\api\_speedrun::finishWay("normal_5");
          	
 	}
 }
@@ -263,7 +263,7 @@ pure_stairs_s()
     {
         trig waittill ("trigger", player);
          
-         player thread speedrun\_way_name::change_way("ns6");
+         player thread sr\api\_speedrun::changeWay("normal_6");
          player SetOrigin(orig.origin);
          player SetPlayerAngles(orig.angles );
          player FreezeControls(1);  /////To prevent 10 fps glitches////
@@ -281,7 +281,7 @@ pure_stairs_f()
     while(1)
     {
         trig waittill ("trigger", player);
-        player thread speedrun\_way_name::finish_way("ns6");
+        player thread sr\api\_speedrun::finishWay("normal_6");
          	
 	}
 }

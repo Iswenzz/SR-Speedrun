@@ -22,10 +22,10 @@ main()
 	setDvar("bg_falldamagemaxheight", 99999);
     setDvar("bg_falldamageminheight", 99998);
      
-    thread speedrun\_way_name::create_spawn((20,0,76),1);
-    thread speedrun\_way_name::create_normal_way("Normal Way;");
-    thread speedrun\_way_name::create_secret_way("Secret Way;");
-    thread speedrun\_way_name::create_tp((3322.63, -509.911, 256.125), 65, 20, (3335, 676, 28), 90, "freeze", "blue", "ns0");
+    thread sr\api\_map::createSpawn((20,0,76),1);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("Secret Way;");
+    thread sr\api\_speedrun::createTeleporter((3322.63, -509.911, 256.125), 65, 20, (3335, 676, 28), 90, "freeze", "blue", "normal_0");
 
     thread fan();
     thread fire();
@@ -122,7 +122,7 @@ sectp()
     {   
      trig waittill("trigger", player);
 
-     player thread speedrun\_way_name::change_way("s0");
+     player thread sr\api\_speedrun::changeWay("secret_0");
 	 player setOrigin(tele.origin);
      player setPlayerAngles(tele.angles);
      player.sc_pos = 0;
@@ -149,7 +149,7 @@ secend()
       if(player != self)
         continue;
 
-     player thread speedrun\_way_name::finish_way("s0"); 
+     player thread sr\api\_speedrun::finishWay("secret_0"); 
      player notify("secret_done");
 	 player setOrigin(tele.origin);
      player setPlayerAngles(tele.angles);

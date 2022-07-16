@@ -109,9 +109,9 @@ main()
 	thread f210();
 	thread g210();
 
-    thread speedrun\_way_name::create_normal_way("Normal Way;");
-    thread speedrun\_way_name::create_secret_way("Secret Way;");
-    thread speedrun\_way_name::create_tp((435.431, 182.389, 16.125), 105, 125, (-4489, 13254, 2371), 355, "freeze", "red", "s0");
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("Secret Way;");
+    thread sr\api\_speedrun::createTeleporter((435.431, 182.389, 16.125), 105, 125, (-4489, 13254, 2371), 355, "freeze", "red", "secret_0");
 	
 	addTriggerToList( "trig_trap1" );
 	addTriggerToList( "trig_trap2" );
@@ -1060,7 +1060,7 @@ hardend()
 		{
 			player setOrigin( target.origin );
 			player setPlayerAngles( target.angles );
-			 player thread speedrun\_way_name::finish_way("s0");
+			 player thread sr\api\_speedrun::finishWay("secret_0");
 			player.hc = 0;
 		}
 	}

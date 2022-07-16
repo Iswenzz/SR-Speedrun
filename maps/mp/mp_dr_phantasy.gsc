@@ -15,9 +15,9 @@ setdvar("r_glowbloomintensity1",".1");
 setdvar("r_glowskybleedintensity0",".1");
 setdvar("compassmaxrange","1500");
 
-thread speedrun\_way_name::create_spawn((6,-1336,76),2);
-thread speedrun\_way_name::create_normal_way("Normal Way;");
-thread speedrun\_way_name::create_endmap((7.76228, -2058.89, 16.125), 70, 10, "ns0");
+thread sr\api\_map::createSpawn((6,-1336,76),2);
+thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread sr\api\_speedrun::createEndMap((7.76228, -2058.89, 16.125), 70, 10, "normal_0");
 
 thread startdoor();	
 	

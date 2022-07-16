@@ -4,8 +4,8 @@ main()
 	maps\mp\_load::main();
 	
 
-    thread speedrun\_way_name::create_normal_way("Normal Way");
-    thread speedrun\_way_name::create_spawn((0,-61,68),270);
+    thread sr\api\_speedrun::createNormalWays("Normal Way");
+    thread sr\api\_map::createSpawn((0,-61,68),270);
 	//thread trap1();
 	//thread trap2();
 	//thread trap3();

@@ -16,11 +16,11 @@ main()
 	setDvar("bg_falldamagemaxheight", 99999);
     setDvar("bg_falldamageminheight", 99998);
 	
-thread speedrun\_way_name::create_normal_way("Normal Way;");
-thread speedrun\_way_name::create_secret_way("Secret Way;");
-thread speedrun\_way_name::create_spawn((-3019,-3243,28),180);
-thread speedrun\_way_name::create_tp((5067.83, 2418.18, -11.875), 180, 95, (2176, 4576, 44), 0, "freeze","blue","ns0");
-thread speedrun\_way_name::create_tp((2499.06, 8673.66, -11.875), 140, 110, (3581, 8642, 44), 360, "freeze","blue","ns0");
+thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread sr\api\_speedrun::createSecretWays("Secret Way;");
+thread sr\api\_map::createSpawn((-3019,-3243,28),180);
+thread sr\api\_speedrun::createTeleporter((5067.83, 2418.18, -11.875), 180, 95, (2176, 4576, 44), 0, "freeze","blue","normal_0");
+thread sr\api\_speedrun::createTeleporter((2499.06, 8673.66, -11.875), 140, 110, (3581, 8642, 44), 360, "freeze","blue","normal_0");
 
 thread secret();
 thread tele1();
@@ -246,7 +246,7 @@ tele12()
 	 for(;;)
 	 {
 		 trig waittill("trigger", player);
-		 player thread speedrun\_way_name::finish_way("s0");
+		 player thread sr\api\_speedrun::finishWay("secret_0");
 		 player setorigin(tele.origin);
 		 player setPlayerAngles (tele.angles);
 		 player freezeControls(1);
@@ -263,7 +263,7 @@ tele13()
 	 for(;;)
 	 {
 		 trig waittill("trigger", player);
-		 player thread speedrun\_way_name::change_way("s0");
+		 player thread sr\api\_speedrun::changeWay("secret_0");
 		 player setorigin(tele.origin);
 		 player setPlayerAngles (tele.angles);
 		 player freezeControls(1);

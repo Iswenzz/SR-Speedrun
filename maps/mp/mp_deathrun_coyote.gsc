@@ -3,13 +3,13 @@ main()
 {
     maps\mp\_load::main(); 
 
-	thread speedrun\_way_name::create_spawn((195,588,65),360);
-	thread speedrun\_way_name::create_normal_way("Glitch Way;Normal Way;");
-    thread speedrun\_way_name::create_normal_way("Secret Way;Acti Secret;");
-	thread speedrun\_way_name::create_tp((361.928, 583.768, 9.06468), 50, 20, (459, 583, 224), 360, "freeze", "yellow", "ns1");
-    thread speedrun\_way_name::create_tp((283, 378, 65), 100, 150, (-2695, 422, 2399), 180, "freeze", "blue", "s0");
-	thread speedrun\_way_name::create_tp((368.671, 715.178, 6.87894), 50, 25, (5537, -175, -643), 270, "freeze", "cyan", "s1");
-	thread speedrun\_way_name::create_endmap((2847.91, 9298.08, -1115.88),60,20, "ns0");  
+	thread sr\api\_map::createSpawn((195,588,65),360);
+	thread sr\api\_speedrun::createNormalWays("Glitch Way;Normal Way;");
+    thread sr\api\_speedrun::createNormalWays("Secret Way;Acti Secret;");
+	thread sr\api\_speedrun::createTeleporter((361.928, 583.768, 9.06468), 50, 20, (459, 583, 224), 360, "freeze", "yellow", "normal_1");
+    thread sr\api\_speedrun::createTeleporter((283, 378, 65), 100, 150, (-2695, 422, 2399), 180, "freeze", "blue", "secret_0");
+	thread sr\api\_speedrun::createTeleporter((368.671, 715.178, 6.87894), 50, 25, (5537, -175, -643), 270, "freeze", "cyan", "secret_1");
+	thread sr\api\_speedrun::createEndMap((2847.91, 9298.08, -1115.88),60,20, "normal_0");  
 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
@@ -795,7 +795,7 @@ secfinish()
    for(;;)
     {   
     trig waittill("trigger", player);
-    player thread speedrun\_way_name::finish_way("s0");
+    player thread sr\api\_speedrun::finishWay("secret_0");
     }
     
 }
@@ -1023,7 +1023,7 @@ secfinish()
 	for(;;)
 	{
 	trigger waittill ("trigger" , player );
-	player thread speedrun\_way_name::finish_way("ns1");
+	player thread sr\api\_speedrun::finishWay("normal_1");
 
 	}
 		
@@ -1096,7 +1096,7 @@ secret_21_out()
     for(;;)
 	{
 	trig waittill( "trigger", player );
-	player thread speedrun\_way_name::finish_way("s1");
+	player thread sr\api\_speedrun::finishWay("secret_1");
 
 	}
 }

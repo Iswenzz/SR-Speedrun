@@ -19,13 +19,13 @@ main()
 	setDvar("r_glowskybleedintensity0",".1");
 	setDvar("bg_fallDamageMinHeight","100000000");
     
-	thread speedrun\_way_name::create_spawn((-46,1208,108),270);
-	thread speedrun\_way_name::create_normal_way("^2Easy Way;^3Inter Way;^1Hard Way;");
-    thread speedrun\_way_name::create_secret_way("Jumper Secret;Acti Secret;");
-	thread speedrun\_way_name::create_tp((-13581.9, -3594.13, -2307.71), 50, 25, (-13441, -6245, -2164), 270, "freeze", "blue", "ns2");
-	thread speedrun\_way_name::create_tp((71.7681, 1152.31, 48.125), 50, 15, (-3536, 5263, 2520), 1, "freeze", "yellow", "s0");
-	thread speedrun\_way_name::create_tp((-191.242, 1150.82, 48.125), 50, 15, (4690, -9496, -900), 360, "freeze", "cyan", "s1");
-	thread speedrun\_way_name::create_endmap((-13665, -10196.7, -2542.88), 95, 15, "ns2");
+	thread sr\api\_map::createSpawn((-46,1208,108),270);
+	thread sr\api\_speedrun::createNormalWays("^2Easy Way;^3Inter Way;^1Hard Way;");
+    thread sr\api\_speedrun::createSecretWays("Jumper Secret;Acti Secret;");
+	thread sr\api\_speedrun::createTeleporter((-13581.9, -3594.13, -2307.71), 50, 25, (-13441, -6245, -2164), 270, "freeze", "blue", "normal_2");
+	thread sr\api\_speedrun::createTeleporter((71.7681, 1152.31, 48.125), 50, 15, (-3536, 5263, 2520), 1, "freeze", "yellow", "secret_0");
+	thread sr\api\_speedrun::createTeleporter((-191.242, 1150.82, 48.125), 50, 15, (4690, -9496, -900), 360, "freeze", "cyan", "secret_1");
+	thread sr\api\_speedrun::createEndMap((-13665, -10196.7, -2542.88), 95, 15, "normal_2");
     
 	thread startdoor();
 	thread vaisustart();
@@ -106,7 +106,7 @@ ende()
   for (;;) 
   {	
 	trig waittill("trigger", player);
-	player thread speedrun\_way_name::finish_way("ns0");
+	player thread sr\api\_speedrun::finishWay("normal_0");
   }
 } 
 
@@ -117,7 +117,7 @@ tpi()
   for (;;) 
   {	
 	trig waittill("trigger", player);
-	player thread speedrun\_way_name::change_way("ns1");
+	player thread sr\api\_speedrun::changeWay("normal_1");
 	player setOrigin(arrivo.origin);
 	player SetPlayerAngles(arrivo.angles);
   }
@@ -141,7 +141,7 @@ endi()
   for (;;) 
   {	
 	trig waittill("trigger", player);
-	player thread speedrun\_way_name::finish_way("ns1");
+	player thread sr\api\_speedrun::finishWay("normal_1");
   }
 } 
 
@@ -152,7 +152,7 @@ tph()
   for (;;) 
   {	
 	trig waittill("trigger", player);
-	player thread speedrun\_way_name::change_way("ns2");
+	player thread sr\api\_speedrun::changeWay("normal_2");
 	player setOrigin(arriv.origin);
 	player SetPlayerAngles( arriv.angles );
 			
@@ -185,7 +185,7 @@ send()
   for (;;) 
   {	
 	trig waittill("trigger", player);
-	player thread speedrun\_way_name::finish_way("s0");
+	player thread sr\api\_speedrun::finishWay("secret_0");
   }
 } 
 
@@ -195,6 +195,6 @@ actisecretexit()
   for (;;) 
   {	
 	trig waittill("trigger", player);
-	player thread speedrun\_way_name::finish_way("s1");
+	player thread sr\api\_speedrun::finishWay("secret_1");
   }
 }

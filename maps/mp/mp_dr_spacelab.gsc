@@ -37,11 +37,11 @@ main()
     game["allies_soldiertype"] = "desert";
     game["axis_soldiertype"] = "desert";
 
-	thread speedrun\_way_name::create_spawn((21,-10,68),89);
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_secret_way("^3Easy Secret;^1Hard Secret;");
-	thread speedrun\_way_name::create_tp((-233.138, -85.9571, 8.125), 100, 80, (2814, 20223, 14756), 270, "freeze", "blue", "s0");
-	thread speedrun\_way_name::create_tp((-234.428, 173.777, 8.125), 100, 80, (-2370, 2216, 15340), 91, "freeze", "red", "s1");
+	thread sr\api\_map::createSpawn((21,-10,68),89);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("^3Easy Secret;^1Hard Secret;");
+	thread sr\api\_speedrun::createTeleporter((-233.138, -85.9571, 8.125), 100, 80, (2814, 20223, 14756), 270, "freeze", "blue", "secret_0");
+	thread sr\api\_speedrun::createTeleporter((-234.428, 173.777, 8.125), 100, 80, (-2370, 2216, 15340), 91, "freeze", "red", "secret_1");
 
 
     setdvar( "r_specularcolorscale", "1" );
@@ -576,7 +576,7 @@ secretend210()
 	for(;;)
 	{
 			trig waittill("trigger", player);
-			player thread speedrun\_way_name::finish_way("s0");
+			player thread sr\api\_speedrun::finishWay("secret_0");
 			player.fasts = 1;
 
 	}
@@ -738,7 +738,7 @@ secretend190()
 	for(;;)
 	{
 			trig waittill("trigger", player);
-			player thread speedrun\_way_name::finish_way("s1");
+			player thread sr\api\_speedrun::finishWay("secret_1");
 			player.slows = 1;
 	}
 }

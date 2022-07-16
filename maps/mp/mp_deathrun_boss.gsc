@@ -1,15 +1,15 @@
 main()
 {
 	//maps\mp\_load::main();
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_secret_way("Secret Way;");
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	// spawn auto placement
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread speedrun\_way_name::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin,
+		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin,
 			90);
 	
-thread speedrun\_way_name::create_tp((-107.477, 243.677, -1487.88), 50, 25, (-7256, 9127, -2276), 90, "freeze", "cyan", "s0");
+thread sr\api\_speedrun::createTeleporter((-107.477, 243.677, -1487.88), 50, 25, (-7256, 9127, -2276), 90, "freeze", "cyan", "secret_0");
 
 	game["allies"] = "sas";
 	game["axis"] = "russian";
@@ -252,7 +252,7 @@ secretend()
 	{
 	trig waittill("trigger", player);
 		 
-	player thread speedrun\_way_name::finish_way("s0");
+	player thread sr\api\_speedrun::finishWay("secret_0");
 	player setOrigin( target.origin );
 	player setPlayerAngles( target.angles );
 					

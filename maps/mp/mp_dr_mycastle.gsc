@@ -59,12 +59,12 @@ main()
 	addTriggerToList( "trap6" );
 	addTriggerToList( "trap7" );
 
-   thread speedrun\_way_name::create_normal_way("Normal Way;");
-   thread speedrun\_way_name::create_secret_way("Easy Secret;Hard Secret;");
-   thread speedrun\_way_name::create_spawn((6650,-10176,125),90);
-   thread speedrun\_way_name::create_endmap((6280.56, -6202.25, 544.125), 120, 75);
-   thread speedrun\_way_name::create_tp((6445.33, -9117.16, 65.125), 70, 80, (8592, -6438, -883), 319, "freeze", "blue", "s0");
-   thread speedrun\_way_name::create_tp((6659.79, -9123.62, 65.125), 75, 80, (-4812, -1416, 125), 90, "freeze", "red", "s1");
+   thread sr\api\_speedrun::createNormalWays("Normal Way;");
+   thread sr\api\_speedrun::createSecretWays("Easy Secret;Hard Secret;");
+   thread sr\api\_map::createSpawn((6650,-10176,125),90);
+   thread sr\api\_speedrun::createEndMap((6280.56, -6202.25, 544.125), 120, 75);
+   thread sr\api\_speedrun::createTeleporter((6445.33, -9117.16, 65.125), 70, 80, (8592, -6438, -883), 319, "freeze", "blue", "secret_0");
+   thread sr\api\_speedrun::createTeleporter((6659.79, -9123.62, 65.125), 75, 80, (-4812, -1416, 125), 90, "freeze", "red", "secret_1");
    
 	// thread guidchecking();
 	// thread messages();
@@ -716,7 +716,7 @@ secretxp3()
 
    player SetOrigin( telejumporigin3.origin );
    player setplayerangles( telejumporigin3.angles );
-   player thread speedrun\_way_name::finish_way("s1");
+   player thread sr\api\_speedrun::finishWay("secret_1");
       
 }
 }
@@ -735,7 +735,7 @@ secretxp4()
    
    player SetOrigin( telejumporigin2.origin );
    player setplayerangles( telejumporigin2.angles );
-   player thread speedrun\_way_name::finish_way("s0");
+   player thread sr\api\_speedrun::finishWay("secret_0");
  
    
 }

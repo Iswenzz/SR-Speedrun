@@ -25,7 +25,7 @@ main()
 	setDvar("bg_falldamagemaxheight", 20000000 );
 	setDvar("bg_falldamageminheight", 15000000 );
 
-	thread speedrun\_way_name::create_spawn((-3825, 5989, 244), 337);
-	thread speedrun\_way_name::create_normal_way("Normal Way");
-	thread speedrun\_way_name::create_endmap((223.19, 4055.94, 30.925), 80, 30);
+	thread sr\api\_map::createSpawn((-3825, 5989, 244), 337);
+	thread sr\api\_speedrun::createNormalWays("Normal Way");
+	thread sr\api\_speedrun::createEndMap((223.19, 4055.94, 30.925), 80, 30);
 }

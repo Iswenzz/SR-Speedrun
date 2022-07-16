@@ -55,11 +55,11 @@ main() {
 	game["axis_soldiertype"] = "desert";
 	
 	////////Other Things
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_secret_way("Secret Way;");
-	thread speedrun\_way_name::create_spawn((-1922,518,76),360);
-	thread speedrun\_way_name::create_tp((-1565.43, 159.92, 16.125), 85, 85, (3702, 2677, 1646), 177, "freeze", "blue", "s0");
-	thread speedrun\_way_name::create_endmap((4417.32, -460.744, -8190.88), 130, 30);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread sr\api\_map::createSpawn((-1922,518,76),360);
+	thread sr\api\_speedrun::createTeleporter((-1565.43, 159.92, 16.125), 85, 85, (3702, 2677, 1646), 177, "freeze", "blue", "secret_0");
+	thread sr\api\_speedrun::createEndMap((4417.32, -460.744, -8190.88), 130, 30);
 	// thread printCredits();
 	// thread setupServers();
 	// thread mapmusic();
@@ -1363,7 +1363,7 @@ exit() {
 		player switchToWeapon ("ak74u_mp");
 		wait 0.5;
 		player freezeControls(false);
-		player thread speedrun\_way_name::finish_way("s0");
+		player thread sr\api\_speedrun::finishWay("secret_0");
 
 	}
 }

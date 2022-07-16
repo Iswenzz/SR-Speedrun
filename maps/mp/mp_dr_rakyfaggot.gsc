@@ -16,7 +16,7 @@ main()
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
 
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	
 	setDvar( "r_specularcolorscale", "1" );
 	setDvar("g_speed","200");

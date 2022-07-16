@@ -20,10 +20,10 @@ main()
     game["allies_soldiertype"] = "desert";
     game["axis_soldiertype"] = "desert";
 
-    thread speedrun\_way_name::create_spawn((-842,-1,-277),181);
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-    thread speedrun\_way_name::create_secret_way("Secret Way;");
-    thread speedrun\_way_name::create_tp((-1058.49, -282.462, -348.497), 80, 130, (781, 2755, -3331), 181, "freeze", "blue", "s0");
+    thread sr\api\_map::createSpawn((-842,-1,-277),181);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("Secret Way;");
+    thread sr\api\_speedrun::createTeleporter((-1058.49, -282.462, -348.497), 80, 130, (781, 2755, -3331), 181, "freeze", "blue", "secret_0");
  
     setdvar( "r_specularcolorscale", "1" );
     setdvar("r_glowbloomintensity0",".1");
@@ -1421,7 +1421,7 @@ jumper_secret_end()
     while(1)
     {
         trigger waittill ("trigger", player);
-        player thread speedrun\_way_name::finish_way("s0");
+        player thread sr\api\_speedrun::finishWay("secret_0");
     }
 }
 secret1() {

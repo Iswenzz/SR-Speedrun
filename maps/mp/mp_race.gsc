@@ -74,21 +74,21 @@ main()
 	level.accepted39 = "3b6654c0"; //Kenedko
 	level.accepted40 = "698845cd"; //ZeeZ
 	
-    thread speedrun\_way_name::create_normal_way("Easy Way;");
-    thread speedrun\_way_name::create_secret_way("Hard Way;Fun Way;Bhop Way;Inter+ Way;Inter Way;");
-    thread speedrun\_way_name::create_spawn((-23318,-50,40140),0);
-    thread speedrun\_way_name::create_tp((-20034.8, -61.3096, 40080.1), 130, 90, (34572, 58542, 14480), 290, "freeze", "green");
-    thread speedrun\_way_name::create_tp((-22086.1, -1847.55, 40080.1), 100, 100, (59367, -37931, -10322), 269, "freeze", "darkred", "s0");
-    thread speedrun\_way_name::create_tp((-22086.5, 1740.51, 40080.1), 80, 80, (-42268, 8274, -24360), 0, "freeze", "cyan", "s1");
-    thread speedrun\_way_name::create_tp((-22113, 1457.56, 40080.1), 95, 90, (-68715, 46239, -13252), 27, "freeze", "purple", "s2");
-    thread speedrun\_way_name::create_tp((-21016.5, -1752.85, 40080.1), 115, 80, (-18252, -37152, -5588), 218, "freeze", "orange", "s3");
-    thread speedrun\_way_name::create_tp((-20997.4, 1769.63, 40080.1),  100, 90, (-13263, 2283, 373), 140, "freeze", "blue", "s4");
-    thread speedrun\_way_name::create_endmap((53584.5, -56372.7, -21381.4), 225, 115, "s0");
-    thread speedrun\_way_name::create_endmap((-23308.1, 18726.5, -34462.4), 200, 100, "s1");
-    thread speedrun\_way_name::create_endmap((-39100.7, 54275.5, -27637.9), 695, 720, "s2");
-    thread speedrun\_way_name::create_endmap((-14964.3, -53958.9, -14001.4), 260, 125, "s3");
-    thread speedrun\_way_name::create_endmap((-9378.84, 26427.5, -14001.4), 140, 240, "s4");
-    thread speedrun\_way_name::create_endmap((53179.6, 33804, 3752.63), 210, 100, "ns0");
+    thread sr\api\_speedrun::createNormalWays("Easy Way;");
+    thread sr\api\_speedrun::createSecretWays("Hard Way;Fun Way;Bhop Way;Inter+ Way;Inter Way;");
+    thread sr\api\_map::createSpawn((-23318,-50,40140),0);
+    thread sr\api\_speedrun::createTeleporter((-20034.8, -61.3096, 40080.1), 130, 90, (34572, 58542, 14480), 290, "freeze", "green");
+    thread sr\api\_speedrun::createTeleporter((-22086.1, -1847.55, 40080.1), 100, 100, (59367, -37931, -10322), 269, "freeze", "darkred", "secret_0");
+    thread sr\api\_speedrun::createTeleporter((-22086.5, 1740.51, 40080.1), 80, 80, (-42268, 8274, -24360), 0, "freeze", "cyan", "secret_1");
+    thread sr\api\_speedrun::createTeleporter((-22113, 1457.56, 40080.1), 95, 90, (-68715, 46239, -13252), 27, "freeze", "purple", "secret_2");
+    thread sr\api\_speedrun::createTeleporter((-21016.5, -1752.85, 40080.1), 115, 80, (-18252, -37152, -5588), 218, "freeze", "orange", "secret_3");
+    thread sr\api\_speedrun::createTeleporter((-20997.4, 1769.63, 40080.1),  100, 90, (-13263, 2283, 373), 140, "freeze", "blue", "secret_4");
+    thread sr\api\_speedrun::createEndMap((53584.5, -56372.7, -21381.4), 225, 115, "secret_0");
+    thread sr\api\_speedrun::createEndMap((-23308.1, 18726.5, -34462.4), 200, 100, "secret_1");
+    thread sr\api\_speedrun::createEndMap((-39100.7, 54275.5, -27637.9), 695, 720, "secret_2");
+    thread sr\api\_speedrun::createEndMap((-14964.3, -53958.9, -14001.4), 260, 125, "secret_3");
+    thread sr\api\_speedrun::createEndMap((-9378.84, 26427.5, -14001.4), 140, 240, "secret_4");
+    thread sr\api\_speedrun::createEndMap((53179.6, 33804, 3752.63), 210, 100, "normal_0");
     
 	// thread door_slider();
 	// thread vipdoor();

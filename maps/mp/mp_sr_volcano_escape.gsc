@@ -44,8 +44,8 @@ main()
 	thread fail();
 	thread secrettp();
 	thread secretfinish();
-	//thread speedrun\_way_name::create_normal_way("Normal Way");
-	//thread speedrun\_way_name::create_secret_way("Secret Way");
+	//thread sr\api\_speedrun::createNormalWays("Normal Way");
+	//thread sr\api\_speedrun::createSecretWays("Secret Way");
 
 	
 }
@@ -71,7 +71,7 @@ secrettp()
 	for(;;)
 	{
 		trig waittill("trigger",player);
-		//player thread speedrun\_way_name::change_way("s0");
+		//player thread sr\api\_speedrun::changeWay("secret_0");
 		player setPlayerAngles( spawn.angles );
 		player setOrigin( spawn.origin );
 		player iPrintLnBold("^3You Entered The Secret!");
@@ -88,7 +88,7 @@ secretfinish()
 	for(;;)
 	{
 		trig waittill("trigger",player);
-		//player thread speedrun\_way_name::finish_way("s0");
+		//player thread sr\api\_speedrun::finishWay("secret_0");
 		player iPrintLnBold("^3Nice One");
 
 	}

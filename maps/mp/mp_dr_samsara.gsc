@@ -16,13 +16,13 @@ main()
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
 
-    thread speedrun\_way_name::create_spawn((4411,1,-2034),360);
-    thread speedrun\_way_name::create_normal_way("Normal Way;");
-    thread speedrun\_way_name::create_secret_way("Secret Way;");
-	thread speedrun\_way_name::create_tp((16382.5, -3.26039, -4794.3), 65, 10, (17253, 4, -2011), 360, "freeze", "yellow", "ns0");
-	thread speedrun\_way_name::create_tp((4414.27, 405.18, -2093.88), 65, 10, (-991, -1848, -1545), 90, "freeze", "blue", "s0");
-	thread speedrun\_way_name::create_endmap((22306.4, 6668.72, -2815.38), 100, 10, "ns0");
-	thread speedrun\_way_name::create_endmap((16041.3, 156.583, -7749.87), 265, 10, "s0");
+    thread sr\api\_map::createSpawn((4411,1,-2034),360);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread sr\api\_speedrun::createTeleporter((16382.5, -3.26039, -4794.3), 65, 10, (17253, 4, -2011), 360, "freeze", "yellow", "normal_0");
+	thread sr\api\_speedrun::createTeleporter((4414.27, 405.18, -2093.88), 65, 10, (-991, -1848, -1545), 90, "freeze", "blue", "secret_0");
+	thread sr\api\_speedrun::createEndMap((22306.4, 6668.72, -2815.38), 100, 10, "normal_0");
+	thread sr\api\_speedrun::createEndMap((16041.3, 156.583, -7749.87), 265, 10, "secret_0");
 
 	thread start_button();
 

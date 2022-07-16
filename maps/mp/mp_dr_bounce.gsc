@@ -71,13 +71,13 @@ way_connect()
 {
     wait 0.05;
 	
-    speedrun\_way_name::createWay("normal", "Easy Way", "1");
-    speedrun\_way_name::createWay("secret", "Hard Way", "1");
+    sr\api\_speedrun::createNormalWays("Easy Way;");
+    sr\api\_speedrun::createSecretWays("Hard Way;");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        player thread speedrun\_way_name::way_name();
+
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -199,7 +199,7 @@ teleport()
 			entTransporter[i] thread transporter(i);
 			// if(i == 4)
 			// {
-			// 	thread speedrun\_triggerfx::createTrigFx(entTransporter[4], "secret");
+			// 	thread sr\api\_map::createTriggerFx(entTransporter[4], "secret");
 			// }
 		}
 	}
@@ -218,12 +218,11 @@ transporter(i)
 		// {
 		// 	player.secret_1_endtrig = true;
 			
-		// 	if(isDefined(player.sr_secret))
-		// 		player thread braxi\_mod::endTimer();
+player thread sr\api\_speedrun::finishWay("secret_0");
 		// }
 		
 		if(self.target == "auto16")
-			player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
+			player sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste
 
 		entTarget = getEnt( self.target, "targetname" );
 		player setOrigin( entTarget.origin );

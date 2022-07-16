@@ -20,9 +20,9 @@ main()
 	setDvar("bg_fallDamageMinHeight", "9999");
 	setDvar("bg_fallDamageMaxHeight", "99999");
 
-    thread speedrun\_way_name::create_spawn((94,-1334,76),360);
-    thread speedrun\_way_name::create_normal_way("Normal Way;");
-    thread speedrun\_way_name::create_secret_way("Secret Way;");
+    thread sr\api\_map::createSpawn((94,-1334,76),360);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("Secret Way;");
 
 	thread startdoor();
 	thread secret_enter();
@@ -51,7 +51,7 @@ secret_enter()
 	while(true)
 	{
 		secret_enter_trig waittill ("trigger", player);	
-		player thread speedrun\_way_name::change_way("s0");
+		player thread sr\api\_speedrun::changeWay("secret_0");
 		player.checkpoint = 0;
 		player SetPlayerAngles(secret_enter_orig.angles);
 		player SetOrigin(secret_enter_orig.origin);
@@ -67,7 +67,7 @@ secret_exit()
 	while(true)
 	{
 		secret_exit_trig waittill ("trigger", player);
-		player thread speedrun\_way_name::finish_way("s0");	
+		player thread sr\api\_speedrun::finishWay("secret_0");	
 		player.checkpoint = 0;
 		player SetPlayerAngles(secret_exit_orig.angles);
 		player SetOrigin(secret_exit_orig.origin + (-100,0,0));

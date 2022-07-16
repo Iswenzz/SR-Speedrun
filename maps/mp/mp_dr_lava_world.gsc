@@ -16,10 +16,10 @@ setDvar("r_glowskybleedintensity0",".3");
 setDvar("bg_falldamagemaxheight", 20000 );
 setDvar("bg_falldamageminheight", 15000 );
 	
-thread speedrun\_way_name::create_spawn((180,156,76),90);
-thread speedrun\_way_name::create_normal_way("Normal Way;");
-thread speedrun\_way_name::create_secret_way("Secret Way;");
-thread speedrun\_way_name::create_tp((12305.7, 2608.98, -1839.88), 50, 10, (12320, 1530, -1780), 270, "freeze", "blue", "ns0");
+thread sr\api\_map::createSpawn((180,156,76),90);
+thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread sr\api\_speedrun::createSecretWays("Secret Way;");
+thread sr\api\_speedrun::createTeleporter((12305.7, 2608.98, -1839.88), 50, 10, (12320, 1530, -1780), 270, "freeze", "blue", "normal_0");
 
 thread startdoor();
 thread secret();
@@ -113,7 +113,7 @@ secretsenter()
 	for (;;)
 	{
 		trig waittill("trigger", player);
-		 player thread speedrun\_way_name::change_way("s0");
+		 player thread sr\api\_speedrun::changeWay("secret_0");
 		player setOrigin(o.origin);
 		player setPlayerAngles(o.angles);
 		secret_stop = "secret_stop";
@@ -128,7 +128,7 @@ secretsexit()
 	for (;;)
 	{
 		trig waittill("trigger", player);
-		player thread speedrun\_way_name::finish_way("s0");
+		player thread sr\api\_speedrun::finishWay("secret_0");
 		player setOrigin(o.origin);
 		player setPlayerAngles(o.angles);
 		player freezeControls(1);

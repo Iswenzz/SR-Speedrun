@@ -20,9 +20,9 @@ main()
 	// total traps: 15
 	// activated by user: 12
 	// allways active (and, or hidden): 3
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_spawn((-13,-217,76),90);
-	thread speedrun\_way_name::create_endmap((1539.59, 6199.78, -15.875), 60, 65);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_map::createSpawn((-13,-217,76),90);
+	thread sr\api\_speedrun::createEndMap((1539.59, 6199.78, -15.875), 60, 65);
 	// thread trap_1();
 	// thread trap_2();
 	// thread trap_3();

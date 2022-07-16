@@ -15,12 +15,12 @@ main()
 	maps\mp\_jump_game::main();
 	
     ///Sr Stuff
-    thread speedrun\_way_name::create_spawn((-22,370,60),89);
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_tp((-2, 5770, 60), 60, 80, (-4, 6085, -644), 90, "unfreeze", "red");
-	thread speedrun\_way_name::create_tp((-0, 11148, -644), 60, 80, (-5, 11433, -1668), 89, "unfreeze", "red");
-	thread speedrun\_way_name::create_tp((2, 16088, -1668), 60, 80, (1, 16447, -1908), 90, "unfreeze", "red");
-	thread speedrun\_way_name::create_endmap((2.04788, 17160.3, -1967.88), 90, 10, "ns0");
+    thread sr\api\_map::createSpawn((-22,370,60),89);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createTeleporter((-2, 5770, 60), 60, 80, (-4, 6085, -644), 90, "unfreeze", "red");
+	thread sr\api\_speedrun::createTeleporter((-0, 11148, -644), 60, 80, (-5, 11433, -1668), 89, "unfreeze", "red");
+	thread sr\api\_speedrun::createTeleporter((2, 16088, -1668), 60, 80, (1, 16447, -1908), 90, "unfreeze", "red");
+	thread sr\api\_speedrun::createEndMap((2.04788, 17160.3, -1967.88), 90, 10, "normal_0");
 	
 	
 

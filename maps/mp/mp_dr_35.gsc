@@ -14,8 +14,8 @@ setdvar("r_glowbloomintensity0",".1");
 setdvar("r_glowbloomintensity1",".1");
 setdvar("r_glowskybleedintensity0",".1");
 
-thread speedrun\_way_name::create_spawn((-732,823,364),270);
-thread speedrun\_way_name::create_normal_way("Normal Way;");
+thread sr\api\_map::createSpawn((-732,823,364),270);
+thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
 thread end();
 thread normaltp();
@@ -28,7 +28,7 @@ end()
 end = getent ("end","targetname");
 end waittill ("trigger",player );
 
-player thread speedrun\_way_name::finish_way("ns0");
+player thread sr\api\_speedrun::finishWay("normal_0");
 }
 
 normaltp()

@@ -92,12 +92,12 @@ way_connect()
     level.masterSpawn = spawn("script_origin",(-316,541,76-60));
 	level.masterSpawn.angles = (0,360,0);
     
-    speedrun\_way_name::createWay("normal", "Normal Way", "1");
+    sr\api\_speedrun::createNormalWays("Normal Way;");
     
     for(;;) 
     {
         level waittill( "connected", player );
-        player thread speedrun\_way_name::way_name();
+
     }
 }
 

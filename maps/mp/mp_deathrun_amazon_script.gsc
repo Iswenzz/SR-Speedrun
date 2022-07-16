@@ -11,8 +11,8 @@ main()
 	precacheItem( "mp5_reflex_mp" );
 	precacheItem( "remington700_mp" );
 
-    thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_spawn((-301,-127,-479),359);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_map::createSpawn((-301,-127,-479),359);
 	//thread messages();
 	//thread trap1();
 	//thread auto();

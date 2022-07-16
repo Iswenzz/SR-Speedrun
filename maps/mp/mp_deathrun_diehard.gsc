@@ -84,7 +84,7 @@ sr_tp()
 	trig = spawn("trigger_radius",(639,550,24),0,150,100);
 	trig.radius = 150;
 	wait 1;
-	thread speedrun\_triggerfx::createTrigFx(trig, "red");
+	thread sr\api\_map::createTriggerFx(trig, "red");
 
 	for(;;)
 	{
@@ -110,13 +110,13 @@ way_connect()
 {
     wait 0.05;
 	
-    speedrun\_way_name::createWay("normal", "Normal Way", "1");
-	speedrun\_way_name::createWay("secret", "Secret Way", "1");
+    sr\api\_speedrun::createNormalWays("Normal Way;");
+	sr\api\_speedrun::createSecretWays("Secret Way;");
 	
     for(;;)
     {
         level waittill( "connected", player );
-        player thread speedrun\_way_name::way_name();
+
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -288,7 +288,7 @@ for(;;)
 teleporter waittill("trigger", player);
 player SetOrigin( secret.origin );
 player setplayerangles( secret.angles );
-player speedrun\_way_name::startSecret(); //Speedrun Copy Paste
+player sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste
 }
 }
 

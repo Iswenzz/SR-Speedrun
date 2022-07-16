@@ -22,12 +22,12 @@ setdvar("r_glowbloomintensity1",".25");
 setdvar("r_glowskybleedintensity0",".3");
 setdvar("compassmaxrange","1800");
 
-thread speedrun\_way_name::create_spawn((-11,24,36),360);
-thread speedrun\_way_name::create_normal_way("Normal Way;");
-thread speedrun\_way_name::create_secret_way("Secret Way;");
-thread speedrun\_way_name::create_endmap((8328.09, 133.999, -23.875), 115, 10, "ns0");
-thread speedrun\_way_name::create_endmap((8328.09, 133.999, -23.875), 75, 10, "s0");
-thread speedrun\_way_name::create_tp((2891.45, -1772.73, 2598.13), 55, 10, (29, -1256, 2658), 360, "freeze", "blue", "s0");
+thread sr\api\_map::createSpawn((-11,24,36),360);
+thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread sr\api\_speedrun::createSecretWays("Secret Way;");
+thread sr\api\_speedrun::createEndMap((8328.09, 133.999, -23.875), 115, 10, "normal_0");
+thread sr\api\_speedrun::createEndMap((8328.09, 133.999, -23.875), 75, 10, "secret_0");
+thread sr\api\_speedrun::createTeleporter((2891.45, -1772.73, 2598.13), 55, 10, (29, -1256, 2658), 360, "freeze", "blue", "secret_0");
 thread ele2();
 	
 }

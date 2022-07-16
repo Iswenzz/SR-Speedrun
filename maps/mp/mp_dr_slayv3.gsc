@@ -14,14 +14,14 @@ main()
 	setDvar("bg_falldamagemaxheight", 99999);
     setDvar("bg_falldamageminheight", 99998);	
 
-    thread speedrun\_way_name::create_spawn((464,390,60),360);
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_normal_way("Easy Secret;Hard Secret;");
-    thread speedrun\_way_name::create_tp((4189.82, -704.283, -95.875), 55, 10, (3429, -703, -36), 180, "freeze", "blue", "ns0");
-	thread speedrun\_way_name::create_tp((648.482, 585.839, 0.125), 55, 10, (5201, 1266, 1085), 1, "freeze", "yellow", "s0");
-	thread speedrun\_way_name::create_tp((652.581, 180.528, 0.125), 55, 10, (-1085, 3296, -1987), 180, "freeze", "red", "s1");
-	thread speedrun\_way_name::create_endmap((9313.27, 1253.84, 16.125), 75, 10, "s0");
-	thread speedrun\_way_name::create_endmap((5072.48, 4767.26, -4990.88), 155, 10, "s1");
+    thread sr\api\_map::createSpawn((464,390,60),360);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createNormalWays("Easy Secret;Hard Secret;");
+    thread sr\api\_speedrun::createTeleporter((4189.82, -704.283, -95.875), 55, 10, (3429, -703, -36), 180, "freeze", "blue", "normal_0");
+	thread sr\api\_speedrun::createTeleporter((648.482, 585.839, 0.125), 55, 10, (5201, 1266, 1085), 1, "freeze", "yellow", "secret_0");
+	thread sr\api\_speedrun::createTeleporter((652.581, 180.528, 0.125), 55, 10, (-1085, 3296, -1987), 180, "freeze", "red", "secret_1");
+	thread sr\api\_speedrun::createEndMap((9313.27, 1253.84, 16.125), 75, 10, "secret_0");
+	thread sr\api\_speedrun::createEndMap((5072.48, 4767.26, -4990.88), 155, 10, "secret_1");
     
 	thread startdoor();
 	thread trap4();

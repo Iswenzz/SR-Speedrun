@@ -40,8 +40,8 @@ main() {
 	level.playerInRoom = undefined;
 
     //########################### Threads ###########################\\
-    thread speedrun\_way_name::create_normal_way("Normal Way;");
-    thread speedrun\_way_name::create_spawn((-5318,-679,372),0);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_map::createSpawn((-5318,-679,372),0);
 
     thread tools();
     // thread connect();

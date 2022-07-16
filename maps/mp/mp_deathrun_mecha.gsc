@@ -34,10 +34,10 @@ main()
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
 	
-	thread speedrun\_way_name::create_normal_way("Normal Way");
-	thread speedrun\_way_name::create_secret_way("Secret Way");
-	thread speedrun\_way_name::create_spawn((181,1,76),360);
-	thread speedrun\_way_name::create_endmap((-325.249, 3.00147, 16.125), 70, 100);
+	thread sr\api\_speedrun::createNormalWays("Normal Way");
+	thread sr\api\_speedrun::createSecretWays("Secret Way");
+	thread sr\api\_map::createSpawn((181,1,76),360);
+	thread sr\api\_speedrun::createEndMap((-325.249, 3.00147, 16.125), 70, 100);
 	//thread credit();
 	thread start_door();
 	thread elev();
@@ -501,7 +501,7 @@ transporter()
 	for(;;)
 	{
 		self waittill( "trigger", player );
-		player thread speedrun\_way_name::change_way("s0");
+		player thread sr\api\_speedrun::changeWay("secret_0");
 		entTarget = getEnt( self.target, "targetname" );
 		player setOrigin( entTarget.origin );
 		player setplayerangles( entTarget.angles );
@@ -519,7 +519,7 @@ transporter2()
 	for(;;)
 	{
 		self waittill( "trigger", player );
-		player thread speedrun\_way_name::finish_way("s0");
+		player thread sr\api\_speedrun::finishWay("secret_0");
 		entTarget = getEnt( self.target, "targetname" );
 		player setOrigin( entTarget.origin );
 		player setplayerangles( entTarget.angles );

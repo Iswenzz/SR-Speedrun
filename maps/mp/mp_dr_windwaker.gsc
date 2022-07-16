@@ -104,12 +104,12 @@ main()
 	level.activKills = 0;
 
 	//miscs------------------------
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_secret_way("^1Hard Way;^2Easy Way;");
-	thread speedrun\_way_name::create_spawn((667,581,68),0);
-	thread speedrun\_way_name::create_tp((591.033, 346.256, 8.125), 70, 40, (-37892, -8888, 1100), 90, "freeze", "blue", "s0");
-	thread speedrun\_way_name::create_tp((796.85, 336.657, 8.125), 70, 40, (-23551, -6691, 1260), 90, "freeze", "yellow", "s1");
-	thread speedrun\_way_name::create_tp((6660.33, 4146.93, 320.125), 60, 60, (6564, 6750, 59), 180, "freeze");
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("^1Hard Way;^2Easy Way;");
+	thread sr\api\_map::createSpawn((667,581,68),0);
+	thread sr\api\_speedrun::createTeleporter((591.033, 346.256, 8.125), 70, 40, (-37892, -8888, 1100), 90, "freeze", "blue", "secret_0");
+	thread sr\api\_speedrun::createTeleporter((796.85, 336.657, 8.125), 70, 40, (-23551, -6691, 1260), 90, "freeze", "yellow", "secret_1");
+	thread sr\api\_speedrun::createTeleporter((6660.33, 4146.93, 320.125), 60, 60, (6564, 6750, 59), 180, "freeze");
 	// thread whenPlayerConnected();
 	// thread whenSpawned();
 	// thread whenRoundStarted();
@@ -1119,7 +1119,7 @@ secret1Finish()
 			player giveMaxAmmo ("deserteaglegold_mp");
 			player switchToWeapon ("deserteaglegold_mp");
 		}
-		player thread speedrun\_way_name::finish_way("s1");
+		player thread sr\api\_speedrun::finishWay("secret_1");
 	}
 }
 
@@ -1215,7 +1215,7 @@ secret2Finish()
 			player giveMaxAmmo ("deserteaglegold_mp");
 			player switchToWeapon ("deserteaglegold_mp");
 		}
-		player thread speedrun\_way_name::finish_way("s0");
+		player thread sr\api\_speedrun::finishWay("secret_0");
 
 	}
 }

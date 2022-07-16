@@ -23,13 +23,13 @@ game["axis_soldiertype"] = "woodland";
 	precacheItem( "m14_acog_mp" );
 	precacheItem( "deserteagle_mp" );
 	
-thread speedrun\_way_name::create_spawn((-232,-15,76),360);
-thread speedrun\_way_name::create_normal_way("Easy Way;Hard Way;");
-thread speedrun\_way_name::create_secret_way("Acti Secret;Jumper Secret;");
-thread speedrun\_way_name::create_endmap((22825.1, 393.47, -8607.88), 235, 10, "ns0");
-thread speedrun\_way_name::create_tp((6.28732, -605.196, 16.125), 275, 20, (1506, -553, 76), 270, "freeze", "cyan", "ns1");
-thread speedrun\_way_name::create_tp((24.2553, 67.478, 16.125), 55, 10, (-2548, -17555, -6180), 270, "freeze", "yellow", "s0");
-thread speedrun\_way_name::create_tp((24.5169, -95.8473, 16.125), 55, 10, (10052, -18389, -6180), 270, "freeze", "blue", "s1");
+thread sr\api\_map::createSpawn((-232,-15,76),360);
+thread sr\api\_speedrun::createNormalWays("Easy Way;Hard Way;");
+thread sr\api\_speedrun::createSecretWays("Acti Secret;Jumper Secret;");
+thread sr\api\_speedrun::createEndMap((22825.1, 393.47, -8607.88), 235, 10, "normal_0");
+thread sr\api\_speedrun::createTeleporter((6.28732, -605.196, 16.125), 275, 20, (1506, -553, 76), 270, "freeze", "cyan", "normal_1");
+thread sr\api\_speedrun::createTeleporter((24.2553, 67.478, 16.125), 55, 10, (-2548, -17555, -6180), 270, "freeze", "yellow", "secret_0");
+thread sr\api\_speedrun::createTeleporter((24.5169, -95.8473, 16.125), 55, 10, (10052, -18389, -6180), 270, "freeze", "blue", "secret_1");
 
 thread startdoors();
 thread hardmode();
@@ -142,7 +142,7 @@ hardfinish()
     {   
     trig waittill("trigger", player);
 
-    player thread speedrun\_way_name::finish_way("ns1");
+    player thread sr\api\_speedrun::finishWay("normal_1");
     }
     
 }
@@ -155,7 +155,7 @@ actisecfinish()
     {   
     trig waittill("trigger", player);
 
-    player thread speedrun\_way_name::finish_way("s0");
+    player thread sr\api\_speedrun::finishWay("secret_0");
     }
     
 }
@@ -168,7 +168,7 @@ jumpersecfinish()
     {   
     trig waittill("trigger", player);
 
-    player thread speedrun\_way_name::finish_way("s1");
+    player thread sr\api\_speedrun::finishWay("secret_1");
     }
     
 }

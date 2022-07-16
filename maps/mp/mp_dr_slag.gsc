@@ -20,8 +20,8 @@ main()
     setDvar("bg_fallDamageMinHeight", "99998");
     setDvar("r_specular", "0");
 
-    thread speedrun\_way_name::create_normal_way("Normal Way");
-	thread speedrun\_way_name::create_secret_way("Secret Way");
+    thread sr\api\_speedrun::createNormalWays("Normal Way");
+	thread sr\api\_speedrun::createSecretWays("Secret Way");
 	thread secret();
 	thread secretend();
     thread onconnect();
@@ -36,7 +36,7 @@ secret()
 	for (;;)
 	{
 		trig waittill("trigger", player);
-		player thread speedrun\_way_name::change_way("s0");
+		player thread sr\api\_speedrun::changeWay("secret_0");
 		player setOrigin(o.origin);
 		player setPlayerAngles(o.angles);
 	
@@ -50,7 +50,7 @@ secretend()
     for(;;)
     {    
 	trig waittill("trigger", player);
-    player thread speedrun\_way_name::finish_way("s0");
+    player thread sr\api\_speedrun::finishWay("secret_0");
     }
 
 }

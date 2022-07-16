@@ -34,7 +34,7 @@ main()
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"] = "desert";
 
- 	thread speedrun\_way_name::create_normal_way("Normal Way;");
+ 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
 	setExpFog(500, 2200, 0.81, 0.75, 0.63, 0.5);
 	precacheModel("com_computer_rack");

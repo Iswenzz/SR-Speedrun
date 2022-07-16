@@ -3,7 +3,7 @@ main()
 	maps\mp\_load::main();
 	maps\mp\_compass::setupMiniMap("compass_mp_sr_delay_cope");
 
-	thread speedrun\_way_name::create_spawn((-416, -128, 2450), 180);
+	thread sr\api\_map::createSpawn((-416, -128, 2450), 180);
  
 	game["allies"] = "marines";
 	game["axis"] = "opfor";

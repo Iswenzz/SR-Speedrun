@@ -37,8 +37,8 @@ main()
 	//thread trap4();
 	//thread trap5();
 	//thread trap6();
-    thread speedrun\_way_name::create_normal_way("Normal Way;");
-    thread speedrun\_way_name::create_spawn((68,21,76),91); 
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_map::createSpawn((68,21,76),91); 
 } 
 
 addTriggerToList( name )

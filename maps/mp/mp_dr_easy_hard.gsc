@@ -26,10 +26,10 @@ maps\mp\_load::main();
 
 	SetExpFog( 768, 1500, 123/255, 155/255, 175/255, 3 );
 	
-    thread speedrun\_way_name::create_spawn((-13,-71,76),90);
-    thread speedrun\_way_name::create_normal_way("Normal Way;");
-    thread speedrun\_way_name::create_secret_way("Secret Way;");
-    thread speedrun\_way_name::create_tp((-199.927, 133.188, 16.125), 55, 25, (15248, 11888, 16.125), 180, "freeze", "blue", "s0");
+    thread sr\api\_map::createSpawn((-13,-71,76),90);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("Secret Way;");
+    thread sr\api\_speedrun::createTeleporter((-199.927, 133.188, 16.125), 55, 25, (15248, 11888, 16.125), 180, "freeze", "blue", "secret_0");
     
     thread startdoor();
     thread secretexit();
@@ -59,7 +59,7 @@ tele1 = getEnt("o_secretexit", "targetname");
 		{
 		trig waittill("trigger", player);
 
-        player thread speedrun\_way_name::finish_way("s0");
+        player thread sr\api\_speedrun::finishWay("secret_0");
 		player setOrigin(tele1.origin);
 		player setPlayerAngles(tele1.angles);		
         

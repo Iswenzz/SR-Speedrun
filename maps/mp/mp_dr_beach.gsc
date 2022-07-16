@@ -34,12 +34,12 @@ main()
 {
 	maps\mp\_load::main();
 
-	thread speedrun\_way_name::create_spawn((-5280,-5183,1256),90);
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_secret_way("Secret Way;");
-	thread speedrun\_way_name::create_tp((-4941.74, -4823.45, 1196.13), 65, 20, (9568, 11608, 269), 106, "freeze", "red", "s0");
-	thread speedrun\_way_name::create_tp((-4743.47, -3127.81, 1184.13), 130, 70, (-5233, -1711, 1232), 179,"freeze");
-	thread speedrun\_way_name::create_tp((-4395.83, 2797.15, 1184.13), 130, 70, (-3181, 2798, 1216), 1,"freeze");
+	thread sr\api\_map::createSpawn((-5280,-5183,1256),90);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread sr\api\_speedrun::createTeleporter((-4941.74, -4823.45, 1196.13), 65, 20, (9568, 11608, 269), 106, "freeze", "red", "secret_0");
+	thread sr\api\_speedrun::createTeleporter((-4743.47, -3127.81, 1184.13), 130, 70, (-5233, -1711, 1232), 179,"freeze");
+	thread sr\api\_speedrun::createTeleporter((-4395.83, 2797.15, 1184.13), 130, 70, (-3181, 2798, 1216), 1,"freeze");
 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
@@ -399,7 +399,7 @@ secretfinish_tp()
 	for(;;)
 		{
 			trig waittill("trigger", player);
-			player thread speedrun\_way_name::finish_way("s0");
+			player thread sr\api\_speedrun::finishWay("secret_0");
 		}
 }
 

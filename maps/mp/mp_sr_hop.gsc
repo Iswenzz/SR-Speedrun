@@ -20,14 +20,14 @@ main()
 	setdvar("bg_fallDamageMaxHeight", "99999"); 
     setdvar("bg_FallDamageMinHeight","99998");
 	
-      thread speedrun\_way_name::create_spawn((-12,356,60),266);
-	  thread speedrun\_way_name::create_normal_way("Normal Way;Pure Strafe");
-	  thread speedrun\_way_name::create_secret_way("Inter Secret;Hard Secret;");
-	  thread speedrun\_way_name::create_endmap((4351.44, -16337.2, -4095.88),105,10,"ns0");
-	  thread speedrun\_way_name::create_endmap((-2.44038, 5282.71, -439.123),180,10,"ns1");
-	  thread speedrun\_way_name::create_endmap((12725.7, 33183.3, 12456.1),70,10,"s0");
-	  thread speedrun\_way_name::create_endmap((-14934.6, 103.061, 21277.1),120,10,"s1");
-	  thread speedrun\_way_name::create_endmap((4352.06, -16433, -4095.88), 260, 10);
+      thread sr\api\_map::createSpawn((-12,356,60),266);
+	  thread sr\api\_speedrun::createNormalWays("Normal Way;Pure Strafe");
+	  thread sr\api\_speedrun::createSecretWays("Inter Secret;Hard Secret;");
+	  thread sr\api\_speedrun::createEndMap((4351.44, -16337.2, -4095.88),105,10,"normal_0");
+	  thread sr\api\_speedrun::createEndMap((-2.44038, 5282.71, -439.123),180,10,"normal_1");
+	  thread sr\api\_speedrun::createEndMap((12725.7, 33183.3, 12456.1),70,10,"secret_0");
+	  thread sr\api\_speedrun::createEndMap((-14934.6, 103.061, 21277.1),120,10,"secret_1");
+	  thread sr\api\_speedrun::createEndMap((4352.06, -16433, -4095.88), 260, 10);
 	
 	
 	precacheModel("iw_zapper_view");
@@ -224,7 +224,7 @@ pure_strafe()
 	for(;;)
 		{
 			trig waittill("trigger", player);
-			player thread speedrun\_way_name::change_way("ns1");
+			player thread sr\api\_speedrun::changeWay("normal_1");
 			player setOrigin(tele1.origin);
 			player setPlayerAngles(tele1.angles);			
 		}
@@ -243,7 +243,7 @@ hard_enter()
     while(true)
     {
     trig waittill("trigger",player);
-	player thread speedrun\_way_name::change_way("s1");
+	player thread sr\api\_speedrun::changeWay("secret_1");
     player.secret = 0;
     player setPlayerangles( target.angles );
     player setOrigin( target.origin ); 
@@ -350,7 +350,7 @@ inter_enter()
     while(true)
     {
     trig waittill("trigger",player);
-	player thread speedrun\_way_name::change_way("s0");
+	player thread sr\api\_speedrun::changeWay("secret_0");
     player.secret = 0;
     player setPlayerangles( target.angles );
     player setOrigin( target.origin ); 

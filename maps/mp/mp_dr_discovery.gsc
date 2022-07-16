@@ -29,14 +29,14 @@ main()
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
 
-	thread speedrun\_way_name::create_spawn((-828,23,76),358);
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_secret_way("^3Easy Secret;^1Hard Secret;^5Acti Secret;");
-	thread speedrun\_way_name::create_tp((-666.903, 228.034, 16.125), 95, 80, (5237, 7869, -194), 357, "freeze", "blue", "s0");
-	thread speedrun\_way_name::create_tp((-948.754, 264.133, 16.125), 90, 80, (-4812, 5197, -194), 91, "freeze", "red", "s1");
-	thread speedrun\_way_name::create_tp((-934.759, -214.842, 16.125), 90, 80, (-5682, -505, -194), 270, "freeze", "cyan", "s2");
-	thread speedrun\_way_name::create_tp((2656.36, -3940.81, 30.125), 120, 85, (2638, -5010, 70), 272,"unfreeze");
-	thread speedrun\_way_name::create_tp((13098.3, -5810.7, -255.875), 95, 85, (13878, -5821, -196), 358,"freeze");
+	thread sr\api\_map::createSpawn((-828,23,76),358);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("^3Easy Secret;^1Hard Secret;^5Acti Secret;");
+	thread sr\api\_speedrun::createTeleporter((-666.903, 228.034, 16.125), 95, 80, (5237, 7869, -194), 357, "freeze", "blue", "secret_0");
+	thread sr\api\_speedrun::createTeleporter((-948.754, 264.133, 16.125), 90, 80, (-4812, 5197, -194), 91, "freeze", "red", "secret_1");
+	thread sr\api\_speedrun::createTeleporter((-934.759, -214.842, 16.125), 90, 80, (-5682, -505, -194), 270, "freeze", "cyan", "secret_2");
+	thread sr\api\_speedrun::createTeleporter((2656.36, -3940.81, 30.125), 120, 85, (2638, -5010, 70), 272,"unfreeze");
+	thread sr\api\_speedrun::createTeleporter((13098.3, -5810.7, -255.875), 95, 85, (13878, -5821, -196), 358,"freeze");
 
 
 	setdvar("r_specularcolorscale", "1");
@@ -598,7 +598,7 @@ acti_leave()
 	for(;;)
 	{
 		trig waittill("trigger",player);
-		player thread speedrun\_way_name::finish_way("s2");
+		player thread sr\api\_speedrun::finishWay("secret_2");
 		player.checkpoint = 0;
 		player.hard_checkpoint = 0;
 	}
@@ -613,7 +613,7 @@ secret_leave()
 	for(;;)
 	{
 		trig waittill("trigger",player);
-		player thread speedrun\_way_name::finish_way("s0");
+		player thread sr\api\_speedrun::finishWay("secret_0");
 		player.checkpoint = 0;
 		player.hard_checkpoint = 0;
 	}
@@ -627,7 +627,7 @@ hard_secret_leave()
 	for(;;)
 	{
 		trig waittill("trigger",player);
-		player thread speedrun\_way_name::finish_way("s1");
+		player thread sr\api\_speedrun::finishWay("secret_1");
 		player.checkpoint = 0;
 		player.hard_checkpoint = 0;
 	}

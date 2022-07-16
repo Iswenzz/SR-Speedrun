@@ -521,7 +521,7 @@ exitsecret_easy()
 		player setorigin(exitorigin.origin);
 		player setplayerangles(exitorigin.angles);
 		player.ineasy = false;
-		player thread speedrun\_way_name::finish_way("s0");
+		player thread sr\api\_speedrun::finishWay("secret_0");
 		
 	}
 }
@@ -537,7 +537,7 @@ exitsecret_hard()
 		player setorigin(exitorigin.origin);
 		player setplayerangles(exitorigin.angles);
 		player.inhard = false;
-		player thread speedrun\_way_name::finish_way("s1");
+		player thread sr\api\_speedrun::finishWay("secret_1");
 
 	}
 }

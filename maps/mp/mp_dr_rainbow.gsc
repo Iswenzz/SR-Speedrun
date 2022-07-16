@@ -18,11 +18,11 @@ main()
 	setDvar("bg_falldamagemaxheight", 9999999999 );
 	setDvar("bg_falldamageminheight", 999999999 );
 	
-	thread speedrun\_way_name::create_normal_way("^2Easy Way;^2Easy+ Way;^3Inter Way;^3Inter+ Way;^1Hard Way;");
-	thread speedrun\_way_name::create_secret_way("^2Easy Secret;^2Easy+ Secret;^3Inter Secret;^3Inter+ Secret;^1Hard Secret;");
-	thread speedrun\_way_name::create_tp((-2500.17, 4086.94, -159.875), 110, 15, (-4834, 4309, -356), 180, "freeze", "blue", "ns1");
-	thread speedrun\_way_name::create_tp((441.615, 10977, 496.125), 80, 15, (-2439, 10707, 556), 270, "freeze", "blue", "ns2");
-	thread speedrun\_way_name::create_tp((-4217.04, 9539.11, -751.875), 110, 15, (-4147, 11090, 396), 180, "freeze", "blue", "ns2");
+	thread sr\api\_speedrun::createNormalWays("^2Easy Way;^2Easy+ Way;^3Inter Way;^3Inter+ Way;^1Hard Way;");
+	thread sr\api\_speedrun::createSecretWays("^2Easy Secret;^2Easy+ Secret;^3Inter Secret;^3Inter+ Secret;^1Hard Secret;");
+	thread sr\api\_speedrun::createTeleporter((-2500.17, 4086.94, -159.875), 110, 15, (-4834, 4309, -356), 180, "freeze", "blue", "normal_1");
+	thread sr\api\_speedrun::createTeleporter((441.615, 10977, 496.125), 80, 15, (-2439, 10707, 556), 270, "freeze", "blue", "normal_2");
+	thread sr\api\_speedrun::createTeleporter((-4217.04, 9539.11, -751.875), 110, 15, (-4147, 11090, 396), 180, "freeze", "blue", "normal_2");
 
 	thread message();
 	thread Br11();
@@ -141,16 +141,16 @@ transporter()
 		self waittill( "trigger", player );
 
 		if(self.target == "Vo1")
-			player thread speedrun\_way_name::change_way("ns1");
+			player thread sr\api\_speedrun::changeWay("normal_1");
 
 		if(self.target == "Jo1")
-			player thread speedrun\_way_name::change_way("ns2");
+			player thread sr\api\_speedrun::changeWay("normal_2");
 
 		if(self.target == "Oo1")
-			player thread speedrun\_way_name::change_way("ns3");
+			player thread sr\api\_speedrun::changeWay("normal_3");
 
 		if(self.target == "Ro1")
-			player thread speedrun\_way_name::change_way("ns4");
+			player thread sr\api\_speedrun::changeWay("normal_4");
 
 		entTarget = getEnt( self.target, "targetname" );
 		player setOrigin( entTarget.origin );
@@ -1330,7 +1330,7 @@ secret_hard()
 	while(1)
 	{
 	trig waittill("trigger", player);
-	player thread speedrun\_way_name::finish_way("s4");
+	player thread sr\api\_speedrun::finishWay("secret_4");
 		// iPrintlnBold("^4" + player.name + " ^7Has finished hard secret");
 		// player braxi\_rank::giveRankXP("", 1500);
 		// player setOrigin(ori.origin);
@@ -1347,7 +1347,7 @@ secret_ez()
 	while(1)
 	{
 	trig waittill("trigger", player);
-	player thread speedrun\_way_name::finish_way("s0");
+	player thread sr\api\_speedrun::finishWay("secret_0");
 		// iPrintlnBold("^4" + player.name + " ^7Has finished easy secret");
 		// door delete();
 		// // player braxi\_rank::giveRankXP("", 200);
@@ -1365,7 +1365,7 @@ secret_ezz()
 	while(1)
 	{
 	trig waittill("trigger", player);
-	player thread speedrun\_way_name::finish_way("s1");
+	player thread sr\api\_speedrun::finishWay("secret_1");
 		// iPrintlnBold("^4" + player.name + " ^7Has finished easy + secret");
 		// door delete();
 		// player braxi\_rank::giveRankXP("", 400);
@@ -1382,7 +1382,7 @@ secret_i()
 	while(1)
 	{
 	trig waittill("trigger", player);
-	player thread speedrun\_way_name::finish_way("s2");
+	player thread sr\api\_speedrun::finishWay("secret_2");
 		// iPrintlnBold("^4" + player.name + " ^7Has finished inter secret");
 		// player braxi\_rank::giveRankXP("", 750);
 		// player setOrigin(ori.origin);
@@ -1398,7 +1398,7 @@ secret_ii()
 	while(1)
 	{
 	trig waittill("trigger", player);
-	player thread speedrun\_way_name::finish_way("s3");
+	player thread sr\api\_speedrun::finishWay("secret_3");
 		// iPrintlnBold("^4" + player.name + " ^7Has finished inter + secret");
 		// player braxi\_rank::giveRankXP("", 1000);
 		// player setOrigin(ori.origin);
@@ -1414,7 +1414,7 @@ secret_hard2()
 	while(1)
 	{
 	trig waittill("trigger", player);
-	player thread speedrun\_way_name::change_way("s4");
+	player thread sr\api\_speedrun::changeWay("secret_4");
 		// player iPrintlnBold("You entered hard secret");
 		// wait 1;
 }
@@ -1426,7 +1426,7 @@ secret_ez2()
 	while(1)
 	{
 	trig waittill("trigger", player);
-	player thread speedrun\_way_name::change_way("s0");
+	player thread sr\api\_speedrun::changeWay("secret_0");
 		// player iPrintlnBold("You entered easy secret");
 		// wait 1;
 }
@@ -1439,7 +1439,7 @@ secret_ezz2()
 	while(1)
 	{
 	trig waittill("trigger", player);
-	player thread speedrun\_way_name::change_way("s1");
+	player thread sr\api\_speedrun::changeWay("secret_1");
 		// player iPrintlnBold("You entered easy + secret");
 		// wait 1;
 }
@@ -1451,7 +1451,7 @@ secret_i2()
 	while(1)
 	{
 	trig waittill("trigger", player);
-	player thread speedrun\_way_name::change_way("s2");
+	player thread sr\api\_speedrun::changeWay("secret_2");
 		// player iPrintlnBold("You entered inter secret");
 		// wait 1;
 }
@@ -1464,7 +1464,7 @@ secret_ii2()
 	while(1)
 	{
 	trig waittill("trigger", player);
-	player thread speedrun\_way_name::change_way("s3");
+	player thread sr\api\_speedrun::changeWay("secret_3");
 		// player iPrintlnBold("You entered inter + secret");
 		// wait 1;
 }

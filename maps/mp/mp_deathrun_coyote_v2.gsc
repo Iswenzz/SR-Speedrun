@@ -1,10 +1,10 @@
 main()
 {
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_secret_way("^2Easy Way; ^5Easy+ Way; ^1Hard Way;");
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("^2Easy Way; ^5Easy+ Way; ^1Hard Way;");
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread speedrun\_way_name::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
+		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 	
 	maps\mp\_load::main(); 
 
@@ -54,12 +54,12 @@ main()
 	/* [AUTO DELETE] level.music[5]["song"]	="Tiest� - Wasted (Ummet Ozcan Remix)"; */
 	/* [AUTO DELETE] level.music[5]["alias"]	="wasted"; */
 
-    thread speedrun\_way_name::create_tp((-109, 728, 85), 100, 150,
-    	(-2552, 48, 1863), 270, "freeze", "green", "s0");
-    thread speedrun\_way_name::create_tp((-299, 679, 74), 100, 150, 
-    	(-2440, 4181, 1863), 270, "freeze", "cyan", "s1");
-    thread speedrun\_way_name::create_tp((-343, 503, 73), 100, 150, 
-    	(-2963, 11951, 1863), 270, "freeze", "red", "s2");
+    thread sr\api\_speedrun::createTeleporter((-109, 728, 85), 100, 150,
+    	(-2552, 48, 1863), 270, "freeze", "green", "secret_0");
+    thread sr\api\_speedrun::createTeleporter((-299, 679, 74), 100, 150, 
+    	(-2440, 4181, 1863), 270, "freeze", "cyan", "secret_1");
+    thread sr\api\_speedrun::createTeleporter((-343, 503, 73), 100, 150, 
+    	(-2963, 11951, 1863), 270, "freeze", "red", "secret_2");
 
 	addTriggerToList("trig_trap1");
 	addTriggerToList("trig_trap2");
@@ -268,7 +268,7 @@ easy_end()
 	while(1)
     	{
         trig waittill ("trigger", player);
-        player thread speedrun\_way_name::finish_way("s0");
+        player thread sr\api\_speedrun::finishWay("secret_0");
 	}
 }
 
@@ -292,7 +292,7 @@ easyplus_end()
 	while(1)
     	{
         trig waittill ("trigger", player);
-        player thread speedrun\_way_name::finish_way("s1");
+        player thread sr\api\_speedrun::finishWay("secret_1");
 	}
 }
 
@@ -317,7 +317,7 @@ hard_end()
 	while(1)
     	{
         trig waittill ("trigger", player);
-        player thread speedrun\_way_name::finish_way("s2");
+        player thread sr\api\_speedrun::finishWay("secret_2");
 	}
 }
 

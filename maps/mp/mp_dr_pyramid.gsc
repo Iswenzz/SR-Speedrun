@@ -1,13 +1,13 @@
 main()
 {
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_secret_way("Secret Way;");
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-	thread speedrun\_way_name::create_spawn_auto(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
+	thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 	maps\mp\_load::main();
-    thread speedrun\_way_name::create_tp((-336.27, -973.907, 15.9623), 50, 15, (558, 1355, -1300), 270, "freeze", "blue", "s0");
-    thread speedrun\_way_name::create_endmap((1871.13, -285.334, -1502.88),85,30, "s0");  
+    thread sr\api\_speedrun::createTeleporter((-336.27, -973.907, 15.9623), 50, 15, (558, 1355, -1300), 270, "freeze", "blue", "secret_0");
+    thread sr\api\_speedrun::createEndMap((1871.13, -285.334, -1502.88),85,30, "secret_0");  
 
 	PreCacheItem("brick_blaster_mp");
 	PreCacheItem("ak47_mp");

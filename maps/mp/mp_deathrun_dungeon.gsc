@@ -9,8 +9,8 @@ main()
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
 
-    thread speedrun\_way_name::create_spawn((95,353,68),270);
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
+    thread sr\api\_map::createSpawn((95,353,68),270);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("r_glowbloomintensity0",".1");

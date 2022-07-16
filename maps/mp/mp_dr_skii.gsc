@@ -13,11 +13,11 @@ main()
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
 	
-	thread speedrun\_way_name::create_spawn((-753,3,-148),360);
-    thread speedrun\_way_name::create_normal_way("Normal Way;");
-    thread speedrun\_way_name::create_secret_way("Secret Way;");
-	thread speedrun\_way_name::create_tp((222.701, -3.30322, 16.125), 60, 10, (4571, 2, -212), 360, "freeze", "cyan", "ns0");
-	thread speedrun\_way_name::create_tp((-316.303, 176.797, -207.875), 60, 10, (-21712, 384, 68), 360, "freeze", "blue", "s0");
+	thread sr\api\_map::createSpawn((-753,3,-148),360);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread sr\api\_speedrun::createTeleporter((222.701, -3.30322, 16.125), 60, 10, (4571, 2, -212), 360, "freeze", "cyan", "normal_0");
+	thread sr\api\_speedrun::createTeleporter((-316.303, 176.797, -207.875), 60, 10, (-21712, 384, 68), 360, "freeze", "blue", "secret_0");
 
 	thread skiiele();
 	thread startdoor();
@@ -166,7 +166,7 @@ secretend()
 		trig waittill("trigger", player);
 		
 		{
-		    player thread speedrun\_way_name::finish_way("s0");
+		    player thread sr\api\_speedrun::finishWay("secret_0");
 			player setOrigin( target.origin );
 			player setPlayerAngles( target.angles );
 		

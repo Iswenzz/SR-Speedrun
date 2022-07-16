@@ -46,9 +46,9 @@ main() {
     level.music[11]["song"] ="Scape Dark";
     level.music[11]["alias"] ="track12";
 
-    thread speedrun\_way_name::create_normal_way("Normal Way");
-    thread speedrun\_way_name::create_secret_way("Secret Way");
-    thread speedrun\_way_name::create_spawn((-1047,57,75), 0);
+    thread sr\api\_speedrun::createNormalWays("Normal Way");
+    thread sr\api\_speedrun::createSecretWays("Secret Way");
+    thread sr\api\_map::createSpawn((-1047,57,75), 0);
     thread startdoor();
 	thread secretdoor();
     thread secretkey();
@@ -663,7 +663,7 @@ secret() {
 	{
 		trig waittill("trigger",player);
 		{
-            player thread speedrun\_way_name::change_way("s0");
+            player thread sr\api\_speedrun::changeWay("secret_0");
 			player setOrigin(tele.origin);
             player setPlayerAngles(tele.angles);
 		}
@@ -691,7 +691,7 @@ secretteleport() {
     for(;;) 
     {
         trig waittill("trigger",player);
-        player thread speedrun\_way_name::finish_way("s0");
+        player thread sr\api\_speedrun::finishWay("secret_0");
         player setOrigin(tele.origin);
         player setPlayerAngles(tele.angles);
     }

@@ -20,11 +20,11 @@ main()
 	setdvar("bg_fallDamageMaxHeight","9999");
 	setdvar("bg_fallDamageMinHeight","9998");
 
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-    thread speedrun\_way_name::create_secret_way("Hard Secret;Easy;");
-	thread speedrun\_way_name::create_spawn((-1182,15,76),359);
-	thread speedrun\_way_name::create_tp((-952.513, 246.823, 16.125), 60, 80, (-3299, -4141, 2216), 178, "freeze", "darkred", "s0");
-	thread speedrun\_way_name::create_tp((-1140.39, 239.501, 16.125), 60, 80, (-3685, 2352, 1901), 189, "freeze", "blue", "s1");
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("Hard Secret;Easy;");
+	thread sr\api\_map::createSpawn((-1182,15,76),359);
+	thread sr\api\_speedrun::createTeleporter((-952.513, 246.823, 16.125), 60, 80, (-3299, -4141, 2216), 178, "freeze", "darkred", "secret_0");
+	thread sr\api\_speedrun::createTeleporter((-1140.39, 239.501, 16.125), 60, 80, (-3685, 2352, 1901), 189, "freeze", "blue", "secret_1");
 	// thread messages();
 	thread startdoor();
 	// thread tr1();
@@ -277,7 +277,7 @@ hardf4()
 	{
 		trig waittill("trigger", player);
 		player setOrigin(tele1.origin);
-	    player thread speedrun\_way_name::finish_way("s0");
+	    player thread sr\api\_speedrun::finishWay("secret_0");
 		
 	}
 }
@@ -302,7 +302,7 @@ easyf2()
 	{
 		trig waittill("trigger", player);
 		player setOrigin(tele1.origin);
-	    player thread speedrun\_way_name::finish_way("s1");
+	    player thread sr\api\_speedrun::finishWay("secret_1");
 		
 	}
 }

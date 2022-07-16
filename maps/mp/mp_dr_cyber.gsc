@@ -56,11 +56,11 @@ main()
     level.endsong[2]["alias"]    ="end3";
 	
 	//if(game["roundsplayed"] == 1) iPrintLn("^5[^0Pizzaman-Bot^5]^3: ^2anti ^6xM^5# ^2script v2.3.1 loaded successfully.");
-	thread speedrun\_way_name::create_spawn((417,3420,492),270);
-	thread speedrun\_way_name::create_normal_way("Normal Way;");
-	thread speedrun\_way_name::create_secret_way("Secret Way;");
-	thread speedrun\_way_name::create_endmap((10246.6, -15038, 361.038), 525, 240);
-	thread speedrun\_way_name::create_tp((-4683.31, -5898.16, 352.125), 160, 140, (-4684, -6386, 916), 269, "freeze");
+	thread sr\api\_map::createSpawn((417,3420,492),270);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread sr\api\_speedrun::createEndMap((10246.6, -15038, 361.038), 525, 240);
+	thread sr\api\_speedrun::createTeleporter((-4683.31, -5898.16, 352.125), 160, 140, (-4684, -6386, 916), 269, "freeze");
 	//thread addTestClients();
 	thread startdoor();
 	//thread messages();
@@ -2195,7 +2195,7 @@ interenter()
   for (;;) 
   {	
 	trig waittill("trigger", player);
-	player thread speedrun\_way_name::change_way("s0");
+	player thread sr\api\_speedrun::changeWay("secret_0");
 	player setOrigin(arrivo.origin);
 	player SetPlayerAngles(arrivo.angles);
 	secret_stop = "secret_stop";
@@ -2350,7 +2350,7 @@ secretend210()
 	for(;;)
 	{
 		trig waittill("trigger", player);
-		player thread speedrun\_way_name::finish_way("s0");
+		player thread sr\api\_speedrun::finishWay("secret_0");
 			player setOrigin(o.origin);
 			player setPlayerAngles(o.angles);
 			player freezeControls(1);

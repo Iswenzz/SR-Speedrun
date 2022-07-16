@@ -17,8 +17,8 @@ game["axis_soldiertype"] = "desert";
 	setDvar("bg_falldamagemaxheight", 20000000 );
 	setDvar("bg_falldamageminheight", 15000000 );
 
-thread speedrun\_way_name::create_spawn((-70,-1922,-900),90);
-thread speedrun\_way_name::create_normal_way("Normal Way;");
+thread sr\api\_map::createSpawn((-70,-1922,-900),90);
+thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
 thread startdoor();
 
