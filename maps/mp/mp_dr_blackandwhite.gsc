@@ -1,8 +1,5 @@
 main()
 {
-trigger = spawn( "trigger_radius", (13590, 133, 36), 0, 300, 300 );
-trigger.targetname = "endmap_trig";
-trigger.radius = 300;
 maps\mp\_load::main();
 
 game["allies"] = "marines";
@@ -28,11 +25,11 @@ setdvar("compassmaxrange","1800");
 thread sr\api\_map::createSpawn((-11,24,36),360);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createSecretWays("Secret Way;");
-thread sr\api\_speedrun::createEndMap((8328.09, 133.999, -23.875), 115, 10, "normal_0");
-thread sr\api\_speedrun::createEndMap((8328.09, 133.999, -23.875), 75, 10, "secret_0");
-thread sr\api\_speedrun::createTeleporter((2891.45, -1772.73, 2598.13), 55, 10, (29, -1256, 2658), 360, "freeze", "blue", "secret_0");
+thread sr\api\_speedrun::createEndMap((8328.09, 133.999, -23.875), 115, 10);
+thread sr\api\_speedrun::createEndMap((2891.45, -1772.73, 2598.13), 55, 10, "secret_0");
+thread sr\api\_speedrun::createTeleporter((-6, -234, 36), 55, 10, (29, -1256, 2658), 360, "freeze", "blue", "secret_0");
 thread ele2();
-	
+
 }
 
 ele2()

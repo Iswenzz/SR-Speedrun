@@ -2,21 +2,21 @@ main()
 {
 maps\mp\_load::main();
 
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
 	setDvar( "compassmaxrange", "1024" );
 
-thread sr\api\_map::createSpawn((2685,5105,1036),270);
+thread sr\api\_map::createSpawn((2685,5087,1036),270);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createEndMap((3158.27, 783.037, 896.125), 100, 10, "normal_0");
 

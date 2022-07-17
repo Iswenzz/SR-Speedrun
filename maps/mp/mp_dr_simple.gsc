@@ -1,14 +1,15 @@
 main()
 {
    	maps\mp\_load::main();
-	maps\mp\_teleport::main(); 
+	maps\mp\_teleport::main();
 maps\mp\_load::main();
 // ambientPlay("muza");
 
 
         level.fx_sparks = loadFx( "sparks/electric" );
-    
+
 	thread way_connect();
+    thread sr\api\_speedrun::createEndMap((10554, 129, 951),120,40,"normal_0");
         // thread elevator();
         // thread elevator2();
         // thread elevator3();
@@ -23,9 +24,9 @@ maps\mp\_load::main();
         // thread twister2();
 	// thread twister3();
 	// thread finalFight();
-	// thread finalFight1(); 
-	// thread finalFight2(); 
-	// thread finalFight3(); 
+	// thread finalFight1();
+	// thread finalFight2();
+	// thread finalFight3();
 
         // addTriggerToList( "elevator_trigger" );
         // addTriggerToList( "elevator2_trigger" );
@@ -40,7 +41,7 @@ maps\mp\_load::main();
         // addTriggerToList( "twister_trigger" );
         // addTriggerToList( "twister2_trigger" );
 
-        
+
         elevatorparts = getentarray("elevator","targetname");
         if(isdefined(elevatorparts))
         {
@@ -148,9 +149,9 @@ elevatorparts = getentarray("elevator11","targetname");
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -177,7 +178,7 @@ wait(0.01);
 self movez(-100, 2, 0.5, 1);
 self waittill("movedone");
 wait(500);
-} 
+}
 }
 
 elevator11()
@@ -208,7 +209,7 @@ wait(0.5);
 self movez(-448, 2, 0.5, 1);
 self waittill("movedone");
 wait(0.5);
-} 
+}
 }
 
 elevator2()
@@ -225,7 +226,7 @@ wait(0.5);
 self movey(550, 1, 0.5, 0.5);
 self waittill("movedone");
 wait(10.5);
-} 
+}
 }
 
 elevator3()
@@ -241,7 +242,7 @@ self waittill("movedone");
 wait(0.5);
 self movey(550, 1, 0.5, 0.5);
 wait(1.5);
-} 
+}
 }
 
 elevator4()
@@ -254,7 +255,7 @@ while(1)
 wait(0.01);
 self movez(-500, 2, 0.5, 1);
 wait(500);
-} 
+}
 }
 
 elevator5()
@@ -267,7 +268,7 @@ while(1)
 wait(0.01);
 self movez(-500, 2, 0.5, 1);
 wait(500);
-} 
+}
 }
 
 elevator6()
@@ -284,7 +285,7 @@ wait(0.5);
 self movez(-316, 2, 0.5, 1);
 self waittill("movedone");
 wait(0.5);
-} 
+}
 }
 
 
@@ -300,7 +301,7 @@ wait(0.01);
 self movey(-300, 2, 0.5, 1);
 self waittill("movedone");
 wait(500);
-} 
+}
 }
 
 elevator9()
@@ -317,7 +318,7 @@ wait(0.5);
 self movex(-180, 2, 0.5, 0.5);
 self waittill("movedone");
 wait(0.5);
-} 
+}
 }
 
 twister()
@@ -389,7 +390,7 @@ finalFight()
     level.trigger = getEnt( "final_trigger", "targetname" );
     tele_activator = getEnt( "final_activator_teleport", "targetname" );
     tele_jumper = getEnt( "final_jumper_teleport", "targetname" );
-                
+
     level.finalJumper = undefined;
 
     while( 1 )
@@ -406,7 +407,7 @@ finalFight()
 
         level.finalJumper = player;
         level.finalJumper thread finalMonitor();
-        
+
         level.finalJumper finalRoom( tele_jumper, "m40a3_mp", 100 );
         level.activ finalRoom( tele_activator, "m40a3_mp", 100 );
     }
@@ -434,22 +435,22 @@ finalRoom( tp, weap, health )
 {
     self SetPlayerAngles( tp.angles );
     self SetOrigin( tp.origin );
-    
+
     self TakeAllWeapons(); //this should be called so it takes away insertion perk in dr 1.2
     self GiveWeapon( weap );
     self GiveMaxAmmo( weap );
     self SwitchToWeapon( weap );
-    
+
     self.maxhealth = health;
-    
-} 
+
+}
 
 finalFight1()
 {
     level.trigger1 = getEnt( "final_trigger1", "targetname" );
     tele_activator = getEnt( "final_activator_teleport1", "targetname" );
     tele_jumper = getEnt( "final_jumper_teleport1", "targetname" );
-                
+
     level.finalJumper = undefined;
 
     while( 1 )
@@ -467,7 +468,7 @@ finalFight1()
 
         level.finalJumper = player;
         level.finalJumper thread finalMonitor();
-        
+
         level.finalJumper finalRoom( tele_jumper, "tomahawk_mp", 10 );
         level.activ finalRoom( tele_activator, "tomahawk_mp", 10 );
     }
@@ -479,14 +480,14 @@ finalFight2()
     level.trigger2 = getEnt( "final_trigger2", "targetname" );
     tele_activator = getEnt( "final_activator_teleport2", "targetname" );
     tele_jumper = getEnt( "final_jumper_teleport2", "targetname" );
-                
+
     level.finalJumper = undefined;
 
     while( 1 )
     {
         level.trigger2  waittill( "trigger", player );
 		level.trigger delete();
-		level.trigger1 delete();			
+		level.trigger1 delete();
 		level.trigger3 delete();
 
         // this will be blocked if jumper is currently in room and while its free run round
@@ -495,7 +496,7 @@ finalFight2()
 
         level.finalJumper = player;
         level.finalJumper thread finalMonitor();
-        
+
         level.finalJumper finalRoom( tele_jumper, "tomahawk_mp", 10 );
         level.activ finalRoom( tele_activator, "tomahawk_mp", 10 );
     }
@@ -508,7 +509,7 @@ finalFight3()
     level.trigger3 = getEnt( "final_trigger3", "targetname" );
     tele_activator = getEnt( "final_activator_teleport3", "targetname" );
     tele_jumper = getEnt( "final_jumper_teleport3", "targetname" );
-                
+
     level.finalJumper = undefined;
 
     while( 1 )
@@ -525,7 +526,7 @@ finalFight3()
 
         level.finalJumper = player;
         level.finalJumper thread finalMonitor();
-        
+
         level.finalJumper finalRoom( tele_jumper, "m40a3_mp", 100 );
         level.activ finalRoom( tele_activator, "m40a3_mp", 100 );
     }
