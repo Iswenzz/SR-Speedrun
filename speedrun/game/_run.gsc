@@ -68,11 +68,21 @@ onSpawn()
 {
 	self endon("disconnect");
 
-	self.sr_mode = IfUndef(self.sr_mode, "190");
+	self.sr_mode = self getLastMode();
 	self.sr_way = "normal_0";
 
 	self startMode();
 	self playerTimer();
+}
+
+getLastMode()
+{
+	switch (self getStat(1700))
+	{
+		case 1: return "190";
+		case 2: return "210";
+	}
+	return "190";
 }
 
 startMode()
