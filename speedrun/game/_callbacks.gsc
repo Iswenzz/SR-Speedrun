@@ -18,6 +18,7 @@ main()
 
 playerConnect()
 {
+	self endon("disconnect");
 	level notify("connected", self);
 
 	self clientCmd("setu sr_xp_bar 0");
