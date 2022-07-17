@@ -25,8 +25,10 @@ cmd_Practise(args)
     if (self.modes["practise"])
     {
         self pm("^2Practise mode enabled!");
-        self iPrintLn("Press [{+melee}] to save position");
-        self iPrintLn("Press [{+activate}] to load positon");
+        self iPrintLn("Press ^3[{+melee}]^7 to save position");
+        self iPrintLn("Press ^3[{+activate}]^7 to load positon");
+        self iPrintLn("Press ^5[{+frag}]^7 to noclip");
+        self iPrintLn("Press ^2[{+gostand}]^7 to remove noclip or speed up");
     }
     else
         self pm("^1Practise mode disabled!");
