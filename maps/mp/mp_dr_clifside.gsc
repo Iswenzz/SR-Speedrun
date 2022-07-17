@@ -13,13 +13,13 @@ maps\mp\_load::main();
 //setExpFog(500, 3500, .5, 0.5, 0.45, 0);
 //ambientPlay("ambience");
 VisionSetNaked( "mp_clifside");
-game["allies"] = "marines"; 
-game["axis"] = "opfor"; 
+game["allies"] = "marines";
+game["axis"] = "opfor";
 
 game["attackers"] = "axis";
 game["defenders"] = "allies";
-game["allies_soldiertype"] = "desert"; 
-game["axis_soldiertype"] = "desert"; 
+game["allies_soldiertype"] = "desert";
+game["axis_soldiertype"] = "desert";
 setdvar( "r_specularcolorscale", "5" );
 
 setdvar("r_glowbloomintensity0",".1");
@@ -50,9 +50,9 @@ thread Water_Move();
 // addTriggerToList( "trap1_trig" );
 // addTriggerToList( "trap2_trig" );
 // addTriggerToList( "trap3_trig" );
-// addTriggerToList( "trap4_trig" ); 
+// addTriggerToList( "trap4_trig" );
 // addTriggerToList( "trap5_trig" );
-// addTriggerToList( "trap6_trig" ); 
+// addTriggerToList( "trap6_trig" );
 // addTriggerToList( "trap7_trig" );
 }
 
@@ -60,9 +60,9 @@ thread Water_Move();
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -82,11 +82,11 @@ addTriggerToList( name )
 water()
 {
 	trig = getent("water", "targetname");
-	level.splash_fx = loadfx ("explosions/grenadeExp_water"); 
+	level.splash_fx = loadfx ("explosions/grenadeExp_water");
 
 	while(true)
 	{
-		trig waittill ("trigger", who);	
+		trig waittill ("trigger", who);
 		who PlaySound ("splash");
 		PlayFX( level.splash_fx, who.origin );
 		wait 1;
@@ -99,7 +99,7 @@ trap1()
 	trap1 = getent("trap1","targetname");
 	trap1_trigger = getent("trap1_trig","targetname");
 	trap1_fx = getent("trap1_fx","targetname");
-	level._effect["water"] = loadfx ("misc/watersplash_large"); 
+	level._effect["water"] = loadfx ("misc/watersplash_large");
 
 	// Wachten tot op de knop wordt gedrukt
 	trap1_trigger waittill("trigger");
@@ -116,7 +116,7 @@ trap1()
 trap1_x2()
 {
 	trap1x2 = getent("trap1_x2","targetname");
-	trap1_x2_trigger = getent("trap1_x2_trig","targetname"); 
+	trap1_x2_trigger = getent("trap1_x2_trig","targetname");
 
 	// Wachten tot op de knop wordt gedrukt
 	trap1_x2_trigger waittill("trigger");
@@ -136,12 +136,12 @@ trap2()
 	trap2_trigger = getent("trap2_trig","targetname");
 	trap2_pole = getent("trap2_pole","targetname");
 	trap2_fxorigin = getent("trap2_fx","targetname");
-	level._effect["explosion"] = loadfx ("explosions/speedex_biggerexplosion"); 
+	level._effect["explosion"] = loadfx ("explosions/speedex_biggerexplosion");
 
 	chunk MoveZ(70, 0.01);
 	dirt hide();
 
-	
+
 }
 
 trap4()
@@ -171,7 +171,7 @@ log1()
 	t11 = getent("t11","targetname");
 	log_hurt = getent("log_hurt","targetname");
 	log_fx = getent("log_fx","targetname");
-	level.splash_fx = loadfx ("explosions/grenadeExp_water"); 
+	level.splash_fx = loadfx ("explosions/grenadeExp_water");
 
 	log_hurt enableLinkTo();
 	log_hurt linkTo(log);
@@ -216,23 +216,23 @@ trap3()
 {
 	trap3_trigger = getent("trap3_trig","targetname");
 	trap3_fxorigin = getent("tank_fx","targetname");
-	
+
 	tank_hurt = getent("tank_hurt","targetname");
 	shell = getent("shell","targetname");
 	shel_end = getent("shel_end","targetname");
 	shel_begin = getent("shel_begin","targetname");
-	level._effect["tank_shot"] = loadfx ("muzzleflashes/abrams_flash_wv"); 
+	level._effect["tank_shot"] = loadfx ("muzzleflashes/abrams_flash_wv");
 
 	tank_hurt triggerOff();
 
-	
+
 }
 
 trap5()
 {
 	trap5_trigger = getent("trap5_trig","targetname");
 	trap5_fxorigin = getent("water_fx","targetname");
-	level._effect["water_gush"] = loadfx ("misc/speedex_watergush"); 
+	level._effect["water_gush"] = loadfx ("misc/speedex_watergush");
 	water_fx_trig = getEnt ( "water_trap_trig", "targetname" );
 	FX = undefined;
 	water_fx_trig triggerOff();
@@ -256,14 +256,14 @@ Water_Move()
 water_bounce()
 {
 	water_fx_trig = getEnt ( "water_trap_trig", "targetname" );
-	
-	
+
+
 	while(1)
-	{	
+	{
     	water_fx_trig waittill ("trigger",user);
 		if (user istouching(water_fx_trig))
-		{ 
-			user braxi\_common::bounce( vectorNormalize( user.origin - (user.origin - (0,-1,0)) ), 200 );		
+		{
+			user braxi\_common::bounce( vectorNormalize( user.origin - (user.origin - (0,-1,0)) ), 200 );
 		}
 	}
 }
@@ -303,7 +303,7 @@ trap7()
 	trap7_trigger waittill("trigger");
 	trap7_trigger delete();
 
-	
+
 
 	while(1)
 	{
@@ -354,15 +354,15 @@ acti = getEnt( "actijug", "targetname" ); //the origin the acti will teleport
         level.old_trigger delete();
         //level.weapon_trig delete();
         level.rpg_trig delete(); //deletes all of the other room triggers so that they cant be entered
-        
+
 	player SetPlayerAngles( jump.angles );
 	player setOrigin( jump.origin ); //teleports the jumper
 	player TakeAllWeapons(); //takes all weapons from jumper
-	player GiveWeapon( "saw_mp" ); //jumper weapon 
+	player GiveWeapon( "saw_mp" ); //jumper weapon
 	wait 0.05;
 	player SwitchToWeapon("saw_mp");
 	player giveMaxAmmo(player.pers["weapon"]);
-	player setMoveSpeedScale(0.4);
+	player sr\api\_player::setPlayerSpeedScale(0.4);
 	player setPerk("specialty_armorvest");
 	player setModel("body_juggernaut");
 	player.maxhealth = 1000;
@@ -377,10 +377,10 @@ acti = getEnt( "actijug", "targetname" ); //the origin the acti will teleport
 		wait 0.05;
 		level.activ SwitchToWeapon( "saw_mp" ); //this line means they switch to the weapon
 		level.activ giveMaxAmmo(level.activ.pers["weapon"]);
-		level.activ setMoveSpeedScale(0.4);
+		level.activ sr\api\_player::setPlayerSpeedScale(0.4);
 		level.activ setModel("body_juggernaut");
 		wait 0.05;
-  	  	level.activ.maxhealth = 1000; 
+  	  	level.activ.maxhealth = 1000;
   	  	level.activ.health = level.activ.maxhealth;
 		player freezeControls(true);
 		level.activ freezeControls(true);
@@ -398,9 +398,9 @@ acti = getEnt( "actijug", "targetname" ); //the origin the acti will teleport
 		wait 1;
 		}
 	while( isAlive( player ) && isDefined( player ) ) //if the player is alive the room will stay closed so no one can enter.
-		wait 1;	
+		wait 1;
 	}
-	
+
 }
 //Partially from Wingzors backlot
 
@@ -422,11 +422,11 @@ acti1 = getEnt( "tomaacti", "targetname" ); //the origin the acti will teleport
         level.old_trigger delete();
         //level.weapon_trig delete();
         level.jug_trigger delete(); //deletes all of the other room triggers so that they cant be entered
-        
+
 	player SetPlayerAngles( jump1.angles );
 	player setOrigin( jump1.origin ); //teleports the jumper
 	player TakeAllWeapons(); //takes all weapons from jumper
-	player GiveWeapon( "rpg_mp" ); //jumper weapon 
+	player GiveWeapon( "rpg_mp" ); //jumper weapon
 	wait 0.05;
 	player SwitchToWeapon("rpg_mp");
 	player giveMaxAmmo("rpg_mp");
@@ -443,7 +443,7 @@ acti1 = getEnt( "tomaacti", "targetname" ); //the origin the acti will teleport
 		wait 0.05;
 		level.activ SwitchToWeapon( "rpg_mp" ); //this line means they switch to the weapon
 		level.activ giveMaxAmmo("rpg_mp");
-		level.activ.maxhealth = 1000; 
+		level.activ.maxhealth = 1000;
   	  	level.activ.health = level.activ.maxhealth;
   	  	level.activ setPerk("specialty_armorvest");
 		player freezeControls(true);
@@ -460,12 +460,12 @@ acti1 = getEnt( "tomaacti", "targetname" ); //the origin the acti will teleport
 		player freezeControls(false);
 		level.activ freezeControls(false);
 		wait 1;
-		
+
 		}
 		while( isAlive( player ) && isDefined( player ) ) //if the player is alive the room will stay closed so no one can enter.
 		wait 1;
 	}
-	
+
 }
 
 give_ammo1()
@@ -476,7 +476,7 @@ give_ammo1()
 	while(1)
 	{
 		ammo1 waittill( "trigger", player );
-		
+
 		player giveMaxAmmo( "rpg_mp" );
 		wait 0.05;
 	}
@@ -490,7 +490,7 @@ give_ammo()
 	while(1)
 	{
 		ammo waittill( "trigger", player );
-		
+
 		player giveMaxAmmo( "rpg_mp" );
 		wait 0.05;
 	}
@@ -503,7 +503,7 @@ badmusicv2()
 	while(1)
 	{
 		dem waittill( "trigger", player );
-		
+
 		player playLocalSound("waardeloos");
 		wait 0.05;
 	}

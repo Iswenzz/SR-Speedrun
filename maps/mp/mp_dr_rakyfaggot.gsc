@@ -8,7 +8,7 @@
 main()
 {
 	maps\mp\_load::main();
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
@@ -17,30 +17,29 @@ main()
 	game["axis_soldiertype"] = "woodland";
 
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
 	setDvar( "r_specularcolorscale", "1" );
-	setDvar("g_speed","200");
 	setDvar("r_glowbloomintensity0",".25");
 	setDvar("r_glowbloomintensity1",".25");
 	setDvar("r_glowskybleedintensity0",".3");
 	setDvar("compassmaxrange","2500");
 	setDvar("bg_fallDamageMinHeight","1000000");
 	setDvar("bg_fallDamageMaxHeight","10000000");
-		
-	precacheItem("rpd_mp");	
-	
+
+	precacheItem("rpd_mp");
+
 	thread startdoor();
 	thread messages();
 	thread knife();
 	thread sniper();
 	thread weapon();
-	
+
 	thread trap1();
 	thread trap2();
 	thread trap3();
 	thread trap4();
 
-	
+
 	addTriggerToList( "trig_trap1" );
 	addTriggerToList( "trig_trap2" );
 	addTriggerToList( "trig_trap3" );
@@ -131,14 +130,14 @@ wait 2;
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
 }
 
-antiglitcher() 
+antiglitcher()
 {
 self common_scripts\utility::waittill_any("death","disconnect");
 wait 0.05;
-if (level.room == true) 
+if (level.room == true)
 {
 		iPrintlnBold("^3"+self.name+" ^1died");
-		wait 0.2; 
+		wait 0.2;
 		iPrintlnBold("^3Room selection open!");
 }
 }
@@ -166,15 +165,15 @@ knife thread maps\mp\_utility::triggerOn();
 GetActivator()
 {
 	players = getentarray( "player", "classname" );
-	
+
 	for(i = 0;i < players.size;i++)
 	{
 		player = players[i];
-		
+
 		if( isdefined( player ) && isplayer( player ) && isalive( player ) && player.pers["team"] == "axis"	)
 			return player;
 	}
-	
+
 	return "Noactivator";
 }
 
@@ -209,7 +208,7 @@ knife setHintString("^3Knife");
 for(;;)
 {
 	knife waittill("trigger", player);
-	
+
 	player thread waitdead();
 	player thread antiglitcher();
 	activator = GetActivator();

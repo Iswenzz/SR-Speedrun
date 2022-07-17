@@ -3,7 +3,7 @@
 main()
 {
 maps\mp\_load::main();
- 
+
 	game["allies"] = "marines";
     game["axis"] = "opfor";
     game["attackers"] = "axis";
@@ -14,8 +14,6 @@ maps\mp\_load::main();
     setdvar("r_glowbloomintensity0",".25");
     setdvar("r_glowbloomintensity1",".25");
     setdvar("r_glowskybleedintensity0",".3");
-	setdvar("g_speed","190");
-	//setdvar("r_fullbright","1");
 	setdvar("bg_fallDamageMinHeight","1000000000");
 	setdvar("bg_fallDamageMaxHeight","1000000000");
 	level.music=[];
@@ -29,7 +27,7 @@ maps\mp\_load::main();
     level.music[3]["alias"]    ="song4";
 	level.music[4]["song"]    ="PakisTRAP";
     level.music[4]["alias"]    ="song5";
-    
+
     thread sr\api\_speedrun::createNormalWays("Normal Way");
     thread sr\api\_speedrun::createSecretWays("Secret Way");
     thread sr\api\_map::createSpawn((-3021,-120,76),360);
@@ -58,8 +56,8 @@ maps\mp\_load::main();
 	thread secretstep();
 	thread secretexit();
 	thread secretp1();
-}	
-	
+}
+
 addTestClients()
 {
     setDvar("scr_testclients", "");
@@ -93,17 +91,17 @@ TestClient(team)
 
     while(!isdefined(self.pers["team"]))
         wait .05;
-        
+
     self notify("menuresponse", game["menu_team"], team);
     wait 0.5;
-}	
-	
+}
+
 startdoor()
 {
 door = getEnt("startdoor", "targetname");
 door delete();
 
-}	
+}
 
 	addTriggerToList( name )
 {
@@ -165,7 +163,7 @@ musicbox()
     trig waittill("trigger",p);
 	//p braxi\_rank::giveRankXP("", 50);
     trig delete();
-    
+
     p freezeControls(1);
     p musicmenu();
 }
@@ -177,10 +175,10 @@ musicmenu()
     self endon( "spawned" );
     self endon( "joined_spectators" );
     self endon( "music thread terminated" );
- 
+
     self.hud_music = [];
     self.selection = 0;
- 
+
     // create huds
     i = 0;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 160, 200, 0.6, "left", "top", 2 );
@@ -191,7 +189,7 @@ musicmenu()
     self.hud_music[i].sort = 880;
     self.hud_music[i] setShader( "white", 306, 20 );
     self.hud_music[i].color=(1,1,0);
-    
+
     i++;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 210, 204, 0.93, "left", "top", 1.8 );
     self.hud_music[i].sort = 884;
@@ -199,13 +197,13 @@ musicmenu()
     self.hud_music[i].glowalpha=1;
     if(isdefined(level.randomcolor))
         self.hud_music[i].glowcolor=level.randomcolor;
-    else 
+    else
         self.hud_music[i].glowcolor=(0,1,1);
     i++;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 250, 360, 1, "center", "bottom", 1.4 );
     self.hud_music[i].sort = 900;
     self.hud_music[i] setText("        ^!you read this you are gay ahahahahahahhahaha");
- 
+
     for( j = 0; j < level.music.size; j++ )
     {
         i++;
@@ -215,32 +213,32 @@ musicmenu()
         self.hud_music[i].glowalpha=1;
         if(isdefined(level.randomcolor))
             self.hud_music[i].glowcolor=level.randomcolor;
-        else 
+        else
             self.hud_music[i].glowcolor=(0,0,1);
- 
+
         entry = level.music[j];
         self.hud_music[i] setText(entry["song"]);
     }
- 
+
     i++;
     self.hud_music[self.hud_music.size] = braxi\_mod::addTextHud( self, 167, 230, 0.4, "left", "top", 1.4 );
     self.hud_music[i].sort = 881;
     indicator = self.hud_music[self.hud_music.size-1];
     indicator setShader( "white", 306, 17 );
     indicator.color=(0,1,0);
- 
+
     while(self.sessionstate == "playing")
     {
         wait 0.1;
- 
+
         if(self attackButtonPressed())
         {
             self.hud_music[4+self.selection].alpha = 0.93;
- 
+
             self.selection++;
             if( self.selection >= level.music.size )
                 self.selection = 0;
- 
+
             item = self.hud_music[4+self.selection];
             item.alpha = 1;
             indicator.y = item.y;
@@ -248,7 +246,7 @@ musicmenu()
         else if(self useButtonPressed())
         {
              iPrintLn("^2>>^1Now playing: ^5"+level.music[self.selection]["song"]+"^2<<");
-			 
+
             ambientPlay(level.music[self.selection]["alias"]);
             self freezeControls(0);
             break;
@@ -259,7 +257,7 @@ musicmenu()
            break;
         }
     }
-    
+
     if(!isdefined(self))
         return;
     if(isdefined(self.hud_music))
@@ -271,7 +269,7 @@ musicmenu()
         }
     }
     self notify( "music thread terminated" );
-}	
+}
 
 onPlayerConnect()
 {
@@ -303,7 +301,7 @@ w = "PrOmar21";
    	self.hud_web.font = "objective";
    	self.hud_web.glowColor = (.1, .0, 1);
    	self.hud_web.glowAlpha = 1;
-   	self.hud_web.hideWhenInMenu = true;	
+   	self.hud_web.hideWhenInMenu = true;
 	while(1)
 	{
 	self.hud_web setText("^5" + v + "^4 " + x + "^3 " + w + " ");
@@ -331,7 +329,7 @@ endtp()
 {
 	bouncejumperfail = getEnt("trig_endtp", "targetname");
 	tpbouncejumperfail = getEnt("o_endtp", "targetname");
-	
+
 	for (;;)
 	{
 		bouncejumperfail waittill("trigger", player);
@@ -344,7 +342,7 @@ tp1()
 {
 	bouncejumperfail = getEnt("trig_tp1", "targetname");
 	tpbouncejumperfail = getEnt("o_tp1", "targetname");
-	
+
 	for (;;)
 	{
 		bouncejumperfail waittill("trigger", player);
@@ -361,7 +359,7 @@ spinner()
 	d = getEnt("spinner4", "targetname");
 	e = getEnt("spinner5", "targetname");
 	f = getEnt("spinner6", "targetname");
-	
+
 	for (;;)
 	{
 		a rotateRoll(-1080, 8);
@@ -379,27 +377,27 @@ sniper_room()
 	while(1)
 	{
 	level.trigsniper = getEnt("trig_sniper", "targetname");
-	
+
 	jumporigin = getEnt("o_sniper2", "targetname");
 	actiorigin = getEnt("o_sniper1", "targetname");
-	
+
 	level.trigsniper setHintString("snipeur room");
-	
+
 	level.trigsniper waittill("trigger", player);
-	
+
 	level.trigknife delete();
 	level.trigrace delete();
 	level.trigbounce delete();
-	
+
 	iPrintLnBold(" " + player.name + " ^7Entered The Snipeur ^7Room");
 	ambientPlay("room");
 	player.health = player.maxhealth;
 	level.activ.health = level.activ.maxhealth;
-	
-	
+
+
 	player takeAllWeapons();
 	level.activ takeAllWeapons();
-	
+
 	player giveWeapon("m40a3_mp");
 	player giveWeapon("remington700_mp");
 	player giveMaxAmmo("remington700_mp");
@@ -408,23 +406,23 @@ sniper_room()
 	level.activ giveWeapon("remington700_mp");
 	level.activ giveMaxAmmo("remington700_mp");
 	level.activ giveMaxAmmo("m40a3_mp");
-	
-	
+
+
 	player switchToWeapon("m40a3_mp");
 	player switchToWeapon("remington700_mp");
 	level.activ switchToWeapon("m40a3_mp");
 	player switchToWeapon("remington700_mp");
-	
+
 	player freezeControls(1);
 	level.activ freezeControls(1);
-	
+
 	player setOrigin (jumporigin.origin);
 	player setPlayerAngles (jumporigin.angles);
 
 	level.activ setOrigin (actiorigin.origin);
 	level.activ setPlayerAngles (actiorigin.angles);
 	wait 2;
-	
+
 	player iPrintLnBold("^23");
 	level.activ iPrintLnBold("^23");
 	wait 1;
@@ -436,12 +434,12 @@ sniper_room()
 	wait 1;
 	player iPrintLnBold("^7FIGHT^2!");
 	level.activ iPrintLnBold("^7FIGHT^2!");
-	
+
 	player freezeControls(0);
 	level.activ freezeControls(0);
 	while( isAlive( player ) && isDefined( player ) )
     wait 1;
-	
+
 
 	}
 }
@@ -451,44 +449,44 @@ knife_room()
 	while(1)
 	{
 	level.trigknife = getEnt("trig_knife", "targetname");
-	
+
 	jumporigin = getEnt("o_knife1", "targetname");
 	actiorigin = getEnt("o_knife2", "targetname");
-	
+
 	level.trigknife setHintString("knife room");
-	
+
 	level.trigknife waittill("trigger", player);
-	
+
 	level.trigbounce delete();
 	level.trigrace delete();
 	level.trigsniper delete();
 
-	
+
 	iPrintLnBold("^3" + player.name + " ^7Entered The Knife ^7Room");
 	ambientPlay("room");
 	player.health = player.maxhealth;
 	level.activ.health = level.activ.maxhealth;
-	
-	
+
+
 	player takeAllWeapons();
 	level.activ takeAllWeapons();
-	
+
 	player giveWeapon("knife_mp");
 	level.activ giveWeapon("knife_mp");
-	
+
 	player switchToWeapon("knife_mp");
 	level.activ switchToWeapon("knife_mp");
-	
+
 	player freezeControls(1);
 	level.activ freezeControls(1);
-	
+
 	player setOrigin (jumporigin.origin);
 	player setPlayerAngles (jumporigin.angles);
 
 	level.activ setOrigin (actiorigin.origin);
 	level.activ setPlayerAngles (actiorigin.angles);
 	wait 2;
-	
+
 	player iPrintLnBold("^23");
 	level.activ iPrintLnBold("^23");
 	wait 1;
@@ -500,7 +498,7 @@ knife_room()
 	wait 1;
 	player iPrintLnBold("^7FIGHT^2!");
 	level.activ iPrintLnBold("^7FIGHT^2!");
-	
+
 	player freezeControls(0);
 	level.activ freezeControls(0);
 	while( isAlive( player ) && isDefined( player ) )
@@ -513,44 +511,44 @@ bounce_room()
 	while(1)
 	{
 	level.trigbounce = getEnt("trig_bounce", "targetname");
-	
+
 	jumporigin = getEnt("o_bounce1", "targetname");
 	actiorigin = getEnt("o_bounce2", "targetname");
-	
+
 	level.trigbounce setHintString("bounce room");
-	
+
 	level.trigbounce waittill("trigger", player);
-	
+
 	level.trigrace delete();
 	level.trigsniper delete();
 	level.trigknife delete();
 
-	
+
 	iPrintLnBold("^3" + player.name + " ^7Entered The Bounce ^7Room");
 	ambientPlay("room");
 	player.health = player.maxhealth;
 	level.activ.health = level.activ.maxhealth;
-	
-	
+
+
 	player takeAllWeapons();
 	level.activ takeAllWeapons();
-	
+
 	player giveWeapon("knife_mp");
 	level.activ giveWeapon("knife_mp");
-	
+
 	player switchToWeapon("knife_mp");
 	level.activ switchToWeapon("knife_mp");
-	
+
 	player freezeControls(1);
 	level.activ freezeControls(1);
-	
+
 	player setOrigin (jumporigin.origin);
 	player setPlayerAngles (jumporigin.angles);
 
 	level.activ setOrigin (actiorigin.origin);
 	level.activ setPlayerAngles (actiorigin.angles);
 	wait 2;
-	
+
 	player iPrintLnBold("^23");
 	level.activ iPrintLnBold("^23");
 	wait 1;
@@ -562,12 +560,12 @@ bounce_room()
 	wait 1;
 	player iPrintLnBold("^7FIGHT^2!");
 	level.activ iPrintLnBold("^7FIGHT^2!");
-	
+
 	player freezeControls(0);
 	level.activ freezeControls(0);
 	while( isAlive( player ) && isDefined( player ) )
     wait 1;
-	
+
 
 	}
 }
@@ -575,13 +573,13 @@ bounce_room()
 bounce_wep()
 {
 	trig = getEnt("trig_b_wep", "targetname");
-	
+
 	trig setHintString("Press ^6use^5 For M40A3");
-	
+
 	while(1)
 	{
 	trig waittill("trigger", player);
-	
+
 	player giveWeapon("m40a3_mp");
 	player giveMaxAmmo("m40a3_mp");
 	player switchToWeapon("m40a3_mp");
@@ -620,47 +618,47 @@ race_room()
 	while(1)
 	{
 	level.trigrace = getEnt("trig_race", "targetname");
-	
+
 	jumporigin = getEnt("o_race1", "targetname");
 	actiorigin = getEnt("o_race2", "targetname");
-	
+
 	level.trigrace setHintString("race room");
-	
+
 	level.trigrace waittill("trigger", player);
-	
+
 	level.trigbounce delete();
 	level.trigsniper delete();
 	level.trigknife delete();
-	
+
 	thread race_ends();
 	level.race_jumper = player;
 
-	
+
 	iPrintLnBold("^3" + player.name + " ^7Entered The Race ^7Room");
 	ambientPlay("room");
 	player.health = player.maxhealth;
 	level.activ.health = level.activ.maxhealth;
-	
-	
+
+
 	player takeAllWeapons();
 	level.activ takeAllWeapons();
-	
+
 	player giveWeapon("knife_mp");
 	level.activ giveWeapon("knife_mp");
-	
+
 	player switchToWeapon("knife_mp");
 	level.activ switchToWeapon("knife_mp");
-	
+
 	player freezeControls(1);
 	level.activ freezeControls(1);
-	
+
 	player setOrigin (jumporigin.origin);
 	player setPlayerAngles (jumporigin.angles);
 
 	level.activ setOrigin (actiorigin.origin);
 	level.activ setPlayerAngles (actiorigin.angles);
 	wait 2;
-	
+
 	player iPrintLnBold("^23");
 	level.activ iPrintLnBold("^23");
 	wait 1;
@@ -672,12 +670,12 @@ race_room()
 	wait 1;
 	player iPrintLnBold("^7FIGHT^2!");
 	level.activ iPrintLnBold("^7FIGHT^2!");
-	
+
 	player freezeControls(0);
 	level.activ freezeControls(0);
 	while( isAlive( player ) && isDefined( player ) )
     wait 1;
-	
+
 
 	}
 }
@@ -686,31 +684,31 @@ race_ends()
 {
 	level.race_winner = getent("race_winner","targetname");
 	level.race_loser = getent("race_looser","targetname");
-	
+
 	wait 1;
 
 	thread ifactiwin();
 	thread ifjumperwin();
 }
 
-ifactiwin() 
+ifactiwin()
 {
 	trig = getent("race_end_acti","targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger",who);
-		
+
 		if(who.pers["team"] == "axis")
 		{
 			level.activ setorigin(level.race_winner.origin);
 			level.activ setplayerangles(level.race_winner.angles);
-			
+
 			level.activ giveWeapon("m40a3_mp");
 			level.activ switchToWeapon("m40a3_mp");
 			level.activ giveMaxAmmo("m40a3_mp");
 			wait .2;
-			
+
 			level.race_jumper setorigin(level.race_loser.origin);
 			level.race_jumper setplayerangles(level.race_loser.angles);
 			level.race_jumper freezecontrols(1);
@@ -718,14 +716,14 @@ ifactiwin()
 	}
 }
 
-ifjumperwin() 
+ifjumperwin()
 {
 	trig = getent("race_end_jumper","targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger",who);
-		
+
 		if(who.pers["team"] == "allies")
 		{
 			level.race_jumper setorigin(level.race_winner.origin);
@@ -735,7 +733,7 @@ ifjumperwin()
 				level.race_jumper switchToWeapon("m40a3_mp");
 				level.race_jumper giveMaxAmmo("m40a3_mp");
 			wait .2;
-			
+
 			level.activ setorigin(level.race_loser.origin);
 			level.activ setplayerangles(level.race_loser.angles);
 			level.activ freezecontrols(1);
@@ -774,9 +772,9 @@ trap1()
 	brush = getEnt("trap11", "targetname");
 	trig = getEnt("trig_trap1", "targetname");
 	trig setHintString("Press ^6use^5 To Activate");
-	
+
 	trig waittill("trigger", player);
-	
+
 	player braxi\_rank::giveRankXP( "", 500 );
 	trig delete();
 	wait 0.1;
@@ -792,9 +790,9 @@ trap2()
 	brush = getEnt("trap2a", "targetname");
 	brush2 = getEnt("trap2b", "targetname");
 	trig = getEnt("trig_trap2", "targetname");
-	
+
 	trig setHintString("Press ^6use^5 To Activate");
-	
+
 	trig waittill("trigger", player);
 	x = randomInt(2);
 	player braxi\_rank::giveRankXP( "", 500 );
@@ -815,12 +813,12 @@ trap3()
 	trap_1 = getEnt ("trap3a", "targetname");
 	trap_2 = getEnt ("trap3b", "targetname");
 	trap_3 = getEnt ("trap3c", "targetname");
-	
+
 	trig setHintString("Press ^6use^5 To Activate");
 	trig waittill ("trigger", player );
 	player braxi\_rank::giveRankXP( "", 500 );
 	trig delete();
-	
+
 	while (1)
 	{
 	    trap_1 rotatePitch (360, 1.5);
@@ -838,9 +836,9 @@ trap4()
 	brush = getEnt("trap4a", "targetname");
 	brush2 = getEnt("trap4b", "targetname");
 	trig = getEnt("trig_trap4", "targetname");
-	
+
 	trig setHintString("Press ^6use^5 To Activate");
-	
+
 	trig waittill("trigger", player);
 	x = randomInt(2);
 	player braxi\_rank::giveRankXP( "", 500 );
@@ -859,14 +857,14 @@ trap5()
 {
 	brush = getEnt("trap5", "targetname");
 	trig = getEnt("trig_trap5", "targetname");
-	
+
 	trig setHintString("Press ^6use^5 To Activate");
-	
+
 	trig waittill("trigger", player);
-	
+
 	player braxi\_rank::giveRankXP( "", 500 );
 	trig delete();
-	
+
 	for(;;)
 	{
 	wait 0.1;
@@ -880,9 +878,9 @@ trap6()
 	brush = getEnt("trap6a", "targetname");
 	brush2 = getEnt("trap6b", "targetname");
 	trig = getEnt("trig_trap6", "targetname");
-	
+
 	trig setHintString("Press ^6use^5 To Activate");
-	
+
 	trig waittill("trigger", player);
 	x = randomInt(2);
 	player braxi\_rank::giveRankXP( "", 500 );
@@ -993,7 +991,7 @@ secret_timer()
         self.secretTimer.label = &"^6time in secert: ^5&&1";
         if(isdefined(level.randomcolor))
 	self.secretTimer.glowColor=level.randomcolor;
-	else 
+	else
 	self.secretTimer.glowColor=(1,0,.6);
 
 	time = 50;

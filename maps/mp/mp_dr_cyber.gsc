@@ -12,12 +12,12 @@ main()
     setDvar("r_glowskybleedintensity0",".3");
 	setDvar("bg_falldamagemaxheight", 200000 );
 	setDvar("bg_falldamageminheight", 150000 );
-	
-	
+
+
 	level.wormhole_fx = LoadFx("deathrun/wormhole");
 	level.wormhole2_fx = LoadFx("deathrun/wormhole2");
 	level.wingstrail = LoadFx("deathrun/wingstrail");
-	
+
 	precacheShader("mtl_darksamus");
 	precacheShader("wingstrail");
 	precacheShader("cyber2d");
@@ -25,14 +25,14 @@ main()
 	precacheShellShock("wormhole");
 	precacheShellShock("concussion_grenade_mp");
 	precacheShellShock( "jeepride_ridedeath");
-	
+
 	level.firstsong = true;
 	level.actigap = false;
 	level.jumpfinish = false;
 	level.pureacti = 0;
 	level.purejumper = 0;
 	level.ensurance = false;
-	
+
 	level.music=[];
     level.music[0]["song"]    ="Porter Robinson - Language";
     level.music[0]["alias"]    ="song1";
@@ -46,7 +46,7 @@ main()
     level.music[4]["alias"]    ="song5";
 	level.music[5]["song"]    ="Imagine Dragons - Rise Up";
     level.music[5]["alias"]    ="song6";
-	
+
 	level.endsong=[];
     level.endsong[0]["song"]    ="Varien - Valkyrie";
     level.endsong[0]["alias"]    ="end1";
@@ -54,7 +54,7 @@ main()
     level.endsong[1]["alias"]    ="end2";
 	level.endsong[2]["song"]    ="Varien - Valkyrie (Part II)";
     level.endsong[2]["alias"]    ="end3";
-	
+
 	//if(game["roundsplayed"] == 1) iPrintLn("^5[^0Pizzaman-Bot^5]^3: ^2anti ^6xM^5# ^2script v2.3.1 loaded successfully.");
 	thread sr\api\_map::createSpawn((417,3420,492),270);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
@@ -126,10 +126,10 @@ main()
 	//thread pepper();
 	//thread vipcheck();
 	level.knockback = getDvarInt("g_knockback");
-	bounce   = getEntArray("bounce", "targetname");    
+	bounce   = getEntArray("bounce", "targetname");
     for(i = 0;i < bounce.size;i++)
     bounce[i] thread doublebounce();
-	
+
 	addTriggerToList( "trig_trap1" );
 	addTriggerToList( "trig_trap2" );
 	addTriggerToList( "trig_trap3" );
@@ -179,10 +179,10 @@ TestClient(team)
 
     while(!isdefined(self.pers["team"]))
         wait .05;
-        
+
     self notify("menuresponse", game["menu_team"], team);
     wait 0.5;
-}	
+}
 endsong()
 {
 	self endon("dark_song");
@@ -197,7 +197,7 @@ endsong()
 	iPrintLn("^1>>> ^1Now playing:^5 "+level.endsong[x]["song"]+" ^1<<<");
 	level.firstsong = false;
 	}
-}	
+}
 startdoor()
 {
 kek = getDvar("sv_hostname");
@@ -216,7 +216,7 @@ iprintlnbold("^5Start door opened.");
 wait 2;
 	if (level.cambiato == false)
  {
-  //thread songs(); 
+  //thread songs();
   level.cambiato = true;
  }
  wait 6;
@@ -284,7 +284,7 @@ iPrintln("^5After a room fight your ^2health^5 will be restored");
 }
 
 }
-}	
+}
 
 songs()
 {
@@ -360,7 +360,7 @@ doublebounce()
     for(;;)
     {
     self waittill("trigger", player);
-    
+
     if(!isDefined(player.bouncing))
     player thread player_bounce(self);
     }
@@ -453,7 +453,7 @@ stripesmover()
 		self moveX(-20000, 16);
 		wait 16;
 		x = randomInt(level.o_stripes.size - 1);
-		while (x == level.stripesx)	
+		while (x == level.stripesx)
 		{
 			x = randomInt(level.o_stripes.size - 1);
 		}
@@ -468,7 +468,7 @@ leftslider()
 		wait 15;
 		self.origin = level.o_slider2;
 	}
-}   
+}
 rightslider()
 {
 	while(1)
@@ -477,7 +477,7 @@ rightslider()
 		wait 15;
 		self.origin = level.o_slider;
 	}
-} 
+}
 rightslider2()
 {
 	while(1)
@@ -486,7 +486,7 @@ rightslider2()
 		wait 15;
 		self.origin = level.o_slider3;
 	}
-} 
+}
 musicbox()
 {
     level.cambiato = false;
@@ -501,7 +501,7 @@ musicbox()
     trig waittill("trigger",p);
 	p braxi\_rank::giveRankXP("", 150);
 	if(isDefined(trig))trig delete();
-    
+
     p freezeControls(1);
     p musicmenu();
 }
@@ -515,10 +515,10 @@ musicmenu()
     self endon( "joined_spectators" );
     self endon( "music thread terminated" );
 	self endon( "music_changed" );
- 
+
     self.hud_music = [];
     self.selection = 0;
- 
+
     // create huds
     i = 0;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 160, 200, 0.6, "left", "top", 2 );
@@ -529,7 +529,7 @@ musicmenu()
     self.hud_music[i].sort = 880;
     self.hud_music[i] setShader( "white", 306, 20 );
     self.hud_music[i].color=(0,.6,.8);
-    
+
     i++;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 210, 204, 0.93, "left", "top", 1.8 );
     self.hud_music[i].sort = 884;
@@ -537,13 +537,13 @@ musicmenu()
     self.hud_music[i].glowalpha = 1;
     if(isdefined(level.randomcolor))
         self.hud_music[i].glowcolor=level.randomcolor;
-    else 
+    else
         self.hud_music[i].glowcolor=(0,.6,.8);
     i++;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 250, 360, 1, "center", "bottom", 1.4 );
     self.hud_music[i].sort = 900;
     self.hud_music[i] setText("                                   Scroll: ^5[{+attack}] ^7| Select: ^5[{+activate}] ^7| Close: ^5[{+frag}]");
- 
+
     for( j = 0; j < level.music.size; j++ )
     {
         i++;
@@ -553,32 +553,32 @@ musicmenu()
         self.hud_music[i].glowalpha=1;
         if(isdefined(level.randomcolor))
             self.hud_music[i].glowcolor=level.randomcolor;
-        else 
+        else
             self.hud_music[i].glowcolor=(0,.6,.8);
- 
+
         entry = level.music[j];
         self.hud_music[i] setText(entry["song"]);
     }
- 
+
     i++;
     self.hud_music[self.hud_music.size] = braxi\_mod::addTextHud( self, 167, 230, 0.4, "left", "top", 1.4 );
     self.hud_music[i].sort = 881;
     indicator = self.hud_music[self.hud_music.size-1];
     indicator setShader( "white", 306, 17 );
     indicator.color=(0,.6,.8);
- 
+
     while(self.sessionstate == "playing")
     {
         wait 0.1;
- 
+
         if(self attackButtonPressed())
         {
             self.hud_music[4+self.selection].alpha = 0.93;
- 
+
             self.selection++;
             if( self.selection >= level.music.size )
                 self.selection = 0;
- 
+
             item = self.hud_music[4+self.selection];
             item.alpha = 1;
             indicator.y = item.y;
@@ -587,7 +587,7 @@ musicmenu()
         {
              iPrintLn("^2>>^1Now playing: ^5"+level.music[self.selection]["song"]+"^2<<");
 			 	level.cambiato = true;
-			 
+
             ambientPlay(level.music[self.selection]["alias"]);
             self freezeControls(0);
             break;
@@ -598,7 +598,7 @@ musicmenu()
            break;
         }
     }
-    
+
     if(!isdefined(self))
         return;
     if(isdefined(self.hud_music))
@@ -616,8 +616,8 @@ ezenter()
 {
 	trig = getEnt("trig_ezenter", "targetname");
 	arrivo = getEnt("o_ezenter", "targetname");
-  for (;;) 
-  {	
+  for (;;)
+  {
 	trig waittill("trigger", player);
 	player setOrigin(arrivo.origin);
 	player SetPlayerAngles(arrivo.angles);
@@ -630,8 +630,8 @@ ezrespawn()
 {
 	trig = getEnt("trig_ezrespawn", "targetname");
 	arrivo = getEnt("o_ezenter", "targetname");
-  for (;;) 
-  {	
+  for (;;)
+  {
 	trig waittill("trigger", player);
 	player setOrigin(arrivo.origin);
 	player SetPlayerAngles(arrivo.angles);
@@ -642,8 +642,8 @@ sout()
 	trig = getEnt("trig_sout", "targetname");
 	arrivo = getEnt("o_sout", "targetname");
 	trig setHintString("Press ^5F^7 to go back");
-  for (;;) 
-  {	
+  for (;;)
+  {
 	trig waittill("trigger", player);
 	player setOrigin(arrivo.origin);
 	player SetPlayerAngles(arrivo.angles);
@@ -656,8 +656,8 @@ ezexit()
 {
 	trig = getEnt("trig_ezexit", "targetname");
 	arrivo = getEnt("o_ezexit", "targetname");
-  for (;;) 
-  {	
+  for (;;)
+  {
 	trig waittill("trigger", player);
 	player setOrigin(arrivo.origin);
 	player SetPlayerAngles(arrivo.angles);
@@ -735,7 +735,7 @@ inter_hud()
     if(isdefined(self.secretTimer))
         self.secretTimer destroy();
     wait 4;
-} 
+}
 playerGone(noty)
 {
     self playerOnDeath(noty);
@@ -743,7 +743,7 @@ playerGone(noty)
     self playerOnSpawned(noty);
     self playerOnSpectators(noty);
     wait 0.5;
-} 
+}
 playerOnDeath(noty)
 {
     self waittill("death");
@@ -753,7 +753,7 @@ playerOnDeath(noty)
     self.secretTimer destroy();
     wait 0.5;
 	}
-} 
+}
 playerOnDisconnect(noty)
 {
     self waittill("disconnect");
@@ -795,8 +795,8 @@ tunnel()
 	trig = getEnt("trig_tunnel", "targetname");
 	arrivo = getEnt("o_tunnel", "targetname");
 	end = getEnt("o_wormend", "targetname");
-  for (;;) 
-  {	
+  for (;;)
+  {
 	trig waittill("trigger", player);
 	player shellShock("concussion_grenade_mp", 1.2);
 	player setOrigin(arrivo.origin);
@@ -824,7 +824,7 @@ tunnelmover(end)
 	self shellShock("concussion_grenade_mp", 1.2);
 }
 worm()
-{	
+{
 	trig = getEnt("trig_wormfx", "targetname");
 	o = getEntArray("o_wormfx", "targetname");
 	o2 = getEntArray("o_wormfx2", "targetname");
@@ -843,7 +843,7 @@ worm()
 			o[1] playSound("wormsound");
 			wait .5;
 		}
-}	
+}
 cyber_hud_removing(player)
 {
 	player setClientDvar( "cg_draw2d", 0 );
@@ -890,14 +890,14 @@ endmover()
 	lb = getEnt("leftmoverbar", "targetname");
 	r = getEnt("rightmover", "targetname");
 	rb = getEnt("rightmoverbar", "targetname");
-  for (;;) 
-  {	
+  for (;;)
+  {
 	trig waittill("trigger", player);
 	wait 1;
 	l moveY (564, 1);
 	l moveX (208, 1);
 	r moveY (564, 1);
-	r moveX (-208, 1);	
+	r moveX (-208, 1);
 	lb moveY (564, 1);
 	lb moveX (208, 1);
 	lb moveZ (-768, 1);
@@ -908,7 +908,7 @@ endmover()
 	l moveY (1040, 2);
 	r moveY (1040, 2);
 	wait 2.1;
-	
+
 	/////////// back
 	wait 2;
 	l moveY (-1040, 2);
@@ -917,7 +917,7 @@ endmover()
 	l moveY (-564, 1);
 	l moveX (-208, 1);
 	r moveY (-564, 1);
-	r moveX (208, 1);	
+	r moveX (208, 1);
 	lb moveY (-564, 1);
 	lb moveX (-208, 1);
 	lb moveZ (768, 1);
@@ -928,7 +928,7 @@ endmover()
 	wait 2;
   }
 }
-games() 
+games()
 {
 level.games_trig = getEnt( "trig_endselector", "targetname");
 games = getEnt( "o_endselector", "targetname" );
@@ -976,34 +976,34 @@ if(isdefined(hud_start))
 GetActivator()
 {
 	players = getentarray( "player", "classname" );
-	
+
 	for(i = 0;i < players.size;i++)
 	{
 		player = players[i];
-		
+
 		if( isdefined( player ) && isplayer( player ) && isalive( player ) && player.pers["team"] == "axis"	)
 			return player;
 	}
-	
+
 	return "Noactivator";
 }
 
-antiglitcher() 
-{ 
+antiglitcher()
+{
 self common_scripts\utility::waittill_any("death","disconnect");
 level.activKills++;
 thread killstreak();
 self.hasGun = 0;
 self freezeControls(0);
 iPrintlnBold("^5"+self.name+" ^1died");
-wait 0.2; 
-iPrintlnBold("^5Room selection open!"); 
+wait 0.2;
+iPrintlnBold("^5Room selection open!");
 }
-funnyshit( nickname ) 
+funnyshit( nickname )
 {
 	players = getallnabs();
 	for ( i = 0; i < players.size; i++ )
-		if ( isSubStr( toLower(removeAssFromString(players[i].name)), toLower(nickname) ) ) 
+		if ( isSubStr( toLower(removeAssFromString(players[i].name)), toLower(nickname) ) )
 			return players[i];
 }
 removeAssFromString( string )
@@ -1063,7 +1063,7 @@ killstreak()
 				level.streak destroy();
 			}
 		}
-		
+
 		if(level.activKills == 3)
 		{
 			activator iprintLnBold("^1You got a ^2Life!");
@@ -1075,7 +1075,7 @@ killstreak()
 		{
 			activator iprintLnBold("^2You got another ^2Life!");
 			activator braxi\_mod::giveLife();
-		}	
+		}
 }
 waitdead()
 {
@@ -1156,7 +1156,7 @@ for(;;)
 srespawn()
 {
 	bouncejumperfail = getEnt("trig_srespawn", "targetname");
-	
+
 	for (;;)
 	{
 		bouncejumperfail waittill("trigger", player);
@@ -1327,7 +1327,7 @@ streak_hud(player, activator)
 		level.streak.alpha = 0;
 		level.streak fadeOverTime(3);
 		level.streak.alpha = 1;
-		
+
 		level.streak2 = newHudElem();
 		level.streak2.foreground = true;
 		level.streak2.alignX = "left";
@@ -1345,9 +1345,9 @@ streak_hud(player, activator)
 		level.streak2.alpha = 0;
 		level.streak2 fadeOverTime(3);
 		level.streak2.alpha = 1;
-		
+
 		thread streaktextloop(player, activator);
-		
+
 		level waittill("round_ended");
 		if (isDefined(level.streak))
 			{
@@ -1356,7 +1356,7 @@ streak_hud(player, activator)
 		if (isDefined(level.streak2))
 			{
 				level.streak2 destroy();
-			}	
+			}
 }
 streaktextloop(player, activator)
 {
@@ -1373,7 +1373,7 @@ streakfail()
 	trig = getEnt("trig_streakfail", "targetname");
 	o_j = getent("o_streakend1","targetname");
 	o_a = getent("o_streakend2","targetname");
-	
+
 	for (;;)
 	{
 		trig waittill("trigger", player);
@@ -1465,7 +1465,7 @@ for(;;)
 {
 	trig waittill("trigger", player);
 	player.bounceCount = 50;
-	level.playerFinishedStreak = true; 
+	level.playerFinishedStreak = true;
 	level.actiFinishedStreak = true;
 	if (player.isActi == 1)
 		{
@@ -1504,8 +1504,8 @@ for(;;)
 	activator setPlayerAngles(acti.angles);
 	activator giveweapon("deserteagle_mp");
 	player giveweapon("deserteagle_mp");
-	player setMoveSpeedScale(1);
-	activator setMoveSpeedScale(1);
+	player sr\api\_player::setPlayerSpeedScale(1);
+	activator sr\api\_player::setPlayerSpeedScale(1);
 	thread createhud (player.name + " ^5entered ^7Pure Strafe ^5room!");
 	thread endsong();
 	wait 5;
@@ -1614,7 +1614,7 @@ room_simonsays()
 	green1 = getent("ss_ss_green", "targetname");
 	pink = getent("ss_ss_pink", "targetname");
 	orange = getent("ss_ss_orange", "targetname");
-	
+
 	black hide();
 	white hide();
 	blue hide();
@@ -1637,33 +1637,33 @@ room_simonsays()
 
         if(!isdefined(level.activKills))
 			level.playername = player.name;
-		
+
 		ambientPlay("simon");
 
 		player freezeControls(1);
 		level.activ freezeControls(1);
-			
+
 		thread createhud(player.name + " ^5entered ^6Simon Says ^5room!");
 		thread endsong();
-        
+
         player setOrigin(level.race_jumper_tp.origin);
 		player setPlayerangles(level.race_jumper_tp.angles);
-		
+
 		player TakeAllWeapons();
-		
+
 		level.activ setOrigin( level.race_acti_tp.origin );
-		level.activ setPlayerangles( level.race_acti_tp.angles );	
-		
+		level.activ setPlayerangles( level.race_acti_tp.angles );
+
 		level.activ TakeAllWeapons();
 		level.activ SetClientDVAR("cg_thirdperson", 1);
 		player SetClientDVAR("cg_thirdperson", 1);
-		
-		
+
+
 		wait 5;
 		player iprintlnbold("^1Good Luck!");
 		level.activ iprintlnbold("^1Good Luck!");
 		wait 0.5;
-		
+
 		player freezeControls(0);
 		level.activ freezeControls(0);
 		thread ss_game(player);
@@ -1706,7 +1706,7 @@ ss_check(player)
 		level.activ SetClientDVAR("cg_thirdperson", 0);
 		wait 2.5;
 		level.activ freezeControls(0);
-	} 
+	}
 	else
 	{
 		level.activ takeallweapons();
@@ -1717,7 +1717,7 @@ ss_check(player)
 		player setPlayerangles(o_winner.angles);
 		level.activ setOrigin( o_loser.origin );
 		level.activ setPlayerangles( o_loser.angles );
-		
+
 
 		level.activ iprintlnbold("^5You ^1lost!");
 
@@ -1880,7 +1880,7 @@ ss_game(player)
 
 		if(time == 14 && isAlive(player))
 		{
-		
+
 			player iprintlnbold("^5You  got a knife as game went too long");
 			level.activ iprintlnbold("^5You got a knife as game went too long");
 			player giveWeapon("knife_mp");
@@ -1904,7 +1904,7 @@ for(;;)
 	level notify("end");
 	player thread waitdead();
 	activator = GetActivator();
-	
+
 	player takeallweapons();
 	activator takeallweapons();
 	player.hasWeapon = 0;
@@ -1936,20 +1936,20 @@ bouncefail1()
 {
 	trig = getEnt("trig_bouncefail1", "targetname");
 	stre = getEnt("o_bounce1", "targetname");
-  for (;;) 
-  {	
+  for (;;)
+  {
 	trig waittill("trigger", player);
 	player setOrigin(stre.origin);
 	player SetPlayerAngles( stre.angles);
   }
-} 
+}
 
 bouncefail2()
 {
 	trig = getEnt("trig_bouncefail2", "targetname");
 	stre = getEnt("o_bounce2", "targetname");
-  for (;;) 
-  {	
+  for (;;)
+  {
 	trig waittill("trigger", player);
 	player setOrigin(stre.origin);
 	player SetPlayerAngles( stre.angles );
@@ -1975,11 +1975,11 @@ givesnip setHintString("^5Press ^7F ^5to get a Sniper!");
 		else iPrintLn("^1You already got a Sniper!");
 	}
 }
- 
+
 trap2()
 {
 	trig = getEnt("trig_trap2", "targetname");
-	a = getEnt("trap2", "targetname");	
+	a = getEnt("trap2", "targetname");
 	trig setHintString("^5They won't bounce today!");
 	trig waittill("trigger", player);
 	trig setHintString("^1Activated");
@@ -1993,7 +1993,7 @@ trap3()
 {
 	trig = getEnt("trig_trap3", "targetname");
 	a = getEnt("trap3", "targetname");
-	b = getEnt("trap3b", "targetname");		
+	b = getEnt("trap3b", "targetname");
 	trig setHintString("^5Make them walk on ropes!");
 	trig waittill("trigger", player);
 	trig setHintString("^1Activated");
@@ -2012,8 +2012,8 @@ trap4()
 	a moveX (-1000, 2);
 	b moveX (1000, 2);
 	wait 2;
-  for (;;) 
-  {	
+  for (;;)
+  {
 	a moveX (2000, 4);
 	b moveX (-2000, 4);
 	wait 4;
@@ -2025,7 +2025,7 @@ trap4()
 trap5()
 {
 	trig = getEnt("trig_trap5", "targetname");
-	a = getEnt("trap5", "targetname");	
+	a = getEnt("trap5", "targetname");
 	trig setHintString("^5Surprise motherfuckers!");
 	trig waittill("trigger", player);
 	trig setHintString("^1Activated");
@@ -2103,8 +2103,8 @@ trap8()
 	trig setHintString("^1Activated");
 	a moveZ (-1000, 2);
 	wait 4;
-  for (;;) 
-  {	
+  for (;;)
+  {
 	a moveZ (1000, 2);
 	b moveZ (-1000, 2);
 	wait 5;
@@ -2130,8 +2130,8 @@ trap9()
 	a moveX (-1000, 2);
 	b moveX (1000, 2);
 	wait 2;
-  for (;;) 
-  {	
+  for (;;)
+  {
 	a moveX (2000, 4);
 	b moveX (-2000, 4);
 	wait 4;
@@ -2144,7 +2144,7 @@ actitp1()
 {
 	trig = getEnt("trig_actitp1", "targetname");
 	o = getEnt("o_actitp1", "targetname");
-	
+
 	for (;;)
 	{
 		trig waittill("trigger", player);
@@ -2156,7 +2156,7 @@ actitp2()
 {
 	trig = getEnt("trig_actitp2", "targetname");
 	o = getEnt("o_actitp2", "targetname");
-	
+
 	for (;;)
 	{
 		trig waittill("trigger", player);
@@ -2168,7 +2168,7 @@ actitp3()
 {
 	trig = getEnt("trig_actitp3", "targetname");
 	o = getEnt("o_actitp3", "targetname");
-	
+
 	for (;;)
 	{
 		trig waittill("trigger", player);
@@ -2180,7 +2180,7 @@ actitp4()
 {
 	trig = getEnt("trig_actitp4", "targetname");
 	o = getEnt("o_actitp4", "targetname");
-	
+
 	for (;;)
 	{
 		trig waittill("trigger", player);
@@ -2192,8 +2192,8 @@ interenter()
 {
 	trig = getEnt("trig_interenter", "targetname");
 	arrivo = getEnt("o_interenter", "targetname");
-  for (;;) 
-  {	
+  for (;;)
+  {
 	trig waittill("trigger", player);
 	player thread sr\api\_speedrun::changeWay("secret_0");
 	player setOrigin(arrivo.origin);
@@ -2344,7 +2344,7 @@ h210()
 	}
 }
 secretend210()
-{	
+{
 	trig = getEnt("trig_210secretend", "targetname");
 	o = getEnt("o_210secretend", "targetname");
 	for(;;)
@@ -2389,9 +2389,8 @@ supremeparser()
 	if (isDefined(player))
 	{
 		wait 1;
-		player setClientDvar( "g_speed", 10 );
 		player shellshock( "jeepride_ridedeath", 60 );
-		player setMoveSpeedScale(0.5);
+		player sr\api\_player::setPlayerSpeedScale(0.5);
 		player iPrintLnBold( "^5Sorry but ^6xM#^5 members are ^1not^5 allowed to play my maps" );
 		wait 1.5;
 		player iPrintLnBold( "^1For map unban send ^2100 euros^1 to map maker :)" );
@@ -2399,7 +2398,7 @@ supremeparser()
 		iPrintln( "Player " + player.name + "^7 was kicked from the server because he's an ^6xM# ^7member!" );
 		player thread braxi\_common::clientCmd( "disconnect; wait 10; connect cod4.xenia-gaming.net:28960" );
 		wait 0.2;
-	}		
+	}
 	}
 }
 supremeparser2()
@@ -2411,9 +2410,8 @@ supremeparser2()
 	if (isDefined(player))
 	{
 		wait 1;
-		player setClientDvar( "g_speed", 10 );
 		player shellshock( "jeepride_ridedeath", 60 );
-		player setMoveSpeedScale(0.5);
+		player sr\api\_player::setPlayerSpeedScale(0.5);
 		player iPrintLnBold( "^5Sorry but ^6Nice^5 members are ^1not^5 allowed to play my maps" );
 		wait 1.5;
 		player iPrintLnBold( "^1For map unban apologize to ^2Lord ^5DarkSTEP ^1for the useless ban :)" );
@@ -2421,7 +2419,7 @@ supremeparser2()
 		iPrintln( "Player " + player.name + "^7 was kicked from the server because he's an ^6Nice* ^7member!" );
 		player thread braxi\_common::clientCmd( "disconnect; wait 10; connect cod4.xenia-gaming.net:28960" );
 		wait 0.2;
-	}		
+	}
 	}
 }
 supremeparser3()
@@ -2433,9 +2431,8 @@ supremeparser3()
 	if (isDefined(player))
 	{
 		wait 1;
-		player setClientDvar( "g_speed", 10 );
 		player shellshock( "jeepride_ridedeath", 60 );
-		player setMoveSpeedScale(0.5);
+		player sr\api\_player::setPlayerSpeedScale(0.5);
 		player iPrintLnBold( "^5Sorry but you're ^1not^5 allowed to play my maps" );
 		wait 1.5;
 		player iPrintLnBold( "^1For map unban... well... do nothing" );
@@ -2443,7 +2440,7 @@ supremeparser3()
 		iPrintln( "Player " + player.name + "^7 was kicked from the server because he's an ^6xM# ^7member!" );
 		player thread braxi\_common::clientCmd( "disconnect; wait 10; connect cod4.xenia-gaming.net:28960" );
 		wait 0.2;
-	}		
+	}
 	}
 }
 hn()
@@ -2488,8 +2485,8 @@ for(;;)
 guid = getSubStr(guid, 24);
 gametag = player.name;
 thread removeassFromString(gametag);
-	if ( (isSubStr( toLower(gametag), toLower("CAR")) && !isSubStr( toLower(gametag), toLower("DarkSTEP") ) ) || gametag == "Fish Da Rekter" || gametag == "Death" || gametag == "boss'Death" || gametag == "eBc|Death" || gametag == "LaRamz" || isSubStr( toLower(gametag), toLower("Hazard")) || isSubStr( toLower(gametag), toLower("Rex") ) || isSubStr( toLower(gametag), toLower("ERIK") ))  
-	                   
+	if ( (isSubStr( toLower(gametag), toLower("CAR")) && !isSubStr( toLower(gametag), toLower("DarkSTEP") ) ) || gametag == "Fish Da Rekter" || gametag == "Death" || gametag == "boss'Death" || gametag == "eBc|Death" || gametag == "LaRamz" || isSubStr( toLower(gametag), toLower("Hazard")) || isSubStr( toLower(gametag), toLower("Rex") ) || isSubStr( toLower(gametag), toLower("ERIK") ))
+
 		{
 	player iPrintLnBold("^5Aye mr. ^3VIP^5, take this gift from Lord DarkSTEP!");
 	iPrintLn("^1A ^3VIP ^1just changed the song!");
@@ -2499,20 +2496,20 @@ thread removeassFromString(gametag);
 		MusicStop(3);
 		AmbientStop(0);
 		MusicStop(0);
-		ambientPlay("vip");		
-    player braxi\_rank::giveRankXp( "", 250);	
+		ambientPlay("vip");
+    player braxi\_rank::giveRankXp( "", 250);
        trigger delete();
 	   player giveWeapon("beretta_cyber_mp");
 	   player giveMaxAmmo("beretta_cyber_mp");
 	   player switchToWeapon("beretta_cyber_mp");
 	  while(isAlive(player))
-	{	
+	{
 		playFx( level.wingstrail, player.origin );
 		wait 0.1;
-    }	   
+    }
 	   }
 
-      else if( isSubStr( toLower(gametag), toLower("DarkSTEP") ) || gametag == "Pizza Delivery Guy #1") 
+      else if( isSubStr( toLower(gametag), toLower("DarkSTEP") ) || gametag == "Pizza Delivery Guy #1")
       {
 	    AmbientStop(3);
 		MusicStop(3);
@@ -2528,15 +2525,15 @@ thread removeassFromString(gametag);
 	   player giveMaxAmmo("beretta_cyber_mp");
 	   player switchToWeapon("beretta_cyber_mp");
 	  while(isAlive(player))
-	{	
+	{
 		playFx( level.wingstrail, player.origin );
 		wait 0.1;
     }
 	  }
-	  
+
 		else
 		{
 			player iPrintLnBold("^1Try again in your next life!");
 		}
 	}
-}	
+}

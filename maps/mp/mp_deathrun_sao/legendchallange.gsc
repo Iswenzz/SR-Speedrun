@@ -45,21 +45,21 @@ acti_killstreak()
    self endon("disconnect");
    self endon("killed_player");
    self endon("joined_spectators");
-   
+
    streak = 0;
    before = self.kills;
-  
+
    if (isDefined(self.pers["acti_killstreak"]) || level.freeRun == true)
    	return;
-   
+
    for(;;)
    {
       current = self.kills;
       while(current == self.kills)
          wait 0.05;
-     
+
       streak = self.kills - before;
-     
+
       if((streak % 5) == 0 && !self.pers["acti_killstreak"] && self.pers["team"] == "axis")
       {
       	self.pers["acti_killstreak"] = true;
@@ -91,7 +91,7 @@ challange(text)
 	challange moveovertime(2.5);
 	challange.y = 300;
 	wait 3;
-	challange destroy();	
+	challange destroy();
 }
 
 hud(text)
@@ -181,7 +181,7 @@ watchsteps()
 	while(1)
 	{
 		level waittill("player_spawn", user );
-		
+
 		user thread sethands();
 		user.step1 = 0;
 		user.step2 = 0;
@@ -193,7 +193,7 @@ watchsteps()
 sethands()
 {
 	self endon( "disconnect" );
-	
+
 	waittillframeend;
 	self detachAll();
 	self setViewmodel("viewmodel_base_viewhands");
@@ -213,7 +213,7 @@ givexpifalive()
 }
 
 secretbounce()
-{	  
+{
 	level waittill("round_started");
 	level.knockback = getDvarInt("g_knockback");
 
@@ -414,7 +414,7 @@ legendsrandomsuprise()
 			iprintlnBold("Random Suprise: Higher speed for all players!");
 			for(i=0;i<players.size;i++)
 			{
-				players[i] SetMoveSpeedScale(1.5);
+				// players[i] sr\api\_player::setPlayerSpeedScale(1.5);
 			}
 		}
 

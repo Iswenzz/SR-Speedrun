@@ -15,7 +15,7 @@ main()
 	game["axis_soldiertype"] = "woodland";
 
 	//setdvar( "r_specularcolorscale", "1" );
-	
+
 	PreCacheItem("m21_mp");
 	PreCacheItem("dragunov_mp");
 	PreCacheItem("barrett_mp");
@@ -65,7 +65,7 @@ main()
 	rain1 = getEnt("rain1","targetname");
 	rain2 = getEnt("rain2","targetname");
 
-//	thread addTestClients();	
+//	thread addTestClients();
 
 	addTriggerToList("trig_trap1");
 	addTriggerToList("trig_trap2");
@@ -93,7 +93,7 @@ addTriggerToList(name)
 	{
 		level.trapTriggers = [];
 	}
-	level.trapTriggers[level.trapTriggers.size] = getEnt( name, "targetname" );	
+	level.trapTriggers[level.trapTriggers.size] = getEnt( name, "targetname" );
 }
 
 starting_block()
@@ -216,7 +216,7 @@ fun1a()
 		block rotateroll(90,0.2);
 	}
 }
- 
+
 
 fun1b()
 {
@@ -321,19 +321,19 @@ trap1a()
 	zb3 = getent("trap1_b3","targetname");
 	zc3 = getent("trap1_c3","targetname");
 	trig = getent("trig_trap1","targetname");
-	
+
 	r1 = randomIntRange(5,10)/10;
 	r2 = r1/2;
-	
+
 	trig waittill("trigger");
-	
+
 	za3 rotateyaw(360,r2);
 	zb3 rotateyaw(360,r2);
 	zc3 rotateyaw(360,r2);
 	za1 rotateyaw(360,r1);
 	zb1 rotateyaw(360,r1);
 	zc1 rotateyaw(360,r1);
-	
+
 	while (true)
 	{
 		wait r2;
@@ -358,11 +358,11 @@ trap1b()
 	zb2 = getent("trap1_b2","targetname");
 	zc2 = getent("trap1_c2","targetname");
 	trig = getent("trig_trap1","targetname");
-	
+
 	r3 = randomIntRange(15,30)/10;
-	
+
 	trig waittill("trigger");
-	
+
 	while(true)
 	{
 		za2 rotateyaw(-360,r3);
@@ -383,19 +383,19 @@ trap1c()
 	zb5 = getent("trap1_b5","targetname");
 	zc5 = getent("trap1_c5","targetname");
 	trig = getent("trig_trap1","targetname");
-	
+
 	r4 = randomIntRange(10,20)/10;
 	r5 = r4*2;
-	
+
 	trig waittill("trigger");
-	
+
 	za5 rotateyaw(-360,r5);
 	zb5 rotateyaw(-360,r5);
 	zc5 rotateyaw(-360,r5);
 	za4 rotateyaw(-360,r4);
 	zb4 rotateyaw(-360,r4);
 	zc4 rotateyaw(-360,r4);
-	
+
 	while (true)
 	{
 		wait r4;
@@ -419,11 +419,11 @@ trap1d()
 	zb6 = getent("trap1_b6","targetname");
 	zc6 = getent("trap1_c6","targetname");
 	trig = getent("trig_trap1","targetname");
-	
+
 	r6 = randomIntRange(15,20)/10;
-	
+
 	trig waittill("trigger");
-	
+
 	while (true)
 	{
 		za6 rotateyaw(360,r6);
@@ -440,14 +440,14 @@ trap1e()
 	zb7 = getent("trap1_b7","targetname");
 	zc7 = getent("trap1_c7","targetname");
 	trig = getent("trig_trap1","targetname");
-	
+
 	r7 = randomIntRange(20,30)/10;
-	
+
 	trig waittill("trigger");
 	trig delete();
-	
+
 	while (true)
-	{ 
+	{
 		za7 rotateyaw(-360,r7);
 		zb7 rotateyaw(-360,r7);
 		zc7 rotateyaw(-360,r7);
@@ -625,14 +625,14 @@ trap4()
 		}
 		wait 1;
 	}
-	
+
 }
 
 trap4killzone()
 {
 	level endon("trigger");
 	trig = getent("killtrig_trap4","targetname");
-	
+
 	while (true)
 	{
 		trig waittill("trigger", player);
@@ -680,8 +680,8 @@ trap6()
 	block9 = getent("trap6_9","targetname");
 
 	trig waittill("trigger");
-	
-	
+
+
 	block1 movex(-750,1);
 	block2 movex(-750,1);
 	block4 movex(-750,1);
@@ -718,7 +718,7 @@ trap6()
 		block9 rotateroll(360,5);
 		wait 5;
 	}
-	
+
 }
 
 trap7platform()
@@ -741,10 +741,10 @@ trap7()
 	block2 = getEnt("trap7b","targetname");
 	block3 = getEnt("trap7c","targetname");
 	block4 = getEnt("trap7d","targetname");
-	
+
 	trig waittill("trigger");
 	trig delete();
-	
+
 	block1 movex(272,1.5);
 	block2 movex(-272,1.5);
 	block3 movex(272,1.5);
@@ -761,7 +761,7 @@ trap7()
 		block2 movex(-544,3);
 		block3 movex(544,3);
 		block4 movex(-544,3);
-	
+
 	}
 }
 
@@ -773,7 +773,7 @@ trap8()
 	block2 = getEnt("trap8b","targetname");
 	block3 = getEnt("trap8c","targetname");
 	block4 = getEnt("trap8d","targetname");
-	
+
 	rand = randomInt(2);
 	trig waittill("trigger");
 	trig delete();
@@ -795,7 +795,7 @@ trap9()
 	trig = getEnt("trig_trap9","targetname");
 	roll1 = getEnt("trap9a","targetname");
 	roll2 = getEnt("trap9b","targetname");
-	
+
 	trig waittill("trigger");
 	trig delete();
 	while(true)
@@ -822,7 +822,7 @@ end()
 
 end_doors()
 {
-	end_bush = getEnt("trig_end_bush","targetname"); 
+	end_bush = getEnt("trig_end_bush","targetname");
 	end_marine = getEnt("trig_end_marine","targetname");
 	end_sniper = getEnt("trig_end_sniper","targetname");
 	end_spin = getEnt("trig_end_ice","targetname");
@@ -831,7 +831,7 @@ end_doors()
 	end_quake = getEnt("trig_end_earthquake","targetname");
 	end_prone = getEnt("trig_end_fall","targetname");
 	end_old = getEnt("trig_end_old","targetname");
-	
+
 	end_old thread end_old(end_bush,end_marine,end_sniper,end_spin,end_heavy,end_flash,end_quake,end_prone);
 	end_bush thread end_bush(end_old,end_marine,end_sniper,end_spin,end_heavy,end_flash,end_quake,end_prone);
 	end_marine thread end_marine(end_bush,end_old,end_sniper,end_spin,end_heavy,end_flash,end_quake,end_prone);
@@ -865,7 +865,7 @@ finalRoom(tp,weap,health) //braxis
 	/* [AUTO DELETE] self SwitchToWeapon( weap ); */
 	self.health = health;
 }
-	
+
 
 waiter(end)
 {
@@ -902,7 +902,7 @@ waiter(end)
 		while(1)
 		{
 			earthquake(2,8,epicenter.origin,1000);
-			wait 8;	
+			wait 8;
 		}
 	}
 	else if(end==3)
@@ -1003,7 +1003,7 @@ waiter(end)
 end_old(fn1,fn2,fn3,fn4,fn5,fn6,fn7,fn8) //old
 {
 	block = getEnt("end_old_block","targetname");
-    
+
 	self waittill( "trigger", player );
 	/* [AUTO DELETE] ambientPlay("end_old"); */
 	fn1 delete();
@@ -1036,13 +1036,13 @@ end_earthquake(fn1,fn2,fn3,fn4,fn5,fn6,fn7,fn8) //quake
     while(1)
     {
 		finalJumper = player;
-	
+
 		finalJumper finalRoom(jump,"knife_mp",100);
 		level.activ finalRoom(acti,"knife_mp",100);
-	
+
 		finalJumper FreezeControls(1);
 		level.activ FreezeControls(1);
-		/* [AUTO DELETE] iPrintlnBold( " ^1" + player.name + " ^1 makes the ground shake!" ); */ 
+		/* [AUTO DELETE] iPrintlnBold( " ^1" + player.name + " ^1 makes the ground shake!" ); */
 		wait 0.5;
 		/* [AUTO DELETE] iPrintlnBold("^1 GET READY!"); */
 		wait 0.8;
@@ -1054,8 +1054,8 @@ end_earthquake(fn1,fn2,fn3,fn4,fn5,fn6,fn7,fn8) //quake
 		wait 0.8;
 		/* [AUTO DELETE] iPrintlnBold("^1 GO!!!"); */
 		finalJumper FreezeControls(0);
-		level.activ FreezeControls(0);     
-		
+		level.activ FreezeControls(0);
+
 		finalJumper waiter(2);
 		self waittill("trigger",player);
     }
@@ -1077,7 +1077,7 @@ end_marine(fn1,fn2,fn3,fn4,fn5,fn6,fn7,fn8) //marine
 	fn6 delete();
 	fn7 delete();
 	fn8 delete();
-    
+
 	while(1)
 	{
 		finalJumper = player;
@@ -1102,10 +1102,10 @@ end_marine(fn1,fn2,fn3,fn4,fn5,fn6,fn7,fn8) //marine
 		{
 			weap = "winchester1200_grip_mp";
 		}
-	
+
 		finalJumper finalRoom(jump,weap,100);
 		level.activ finalRoom(acti,weap,100);
-	
+
 		finalJumper FreezeControls(1);
 		level.activ FreezeControls(1);
 		/* [AUTO DELETE] iPrintlnBold( " ^1" + player.name + " ^7 is on the move!" ); */
@@ -1121,7 +1121,7 @@ end_marine(fn1,fn2,fn3,fn4,fn5,fn6,fn7,fn8) //marine
 		/* [AUTO DELETE] iPrintlnBold("^1 GO!!!"); */
 		finalJumper FreezeControls(0);
 		level.activ FreezeControls(0);
-		
+
 		finalJumper waiter(0);
 		self waittill( "trigger", player );
 	}
@@ -1142,16 +1142,16 @@ end_flash(fn1,fn2,fn3,fn4,fn5,fn6,fn7,fn8)
 	fn6 delete();
 	fn7 delete();
 	fn8 delete();
-    
+
     while(1)
     {
 		finalJumper = player;
-	
+
 		finalJumper finalRoom(jump,"knife_mp",100);
 		level.activ finalRoom(acti,"knife_mp",100);
-	
+
 		finalJumper FreezeControls(1);
-		level.activ FreezeControls(1);      
+		level.activ FreezeControls(1);
 		wait 0.05;
 		/* [AUTO DELETE] iPrintlnBold( " ^6" + player.name + " ^5 is partying hard all night!" ); */
 		wait 3;
@@ -1165,8 +1165,8 @@ end_flash(fn1,fn2,fn3,fn4,fn5,fn6,fn7,fn8)
 		wait 1;
 		/* [AUTO DELETE] iPrintlnBold("^1 PARTY!!!"); */
 		finalJumper FreezeControls(0);
-		level.activ FreezeControls(0);     
-		
+		level.activ FreezeControls(0);
+
 		finalJumper waiter(1);
 		self waittill( "trigger", player );
     }
@@ -1187,11 +1187,11 @@ end_fall(fn1,fn2,fn3,fn4,fn5,fn6,fn7,fn8) //speed prone
 	fn6 delete();
 	fn7 delete();
 	fn8 delete();
-    
+
     while(1)
     {
 		finalJumper = player;
-	
+
 		finalJumper finalRoom(jump,"knife_mp",100);
 		level.activ finalRoom(acti,"knife_mp",100);
 		/* [AUTO DELETE] iPrintlnBold( " ^1" + player.name + " ^5 chose speed-proning!" ); */
@@ -1204,12 +1204,12 @@ end_fall(fn1,fn2,fn3,fn4,fn5,fn6,fn7,fn8) //speed prone
 		/* [AUTO DELETE] iPrintlnBold("^1 1"); */
 		wait 1;
 		/* [AUTO DELETE] iPrintlnBold("^1 SPEED!!!"); */
-		/* [AUTO DELETE] finalJumper SetMoveSpeedScale(10); */
-		/* [AUTO DELETE] level.activ SetMoveSpeedScale(10); */
-		
+		/* [AUTO DELETE] finalJumper sr\api\_player::setPlayerSpeedScale(10); */
+		/* [AUTO DELETE] level.activ sr\api\_player::setPlayerSpeedScale(10); */
+
 		finalJumper waiter(0);
-		/* [AUTO DELETE] level.activ SetMoveSpeedScale(0.1); */
-		/* [AUTO DELETE] finalJumper SetMoveSpeedScale(0.1); */
+		/* [AUTO DELETE] level.activ sr\api\_player::setPlayerSpeedScale(0.1); */
+		/* [AUTO DELETE] finalJumper sr\api\_player::setPlayerSpeedScale(0.1); */
 		self waittill( "trigger", player );
     }
 }
@@ -1229,16 +1229,16 @@ end_spin(fn1,fn2,fn3,fn4,fn5,fn6,fn7,fn8) //spin
 	fn6 delete();
 	fn7 delete();
 	fn8 delete();
-    
+
     while(1)
     {
 		finalJumper = player;
-	
+
 		finalJumper finalRoom(jump,"knife_mp",100);
 		level.activ finalRoom(acti,"knife_mp",100);
-	
+
 		finalJumper FreezeControls(1);
-		level.activ FreezeControls(1);      
+		level.activ FreezeControls(1);
 		wait 0.05;
 		/* [AUTO DELETE] iPrintlnBold( " ^1" + player.name + " ^5 spins my head right round!" ); */
 		wait 3;
@@ -1252,8 +1252,8 @@ end_spin(fn1,fn2,fn3,fn4,fn5,fn6,fn7,fn8) //spin
 		wait 1;
 		/* [AUTO DELETE] iPrintlnBold("^1 SPIN AROUND!!!"); */
 		finalJumper FreezeControls(0);
-		level.activ FreezeControls(0);     
-		
+		level.activ FreezeControls(0);
+
 		finalJumper waiter(3);
 		wait 18;
 		self waittill("trigger",player);
@@ -1278,13 +1278,13 @@ end_heavy(fn1,fn2,fn3,fn4,fn5,fn6,fn7,fn8) //heavy
 	{
 		finalJumper = player;
 		level.jumper = player;
-	
+
 		finalJumper finalRoom(jump,"knife_mp",100);
 		level.activ finalRoom(acti,"knife_mp",100);
 
-	
+
 		finalJumper FreezeControls(1);
-		level.activ FreezeControls(1);      
+		level.activ FreezeControls(1);
 		wait 0.05;
 		/* [AUTO DELETE] iPrintlnBold( " ^0" + player.name + " ^1 is banging HARD all night!" ); */
 		wait 3;
@@ -1298,7 +1298,7 @@ end_heavy(fn1,fn2,fn3,fn4,fn5,fn6,fn7,fn8) //heavy
 		wait 1;
 		/* [AUTO DELETE] iPrintlnBold("^1 BANG!!!"); */
 		finalJumper FreezeControls(0);
-		level.activ FreezeControls(0);     
+		level.activ FreezeControls(0);
 
 		finalJumper waiter(4);
 		self waittill("trigger",player);
@@ -1343,11 +1343,11 @@ end_sniper(fn1,fn2,fn3,fn4,fn5,fn6,fn7,fn8) //sniper
 	fn6 delete();
 	fn7 delete();
 	fn8 delete();
-    
+
 	while(1)
 	{
 		finalJumper = player;
-		
+
 		rand = RandomInt(5);
 		if (rand == 0)
 		{
@@ -1369,14 +1369,14 @@ end_sniper(fn1,fn2,fn3,fn4,fn5,fn6,fn7,fn8) //sniper
 		{
 			weap = "barrett_mp";
 		}
-		
+
 		finalJumper finalRoom(jump,weap,100);
 		level.activ finalRoom(acti,weap,100);
-	
+
 		finalJumper FreezeControls(1);
-		level.activ FreezeControls(1);      
+		level.activ FreezeControls(1);
 		wait 0.05;
-		/* [AUTO DELETE] iPrintlnBold( " ^5" + player.name + " ^4 should watch the weatherforecast!" ); */ 
+		/* [AUTO DELETE] iPrintlnBold( " ^5" + player.name + " ^4 should watch the weatherforecast!" ); */
 		wait 3;
 		/* [AUTO DELETE] iPrintlnBold("^1 GET READY!"); */
 		wait 1;
@@ -1388,8 +1388,8 @@ end_sniper(fn1,fn2,fn3,fn4,fn5,fn6,fn7,fn8) //sniper
 		wait 1;
 		/* [AUTO DELETE] iPrintlnBold("^1 LOOK!!!"); */
 		finalJumper FreezeControls(0);
-		level.activ FreezeControls(0);     
-		
+		level.activ FreezeControls(0);
+
 		finalJumper waiter(5);
 		self waittill("trigger",player);
     }
@@ -1409,7 +1409,7 @@ end_bush(fn1,fn2,fn3,fn4,fn5,fn6,fn7,fn8) //bush
 	fn6 delete();
 	fn7 delete();
 	fn8 delete();
-    
+
 	/* [AUTO DELETE] ambientPlay("end_bush"); */
 	finalJumper = player;
 	finalJumper finalRoom(jump,"tomahawk_mp",100);
@@ -1444,7 +1444,7 @@ addTestClients()
 
     //     if (!isdefined(ent[i]))
     //     {
-    //         /* [AUTO DELETE] println("Could not add test client"); 
+    //         /* [AUTO DELETE] println("Could not add test client");
     //         wait 1;
     //         continue;
     //     }
@@ -1461,7 +1461,7 @@ TestClient(team)
 
     while(!isdefined(self.pers["team"]))
         wait .05;
-        
+
     self notify("menuresponse", game["menu_team"], team);
     wait 0.5;
 }

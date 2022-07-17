@@ -1,5 +1,5 @@
-/*			  
-  /\\  /\\  
+/*
+  /\\  /\\
   //\\_//\\     ____
   \_     _/    /   /
    / ^ ^ \    /^^^|
@@ -7,18 +7,18 @@
     /   \_    |   /
     \     \_  /  /
     | | | /  \/ _/
-    |_| | \__/_/               				  
+    |_| | \__/_/
 	By VC' Fox.
-	
+
 	why you decompiled this lmao
-	
-	Thanks to VC'Blade for the Secret Timer script.	
-	
+
+	Thanks to VC'Blade for the Secret Timer script.
+
 	probs last Version of volpe.
-		___    __  _       _______        
-	| | / (_)__/ /_(_)___  / ___/ /__ ____ 
+		___    __  _       _______
+	| | / (_)__/ /_(_)___  / ___/ /__ ____
 	| |/ / (_-< __/ / __/ / /__/ / _ `/ _ \
-	|___/_/___|__/_/\__/  \___/_/\_,_/_//_/ 
+	|___/_/___|__/_/\__/  \___/_/\_,_/_//_/
 	vistic-clan.net
 */
 
@@ -41,7 +41,7 @@ main()
 	setdvar("r_glowskybleedintensity0",".1");
 	setDvar("bg_falldamagemaxheight", 3000000);
 	setDvar("bg_falldamageminheight", 1280000);
-	
+
 	thread sr\api\_map::createSpawn((-521,390,68),89);
 	thread sr\api\_speedrun::createTeleporter((-780, 555, 68), 60, 80, (-5637, 1157, 260), 89 , "freeze", "blue", "secret_0");
 	thread sr\api\_speedrun::createTeleporter((-784, 350, 68), 60, 80, (-5637, 1157, 260), 89 , "freeze", "red", "secret_1");
@@ -126,7 +126,7 @@ main()
 //	thread fake();
 //	thread credit();
 
-	addTriggerToList("trig_trap1"); 
+	addTriggerToList("trig_trap1");
 	addTriggerToList("trig_trap2");
 	addTriggerToList("trig_trap3");
 	addTriggerToList("trig_trap4");
@@ -136,7 +136,7 @@ main()
 	addTriggerToList("trig_trap8");
 }
 
-addTriggerToList( name ) 
+addTriggerToList( name )
 {
     if( !isDefined( level.trapTriggers ) )
     level.trapTriggers = [];
@@ -157,7 +157,7 @@ startdoor()
 credit()
 {
 	level waittill("round_started");
-	
+
 		hud_clock = NewHudElem();
 		hud_clock.alignX = "center";
 		hud_clock.alignY = "middle";
@@ -171,7 +171,7 @@ credit()
 		hud_clock.glowalpha = 1;
 		hud_clock.glowcolor = (5,6,2);
 		hud_clock.label = &"Welcome to ^2Volpe 3^7!";
-		hud_clock SetPulseFX( 40, 5400, 200 );	
+		hud_clock SetPulseFX( 40, 5400, 200 );
 		wait 7;
 		hud_clock = NewHudElem();
 		hud_clock.alignX = "center";
@@ -186,7 +186,7 @@ credit()
 		hud_clock.glowalpha = 1;
 		hud_clock.glowcolor = (5,6,2);
 		hud_clock.label = &"Map By: ^3VC'Fox";
-		hud_clock SetPulseFX( 40, 5400, 200 );	
+		hud_clock SetPulseFX( 40, 5400, 200 );
 }
 
 messages()
@@ -196,19 +196,19 @@ messages()
 	wait 0.1;
 	iPrintLn("^7Map Made By: ^3VC'Fox");
 	wait 30;
-	iPrintLn("^7Made For Vistic-Clan"); 
+	iPrintLn("^7Made For Vistic-Clan");
 	wait 30;
-	iPrintLn("^7Discord: ^3VC'Fox#0001"); 
+	iPrintLn("^7Discord: ^3VC'Fox#0001");
 	wait 30;
 	}
 }
 
 music_box()
 {
-	trig = getEnt("trig_music", "targetname"); 
+	trig = getEnt("trig_music", "targetname");
     brush1 = getEnt("bs_1", "targetname");
     brush2 = getEnt("bs_2", "targetname");
-	
+
     brush2 hide();
 
 	trig setHintString("^2> ^7Music ^2<");
@@ -217,9 +217,9 @@ music_box()
 
     brush1 delete();
     brush2 show();
-	
+
 	ambientStop();
-	
+
 	music = [];
 	music[music.size] = "daybreak";
 	music[music.size] = "ghost";
@@ -240,8 +240,8 @@ music_box()
 
 fake()
 {
-	trig = getEnt("trig_fake", "targetname"); 
-	
+	trig = getEnt("trig_fake", "targetname");
+
 	trig setHintString("^2?");
 
 	trig waittill("trigger", player);
@@ -257,9 +257,9 @@ fake()
 
 ele_open()
 {
-	trig = getEnt("trig_clip", "targetname"); 
-	clip = getEnt("clip_brush1", "targetname"); 
-	brush = getEnt("brush1", "targetname"); 
+	trig = getEnt("trig_clip", "targetname");
+	clip = getEnt("clip_brush1", "targetname");
+	brush = getEnt("brush1", "targetname");
 
 	trig waittill("trigger", player);
 
@@ -312,9 +312,9 @@ platform_1()
 	trig = getEnt("trig_plat1", "targetname");
     brush1 = getEnt("plat1", "targetname");
     brush2 = getEnt("plat1_a", "targetname");
-    
+
     brush2 hide();
-    
+
     trig waittill("trigger", player);
 
     brush2 playSound("ui_mp_suitcasebomb_timer");
@@ -330,9 +330,9 @@ platform_2()
 	trig = getEnt("trig_plat2", "targetname");
     brush1 = getEnt("plat2", "targetname");
     brush2 = getEnt("plat2_a", "targetname");
-    
+
     brush2 hide();
-    
+
     trig waittill("trigger", player);
 
     brush2 playSound("ui_mp_suitcasebomb_timer");
@@ -348,9 +348,9 @@ platform_3()
 	trig = getEnt("trig_plat3", "targetname");
     brush1 = getEnt("plat3", "targetname");
     brush2 = getEnt("plat3_a", "targetname");
-    
+
     brush2 hide();
-    
+
     trig waittill("trigger", player);
 
     brush2 playSound("ui_mp_suitcasebomb_timer");
@@ -368,9 +368,9 @@ platform_4()
     brush1 = getEnt("plat4", "targetname");
     brush2 = getEnt("plat4_a", "targetname");
     door = getEnt("end_door", "targetname");
-    
+
     brush2 hide();
-    
+
     trig waittill("trigger", player);
 
     brush2 playSound("ui_mp_suitcasebomb_timer");
@@ -380,7 +380,7 @@ platform_4()
     wait 0.5;
     door delete();
     trig delete();
-    
+
 }
 
 
@@ -436,11 +436,11 @@ acti_teleport_2()
 bounce_room_sniper()
 {
 	trig = getEnt("trig_br_sniper", "targetname");
-	
+
 	trig setHintString("Press [^2&&1^7] For R700");
-	
+
 		for(;;)
-		{	
+		{
 		trig waittill ("trigger",player );
 		player takeAllWeapons();
 		player giveWeapon("remington700_mp");
@@ -453,11 +453,11 @@ bounce_room_sniper()
 race_room_wep()
 {
 	trig = getEnt("trig_race_wep", "targetname");
-	
+
 	trig setHintString("Press [^2&&1^7] For G3");
-	
+
 		for(;;)
-		{	
+		{
 		trig waittill ("trigger",player );
 		player takeAllWeapons();
 		player giveWeapon("g3_mp");
@@ -817,7 +817,7 @@ sec_ele_finish()
 		{
 			trig waittill("trigger", player);
 			player braxi\_rank::giveRankXP( "", 1500 );
-			iPrintLnBold("^2"+ player.name + " ^7Completed The Hidden ^1Elevator^7!");	
+			iPrintLnBold("^2"+ player.name + " ^7Completed The Hidden ^1Elevator^7!");
 			player setOrigin(tele1.origin);
 			player setPlayerAngles(tele1.angles);
 			player freezeControls(1);
@@ -829,7 +829,7 @@ sec_ele_finish()
 secret_timer() //VC'Blades Timer
 {
 	self endon("secret_done");
-	
+
 	if(isdefined(self.secretTimer))
 	self.secretTimer destroy();
 
@@ -849,7 +849,7 @@ secret_timer() //VC'Blades Timer
 	self.secretTimer.label = &"^7Time in Secret: ^2&&1";
 	if(isdefined(level.randomcolor))
 	self.secretTimer.glowColor=level.randomcolor;
-	else 
+	else
 	self.secretTimer.glowColor=(5,6,2);
 
 	time=100;
@@ -942,12 +942,12 @@ fox()
 	}
 	if(x == 6)
     {
-   
+
 		player endon("death");
 		player iPrintLnBold("^2Super^7-Speed mode ^3activated^7!!");
-		player SetMoveSpeedScale( 2.5 );
+		player sr\api\_player::setPlayerSpeedScale( 2.5 );
 		player waittill ("death");
-		player SetMoveSpeedScale (1.0);
+		player sr\api\_player::setPlayerSpeedScale (1.0);
 	}
 	if(x == 7)
     {
@@ -975,7 +975,7 @@ vistic()
 	{
 		trig waittill("trigger", player);
 
-		if(player getGuid() == "5dcce639cbef05e4f9b739a0ab61c6e4" || player getGuid() == "2310346615434407089") 
+		if(player getGuid() == "5dcce639cbef05e4f9b739a0ab61c6e4" || player getGuid() == "2310346615434407089")
 		{
 			player.vip = true;
 			iPrintLn("^3>> ^7Welcome Map Creator: ^2VC'Fox ^3<<");
@@ -1016,7 +1016,7 @@ teleport_2()
 
 step1()
 {
-	trig = getEnt("trig_step1", "targetname");	
+	trig = getEnt("trig_step1", "targetname");
 	model = getEnt("fox1", "targetname");
 	model2 = getEnt("fox2", "targetname");
 
@@ -1025,7 +1025,7 @@ step1()
 
 	trig waittill("trigger", player);
 
-	trig delete();	
+	trig delete();
 	model show();
 	iPrintLn("^21");
 	player thread step2();
@@ -1033,14 +1033,14 @@ step1()
 
 step2()
 {
-	trig = getEnt("trig_step2", "targetname");	
+	trig = getEnt("trig_step2", "targetname");
 	model2 = getEnt("fox2", "targetname");
 
 	brush = getEnt("block", "targetname");
 
 	trig waittill("trigger", player);
 
-	trig delete();	
+	trig delete();
 	model2 show();
 	iPrintLn("^22");
 	brush delete();
@@ -1050,11 +1050,11 @@ step2()
 ele_ak74u()
 {
 	trig = getEnt("trig_ak", "targetname");
-	
+
 	trig setHintString("Press [^2&&1^7] For AK74u");
-	
+
 		for(;;)
-		{	
+		{
 			trig waittill ("trigger",player );
 			player takeAllWeapons();
 			player giveWeapon("ak74u_mp");
@@ -1070,11 +1070,11 @@ brush_help()
 	brush1 = getEnt("brush_help", "targetname");
 	brush2 = getEnt("brush_die", "targetname");
     brush3 = getEnt("brush_die2", "targetname");
-	trig = getEnt("trig_help", "targetname"); 
+	trig = getEnt("trig_help", "targetname");
 
     brush1 hide();
     brush1 notSolid();
-	
+
 	trig waittill("trigger", player);
 
     brush1 show();
@@ -1084,14 +1084,14 @@ brush_help()
     trig delete();
 }
 
-second_area_trig() 
-{ 
-	trig = getEnt("2nd_area", "targetname"); 
- 
+second_area_trig()
+{
+	trig = getEnt("2nd_area", "targetname");
+
 	trig waittill ("trigger",player );
 	trig delete ();
-	iPrintLnBold("^2"+ player.name + " ^7Has Reached the ^2Second ^7Area^2!");	
-	player braxi\_rank::giveRankXP( "", 50 ); 
+	iPrintLnBold("^2"+ player.name + " ^7Has Reached the ^2Second ^7Area^2!");
+	player braxi\_rank::giveRankXP( "", 50 );
 }
 
 
@@ -1100,10 +1100,10 @@ trap1()
 	brush1 = getEnt("trap1_a", "targetname");
 	brush2 = getEnt("trap1_b", "targetname");
     brush3 = getEnt("trap1_c", "targetname");
-	trig = getEnt("trig_trap1", "targetname"); 
+	trig = getEnt("trig_trap1", "targetname");
 
 	trig setHintString("Press ^7[^2&&1^7] ^7To Activate");
-	
+
 	trig waittill("trigger", player);
 	player braxi\_rank::giveRankXP( "", 50 );
 
@@ -1133,10 +1133,10 @@ trap2()
 	brush1 = getEnt("trap2_a", "targetname");
 	brush2 = getEnt("trap2_b", "targetname");
     brush3 = getEnt("trap2_c", "targetname");
-	trig = getEnt("trig_trap2", "targetname"); 
+	trig = getEnt("trig_trap2", "targetname");
 
 	trig setHintString("Press ^7[^2&&1^7] ^7To Activate");
-	
+
 	trig waittill("trigger", player);
 	player braxi\_rank::giveRankXP( "", 50 );
 
@@ -1161,10 +1161,10 @@ trap2()
 
 trap3()
 {
-	trig = getEnt("trig_trap3", "targetname"); 
+	trig = getEnt("trig_trap3", "targetname");
 
 	trig setHintString("Press ^7[^2&&1^7] ^7To Activate");
-	
+
 	trig waittill("trigger", player);
 	player braxi\_rank::giveRankXP( "", 50 );
 
@@ -1193,7 +1193,7 @@ trap3_a()
 	brush = getEnt("trap3_a", "targetname");
 
 	trig waittill ("trigger", player);
-	
+
 	trig delete();
 	brush moveZ(-200,0.5);
 	wait 2;
@@ -1206,7 +1206,7 @@ trap3_b()
 	brush = getEnt("trap3_b", "targetname");
 
 	trig waittill ("trigger", player);
-	
+
 	trig delete();
 	brush moveZ(-200,0.5);
 	wait 2;
@@ -1219,7 +1219,7 @@ trap3_c()
 	brush = getEnt("trap3_c", "targetname");
 
 	trig waittill ("trigger", player);
-	
+
 	trig delete();
 	brush moveZ(-200,0.5);
 	wait 2;
@@ -1229,11 +1229,11 @@ trap3_c()
 
 trap4()
 {
-	trig = getEnt("trig_trap4", "targetname"); 
-	brush = getEnt("trap4", "targetname"); 
+	trig = getEnt("trig_trap4", "targetname");
+	brush = getEnt("trap4", "targetname");
 
 	trig setHintString("Press ^7[^2&&1^7] ^7To Activate");
-	
+
 	trig waittill("trigger", player);
 	player braxi\_rank::giveRankXP( "", 50 );
 
@@ -1243,12 +1243,12 @@ trap4()
 
 trap5()
 {
-	trig = getEnt("trig_trap5", "targetname"); 
-	brush1 = getEnt("trap5_a", "targetname"); 
-	brush2 = getEnt("trap5_b", "targetname"); 
+	trig = getEnt("trig_trap5", "targetname");
+	brush1 = getEnt("trap5_a", "targetname");
+	brush2 = getEnt("trap5_b", "targetname");
 
 	trig setHintString("Press ^7[^2&&1^7] ^7To Activate");
-	
+
 	trig waittill("trigger", player);
 	player braxi\_rank::giveRankXP( "", 50 );
 
@@ -1274,9 +1274,9 @@ trap5()
 
 spike_trap()
 {
-	trig = getEnt("trig_spike", "targetname"); 
-	brush = getEnt("spike", "targetname"); 
-	
+	trig = getEnt("trig_spike", "targetname");
+	brush = getEnt("spike", "targetname");
+
 	trig enableLinkTo();
 	trig linkTo(brush);
 
@@ -1292,11 +1292,11 @@ spike_trap()
 
 trap6()
 {
-	trig = getEnt("trig_trap6", "targetname"); 
-	brush = getEnt("trap6", "targetname"); 
+	trig = getEnt("trig_trap6", "targetname");
+	brush = getEnt("trap6", "targetname");
 
 	trig setHintString("Press ^7[^2&&1^7] ^7To Activate");
-	
+
 	brush hide();
 	brush notSolid();
 
@@ -1318,12 +1318,12 @@ trap7()
 
 	trig setHintString("Press ^7[^2&&1^7] ^7To Activate");
 
-	
+
 	brush1 notSolid();
 	brush1 hide();
 	brush2 notSolid();
 	brush2 hide();
-	
+
 	trig waittill("trigger", player);
 	player braxi\_rank::giveRankXP( "", 50 );
 
@@ -1350,13 +1350,13 @@ trap7()
 
 trap8()
 {
-	trig = getEnt("trig_trap8", "targetname"); 
-	brush1 = getEnt("trap8_a", "targetname"); 
-	brush2 = getEnt("trap8_b", "targetname"); 
-	brush3 = getEnt("trap8_c", "targetname"); 
+	trig = getEnt("trig_trap8", "targetname");
+	brush1 = getEnt("trap8_a", "targetname");
+	brush2 = getEnt("trap8_b", "targetname");
+	brush3 = getEnt("trap8_c", "targetname");
 
 	trig setHintString("Press ^7[^2&&1^7] ^7To Activate");
-	
+
 	trig waittill("trigger", player);
 	player braxi\_rank::giveRankXP( "", 50 );
 
@@ -1376,18 +1376,18 @@ knife_room()
 		level.trigknife = getEnt("trig_knife","targetname");
 		acti = getEnt("k_1","targetname");
 		jump = getEnt("k_2","targetname");
-		
+
 		level.trigknife setHintString("^2Knife Room");
-		
+
 		level.trigknife waittill("trigger", player);
-		
+
 		level.trigbounce delete();
 		level.trigwep delete();
 		level.trigsniper delete();
 		level.trigrace delete();
 		level.trigshotgun delete();
 
-		
+
 		noti = SpawnStruct();
 		noti.titleText = "^3" + player.name + " ^7Enterd the ^2Knife Room";
 		noti.notifyText = level.activ.name + " ^2VS^7 " + player.name;
@@ -1395,28 +1395,28 @@ knife_room()
 		players = getEntArray("player", "classname");
 		for(i=0;i<players.size;i++)
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-		
+
 		player setOrigin (jump.origin);
 		player setPlayerAngles (jump.angles);
 
 		level.activ setOrigin (acti.origin);
 		level.activ setPlayerAngles (acti.angles);
-	
+
 		player takeAllWeapons();
 		level.activ takeAllWeapons();
-		
+
 		player freezeControls(1);
 		level.activ freezeControls(1);
-		
+
 		player.maxhealth = 100;
 		player.health = player.maxhealth;
 		level.activ.maxhealth = 100;
-		level.activ.health = level.activ.maxhealth;  
-		
+		level.activ.health = level.activ.maxhealth;
+
 		player takeAllWeapons();
 		player giveWeapon("knife_mp");
 		player switchToWeapon("knife_mp");
-		
+
 		level.activ takeAllWeapons();
 		level.activ giveWeapon("knife_mp");
 		level.activ switchToWeapon("knife_mp");
@@ -1424,18 +1424,18 @@ knife_room()
 		wait 5;
 		player iPrintLnBold("^7FIGHT!");
 		level.activ iPrintLnBold("^7FIGHT!");
-		
+
 		player freezeControls(0);
 		level.activ freezeControls(0);
-	
+
 		while( isAlive( player ) && isDefined( player ) && player.sessionstate == "playing" )
 		wait 0.5;
-		
+
 		iPrintLnBold("^3" + player.name + "^7 Has Died!");
 		wait 1;
 		iPrintLnBold("^7Knife Room Open!");
 		player = undefined;
-		
+
 	}
 }
 
@@ -1447,17 +1447,17 @@ bounce_room()
 		level.trigbounce = getEnt("trig_bounce","targetname");
 		acti = getEnt("b_1","targetname");
 		jump = getEnt("b_2","targetname");
-		
+
 		level.trigbounce setHintString("^2Bounce Room");
-		
+
 		level.trigbounce waittill("trigger", player);
-		
+
 		level.trigknife delete();
 		level.trigwep delete();
 		level.trigsniper delete();
 		level.trigrace delete();
 		level.trigshotgun delete();
-		
+
 		noti = SpawnStruct();
 		noti.titleText = "^3" + player.name + " ^7Enterd the ^2Bounce Room";
 		noti.notifyText = level.activ.name + " ^2VS^7 " + player.name;
@@ -1465,28 +1465,28 @@ bounce_room()
 		players = getEntArray("player", "classname");
 		for(i=0;i<players.size;i++)
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-		
+
 		player setOrigin (jump.origin);
 		player setPlayerAngles (jump.angles);
 
 		level.activ setOrigin (acti.origin);
 		level.activ setPlayerAngles (acti.angles);
-	
+
 		player takeAllWeapons();
 		level.activ takeAllWeapons();
-		
+
 		player freezeControls(1);
 		level.activ freezeControls(1);
-		
+
 		player.maxhealth = 100;
 		player.health = player.maxhealth;
 		level.activ.maxhealth = 100;
-		level.activ.health = level.activ.maxhealth;  
-		
+		level.activ.health = level.activ.maxhealth;
+
 		player takeAllWeapons();
 		player giveWeapon("knife_mp");
 		player switchToWeapon("knife_mp");
-		
+
 		level.activ takeAllWeapons();
 		level.activ giveWeapon("knife_mp");
 		level.activ switchToWeapon("knife_mp");
@@ -1494,18 +1494,18 @@ bounce_room()
 		wait 5;
 		player iPrintLnBold("^7FIGHT!");
 		level.activ iPrintLnBold("^7FIGHT!");
-		
+
 		player freezeControls(0);
 		level.activ freezeControls(0);
-	
+
 		while( isAlive( player ) && isDefined( player ) && player.sessionstate == "playing" )
 		wait 0.5;
-		
+
 		iPrintLnBold("^3" + player.name + "^7 Has Died!");
 		wait 1;
 		iPrintLnBold("^7Bounce Room Open!");
 		player = undefined;
-		
+
 	}
 }
 
@@ -1518,17 +1518,17 @@ race_room()
 		level.trigrace = getEnt("trig_race","targetname");
 		acti = getEnt("r_1","targetname");
 		jump = getEnt("r_2","targetname");
-		
+
 		level.trigrace setHintString("^2Race Room");
-		
+
 		level.trigrace waittill("trigger", player);
-		
+
 		level.trigbounce delete();
 		level.trigwep delete();
 		level.trigsniper delete();
 		level.trigshotgun delete();
 		level.trigknife delete();
-		
+
 		noti = SpawnStruct();
 		noti.titleText = "^3" + player.name + " ^7Enterd the ^2Race Room";
 		noti.notifyText = level.activ.name + " ^2VS^7 " + player.name;
@@ -1536,28 +1536,28 @@ race_room()
 		players = getEntArray("player", "classname");
 		for(i=0;i<players.size;i++)
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-		
+
 		player setOrigin (jump.origin);
 		player setPlayerAngles (jump.angles);
 
 		level.activ setOrigin (acti.origin);
 		level.activ setPlayerAngles (acti.angles);
-	
+
 		player takeAllWeapons();
 		level.activ takeAllWeapons();
-		
+
 		player freezeControls(1);
 		level.activ freezeControls(1);
-		
+
 		player.maxhealth = 100;
 		player.health = player.maxhealth;
 		level.activ.maxhealth = 100;
-		level.activ.health = level.activ.maxhealth;  
-		
+		level.activ.health = level.activ.maxhealth;
+
 		player takeAllWeapons();
 		player giveWeapon("knife_mp");
 		player switchToWeapon("knife_mp");
-		
+
 		level.activ takeAllWeapons();
 		level.activ giveWeapon("knife_mp");
 		level.activ switchToWeapon("knife_mp");
@@ -1565,18 +1565,18 @@ race_room()
 		wait 5;
 		player iPrintLnBold("^7FIGHT!");
 		level.activ iPrintLnBold("^7FIGHT!");
-		
+
 		player freezeControls(0);
 		level.activ freezeControls(0);
-	
+
 		while( isAlive( player ) && isDefined( player ) && player.sessionstate == "playing" )
 		wait 0.5;
-		
+
 		iPrintLnBold("^3" + player.name + "^7 Has Died!");
 		wait 1;
 		iPrintLnBold("^7Race Room Open!");
 		player = undefined;
-		
+
 	}
 }
 
@@ -1589,17 +1589,17 @@ sniper_room()
 		level.trigsniper = getEnt("trig_sniper","targetname");
 		acti = getEnt("s_1","targetname");
 		jump = getEnt("s_2","targetname");
-		
+
 		level.trigsniper setHintString("^2Sniper Room");
-		
+
 		level.trigsniper waittill("trigger", player);
-		
+
 		level.trigbounce delete();
 		level.trigwep delete();
 		level.trigknife delete();
 		level.trigrace delete();
 		level.trigshotgun delete();
-		
+
 		noti = SpawnStruct();
 		noti.titleText = "^3" + player.name + " ^7Enterd the ^2Sniper Room";
 		noti.notifyText = level.activ.name + " ^2VS^7 " + player.name;
@@ -1607,31 +1607,31 @@ sniper_room()
 		players = getEntArray("player", "classname");
 		for(i=0;i<players.size;i++)
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-		
+
 		player setOrigin (jump.origin);
 		player setPlayerAngles (jump.angles);
 
 		level.activ setOrigin (acti.origin);
 		level.activ setPlayerAngles (acti.angles);
-	
+
 		player takeAllWeapons();
 		level.activ takeAllWeapons();
-		
+
 		player freezeControls(1);
 		level.activ freezeControls(1);
-		
+
 		player.maxhealth = 100;
 		player.health = player.maxhealth;
 		level.activ.maxhealth = 100;
-		level.activ.health = level.activ.maxhealth;  
-		
+		level.activ.health = level.activ.maxhealth;
+
 		player takeAllWeapons();
 		player giveWeapon("remington700_mp");
 		player giveMaxAmmo("remington700_mp");
 		player giveWeapon("m40a3_mp");
 		player giveMaxAmmo("m40a3_mp");
 		player switchToWeapon("m40a3_mp");
-		
+
 		level.activ takeAllWeapons();
 		level.activ giveWeapon("remington700_mp");
 		level.activ giveMaxAmmo("remington700_mp");
@@ -1643,18 +1643,18 @@ sniper_room()
 		wait 5;
 		player iPrintLnBold("^7FIGHT!");
 		level.activ iPrintLnBold("^7FIGHT!");
-		
+
 		player freezeControls(0);
 		level.activ freezeControls(0);
-	
+
 		while( isAlive( player ) && isDefined( player ) && player.sessionstate == "playing" )
 		wait 0.5;
-		
+
 		iPrintLnBold("^3" + player.name + "^7 Has Died!");
 		wait 1;
 		iPrintLnBold("^7Sniper Room Open!");
 		player = undefined;
-		
+
 	}
 }
 
@@ -1666,11 +1666,11 @@ karma_room()
 		level.trigwep = getEnt("trig_wep","targetname");
 		acti = getEnt("s_1","targetname");
 		jump = getEnt("s_2","targetname");
-		
+
 		level.trigwep setHintString("^2Wepon Room");
-		
+
 		level.trigwep waittill("trigger", player);
-		
+
 		level.trigbounce delete();
 		level.trigsniper delete();
 		level.trigknife delete();
@@ -1684,29 +1684,29 @@ karma_room()
 		players = getEntArray("player", "classname");
 		for(i=0;i<players.size;i++)
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-		
+
 		player setOrigin (jump.origin);
 		player setPlayerAngles (jump.angles);
 
 		level.activ setOrigin (acti.origin);
 		level.activ setPlayerAngles (acti.angles);
-	
+
 		player takeAllWeapons();
 		level.activ takeAllWeapons();
-		
+
 		player freezeControls(1);
 		level.activ freezeControls(1);
-		
+
 		player.maxhealth = 100;
 		player.health = player.maxhealth;
 		level.activ.maxhealth = 100;
-		level.activ.health = level.activ.maxhealth;  
-		
+		level.activ.health = level.activ.maxhealth;
+
 		player takeAllWeapons();
 		player giveWeapon("artillery_mp");
 		player giveMaxAmmo("artillery_mp");
 		player switchToWeapon("artillery_mp");
-		
+
 		level.activ takeAllWeapons();
 		level.activ giveWeapon("artillery_mp");
 		level.activ giveMaxAmmo("artillery_mp");
@@ -1716,18 +1716,18 @@ karma_room()
 		wait 5;
 		player iPrintLnBold("^7FIGHT!");
 		level.activ iPrintLnBold("^7FIGHT!");
-		
+
 		player freezeControls(0);
 		level.activ freezeControls(0);
-	
+
 		while( isAlive( player ) && isDefined( player ) && player.sessionstate == "playing" )
 		wait 0.5;
-		
+
 		iPrintLnBold("^3" + player.name + "^7 Has Died!");
 		wait 1;
 		iPrintLnBold("^7Weapon Room Open!");
 		player = undefined;
-		
+
 	}
 }
 
@@ -1739,17 +1739,17 @@ shotgun_room()
 		level.trigshotgun = getEnt("trig_shot","targetname");
 		acti = getEnt("shot_1","targetname");
 		jump = getEnt("shot_2","targetname");
-		
+
 		level.trigshotgun setHintString("^2Shotgun Room");
-		
+
 		level.trigshotgun waittill("trigger", player);
-		
+
 		level.trigbounce delete();
 		level.trigsniper delete();
 		level.trigknife delete();
 		level.trigrace delete();
 		level.trigwep delete();
-		
+
 		noti = SpawnStruct();
 		noti.titleText = "^3" + player.name + " ^7Enterd the ^2Shotgun Room";
 		noti.notifyText = level.activ.name + " ^2VS^7 " + player.name;
@@ -1757,29 +1757,29 @@ shotgun_room()
 		players = getEntArray("player", "classname");
 		for(i=0;i<players.size;i++)
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-		
+
 		player setOrigin (jump.origin);
 		player setPlayerAngles (jump.angles);
 
 		level.activ setOrigin (acti.origin);
 		level.activ setPlayerAngles (acti.angles);
-	
+
 		player takeAllWeapons();
 		level.activ takeAllWeapons();
-		
+
 		player freezeControls(1);
 		level.activ freezeControls(1);
-		
+
 		player.maxhealth = 100;
 		player.health = player.maxhealth;
 		level.activ.maxhealth = 100;
-		level.activ.health = level.activ.maxhealth;  
-		
+		level.activ.health = level.activ.maxhealth;
+
 		player takeAllWeapons();
 		player giveWeapon("winchester1200_mp");
 		player giveMaxAmmo("winchester1200_mp");
 		player switchToWeapon("winchester1200_mp");
-		
+
 		level.activ takeAllWeapons();
 		level.activ giveWeapon("winchester1200_mp");
 		level.activ giveMaxAmmo("winchester1200_mp");
@@ -1789,17 +1789,17 @@ shotgun_room()
 		wait 5;
 		player iPrintLnBold("^7FIGHT!");
 		level.activ iPrintLnBold("^7FIGHT!");
-		
+
 		player freezeControls(0);
 		level.activ freezeControls(0);
-	
+
 		while( isAlive( player ) && isDefined( player ) && player.sessionstate == "playing" )
 		wait 0.5;
-		
+
 		iPrintLnBold("^3" + player.name + "^7 Has Died!");
 		wait 1;
 		iPrintLnBold("^7Shotgun Room Open!");
 		player = undefined;
-		
+
 	}
 }

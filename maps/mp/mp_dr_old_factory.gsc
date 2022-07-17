@@ -27,7 +27,7 @@ maps\mp\_load::main();
     game["defenders"] = "allies";
     game["allies_soldiertype"] = "desert";
     game["axis_soldiertype"] = "desert";
- 
+
 	setDvar("bg_falldamagemaxheight", 99999);
 	setDvar("bg_falldamageminheight", 99998 );
 
@@ -37,7 +37,7 @@ maps\mp\_load::main();
     setdvar("r_glowskybleedintensity0","1");
 	setDvar("bg_falldamagemaxheight", 99999);
 	setDvar("bg_falldamageminheight", 99998 );
-	
+
 	thread sr\api\_map::createSpawn((-76,-4852,-92),360);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createTeleporter((262, -5789, -244), 60, 80, (5236, -8086, 835), 271 , "freeze", "red", "secret_0");
@@ -47,13 +47,13 @@ maps\mp\_load::main();
 
 
     //TRAPS TRIGGERS//
-    
+
     addTriggerToList("trig_trap1");
     addTriggerToList("trig_trap2");
     addTriggerToList("trig_trap3");
     addTriggerToList("trig_trap4");
     addtriggerTolist("trig_trap5");
-	//trap 6 works without activator 
+	//trap 6 works without activator
     addtriggerTolist("trig_trap7");
     //trap 8 works without activator
     addtriggerTolist("trig_trap9");
@@ -86,8 +86,8 @@ maps\mp\_load::main();
 	thread startdoor();
 	thread bouncepad1();
 	thread bouncepad2();
-	
-	
+
+
     thread fuck_you();
 //	thread trap1();
 //	thread traplaser();
@@ -98,7 +98,7 @@ maps\mp\_load::main();
 //	thread trap6();
  //   thread trap7all();
 //	thread trap8();
-//	thread trap9(); 
+//	thread trap9();
 //	thread trap10();
 //	thread trap11();
   //  thread trap12();
@@ -189,11 +189,11 @@ iprintlnbold("^5test");
 bouncepad1()
 {
 	trig = getent("trig_bouncepad", "targetname");
-	
+
 	while(1)
 	{
     	trig waittill ( "trigger", player );
-    	 
+
 	    player thread bounce2();
 	}
 }
@@ -201,17 +201,17 @@ bouncepad1()
 bouncepad2()
 {
 	trig = getent("trig_bouncepad2", "targetname");
-	
+
 	while(1)
 	{
     	trig waittill ( "trigger", player );
-    	 
+
 	    player thread bounce2();
 	}
 }
 
 bounce2()
-{	
+{
     for(i = 0; i < 4; i++)
 	{
 	    self.health += 100;
@@ -221,7 +221,7 @@ bounce2()
 
 // MUSICBOX
  musicbox()
-{   
+{
     trig = getEnt("musictrigger","targetname");
     trig setHintString("^7Press ^5[&&1]^7 to select song");
     trig waittill("trigger", p);
@@ -331,7 +331,7 @@ playMusic(music, time, print, default_styling) //music = alias, time = length, p
     if (isDefined(level.playingMusic) && level.playingMusic == music)
         return 0;
     if (isDefined(level.playingMusic) && level.playingMusic == "song5"){iPrintLn("^1Absolute song playing!"); return 0;}
-    
+
     level.playingMusic = music;
 
     level notify ("newmusic"); //tells new music is here
@@ -375,7 +375,7 @@ traplaser()
 {
 	move_trig = getent("traplasertrig","targetname"); //Name of your hurt_trigger
 	move = getent("traplaser","targetname"); //Name of your base
-	
+
 	move moveZ (1, 0.5);
 }
 
@@ -383,7 +383,7 @@ trap1a()
 {
 	move_trig = getent("move_trig","targetname"); //Name of your hurt_trigger
 	move = getent("move","targetname"); //Name of your base
-	
+
     for(;;)
     {
 	    move moveY (448, 1);
@@ -408,7 +408,7 @@ trap1c()
 {
 	move_trig3 = getent("move_trig3","targetname"); //Name of your hurt_trigger
 	move3 = getent("move3","targetname"); //Name of your base
-		
+
 	while(1)
 	{
 		move3 moveY(448, 1);
@@ -434,7 +434,7 @@ trap1a2()
 trap1b2()
 {
 	move_trig2 = getent("move_trig2","targetname"); //Name of your hurt_trigger
-	move2 = getent("move2","targetname"); //Name of your base	
+	move2 = getent("move2","targetname"); //Name of your base
 	while(1)
 	{
 		wait 1.25;
@@ -463,7 +463,7 @@ trap1()
     trig setHintString ("^7Press ^5[&&1]^7 to activate");
     trig waittill("trigger", player);
     trig delete();
-    
+
     thread trap1a();
     thread trap1b();
     thread trap1c();
@@ -479,7 +479,7 @@ trap13antiglitch4()
 {
     move_antiglitch2 = getent("move_antiglitch4","targetname");
     for(;;)
-    { 
+    {
         move_antiglitch2 moveY(448, 1);
         wait 1.25;
         move_antiglitch2 moveY(-448, 1);
@@ -492,7 +492,7 @@ trap13antiglitch5()
 {
     move_antiglitch2 = getent("move_antiglitch5","targetname");
     for(;;)
-    { 
+    {
         move_antiglitch2 moveY(-448, 1);
         wait 1.25;
         move_antiglitch2 moveY(448, 1);
@@ -505,7 +505,7 @@ trap13antiglitch6()
 {
     move_antiglitch2 = getent("move_antiglitch6","targetname");
     for(;;)
-    { 
+    {
         move_antiglitch2 moveY(448, 1);
         wait 1.25;
         move_antiglitch2 moveY(-448, 1);
@@ -1786,7 +1786,7 @@ trap10_4()
 tpnext() {
 	trigger = getent ("tp_next", "targetname");
 	target = getent ("origin_next", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -1797,7 +1797,7 @@ tpnext() {
 tpback() {
 	trigger = getent ("tp_back", "targetname");
 	target = getent ("origin_back", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -1812,7 +1812,7 @@ trap11()
     trig setHintString ("^7Press ^5[&&1]^7 to activate");
     trig waittill("trigger", player);
     trig delete();
-    
+
     platform notSolid();
     platform hide();
 }
@@ -1824,13 +1824,13 @@ trap12()
     trig setHintString ("^7Press ^5[&&1]^7 to activate");
     trig waittill("trigger", player);
     trig delete();
-    
+
     platform notSolid();
     platform hide();
 }
 
 
-//TRAP 13 AUTO 
+//TRAP 13 AUTO
 
 trap13a()
 {
@@ -1853,7 +1853,7 @@ trap13b()
     move_trig6 = getent("move_trig6","targetname"); //Name of your hurt_trigger
     move6 = getent("move6","targetname"); //Name of your base
     move_trig6 enablelinkto(); // This is the most important part of the script. this allows you to move the trigger.
-    move_trig6 linkto(move6); //Now you must link the trigger to the base   
+    move_trig6 linkto(move6); //Now you must link the trigger to the base
     move6 moveZ(-256, 0.5);
     wait 1;
     while(1)
@@ -1884,7 +1884,7 @@ trap13b2()
 {
     move_trig6 = getent("move_trig6","targetname"); //Name of your hurt_trigger
     move6 = getent("move6","targetname"); //Name of your base
-    move_trig6 linkto(move6); //Now you must link the trigger to the base   
+    move_trig6 linkto(move6); //Now you must link the trigger to the base
     wait 1;
     while(1)
     {
@@ -1900,7 +1900,7 @@ trap13antiglitch1()
     move_antiglitch1 = getent("move_antiglitch1","targetname");
     wait 1;
     for(;;)
-    { 
+    {
         move_antiglitch1 moveX(-448, 1);
         wait 1.25;
         move_antiglitch1 moveX(448, 1);
@@ -1913,7 +1913,7 @@ trap13antiglitch2()
     move_antiglitch2 = getent("move_antiglitch2","targetname");
     wait 1;
     for(;;)
-    { 
+    {
         move_antiglitch2 moveX(448, 1);
         wait 1.25;
         move_antiglitch2 moveX(-448, 1);
@@ -2009,7 +2009,7 @@ weaponglass() //ACTI WALL
     block = getent("weapon_glass", "targetname");
     trig = getent("glass_trigger_weapon", "targetname");
     trig waittill("trigger", player);
-    
+
     for(;;)
     {
     wait 0.1;
@@ -2021,7 +2021,7 @@ weaponglassaa() //FULLCLIP ACTI WALL
     block = getent("weapon_glassa", "targetname");
     trig = getent("glass_trigger_weapon", "targetname");
     trig waittill("trigger", player);
-    
+
     for(;;)
     {
     wait 0.1;
@@ -2128,7 +2128,7 @@ simonsays()
 	red = getent("ss_red", "targetname");
 	purple = getent("ss_purple", "targetname");
 	pink = getent("ss_pink", "targetname");
-	
+
 	black hide();
 	blue hide();
 	blue2 hide();
@@ -2152,7 +2152,7 @@ simonsays()
 
         if(!isdefined(level.activKills))
 			level.playername = player.name;
-		
+
 		//player
         player thread removeTextActivator();
 		player freezeControls(1);
@@ -2162,7 +2162,7 @@ simonsays()
 		player TakeAllWeapons();
 		player SetClientDVAR("cg_thirdperson", 1);
         player thread endTimerKnife("^5Let s Go !", 3, 0);
-		
+
 		//acti
 		if (isDefined(level.activ) && isAlive(level.activ))
 		{
@@ -2171,11 +2171,11 @@ simonsays()
 			level.activ setOrigin( level.race_acti_tp.origin );
 			level.activ setPlayerangles( level.race_acti_tp.angles );
 			level.activ TakeAllWeapons();
-			level.activ SetClientDVAR("cg_thirdperson", 1);	
+			level.activ SetClientDVAR("cg_thirdperson", 1);
 			level.activ thread endTimerKnife("^5Let s Go !", 3, 0);
 		}
         thread fightHUD("Simon Says Room", player, level.activ);
-		
+
 		wait 3;
 		thread ss_game(player);
 		thread ss_check(player);
@@ -2199,7 +2199,7 @@ ss_check(player)
 	trig waittill("trigger", loser);
 	level.wall hide();
 	level.ss_on = 0;
-	
+
 	if (isDefined(level.activ) && loser == level.activ) //jumper wins
 	{
 		loser freezeControls(1);
@@ -2211,14 +2211,14 @@ ss_check(player)
 		loser giveMaxAmmo("knife_mp");
 		loser switchToWeapon("knife_mp");
 
-		player freezeControls(1);	
+		player freezeControls(1);
 		player setOrigin(level.orig_winner.origin);
 		player setPlayerAngles(level.orig_winner.angles);
 		player iPrintLnBold("^5You won !");
 		player SetClientDVAR("cg_thirdperson", 0);
 		wait 4;
 		player freezeControls(0);
-		
+
 		player giveWeapon("knife_mp");
 		player giveMaxAmmo("knife_mp");
 		player switchToWeapon("knife_mp");
@@ -2233,7 +2233,7 @@ ss_check(player)
 		loser giveWeapon("knife_mp");
 		loser giveMaxAmmo("knife_mp");
 		loser switchToWeapon("knife_mp");
-		
+
 		if (isDefined(level.activ))
 		{
 			level.activ freezeControls(1);
@@ -2243,7 +2243,7 @@ ss_check(player)
 			level.activ SetClientDVAR("cg_thirdperson", 0);
 			wait 4;
 			player freezeControls(0);
-						
+
 			level.activ giveWeapon("knife_mp");
 			level.activ giveMaxAmmo("knife_mp");
 			level.activ switchToWeapon("knife_mp");
@@ -2497,7 +2497,7 @@ pureend(who, who2)
 	trig = getEnt ("pureendtp", "targetname");
 	origWin = getEnt ("pureendwinner", "targetname");
 	origLose = getEnt ("pureendlooser", "targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger", winner);
@@ -2507,12 +2507,12 @@ pureend(who, who2)
         winner giveWeapon("deserteagle_mp");
         winner giveMaxAmmo("deserteagle_mp");
         winner switchToWeapon("deserteagle_mp");
-		
+
 		if (winner == who)
 			loser = who2;
 		else
 			loser = who;
-		
+
 		if (isDefined(loser))
 		{
 			loser setOrigin (origLose.origin);
@@ -2634,7 +2634,7 @@ bounce_room_weapon()
 bounce_room_activator() {
     trigger = getent ("bounce_room_trig_acti", "targetname");
     target = getent ("bounce_room_ori_acti", "targetname");
-    
+
     while(1) {
         trigger waittill("trigger", player);
         player setorigin (target.origin);
@@ -2645,7 +2645,7 @@ bounce_room_activator() {
 bounce_room_jumper() {
     trigger = getent ("bounce_room_trig_jumper", "targetname");
     target = getent ("bounce_room_ori_jumper", "targetname");
-    
+
     while(1) {
         trigger waittill("trigger", player);
         player setorigin (target.origin);
@@ -2868,14 +2868,14 @@ partymode()
 {
     self endon("stop_party");
     level notify ("newmusic");
-    iPrintLnBold("^5VIP PARTY MODE UNLOCKED!");  
+    iPrintLnBold("^5VIP PARTY MODE UNLOCKED!");
     for(;;)
     {
-        SetExpFog(1000, 1000, 1, 0, 0, 0);  
-        wait 0.5;  
-        SetExpFog(1000, 1000, 0, 1, 0, 0);  
-        wait 0.5;  
-        SetExpFog(1000, 1000, 0, 0, 1, 0);   
+        SetExpFog(1000, 1000, 1, 0, 0, 0);
+        wait 0.5;
+        SetExpFog(1000, 1000, 0, 1, 0, 0);
+        wait 0.5;
+        SetExpFog(1000, 1000, 0, 0, 1, 0);
         wait 0.5;
         SetExpFog(1000, 1000, 1, 1, 0, 0);
         wait 0.5;
@@ -2889,9 +2889,9 @@ partymode()
 }
 
 randompartymode()
-{  
+{
     self endon("stop_party");
-    level notify ("newmusic");  
+    level notify ("newmusic");
     party_1 = getEnt("party_trigger1", "targetname");
     party_2 = getEnt("party_trigger2", "targetname");
     wait 1;
@@ -2899,11 +2899,11 @@ randompartymode()
     party_2 delete();
     for(;;)
     {
-        SetExpFog(1000, 1000, 1, 0, 0, 0);  
-        wait 0.5;  
-        SetExpFog(1000, 1000, 0, 1, 0, 0);  
-        wait 0.5;  
-        SetExpFog(1000, 1000, 0, 0, 1, 0);   
+        SetExpFog(1000, 1000, 1, 0, 0, 0);
+        wait 0.5;
+        SetExpFog(1000, 1000, 0, 1, 0, 0);
+        wait 0.5;
+        SetExpFog(1000, 1000, 0, 0, 1, 0);
         wait 0.5;
         SetExpFog(1000, 1000, 1, 1, 0, 0);
         wait 0.5;
@@ -3006,11 +3006,11 @@ vippartymodesong()
 
 
 
-jumptimerentrance() 
+jumptimerentrance()
 {
     trigger = getent ("secrethardtrigger", "targetname");
     target = getent ("secret_origin1", "targetname");
-    
+
     while(1) {
         trigger waittill("trigger", player);
         player setorigin (target.origin);
@@ -3030,7 +3030,7 @@ secretTimer()
         wait 1;
         time--;
         if(time<=0)
-        self suicide();         
+        self suicide();
     }
 }
 
@@ -3051,9 +3051,9 @@ textleft() {
     self.hud_text.glowcolor = (0.0, 1.0, 1.0);
     self.hud_text.owner = self;
     self.hud_text setText("^5Time left:");
-    self.hud_text thread removehudsondeath();   
+    self.hud_text thread removehudsondeath();
     wait 120;
-    self removeText();  
+    self removeText();
 }
 
 textleft_acti() {
@@ -3073,12 +3073,12 @@ textleft_acti() {
     self.hud_textacti.glowcolor = (0.0, 1.0, 1.0);
     self.hud_textacti.owner = self;
     self.hud_textacti setText("^5Press [USE] to leave the Activator Secret");
-    self.hud_textacti thread removehudsondeath();   
+    self.hud_textacti thread removehudsondeath();
 }
 
 acti_secret_leave()
 {
-    trigger = getent ("acti_secret_leave", "targetname");  
+    trigger = getent ("acti_secret_leave", "targetname");
     target = getent ("hardsecendorigin_acti", "targetname");
     for(;;)
     {
@@ -3090,8 +3090,8 @@ acti_secret_leave()
     }
 }
 
-    
-time() {    
+
+time() {
     self endon ("death");
     self endon ("disconnect");
     self.hud_count = newClientHudElem(self);
@@ -3114,8 +3114,8 @@ time() {
         self.hud_count setvalue( 120 - i );
         wait 1;
     }
-    
-    self removeCountdown(); 
+
+    self removeCountdown();
 }
 
 removeText()
@@ -3124,14 +3124,14 @@ removeText()
     {
         self.hud_text destroy();
     }
-} 
+}
 removeTextActivator()
 {
     if( isDefined( self.hud_textacti) )
     {
         self.hud_textacti destroy();
     }
-} 
+}
 
 removeCountdown() {
     if( isDefined( self.hud_count) )
@@ -3143,25 +3143,25 @@ removeCountdown() {
 removehudsondeath() {
     self endon ("death");
     self.owner waittill_any("death", "disconnect");
-    
+
     if( isDefined( self ) )
     {
         self destroy();
     }
-    
+
 }
 
 tpsecend() {
     trigger = getent ("hardsecendtp", "targetname");
     target = getent ("hardsecendorigin", "targetname");
-    
+
     for(;;)
     {
-        trigger waittill ("trigger", player);  
+        trigger waittill ("trigger", player);
         player SetOrigin(target.origin);
         player SetPlayerAngles( target.angles );
 		player thread sr\api\_speedrun::finishWay("secret_0");
-        
+
     }
 }
 
@@ -3169,7 +3169,7 @@ tpsecend() {
 gun_drop()
 {
 trigger = getent ("gun_drop", "targetname");
-    while(1) 
+    while(1)
     {
     	trigger waittill("trigger", player);
     	if(!isDefined(player.used))
@@ -3189,14 +3189,14 @@ trigger = getent ("gun_drop", "targetname");
 				wait 0.1;
 				player giveWeapon("deserteagle_mp");
 				player switchToWeapon("deserteagle_mp");
-			}	
+			}
 		}
 		else
 		{
 			player iPrintlnBold("you already got your weapon!");
 		}
 	}
-}	
+}
 // VIP
 
 checkvip()
@@ -3298,7 +3298,7 @@ for(;;)
 {
 	vipweapon_check1 waittill("trigger", player);
     if (player getStance() == "crouch" && player useButtonPressed())
-    {	
+    {
     	thread vipweapon_check2();
     	vipweapon_check1 delete();
     }
@@ -3312,7 +3312,7 @@ for(;;)
 {
 	vipweapon_check2 waittill("trigger", player);
     if (player getStance() == "crouch" && player useButtonPressed())
-    {	
+    {
     	thread checkvip();
     	vipweapon_check2 delete();
     }
@@ -3327,7 +3327,7 @@ destroyondeath()
 		self endon( "joined_spectators" );
         self destroytimehud();
 }
-	
+
 destroytimehud()
 {
         if( isDefined( self.secretTimer) )
@@ -3344,7 +3344,7 @@ destroytimehud()
 secret1() {
     trigger = getent ("secret_trig1", "targetname");
     target = getent ("secret_origin1", "targetname");
-    
+
     while(1) {
         trigger waittill("trigger", player);
         player setorigin (target.origin);
@@ -3354,7 +3354,7 @@ secret1() {
 secret2() {
     trigger = getent ("secret_trig2", "targetname");
     target = getent ("secret_origin2", "targetname");
-    
+
     while(1) {
         trigger waittill("trigger", player);
         player setorigin (target.origin);
@@ -3364,7 +3364,7 @@ secret2() {
 secret3() {
     trigger = getent ("secret_trig3", "targetname");
     target = getent ("secret_origin3", "targetname");
-    
+
     while(1) {
         trigger waittill("trigger", player);
         player setorigin (target.origin);
@@ -3374,14 +3374,14 @@ secret3() {
 secret4() {
     trigger = getent ("secret_trig4", "targetname");
     target = getent ("secret_origin4", "targetname");
-    
+
     while(1) {
         trigger waittill("trigger", player);
         player setorigin (target.origin);
         player setplayerangles (target.angles);
     }
 }
-	
+
 
 runstart()
 {
@@ -3431,7 +3431,7 @@ runend(who, who2)
 	trig = getEnt ("runendtp", "targetname");
 	origWin = getEnt ("runendwin", "targetname");
 	origLose = getEnt ("runendlose", "targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger", winner);
@@ -3441,12 +3441,12 @@ runend(who, who2)
         winner giveWeapon("deserteagle_mp");
         winner giveMaxAmmo("deserteagle_mp");
         winner switchToWeapon("deserteagle_mp");
-		
+
 		if (winner == who)
 			loser = who2;
 		else
 			loser = who;
-		
+
 		if (isDefined(loser))
 		{
 			loser setOrigin (origLose.origin);
@@ -3460,7 +3460,7 @@ runend(who, who2)
 race_acti_1() {
 	trigger = getent ("run_acti_trig_a", "targetname");
 	target = getent ("runoriacti", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -3471,7 +3471,7 @@ race_acti_1() {
 race_jumper_1() {
 	trigger = getent ("run_jump_trig_a", "targetname");
 	target = getent ("runorijump", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -3482,7 +3482,7 @@ race_jumper_1() {
 race_acti_2() {
 	trigger = getent ("run_acti_trig_door1", "targetname");
 	target = getent ("run_acti_origin_b", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -3493,7 +3493,7 @@ race_acti_2() {
 race_jumper_2() {
 	trigger = getent ("run_jump_trig_door1", "targetname");
 	target = getent ("run_jump_origin_b", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -3504,7 +3504,7 @@ race_jumper_2() {
 race_acti_3() {
 	trigger = getent ("run_acti_trig_b", "targetname");
 	target = getent ("run_acti_origin_c", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -3515,7 +3515,7 @@ race_acti_3() {
 race_jumper_3() {
 	trigger = getent ("run_jump_trig_b", "targetname");
 	target = getent ("run_jump_origin_c", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -3526,7 +3526,7 @@ race_jumper_3() {
 race_acti_4() {
 	trigger = getent ("run_acti_trig_c", "targetname");
 	target = getent ("run_acti_origin_d", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -3537,7 +3537,7 @@ race_acti_4() {
 race_jumper_4() {
 	trigger = getent ("run_jump_trig_c", "targetname");
 	target = getent ("run_jump_origin_d", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -3548,7 +3548,7 @@ race_jumper_4() {
 race_acti_5() {
 	trigger = getent ("run_acti_trig_d", "targetname");
 	target = getent ("run_acti_origin_e", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -3559,7 +3559,7 @@ race_acti_5() {
 race_jumper_5() {
 	trigger = getent ("run_jump_trig_d", "targetname");
 	target = getent ("run_jump_origin_e", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -3570,7 +3570,7 @@ race_jumper_5() {
 race_acti_6() {
 	trigger = getent ("run_acti_trig_door2", "targetname");
 	target = getent ("run_acti_origin_f", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -3581,7 +3581,7 @@ race_acti_6() {
 race_jumper_6() {
 	trigger = getent ("run_jump_trig_door2", "targetname");
 	target = getent ("run_jump_origin_f", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -3592,7 +3592,7 @@ race_jumper_6() {
 race_acti_7() {
 	trigger = getent ("run_acti_trig_e", "targetname");
 	target = getent ("run_acti_origin_f", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -3603,7 +3603,7 @@ race_acti_7() {
 race_jumper_7() {
 	trigger = getent ("run_jump_trig_e", "targetname");
 	target = getent ("run_jump_origin_f", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -3615,7 +3615,7 @@ race_jumper_7() {
 race_acti_8() {
 	trigger = getent ("run_acti_trig_f", "targetname");
 	target = getent ("run_acti_origin_g", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -3626,7 +3626,7 @@ race_acti_8() {
 race_jumper_8() {
 	trigger = getent ("run_jump_trig_f", "targetname");
 	target = getent ("run_jump_origin_g", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -3641,7 +3641,7 @@ signspectator()
     block1 = getent("sign", "targetname");
     block2 = getent("ring1", "targetname");
     block3 = getent("ring2", "targetname");
-    
+
     for(;;)
     {
     wait 0.1;
@@ -3670,7 +3670,7 @@ iPrintln("^5Map ^7made by ^5CM'Nobody");
 
 if (x==1)
 {
-iPrintLn("^5Map speed: ^5[^7"+getDvar("g_speed")+"^5]");
+
 }
 
 if (x==2)
@@ -3715,7 +3715,7 @@ iPrintln("^7There is ^5Jumper ^7and ^5Activator Secrets ^7. Find them");
 secret1_acti() {
     trigger = getent ("secret_trig1_acti", "targetname");
     target = getent ("secret_origin1_acti", "targetname");
-    
+
     while(1) {
         trigger waittill("trigger", player);
         player setorigin (target.origin);
@@ -3725,7 +3725,7 @@ secret1_acti() {
 secret2_acti() {
     trigger = getent ("secret_trig2_acti", "targetname");
     target = getent ("secret_origin2_acti", "targetname");
-    
+
     while(1) {
         trigger waittill("trigger", player);
         player setorigin (target.origin);
@@ -3735,7 +3735,7 @@ secret2_acti() {
 secret3_acti() {
     trigger = getent ("secret_trig3_acti", "targetname");
     target = getent ("secret_origin3_acti", "targetname");
-    
+
     while(1) {
         trigger waittill("trigger", player);
         player setorigin (target.origin);
@@ -3745,19 +3745,19 @@ secret3_acti() {
 secret4_acti() {
     trigger = getent ("secret_trig4_acti", "targetname");
     target = getent ("secret_origin4_acti", "targetname");
-    
+
     while(1) {
         trigger waittill("trigger", player);
         player setorigin (target.origin);
         player setplayerangles (target.angles);
     }
 }
-    
+
 hardsecretway_acti()
 {
     secrethardtrigger = getEnt("secrethardtrigger_acti","targetname");
     secrethardorigin = getEnt("secret_origin1_acti","targetname");
-    
+
     for(;;)
     {
         secrethardtrigger waittill("trigger", player);
@@ -3772,7 +3772,7 @@ hardsecretend_acti()
 {
     hardsecendtp = getEnt("hardsecendtp_acti","targetname");
     hardsecendorigin = getEnt("hardsecendorigin_acti","targetname");
-    
+
     for(;;)
     {
         hardsecendtp waittill("trigger", player);
@@ -3801,7 +3801,7 @@ randompartyjukeboxoff()
     trig = getent("trig_partyon", "targetname");
     trig setHintString ("^5You cant change song during the random Party Mode");
     trig delete();
-    
+
     wait 1;
 }
 
@@ -3810,13 +3810,13 @@ jukeboxtriggeroff()
     trig = getent("musictrigger", "targetname");
     trig setHintString ("^5You cant change song during the random Party Mode");
     trig delete();
-    
+
     wait 1;
 }
 
 partyunlock()
 {
-	party_1 = getEnt ( "party_trigger1", "targetname" ); 
+	party_1 = getEnt ( "party_trigger1", "targetname" );
 	while(1)
 	{
 		name = getDvar("name");
@@ -3832,11 +3832,11 @@ partyunlock()
 			}
 		}
 	}
-} 
+}
 
 partyunlock2()
 {
-	party_2 = getEnt ( "party_trigger2", "targetname" ); 
+	party_2 = getEnt ( "party_trigger2", "targetname" );
 	while(1)
 	{
 		name = getDvar("name");
@@ -3854,7 +3854,7 @@ partyunlock2()
 			}
 		}
 	}
-} 
+}
 
 fuck_you()
 {
@@ -3862,7 +3862,7 @@ fuck_you()
 {
 	level waittill("player_spawn", player);
 	username = player.name;
-	if( isSubStr( toLower(username), toLower("brahmi") ) || username == "brahmii" || username == "Sr Brahmi" || username == "pizzaman") 
+	if( isSubStr( toLower(username), toLower("brahmi") ) || username == "brahmii" || username == "Sr Brahmi" || username == "pizzaman")
 {
 	player.fuu = true;
 	player freezeControls(1);

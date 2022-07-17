@@ -4,18 +4,16 @@
 
 main() {
   maps\mp\_load::main();
-  
-  
+
+
   game["allies"] = "marines";
   game["axis"] = "opfor";
   game["attackers"] = "axis";
   game["defenders"] = "allies";
   game["allies_soldiertype"] = "desert";
   game["axis_soldiertype"] = "desert";
-  
-	setdvar("g_speed" ,"190");
-	setdvar("dr_jumpers_speed" ,"1");
-	
+
+
 	setdvar( "r_specularcolorscale", "1" );
 
 	setdvar("r_glowbloomintensity0",".1");
@@ -234,7 +232,7 @@ onPlayerSpawn(){
     level waittill("player_spawn", player);
 
     if(player.pers["team"] != "spectator" && player.pers["team"] == level.dr_jump){
-      
+
       if(!isDefined(player.currentLocationTag)){
         player.currentLocationTag = false;
       } else if(player.currentLocationTag){
@@ -377,7 +375,7 @@ roomHud(hudNumber, _x, _y, fontScale, font, txt){
 	level.mapHud[hudNumber].sort = 890;
 	level.mapHud[hudNumber] SetText(txt);
 	level.mapHud[hudNumber] SetPulseFX( 40, 5900, 200 );
-	
+
 	wait 5;
 
 	if(isDefined(level.mapHud[hudNumber])){
@@ -453,7 +451,7 @@ getLocationName(number){
     case 7: return "The Porch of Hell...";
     case 8: return "The End...";
   }
-  
+
   return "Unknown...";
 }
 
@@ -495,7 +493,7 @@ bounceWeapon(){
 
   while(true){
     trig waittill("trigger", player);
-    
+
     if(!level.pickedBouWeap){
       level.pickedBouWeap = true;
       level.bouWepName = bouWepPick(RandomInt(3));

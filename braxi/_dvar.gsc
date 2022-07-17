@@ -26,8 +26,8 @@ initDvars()
 	addDvar("dev", "g_moddev", 0, 0, 1, "int");
 	addDvar("allies_health", "dr_jumpers_health", 100, 1, 1000, "int");
 	addDvar("axis_health", "dr_activators_health", 100, 1, 1000, "int");
-	addDvar("allies_speed", "dr_jumpers_speed", 1.2, 0.1, 2, "float");
-	addDvar("axis_speed", "dr_activators_speed", 1.2, 0.1, 2, "float");
+	addDvar("allies_speed", "dr_jumpers_speed", 1.05, 0.1, 2, "float");
+	addDvar("axis_speed", "dr_activators_speed", 1.05, 0.1, 2, "float");
 	addDvar("motd", "dr_motd", "", "", "", "string");
 	addDvar("roundSound", "dr_roundsounds", 1, 0, 1, "int");
 	addDvar("freeRunChoice", "dr_activator_freerun", 2, 0, 2, "int");

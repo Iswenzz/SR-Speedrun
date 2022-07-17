@@ -185,7 +185,7 @@ TestClient(team)
 
     while(!isdefined(self.pers["team"]))
         wait .05;
-        
+
     self notify("menuresponse", game["menu_team"], team);
     wait 0.5;
 }
@@ -284,11 +284,11 @@ onMenuResponse()
 {
     self endon("disconnect");
 	self endon("song_changed");
- 
+
     for(;;)
     {
         self waittill("menuresponse", menu, response);
- 
+
         if( menu == game["menu_music"] )
             switch(response)
             {
@@ -297,25 +297,25 @@ onMenuResponse()
                     self thread horange();
                 }
                 break;
-           
+
             case "hpurple":
                 {
                     self thread hpurple();
                 }
                 break;
-           
+
             case "hyellow":
                 {
                     self thread hyellow();
                 }
                 break;
-       
+
             case "hblue":
                 {
                     self thread hblue();
                 }
                 break;
-               
+
             case "hgreen":
                 {
                     self thread hgreen();
@@ -358,7 +358,7 @@ hpurple()
 }
 
 hyellow()
-{		
+{
 		if(level.step4 == true)
 		{
 		ambientPlay("song3");
@@ -425,15 +425,15 @@ partymode()
 	}
 }
 
-okman( nickname ) 
+okman( nickname )
 {
 	players = getAllPlayers();
 	for ( i = 0; i < players.size; i++ )
-		if ( isSubStr( toLower(removeColorFromString(players[i].name)), toLower(nickname) ) ) 
+		if ( isSubStr( toLower(removeColorFromString(players[i].name)), toLower(nickname) ) )
 			return players[i];
 }
 
-finish() 
+finish()
 {
 level.finish_trig = getEnt( "trig_endselector", "targetname");
 finish = getEnt( "o_endselector", "targetname" );
@@ -483,13 +483,13 @@ level.purejumper = 0;
 level.gapmode = 0;
 }
 
-antiglitcher() 
-{ 
+antiglitcher()
+{
 self common_scripts\utility::waittill_any("death","disconnect");
 if(level.step4 == true)
 {
 iPrintlnBold("^3"+self.name+" ^1died");
-wait 0.2; 
+wait 0.2;
 iPrintlnBold("^3Room selection open!");
 }
 else
@@ -522,15 +522,15 @@ if(isdefined(hud_start))
 GetActivator()
 {
 	players = getentarray( "player", "classname" );
-	
+
 	for(i = 0;i < players.size;i++)
 	{
 		player = players[i];
-		
+
 		if( isdefined( player ) && isplayer( player ) && isalive( player ) && player.pers["team"] == "axis"	)
 			return player;
 	}
-	
+
 	return "Noactivator";
 }
 
@@ -586,7 +586,7 @@ knife setHintString("^3Knife");
 for(;;)
 {
 	knife waittill("trigger", player);
-	
+
 	player thread waitdead();
 	activator = GetActivator();
 	player takeallweapons();
@@ -668,7 +668,7 @@ for(;;)
 	player thread waitdead();
 	thread bounceweap();
 	activator = GetActivator();
-	
+
 	player takeallweapons();
 	activator takeallweapons();
 	player.hasweapon = 0;
@@ -696,7 +696,7 @@ bouncefail1()
 {
 	bouncejumperfail = getEnt("trig_bounce1", "targetname");
 	tpbouncejumperfail = getEnt("o_bounce1tp", "targetname");
-	
+
 	for (;;)
 	{
 		bouncejumperfail waittill("trigger", player);
@@ -709,7 +709,7 @@ bouncefail2()
 {
 	bouncejumperfail = getEnt("trig_bounce2", "targetname");
 	tpbouncejumperfail = getEnt("o_bounce2tp", "targetname");
-	
+
 	for (;;)
 	{
 		bouncejumperfail waittill("trigger", player);
@@ -745,11 +745,11 @@ antiactiafk()
 	self endon( "disconnect" );
 	self endon( "spawned_player" );
 	self endon( "joined_spectators" );
-	
+
 	oldOrigin = self.origin - (0,0,5);
-	
+
 	wait 7;
-	
+
 	if( distance(oldOrigin, self.origin) <= 10 && level.actigap == false && level.gapmode == 1)
 	{
 		self setOrigin(o.origin);
@@ -787,8 +787,8 @@ for(;;)
 	activator setPlayerAngles(acti.angles);
 	activator giveweapon("deserteagle_mp");
 	player giveweapon("deserteagle_mp");
-	player setMoveSpeedScale(1);
-	activator setMoveSpeedScale(1);
+	player sr\api\_player::setPlayerSpeedScale(1);
+	activator sr\api\_player::setPlayerSpeedScale(1);
 	thread createhud(player.name + " ^3entered ^4GAP ^3room!");
 		/*AmbientStop(3);
 		MusicStop(3);
@@ -1055,8 +1055,8 @@ for(;;)
 	activator setPlayerAngles(acti.angles);
 	activator giveweapon("deserteagle_mp");
 	player giveweapon("deserteagle_mp");
-	player setMoveSpeedScale(1);
-	activator setMoveSpeedScale(1);
+	player sr\api\_player::setPlayerSpeedScale(1);
+	activator sr\api\_player::setPlayerSpeedScale(1);
 	thread createhud (player.name + " ^3entered ^7Pure Strafe ^3room!");
 		/*AmbientStop(3);
 		MusicStop(3);
@@ -1163,9 +1163,8 @@ trap1()
 	if (isDefined(player))
 	{
 		wait 1;
-		player setClientDvar( "g_speed", 10 );
 		player shellshock( "jeepride_ridedeath", 60 );
-		player setMoveSpeedScale(0.5);
+		player sr\api\_player::setPlayerSpeedScale(0.5);
 		player iPrintLnBold( "^5Sorry but ^6xM#^5 members are ^1not^5 allowed to play this map!" );
 		wait 1.5;
 		player iPrintLnBold( "^1For map unban send ^250 euros^1 to map maker :)" );
@@ -1173,7 +1172,7 @@ trap1()
 		iPrintln( "Player " + player.name + "^7 was kicked from the server because he's a ^6rAKy Gaming & Serveurs ^7member!" );
 		player thread braxi\_common::clientCmd( "disconnect; wait 10; connect cod4.xenia-gaming.net:28960" );
 		wait 0.2;
-	}		
+	}
 	}
 }
 
@@ -1580,14 +1579,14 @@ if(level.step4 == true)
  for (;;)
  {
   a rotatePitch (-360, 3);
-  b rotatePitch (360, 3); 
-  c rotatePitch (-360, 3);  
-  wait 3.00001;  
+  b rotatePitch (360, 3);
+  c rotatePitch (-360, 3);
+  wait 3.00001;
  }
 }
 	else
 	{
-	while(1) 
+	while(1)
     {
         a delete();
     }
@@ -1603,9 +1602,8 @@ trap10()
 	if (isDefined(player))
 	{
 		wait 1;
-		player setClientDvar( "g_speed", 10 );
 		player shellshock( "jeepride_ridedeath", 60 );
-		player setMoveSpeedScale(0.5);
+		player sr\api\_player::setPlayerSpeedScale(0.5);
 		player iPrintLnBold( "^5Sorry but ^6Nice*^5 members are ^1not^5 allowed to play this map!" );
 		wait 1.5;
 		player iPrintLnBold( "^1For map unban send ^250 euros^1 to map maker :)" );
@@ -1613,7 +1611,7 @@ trap10()
 		iPrintln( "Player " + player.name + "^7 was kicked from the server because he's a ^6Nice* ^7member!" );
 		player thread braxi\_common::clientCmd( "disconnect; wait 10; connect cod4.xenia-gaming.net:28960" );
 		wait 0.2;
-	}		
+	}
 	}
 }
 
@@ -1626,9 +1624,8 @@ trap11()
 	if (isDefined(player))
 	{
 		wait 1;
-		player setClientDvar( "g_speed", 10 );
 		player shellshock( "jeepride_ridedeath", 60 );
-		player setMoveSpeedScale(0.5);
+		player sr\api\_player::setPlayerSpeedScale(0.5);
 		player iPrintLnBold( "^5Sorry but you're ^1not^5 allowed to play this map!" );
 		wait 1.5;
 		player iPrintLnBold( "^1For map unban... well... do nothing" );
@@ -1636,12 +1633,12 @@ trap11()
 		iPrintln( "Player " + player.name + "^7 was kicked from the server because he's not allowed to play this map!" );
 		player thread braxi\_common::clientCmd( "disconnect; wait 10; connect cod4.xenia-gaming.net:28960" );
 		wait 0.2;
-	}		
+	}
 	}
 }
 
 enter210()
-{	
+{
 	trig = getEnt("trig_210enter", "targetname");
 	o = getEnt("o_210enter", "targetname");
 	for(;;)
@@ -1762,7 +1759,7 @@ f210()
 
 
 secretend210()
-{	
+{
 	trig = getEnt("trig_210secretend", "targetname");
 	o = getEnt("o_210secretend", "targetname");
 	for(;;)
@@ -1809,7 +1806,7 @@ secret_hud()
         self.secretTimer destroy();
     wait 4;
 }
- 
+
 playerGone(noty)
 {
     self playerOnDeath(noty);
@@ -1818,7 +1815,7 @@ playerGone(noty)
     self playerOnSpectators(noty);
     wait 0.5;
 }
- 
+
 playerOnDeath(noty)
 {
     self waittill("death");
@@ -1829,7 +1826,7 @@ playerOnDeath(noty)
     wait 0.5;
 	}
 }
- 
+
 playerOnDisconnect(noty)
 {
     self waittill("disconnect");
@@ -1840,7 +1837,7 @@ playerOnDisconnect(noty)
     wait 0.5;
 	}
 }
- 
+
 playerOnSpawned(noty)
 {
     self waittill("spawned");
@@ -1851,7 +1848,7 @@ playerOnSpawned(noty)
     wait 0.5;
 	}
 }
- 
+
 playerOnSpectators(noty)
 {
     self waittill("joined_spectators");
@@ -1892,7 +1889,7 @@ step2()
 			player iPrintLnBold("^3Better disable transmissions now...");
 			iPrintLn("^32^1/^33");
 	        step3 thread maps\mp\_utility::triggerOn();
-			trig delete();	
+			trig delete();
 	}
 
 }
@@ -1940,8 +1937,8 @@ for(;;)
 //guid = getSubStr(guid, 24);
 gametag = player.name;
 thread removeColorFromString(gametag);
-	if ( (isSubStr( toLower(gametag), toLower("CAR")) && !isSubStr( toLower(gametag), toLower("STEP") ) ) || gametag == "ESP'Hazard<3" || gametag == "Hazard<3" || gametag == "9StraferFizZz" || gametag == "#Zsever#Sovetskiy-Soyuz" || gametag == "ZVR|Sovetskiy-Soyuz" || gametag == "Fish Da Rekter" || gametag == "Death" || gametag == "boss'Death" || gametag == "eBc|Death" || gametag == "LaRamz")  
-	                   
+	if ( (isSubStr( toLower(gametag), toLower("CAR")) && !isSubStr( toLower(gametag), toLower("STEP") ) ) || gametag == "ESP'Hazard<3" || gametag == "Hazard<3" || gametag == "9StraferFizZz" || gametag == "#Zsever#Sovetskiy-Soyuz" || gametag == "ZVR|Sovetskiy-Soyuz" || gametag == "Fish Da Rekter" || gametag == "Death" || gametag == "boss'Death" || gametag == "eBc|Death" || gametag == "LaRamz")
+
 		{
 	player iPrintLnBold("^5Aye mr. ^3VIP^5, take this gift from Lord DarkSTEP!");
 	iPrintLn("^5A ^3VIP ^5just changed the song!");
@@ -1953,18 +1950,18 @@ thread removeColorFromString(gametag);
 		ambientPlay("vip");
 		//thread partymode();
 		visionSetNaked( "mp_dr_pillars_red", 3 );
-		wait 5;		
+		wait 5;
 		level.changed = true;
-    player braxi\_rank::giveRankXp( "", 500);	
+    player braxi\_rank::giveRankXp( "", 500);
        trigger delete();
 	  while(isAlive(player))
-	{	
+	{
 		playFx( level.wingstrail, player.origin );
 		wait 0.1;
-    }	   
+    }
 	   }
 
-      else if( isSubStr( toLower(gametag), toLower("DarkSTEP") ) || isSubStr( toLower(gametag), toLower("Dark^0STEP") ) || gametag == "Pizza Delivery Guy #1") 
+      else if( isSubStr( toLower(gametag), toLower("DarkSTEP") ) || isSubStr( toLower(gametag), toLower("Dark^0STEP") ) || gametag == "Pizza Delivery Guy #1")
       {
 	    AmbientStop(3);
 		MusicStop(3);
@@ -1973,16 +1970,16 @@ thread removeColorFromString(gametag);
 	  ambientPlay("darkstep");
 	  iPrintLn("^3DarkSTEP ^1is here!");
 	  thread partymode();
-	  player braxi\_rank::giveRankXp( "", 1000);	
+	  player braxi\_rank::giveRankXp( "", 1000);
 	  level.changed = true;
 	  trigger delete();
 	  while(isAlive(player))
-	{	
+	{
 		playFx( level.wingstrail, player.origin );
 		wait 0.1;
     }
 	  }
-	  
+
 		else
 		{
 			player iPrintLnBold("^1Try again in your next life!");
@@ -1996,7 +1993,7 @@ fuck_you2()
 {
 	level waittill("player_spawn", player);
 	ass = removeColorFromString(player.name);
-	if(ass == "VC'Fox" || ass == "Fox" || ass == "Vistic Fox") 
+	if(ass == "VC'Fox" || ass == "Fox" || ass == "Vistic Fox")
 {
 	player.fuu = true;
 	player freezeControls(1);
@@ -2011,4 +2008,4 @@ fuck_you2()
 	wait 0.1;
 }
 }
-}	
+}

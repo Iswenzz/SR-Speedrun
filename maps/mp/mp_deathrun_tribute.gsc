@@ -14,9 +14,9 @@ trigger.radius = 80;
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
-	
+
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
@@ -67,9 +67,9 @@ trigger.radius = 80;
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-    
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -119,7 +119,7 @@ speed()
 	while(1)
 	{
 	trig waittill ("trigger", who);
-	who SetMoveSpeedScale( 1.5 );
+	who sr\api\_player::setPlayerSpeedScale( 1.5 );
 	}
 }
 
@@ -157,15 +157,15 @@ trap2()
 
 trap3()
 {
-	
+
 	trap = getent("trap3_push", "targetname");
 	trig = getent("trap3_trig", "targetname");
 	sound = getent("fan_sound", "targetname");
 
 	trig waittill ("trigger");
 	trig delete();
-	
-	
+
+
 	timeElapsed = 0;
 	seconds = 10;
 
@@ -176,9 +176,9 @@ trap3()
 		for( i = 0; i < players.size; i++ )
 		{
 			if( players[i] isTouching( trap ) && players[i].sessionstate == "playing" )
-			{		
+			{
 			players[i] bounce( (-40,0,10), 60);
-			//if ( players[i] GetStance() == "prone") )...				
+			//if ( players[i] GetStance() == "prone") )...
 			}
 		}
 		wait 0.06;
@@ -199,11 +199,11 @@ trap4()  // Thx for BraXi
 {
 	activator = getEnt( "trap4_trig", "targetname" ); // trigger_use_touch
 	area = getEnt( "trap4_check", "targetname" ); // trigger_multiple
-	
+
 	trafficLightRed = getEnt( "lamp_red2", "targetname" ); // script_model or script_brushmodel
 	trafficLightYellow = getEnt( "lamp_yellow2", "targetname" ); // script_model or script_brushmodel
 	trafficLightGreen = getEnt( "lamp_green2", "targetname" ); // script_model or script_brushmodel
-	
+
 	trafficLightRed hide();
 	trafficLightYellow hide();
 
@@ -230,7 +230,7 @@ trap4()  // Thx for BraXi
 				else
 				{
 					if( distance( players[i].safePosition, players[i].origin ) > 3 ) // then can move only 3 units
-					{	
+					{
 						players[i] suicide();
 						players[i].safePosition = undefined;
 					}
@@ -272,7 +272,7 @@ trap6()
 	trig = getent("trap6_trig", "targetname");
 
 	dmg delete();
-	trap delete();	
+	trap delete();
 }
 
 trap7()
@@ -295,7 +295,7 @@ trap8()
 	dmg = getent("trap8_dmg", "targetname");
 
 	dmg delete();
-		
+
 }
 
 trap9()
@@ -345,7 +345,7 @@ trap13()
 	tele =getent("upper_tele", "targetname");
 	tele2 =getent("down_tele", "targetname");
 	dmg =getent("plate_dmg", "targetname");
-	
+
 	dmg enablelinkto();
 	dmg linkto(trap);
 
@@ -410,7 +410,7 @@ trap16()
 
 	trap1 notsolid();
 	trap movex (-280,0.5);
-	
+
 	wait 5;
 	trap1 solid();
 	trap movex (280,0.5);
@@ -446,10 +446,10 @@ trap18()
 	trap = getEnt( "trap18", "targetname" );
 	trig = getEnt( "trap18_trig", "targetname" );
 	dmg =getent("trap18_dmg", "targetname");
-	
+
 	dmg enablelinkto();
 	dmg linkto(trap);
-	
+
 	trap movez (180,0.1);
 
 	trig waittill ("trigger");
@@ -538,19 +538,19 @@ final_nade()
 			break;
 		}
 	}
-	
+
 	startj = getent("final_jump", "targetname");
 	starta = getent("final_acti", "targetname");
-	
+
 	jumper SetPlayerAngles( startj.angles );
 	jumper SetOrigin( startj.origin );
-	jumper SetMoveSpeedScale( 1 );
+	jumper sr\api\_player::setPlayerSpeedScale( 1 );
 	jumper TakeAllWeapons();
 	jumper GiveWeapon("deserteagle_mp");
 	jumper SetSpawnWeapon("deserteagle_mp");
 	acti SetPlayerAngles( starta.angles );
 	acti SetOrigin( starta.origin );
-	acti SetMoveSpeedScale( 1 );
+	acti sr\api\_player::setPlayerSpeedScale( 1 );
 	acti TakeAllWeapons();
 	acti GiveWeapon("deserteagle_mp");
 	acti SetSpawnWeapon("deserteagle_mp");
@@ -559,10 +559,10 @@ final_nade()
 	jumper FreezeControls(1);
 	acti FreezeControls(1);
 
-	
+
 	wait 2;
-	
-	
+
+
 	noti = SpawnStruct();
 	noti.titleText = "^1!!!^7FINAL ^11VS1 ^7 GRENADE FIGHT^1!!!";
 	noti.notifyText = acti.name + " ^1VS ^7" + jumper.name;
@@ -571,12 +571,12 @@ final_nade()
 	players = getentarray("player", "classname");
 	for(i=0;i<players.size;i++)
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-	
-	
+
+
 	wait 5;
 	jumper FreezeControls(0);
 	acti FreezeControls(0);
-	
+
 	iprintlnbold("^1GOOD LUCK!");
 }
 
@@ -647,7 +647,7 @@ TestClient(team)
 
 	while(!isdefined(self.pers["team"]))
 		wait .05;
-		
+
 	self notify("menuresponse", game["menu_team"], team);
 	wait 0.5;
 }

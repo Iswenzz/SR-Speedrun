@@ -58,7 +58,7 @@ messages()
 {
 	if(isDefined(level.message))
 		level.message destroy();
-		
+
 	level.message = newHudElem();
 	level.message.x = 0;
 	level.message.y = 0;
@@ -231,7 +231,7 @@ trap3()
 	part6 rotateYaw (50 , 1);
 	part7 rotateYaw (-50 , 1);
 }
-	
+
 trap4()
 {
 	trig4 = getEnt( "trigger4", "targetname" );
@@ -278,7 +278,7 @@ trap5()
 	push2_kill = getent ("trap5_2_kill","targetname" );
 	push3_kill = getent ("trap5_3_kill","targetname" );
 	push4_kill = getent ("trap5_4_kill","targetname" );
-	used = getent ("trap5_used" ,"targetname");	
+	used = getent ("trap5_used" ,"targetname");
 	trap5_p = getent ("trap5_p","targetname" );
 	trig5 = getent ("trigger5","targetname" );
 	trig5   setHintString("^4Press ^2[Use] ^3to activate this ^1trap");
@@ -295,8 +295,8 @@ trap5()
 	push4_kill enablelinkto();
 	push4_kill linkto(push4);
 	wait 0.5;
-	while (1) 
-	{		
+	while (1)
+	{
 	push1 rotateroll (360 ,1.5);
 	push2 rotateroll (-360 ,1.5);
 	push3 rotateroll (360 ,1.5);
@@ -342,7 +342,7 @@ trap7()
 		trap7_1 rotatepitch( -360, 3 );
 		trap7_2 rotatepitch( 360, 3 );
 		trap7_3 rotatepitch( -360, 3 );
-		wait 3;	
+		wait 3;
 	}
 }
 
@@ -360,7 +360,7 @@ trap8()
 	trap8_p rotatepitch (-25 , 0.7);
 	brush_1 rotateroll ( 90 , 1 ) ;
 	brush_2 rotateroll (- 90, 1 ) ;
-	wait 2 ; 
+	wait 2 ;
 	brush_1 rotateroll (- 90 , 1 ) ;
 	brush_2 rotateroll ( 90 , 1 ) ;
 	wait 2 ;
@@ -391,7 +391,7 @@ water()
 	trig = getent("water", "targetname");
 	while(true)
 	{
-	trig waittill ("trigger", who);	
+	trig waittill ("trigger", who);
 	x = RandomInt(30);
 	if( x < 10 )
 		{
@@ -429,7 +429,7 @@ water1()
 	trig1 = getent("water1", "targetname");
 	while(true)
 	{
-	trig1 waittill ("trigger", who);	
+	trig1 waittill ("trigger", who);
 	x = RandomInt(30);
 	if( x < 10 )
 		{
@@ -466,7 +466,7 @@ water2()
 	trig2 = getent("water2", "targetname");
 	while(true)
 	{
-	trig2 waittill ("trigger", who);	
+	trig2 waittill ("trigger", who);
 	x = RandomInt(30);
 	if( x < 10 )
 		{
@@ -503,7 +503,7 @@ water3()
 	trig3 = getent("water3", "targetname");
 	while(true)
 	{
-	trig3 waittill ("trigger", who);	
+	trig3 waittill ("trigger", who);
 	x = RandomInt(30);
 	if( x < 10 )
 		{
@@ -540,7 +540,7 @@ water4()
 	trig4 = getent("water4", "targetname");
 	while(true)
 	{
-	trig4 waittill ("trigger", who);	
+	trig4 waittill ("trigger", who);
 	x = RandomInt(30);
 	if( x < 10 )
 		{
@@ -617,7 +617,7 @@ bounce_fall()
 					player SetOrigin((2511.51, 1974.89, -3434.87));
 					player.health = player.maxhealth;
 				}
-				
+
 
 	}
 }
@@ -661,7 +661,7 @@ mapper_name()
 	earth33 = getent ("earth33","targetname");
 	earth34 = getent ("earth34","targetname");
 	earth35 = getent ("earth35","targetname");
-	
+
 	trigm waittill("trigger",player);
 	players = getentarray("player", "classname");
 	for(i=0;i<players.size;i++)
@@ -830,7 +830,6 @@ if(player getGuid() == "590698b8db585853b5c6f29d7b4d874b")
 {
 	if(player getStance() == "stand")
 	{
-	player setMoveSpeedScale(2.3);
 	player iPrintlnBold("^3High Speed");
 	}
 	if(player getStance() == "prone")
@@ -847,7 +846,6 @@ if(player getguid() == "3c8ae180102243812ac62a580ba9f68a")
 {
 	if(player getStance() == "stand")
 	{
-	player setMoveSpeedScale(2.3);
 	player iPrintlnBold("^3High Speed");
 	}
 	if(player getStance() == "crouch")
@@ -896,7 +894,7 @@ if(player getGuid() == "590698b8db585853b5c6f29d7b4d874b")
 		player iPrintlnBold("Invisible mode ^1OFF");
 		}
 	}
-	
+
 	if(player getStance() == "crouch")
 	{
 		player thread jetpack();
@@ -914,7 +912,6 @@ if(player getguid() == "3c8ae180102243812ac62a580ba9f68a")
 {
 	if(player getStance() == "stand")
 	{
-	player setMoveSpeedScale(2.3);
 	player iPrintlnBold("^3High Speed");
 	}
 	if(player getStance() == "crouch")
@@ -939,31 +936,31 @@ wait 0.2;
 }
 }
 
-jetpack() 
-{ 
-self endon("death"); 
-self endon("disconnect"); 
-if(!isdefined(self.jetwait) || self.jetwait == 0) 
-{ 
-	self.user = spawn( "script_origin", self.origin ); 
-	self.user.angles = self.angles; 
-	self linkto (self.user); 
-	self.linkeduser = true; 
-	self.user moveto( self.user.origin + (0,0,25), 0.5 );   
+jetpack()
+{
+self endon("death");
+self endon("disconnect");
+if(!isdefined(self.jetwait) || self.jetwait == 0)
+{
+	self.user = spawn( "script_origin", self.origin );
+	self.user.angles = self.angles;
+	self linkto (self.user);
+	self.linkeduser = true;
+	self.user moveto( self.user.origin + (0,0,25), 0.5 );
 
-while(self.linkeduser == true) 
-{ 
+while(self.linkeduser == true)
+{
 	Earthquake( 0.1, 1, self.user.origin, 100 );
-	PlayFX( level.jetpack_stop , self.origin ); 
-	angle = self getplayerangles(); 
-   	if( self useButtonPressed() ) 
+	PlayFX( level.jetpack_stop , self.origin );
+	angle = self getplayerangles();
+   	if( self useButtonPressed() )
    	{
 	PlayFX( level.jetpack , self.origin );
-   	self thread moveonangle(angle); 
-   	} 
-   	if( self meleebuttonpressed() || self.health < 1 ) 
-	{ 
-	self thread jetpack_disabled(); 
+   	self thread moveonangle(angle);
+   	}
+   	if( self meleebuttonpressed() || self.health < 1 )
+	{
+	self thread jetpack_disabled();
 	}
 	if( self fragButtonPressed() )
 	{
@@ -973,18 +970,18 @@ while(self.linkeduser == true)
 	{
 	self jetpack_vertical( "down" );
 	}
-wait 0.01; 
+wait 0.01;
 }
 }
-} 
+}
 
-moveonangle(angle) 
+moveonangle(angle)
 {
-	forward = maps\mp\_utility::vector_scale(anglestoforward(angle), 80 ); 
-	forward2 = maps\mp\_utility::vector_scale(anglestoforward(angle), 105 ); 
-	if( bullettracepassed( self.origin, self.origin + forward2, false, undefined ) ) 
-	{ 
-	self.user moveto( self.user.origin + forward, 0.1 ); 
+	forward = maps\mp\_utility::vector_scale(anglestoforward(angle), 80 );
+	forward2 = maps\mp\_utility::vector_scale(anglestoforward(angle), 105 );
+	if( bullettracepassed( self.origin, self.origin + forward2, false, undefined ) )
+	{
+	self.user moveto( self.user.origin + forward, 0.1 );
 	}
 	else
 	{
@@ -1000,7 +997,7 @@ vertical2 = (0,0,100);
 	if( dir == "up" )
 	{
 	if( bullettracepassed( self.user.origin,  self.user.origin + vertical2, false, undefined ) )
-	{ 
+	{
 	self.user moveto( self.user.origin + vertical, 0.25 );
 	}
 	else
@@ -1012,7 +1009,7 @@ vertical2 = (0,0,100);
 	if( dir == "down" )
 	{
 	if( bullettracepassed( self.user.origin,  self.user.origin - vertical, false, undefined ) )
-	{ 
+	{
 	self.user moveto( self.user.origin - vertical, 0.25 );
 	}
 	else
@@ -1022,11 +1019,11 @@ vertical2 = (0,0,100);
 	}
 }
 
-jetpack_disabled() 
-{  
-self unlink(); 
-self.linkeduser = false; 
-wait 0.01;  
+jetpack_disabled()
+{
+self unlink();
+self.linkeduser = false;
+wait 0.01;
 }
 
 bounce_weap()
@@ -1072,14 +1069,14 @@ while(1)
 	bounce_lock movex(122,0.1);
 	knife_lock movex(122,0.1);
 	old_lock movex(122,0.1);
-	
+
 	player SetOrigin((9910.13, -3217.51, -408));
 	player SetPlayerAngles((0,90,0));
 	door movez(-500 , 5);
 	iPrintlnBold("^4"+player.name+" ^2has entered the ^1OLD ^2way");
 
 	thread old_acti();
-	
+
 	player death();
 	sniper_lock movex(-122,0.3);
 	bounce_lock movex(-122,0.3);
@@ -1135,9 +1132,9 @@ while(1)
 	player GiveMaxAmmo("remington700_mp");
 	wait 0.01;
 	player SwitchToWeapon("remington700_mp");
-	
+
 	thread sniper_acti();
-	
+
 	player death();
 	sniper_lock movex(-122,0.3);
 	bounce_lock movex(-122,0.3);
@@ -1189,7 +1186,7 @@ bounce_room()
 while(1)
 {
 	self waittill("trigger", player);
-	
+
 	sniper_lock movex(122,0.1);
 	bounce_lock movex(122,0.1);
 	knife_lock movex(122,0.1);

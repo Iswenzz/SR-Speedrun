@@ -91,7 +91,7 @@ speed()
 	trigg_speed delete();
 	star_speed delete();
 
-	user SetMoveSpeedScale( 2 );
+	user sr\api\_player::setPlayerSpeedScale( 2 );
 	user iprintlnbold("^3You have a double speed in the next 60 seconds!");
 
 	wait 0.5;
@@ -103,14 +103,14 @@ speed()
 //	user StopLoopSound();
 
 
-	user SetMoveSpeedScale( 1 );
+	user sr\api\_player::setPlayerSpeedScale( 1 );
 	user iprintlnbold("^3Your speed is now normal!");
 
 }
 
 
 
-life1() 
+life1()
 
 {
 
@@ -152,7 +152,7 @@ life1()
 
 }
 
-life2() 
+life2()
 
 {
 
@@ -210,7 +210,7 @@ mario_skok()
 
 
 	wait 0.2;
-	
+
 	mario delete();
 	oklop_m delete();
 	blok_m delete();
@@ -316,11 +316,11 @@ ljestve_2k()
 	fx_2k = getent ( "fx_2k" ,"targetname" ); //origin
 
 	wait 0.2;
-	
+
 	ljestve_2k movez( -264, 0.5 );
-	
+
 	// trigg_2k waittill("trigger", player);
-	
+
 	oklop_2k PlaySound("smb_stomp");
 
 	trigg_2k delete();
@@ -333,7 +333,7 @@ ljestve_2k()
 
 	ljestve_2k movez( 264, 1.5 );
 	oklop_2k delete();
-	
+
 }
 
 
@@ -372,9 +372,9 @@ burst()
 	fx5 = getent ( "fx_b5" ,"targetname" );
 	fx6 = getent ( "fx_b6" ,"targetname" );
 	fx7 = getent ( "fx_b7" ,"targetname" );
-	fx8 = getent ( "fx_b8" ,"targetname" ); 
+	fx8 = getent ( "fx_b8" ,"targetname" );
 	fx9 = getent ( "fx_b9" ,"targetname" );
-	fx10 = getent ( "fx_b10" ,"targetname" ); 
+	fx10 = getent ( "fx_b10" ,"targetname" );
 
 	fx11 = getent ( "fx_f1" ,"targetname" );
 	fx12 = getent ( "fx_f2" ,"targetname" );
@@ -383,7 +383,7 @@ burst()
 	fx15 = getent ( "fx_f5" ,"targetname" );
 	fx16 = getent ( "fx_f6" ,"targetname" );
 	fx17 = getent ( "fx_f7" ,"targetname" );
-	fx18 = getent ( "fx_f8" ,"targetname" ); 
+	fx18 = getent ( "fx_f8" ,"targetname" );
 	fx19 = getent ( "fx_f9" ,"targetname" );
 	fx20 = getent ( "fx_f10" ,"targetname" );
 

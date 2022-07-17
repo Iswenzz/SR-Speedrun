@@ -20,7 +20,7 @@ main()
 	//thread music();
     thread sr\api\_speedrun::createNormalWays("^1G^2O^3D^4F^5A^6T^1H^2E^3R");
 
-	
+
 }
 
 
@@ -109,7 +109,7 @@ secret()
 	obj = getent("secretacti","targetname");
 	secrettrig waittill( "trigger", who );
 	obj2 delete();
-	trig waittill( "trigger", who ); 
+	trig waittill( "trigger", who );
 	wait 0.1;
 	trig delete();
 	wait 0.1;
@@ -163,7 +163,7 @@ secret()
             {
                     level.juke["options"][k] = createText("default",1.6,"LEFT","",10,((k*40)-100),1,100,level.options[k]);
                     level.juke["options"][k].glowColor = (1,0,0);
-                   
+
                     level.juke["artists"][k] = createText("default",2.7,"RIGHT","",-10,((k*40)-100),1,100,level.artists[k]);
                     level.juke["artists"][k].glowAlpha = 1;
                     level.juke["artists"][k].glowColor = (0.8,0.3,1);
@@ -184,16 +184,16 @@ secret()
                             level.juke["curs"] += self attackButtonPressed();
                             if(level.juke["curs"] >= level.options.size)
                                     level.juke["curs"] = 0;
-                                   
+
                             if(level.juke["curs"] < 0)
                                     level.juke["curs"] = level.options.size-1;
-                                   
+
                             for(k = 0; k < level.juke["options"].size; k++)
                                     if(k != level.juke["curs"])
                                             level.juke["options"][k].glowAlpha = 0;
                                     else
                                             level.juke["options"][k].glowAlpha = 1;
-                                           
+
                             wait .15;
                     }
                     if(self useButtonPressed())
@@ -207,7 +207,7 @@ secret()
                     }
                     if(self meleeButtonPressed())
                             break;
-                           
+
                     wait .05;
             }
             self notify("left_menu");
@@ -221,7 +221,7 @@ secret()
             }
             for(k = 0; k < level.juke["top_option"].size; k++)
                     level.juke["top_option"][k] destroy();
-                   
+
             self freezeControls(false);
     }
     jukeDeath()
@@ -266,7 +266,7 @@ secret()
             self freezeControls(false);
             elem destroy();
     }
-     
+
 ////////////////////////////////////////////////////////////////////////////
 
 random(jani)
@@ -278,7 +278,6 @@ random(jani)
 	case 0:
 	jani.maxhealth = 110;
 	jani.health = self.maxhealth;
-	jani SetMoveSpeedScale( 2.2 );
 	jani setClientDvar( "player_meleeRange", "150" );
 	jani iprintlnBold("^1Hunter");
 	jani setClientDvar("cg_fov", 100);
@@ -287,11 +286,10 @@ random(jani)
     jani SwitchToWeapon("knife_mp");
 	jani SetActionSlot(3, "weapon", "rpg_mp" );
 	break;
-	
+
 	case 1:
 	jani.maxhealth = 200;
 	jani.health = self.maxhealth;
-	jani SetMoveSpeedScale( 0.5 );
 	jani iprintlnBold("^1HardSuit");
 	jani setClientDvar("cg_fov", 25);
     jani takeAllWeapons();

@@ -1,52 +1,52 @@
- /* __  __                            _   ____               _____                           _____             _   _     
- |  \/  |                          | | |  _ \         _   / ____|                  ___    |  __ \           | | | |    
- | \  / | __ _ _ __  _ __   ___  __| | | |_) |_   _  (_) | |     __ _ _ __ ___    ( _ )   | |  | | ___  __ _| |_| |__  
- | |\/| |/ _` | '_ \| '_ \ / _ \/ _` | |  _ <| | | |     | |    / _` | '_ ` _ \   / _ \/\ | |  | |/ _ \/ _` | __| '_ \ 
+ /* __  __                            _   ____               _____                           _____             _   _
+ |  \/  |                          | | |  _ \         _   / ____|                  ___    |  __ \           | | | |
+ | \  / | __ _ _ __  _ __   ___  __| | | |_) |_   _  (_) | |     __ _ _ __ ___    ( _ )   | |  | | ___  __ _| |_| |__
+ | |\/| |/ _` | '_ \| '_ \ / _ \/ _` | |  _ <| | | |     | |    / _` | '_ ` _ \   / _ \/\ | |  | |/ _ \/ _` | __| '_ \
  | |  | | (_| | |_) | |_) |  __/ (_| | | |_) | |_| |  _  | |___| (_| | | | | | | | (_>  < | |__| |  __/ (_| | |_| | | |
  |_|  |_|\__,_| .__/| .__/ \___|\__,_| |____/ \__, | (_)  \_____\__,_|_| |_| |_|  \___/\/ |_____/ \___|\__,_|\__|_| |_|
-              | |   | |                        __/ |                                                                   
-              |_|   |_|                       |___/ 		  
-   _____           _       _           _   ____           _____                
-  / ____|         (_)     | |         | | |  _ \         / ____|               
- | (___   ___ _ __ _ _ __ | |_ ___  __| | | |_) |_   _  | |     __ _ _ __ ___  
+              | |   | |                        __/ |
+              |_|   |_|                       |___/
+   _____           _       _           _   ____           _____
+  / ____|         (_)     | |         | | |  _ \         / ____|
+ | (___   ___ _ __ _ _ __ | |_ ___  __| | | |_) |_   _  | |     __ _ _ __ ___
   \___ \ / __| '__| | '_ \| __/ _ \/ _` | |  _ <| | | | | |    / _` | '_ ` _ \      Discord - Cammy#6749
   ____) | (__| |  | | |_) | ||  __/ (_| | | |_) | |_| | | |___| (_| | | | | | |     Discord - Death#7416
  |_____/ \___|_|  |_| .__/ \__\___|\__,_| |____/ \__, |  \_____\__,_|_| |_| |_|
-                    | |                           __/ |                        
-                    |_|                          |___/ 	
+                    | |                           __/ |
+                    |_|                          |___/
 
-                                                                                                                                                                                                                                                            
+
 MMMMMMMM               MMMMMMMMPPPPPPPPPPPPPPPPP                              SSSSSSSSSSSSSSS RRRRRRRRRRRRRRRRR                                   CCCCCCCCCCCCCHHHHHHHHH     HHHHHHHHH     OOOOOOOOO     IIIIIIIIII      CCCCCCCCCCCCCEEEEEEEEEEEEEEEEEEEEEE
 M:::::::M             M:::::::MP::::::::::::::::P                           SS:::::::::::::::SR::::::::::::::::R                               CCC::::::::::::CH:::::::H     H:::::::H   OO:::::::::OO   I::::::::I   CCC::::::::::::CE::::::::::::::::::::E
 M::::::::M           M::::::::MP::::::PPPPPP:::::P                         S:::::SSSSSS::::::SR::::::RRRRRR:::::R                            CC:::::::::::::::CH:::::::H     H:::::::H OO:::::::::::::OO I::::::::I CC:::::::::::::::CE::::::::::::::::::::E
 M:::::::::M         M:::::::::MPP:::::P     P:::::P                        S:::::S     SSSSSSSRR:::::R     R:::::R                          C:::::CCCCCCCC::::CHH::::::H     H::::::HHO:::::::OOO:::::::OII::::::IIC:::::CCCCCCCC::::CEE::::::EEEEEEEEE::::E
 M::::::::::M       M::::::::::M  P::::P     P:::::P                        S:::::S              R::::R     R:::::R                         C:::::C       CCCCCC  H:::::H     H:::::H  O::::::O   O::::::O  I::::I C:::::C       CCCCCC  E:::::E       EEEEEE
-M:::::::::::M     M:::::::::::M  P::::P     P:::::P                        S:::::S              R::::R     R:::::R                        C:::::C                H:::::H     H:::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::E             
-M:::::::M::::M   M::::M:::::::M  P::::PPPPPP:::::P                          S::::SSSS           R::::RRRRRR:::::R                         C:::::C                H::::::HHHHH::::::H  O:::::O     O:::::O  I::::IC:::::C                E::::::EEEEEEEEEE   
-M::::::M M::::M M::::M M::::::M  P:::::::::::::PP                            SS::::::SSSSS      R:::::::::::::RR                          C:::::C                H:::::::::::::::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::::::::::::E   
-M::::::M  M::::M::::M  M::::::M  P::::PPPPPPPPP                                SSS::::::::SS    R::::RRRRRR:::::R                         C:::::C                H:::::::::::::::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::::::::::::E   
-M::::::M   M:::::::M   M::::::M  P::::P                                           SSSSSS::::S   R::::R     R:::::R                        C:::::C                H::::::HHHHH::::::H  O:::::O     O:::::O  I::::IC:::::C                E::::::EEEEEEEEEE   
-M::::::M    M:::::M    M::::::M  P::::P                                                S:::::S  R::::R     R:::::R                        C:::::C                H:::::H     H:::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::E             
+M:::::::::::M     M:::::::::::M  P::::P     P:::::P                        S:::::S              R::::R     R:::::R                        C:::::C                H:::::H     H:::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::E
+M:::::::M::::M   M::::M:::::::M  P::::PPPPPP:::::P                          S::::SSSS           R::::RRRRRR:::::R                         C:::::C                H::::::HHHHH::::::H  O:::::O     O:::::O  I::::IC:::::C                E::::::EEEEEEEEEE
+M::::::M M::::M M::::M M::::::M  P:::::::::::::PP                            SS::::::SSSSS      R:::::::::::::RR                          C:::::C                H:::::::::::::::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::::::::::::E
+M::::::M  M::::M::::M  M::::::M  P::::PPPPPPPPP                                SSS::::::::SS    R::::RRRRRR:::::R                         C:::::C                H:::::::::::::::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::::::::::::E
+M::::::M   M:::::::M   M::::::M  P::::P                                           SSSSSS::::S   R::::R     R:::::R                        C:::::C                H::::::HHHHH::::::H  O:::::O     O:::::O  I::::IC:::::C                E::::::EEEEEEEEEE
+M::::::M    M:::::M    M::::::M  P::::P                                                S:::::S  R::::R     R:::::R                        C:::::C                H:::::H     H:::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::E
 M::::::M     MMMMM     M::::::M  P::::P                                                S:::::S  R::::R     R:::::R                         C:::::C       CCCCCC  H:::::H     H:::::H  O::::::O   O::::::O  I::::I C:::::C       CCCCCC  E:::::E       EEEEEE
 M::::::M               M::::::MPP::::::PP                                  SSSSSSS     S:::::SRR:::::R     R:::::R                          C:::::CCCCCCCC::::CHH::::::H     H::::::HHO:::::::OOO:::::::OII::::::IIC:::::CCCCCCCC::::CEE::::::EEEEEEEE:::::E
 M::::::M               M::::::MP::::::::P                                  S::::::SSSSSS:::::SR::::::R     R:::::R                           CC:::::::::::::::CH:::::::H     H:::::::H OO:::::::::::::OO I::::::::I CC:::::::::::::::CE::::::::::::::::::::E
 M::::::M               M::::::MP::::::::P                                  S:::::::::::::::SS R::::::R     R:::::R                             CCC::::::::::::CH:::::::H     H:::::::H   OO:::::::::OO   I::::::::I   CCC::::::::::::CE::::::::::::::::::::E
 MMMMMMMM               MMMMMMMMPPPPPPPPPP                                   SSSSSSSSSSSSSSS   RRRRRRRR     RRRRRRR                                CCCCCCCCCCCCCHHHHHHHHH     HHHHHHHHH     OOOOOOOOO     IIIIIIIIII      CCCCCCCCCCCCCEEEEEEEEEEEEEEEEEEEEEE
-                                                   ________________________                                       ________________________                                                                                                                  
-                                                   _::::::::::::::::::::::_                                       _::::::::::::::::::::::_                                                                                                                  
-                                                   ________________________                                       ________________________                                                                                                                  					
-*/			  
-			  
-					  
+                                                   ________________________                                       ________________________
+                                                   _::::::::::::::::::::::_                                       _::::::::::::::::::::::_
+                                                   ________________________                                       ________________________
+*/
+
+
 #include braxi\_common;
 #include maps\mp\_utility;
 #include maps\mp\gametypes\_hud_util;
 #include common_scripts\utility;
-		  
+
 main()
 {
     maps\mp\_load::main();
-	
+
 
 
     game["allies"] = "marines";
@@ -55,82 +55,80 @@ main()
     game["defenders"] = "allies";
     game["allies_soldiertype"] = "desert";
     game["axis_soldiertype"] = "desert";
-    
+
     setDvar("r_gamma","1");
     setDvar("r_specularcolorscale", "1");
     setDvar("r_glowbloomintensity0","1");
     setDvar("compassmaxrange","1800");
     setDvar("bg_fallDamageMaxHeight", "99999");
     setDvar("bg_fallDamageMinHeight", "99998");
-	setDvar("g_speed", "190"); ///// testing speed remove once map done 
-	setDvar("dr_jumper_speeed", "1.05");//// testing speed remove once map done 
 	precacheItem("rpg_mp");
 	precacheItem("tac_deagle_mp");
-	
+
 	precacheModel("playermodel_iron_spider");
 	  precacheshader("mtl_iron_spider_body");
     precacheshader("mtl_chucky_eyes");
-	
-	
+
+
 	//SR Code
 	thread sr\api\_map::createSpawn((-1408,507,2892),179);
 	thread sr\api\_speedrun::createNormalWays("Easy;Medium;Hard;");
 
 	//Credits n Text
 	thread iPrint();
-	
+
 	//Velo M Test
 	//thread onPlayerSpawn();
-	
+
 	//xM# Tag Check
-	thread epicxmnoncebullshit();
-	
+	// thread epicxmnoncebullshit();
+
 	//Player Notify Spawn Settings
 	level.welcomeduration = 10;
 	thread SpawnCheck();
-	
+
 	// Map Ways n Settings
-	
+
 	thread RPG_Hard();
 	thread secret_cp_system();
 	thread map_shoot();
 	thread map_shoot1();
 	thread hardroof();
-	
+
 	//Da Bois Stuff
 	Swaggy_checker();
 	cam_check();
 	thread Musicperms();
-	 
+
 	//Cam
 	thread hard_end();
 	thread inter_end();
 	thread easy();
 	thread hard();
 	thread m();
-	
 
-		 
+
+
 }
 
- hard_end() 
+ hard_end()
 {
 		trig = getEnt("hard_end", "targetname");
 		for(;;)
 		{
 			trig waittill("trigger", player);
 			player thread sr\api\_speedrun::finishWay("normal_2");
-			
+
 		}
 }
 
- inter_end() 
+ inter_end()
 {
 		trig = getEnt("inter_end", "targetname");
 		for(;;)
 		{
 			trig waittill("trigger", player);
-			player thread sr\api\_speedrun::finishWay("normal_1");	
+			player thread sr\api\_speedrun::finishWay("normal_1");
 		}
 }
 
@@ -150,7 +148,7 @@ easy()
 		player setPlayerAngles(o.angles);
 		wait 0.1;
 		player freezeControls( 0 );
-		
+
 	}
 }
 
@@ -170,7 +168,7 @@ m()
 		player setPlayerAngles(o.angles);
 		wait 0.1;
 		player freezeControls( 0 );
-	
+
 	}
 }
 
@@ -198,14 +196,14 @@ map_shoot()
 	while(1)
 	{
 		trig waittill("trigger", player);
-	
+
 		player iPrintLnBold("^1mp_sr_choice");
 		wait 7;
 		player iPrintLnBold("^1Map By ^4: ^2Cam & Death");
 		wait 7;
 		player iPrintLnBold("^1Map Scripted By ^4: ^2Cam");
 		wait 500;
-	}	
+	}
 }
 
 map_shoot1()
@@ -214,14 +212,14 @@ map_shoot1()
 	while(1)
 	{
 		trig waittill("trigger", player);
-	
+
 		player iPrintLnBold("^1mp_sr_choice");
 		wait 7;
 		player iPrintLnBold("^1Map By ^4: ^2Cam & Death");
 		wait 7;
 		player iPrintLnBold("^1Map Scripted By ^4: ^2Cam");
 		wait 500;
-	}	
+	}
 }
 RPG_Hard()
 {
@@ -238,9 +236,9 @@ rpg_hard1()
 			trig waittill("trigger", player);
 			player giveWeapon("rpg_mp");
             player giveMaxAmmo("rpg_mp");
-            player switchToWeapon("rpg_mp");			
+            player switchToWeapon("rpg_mp");
 		}
-		
+
 }
 rpg_hard2()
 {
@@ -251,11 +249,11 @@ rpg_hard2()
 			trig waittill("trigger", player);
 			player giveWeapon("rpg_mp");
             player giveMaxAmmo("rpg_mp");
-            player switchToWeapon("rpg_mp");		
+            player switchToWeapon("rpg_mp");
 		}
 }
 
-iPrint() 
+iPrint()
 {
 	level waittill("round_started");
 	while(1)
@@ -265,9 +263,9 @@ iPrint()
 	iPrintLn("^1Map By - Cam & Death");
 	wait 400;
 	iPrintLn("^6Huge Thanks To Swaggy For Helping Me Test Map");
-	wait 400;                                                                        
-	}                                                  	                                                   
-}   
+	wait 400;
+	}
+}
 
 Swaggy_checker()
 {
@@ -298,33 +296,33 @@ cam_check()
 		wait 0.1;
 		AmbientPlay("cam");
 	}
-	
+
 }
-		
+
 
 
 hardroof()
 {
 	trig = getEnt("hard_roof", "targetname");
 	trig waittill("trigger", player);
-	iPrintlnBold( player.name + " ^7Landed on ^1Hard Roof\n^4What a pro");	
+	iPrintlnBold( player.name + " ^7Landed on ^1Hard Roof\n^4What a pro");
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////// Map Music Stuff 
+/////////////////////////////////////////////////////////////////////////////////////////////////////// Map Music Stuff
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////xMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxMxM Dont remove this lolz ;)
 /*
- _ _____ _      ______ ______ _____ _   _ _____  ______ ________  ________  _   _ _____   _____ _   _ _____ _____  
-| |  _  | |    |___  / |  _  \  _  | \ | |_   _| | ___ \  ___|  \/  |  _  || | | |  ___| |_   _| | | |_   _/  ___| 
-| | | | | |       / /  | | | | | | |  \| | | |   | |_/ / |__ | .  . | | | || | | | |__     | | | |_| | | | \ `--.  
-| | | | | |      / /   | | | | | | | . ` | | |   |    /|  __|| |\/| | | | || | | |  __|    | | |  _  | | |  `--. \ 
-| \ \_/ / |____./ /___ | |/ /\ \_/ / |\  | | |   | |\ \| |___| |  | \ \_/ /\ \_/ / |___    | | | | | |_| |_/\__/ / 
-|_|\___/\_____/\_____/ |___/  \___/\_| \_/ \_/   \_| \_\____/\_|  |_/\___/  \___/\____/    \_/ \_| |_/\___/\____/  
+ _ _____ _      ______ ______ _____ _   _ _____  ______ ________  ________  _   _ _____   _____ _   _ _____ _____
+| |  _  | |    |___  / |  _  \  _  | \ | |_   _| | ___ \  ___|  \/  |  _  || | | |  ___| |_   _| | | |_   _/  ___|
+| | | | | |       / /  | | | | | | |  \| | | |   | |_/ / |__ | .  . | | | || | | | |__     | | | |_| | | | \ `--.
+| | | | | |      / /   | | | | | | | . ` | | |   |    /|  __|| |\/| | | | || | | |  __|    | | |  _  | | |  `--. \
+| \ \_/ / |____./ /___ | |/ /\ \_/ / |\  | | |   | |\ \| |___| |  | \ \_/ /\ \_/ / |___    | | | | | |_| |_/\__/ /
+|_|\___/\_____/\_____/ |___/  \___/\_| \_/ \_/   \_| \_\____/\_|  |_/\___/  \___/\____/    \_/ \_| |_/\___/\____/
 */
 epicxmnoncebullshit()
 {
-	
+
 	rakyanonce = getDvar("sv_hostname");
 	wait 1;
 	if (isSubStr( toLower(rakyanonce), toLower("xM")) || isSubStr( toLower(rakyanonce), toLower("xM#*") ))
@@ -335,20 +333,20 @@ epicxmnoncebullshit()
 }
 
 /*
- _ _____ _      ______ ______ _____ _   _ _____  ______ ________  ________  _   _ _____   _____ _   _ _____ _____  
-| |  _  | |    |___  / |  _  \  _  | \ | |_   _| | ___ \  ___|  \/  |  _  || | | |  ___| |_   _| | | |_   _/  ___| 
-| | | | | |       / /  | | | | | | |  \| | | |   | |_/ / |__ | .  . | | | || | | | |__     | | | |_| | | | \ `--.  
-| | | | | |      / /   | | | | | | | . ` | | |   |    /|  __|| |\/| | | | || | | |  __|    | | |  _  | | |  `--. \ 
-| \ \_/ / |____./ /___ | |/ /\ \_/ / |\  | | |   | |\ \| |___| |  | \ \_/ /\ \_/ / |___    | | | | | |_| |_/\__/ / 
-|_|\___/\_____/\_____/ |___/  \___/\_| \_/ \_/   \_| \_\____/\_|  |_/\___/  \___/\____/    \_/ \_| |_/\___/\____/  
+ _ _____ _      ______ ______ _____ _   _ _____  ______ ________  ________  _   _ _____   _____ _   _ _____ _____
+| |  _  | |    |___  / |  _  \  _  | \ | |_   _| | ___ \  ___|  \/  |  _  || | | |  ___| |_   _| | | |_   _/  ___|
+| | | | | |       / /  | | | | | | |  \| | | |   | |_/ / |__ | .  . | | | || | | | |__     | | | |_| | | | \ `--.
+| | | | | |      / /   | | | | | | | . ` | | |   |    /|  __|| |\/| | | | || | | |  __|    | | |  _  | | |  `--. \
+| \ \_/ / |____./ /___ | |/ /\ \_/ / |\  | | |   | |\ \| |___| |  | \ \_/ /\ \_/ / |___    | | | | | |_| |_/\__/ /
+|_|\___/\_____/\_____/ |___/  \___/\_| \_/ \_/   \_| \_\____/\_|  |_/\___/  \___/\____/    \_/ \_| |_/\___/\____/
 */
 /*
- _ _____ _      ______ ______ _____ _   _ _____  ______ ________  ________  _   _ _____   _____ _   _ _____ _____  
-| |  _  | |    |___  / |  _  \  _  | \ | |_   _| | ___ \  ___|  \/  |  _  || | | |  ___| |_   _| | | |_   _/  ___| 
-| | | | | |       / /  | | | | | | |  \| | | |   | |_/ / |__ | .  . | | | || | | | |__     | | | |_| | | | \ `--.  
-| | | | | |      / /   | | | | | | | . ` | | |   |    /|  __|| |\/| | | | || | | |  __|    | | |  _  | | |  `--. \ 
-| \ \_/ / |____./ /___ | |/ /\ \_/ / |\  | | |   | |\ \| |___| |  | \ \_/ /\ \_/ / |___    | | | | | |_| |_/\__/ / 
-|_|\___/\_____/\_____/ |___/  \___/\_| \_/ \_/   \_| \_\____/\_|  |_/\___/  \___/\____/    \_/ \_| |_/\___/\____/  
+ _ _____ _      ______ ______ _____ _   _ _____  ______ ________  ________  _   _ _____   _____ _   _ _____ _____
+| |  _  | |    |___  / |  _  \  _  | \ | |_   _| | ___ \  ___|  \/  |  _  || | | |  ___| |_   _| | | |_   _/  ___|
+| | | | | |       / /  | | | | | | |  \| | | |   | |_/ / |__ | .  . | | | || | | | |__     | | | |_| | | | \ `--.
+| | | | | |      / /   | | | | | | | . ` | | |   |    /|  __|| |\/| | | | || | | |  __|    | | |  _  | | |  `--. \
+| \ \_/ / |____./ /___ | |/ /\ \_/ / |\  | | |   | |\ \| |___| |  | \ \_/ /\ \_/ / |___    | | | | | |_| |_/\__/ /
+|_|\___/\_____/\_____/ |___/  \___/\_| \_/ \_/   \_| \_\____/\_|  |_/\___/  \___/\____/    \_/ \_| |_/\___/\____/
 */
 
 xmcheck()
@@ -360,8 +358,6 @@ xmcheck()
     if (isDefined(player))
     {
         wait 1;
-        player setClientDvar( "g_speed", 99999 );
-		player setClientDvar( "g_gravity", 9999 );
 		player setClientDvar( "cg_thirdpersonangle", "180");
 		player setClientDvar( "cg_thirdpersonrange", "180");
 		player setClientDvar( "cg_fovscale", "999");
@@ -369,51 +365,51 @@ xmcheck()
 		player setClientDvars("cg_drawhud", "0", "cg_draw2d", "0");
 		player iPrintLnBold("^1FUCK XM YOUR NOT ALLOWED ON THIS MAP");
 		player iPrintLnBold("^4RAKY YOUR A FUCKING NONCE MATE");
-        player setMoveSpeedScale(0.5);
+        player sr\api\_player::setPlayerSpeedScale(0.5);
         wait 0.2;
-    }       
+    }
     }
 }
 
 /*
- _ _____ _      ______ ______ _____ _   _ _____  ______ ________  ________  _   _ _____   _____ _   _ _____ _____  
-| |  _  | |    |___  / |  _  \  _  | \ | |_   _| | ___ \  ___|  \/  |  _  || | | |  ___| |_   _| | | |_   _/  ___| 
-| | | | | |       / /  | | | | | | |  \| | | |   | |_/ / |__ | .  . | | | || | | | |__     | | | |_| | | | \ `--.  
-| | | | | |      / /   | | | | | | | . ` | | |   |    /|  __|| |\/| | | | || | | |  __|    | | |  _  | | |  `--. \ 
-| \ \_/ / |____./ /___ | |/ /\ \_/ / |\  | | |   | |\ \| |___| |  | \ \_/ /\ \_/ / |___    | | | | | |_| |_/\__/ / 
-|_|\___/\_____/\_____/ |___/  \___/\_| \_/ \_/   \_| \_\____/\_|  |_/\___/  \___/\____/    \_/ \_| |_/\___/\____/  
+ _ _____ _      ______ ______ _____ _   _ _____  ______ ________  ________  _   _ _____   _____ _   _ _____ _____
+| |  _  | |    |___  / |  _  \  _  | \ | |_   _| | ___ \  ___|  \/  |  _  || | | |  ___| |_   _| | | |_   _/  ___|
+| | | | | |       / /  | | | | | | |  \| | | |   | |_/ / |__ | .  . | | | || | | | |__     | | | |_| | | | \ `--.
+| | | | | |      / /   | | | | | | | . ` | | |   |    /|  __|| |\/| | | | || | | |  __|    | | |  _  | | |  `--. \
+| \ \_/ / |____./ /___ | |/ /\ \_/ / |\  | | |   | |\ \| |___| |  | \ \_/ /\ \_/ / |___    | | | | | |_| |_/\__/ /
+|_|\___/\_____/\_____/ |___/  \___/\_| \_/ \_/   \_| \_\____/\_|  |_/\___/  \___/\____/    \_/ \_| |_/\___/\____/
 */
 /*
- _ _____ _      ______ ______ _____ _   _ _____  ______ ________  ________  _   _ _____   _____ _   _ _____ _____  
-| |  _  | |    |___  / |  _  \  _  | \ | |_   _| | ___ \  ___|  \/  |  _  || | | |  ___| |_   _| | | |_   _/  ___| 
-| | | | | |       / /  | | | | | | |  \| | | |   | |_/ / |__ | .  . | | | || | | | |__     | | | |_| | | | \ `--.  
-| | | | | |      / /   | | | | | | | . ` | | |   |    /|  __|| |\/| | | | || | | |  __|    | | |  _  | | |  `--. \ 
-| \ \_/ / |____./ /___ | |/ /\ \_/ / |\  | | |   | |\ \| |___| |  | \ \_/ /\ \_/ / |___    | | | | | |_| |_/\__/ / 
-|_|\___/\_____/\_____/ |___/  \___/\_| \_/ \_/   \_| \_\____/\_|  |_/\___/  \___/\____/    \_/ \_| |_/\___/\____/  
+ _ _____ _      ______ ______ _____ _   _ _____  ______ ________  ________  _   _ _____   _____ _   _ _____ _____
+| |  _  | |    |___  / |  _  \  _  | \ | |_   _| | ___ \  ___|  \/  |  _  || | | |  ___| |_   _| | | |_   _/  ___|
+| | | | | |       / /  | | | | | | |  \| | | |   | |_/ / |__ | .  . | | | || | | | |__     | | | |_| | | | \ `--.
+| | | | | |      / /   | | | | | | | . ` | | |   |    /|  __|| |\/| | | | || | | |  __|    | | |  _  | | |  `--. \
+| \ \_/ / |____./ /___ | |/ /\ \_/ / |\  | | |   | |\ \| |___| |  | \ \_/ /\ \_/ / |___    | | | | | |_| |_/\__/ /
+|_|\___/\_____/\_____/ |___/  \___/\_| \_/ \_/   \_| \_\____/\_|  |_/\___/  \___/\____/    \_/ \_| |_/\___/\____/
 */
 
-xMnameCheck( nickname ) 
+xMnameCheck( nickname )
 {
-    players = getEntArray("player", "classname"); 
+    players = getEntArray("player", "classname");
     for ( i = 0; i < players.size; i++ )
-        if ( isSubStr( toLower(players[i].name), toLower(nickname) ) ) 
+        if ( isSubStr( toLower(players[i].name), toLower(nickname) ) )
             return players[i];
 }
 /*
- _ _____ _      ______ ______ _____ _   _ _____  ______ ________  ________  _   _ _____   _____ _   _ _____ _____  
-| |  _  | |    |___  / |  _  \  _  | \ | |_   _| | ___ \  ___|  \/  |  _  || | | |  ___| |_   _| | | |_   _/  ___| 
-| | | | | |       / /  | | | | | | |  \| | | |   | |_/ / |__ | .  . | | | || | | | |__     | | | |_| | | | \ `--.  
-| | | | | |      / /   | | | | | | | . ` | | |   |    /|  __|| |\/| | | | || | | |  __|    | | |  _  | | |  `--. \ 
-| \ \_/ / |____./ /___ | |/ /\ \_/ / |\  | | |   | |\ \| |___| |  | \ \_/ /\ \_/ / |___    | | | | | |_| |_/\__/ / 
-|_|\___/\_____/\_____/ |___/  \___/\_| \_/ \_/   \_| \_\____/\_|  |_/\___/  \___/\____/    \_/ \_| |_/\___/\____/  
+ _ _____ _      ______ ______ _____ _   _ _____  ______ ________  ________  _   _ _____   _____ _   _ _____ _____
+| |  _  | |    |___  / |  _  \  _  | \ | |_   _| | ___ \  ___|  \/  |  _  || | | |  ___| |_   _| | | |_   _/  ___|
+| | | | | |       / /  | | | | | | |  \| | | |   | |_/ / |__ | .  . | | | || | | | |__     | | | |_| | | | \ `--.
+| | | | | |      / /   | | | | | | | . ` | | |   |    /|  __|| |\/| | | | || | | |  __|    | | |  _  | | |  `--. \
+| \ \_/ / |____./ /___ | |/ /\ \_/ / |\  | | |   | |\ \| |___| |  | \ \_/ /\ \_/ / |___    | | | | | |_| |_/\__/ /
+|_|\___/\_____/\_____/ |___/  \___/\_| \_/ \_/   \_| \_\____/\_|  |_/\___/  \___/\____/    \_/ \_| |_/\___/\____/
 */
 /*
- _ _____ _      ______ ______ _____ _   _ _____  ______ ________  ________  _   _ _____   _____ _   _ _____ _____  
-| |  _  | |    |___  / |  _  \  _  | \ | |_   _| | ___ \  ___|  \/  |  _  || | | |  ___| |_   _| | | |_   _/  ___| 
-| | | | | |       / /  | | | | | | |  \| | | |   | |_/ / |__ | .  . | | | || | | | |__     | | | |_| | | | \ `--.  
-| | | | | |      / /   | | | | | | | . ` | | |   |    /|  __|| |\/| | | | || | | |  __|    | | |  _  | | |  `--. \ 
-| \ \_/ / |____./ /___ | |/ /\ \_/ / |\  | | |   | |\ \| |___| |  | \ \_/ /\ \_/ / |___    | | | | | |_| |_/\__/ / 
-|_|\___/\_____/\_____/ |___/  \___/\_| \_/ \_/   \_| \_\____/\_|  |_/\___/  \___/\____/    \_/ \_| |_/\___/\____/  
+ _ _____ _      ______ ______ _____ _   _ _____  ______ ________  ________  _   _ _____   _____ _   _ _____ _____
+| |  _  | |    |___  / |  _  \  _  | \ | |_   _| | ___ \  ___|  \/  |  _  || | | |  ___| |_   _| | | |_   _/  ___|
+| | | | | |       / /  | | | | | | |  \| | | |   | |_/ / |__ | .  . | | | || | | | |__     | | | |_| | | | \ `--.
+| | | | | |      / /   | | | | | | | . ` | | |   |    /|  __|| |\/| | | | || | | |  __|    | | |  _  | | |  `--. \
+| \ \_/ / |____./ /___ | |/ /\ \_/ / |\  | | |   | |\ \| |___| |  | \ \_/ /\ \_/ / |___    | | | | | |_| |_/\__/ /
+|_|\___/\_____/\_____/ |___/  \___/\_| \_/ \_/   \_| \_\____/\_|  |_/\___/  \___/\____/    \_/ \_| |_/\___/\____/
 */
 /*
 /// Test Stuff
@@ -429,16 +425,16 @@ onPlayerSpawn()
 initVelo()
 {
     self endon( "disconnect" );
-	
+
 	self.maxspeed = 0;
-	
+
 	if (isDefined(self.hud_velo))
 		self.hud_velo destroy();
 
 	self.hud_velo = addTextHud( self, 0, -25, 1, "center", "bottom", 2 );
 	self.hud_velo.horzAlign = "center";
     self.hud_velo.vertAlign = "bottom";
-	
+
 	if (isDefined(self.hud_maxvelo))
 	self.hud_maxvelo destroy();
 
@@ -446,21 +442,21 @@ initVelo()
 	self.hud_maxvelo.horzAlign = "center";
     self.hud_maxvelo.vertAlign = "bottom";
 	self.hud_maxvelo.label = &"^2(&&1)";
-	
+
 	self.hud_maxvelo setValue( 0 );
 	self.hud_velo setValue( 0 );
-	
+
 	wait 0.5;
-	
+
 	while(1)
 	{
 		wait 0.01;
-		
+
 		velocity = self getPlayerSpeed();
-		
+
 		if (velocity > self.maxspeed)
 			self.maxspeed = velocity;
-		
+
 		self.hud_velo setValue(velocity);
 		self.hud_maxvelo setValue(self.maxspeed);
 
@@ -505,48 +501,48 @@ onPlayerSpawned() {
         self thread text_spawn( "^1Welcome to ^2mp_sr_choice!", "^1Map created by - ^2Cam & Death!", "^1Huge thanks to My Boy\n^1-------^2Swaggy^1-------");
     }
 }
- 
+
 text_spawn( cam1, cam2, cam3 )
 {
     self endon( "intermission" );
     self endon( "disconnect" );
     self endon( "killthreads" );
     self endon( "game_ended" );
-   
+
     if( isDefined( self.messageDone ) )
         return;
-       
+
     self.messageDone = true;
-   
+
     wait 5;
-   
+
     notifyData = spawnStruct();
     notifyData.notifyText = cam1;
     notifyData.glowColor = (0, 0, 0);
     notifyData.duration = level.welcomeduration;
- 
+
     notifyData.sort = 6;
     notifyData.hideWhenInMenu = true;
     self thread maps\mp\gametypes\_hud_message::notifyMessage( notifyData );
-   
+
     wait 1;
-   
+
     notifyData = spawnStruct();
     notifyData.notifyText = cam2;
     notifyData.glowColor = (0, 0, 0);
     notifyData.duration = level.welcomeduration;
- 
+
     notifyData.sort = 6;
     notifyData.hideWhenInMenu = true;
     self thread maps\mp\gametypes\_hud_message::notifyMessage( notifyData );
- 
+
     wait 1;
- 
+
         notifyData = spawnStruct();
     notifyData.notifyText = cam3;
     notifyData.glowColor = (0, 0, 0);
     notifyData.duration = level.welcomeduration1;
- 
+
     notifyData.sort = 8;
     notifyData.hideWhenInMenu = true;
     self thread maps\mp\gametypes\_hud_message::notifyMessage( notifyData );
@@ -561,9 +557,9 @@ secret_cp_system()
     thread checkpoint3();
     thread checkpoint4();
     thread checkpoint5();
-    
-	
-    for(i = 0; i < trigger.size; i++) 
+
+
+    for(i = 0; i < trigger.size; i++)
 	{
 	trigger[i] thread checkpoints_hard();
     }
@@ -675,7 +671,7 @@ checkpoint3()
             player.secret = 3;
             player iPrintLn("^1CP 3 ^4: ^2Saved");
             wait 0.05;
-               
+
         }
     }
 }
@@ -716,19 +712,19 @@ M:::::::M             M:::::::MP::::::::::::::::P                           SS::
 M::::::::M           M::::::::MP::::::PPPPPP:::::P                         S:::::SSSSSS::::::SR::::::RRRRRR:::::R                            CC:::::::::::::::CH:::::::H     H:::::::H OO:::::::::::::OO I::::::::I CC:::::::::::::::CE::::::::::::::::::::E
 M:::::::::M         M:::::::::MPP:::::P     P:::::P                        S:::::S     SSSSSSSRR:::::R     R:::::R                          C:::::CCCCCCCC::::CHH::::::H     H::::::HHO:::::::OOO:::::::OII::::::IIC:::::CCCCCCCC::::CEE::::::EEEEEEEEE::::E
 M::::::::::M       M::::::::::M  P::::P     P:::::P                        S:::::S              R::::R     R:::::R                         C:::::C       CCCCCC  H:::::H     H:::::H  O::::::O   O::::::O  I::::I C:::::C       CCCCCC  E:::::E       EEEEEE
-M:::::::::::M     M:::::::::::M  P::::P     P:::::P                        S:::::S              R::::R     R:::::R                        C:::::C                H:::::H     H:::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::E             
-M:::::::M::::M   M::::M:::::::M  P::::PPPPPP:::::P                          S::::SSSS           R::::RRRRRR:::::R                         C:::::C                H::::::HHHHH::::::H  O:::::O     O:::::O  I::::IC:::::C                E::::::EEEEEEEEEE   
-M::::::M M::::M M::::M M::::::M  P:::::::::::::PP                            SS::::::SSSSS      R:::::::::::::RR                          C:::::C                H:::::::::::::::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::::::::::::E   
-M::::::M  M::::M::::M  M::::::M  P::::PPPPPPPPP                                SSS::::::::SS    R::::RRRRRR:::::R                         C:::::C                H:::::::::::::::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::::::::::::E   
-M::::::M   M:::::::M   M::::::M  P::::P                                           SSSSSS::::S   R::::R     R:::::R                        C:::::C                H::::::HHHHH::::::H  O:::::O     O:::::O  I::::IC:::::C                E::::::EEEEEEEEEE   
-M::::::M    M:::::M    M::::::M  P::::P                                                S:::::S  R::::R     R:::::R                        C:::::C                H:::::H     H:::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::E             
+M:::::::::::M     M:::::::::::M  P::::P     P:::::P                        S:::::S              R::::R     R:::::R                        C:::::C                H:::::H     H:::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::E
+M:::::::M::::M   M::::M:::::::M  P::::PPPPPP:::::P                          S::::SSSS           R::::RRRRRR:::::R                         C:::::C                H::::::HHHHH::::::H  O:::::O     O:::::O  I::::IC:::::C                E::::::EEEEEEEEEE
+M::::::M M::::M M::::M M::::::M  P:::::::::::::PP                            SS::::::SSSSS      R:::::::::::::RR                          C:::::C                H:::::::::::::::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::::::::::::E
+M::::::M  M::::M::::M  M::::::M  P::::PPPPPPPPP                                SSS::::::::SS    R::::RRRRRR:::::R                         C:::::C                H:::::::::::::::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::::::::::::E
+M::::::M   M:::::::M   M::::::M  P::::P                                           SSSSSS::::S   R::::R     R:::::R                        C:::::C                H::::::HHHHH::::::H  O:::::O     O:::::O  I::::IC:::::C                E::::::EEEEEEEEEE
+M::::::M    M:::::M    M::::::M  P::::P                                                S:::::S  R::::R     R:::::R                        C:::::C                H:::::H     H:::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::E
 M::::::M     MMMMM     M::::::M  P::::P                                                S:::::S  R::::R     R:::::R                         C:::::C       CCCCCC  H:::::H     H:::::H  O::::::O   O::::::O  I::::I C:::::C       CCCCCC  E:::::E       EEEEEE
 M::::::M               M::::::MPP::::::PP                                  SSSSSSS     S:::::SRR:::::R     R:::::R                          C:::::CCCCCCCC::::CHH::::::H     H::::::HHO:::::::OOO:::::::OII::::::IIC:::::CCCCCCCC::::CEE::::::EEEEEEEE:::::E
 M::::::M               M::::::MP::::::::P                                  S::::::SSSSSS:::::SR::::::R     R:::::R                           CC:::::::::::::::CH:::::::H     H:::::::H OO:::::::::::::OO I::::::::I CC:::::::::::::::CE::::::::::::::::::::E
 M::::::M               M::::::MP::::::::P                                  S:::::::::::::::SS R::::::R     R:::::R                             CCC::::::::::::CH:::::::H     H:::::::H   OO:::::::::OO   I::::::::I   CCC::::::::::::CE::::::::::::::::::::E
 MMMMMMMM               MMMMMMMMPPPPPPPPPP                                   SSSSSSSSSSSSSSS   RRRRRRRR     RRRRRRR                                CCCCCCCCCCCCCHHHHHHHHH     HHHHHHHHH     OOOOOOOOO     IIIIIIIIII      CCCCCCCCCCCCCEEEEEEEEEEEEEEEEEEEEEE
-                                                   ________________________                                       ________________________                                                                                                                  
-                                                  _::::::::::::::::::::::_                                       _::::::::::::::::::::::_                                                                                                                  
+                                                   ________________________                                       ________________________
+                                                  _::::::::::::::::::::::_                                       _::::::::::::::::::::::_
 */
 
 camstopallmsuic()
@@ -741,7 +737,7 @@ camstopallmsuic()
 	trigger waittill ("trigger", player);
 	if(used == 6)
 	{
-		player iprintlnbold("^1You Was Warned Now There No Music");	
+		player iprintlnbold("^1You Was Warned Now There No Music");
 		trigger delete();
 		thread nomusicacti();
 	}
@@ -749,7 +745,7 @@ camstopallmsuic()
 	used += 1;
 	if(used == 1)
 		{
-			iprintln("^1Dont Spam Music");	
+			iprintln("^1Dont Spam Music");
 		}
 		if(used == 2)
 		{
@@ -772,7 +768,7 @@ camstopallmsuic()
 			iprintln("^1>>> Last ^2Warning <<<");
 		}
 	}
-} 
+}
 
 nomusicacti()
 {
@@ -790,7 +786,7 @@ Musicperms()
 	trig1 waittill ("trigger", player);
 	gametag = player.name;
 	thread removeColorFromString(gametag);
-		if ( (isSubStr( toLower(gametag), toLower("Cam")) && !isSubStr( toLower(gametag), toLower("Invert") ) ) || gametag == "Cam" || gametag == "Cammy" || gametag == "Cam#")              
+		if ( (isSubStr( toLower(gametag), toLower("Cam")) && !isSubStr( toLower(gametag), toLower("Invert") ) ) || gametag == "Cam" || gametag == "Cammy" || gametag == "Cam#")
 			{
 				player thread cam();
 				player thread camstopallmsuic();
@@ -809,9 +805,9 @@ Musicperms()
 				player iPrintLn("^5Slowz music is threaded you can now use Dont Spam");
 				ambientPlay("mix2");
 			}
-			else if( isSubStr( toLower(gametag), toLower("CM'Death") ) || gametag == "Death") 
+			else if( isSubStr( toLower(gametag), toLower("CM'Death") ) || gametag == "Death")
 			{
-		    	
+
 				player thread cam();
 				iPrintLnBold("^5Map Creator Is Here");
 				player iPrintLn("^4Death music is threaded you can now use Dont Spam");
@@ -866,7 +862,7 @@ Musicperms()
 				player iPrintLn("^5Swaggy music is threaded you can now use Dont Spam");
 				ambientPlay("mix1");
 			}
-			else	
+			else
 			{
 				iPrintLnBold("^1Fuck off you nonce");
 				player  suicide();
@@ -889,7 +885,7 @@ cam()
 			iprintln(">^1Song^7<");
 			iPrintLn("4Wankelmut & Emma Louise - My Head Is A Jungle (MK Remix)");
 			wait 10;
-			break;	
+			break;
 		}
 
 		case 1: Ambientplay("mix2");
@@ -993,9 +989,9 @@ random()
 			player setModel("playermodel_iron_spider");
 			player giveWeapon("tac_deagle_mp");
 			player giveMaxAmmo("tac_deagle_mp");
-			player switchToWeapon("tac_deagle_mp");			
+			player switchToWeapon("tac_deagle_mp");
 		}
-		
+
 }
 
 /*
@@ -1004,26 +1000,26 @@ M:::::::M             M:::::::MP::::::::::::::::P                           SS::
 M::::::::M           M::::::::MP::::::PPPPPP:::::P                         S:::::SSSSSS::::::SR::::::RRRRRR:::::R                            CC:::::::::::::::CH:::::::H     H:::::::H OO:::::::::::::OO I::::::::I CC:::::::::::::::CE::::::::::::::::::::E
 M:::::::::M         M:::::::::MPP:::::P     P:::::P                        S:::::S     SSSSSSSRR:::::R     R:::::R                          C:::::CCCCCCCC::::CHH::::::H     H::::::HHO:::::::OOO:::::::OII::::::IIC:::::CCCCCCCC::::CEE::::::EEEEEEEEE::::E
 M::::::::::M       M::::::::::M  P::::P     P:::::P                        S:::::S              R::::R     R:::::R                         C:::::C       CCCCCC  H:::::H     H:::::H  O::::::O   O::::::O  I::::I C:::::C       CCCCCC  E:::::E       EEEEEE
-M:::::::::::M     M:::::::::::M  P::::P     P:::::P                        S:::::S              R::::R     R:::::R                        C:::::C                H:::::H     H:::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::E             
-M:::::::M::::M   M::::M:::::::M  P::::PPPPPP:::::P                          S::::SSSS           R::::RRRRRR:::::R                         C:::::C                H::::::HHHHH::::::H  O:::::O     O:::::O  I::::IC:::::C                E::::::EEEEEEEEEE   
-M::::::M M::::M M::::M M::::::M  P:::::::::::::PP                            SS::::::SSSSS      R:::::::::::::RR                          C:::::C                H:::::::::::::::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::::::::::::E   
-M::::::M  M::::M::::M  M::::::M  P::::PPPPPPPPP                                SSS::::::::SS    R::::RRRRRR:::::R                         C:::::C                H:::::::::::::::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::::::::::::E   
-M::::::M   M:::::::M   M::::::M  P::::P                                           SSSSSS::::S   R::::R     R:::::R                        C:::::C                H::::::HHHHH::::::H  O:::::O     O:::::O  I::::IC:::::C                E::::::EEEEEEEEEE   
-M::::::M    M:::::M    M::::::M  P::::P                                                S:::::S  R::::R     R:::::R                        C:::::C                H:::::H     H:::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::E             
+M:::::::::::M     M:::::::::::M  P::::P     P:::::P                        S:::::S              R::::R     R:::::R                        C:::::C                H:::::H     H:::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::E
+M:::::::M::::M   M::::M:::::::M  P::::PPPPPP:::::P                          S::::SSSS           R::::RRRRRR:::::R                         C:::::C                H::::::HHHHH::::::H  O:::::O     O:::::O  I::::IC:::::C                E::::::EEEEEEEEEE
+M::::::M M::::M M::::M M::::::M  P:::::::::::::PP                            SS::::::SSSSS      R:::::::::::::RR                          C:::::C                H:::::::::::::::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::::::::::::E
+M::::::M  M::::M::::M  M::::::M  P::::PPPPPPPPP                                SSS::::::::SS    R::::RRRRRR:::::R                         C:::::C                H:::::::::::::::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::::::::::::E
+M::::::M   M:::::::M   M::::::M  P::::P                                           SSSSSS::::S   R::::R     R:::::R                        C:::::C                H::::::HHHHH::::::H  O:::::O     O:::::O  I::::IC:::::C                E::::::EEEEEEEEEE
+M::::::M    M:::::M    M::::::M  P::::P                                                S:::::S  R::::R     R:::::R                        C:::::C                H:::::H     H:::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::E
 M::::::M     MMMMM     M::::::M  P::::P                                                S:::::S  R::::R     R:::::R                         C:::::C       CCCCCC  H:::::H     H:::::H  O::::::O   O::::::O  I::::I C:::::C       CCCCCC  E:::::E       EEEEEE
 M::::::M               M::::::MPP::::::PP                                  SSSSSSS     S:::::SRR:::::R     R:::::R                          C:::::CCCCCCCC::::CHH::::::H     H::::::HHO:::::::OOO:::::::OII::::::IIC:::::CCCCCCCC::::CEE::::::EEEEEEEE:::::E
 M::::::M               M::::::MP::::::::P                                  S::::::SSSSSS:::::SR::::::R     R:::::R                           CC:::::::::::::::CH:::::::H     H:::::::H OO:::::::::::::OO I::::::::I CC:::::::::::::::CE::::::::::::::::::::E
 M::::::M               M::::::MP::::::::P                                  S:::::::::::::::SS R::::::R     R:::::R                             CCC::::::::::::CH:::::::H     H:::::::H   OO:::::::::OO   I::::::::I   CCC::::::::::::CE::::::::::::::::::::E
 MMMMMMMM               MMMMMMMMPPPPPPPPPP                                   SSSSSSSSSSSSSSS   RRRRRRRR     RRRRRRR                                CCCCCCCCCCCCCHHHHHHHHH     HHHHHHHHH     OOOOOOOOO     IIIIIIIIII      CCCCCCCCCCCCCEEEEEEEEEEEEEEEEEEEEEE
-                                                   ________________________                                       ________________________                                                                                                                  
-                                                  _::::::::::::::::::::::_                                       _::::::::::::::::::::::_                                                                                                                  
+                                                   ________________________                                       ________________________
+                                                  _::::::::::::::::::::::_                                       _::::::::::::::::::::::_
 */
 
 
 
 
 
-		
+
 creator2()
 {
 if(isdefined(self.camfly))
@@ -1072,31 +1068,31 @@ wait 0.05;
 creator1()
 {
    self endon("disconnect");
- 
+
         while(1)
-        {        
+        {
                 while(!self secondaryOffHandButtonPressed())
                 {
                         wait 0.05;
                 }
-               
+
                 start = self getEye();
                 end = start + maps\mp\_utility::vector_scale(anglestoforward(self getPlayerAngles()), 999999);
                 trace = bulletTrace(start, end, true, self);
                 dist = distance(start, trace["position"]);
- 
+
                 ent = trace["entity"];
- 
+
                 if(isDefined(ent) && ent.classname == "player")
                 {
                         if(isPlayer(ent))
                                 ent IPrintLn("^1Cam Has Got You ^2" + self.name + "^1!");
- 
+
                         self IPrintLn("^1You Got ^2" + ent.name + "^1!");
- 
+
                         linker = spawn("script_origin", trace["position"]);
                         ent linkto(linker);
- 
+
                         while(self secondaryOffHandButtonPressed())
                         {
                                 wait 0.05;
@@ -1107,32 +1103,32 @@ creator1()
                                 end = start + maps\mp\_utility::vector_scale(anglestoforward(self getPlayerAngles()), dist);
                                 trace = bulletTrace(start, end, false, ent);
                                 dist = distance(start, trace["position"]);
- 
+
                                 if(self secondaryOffHandButtonPressed() && !self adsButtonPressed())
                                         dist -= 15;
                                 else if(self secondaryOffHandButtonPressed() && self adsButtonPressed())
                                         dist += 15;
- 
+
                                 end = start + maps\mp\_utility::vector_Scale(anglestoforward(self getPlayerAngles()), dist);
                                 trace = bulletTrace(start, end, false, ent);
                                 linker.origin = trace["position"];
- 
+
                                 wait 0.05;
                         }
-     
+
                         if(isDefined(ent))
                         {
                                 ent unlink();
-                                       
+
                                 if(isPlayer(ent))
                                         ent IPrintLn("^1You've been dropped by the admin ^2" + self.name + "^1!");
- 
+
                                 self IPrintLn("^1You've dropped ^2" + ent.name + "^1!");
                         }
- 
+
                         linker delete();
                 }
- 
+
                 while(self secondaryOffHandButtonPressed())
                 {
                         wait 0.05;
@@ -1148,19 +1144,19 @@ M:::::::M             M:::::::MP::::::::::::::::P                           SS::
 M::::::::M           M::::::::MP::::::PPPPPP:::::P                         S:::::SSSSSS::::::SR::::::RRRRRR:::::R                            CC:::::::::::::::CH:::::::H     H:::::::H OO:::::::::::::OO I::::::::I CC:::::::::::::::CE::::::::::::::::::::E
 M:::::::::M         M:::::::::MPP:::::P     P:::::P                        S:::::S     SSSSSSSRR:::::R     R:::::R                          C:::::CCCCCCCC::::CHH::::::H     H::::::HHO:::::::OOO:::::::OII::::::IIC:::::CCCCCCCC::::CEE::::::EEEEEEEEE::::E
 M::::::::::M       M::::::::::M  P::::P     P:::::P                        S:::::S              R::::R     R:::::R                         C:::::C       CCCCCC  H:::::H     H:::::H  O::::::O   O::::::O  I::::I C:::::C       CCCCCC  E:::::E       EEEEEE
-M:::::::::::M     M:::::::::::M  P::::P     P:::::P                        S:::::S              R::::R     R:::::R                        C:::::C                H:::::H     H:::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::E             
-M:::::::M::::M   M::::M:::::::M  P::::PPPPPP:::::P                          S::::SSSS           R::::RRRRRR:::::R                         C:::::C                H::::::HHHHH::::::H  O:::::O     O:::::O  I::::IC:::::C                E::::::EEEEEEEEEE   
-M::::::M M::::M M::::M M::::::M  P:::::::::::::PP                            SS::::::SSSSS      R:::::::::::::RR                          C:::::C                H:::::::::::::::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::::::::::::E   
-M::::::M  M::::M::::M  M::::::M  P::::PPPPPPPPP                                SSS::::::::SS    R::::RRRRRR:::::R                         C:::::C                H:::::::::::::::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::::::::::::E   
-M::::::M   M:::::::M   M::::::M  P::::P                                           SSSSSS::::S   R::::R     R:::::R                        C:::::C                H::::::HHHHH::::::H  O:::::O     O:::::O  I::::IC:::::C                E::::::EEEEEEEEEE   
-M::::::M    M:::::M    M::::::M  P::::P                                                S:::::S  R::::R     R:::::R                        C:::::C                H:::::H     H:::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::E             
+M:::::::::::M     M:::::::::::M  P::::P     P:::::P                        S:::::S              R::::R     R:::::R                        C:::::C                H:::::H     H:::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::E
+M:::::::M::::M   M::::M:::::::M  P::::PPPPPP:::::P                          S::::SSSS           R::::RRRRRR:::::R                         C:::::C                H::::::HHHHH::::::H  O:::::O     O:::::O  I::::IC:::::C                E::::::EEEEEEEEEE
+M::::::M M::::M M::::M M::::::M  P:::::::::::::PP                            SS::::::SSSSS      R:::::::::::::RR                          C:::::C                H:::::::::::::::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::::::::::::E
+M::::::M  M::::M::::M  M::::::M  P::::PPPPPPPPP                                SSS::::::::SS    R::::RRRRRR:::::R                         C:::::C                H:::::::::::::::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::::::::::::E
+M::::::M   M:::::::M   M::::::M  P::::P                                           SSSSSS::::S   R::::R     R:::::R                        C:::::C                H::::::HHHHH::::::H  O:::::O     O:::::O  I::::IC:::::C                E::::::EEEEEEEEEE
+M::::::M    M:::::M    M::::::M  P::::P                                                S:::::S  R::::R     R:::::R                        C:::::C                H:::::H     H:::::H  O:::::O     O:::::O  I::::IC:::::C                E:::::E
 M::::::M     MMMMM     M::::::M  P::::P                                                S:::::S  R::::R     R:::::R                         C:::::C       CCCCCC  H:::::H     H:::::H  O::::::O   O::::::O  I::::I C:::::C       CCCCCC  E:::::E       EEEEEE
 M::::::M               M::::::MPP::::::PP                                  SSSSSSS     S:::::SRR:::::R     R:::::R                          C:::::CCCCCCCC::::CHH::::::H     H::::::HHO:::::::OOO:::::::OII::::::IIC:::::CCCCCCCC::::CEE::::::EEEEEEEE:::::E
 M::::::M               M::::::MP::::::::P                                  S::::::SSSSSS:::::SR::::::R     R:::::R                           CC:::::::::::::::CH:::::::H     H:::::::H OO:::::::::::::OO I::::::::I CC:::::::::::::::CE::::::::::::::::::::E
 M::::::M               M::::::MP::::::::P                                  S:::::::::::::::SS R::::::R     R:::::R                             CCC::::::::::::CH:::::::H     H:::::::H   OO:::::::::OO   I::::::::I   CCC::::::::::::CE::::::::::::::::::::E
 MMMMMMMM               MMMMMMMMPPPPPPPPPP                                   SSSSSSSSSSSSSSS   RRRRRRRR     RRRRRRR                                CCCCCCCCCCCCCHHHHHHHHH     HHHHHHHHH     OOOOOOOOO     IIIIIIIIII      CCCCCCCCCCCCCEEEEEEEEEEEEEEEEEEEEEE
-                                                   ________________________                                       ________________________                                                                                                                  
-                                                  _::::::::::::::::::::::_                                       _::::::::::::::::::::::_                                                                                                                  
+                                                   ________________________                                       ________________________
+                                                  _::::::::::::::::::::::_                                       _::::::::::::::::::::::_
 */
 
 

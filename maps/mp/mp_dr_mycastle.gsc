@@ -21,23 +21,23 @@
 main()
 {
  maps\mp\_load::main();
- 
+
  game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"] = "desert";
- 
+
 	level.explosion = LoadFX ( "explosions/tanker_explosion" );
 	level.fire = loadFx("fire/firelp_barrel_pm");
-	
+
 	level.killfire = 0;
 	level.killfire2 = 0;
 	level.killfire3 = 0;
 	level.killfire4 = 0;
     level.killfiretrap6 = 0;
-	
+
 	precachemenu("presentation");
 	precacheitem("usp_silencer_mp");
 	precacheitem("uzi_silencer_mp");
@@ -65,7 +65,7 @@ main()
    thread sr\api\_speedrun::createEndMap((6280.56, -6202.25, 544.125), 120, 75);
    thread sr\api\_speedrun::createTeleporter((6445.33, -9117.16, 65.125), 70, 80, (8592, -6438, -883), 319, "freeze", "blue", "secret_0");
    thread sr\api\_speedrun::createTeleporter((6659.79, -9123.62, 65.125), 75, 80, (-4812, -1416, 125), 90, "freeze", "red", "secret_1");
-   
+
 	// thread guidchecking();
 	// thread messages();
 	thread startdoor();
@@ -133,7 +133,7 @@ main()
 	// thread weapons();
 	// thread musictrig();
 
-	
+
 }
 
 addTriggerToList( name )
@@ -159,7 +159,7 @@ sanictrig setHintString("Map Creator");
 for(;;)
 	{
 		sanictrig waittill ("trigger",user);
-		
+
 		}
 
 }
@@ -183,16 +183,16 @@ iprintlnbold("^4---- ^1G^3o^2o^4d^1L^6u^2c^3k ^4---- ");
 credits()
 {
         self endon( "disconnect" );
- 
+
         if( isDefined( self.credits_text ) )
                 self.credits_text Destroy();
- 
+
         self.credits_text = newHudElem();
         self.credits_text.y = 10;
         self.credits_text.alignX = "center";
         self.credits_text.alignY = "middle";
         self.credits_text.horzAlign = "center";
- 
+
         self.credits_text.alpha = 0;
         self.credits_text.sort = -3;
         self.credits_text.fontScale = 1.6;
@@ -213,7 +213,7 @@ credits()
 credit_roll( msg, time )
 {
         self endon( "disconnect" );
- 
+
         self.credits_text fadeOverTime(1);
         self.credits_text.alpha = 1;
         self.credits_text setText( msg );
@@ -227,27 +227,27 @@ move1()
 {
    trigger = getEnt ("move1", "targetname");
    block = getent("move1-1","targetname");
-   
+
   trigger waittill ("trigger", player );
-   
+
 }
 
 move2()
 {
    trigger = getEnt ("move2", "targetname");
    block = getent("move2-1","targetname");
-   
+
   trigger waittill ("trigger", player );
-   
+
 }
 
 move3()
 {
    trigger = getEnt ("move3", "targetname");
    block = getent("move3-1","targetname");
-   
+
   trigger waittill ("trigger", player );
-   
+
 }
 
 
@@ -257,7 +257,7 @@ effect_explosion() //trap1
 	target_1 = getEnt ("explosion_effect_1", "targetname");
 	target_2 = getEnt ("explosion_effect_2", "targetname");
 	disparition = getEnt ("disparition1", "targetname");
-	
+
 	trigger waittill ("trigger", player );
 }
 
@@ -288,7 +288,7 @@ trap4()
     block4 = getent("trap4-9","targetname");
 	trig = getent("trap4","targetname");
     trig setHintString("Press [Use] to activate the trap");
-   trig waittill("trigger",player);	
+   trig waittill("trigger",player);
 }
 
 trap4killfire()
@@ -302,7 +302,7 @@ trap4killfire()
 		player suicide();
 	}
 	}
-	
+
 }
 
 trap4killfire2()
@@ -316,7 +316,7 @@ trap4killfire2()
 		player suicide();
 	}
 	}
-	
+
 }
 
 trap4killfire3()
@@ -330,7 +330,7 @@ trap4killfire3()
 		player suicide();
 	}
 	}
-	
+
 }
 
 trap4killfire4()
@@ -344,7 +344,7 @@ trap4killfire4()
 		player suicide();
 	}
 	}
-	
+
 }
 
 playEffect()
@@ -362,7 +362,7 @@ playEffect()
 	destJ = getEnt( "fx_origin_10", "targetname" );
 	destK = getEnt( "fx_origin_11", "targetname" );
 	destL = getEnt( "fx_origin_12", "targetname" );
-	
+
 	for(;;)
 	{
 	wait 0.1;
@@ -416,7 +416,7 @@ playEffect()
 	level.killfire4 = 0;
 	wait 0.1;
     }
-	
+
 }
 
 trap5()
@@ -424,7 +424,7 @@ trap5()
     block1 = getent("trap5-1","targetname");
 	trig = getent("trap5","targetname");
     trig setHintString("Press [Use] to activate the trap");
-	trig waittill("trigger",player);	
+	trig waittill("trigger",player);
 }
 
 trap6()
@@ -448,7 +448,7 @@ trap6killfire()
 		player suicide();
 	}
 	}
-	
+
 }
 
 trap6killfire2()
@@ -462,7 +462,7 @@ trap6killfire2()
 		player suicide();
 	}
 	}
-	
+
 }
 
 trap6killfire3()
@@ -476,7 +476,7 @@ trap6killfire3()
 		player suicide();
 	}
 	}
-	
+
 }
 
 trap6killfire4()
@@ -490,7 +490,7 @@ trap6killfire4()
 		player suicide();
 	}
 	}
-	
+
 }
 
 trap6killfire5()
@@ -504,7 +504,7 @@ trap6killfire5()
 		player suicide();
 	}
 	}
-	
+
 }
 
 trap6killfire6()
@@ -518,7 +518,7 @@ trap6killfire6()
 		player suicide();
 	}
 	}
-	
+
 }
 
 playEffect2()
@@ -536,7 +536,7 @@ playEffect2()
 	destJA = getEnt( "fx_origin_29", "targetname" );
 	destKA = getEnt( "fx_origin_30", "targetname" );
 	destLA = getEnt( "fx_origin_31", "targetname" );
-	
+
 	for(;;)
 	{
 	wait 0.1;
@@ -612,7 +612,7 @@ secretxpjumperrespawn()
 {
 	secretxpjumper = getEnt("secretxp_trigger_respawn", "targetname");
 	origin_jumper_secretxp = getEnt("origin_jumper_secretxprespawn", "targetname");
-	
+
 	for (;;)
 	{
 		secretxpjumper waittill("trigger", player);
@@ -625,7 +625,7 @@ secretxpjumperrespawn2()
 {
 	secretxpjumper = getEnt("secretxp_trigger_respawn2", "targetname");
 	origin_jumper_secretxp = getEnt("origin_jumper_secretxprespawn2", "targetname");
-	
+
 	for (;;)
 	{
 		secretxpjumper waittill("trigger", player);
@@ -638,7 +638,7 @@ secretxpjumper()
 {
 	secretxpjumper = getEnt("secretxp_trigger", "targetname");
 	origin_jumper_secretxp = getEnt("origin_jumper_secretxp", "targetname");
-	
+
 	for (;;)
 	{
 		secretxpjumper waittill("trigger", player);
@@ -651,7 +651,7 @@ secretjumpfail()
 {
 	secretjumper = getEnt("secret_trigger_respawn", "targetname");
 	origin_jumper_secret = getEnt("origin_jumper_secret", "targetname");
-	
+
 	for (;;)
 	{
 		secretjumper waittill("trigger", player);
@@ -666,7 +666,7 @@ portesecret()
    block1 = getent("porte1","targetname");
    secret = getent("trig_secret","targetname");
    secret waittill("trigger",player);
-   
+
    {
    wait 2;
    block1 delete();
@@ -685,7 +685,7 @@ secretxp1()
    thread portesecret1();
    player braxi\_rank::giveRankXP("", 200);
    }
-   
+
 }
 
 secretxp2()
@@ -699,14 +699,14 @@ secretxp2()
    thread portesecret2();
    player braxi\_rank::giveRankXP("", 200);
    }
-   
+
 }
 
 secretxp3()
 {
    level.endsecret2_trigger = getent("jumperxp1","targetname");
    telejumporigin3 = getEnt("jumperxpfin", "targetname");
-   
+
    while(1)
    {
       level.endsecret2_trigger waittill( "trigger", player );
@@ -717,7 +717,7 @@ secretxp3()
    player SetOrigin( telejumporigin3.origin );
    player setplayerangles( telejumporigin3.angles );
    player thread sr\api\_speedrun::finishWay("secret_1");
-      
+
 }
 }
 
@@ -725,19 +725,19 @@ secretxp4()
 {
    level.endsecret_trigger = getent("trigger_endsecret","targetname");
    telejumporigin2 = getent("jumper_secretend", "targetname");
-   
+
    while(1)
    {
       level.endsecret_trigger waittill( "trigger", player );
       if( !isDefined( level.endsecret_trigger ) )
       return;
       if(level.firstenter==true)
-   
+
    player SetOrigin( telejumporigin2.origin );
    player setplayerangles( telejumporigin2.angles );
    player thread sr\api\_speedrun::finishWay("secret_0");
- 
-   
+
+
 }
 }
 
@@ -757,7 +757,7 @@ actifail1()
 {
 	actisecret = getEnt("secretacti_respawn1", "targetname");
 	origin_acti_secret = getEnt("actisecret1", "targetname");
-	
+
 	for (;;)
 	{
 		actisecret waittill("trigger", player);
@@ -771,7 +771,7 @@ actifail2()
 {
 	actisecret = getEnt("secretacti_respawn2", "targetname");
 	origin_acti_secret = getEnt("actisecret2", "targetname");
-	
+
 	for (;;)
 	{
 		actisecret waittill("trigger", player);
@@ -785,7 +785,7 @@ actifail3()
 {
 	actisecret = getEnt("secretacti_respawn3", "targetname");
 	origin_acti_secret = getEnt("actisecret3", "targetname");
-	
+
 	for (;;)
 	{
 		actisecret waittill("trigger", player);
@@ -799,7 +799,7 @@ actifail4()
 {
 	actisecret = getEnt("secretacti_respawn4", "targetname");
 	origin_acti_secret = getEnt("actisecret4", "targetname");
-	
+
 	for (;;)
 	{
 		actisecret waittill("trigger", player);
@@ -813,7 +813,7 @@ actifail5()
 {
 	actisecret = getEnt("secretacti_respawn5", "targetname");
 	origin_acti_secret = getEnt("actisecret5", "targetname");
-	
+
 	for (;;)
 	{
 		actisecret waittill("trigger", player);
@@ -827,7 +827,7 @@ actifail6()
 {
 	actisecret = getEnt("secretacti_respawn6", "targetname");
 	origin_acti_secret = getEnt("actisecret6", "targetname");
-	
+
 	for (;;)
 	{
 		actisecret waittill("trigger", player);
@@ -841,7 +841,7 @@ actifail7()
 {
 	actisecret = getEnt("secretacti_respawn7", "targetname");
 	origin_acti_secret = getEnt("actisecret7", "targetname");
-	
+
 	for (;;)
 	{
 		actisecret waittill("trigger", player);
@@ -855,7 +855,7 @@ actifail8()
 {
 	actisecret = getEnt("secretacti_respawn8", "targetname");
 	origin_acti_secret = getEnt("actisecret8", "targetname");
-	
+
 	for (;;)
 	{
 		actisecret waittill("trigger", player);
@@ -869,7 +869,7 @@ actifail9()
 {
 	actisecret = getEnt("secretacti_respawn9", "targetname");
 	origin_acti_secret = getEnt("actisecret9", "targetname");
-	
+
 	for (;;)
 	{
 		actisecret waittill("trigger", player);
@@ -883,7 +883,7 @@ actifail10()
 {
 	actisecret = getEnt("secretacti_respawn10", "targetname");
 	origin_acti_secret = getEnt("actisecret10", "targetname");
-	
+
 	for (;;)
 	{
 		actisecret waittill("trigger", player);
@@ -897,7 +897,7 @@ actifail11()
 {
 	actisecret = getEnt("secretacti_respawn11", "targetname");
 	origin_acti_secret = getEnt("actisecret11", "targetname");
-	
+
 	for (;;)
 	{
 		actisecret waittill("trigger", player);
@@ -911,7 +911,7 @@ actifail12()
 {
 	actisecret = getEnt("secretacti_respawn12", "targetname");
 	origin_acti_secret = getEnt("actisecret12", "targetname");
-	
+
 	for (;;)
 	{
 		actisecret waittill("trigger", player);
@@ -925,7 +925,7 @@ actifail13()
 {
 	actisecret = getEnt("secretacti_respawn13", "targetname");
 	origin_acti_secret = getEnt("actisecret13", "targetname");
-	
+
 	for (;;)
 	{
 		actisecret waittill("trigger", player);
@@ -941,7 +941,7 @@ roomjumpfail()
 {
 	secretjumper = getEnt("trigger_failroom", "targetname");
 	origin_jumper_secret = getEnt("origin_failroom", "targetname");
-	
+
 	for (;;)
 	{
 		secretjumper waittill("trigger", player);
@@ -957,7 +957,7 @@ jumproomjumpfail()
 {
 	jumpjumper = getEnt("jump_jumper_respawn20", "targetname");
 	origin_jumper_jumptest = getEnt("origin_jumper_jump2", "targetname");
-	
+
 	for (;;)
 	{
 		jumpjumper waittill("trigger", player);
@@ -971,7 +971,7 @@ jumproomactifail()
 {
 	actijumper = getEnt("trig_jumprespawn", "targetname");
 	origin_acti_jumptest = getEnt("origin_acti_jump2", "targetname");
-	
+
 	for (;;)
 	{
 		actijumper waittill("trigger", player);
@@ -985,7 +985,7 @@ runroomfail()
 {
 	actijumper2 = getEnt("trig_runrespawn", "targetname");
 	origin_acti_jumptest2 = getEnt("origin_runrespawn", "targetname");
-	
+
 	for (;;)
 	{
 		actijumper2 waittill("trigger", player);
@@ -998,7 +998,7 @@ runroomfail()
 jumpsniper()
 {
    weaponbounce = getent("weaponbounce","targetname");
-   
+
    for(;;)
    {
    weaponbounce waittill("trigger",player );
@@ -1029,7 +1029,7 @@ jump()
    level.run_trigger delete();
    level.race delete();
    level.firstenter=false;
-   } 
+   }
    wait(0.05);
 
    player SetOrigin((-7176, -13144, 1144));
@@ -1044,7 +1044,7 @@ jump()
    player giveweapon("knife_mp");
    player switchToWeapon( "knife_mp" );
    level.activ SwitchToWeapon( "knife_mp" );
-   iPrintlnBold(" ^9" + player.name + " ^4 has entered the Jump room^8!"); 
+   iPrintlnBold(" ^9" + player.name + " ^4 has entered the Jump room^8!");
    wait(0.05);
 
 
@@ -1061,7 +1061,7 @@ old()
    level.old_trigger = getent("trig_porte1","targetname");
    level.old_trigger waittill("trigger",player);
    level.old_trigger setHintString("Old");
-   
+
    level.sniper_trigger delete();
    level.jump_trigger delete();
    level.knife_trigger delete();
@@ -1073,7 +1073,7 @@ old()
    {
    wait 2;
    block1 delete();
-   iPrintlnBold(" ^9" + player.name + " ^4 has entered the Old room^8!"); 
+   iPrintlnBold(" ^9" + player.name + " ^4 has entered the Old room^8!");
    wait 2;
    }
    level.old_trigger delete();
@@ -1084,7 +1084,7 @@ snipertp()
    level.sniper_trigger = getent("trig_sniper","targetname");
    telesniperorigin = getent("jumper_sniper", "targetname");
    level.sniper_trigger setHintString("Sniper");
-   
+
    while(1)
    {
       level.sniper_trigger waittill( "trigger", player );
@@ -1100,7 +1100,7 @@ snipertp()
    level.run_trigger delete();
    level.race delete();
    level.firstenter=false;
-   } 
+   }
 
    wait(0.05);
 
@@ -1109,7 +1109,7 @@ snipertp()
    wait(0.05);
    player waittill( "death" );
    level.PlayerInRoom = false;
-   
+
 }
 }
 
@@ -1118,7 +1118,7 @@ runtp()
    level.run_trigger = getent("run","targetname");
    telesniperorigin = getent("origin_runner_room", "targetname");
    level.run_trigger setHintString("Run");
-   
+
    while(1)
    {
       level.run_trigger waittill( "trigger", player );
@@ -1134,11 +1134,11 @@ runtp()
    level.sniper_trigger delete();
    level.race delete();
    level.firstenter=false;
-   } 
+   }
 
    wait(0.05);
 
-   iPrintlnBold( " ^9" + player.name + " ^4 has entered the Run room^8!" ); 
+   iPrintlnBold( " ^9" + player.name + " ^4 has entered the Run room^8!" );
    player SetOrigin( telesniperorigin.origin );
    player setplayerangles( telesniperorigin.angles );
    wait(0.05);
@@ -1146,7 +1146,7 @@ runtp()
    player waittill( "death" );
    level.PlayerInRoom = false;
    level.runmove1 = false;
-   
+
 }
 }
 
@@ -1166,7 +1166,7 @@ run()
    player TakeAllWeapons();
    player GiveWeapon("knife");
    wait .05;
-   player SwitchToWeapon("knife"); 
+   player SwitchToWeapon("knife");
    wait(0.05);
    level.activ SetOrigin((-17352, -10664, 1432));
    level.activ SetPlayerAngles((0,270,0));
@@ -1174,7 +1174,7 @@ run()
    level.activ GiveWeapon( "m40a3_mp" );
    level.activ GiveMaxAmmo("m40a3_mp");
    wait .05;
-   level.activ SwitchToWeapon("m40a3_mp"); 
+   level.activ SwitchToWeapon("m40a3_mp");
    player thread ammo();
    level.activ thread ammo();
    wait(0.05);
@@ -1186,7 +1186,7 @@ run4()
 {
    level.run2_trigger = getent("runacti","targetname");
    level.run2_trigger setHintString("Killer");
-   
+
    while(1)
    {
    level.run2_trigger waittill( "trigger", player );
@@ -1198,7 +1198,7 @@ run4()
    level.activ TakeAllWeapons();
    level.activ GiveWeapon("knife");
    wait .05;
-   level.activ SwitchToWeapon("knife"); 
+   level.activ SwitchToWeapon("knife");
    wait(0.05);
    player SetOrigin((-17352, -10664, 1432));
    player SetPlayerAngles((0,270,0));
@@ -1206,7 +1206,7 @@ run4()
    player GiveWeapon( "m40a3_mp" );
    player GiveMaxAmmo("m40a3_mp");
    wait .05;
-   player SwitchToWeapon("m40a3_mp"); 
+   player SwitchToWeapon("m40a3_mp");
    player thread ammo();
    level.activ thread ammo();
    wait(0.05);
@@ -1228,7 +1228,7 @@ run2()
    level.activ suicide();
    level.runmove1 = false;
    }
-   
+
 }
 
 runmove1()
@@ -1241,7 +1241,7 @@ runmove1()
    block moveZ (-100, 4);
    wait 4;
    }
-	
+
 }
 
 sniper1()
@@ -1264,11 +1264,11 @@ sniper1()
    player SetPlayerAngles((0,270,0));
    player TakeAllWeapons();
    player GiveWeapon("m40a3_mp");
-   player GiveWeapon( "remington700_mp" ); 
+   player GiveWeapon( "remington700_mp" );
    player GiveMaxAmmo("m40a3_mp");
    player GiveMaxAmmo( "remington700_mp" );
    wait .05;
-   player SwitchToWeapon("m40a3_mp"); 
+   player SwitchToWeapon("m40a3_mp");
    wait(0.05);
    level.activ SetOrigin((-7272, -8232, 1144));
    level.activ SetPlayerAngles((0,90,0));
@@ -1278,8 +1278,8 @@ sniper1()
    level.activ GiveMaxAmmo("m40a3_mp");
    level.activ GiveMaxAmmo( "remington700_mp" );
    wait .05;
-   level.activ SwitchToWeapon("m40a3_mp"); 
-   iPrintlnBold( " ^9" + player.name + " ^4 has entered the Sniper room^8!" ); 
+   level.activ SwitchToWeapon("m40a3_mp");
+   iPrintlnBold( " ^9" + player.name + " ^4 has entered the Sniper room^8!" );
    player thread ammo();
    level.activ thread ammo();
    wait(0.05);
@@ -1310,11 +1310,11 @@ sniper2()
    player SetPlayerAngles((0,270,0));
    player TakeAllWeapons();
    player GiveWeapon("m40a3_mp");
-   player GiveWeapon( "remington700_mp" ); 
+   player GiveWeapon( "remington700_mp" );
    player GiveMaxAmmo("m40a3_mp");
    player GiveMaxAmmo( "remington700_mp" );
    wait .05;
-   player SwitchToWeapon("m40a3_mp"); 
+   player SwitchToWeapon("m40a3_mp");
    wait(0.05);
    level.activ SetOrigin((-11624, -7592, 776));
    level.activ SetPlayerAngles((0,90,0));
@@ -1324,8 +1324,8 @@ sniper2()
    level.activ GiveMaxAmmo("m40a3_mp");
    level.activ GiveMaxAmmo( "remington700_mp" );
    wait .05;
-   level.activ SwitchToWeapon("m40a3_mp"); 
-   iPrintlnBold( " ^9" + player.name + " ^4 has entered the Sniper room^8!" ); 
+   level.activ SwitchToWeapon("m40a3_mp");
+   iPrintlnBold( " ^9" + player.name + " ^4 has entered the Sniper room^8!" );
    player thread ammo();
    level.activ thread ammo();
    wait(0.05);
@@ -1356,11 +1356,11 @@ sniper3()
    player SetPlayerAngles((0,270,0));
    player TakeAllWeapons();
    player GiveWeapon("m40a3_mp");
-   player GiveWeapon( "remington700_mp" ); 
+   player GiveWeapon( "remington700_mp" );
    player GiveMaxAmmo("m40a3_mp");
    player GiveMaxAmmo( "remington700_mp" );
    wait .05;
-   player SwitchToWeapon("m40a3_mp"); 
+   player SwitchToWeapon("m40a3_mp");
    wait(0.05);
    level.activ SetOrigin((-11720, -13864, 776));
    level.activ SetPlayerAngles((0,90,0));
@@ -1370,8 +1370,8 @@ sniper3()
    level.activ GiveMaxAmmo("m40a3_mp");
    level.activ GiveMaxAmmo( "remington700_mp" );
    wait .05;
-   level.activ SwitchToWeapon("m40a3_mp"); 
-   iPrintlnBold( " ^9" + player.name + " ^4 has entered the Sniper room^8!" ); 
+   level.activ SwitchToWeapon("m40a3_mp");
+   iPrintlnBold( " ^9" + player.name + " ^4 has entered the Sniper room^8!" );
    player thread ammo();
    level.activ thread ammo();
    wait(0.05);
@@ -1388,7 +1388,7 @@ knife()
    level.teleactorigin = getent("origin_acti_knife", "targetname");
    telejumporigin = getent("origin_jumper_knife", "targetname");
    level.knife_trigger setHintString("Knife");
-   
+
    while(1)
    {
       level.knife_trigger waittill("trigger",player );
@@ -1405,7 +1405,7 @@ knife()
    level.run_trigger delete();
    level.race delete();
    level.firstenter=false;
-   } 
+   }
    wait(0.05);
 
    player SetOrigin((-7208, -6584, 1144));
@@ -1420,7 +1420,7 @@ knife()
    player giveweapon("knife_mp");
    player switchToWeapon( "knife_mp" );
    level.activ SwitchToWeapon( "knife_mp" );
-   iPrintlnBold(" ^9" + player.name + " ^4 has entered the Knife room^8!"); 
+   iPrintlnBold(" ^9" + player.name + " ^4 has entered the Knife room^8!");
    wait(0.05);
 
 
@@ -1445,7 +1445,7 @@ partyjump() //Script by Mewen ^^
 
         if(!isDefined(level.race))
             return;
-		
+
 		      if(level.firstenter==true)
    {
    level.old_trigger delete();
@@ -1456,22 +1456,22 @@ partyjump() //Script by Mewen ^^
    level.run_trigger delete();
    level.knife_trigger delete();
    level.firstenter=false;
-   } 
+   }
 
         if(!isdefined(level.activKills))
 			level.playername = player.name;
 
 		player freezeControls(1);
 		level.activ freezeControls(1);
-        
+
         player setOrigin(level.race_jumper_tp.origin);
 		player setPlayerangles(level.race_jumper_tp.angles);
-		
+
 		player TakeAllWeapons();
-		
+
 		level.activ setOrigin( level.race_acti_tp.origin );
-		level.activ setPlayerangles( level.race_acti_tp.angles );	
-		
+		level.activ setPlayerangles( level.race_acti_tp.angles );
+
 		level.activ TakeAllWeapons();
 		wait 1;
 		player iPrintlnBold(" ^7>>^13^7<<");
@@ -1486,7 +1486,7 @@ partyjump() //Script by Mewen ^^
 		player iprintlnbold("^1Good Luck!");
 		level.activ iprintlnbold("^1Good Luck!");
 		wait 0.5;
-		
+
 		player freezeControls(0);
 		level.activ freezeControls(0);
 		thread ss_game(player);
@@ -1515,7 +1515,7 @@ ss_check(player)
 		player setOrigin(level.race_jumper_tp.origin);
 		player setPlayerangles(level.race_jumper_tp.angles);
 		level.activ setOrigin( level.race_acti_tp.origin );
-		level.activ setPlayerangles( level.race_acti_tp.angles );	
+		level.activ setPlayerangles( level.race_acti_tp.angles );
 
 		player iprintlnbold("^1You ^7lost to the ^1Activator");
 
@@ -1524,7 +1524,7 @@ ss_check(player)
 		level.activ iprintlnbold("^1You Win! ^7now kill the ^1Jumper");
 		wait 3.5;
 		level.activ freezeControls(0);
-	} 
+	}
 	else
 	{
 		level.activ takeallweapons();
@@ -1534,7 +1534,7 @@ ss_check(player)
 		player setOrigin(level.race_jumper_tp.origin);
 		player setPlayerangles(level.race_jumper_tp.angles);
 		level.activ setOrigin( level.race_acti_tp.origin );
-		level.activ setPlayerangles( level.race_acti_tp.angles );	
+		level.activ setPlayerangles( level.race_acti_tp.angles );
 
 		level.activ iprintlnbold("^1You ^7lost to the ^1Jumper");
 
@@ -1718,11 +1718,11 @@ randomspeed()  //il doit avoir plus opti mais flemme
    player SetPlayerAngles((0,270,0));
    player TakeAllWeapons();
    player GiveWeapon("m40a3_mp");
-   player GiveWeapon( "remington700_mp" ); 
+   player GiveWeapon( "remington700_mp" );
    player GiveMaxAmmo("m40a3_mp");
    player GiveMaxAmmo( "remington700_mp" );
    wait .05;
-   player SwitchToWeapon("m40a3_mp"); 
+   player SwitchToWeapon("m40a3_mp");
    wait(0.05);
    level.activ SetOrigin((-13896, -14048, 776));
    level.activ SetPlayerAngles((0,90,0));
@@ -1732,552 +1732,552 @@ randomspeed()  //il doit avoir plus opti mais flemme
    level.activ GiveMaxAmmo("m40a3_mp");
    level.activ GiveMaxAmmo( "remington700_mp" );
    wait .05;
-   level.activ SwitchToWeapon("m40a3_mp"); 
-   iPrintlnBold( " ^9" + player.name + " ^4 has entered the RandomSpeed room^8!" ); 
+   level.activ SwitchToWeapon("m40a3_mp");
+   iPrintlnBold( " ^9" + player.name + " ^4 has entered the RandomSpeed room^8!" );
    wait(0.05);
    player switchToWeapon( "m40a3_mp" );
    level.activ SwitchToWeapon( "m40a3_mp" );
    while(1)
    {
-   iPrintlnBold( "Chosen a Random Speed ..." ); 
+   iPrintlnBold( "Chosen a Random Speed ..." );
    wait 3;
    random = randomint(7);
    if(random == 0)
 {
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
    wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
    wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
-   wait 0.3;
-   player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   wait 0.3;   
-   player iPrintlnBold( "^5 250" ); 
-   level.activ iPrintlnBold( "^5 250" ); 
-   wait 0.3;
-   player iPrintlnBold( "^6 300" ); 
-   level.activ iPrintlnBold( "^6 300" ); 
-   wait 0.3;
-   player iPrintlnBold( "^7 350" ); 
-   level.activ iPrintlnBold( "^7 350" ); 
-   wait 0.3;
-   player iPrintlnBold( "^8 400" ); 
-   level.activ iPrintlnBold( "^8 400" );  
-   wait 0.3;
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
-   wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
-   wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
    wait 0.3;
    player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   wait 0.3;   
-   player iPrintlnBold( "^5 250" ); 
-   level.activ iPrintlnBold( "^5 250" ); 
+   level.activ iPrintlnBold( "^4 200" );
    wait 0.3;
-   player iPrintlnBold( "^6 300" ); 
-   level.activ iPrintlnBold( "^6 300" ); 
+   player iPrintlnBold( "^5 250" );
+   level.activ iPrintlnBold( "^5 250" );
    wait 0.3;
-   player iPrintlnBold( "^7 350" ); 
-   level.activ iPrintlnBold( "^7 350" ); 
+   player iPrintlnBold( "^6 300" );
+   level.activ iPrintlnBold( "^6 300" );
    wait 0.3;
-   player iPrintlnBold( "^8 400" ); 
-   level.activ iPrintlnBold( "^8 400" ); 
+   player iPrintlnBold( "^7 350" );
+   level.activ iPrintlnBold( "^7 350" );
    wait 0.3;
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
+   player iPrintlnBold( "^8 400" );
+   level.activ iPrintlnBold( "^8 400" );
    wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
    wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
-   iPrintlnBold( "^9 Speed = ^3 150" ); 
-   player SetMoveSpeedScale(1);
-   level.activ SetMoveSpeedScale(1);
-} 
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
+   wait 0.3;
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
+   wait 0.3;
+   player iPrintlnBold( "^4 200" );
+   level.activ iPrintlnBold( "^4 200" );
+   wait 0.3;
+   player iPrintlnBold( "^5 250" );
+   level.activ iPrintlnBold( "^5 250" );
+   wait 0.3;
+   player iPrintlnBold( "^6 300" );
+   level.activ iPrintlnBold( "^6 300" );
+   wait 0.3;
+   player iPrintlnBold( "^7 350" );
+   level.activ iPrintlnBold( "^7 350" );
+   wait 0.3;
+   player iPrintlnBold( "^8 400" );
+   level.activ iPrintlnBold( "^8 400" );
+   wait 0.3;
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
+   wait 0.3;
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
+   wait 0.3;
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
+   iPrintlnBold( "^9 Speed = ^3 150" );
+   player sr\api\_player::setPlayerSpeedScale(1);
+   level.activ sr\api\_player::setPlayerSpeedScale(1);
+}
    if(random == 1)
 {
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
    wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
    wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
-   wait 0.3;
-   player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   wait 0.3;   
-   player iPrintlnBold( "^5 250" ); 
-   level.activ iPrintlnBold( "^5 250" ); 
-   wait 0.3;
-   player iPrintlnBold( "^6 300" ); 
-   level.activ iPrintlnBold( "^6 300" ); 
-   wait 0.3;
-   player iPrintlnBold( "^7 350" ); 
-   level.activ iPrintlnBold( "^7 350" ); 
-   wait 0.3;
-   player iPrintlnBold( "^8 400" ); 
-   level.activ iPrintlnBold( "^8 400" );  
-   wait 0.3;
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
-   wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
-   wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
    wait 0.3;
    player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   wait 0.3;   
-   player iPrintlnBold( "^5 250" ); 
-   level.activ iPrintlnBold( "^5 250" ); 
+   level.activ iPrintlnBold( "^4 200" );
    wait 0.3;
-   player iPrintlnBold( "^6 300" ); 
-   level.activ iPrintlnBold( "^6 300" ); 
+   player iPrintlnBold( "^5 250" );
+   level.activ iPrintlnBold( "^5 250" );
    wait 0.3;
-   player iPrintlnBold( "^7 350" ); 
-   level.activ iPrintlnBold( "^7 350" ); 
+   player iPrintlnBold( "^6 300" );
+   level.activ iPrintlnBold( "^6 300" );
    wait 0.3;
-   player iPrintlnBold( "^8 400" ); 
-   level.activ iPrintlnBold( "^8 400" ); 
+   player iPrintlnBold( "^7 350" );
+   level.activ iPrintlnBold( "^7 350" );
    wait 0.3;
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
-   iPrintlnBold( "^9 Speed = ^1 50" ); 
-   player SetMoveSpeedScale(0.3);
-   level.activ SetMoveSpeedScale(0.3);
-} 
+   player iPrintlnBold( "^8 400" );
+   level.activ iPrintlnBold( "^8 400" );
+   wait 0.3;
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
+   wait 0.3;
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
+   wait 0.3;
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
+   wait 0.3;
+   player iPrintlnBold( "^4 200" );
+   level.activ iPrintlnBold( "^4 200" );
+   wait 0.3;
+   player iPrintlnBold( "^5 250" );
+   level.activ iPrintlnBold( "^5 250" );
+   wait 0.3;
+   player iPrintlnBold( "^6 300" );
+   level.activ iPrintlnBold( "^6 300" );
+   wait 0.3;
+   player iPrintlnBold( "^7 350" );
+   level.activ iPrintlnBold( "^7 350" );
+   wait 0.3;
+   player iPrintlnBold( "^8 400" );
+   level.activ iPrintlnBold( "^8 400" );
+   wait 0.3;
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
+   iPrintlnBold( "^9 Speed = ^1 50" );
+   player sr\api\_player::setPlayerSpeedScale(0.3);
+   level.activ sr\api\_player::setPlayerSpeedScale(0.3);
+}
 	if(random == 2)
 {
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
    wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
    wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
-   wait 0.3;
-   player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   wait 0.3;   
-   player iPrintlnBold( "^5 250" ); 
-   level.activ iPrintlnBold( "^5 250" ); 
-   wait 0.3;
-   player iPrintlnBold( "^6 300" ); 
-   level.activ iPrintlnBold( "^6 300" ); 
-   wait 0.3;
-   player iPrintlnBold( "^7 350" ); 
-   level.activ iPrintlnBold( "^7 350" ); 
-   wait 0.3;
-   player iPrintlnBold( "^8 400" ); 
-   level.activ iPrintlnBold( "^8 400" );  
-   wait 0.3;
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
-   wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
-   wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
    wait 0.3;
    player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   wait 0.3;   
-   player iPrintlnBold( "^5 250" ); 
-   level.activ iPrintlnBold( "^5 250" ); 
+   level.activ iPrintlnBold( "^4 200" );
    wait 0.3;
-   player iPrintlnBold( "^6 300" ); 
-   level.activ iPrintlnBold( "^6 300" ); 
+   player iPrintlnBold( "^5 250" );
+   level.activ iPrintlnBold( "^5 250" );
    wait 0.3;
-   player iPrintlnBold( "^7 350" ); 
-   level.activ iPrintlnBold( "^7 350" ); 
+   player iPrintlnBold( "^6 300" );
+   level.activ iPrintlnBold( "^6 300" );
    wait 0.3;
-   player iPrintlnBold( "^8 400" ); 
-   level.activ iPrintlnBold( "^8 400" ); 
+   player iPrintlnBold( "^7 350" );
+   level.activ iPrintlnBold( "^7 350" );
    wait 0.3;
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
+   player iPrintlnBold( "^8 400" );
+   level.activ iPrintlnBold( "^8 400" );
    wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
-   iPrintlnBold( "^9 Speed = ^2 100" ); 
-   player SetMoveSpeedScale(0.5);
-   level.activ SetMoveSpeedScale(0.5);
-} 
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
+   wait 0.3;
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
+   wait 0.3;
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
+   wait 0.3;
+   player iPrintlnBold( "^4 200" );
+   level.activ iPrintlnBold( "^4 200" );
+   wait 0.3;
+   player iPrintlnBold( "^5 250" );
+   level.activ iPrintlnBold( "^5 250" );
+   wait 0.3;
+   player iPrintlnBold( "^6 300" );
+   level.activ iPrintlnBold( "^6 300" );
+   wait 0.3;
+   player iPrintlnBold( "^7 350" );
+   level.activ iPrintlnBold( "^7 350" );
+   wait 0.3;
+   player iPrintlnBold( "^8 400" );
+   level.activ iPrintlnBold( "^8 400" );
+   wait 0.3;
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
+   wait 0.3;
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
+   iPrintlnBold( "^9 Speed = ^2 100" );
+   player sr\api\_player::setPlayerSpeedScale(0.5);
+   level.activ sr\api\_player::setPlayerSpeedScale(0.5);
+}
 
 	if(random == 3)
 {
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
    wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
    wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
-   wait 0.3;
-   player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   wait 0.3;   
-   player iPrintlnBold( "^5 250" ); 
-   level.activ iPrintlnBold( "^5 250" ); 
-   wait 0.3;
-   player iPrintlnBold( "^6 300" ); 
-   level.activ iPrintlnBold( "^6 300" ); 
-   wait 0.3;
-   player iPrintlnBold( "^7 350" ); 
-   level.activ iPrintlnBold( "^7 350" ); 
-   wait 0.3;
-   player iPrintlnBold( "^8 400" ); 
-   level.activ iPrintlnBold( "^8 400" );  
-   wait 0.3;
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
-   wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
-   wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
    wait 0.3;
    player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   wait 0.3;   
-   player iPrintlnBold( "^5 250" ); 
-   level.activ iPrintlnBold( "^5 250" ); 
+   level.activ iPrintlnBold( "^4 200" );
    wait 0.3;
-   player iPrintlnBold( "^6 300" ); 
-   level.activ iPrintlnBold( "^6 300" ); 
+   player iPrintlnBold( "^5 250" );
+   level.activ iPrintlnBold( "^5 250" );
    wait 0.3;
-   player iPrintlnBold( "^7 350" ); 
-   level.activ iPrintlnBold( "^7 350" ); 
+   player iPrintlnBold( "^6 300" );
+   level.activ iPrintlnBold( "^6 300" );
    wait 0.3;
-   player iPrintlnBold( "^8 400" ); 
-   level.activ iPrintlnBold( "^8 400" ); 
+   player iPrintlnBold( "^7 350" );
+   level.activ iPrintlnBold( "^7 350" );
    wait 0.3;
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
+   player iPrintlnBold( "^8 400" );
+   level.activ iPrintlnBold( "^8 400" );
    wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
    wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
+   wait 0.3;
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
    wait 0.3;
    player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   iPrintlnBold( "^9 Speed = ^4 200" ); 
-   player SetMoveSpeedScale(1.5);
-   level.activ SetMoveSpeedScale(1.5);
+   level.activ iPrintlnBold( "^4 200" );
+   wait 0.3;
+   player iPrintlnBold( "^5 250" );
+   level.activ iPrintlnBold( "^5 250" );
+   wait 0.3;
+   player iPrintlnBold( "^6 300" );
+   level.activ iPrintlnBold( "^6 300" );
+   wait 0.3;
+   player iPrintlnBold( "^7 350" );
+   level.activ iPrintlnBold( "^7 350" );
+   wait 0.3;
+   player iPrintlnBold( "^8 400" );
+   level.activ iPrintlnBold( "^8 400" );
+   wait 0.3;
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
+   wait 0.3;
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
+   wait 0.3;
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
+   wait 0.3;
+   player iPrintlnBold( "^4 200" );
+   level.activ iPrintlnBold( "^4 200" );
+   iPrintlnBold( "^9 Speed = ^4 200" );
+   player sr\api\_player::setPlayerSpeedScale(1.5);
+   level.activ sr\api\_player::setPlayerSpeedScale(1.5);
 }
 
 	if(random == 4)
 {
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
    wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
    wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
-   wait 0.3;
-   player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   wait 0.3;   
-   player iPrintlnBold( "^5 250" ); 
-   level.activ iPrintlnBold( "^5 250" ); 
-   wait 0.3;
-   player iPrintlnBold( "^6 300" ); 
-   level.activ iPrintlnBold( "^6 300" ); 
-   wait 0.3;
-   player iPrintlnBold( "^7 350" ); 
-   level.activ iPrintlnBold( "^7 350" ); 
-   wait 0.3;
-   player iPrintlnBold( "^8 400" ); 
-   level.activ iPrintlnBold( "^8 400" );  
-   wait 0.3;
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
-   wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
-   wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
    wait 0.3;
    player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   wait 0.3;   
-   player iPrintlnBold( "^5 250" ); 
-   level.activ iPrintlnBold( "^5 250" ); 
+   level.activ iPrintlnBold( "^4 200" );
    wait 0.3;
-   player iPrintlnBold( "^6 300" ); 
-   level.activ iPrintlnBold( "^6 300" ); 
-   wait 0.3;
-   player iPrintlnBold( "^7 350" ); 
-   level.activ iPrintlnBold( "^7 350" ); 
-   wait 0.3;
-   player iPrintlnBold( "^8 400" ); 
-   level.activ iPrintlnBold( "^8 400" ); 
-   wait 0.3;
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
-   wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
-   wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
-   wait 0.3;
-   player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   wait 0.3;   
    player iPrintlnBold( "^5 250" );
-   level.activ iPrintlnBold( "^5 250" ); 
-   iPrintlnBold( "^9 Speed = ^5 250" ); 
-   player SetMoveSpeedScale(2);
-   level.activ SetMoveSpeedScale(2);
+   level.activ iPrintlnBold( "^5 250" );
+   wait 0.3;
+   player iPrintlnBold( "^6 300" );
+   level.activ iPrintlnBold( "^6 300" );
+   wait 0.3;
+   player iPrintlnBold( "^7 350" );
+   level.activ iPrintlnBold( "^7 350" );
+   wait 0.3;
+   player iPrintlnBold( "^8 400" );
+   level.activ iPrintlnBold( "^8 400" );
+   wait 0.3;
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
+   wait 0.3;
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
+   wait 0.3;
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
+   wait 0.3;
+   player iPrintlnBold( "^4 200" );
+   level.activ iPrintlnBold( "^4 200" );
+   wait 0.3;
+   player iPrintlnBold( "^5 250" );
+   level.activ iPrintlnBold( "^5 250" );
+   wait 0.3;
+   player iPrintlnBold( "^6 300" );
+   level.activ iPrintlnBold( "^6 300" );
+   wait 0.3;
+   player iPrintlnBold( "^7 350" );
+   level.activ iPrintlnBold( "^7 350" );
+   wait 0.3;
+   player iPrintlnBold( "^8 400" );
+   level.activ iPrintlnBold( "^8 400" );
+   wait 0.3;
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
+   wait 0.3;
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
+   wait 0.3;
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
+   wait 0.3;
+   player iPrintlnBold( "^4 200" );
+   level.activ iPrintlnBold( "^4 200" );
+   wait 0.3;
+   player iPrintlnBold( "^5 250" );
+   level.activ iPrintlnBold( "^5 250" );
+   iPrintlnBold( "^9 Speed = ^5 250" );
+   player sr\api\_player::setPlayerSpeedScale(2);
+   level.activ sr\api\_player::setPlayerSpeedScale(2);
 }
 
 	if(random == 5)
 {
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
    wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
    wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
-   wait 0.3;
-   player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   wait 0.3;   
-   player iPrintlnBold( "^5 250" ); 
-   level.activ iPrintlnBold( "^5 250" ); 
-   wait 0.3;
-   player iPrintlnBold( "^6 300" ); 
-   level.activ iPrintlnBold( "^6 300" ); 
-   wait 0.3;
-   player iPrintlnBold( "^7 350" ); 
-   level.activ iPrintlnBold( "^7 350" ); 
-   wait 0.3;
-   player iPrintlnBold( "^8 400" ); 
-   level.activ iPrintlnBold( "^8 400" );  
-   wait 0.3;
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
-   wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
-   wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
    wait 0.3;
    player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   wait 0.3;   
-   player iPrintlnBold( "^5 250" ); 
-   level.activ iPrintlnBold( "^5 250" ); 
+   level.activ iPrintlnBold( "^4 200" );
    wait 0.3;
-   player iPrintlnBold( "^6 300" ); 
-   level.activ iPrintlnBold( "^6 300" ); 
-   wait 0.3;
-   player iPrintlnBold( "^7 350" ); 
-   level.activ iPrintlnBold( "^7 350" ); 
-   wait 0.3;
-   player iPrintlnBold( "^8 400" ); 
-   level.activ iPrintlnBold( "^8 400" ); 
-   wait 0.3;
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
-   wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
-   wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
-   wait 0.3;
-   player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   wait 0.3;   
    player iPrintlnBold( "^5 250" );
-   level.activ iPrintlnBold( "^5 250" ); 
+   level.activ iPrintlnBold( "^5 250" );
    wait 0.3;
    player iPrintlnBold( "^6 300" );
-   level.activ iPrintlnBold( "^6 300" ); 
-   iPrintlnBold( "^9 Speed = ^6 300" ); 
-   player SetMoveSpeedScale(2.5);
-   level.activ SetMoveSpeedScale(2.5);
+   level.activ iPrintlnBold( "^6 300" );
+   wait 0.3;
+   player iPrintlnBold( "^7 350" );
+   level.activ iPrintlnBold( "^7 350" );
+   wait 0.3;
+   player iPrintlnBold( "^8 400" );
+   level.activ iPrintlnBold( "^8 400" );
+   wait 0.3;
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
+   wait 0.3;
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
+   wait 0.3;
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
+   wait 0.3;
+   player iPrintlnBold( "^4 200" );
+   level.activ iPrintlnBold( "^4 200" );
+   wait 0.3;
+   player iPrintlnBold( "^5 250" );
+   level.activ iPrintlnBold( "^5 250" );
+   wait 0.3;
+   player iPrintlnBold( "^6 300" );
+   level.activ iPrintlnBold( "^6 300" );
+   wait 0.3;
+   player iPrintlnBold( "^7 350" );
+   level.activ iPrintlnBold( "^7 350" );
+   wait 0.3;
+   player iPrintlnBold( "^8 400" );
+   level.activ iPrintlnBold( "^8 400" );
+   wait 0.3;
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
+   wait 0.3;
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
+   wait 0.3;
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
+   wait 0.3;
+   player iPrintlnBold( "^4 200" );
+   level.activ iPrintlnBold( "^4 200" );
+   wait 0.3;
+   player iPrintlnBold( "^5 250" );
+   level.activ iPrintlnBold( "^5 250" );
+   wait 0.3;
+   player iPrintlnBold( "^6 300" );
+   level.activ iPrintlnBold( "^6 300" );
+   iPrintlnBold( "^9 Speed = ^6 300" );
+   player sr\api\_player::setPlayerSpeedScale(2.5);
+   level.activ sr\api\_player::setPlayerSpeedScale(2.5);
 }
 
 	if(random == 6)
 {
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
    wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
    wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
-   wait 0.3;
-   player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   wait 0.3;   
-   player iPrintlnBold( "^5 250" ); 
-   level.activ iPrintlnBold( "^5 250" ); 
-   wait 0.3;
-   player iPrintlnBold( "^6 300" ); 
-   level.activ iPrintlnBold( "^6 300" ); 
-   wait 0.3;
-   player iPrintlnBold( "^7 350" ); 
-   level.activ iPrintlnBold( "^7 350" ); 
-   wait 0.3;
-   player iPrintlnBold( "^8 400" ); 
-   level.activ iPrintlnBold( "^8 400" );  
-   wait 0.3;
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
-   wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
-   wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
    wait 0.3;
    player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   wait 0.3;   
-   player iPrintlnBold( "^5 250" ); 
-   level.activ iPrintlnBold( "^5 250" ); 
+   level.activ iPrintlnBold( "^4 200" );
    wait 0.3;
-   player iPrintlnBold( "^6 300" ); 
-   level.activ iPrintlnBold( "^6 300" ); 
-   wait 0.3;
-   player iPrintlnBold( "^7 350" ); 
-   level.activ iPrintlnBold( "^7 350" ); 
-   wait 0.3;
-   player iPrintlnBold( "^8 400" ); 
-   level.activ iPrintlnBold( "^8 400" ); 
-   wait 0.3;
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
-   wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
-   wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
-   wait 0.3;
-   player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   wait 0.3;   
    player iPrintlnBold( "^5 250" );
-   level.activ iPrintlnBold( "^5 250" ); 
+   level.activ iPrintlnBold( "^5 250" );
    wait 0.3;
    player iPrintlnBold( "^6 300" );
-   level.activ iPrintlnBold( "^6 300" ); 
+   level.activ iPrintlnBold( "^6 300" );
    wait 0.3;
    player iPrintlnBold( "^7 350" );
-   level.activ iPrintlnBold( "^7 350" ); 
-   iPrintlnBold( "^9 Speed = ^7 350" ); 
-   player SetMoveSpeedScale(3);
-   level.activ SetMoveSpeedScale(3);
+   level.activ iPrintlnBold( "^7 350" );
+   wait 0.3;
+   player iPrintlnBold( "^8 400" );
+   level.activ iPrintlnBold( "^8 400" );
+   wait 0.3;
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
+   wait 0.3;
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
+   wait 0.3;
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
+   wait 0.3;
+   player iPrintlnBold( "^4 200" );
+   level.activ iPrintlnBold( "^4 200" );
+   wait 0.3;
+   player iPrintlnBold( "^5 250" );
+   level.activ iPrintlnBold( "^5 250" );
+   wait 0.3;
+   player iPrintlnBold( "^6 300" );
+   level.activ iPrintlnBold( "^6 300" );
+   wait 0.3;
+   player iPrintlnBold( "^7 350" );
+   level.activ iPrintlnBold( "^7 350" );
+   wait 0.3;
+   player iPrintlnBold( "^8 400" );
+   level.activ iPrintlnBold( "^8 400" );
+   wait 0.3;
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
+   wait 0.3;
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
+   wait 0.3;
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
+   wait 0.3;
+   player iPrintlnBold( "^4 200" );
+   level.activ iPrintlnBold( "^4 200" );
+   wait 0.3;
+   player iPrintlnBold( "^5 250" );
+   level.activ iPrintlnBold( "^5 250" );
+   wait 0.3;
+   player iPrintlnBold( "^6 300" );
+   level.activ iPrintlnBold( "^6 300" );
+   wait 0.3;
+   player iPrintlnBold( "^7 350" );
+   level.activ iPrintlnBold( "^7 350" );
+   iPrintlnBold( "^9 Speed = ^7 350" );
+   player sr\api\_player::setPlayerSpeedScale(3);
+   level.activ sr\api\_player::setPlayerSpeedScale(3);
 }
 
 	if(random == 7)
 {
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
    wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
    wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
-   wait 0.3;
-   player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   wait 0.3;   
-   player iPrintlnBold( "^5 250" ); 
-   level.activ iPrintlnBold( "^5 250" ); 
-   wait 0.3;
-   player iPrintlnBold( "^6 300" ); 
-   level.activ iPrintlnBold( "^6 300" ); 
-   wait 0.3;
-   player iPrintlnBold( "^7 350" ); 
-   level.activ iPrintlnBold( "^7 350" ); 
-   wait 0.3;
-   player iPrintlnBold( "^8 400" ); 
-   level.activ iPrintlnBold( "^8 400" );  
-   wait 0.3;
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
-   wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
-   wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
    wait 0.3;
    player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   wait 0.3;   
-   player iPrintlnBold( "^5 250" ); 
-   level.activ iPrintlnBold( "^5 250" ); 
+   level.activ iPrintlnBold( "^4 200" );
    wait 0.3;
-   player iPrintlnBold( "^6 300" ); 
-   level.activ iPrintlnBold( "^6 300" ); 
-   wait 0.3;
-   player iPrintlnBold( "^7 350" ); 
-   level.activ iPrintlnBold( "^7 350" ); 
-   wait 0.3;
-   player iPrintlnBold( "^8 400" ); 
-   level.activ iPrintlnBold( "^8 400" ); 
-   wait 0.3;
-   player iPrintlnBold( "^1 50" ); 
-   level.activ iPrintlnBold( "^1 50" ); 
-   wait 0.3;
-   player iPrintlnBold( "^2 100" ); 
-   level.activ iPrintlnBold( "^2 100" ); 
-   wait 0.3;
-   player iPrintlnBold( "^3 150" ); 
-   level.activ iPrintlnBold( "^3 150" ); 
-   wait 0.3;
-   player iPrintlnBold( "^4 200" );
-   level.activ iPrintlnBold( "^4 200" ); 
-   wait 0.3;   
    player iPrintlnBold( "^5 250" );
-   level.activ iPrintlnBold( "^5 250" ); 
+   level.activ iPrintlnBold( "^5 250" );
    wait 0.3;
    player iPrintlnBold( "^6 300" );
-   level.activ iPrintlnBold( "^6 300" ); 
+   level.activ iPrintlnBold( "^6 300" );
    wait 0.3;
    player iPrintlnBold( "^7 350" );
-   level.activ iPrintlnBold( "^7 350" ); 
+   level.activ iPrintlnBold( "^7 350" );
    wait 0.3;
    player iPrintlnBold( "^8 400" );
-   level.activ iPrintlnBold( "^8 400" );  
-   iPrintlnBold( "^9 Speed = ^8 400" ); 
-   player SetMoveSpeedScale(3.5);
-   level.activ SetMoveSpeedScale(3.5);
+   level.activ iPrintlnBold( "^8 400" );
+   wait 0.3;
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
+   wait 0.3;
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
+   wait 0.3;
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
+   wait 0.3;
+   player iPrintlnBold( "^4 200" );
+   level.activ iPrintlnBold( "^4 200" );
+   wait 0.3;
+   player iPrintlnBold( "^5 250" );
+   level.activ iPrintlnBold( "^5 250" );
+   wait 0.3;
+   player iPrintlnBold( "^6 300" );
+   level.activ iPrintlnBold( "^6 300" );
+   wait 0.3;
+   player iPrintlnBold( "^7 350" );
+   level.activ iPrintlnBold( "^7 350" );
+   wait 0.3;
+   player iPrintlnBold( "^8 400" );
+   level.activ iPrintlnBold( "^8 400" );
+   wait 0.3;
+   player iPrintlnBold( "^1 50" );
+   level.activ iPrintlnBold( "^1 50" );
+   wait 0.3;
+   player iPrintlnBold( "^2 100" );
+   level.activ iPrintlnBold( "^2 100" );
+   wait 0.3;
+   player iPrintlnBold( "^3 150" );
+   level.activ iPrintlnBold( "^3 150" );
+   wait 0.3;
+   player iPrintlnBold( "^4 200" );
+   level.activ iPrintlnBold( "^4 200" );
+   wait 0.3;
+   player iPrintlnBold( "^5 250" );
+   level.activ iPrintlnBold( "^5 250" );
+   wait 0.3;
+   player iPrintlnBold( "^6 300" );
+   level.activ iPrintlnBold( "^6 300" );
+   wait 0.3;
+   player iPrintlnBold( "^7 350" );
+   level.activ iPrintlnBold( "^7 350" );
+   wait 0.3;
+   player iPrintlnBold( "^8 400" );
+   level.activ iPrintlnBold( "^8 400" );
+   iPrintlnBold( "^9 Speed = ^8 400" );
+   player sr\api\_player::setPlayerSpeedScale(3.5);
+   level.activ sr\api\_player::setPlayerSpeedScale(3.5);
 }
 
 break;
@@ -2311,7 +2311,7 @@ weapons() // Script de la map semtex
    level.sniper_trigger delete();
    level.race delete();
    level.firstenter=false;
-   } 
+   }
 	iPrintlnBold(player.name + " ^1Selected Weapons Way^7!!");
 	player freezeControls(1);
     player SetOrigin((-11736, -13864, 776));
@@ -2327,23 +2327,23 @@ weapons() // Script de la map semtex
 	weapon = "rpg_mp";
 	if(i == 1)
 	{
-		weapon = "rpg_mp";  
+		weapon = "rpg_mp";
 	}
 	else if(i == 2)
 	{
-		weapon = "winchester1200_mp"; 
+		weapon = "winchester1200_mp";
 	}
 	else if(i == 3)
 	{
-		weapon = "g3_mp"; 
+		weapon = "g3_mp";
 	}
 	else if(i == 4)
 	{
-		weapon = "ak47_mp"; 
+		weapon = "ak47_mp";
 	}
 	else if(i == 5)
 	{
-		weapon = "rpd_mp"; 
+		weapon = "rpd_mp";
 	}
 	player giveweapon(weapon);
 	level.activ giveweapon(weapon);
@@ -2397,7 +2397,7 @@ musictrig() //dsl lolz je te l'ai volé mais je ne savais vraiment pas comment f
     trig waittill("trigger", player);
 	thread secretxpjumper();
     player openMenu("presentation");
- 
+
     for(;;)
     {
         player waittill("menuresponse", menu, response);
@@ -2408,12 +2408,12 @@ musictrig() //dsl lolz je te l'ai volé mais je ne savais vraiment pas comment f
             {
                 self loops(response);
             }
-            else if(self.musicon == 1 && response != self.currentmusic) 
+            else if(self.musicon == 1 && response != self.currentmusic)
             {
                 self loops(response);
             }
          }
-       
+
 		trig delete();
 		break;
     }
@@ -2421,7 +2421,7 @@ musictrig() //dsl lolz je te l'ai volé mais je ne savais vraiment pas comment f
 }
 
 loops(response)
-{	
+{
 
     switch(response)
     {
@@ -2451,9 +2451,9 @@ loops(response)
 		thread partymusic();
             break;
     }
-   
+
 }
- 
+
 partymusic()
 {
 x = randomint(5);

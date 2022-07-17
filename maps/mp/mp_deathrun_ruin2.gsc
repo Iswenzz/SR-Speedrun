@@ -28,7 +28,7 @@ trigger.radius = 255;
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	thread maps\mp\_battlecast::init();
 	level._effect["snowfx_mountain"] = LoadFX("deathrun/snowfx_mountain");
 	level._effect["ambient_fire_med"] = LoadFX("fire/firelp_med_pm");
@@ -56,7 +56,7 @@ trigger.radius = 255;
 	level.skeleton_dust = LoadFX("deathrun/skeleton_dust");
 	level.laser_deathfx = LoadFX("deathrun/deathfx");
 	level.mine_explosion = LoadFX("deathrun/stonemine_explosion");
-	
+
 	level.finalfight2_fireball_impact = LoadFX("masseffect/fire_impact");
 	level.finalfight2_fireball_incomming = LoadFX("masseffect/fire_incomming");
 	level.finalfight2_orb = LoadFX("masseffect/orb_center");
@@ -65,11 +65,11 @@ trigger.radius = 255;
 	PrecacheItem("plasma_mp");
 	PrecacheModel("projectile_at4");
 	PrecacheShellShock("frag_grenade_mp");
-	
+
 	level.secret_found = false;
 	level.maxfallheight = getDvarInt("bg_falldamagemaxheight");
 	level.minfallheight = getDvarInt("bg_falldamageminheight");
-	
+
 	thread way_connect();
 	thread CreateFXs();
 	thread WatchGame();
@@ -81,9 +81,9 @@ trigger.radius = 255;
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -103,7 +103,7 @@ CreateFXs()
 	weatherfx.v[ "angles" ] = ( 270, 0, 0 );
 	weatherfx.v[ "fxid" ] = "snowfx_mountain";
 	weatherfx.v[ "delay" ] = -15;
-	
+
 	fire_med = getentarray("ambient_fire_med", "targetname");
 	for(i=0;i<fire_med.size;i++)
 	{
@@ -139,7 +139,7 @@ CreateFXs()
 	fx_biglaser.v[ "angles" ] = ( 270, 0, 0 );
 	fx_biglaser.v[ "fxid" ] = "big_laser";
 	fx_biglaser.v[ "delay" ] = -15;
-	
+
 	dragon = getent("ambient_dragon_fire", "targetname");
 	fx_dragonfire = maps\mp\_utility::createOneshotEffect( "dragonfire" );
 	fx_dragonfire.v[ "origin" ] = dragon.origin;
@@ -147,14 +147,14 @@ CreateFXs()
 	fx_dragonfire.v[ "fxid" ] = "dragonfire";
 	fx_dragonfire.v[ "delay" ] = -15;
 	fx_dragonfire.v[ "soundalias" ] = "fire_metal_large";
-	
+
 	orbs = getent("ambient_magicorbs", "targetname");
 	magicorbs = maps\mp\_utility::createOneshotEffect( "magicorbs" );
 	magicorbs.v[ "origin" ] = orbs.origin;
 	magicorbs.v[ "angles" ] = ( 270, 0, 0 );
 	magicorbs.v[ "fxid" ] = "magicorbs";
 	magicorbs.v[ "delay" ] = -15;
-	
+
 	tele_blue = getentarray("ambient_teleportfx_blue", "targetname");
 	for(i=0;i<tele_blue.size;i++)
 	{
@@ -216,10 +216,10 @@ LastJumper()
 		players[i].secrets_false = 0;
 	}
 	wait 1;
-	
+
 	if( GetTeamPlayersAlive("allies") < 2 )
 		return;
-	
+
 	while(1)
 	{
 		if( getTeamPlayersAlive("allies") < 1 || getTeamPlayersAlive("axis") < 1 )
@@ -249,15 +249,15 @@ WatchEndGate()
 	gate1 = getent("endgate_1", "targetname");
 	gate2 = getent("endgate_2", "targetname");
 	trig = getent("endgate_trigger", "targetname");
-	
+
 	wait 1;
 	trig delete();
-	
+
 	gate1.endpos = gate1.origin+(0,56,0);
 	gate2.endpos = gate2.origin-(0,56,0);
-	
+
 	wait 0.1;
-	
+
 	gate1 MoveY( 56, 4, 1, 1 );
 	gate2 MoveY( -56, 4, 1, 1 );
 	gate1 PlaySound("stonemove2");
@@ -267,7 +267,7 @@ WatchEndGate()
 	gate2.origin = gate2.endpos;
 	gate1 PlaySound("stoneimpact");
 	gate2 PlaySound("stoneimpact");
-	
+
 	// if( isDefined( player ) )
 		// iprintlnbold( player.name + " opened the end gate...");
 	// else
@@ -314,7 +314,7 @@ GetTeleporters()
 DoTeleporter()
 {
 	target = getent( self.target, "targetname");
-	
+
 	while(1)
 	{
 		self waittill("trigger", player );
@@ -332,19 +332,19 @@ EvilSkeleton()
 	wall = getent("evil_skeleton_wall", "targetname");
 	wall PlayLoopSound("stonemove_fast");
 	wall MoveZ( -144, 1, 0.5, 0 );
-	
+
 	wait 1;
 	wall StopLoopSound();
-	
+
 	skel = getent("evil_skeleton", "targetname");
 	//x = -320
-	
+
 	skel PlaySound("scream");
 	skel MoveX( -320, 1, 0.5, 0 );
 	skel thread WatchEvilSkeleton();
-	
+
 	wait 1;
-	
+
 	skel notify("stop_skeleton");
 	PlayFX( level.skeleton_dust, skel.origin+(64,0,0) );
 	EarthQuake( 0.5, 0.5, skel.origin+(64,0,0), 400 );
@@ -354,9 +354,9 @@ EvilSkeleton()
 WatchEvilSkeleton()
 {
 	self endon("stop_skeleton");
-	
+
 	players = getentarray("player", "classname");
-	
+
 	while(1)
 	{
 		if( !isDefined( self ) )
@@ -384,16 +384,16 @@ LaserRoom()
 		stair[i].oldpos = stair[i].origin;
 		stair[i].origin -= (0,0,400);
 	}
-	
+
 	wait 1;
-	
+
 	trig = getent("laserroom_switch_trig", "targetname");
 	// trig waittill("trigger");
 	swt = getent("laserroom_switch", "targetname");
 	swt RotatePitch( 70, 1, 0.5, 0.5 );
-	
+
 	wait 2;
-	
+
 	for(i=0;i<stair.size;i++)
 	{
 		stair[i] MoveTo( stair[i].oldpos, 4, 0, 0.5 );
@@ -409,7 +409,7 @@ LaserRoom()
 WatchLaserTrigger()
 {
 	trig = getent("big_laser_trigger", "targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger", player );
@@ -477,22 +477,22 @@ WatchSkullSwitch()
 {
 	trig = getent("skull_switch_trigger", "targetname");
 	swt = getent("skull_switch", "targetname");
-	
+
 	wait 1;
 	trig delete();
-	
+
 	swt RotatePitch( -70, 1, 1, 0 );
 	wait 1;
-	
+
 	fxobj = getentarray("ambient_waterfall", "targetname");
 	for(i=0;i<fxobj.size;i++)
 		PlayFX( level.skull_glow, fxobj[i].origin );
-	
+
 	skull = getent("skeleton_skull", "targetname");
 	skull PlaySound("skull_explode");
-	
+
 	wait 3.7;
-	
+
 	quake = 0.1;
 	for(i=0;i<25;i++)
 	{
@@ -577,7 +577,7 @@ GetWaterTriggers()
 }
 
 WatchWaterTrigger()
-{	
+{
 	while(1)
 	{
 		self waittill("trigger", player );
@@ -598,20 +598,20 @@ WatchGate()
 {
 	left = getent("gate_left", "targetname");
 	right = getent("gate_right", "targetname");
-	
+
 	trig = getent("gateopen_trigger", "targetname");
-	
+
 	wait 1;
-	
+
 	// trig waittill("trigger", who );
 	trig delete();
-	
+
 	left delete();
 	right delete();
-	
+
 	largedust = getent("fx_gateopen_large", "targetname");
 	PlayFX( level.gateopen_dust_large, largedust.origin );
-	
+
 	wait 6;
 }
 
@@ -628,7 +628,7 @@ onConnected()
 onSpawn()
 {
 	self endon("disconnect");
-	
+
 	while(1)
 	{
 		self waittill("spawned_player");
@@ -653,9 +653,9 @@ GraphicSettings()
 FinalFight()
 {
 	level waittill("activator", acti );
-	
+
 	trig = getent("end_trigger", "targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger", player );
@@ -682,14 +682,14 @@ DoFinalFight1( acti, player )
 {
 	AmbientStop(3);
 	MusicStop(3);
-	
+
 	VisionSetNaked( "mpIntro", 3 );
-	
+
 	acti FreezeControls(1);
 	player FreezeControls(1);
-	
+
 	wait 3;
-	
+
 	SoundOnPlayers( "dum" );
 	level.blackhud = NewHudElem();
 	level.blackhud.horzalign = "fullscreen";
@@ -697,24 +697,24 @@ DoFinalFight1( acti, player )
 	level.blackhud.color = (0,0,0);
 	level.blackhud setShader("white", 640, 480 );
 	wait 2;
-	
+
 	acti TakeAllWeapons();
 	acti GiveWeapon("knife_mp");
 	acti SetSpawnWeapon("knife_mp");
 	player TakeAllWeapons();
 	player GiveWeapon("knife_mp");
 	player SetSpawnWeapon("knife_mp");
-	
+
 	tele_acti = getentarray("finalfight1_activator", "targetname");
 	tele_jumper = getentarray("finalfight1_jumper", "targetname");
 	x = RandomInt( tele_acti.size );
 	acti SetPlayerAngles( tele_acti[x].angles );
 	acti SetOrigin( tele_acti[x].origin );
-	
+
 	x = RandomInt( tele_jumper.size );
 	player SetPlayerAngles( tele_jumper[x].angles );
 	player SetOrigin( tele_jumper[x].origin );
-	
+
 	players = getentarray("player", "classname");
 	noti = SpawnStruct();
 	noti.titleText = "*|Final Fight|*";
@@ -723,17 +723,17 @@ DoFinalFight1( acti, player )
 	noti.glowcolor = (0,0,1);
 	for(i=0;i<players.size;i++)
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-	
+
 	wait 2;
-	
+
 	SoundOnPlayers( "dum" );
 	level.blackhud.alpha = 0;
-	
+
 	wait 3;
-	
+
 	SoundOnPlayers( "dum" );
 	level.blackhud.alpha = 1;
-	
+
 	noti = SpawnStruct();
 	noti.titleText = acti.name + " VS " + player.name;
 	noti.notifyText = "GET READY!";
@@ -741,28 +741,28 @@ DoFinalFight1( acti, player )
 	noti.glowcolor = (0,0,1);
 	for(i=0;i<players.size;i++)
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-	
+
 	wait 2;
-	
+
 	SoundOnPlayers( "dum" );
 	level.blackhud.alpha = 0;
-	
+
 	VisionSetNaked( "finalfight_mp", 3 );
 	wait 3;
-	
+
 	AmbientPlay("finalfight1");
 	iprintlnbold("^1F  I  G  H  T!!!");
-	
+
 	acti FreezeControls(0);
 	player FreezeControls(0);
-	
+
 	acti iprintlnbold("Press ^2Attack ^7to cast the current spell!");
 	acti iprintlnbold("Press ^2Grenade ^7to switch to another spell!");
 	acti thread maps\mp\_battlecast::FinalFightPower();
 	player iprintlnbold("Press ^2Attack ^7to cast the current spell!");
 	player iprintlnbold("Press ^2Grenade ^7to switch to another spell!");
 	player thread maps\mp\_battlecast::FinalFightPower();
-	
+
 	setDvar("bg_falldamagemaxheight", 2000 );
 	setDvar("bg_falldamageminheight", 1500 );
 }
@@ -771,17 +771,17 @@ DoFinalFight2( acti, player )
 {
 	AmbientStop(3);
 	MusicStop(3);
-	
+
 	acti FreezeControls(1);
 	player FreezeControls(1);
-	
+
 	VisionSetNaked( "mpIntro", 3 );
-	
+
 	wait 3;
-	
+
 	teleA = getent("finalfight2_activator", "targetname");
 	teleJ = getent("finalfight2_jumper", "targetname");
-	
+
 	acti SetPlayerAngles( teleA.angles );
 	acti SetOrigin( teleA.origin );
 	acti TakeAllWeapons();
@@ -792,12 +792,12 @@ DoFinalFight2( acti, player )
 	player TakeAllWeapons();
 	player giveWeapon("knife_mp");
 	player SetSpawnWeapon("knife_mp");
-	
+
 	AmbientPlay("finalfight2");
-	
+
 	thread Effects1();
 	thread Effects2();
-	
+
 	players = getentarray("player", "classname");
 	noti = SpawnStruct();
 	noti.titleText = "*|MASSEFFECT-FIGHT|*";
@@ -806,9 +806,9 @@ DoFinalFight2( acti, player )
 	noti.glowcolor = (0,0,1);
 	for(i=0;i<players.size;i++)
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-		
+
 	wait 5;
-	
+
 	noti = SpawnStruct();
 	noti.titleText = acti.name + " VS " + player.name;
 	noti.notifyText = "Everybody dance now!";
@@ -816,14 +816,14 @@ DoFinalFight2( acti, player )
 	noti.glowcolor = (0,0,1);
 	for(i=0;i<players.size;i++)
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-	
+
 	wait 5;
-	
+
 	iprintlnbold("^5F  I  G  H  T !!!");
-	
+
 	acti FreezeControls(0);
 	player FreezeControls(0);
-	
+
 	VisionSetNaked( "finalfight_mp", 0.5 );
 }
 
@@ -834,7 +834,7 @@ Effects1()
 	ang = 0;
 	fire_pos = undefined;
 	fireball = undefined;
-	
+
 	for(i=0;i<5;i++)
 	{
 		fire_pos[i] = center+AnglesToForward( (0,ang,0) )*420;
@@ -864,19 +864,19 @@ Effects1()
 Effects2()
 {
 	center = (5632,-3584,-1656);
-	
+
 	orb = Spawn("script_model", center );
 	orb SetModel("tag_origin");
 	wait 0.05;
 	PlayFXOnTag( level.finalfight2_orb, orb, "tag_origin" );
 	orb MoveZ( 500, 5, 1, 1 );
-	
+
 	wait 10;
-	
+
 	EarthQuake( 1.5, 1.5, orb.origin, 1600 );
 	pos = orb.origin;
 	orb delete();
-	
+
 	while(1)
 	{
 		PlayFX( level.finalfight2_orb_explosion, pos );
@@ -906,7 +906,7 @@ DoRandomFog()
 DoEarthQuaking()
 {
 	level endon("stop_earthquaking");
-	
+
 	while(1)
 	{
 		EarthQuake( 0.1, 1, self.origin, 500 );
@@ -938,7 +938,7 @@ GetTrapTriggers()
 	level.trapTriggers[9] = getent("trigger_trap10", "targetname");
 	level.trapTriggers[10] = getent("trigger_trap11", "targetname");
 	level.trapTriggers[11] = getent("trigger_trap12", "targetname");
-	
+
 	level.trapTriggers[0] thread TrapTrigger1();
 	level.trapTriggers[1] thread TrapTrigger2();
 	level.trapTriggers[2] thread TrapTrigger3();
@@ -1211,19 +1211,19 @@ DoTrap1()
 DoTrap2()
 {
 	level.trap2_smasher = false;
-	
+
 	smasher = getent("trap2", "targetname");
 	damage = getent("trap2_damage", "targetname");
 	damage EnableLinkTo();
 	damage LinkTo( smasher );
-	
+
 	trapa = getentarray("trap2_a", "targetname");
 	trapb = getentarray("trap2_b", "targetname");
 	trapc = getentarray("trap2_c", "targetname");
 	trapd = getentarray("trap2_d", "targetname");
 	trape = getentarray("trap2_e", "targetname");
 	trapf = getentarray("trap2_f", "targetname");
-	
+
 	trapa[RandomInt(trapa.size)] thread WatchColliding();
 	trapb[RandomInt(trapb.size)] thread WatchColliding();
 	trapc[RandomInt(trapc.size)] thread WatchColliding();
@@ -1235,7 +1235,7 @@ DoTrap2()
 WatchColliding()
 {
 	self endon("touched");
-	
+
 	while(1)
 	{
 		if( !level.trap2_smasher )
@@ -1296,7 +1296,7 @@ DoTrap1Shot( origin, angles )
 	proj = Spawn("script_model", origin );
 	proj SetModel("projectile_at4");
 	proj.angles = angles;
-	
+
 	while(1)
 	{
 		target = proj.origin+AnglesToForward( proj.angles )*30;
@@ -1318,7 +1318,7 @@ DoTrap1Shot( origin, angles )
 }
 
 DoTrap3()
-{	
+{
 	iprintln("Trap 3 activated!");
 	org = getentarray("ambient_laser_blue", "targetname");
 	for(i=0;i<org.size;i++)
@@ -1328,7 +1328,7 @@ DoTrap3()
 WatchLaser()
 {
 	time = 5;
-	
+
 	while(1)
 	{
 		if( time > 0 )
@@ -1354,7 +1354,7 @@ WatchLaser()
 }
 
 DoTrap4()
-{	
+{
 	brush = getent("trap4", "targetname");
 	oldpos = brush.origin;
 	wait 0.1;
@@ -1375,9 +1375,9 @@ DoTrap5()
 	fire_thrower = getentarray("trap5_a", "targetname");
 	for(i=0;i<fire_thrower.size;i++)
 		thread DoFireThrower( fire_thrower[i].origin, fire_thrower[i].angles );
-	
+
 	wait 1.5;
-	
+
 	fire_thrower = getentarray("trap5_b", "targetname");
 	for(i=0;i<fire_thrower.size;i++)
 		thread DoFireThrower( fire_thrower[i].origin, fire_thrower[i].angles );
@@ -1390,7 +1390,7 @@ DoFireThrower( pos, ang )
 	thrower = undefined;
 
 	while(1)
-	{	
+	{
 		if(!isDefined(thrower))
 		{
 			thrower = Spawn("script_model", pos );
@@ -1425,7 +1425,7 @@ DoTrap6()
 	trig EnableLinkTo();
 	trig LinkTo( spikes );
 	trig thread BloodyKillTrigger(2);
-	
+
 	spikes PlaySound("spikes");
 	spikes.oldpos = spikes.origin;
 	wait 0.1;
@@ -1441,13 +1441,13 @@ DoTrap7()
 {
 	rock = getent("trap7_rock", "targetname");
 	bridge = getent("trap7_bridge", "targetname");
-	
+
 	trace = BulletTrace( rock.origin, rock.origin-(0,0,2000), false, rock );
 	flyTime = Distance( rock.origin, trace["position"] ) / 1500;
 	rock MoveTo( trace["position"], flyTime, flytime, 0 );
-	
+
 	wait flyTime;
-	
+
 	bridge PlaySound("bridge_breakdown");
 	//368, 144
 	bridge MoveZ( -388, 2, 1.9, 0.1 );
@@ -1464,12 +1464,12 @@ DoTrap8()
 {
 	walla = getent("trap8_a", "targetname");
 	wallb = getent("trap8_b", "targetname");
-	
+
 	walla.oldpos = walla.origin;
 	wallb.oldpos = wallb.origin;
-	
+
 	wait 0.1;
-	
+
 	trig = getent("trap8_trigger", "targetname");
 	walla PlayLoopSound("stonemove_fast");
 	wallb PlayLoopSound("stonemove_fast");
@@ -1506,12 +1506,12 @@ DoTrap10()
 	blades = getentarray("trap10_blades", "targetname");
 	trig = getent("trap10_trigger", "targetname");
 	clip = getent("trap10_clip", "targetname");
-	
+
 	trig EnableLinkTo();
 	trig LinkTo( blades[RandomInt(blades.size)] );
 	trig thread BloodyKillTrigger(3);
 	clip LinkTo( blades[RandomInt(blades.size)] );
-	
+
 	for(i=0;i<blades.size;i++)
 	{
 		blades[i].oldpos = blades[i].origin;
@@ -1525,7 +1525,7 @@ DoTrap10()
 	trig notify("stop_trig");
 	trig delete();
 	wait 1;
-	
+
 	for(i=0;i<blades.size;i++)
 		blades[i] MoveTo( blades[i].oldpos, 2, 0.5, 0.5 );
 }
@@ -1534,11 +1534,11 @@ DoTrap11()
 {
 	spikes = getent("trap11_spikes", "targetname");
 	trig = getent("trap11_trigger", "targetname");
-	
+
 	trig thread BloodyKillTrigger( 2 );
 	trig EnableLinkTo();
 	trig LinkTo( spikes );
-	
+
 	spikes MoveZ( -192, 0.5, 0.5, 0 );
 	spikes PlaySound("spikes");
 	wait 0.5;
@@ -1553,11 +1553,11 @@ DoTrap12()
 {
 	smasher = getent("trap12_smasher", "targetname");
 	trig = getent("trap12_trigger", "targetname");
-	
+
 	trig thread BloodyKillTrigger( 2 );
 	trig EnableLinkTo();
 	trig LinkTo( smasher );
-	
+
 	smasher.oldpos = smasher.origin;
 	wait 0.1;
 	smasher MoveZ( -256, 0.5, 0.5, 0 );
@@ -1573,10 +1573,10 @@ DoTrap12()
 BloodyKillTrigger( count )
 {
 	self endon("stop_trig");
-	
+
 	if( !isDefined( count ) || count < 1 )
 		count = 1;
-	
+
 	while(1)
 	{
 		self waittill("trigger", player );
@@ -1598,21 +1598,21 @@ Allah1()
 	trig = getent("secret1_starttrigger", "targetname");
 	trig waittill("trigger", player );
 	trig delete();
-	
+
 	player iprintlnbold("Find the right switch...");
-	
+
 	trig2 = getent("secret1_switch2_trigger", "targetname");
 	trig2 thread WatchAllahTrigger( false, "secret1_switch2_trigger" );
-	
+
 	trig = getent("secret1_switch1_trigger", "targetname");
 	trig waittill("trigger", player );
 	trig delete();
 	player iprintlnBold("This probably was a good choice...");
 	player.secrets_right++;
-	
+
 	if( isDefined( trig2 ) )
 		trig2 delete();
-	
+
 	swt = getent("secret1_switch1", "targetname");
 	swt MoveX( 8, 1, 0.5, 0.5 );
 	wait 1;
@@ -1624,13 +1624,13 @@ Allah2()
 	trig = getent("secret2_start_trigger", "targetname");
 	trig waittill("trigger", player );
 	trig delete();
-	
+
 	obj = getentarray("secret2_fire_origin", "targetname");
 	for(i=0;i<obj.size;i++)
 		PlayFX( level._effect["magicfire"], obj[i].origin );
-	
+
 	player iprintlnbold("Which could be the right brazier?");
-	
+
 	no1 = getent("secret2_no1", "targetname");
 	no2 = getent("secret2_no2", "targetname");
 	no3 = getent("secret2_no3", "targetname");
@@ -1646,7 +1646,7 @@ Allah3()
 {
 	open = getent("secret3_opentrigger", "targetname");
 	open waittill("trigger", player );
-	
+
 	if( !level.secret_found )
 		player iprintlnbold("You pressed a button...");
 	else
@@ -1654,32 +1654,32 @@ Allah3()
 		player iprintlnbold("The button kinda doesnt work...");
 		return;
 	}
-	
+
 	entrance = getent("secret3_entrance", "targetname");
 	entrance NotSolid();
-	
+
 	start = getent("secret3_starttrigger", "targetname");
 	start waittill("trigger", player );
 	start delete();
-	
+
 	player iprintlnbold("Mother is watching you from down...");
 	player iprintlnbold("Find her, and maybe you will get the perfection...");
-	
+
 	swt = getent("secret3_stair_trigger", "targetname");
 	swt waittill("trigger", player );
 	swt delete();
-	
+
 	player iprintlnbold("You opened the way to mother...");
 	player iprintlnbold("Now find her!");
-	
+
 	for(i=0;i<8;i++)
 	{
 		stair = getent("secret3_stair"+(i+1), "targetname");
 		stair MoveZ( -24*(i+1), 1*(i+1), 1*(i+1), 0 );
 	}
-	
+
 	trig = getent("secret3_mother", "targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger", player );
@@ -1699,7 +1699,6 @@ Allah3()
 				player iprintlnbold("Mother is well pleased with you!");
 				player iprintlnbold("She gave you the ^1PERFECTION!");
 				player thread maps\mp\_battlecast::SuperJumping( 1 );
-				player SetMoveSpeedScale( 1.4 );
 				player.maxhealth += 50;
 				player.health = player.maxhealth;
 				player GiveWeapon("plasma_mp");
@@ -1721,14 +1720,14 @@ WatchAllahTrigger( result, targetname )
 	self.targetname = targetname;
 	self waittill("trigger", player );
 	self delete();
-	
+
 	player iprintlnbold("This probably was a good choice...");
-	
+
 	if( result )
 		player.secrets_right++;
 	else
 		player.secrets_false++;
-	
+
 	trigs = getentarray( targetname, "targetname");
 	for(i=0;i<trigs.size;i++)
 		trigs[i] delete();

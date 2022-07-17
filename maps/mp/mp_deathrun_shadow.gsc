@@ -3,7 +3,7 @@ main()
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 	if(auto_spawn.size > 0)
-		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]); 
+		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 maps\mp\_load::main();
 /* [AUTO DELETE] ambientPlay("jump3"); */
 
@@ -44,7 +44,7 @@ precacheShader( "white" );
  /* [AUTO DELETE] thread printCredits(); */
  // thread jumper();
  /* [AUTO DELETE] thread musictrig(); */
- // thread  [AUTO DELETE] initMusic(); 
+ // thread  [AUTO DELETE] initMusic();
 
 
 level.fire = loadFX("deathrun/myfire");
@@ -59,13 +59,13 @@ level.room = loadFX("deathrun/ui_pickup_available");
  addTriggerToList( "trap2trig" );
  addTriggerToList( "trap3trig" );
  addTriggerToList( "trap4trig" );
- addTriggerToList( "trap5trig" ); 
- addTriggerToList( "trap7trig" ); 
- addTriggerToList( "trap8trig" ); 
- addTriggerToList( "trap8trig" ); 
- addTriggerToList( "trap9trig" ); 
- addTriggerToList( "trap10trig" ); 
- addTriggerToList( "trap11trig" ); 
+ addTriggerToList( "trap5trig" );
+ addTriggerToList( "trap7trig" );
+ addTriggerToList( "trap8trig" );
+ addTriggerToList( "trap8trig" );
+ addTriggerToList( "trap9trig" );
+ addTriggerToList( "trap10trig" );
+ addTriggerToList( "trap11trig" );
  addTriggerToList( "trap12trig" );
  addTriggerToList( "trap13trig" );
  addTriggerToList( "juggernaut_trigger" );
@@ -105,13 +105,13 @@ thread partymode();
 trap1()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trap1trig", "targetname" );
 down = getEnt( "trap1", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
- 
+
 {
 
 down movez( -300, 4 );
@@ -124,7 +124,7 @@ down movez( 300, 4 );
 
 snipmove()
 {
- 
+
 up = getEnt( "movesnip1", "targetname" );
 down = getEnt( "movesnip2", "targetname" );
 
@@ -145,15 +145,15 @@ wait 2;
 trap2()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trap2trig", "targetname" );
 trap21 = getEnt( "trap21", "targetname" );
 trap22 = getEnt( "trap22", "targetname" );
 trap23 = getEnt( "trap23", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
- 
+
 while( 1 )
 {
 
@@ -183,14 +183,14 @@ wait 5;
 trap3()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trap3trig", "targetname" );
 trap3 = getEnt( "trap3", "targetname" );
 killtrigger = getent ("trap3hurt" , "targetname");
- 
+
 trig waittill ("trigger");
 trig delete();
- 
+
 while( 1 )
 {
 
@@ -210,10 +210,10 @@ trap4()
 
 trig = getEnt( "trap4trig", "targetname" );
 trap4 = getEnt( "trap4", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
- 
+
 {
 
 trap4 movez( -200, 2 );
@@ -224,11 +224,11 @@ trap4 movez( -200, 2 );
 trap5()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trap5trig", "targetname" );
 trap51 = getEnt( "trap51", "targetname" );
 trap52 = getEnt( "trap52", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
 
@@ -248,10 +248,10 @@ trap52 movex( 280, 2 );
 trap6()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trap7trig", "targetname" );
 trap6 = getEnt( "trap6666", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
 
@@ -266,11 +266,11 @@ trap6 movez( -200, 2 );
 trap8()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trap8trig", "targetname" );
 trap81 = getEnt( "trap81", "targetname" );
 trap82 = getEnt( "trap82", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
 
@@ -288,10 +288,10 @@ wait 2;
 trap9()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trap9trig", "targetname" );
 trap9 = getEnt( "trap9", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
 
@@ -309,10 +309,10 @@ wait 4;
 trap10()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trap10trig", "targetname" );
 trap10 = getEnt( "trap10", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
 
@@ -329,11 +329,11 @@ wait 2;
 trap11()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trap11trig", "targetname" );
 trap11 = getEnt( "trap11", "targetname" );
 trap111 = getEnt( "trap111", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
 
@@ -357,10 +357,10 @@ wait 1;
 trap12()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trap12trig", "targetname" );
 trap12 = getEnt( "trap12", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
 
@@ -379,11 +379,11 @@ wait 3;
 trap13()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trap13trig", "targetname" );
 trap13 = getEnt( "trap13", "targetname" );
 trap133 = getEnt( "trap133", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
 
@@ -407,9 +407,9 @@ wait 1;
 partymode()
 {
 	for(;;)
-	{	
+	{
 		SetExpFog(256, 200, 0, 0, 0, 0.1);
-        wait .5; 
+        wait .5;
                 SetExpFog(256, 200, 0, 0, 0, 0.1);
 	}
 }
@@ -419,86 +419,86 @@ partymode()
 partymode1()
 {
 	for(;;)
-	{	
-		SetExpFog(256, 900, 1, 0, 0, 0.1); 
-        wait .5; 
-        SetExpFog(256, 900, 0, 1, 0, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0, 0, 1, 0.1); 
-		wait .5; 
-        SetExpFog(256, 900, 0.4, 1, 0.8, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0.8, 0, 0.6, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 1, 1, 0.6, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 1, 1, 1, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0, 0, 0.8, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0.2, 1, 0.8, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0.4, 0.4, 1, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0, 0, 0, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0.4, 0.2, 0.2, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0.4, 1, 1, 0.1); 
-        wait .5; 
-        SetExpFog(256, 900, 0.6, 0, 0.4, 0.1); 
-       wait .5; 
-        SetExpFog(256, 900, 1, 0, 0.8, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 1, 1, 0, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0.6, 1, 0.6, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 1, 0, 0, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0, 1, 0, 0.1); 
-        wait .5; 
-        SetExpFog(256, 900, 0, 0, 1, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0.4, 1, 0.8, 0.1); 
-        wait .5; 
-        SetExpFog(256, 900, 0.8, 0, 0.6, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 1, 1, 0.6, 0.1); 
-        wait .5; 
-        SetExpFog(256, 900, 1, 1, 1, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0, 0, 0.8, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0.2, 1, 0.8, 0.1); 
-        wait .5; 
-        SetExpFog(256, 900, 0.4, 0.4, 1, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0, 0, 0, 0.1); 
-        wait .5; 
-        SetExpFog(256, 900, 0.4, 0.2, 0.2, 0.1); 
-       wait .5; 
-        SetExpFog(256, 900, 0.4, 1, 1, 0.1); 
-        wait .5; 
-        SetExpFog(256, 900, 0.6, 0, 0.4, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 1, 0, 0.8, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 1, 1, 0, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0.6, 1, 0.6, 0.1); 
+	{
+		SetExpFog(256, 900, 1, 0, 0, 0.1);
+        wait .5;
+        SetExpFog(256, 900, 0, 1, 0, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0, 0, 1, 0.1);
+		wait .5;
+        SetExpFog(256, 900, 0.4, 1, 0.8, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0.8, 0, 0.6, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 1, 1, 0.6, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 1, 1, 1, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0, 0, 0.8, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0.2, 1, 0.8, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0.4, 0.4, 1, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0, 0, 0, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0.4, 0.2, 0.2, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0.4, 1, 1, 0.1);
+        wait .5;
+        SetExpFog(256, 900, 0.6, 0, 0.4, 0.1);
+       wait .5;
+        SetExpFog(256, 900, 1, 0, 0.8, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 1, 1, 0, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0.6, 1, 0.6, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 1, 0, 0, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0, 1, 0, 0.1);
+        wait .5;
+        SetExpFog(256, 900, 0, 0, 1, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0.4, 1, 0.8, 0.1);
+        wait .5;
+        SetExpFog(256, 900, 0.8, 0, 0.6, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 1, 1, 0.6, 0.1);
+        wait .5;
+        SetExpFog(256, 900, 1, 1, 1, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0, 0, 0.8, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0.2, 1, 0.8, 0.1);
+        wait .5;
+        SetExpFog(256, 900, 0.4, 0.4, 1, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0, 0, 0, 0.1);
+        wait .5;
+        SetExpFog(256, 900, 0.4, 0.2, 0.2, 0.1);
+       wait .5;
+        SetExpFog(256, 900, 0.4, 1, 1, 0.1);
+        wait .5;
+        SetExpFog(256, 900, 0.6, 0, 0.4, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 1, 0, 0.8, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 1, 1, 0, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0.6, 1, 0.6, 0.1);
 	}
 }
 
 
 teleport1()
 {
-  trig = getEnt( "oldroom", "targetname"); 
+  trig = getEnt( "oldroom", "targetname");
   target = getEnt( "oldentered", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -507,12 +507,12 @@ teleport1()
 
 teleport2()
 {
-  trig = getEnt( "actijump", "targetname"); 
+  trig = getEnt( "actijump", "targetname");
   target = getEnt( "actijumped", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -521,12 +521,12 @@ teleport2()
 
 snipback1()
 {
-  trig = getEnt( "snipback1", "targetname"); 
+  trig = getEnt( "snipback1", "targetname");
   target = getEnt( "sniptpd1", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -535,12 +535,12 @@ snipback1()
 
 snipback2()
 {
-  trig = getEnt( "snipback2", "targetname"); 
+  trig = getEnt( "snipback2", "targetname");
   target = getEnt( "sniptpd2", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -552,13 +552,13 @@ mus()
     level.mus_trig = getEnt( "mus", "targetname" );
     tele_activator = getEnt( "jumperacti", "targetname" );
     tele_jumper = getEnt( "jumperjump", "targetname" );
-                
+
     level.finalJumper = undefined;
 
     while( 1 )
     {
         level.mus_trig waittill( "trigger", player );
-   
+
         if( isDefined( level.finalJumper ) || player.pers["team"] != "allies" )
         continue;
 
@@ -569,10 +569,10 @@ mus()
 
         level.finalJumper = player;
         level.finalJumper thread finalMonitor();
-        
+
         level.finalJumper finalRoom( tele_jumper, "knife_mp", 100 );
 	    level.activ finalRoom( tele_activator, "knife_mp", 100 );
-		
+
 	noti = SpawnStruct();
 				noti.titleText = "Knife";
 				noti.notifyText = level.activ.name + " ^5VS^7 " + player.name;
@@ -601,13 +601,13 @@ mus1()
     level.mus_trig1 = getEnt( "mus1", "targetname" );
     tele_activator = getEnt( "jumpacti", "targetname" );
     tele_jumper = getEnt( "jumpjump", "targetname" );
-                
-    level.finalJumper = undefined; 
+
+    level.finalJumper = undefined;
 
     while( 1 )
     {
         level.mus_trig1 waittill( "trigger", player );
-   
+
         if( isDefined( level.finalJumper ) || player.pers["team"] != "allies" )
         continue;
 
@@ -618,10 +618,10 @@ mus1()
 
         level.finalJumper = player;
         level.finalJumper thread finalMonitor();
-        
+
         level.finalJumper finalRoom1( tele_jumper, "knife_mp", 100 );
 	    level.activ finalRoom1( tele_activator, "knife_mp", 100 );
-		
+
 	noti = SpawnStruct();
 				noti.titleText = "Crazy Knife";
 				noti.notifyText = level.activ.name + " ^5VS^7 " + player.name;
@@ -651,13 +651,13 @@ mus2()
     level.mus_trig2 = getEnt( "mus2", "targetname" );
     tele_activator = getEnt( "snipacti", "targetname" );
     tele_jumper = getEnt( "snipjump", "targetname" );
-                
+
     level.finalJumper = undefined;
 
     while( 1 )
     {
         level.mus_trig2 waittill( "trigger", player );
-   
+
         if( isDefined( level.finalJumper ) || player.pers["team"] != "allies" )
         continue;
 
@@ -668,10 +668,10 @@ mus2()
 
         level.finalJumper = player;
         level.finalJumper thread finalMonitor();
-        
+
         level.finalJumper finalRoom( tele_jumper, "m40a3_mp", 100 );
 	    level.activ finalRoom( tele_activator, "m40a3_mp", 100 );
-		
+
 	noti = SpawnStruct();
 				noti.titleText = "Sniper Room";
 				noti.notifyText = level.activ.name + " ^5VS^7 " + player.name;
@@ -700,13 +700,13 @@ mus3()
     level.mus_trig3 = getEnt( "mus3", "targetname" );
     tele_activator = getEnt( "dogacti", "targetname" );
     tele_jumper = getEnt( "dogjump", "targetname" );
-                
+
     level.finalJumper = undefined;
 
     while( 1 )
     {
         level.mus_trig3 waittill( "trigger", player );
-   
+
         if( isDefined( level.finalJumper ) || player.pers["team"] != "allies" )
         continue;
 
@@ -716,11 +716,11 @@ mus3()
 
         level.finalJumper = player;
         level.finalJumper thread finalMonitor();
-        
+
         level.finalJumper finalRoom3( tele_jumper, "dog_mp", 100 );
 	    level.activ finalRoom3( tele_activator, "dog_mp", 100 );
 
-		
+
 	noti = SpawnStruct();
 				noti.titleText = "Dog Fight";
 				noti.notifyText = level.activ.name + " ^5VS^7 " + player.name;
@@ -800,7 +800,7 @@ finalRoom( tp, weap, health )
 {
     self SetPlayerAngles( tp.angles );
     self SetOrigin( tp.origin );
-    
+
     self TakeAllWeapons(); //this should be called so it takes away insertion perk in dr 1.2
     /* [AUTO DELETE] self GiveWeapon( weap ); */
     /* [AUTO DELETE] self GiveMaxAmmo( weap ); */
@@ -813,12 +813,12 @@ finalRoom1( tp, weap, health )
 {
     self SetPlayerAngles( tp.angles );
     self SetOrigin( tp.origin );
-    
+
     self TakeAllWeapons(); //this should be called so it takes away insertion perk in dr 1.2
     /* [AUTO DELETE] self GiveWeapon( weap ); */
     /* [AUTO DELETE] self GiveMaxAmmo( weap ); */
     /* [AUTO DELETE] self SwitchToWeapon( weap ); */
-	/* [AUTO DELETE] self SetMoveSpeedScale (3.2); */
+	/* [AUTO DELETE] self sr\api\_player::setPlayerSpeedScale (3.2); */
     self thread jumpheight( 4 );
 
 
@@ -829,7 +829,7 @@ finalRoom1( tp, weap, health )
 finalroom2()
 {
     self waittill( "spawned_player" );
-    /* [AUTO DELETE] self SetMoveSpeedScale (1.0); */
+    /* [AUTO DELETE] self sr\api\_player::setPlayerSpeedScale (1.0); */
 
 
 }
@@ -840,9 +840,9 @@ onDeath()
         self endon("disconnect");
 
         self waittill("death");
-		
+
 		/* [AUTO DELETE] iprintlnbold("^5>>>^7" + self.name + "^1 died^5<<<"); */
- 
+
 }
 
 
@@ -850,7 +850,7 @@ finalRoom3( tp, weap, health )
 {
     self SetPlayerAngles( tp.angles );
     self SetOrigin( tp.origin );
-    
+
     self TakeAllWeapons(); //this should be called so it takes away insertion perk in dr 1.2
     self detachAll();
     self setModel("german_sheperd_dog");
@@ -866,13 +866,13 @@ jumpheight( strenght )
 	self endon("disconnect");
 	self endon("death");
 	level endon("game over");
-	
+
 	oldpos = self.origin;
 	jumped = false;
-	
+
 	if( !isDefined( strenght ) || strenght < 1 )
 		strenght = 1;
-	
+
 	while(1)
 	{
 		if((self.origin[2] - oldpos[2] ) > 10  && !self IsOnGround() && !jumped)
@@ -900,9 +900,9 @@ players = getentarray("player", "classname");
 for(i=0;i<=players.size;i++)
             {
             wait 0.1;
-                {	
+                {
 self.hud_music = [];
-i = 0;	
+i = 0;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 270, 360, 1, "left", "top", 1.6 );
 	self.hud_music[i].sort = 885;
 	self.hud_music[i] setText( "^5Map made by ^3MadLion" );
@@ -917,7 +917,7 @@ wait(5);
 thread braxi\_mod::drawInformation( 800, 0.8, 1, "SHADOW" );
 while( 1 )
 {
-self setClientDvar( "r_specular 1", "1" ); 
+self setClientDvar( "r_specular 1", "1" );
 /* [AUTO DELETE] iPrintLn("^4Map made by ^5MadLion"); */
 wait(60);
 /* [AUTO DELETE] iPrintLn("^4xfire: ^5madlion3"); */
@@ -929,18 +929,18 @@ printCredits()
     {
             if( isDefined( self.logoText ) )
                     self.logoText destroy();
-     
+
             self.logoText = newHudElem();
             self.logoText.y = 10;
             self.logoText.alignX = "center";
             self.logoText.alignY = "middle";
             self.logoText.horzAlign = "center_safearea";
-     
+
             self.logoText.alpha = 0;
             self.logoText.sort = -3;
             self.logoText.fontScale = 1.6;
             self.logoText.archieved = true;
-     
+
             for(;;)
             {
                     self.logoText fadeOverTime(1);
@@ -972,7 +972,7 @@ printCredits()
                     self.logoText.alpha = 0;
                     wait 1;
 		}
-	
+
 	}
 
 
@@ -983,7 +983,7 @@ jumper()
 	air2 = getent ("air2","targetname");
 	air3 = getent ("air3","targetname");
 	air4 = getent ("air4","targetname");
-	
+
 
 	time = 2;
 	for(;;)
@@ -991,7 +991,7 @@ jumper()
 		level.jumpx1 waittill ("trigger",user);
 		wait(0.05);
 		if (user istouching(level.jumpx1))
-		{		
+		{
 			air = spawn ("script_model",(0,0,0));
 			air.origin = user.origin;
 			air.angles = user.angles;
@@ -1015,7 +1015,7 @@ initMusic()
 
 	level.music = [];
 
- 
+
 
 	i = 0;
 
@@ -1078,10 +1078,10 @@ initMusic()
 
 	level.music[i]["alias"] = "jump";
 
- 
 
 
- 
+
+
 
 	precacheShader( "deathrun" );
 
@@ -1104,13 +1104,13 @@ musicMenu()
 
 	self endon( "music thread terminated" );
 
- 
+
 
 	self thread onDeathm();
 
 	self thread onDisconnect();
 
- 
+
 
 	self.hud_music = [];
 
@@ -1118,7 +1118,7 @@ musicMenu()
 
 	self.selection = 0;
 
- 
+
 
 	// create huds
 
@@ -1130,7 +1130,7 @@ musicMenu()
 
 	self.hud_music[i] setShader( "deathrun", 320, 160 );
 
- 
+
 
 	i++;
 
@@ -1140,7 +1140,7 @@ musicMenu()
 
 	self.hud_music[i] setText( "^3-^7 Select Music ^3-^7" );
 
- 
+
 
 	i++;
 
@@ -1150,7 +1150,7 @@ musicMenu()
 
 	self.hud_music[i] setText( "Artist ^3-^7 Title ^3-^7 Length" );
 
- 
+
 
 	i++;
 
@@ -1161,7 +1161,7 @@ musicMenu()
 	self.hud_music[i] setText( "Press ^3[LMB]^7: Next Song    Press ^3[USE]^7: Play Song    Press ^3[Nade]^7: Close Menu" );
 
 
- 
+
 
 	for( j = 0; j < level.music.size; j++ )
 
@@ -1179,7 +1179,7 @@ musicMenu()
 
 		self.hud_music[i].font = "objective";
 
- 
+
 
 		entry = level.music[j];
 
@@ -1187,7 +1187,7 @@ musicMenu()
 
 	}
 
- 
+
 
 	i++;
 
@@ -1199,7 +1199,7 @@ musicMenu()
 
 	indicator setShader( "white", 306, 17 );
 
- 
+
 
 	while( self.sessionstate == "playing" )
 
@@ -1207,7 +1207,7 @@ musicMenu()
 
 		wait 0.1;
 
- 
+
 
 		if( self attackButtonPressed() )	/* select next song */
 
@@ -1215,7 +1215,7 @@ musicMenu()
 
 			self.hud_music[5+self.selection].alpha = 0.93; //unfocus previous item
 
- 
+
 
 			self.selection++;
 
@@ -1223,7 +1223,7 @@ musicMenu()
 
 				self.selection = 0;
 
- 
+
 
 			item = self.hud_music[5+self.selection];
 
@@ -1239,7 +1239,7 @@ musicMenu()
 
 			/* [AUTO DELETE] iPrintlnBold( "^3Song Changed"); */
 
- 
+
 
 			/* [AUTO DELETE] ambientPlay( level.music[self.selection]["alias"], 3 ); */
 
@@ -1257,14 +1257,14 @@ musicMenu()
 
 	}
 
- 
+
 
 	self cleanUp();
 
 }
 
 
- 
+
 
 musictrig()
 
@@ -1272,7 +1272,7 @@ musictrig()
 
 	trig = getEnt ("musictrig", "targetname");
 
- 
+
 
 	while(1)
 
@@ -1288,7 +1288,7 @@ musictrig()
 }
 
 
- 
+
 
 onDisconnect()
 
@@ -1303,7 +1303,7 @@ onDisconnect()
 }
 
 
- 
+
 
 onDeathm()
 
@@ -1320,9 +1320,9 @@ onDeathm()
 }
 
 
- 
 
- 
+
+
 
 cleanUp()
 
@@ -1332,7 +1332,7 @@ cleanUp()
 
 		return;
 
- 
+
 
 	if( isDefined( self.hud_music ) )
 

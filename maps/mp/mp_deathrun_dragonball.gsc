@@ -1,4 +1,4 @@
-/* 
+/*
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MI             O     M      M    8MM.      MMM        MMM.     MMM         7MMMM
 MI             O     M      M    8M        MMM        MM        MM          MMMM
@@ -10,7 +10,7 @@ MMMM    D   MMMMM   MMM= MN     MM.   MM   MMMM,   MI ~N   NM:  .MM.  MMI   7MMM
 MMMM,  ZM   MMMO     M. ..7     MMM        MMM+    .. ~M        ?M..  . M    MMM
 MMMMM  MM   MMM8     M    7M    MMM~       MMM.       ~MM       MM      M   .MMM
 MMMMM  MMN MMMM8     M    7M    MMMMM.  M  MM.        ~MMM.   7MMM      M.  =MMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM 
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 */
 main()
 {
@@ -19,9 +19,9 @@ trigger.targetname = "endmap_trig";
 trigger.radius = 325;
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
-	maps\mp\_load::main();	
+	maps\mp\_load::main();
 	thread sr\api\_map::createSpawn((1572, 99, -4),180);
-	thread sr\api\_speedrun::createTeleporter((-16829, 13474, -355), 100, 150, 
+	thread sr\api\_speedrun::createTeleporter((-16829, 13474, -355), 100, 150,
 		(-16800, 13170, 124), 270, "freeze");
 
 	spot=getent("secretspot","targetname");
@@ -34,22 +34,22 @@ trigger.radius = 325;
 
 	setDvar("jump_height","48");
 	setDvar("g_gravity","700");
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "russian";
 	game["attackers"] = "allies";
 	game["defenders"] = "axis";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	//thread expandTimeLimit( 2 );
-	
+
 	/* [AUTO DELETE] ambientPlay("zor"); */
 	precacheItem("m40a3_mp");
 	precacheItem("ak74u_mp");
 	precacheitem("deserteagle_mp");
 	PrecacheShellShock("death");
-	
+
 	level.abovehuman["fireball_idle"] = LoadFX("dball/kishot");
 	level.abovehuman["fireball_explosion"] = LoadFX("dball/kishotimpact");
 	level.abovehuman["fireball_idlebig"] = LoadFX("dball/kishotbig");
@@ -58,24 +58,22 @@ trigger.radius = 325;
 	precacheModel( "viewmodel_hands_zombie" );
 
 	setdvar( "r_specularcolorscale", "1" );
-	setdvar( "dr_jumpers_speed", "1.2" );
-	setdvar( "dr_activators_speed", "1.2" );
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
 	/* [AUTO DELETE] level.dvar["time_limit"] = 6; */
-	
-	
+
+
 	level.hurtrig =getent("hurt_meteor","targetname");
 	level.hurtrig.dmg = 0;
-	
+
 	Dhider= getent("dragonhider","targetname");
 	Dhider.angles = (0,180,0);
 	level.fx_nukeflash["explosions/nuke_flash"] = loadFx("explosions/nuke_flash");
 	//PlayLoopedFX( level.fx_nukeflash,Dhider );
 	//playLoopedFx(level.fx_nukeflash["explosions/nuke_flash"], 2, dhider.origin, 0, anglestoforward ((0,0,0)), anglestoup((0,0,0)));
-		
+
 	// rocks_1=getentarray("rock1","targetname");
 	// if(isdefined(rocks_1))
 	// {
@@ -85,8 +83,8 @@ trigger.radius = 325;
 	// rocks_1[i] thread trap3();
 	// }
 	// }
-	
-	
+
+
 	// trap_rotatefloor=getentarray("trap_1","targetname");
 	// if(isdefined(trap_rotatefloor))
 	// {
@@ -95,8 +93,8 @@ trigger.radius = 325;
 	// trap_rotatefloor[i] thread trap_1_rotatefloorz();
 	// }
 	// }
-	
-	
+
+
 	// thread clientdvar();
 	// thread credit();
 	// thread dballs();
@@ -116,7 +114,7 @@ trigger.radius = 325;
 	// thread jumpgamerespawn();
 	// thread checkactivatorafk();
 	// thread antilagg();
-	
+
 	//transmissions
 	thread transmissions();
 
@@ -124,12 +122,12 @@ trigger.radius = 325;
 	// thread trap1();
 	// thread trap2();
 	// thread trap4();
-	// thread  [AUTO DELETE] trap_bounce(); 
+	// thread  [AUTO DELETE] trap_bounce();
 	// thread boomeye();
 	// thread trap_crouchpush();
 	// thread trap_rotator();
-	
-	
+
+
 	//level.playernamezor="wingz";
 	//level.burn_fx = LoadFX("dball/playerburst");
 	level.burn_fx = LoadFX("dball/ssjglow");
@@ -138,7 +136,7 @@ trigger.radius = 325;
 	level.firsttime=true;
 	// thread pickroom();
 	// thread addtriggers();
-	
+
 	/* [AUTO DELETE] level.dvar["time_limit"] = 6; */
 	// level.dvar["dr_timelimit"]=6;
 	/* [AUTO DELETE] //level.dvar["time_limit"] += 2; */
@@ -169,8 +167,8 @@ transmissions()
 	thread instanttransmissions();
 	thread instanttransmissions1();
 	thread instanttransmissions2();
-	thread instanttransmissions3();	
-	
+	thread instanttransmissions3();
+
 }
 
 
@@ -263,7 +261,7 @@ if (!isdefined(platform.speed))
  platform.speed = 8;
 if (!isdefined(platform.script_noteworthy))
  platform.script_noteworthy = "z";
- 
+
 trigger waittill("trigger", player);
  while(true)
 {

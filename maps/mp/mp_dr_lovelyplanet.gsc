@@ -1,12 +1,12 @@
-//   ________  ___  ___  _______   _______   ________   
-//  |\   ____\|\  \|\  \|\  ___ \ |\  ___ \ |\   __  \  
-//  \ \  \___|\ \  \\\  \ \   __/|\ \   __/|\ \  \|\  \ 
+//   ________  ___  ___  _______   _______   ________
+//  |\   ____\|\  \|\  \|\  ___ \ |\  ___ \ |\   __  \
+//  \ \  \___|\ \  \\\  \ \   __/|\ \   __/|\ \  \|\  \
 //   \ \_____  \ \   __  \ \  \_|/_\ \  \_|/_\ \   ____\
 //    \|____|\  \ \  \ \  \ \  \_|\ \ \  \_|\ \ \  \___|
-//      ____\_\  \ \__\ \__\ \_______\ \_______\ \__\   
-//     |\_________\|__|\|__|\|_______|\|_______|\|__|   
-//     \|_________|                                     
-//  
+//      ____\_\  \ \__\ \__\ \_______\ \_______\ \__\
+//     |\_________\|__|\|__|\|_______|\|_______|\|__|
+//     \|_________|
+//
 /*
 Map made by Sheep Wizard
 youtube: http://www.youtube.com/user/paap15
@@ -32,17 +32,15 @@ main()
 		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
     maps\mp\_load::main();
 
-	 
+
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
-	//setdvar("g_speed" ,"190");
-	//setdvar("dr_jumpers_speed" ,"1");
-	
+
+
 	level.fx_blue_star = loadFx( "lovely/bluestar" );
 	level.fx_heart = loadFx( "lovely/heart" );
 	level.fx_cloud1 = loadFx( "lovely/cloud1" );
@@ -181,7 +179,7 @@ music()
 
 
 hearts()//load fx
-{	
+{
 	wait 3;
 	origin = getEntArray("heart_origin", "targetname");
 	for(i=0; i<origin.size; i++)
@@ -238,11 +236,11 @@ actitele()
 bounce()
 {
 	trig = getent("bounce", "targetname");
-	
+
 	while(1)
 	{
     	trig waittill ( "trigger", player );
-    	player playSound("booing");  
+    	player playSound("booing");
     	setDvar("g_knockback", "1000");
 	    player thread bounce2();
 	}
@@ -250,7 +248,7 @@ bounce()
 
 
 bounce2()
-{	
+{
     for(i = 0; i < 4; i++)
 	{
 	    self.health += 160;
@@ -323,7 +321,7 @@ trap_3_a()
 {
     enemy1 = getEnt("enemy1", "targetname");
 	enemy1_dmg = getEnt("enemydmg1", "targetname");
-	
+
 	enemy1 delete();
 	enemy1_dmg delete();
 }
@@ -333,7 +331,7 @@ trap_3_b()
 {
     enemy2 = getEnt("enemy2", "targetname");
 	enemy2_dmg = getEnt("enemydmg2", "targetname");
-	
+
 	enemy2 delete();
 	enemy2_dmg delete();
 }
@@ -343,7 +341,7 @@ trap_3_c()
 {
     enemy3 = getEnt("enemy3", "targetname");
 	enemy3_dmg = getEnt("enemydmg3", "targetname");
-	
+
 	enemy3 delete();
 	enemy3_dmg delete();
 }
@@ -354,7 +352,7 @@ trap_4()
     redblob = getEnt("redblob", "targetname");
 	redblob_dmg = getEnt("redblob_dmg", "targetname");
 	origin1 = (2676, -492, 44);
-	origin2 = (2372, -916, 44);	
+	origin2 = (2372, -916, 44);
     redblob_dmg enablelinkto();
     redblob_dmg linkto (redblob);
     wait 0.05;
@@ -369,7 +367,7 @@ trap_5()
     level.redball = getEnt("redball", "targetname");
 	redball_dmg = getEnt("redball", "targetname");
 	sound = getEnt("bang_origin", "targetname");
-	gettrigger("trap5_trig", "Trap 4");	
+	gettrigger("trap5_trig", "Trap 4");
     thread spinball();
 	sound playSound("bang");
 	playFx( level.fx_blue_star, (redball_dmg.origin - (0,0,55)) );
@@ -382,7 +380,7 @@ trap_5()
 	level.redball delete();
 	sound playSound("splash");
 }
-		
+
 spinball()
 {
     level.redball rotateYaw(250, 2.5);
@@ -399,7 +397,7 @@ trap_6()
 	brush2 hide();
 	wait 0.05;
 	brush3 moveZ (-272, 0.1);
-	gettrigger("trap6_trig", "Trap 5");	
+	gettrigger("trap6_trig", "Trap 5");
 	brush hide();
 	brush2 show();
 	brush3 moveZ (272, 1.6, 0.3, 0.3);
@@ -415,8 +413,8 @@ trap_6()
 
 trap_7()//lame trap
 {
-	
-	gettrigger("trap7_trig", "Trap 6");	
+
+	gettrigger("trap7_trig", "Trap 6");
 	thread trap_7_a();
 	thread trap_7_b();
 }
@@ -457,8 +455,8 @@ trap_8()
 {
     boss = getEnt("boss", "targetname");
 	bullet = getEnt("bullet", "targetname");
-    trig = getEnt("bullet_hurt", "targetname"); 
-   
+    trig = getEnt("bullet_hurt", "targetname");
+
     boss delete();
 	bullet delete();
 	trig delete();

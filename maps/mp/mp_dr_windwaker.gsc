@@ -12,7 +12,7 @@ main()
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
+
 	setDvar("r_gamma","1");
 	setDvar("r_specularcolorscale", "1");
 	setDvar("r_glowbloomintensity0","1");
@@ -151,7 +151,7 @@ main()
 
 	//end--------------------------
 	// thread endReached();
-	
+
 	// thread old_room();
 	// thread knife_room();
 	// thread sniper_room();
@@ -187,19 +187,19 @@ whenSpawned()
 	for(;;)
 	{
 		level waittill ("player_spawn", player);
-		
+
 		// if (!isDefined(player.isVIP))
 		// player.isVIP = false;
 		// if (!isDefined(player.hasRolled))
 		// player.hasRolled = false;
-		
+
 		// player.isLink = false;
 		// player.forceOldModel = false;
 		// player.isSlinging = false;
 		// player.hasNukeBullets = false;
 		// player.bounce_failPosition = 0;
 		// player.hasGottenBounceWeapon = false;
-		
+
 		// player.transporting = false;
 	}
 }
@@ -207,7 +207,7 @@ whenSpawned()
 whenRoundStarted()
 {
 	level waittill ("round_started");
-	
+
 	x = randomIntRange(0,7);
 	jumpers = getEntArray("player", "classname");
 	for (i=0;i<jumpers.size;i++)
@@ -232,9 +232,9 @@ messages()
 {
 	mainTime = 5;
 	subTime = 30;
-	
+
 	level waittill ("round_started");
-	
+
 	for (i=0;;)
 	{
 		while (i < level.mainMessages.size)
@@ -258,9 +258,9 @@ credits()
 	creditsArray[0]["text"] = "^5Windwaker";
 	creditsArray[1]["text"] = "^7Map made by: ^4quaK";
 	waitTime = 5;
-	
+
 	level waittill("round_started");
-		
+
 	for (i=0;i<creditsArray.size;i++)
 	{
 		hud_credits = NewHudElem();
@@ -276,8 +276,8 @@ credits()
 		hud_credits.glowalpha = 1;
 		hud_credits.glowcolor = (0.5,0.5,0.5);
 		hud_credits setText (creditsArray[i]["text"]);
-		hud_credits SetPulseFX( 40, waitTime*1000, 200 );	
-			
+		hud_credits SetPulseFX( 40, waitTime*1000, 200 );
+
 		wait waitTime;
 		hud_credits destroy();
 		}
@@ -397,7 +397,7 @@ playMusic(music, time, print, default_styling) //music = alias, time = length, p
 {
 if (isDefined(level.playingMusic) && level.playingMusic == music)
 	return 0;
-	
+
 level.playingMusic = music;
 
 level notify ("newmusic"); //tells new music is here
@@ -438,7 +438,7 @@ rupees()
 	thread rupee("rupee_hidden4", "trig_rupee_hidden4", 360, 2, "jumper_died", "You got a ^2Rupee^7!");
 	thread rupee("rupee_hidden5", "trig_rupee_hidden5", 360, 2, "jumper_died", "You got a ^2Rupee^7!");
 	thread rupee("rupee_hidden6", "trig_rupee_hidden6", 360, 2, "jumper_died", "You got a ^2Rupee^7!");
-	
+
 	thread rupee("rupee_island1", "trig_rupee_island1", 360, 2, "jumper_died", "You got a ^2Rupee^7!");
 	thread rupee("rupee_island2", "trig_rupee_island2", 360, 2, "jumper_died", "You got a ^2Rupee^7!");
 	thread rupee("rupee_island3", "trig_rupee_island3", 360, 2, "jumper_died", "You got a ^2Rupee^7!");
@@ -491,11 +491,11 @@ jdeagle()
 {
 	trig = getEnt ("trig_jdeagle", "targetname");
 	trig setHintString ("^5Deagle");
-	
+
 	while (1)
 	{
 		trig waittill ("trigger", player);
-		
+
 		if(isDefined( level.trapsDisabled ) && level.trapsDisabled)
 		{
 			player iPrintLnBold("^1What the ....!");
@@ -697,7 +697,7 @@ linkOldModelForce()
 linkGamble()
 {
 	x = randomIntRange(0,11);
-	
+
 	if (x == 6)
 	{
 		for(;;)
@@ -740,7 +740,7 @@ linkHouseLeave()
 	while (1)
 	{
 		trig waittill ("trigger", player);
-		
+
 		if (player getStance() == "crouch" && player isOnGround())
 		{
 			player setOrigin (origOutset.origin);
@@ -752,7 +752,7 @@ linkHouseLeave()
 			player setOrigin (orig.origin);
 			player setPlayerAngles (orig.angles);
 			player thread resetVelocity();
-			
+
 			x = randomIntRange(0,5);
 			if (x == 1)
 				iPrintLn("Next time try ^3crouching^7 while leaving the house ;)");
@@ -853,7 +853,7 @@ outsetIslandLeave1()
 {
 	trig = getEnt ("trig_outset_island_leave1", "targetname");
 	orig = getEnt ("orig_link_house_enter", "targetname");
-	
+
 	for (;;)
 	{
 		trig waittill ("trigger", player);
@@ -867,7 +867,7 @@ outsetIslandLeave2()
 {
 	trig = getEnt ("trig_outset_island_leave2", "targetname");
 	orig = getEnt ("orig_jumperspawn", "targetname");
-	
+
 	trig setHintString ("^7Press ^9[ ^1&&1 ^9]^7 to travel back");
 	for (;;)
 	{
@@ -883,7 +883,7 @@ outsetIslandXP()
 {
 	trig = getEnt ("trig_outset_xp", "targetname");
 	orig = getEnt ("orig_outset_island", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill ("trigger", player);
@@ -895,7 +895,7 @@ outsetIslandXP()
 		}
 		else
 			player iPrintLnBold("^3XP^7 already taken!");
-			
+
 		player setOrigin(orig.origin);
 		player setPlayerAngles(orig.angles);
 	}
@@ -920,7 +920,7 @@ outsetIslandTransporter()
 	level.i_transporter_orig11 = getEnt ("orig_transporter_11", "targetname");
 	level.i_transporter_orig12 = getEnt ("orig_transporter_12", "targetname");
 	level.i_transporter_orig13 = getEnt ("orig_transporter_13", "targetname");
-	
+
 	thread islandTransporterBottom();
 	thread islandTransporterTop();
 }
@@ -930,7 +930,7 @@ islandTransporterBottom()
 	for(;;)
 	{
 		level.i_transporter_trigBottom waittill ("trigger", player);
-		
+
 		if (isDefined(player.transporting) && player.transporting == false)
 			player thread islandTransporter("top");
 	}
@@ -941,18 +941,18 @@ islandTransporterTop()
 	for(;;)
 	{
 		level.i_transporter_trigTop waittill ("trigger", player);
-		
+
 		if (isDefined(player.transporting) && player.transporting == false)
 			player thread islandTransporter("bottom");
 	}
 }
 
 islandTransporter(direction) //string direction = "top" or "bottom"
-{	
+{
 	self.transporting = true;
-	
+
 	waitTime = 0.3;
-	
+
 	switch (direction)
 	{
 		case "top":
@@ -960,7 +960,7 @@ islandTransporter(direction) //string direction = "top" or "bottom"
 			air.origin = self.origin;
 			air.angles = self.angles;
 			self linkTo (air);
-			
+
 			air moveTo(level.i_transporter_orig1.origin, waitTime);
 			wait waitTime;
 			air moveTo(level.i_transporter_orig2.origin, waitTime);
@@ -989,17 +989,17 @@ islandTransporter(direction) //string direction = "top" or "bottom"
 			wait waitTime;
 			air moveTo(level.i_transporter_origTop.origin, waitTime);
 			wait waitTime + 0.1;
-			
+
 			self unlink (air);
 			air delete();
 			break;
-			
+
 		case "bottom":
 			air = spawn ("script_origin",(0,0,0));
 			air.origin = self.origin;
 			air.angles = self.angles;
 			self linkTo (air);
-			
+
 			air moveTo(level.i_transporter_orig13.origin, waitTime);
 			wait waitTime;
 			air moveTo(level.i_transporter_orig12.origin, waitTime);
@@ -1028,11 +1028,11 @@ islandTransporter(direction) //string direction = "top" or "bottom"
 			wait waitTime;
 			air moveTo(level.i_transporter_origBottom.origin, waitTime);
 			wait waitTime + 0.1;
-			
+
 			self unlink (air);
 			air delete();
 			break;
-			
+
 		default:
 			self iPrintLnBold("Something went wrong!");
 			break;
@@ -1050,12 +1050,12 @@ secretTimer(time)
 	self endon ("joined_spectators");
 	self endon ("death");
 	self endon ("secret_stop");
-	
+
 	self thread secretTimerStop("death");
-	
+
 	if (isDefined(self.hud_secretTimer))
 		self.hud_secretTimer destroy();
-	
+
 	self.hud_secretTimer=newclienthudelem(self);
 	self.hud_secretTimer.foreground = true;
 	self.hud_secretTimer.alignX = "center";
@@ -1070,7 +1070,7 @@ secretTimer(time)
 	self.hud_secretTimer.glowAlpha = 0;
 	self.hud_secretTimer.glowColor=(5,6,2);
 	self.hud_secretTimer.hidewheninmenu = true;
-	
+
 	for(timer=0;timer<time;timer++)
 	{
 		self.hud_secretTimer setText ("Secret timer: ^5" + timer + "^7 / ^1" + time);
@@ -1084,12 +1084,12 @@ secretTimer(time)
 	self.hud_secretTimer destroy();
 }
 secretTimerStop(waitill)
-{	
+{
 	if (isDefined(waitill))
 		self waittill(waitill);
-	
+
 	self notify ("secret_stop");
-	
+
 	if (isDefined(self.hud_secretTimer))
 		self.hud_secretTimer destroy();
 }
@@ -1112,7 +1112,7 @@ secret1Finish()
 		player setPlayerAngles (location.angles);
 		player thread resetVelocity();
 
-		
+
 		if (isDefined( level.trapsDisabled ) && level.trapsDisabled == false)
 		{
 			player giveWeapon ("deserteaglegold_mp");
@@ -1207,7 +1207,7 @@ secret2Finish()
 		player setOrigin (location.origin);
 		player setPlayerAngles (location.angles);
 		player thread resetVelocity();
-		
+
 		player takeWeapon("rpg_mp");
 		if (isDefined( level.trapsDisabled ) && level.trapsDisabled == false)
 		{
@@ -1231,7 +1231,7 @@ acti()
 
 	acti_cg = getEnt ("acti_cage", "targetname");
 	acti_bt = getEnt ("acti_boat", "targetname");
-	
+
 	acti_antiglitch = getEnt ("acti_antiglitch_hurt", "targetname");
 	acti_antiglitch enableLinkTo();
 	acti_antiglitch linkTo(acti_cg);
@@ -1245,7 +1245,7 @@ acti()
 	trig_trap7 = getEnt ("trig_trap7", "targetname");
 	trig_trap8 = getEnt ("trig_trap8", "targetname");
 
-	
+
 	level waittill ("round_started");
 	//trap1
 	thread trap01();
@@ -1283,15 +1283,15 @@ freeround_check()
 {
 	acti_cg = getEnt ("acti_cage", "targetname");
 	acti_bt = getEnt ("acti_boat", "targetname");
-	
+
 	trig = getEnt ("trig_freerunacti", "targetname");
 	trig enableLinkTo();
 	trig linkTo(acti_cg);
-	
+
 	level waittill("round_started");
 	wait 6;
 	if(isDefined( level.trapsDisabled ) && level.trapsDisabled == false){ trig delete();return 0; }
-	
+
 	trig setHintString ("^7Press ^9[ ^1&&1 ^9]^7 to ^2move^7!");
 	//trap1
 	trig waittill ("trigger", player);
@@ -1320,26 +1320,26 @@ boatMove(trap, duration, rotation, who, trigger, triggerText) // trigger is only
 {
 	level endon ("endreached");
 	level notify("boatMoved");
-	
+
 	acti_cg = getEnt ("acti_cage", "targetname");
 	acti_bt = getEnt ("acti_boat", "targetname");
-	
+
 	acti_cg_loc = (0, 0, 64);
 	acti_bt_loc = (0, 0, -16);
-	
+
 	acti_cg_rotate = true;
 	acti_bt_rotate = true;
-	
+
 	allowLinking = false;
 	allowJumping = false;
-	
+
 	trigDelBool = false;
-	
+
 	movingBool = true;
-	
+
 	offset = 0.1;
 	offset2 = 0.2;
-	
+
 	while (movingBool)
 	{
 		switch(trap)
@@ -1422,7 +1422,7 @@ boatMove(trap, duration, rotation, who, trigger, triggerText) // trigger is only
 		if (isDefined(trigger) && isDefined(triggerText)) trigger setHintString("");
 		if (allowLinking == true) who linkTo(acti_cg);
 		if (allowJumping == false) who allowJump(false);
-	
+
 		acti_cg moveto(acti_cg_loc, duration);
 		acti_bt moveto(acti_bt_loc, duration);
 		if (acti_cg_rotate)
@@ -1431,7 +1431,7 @@ boatMove(trap, duration, rotation, who, trigger, triggerText) // trigger is only
 			acti_bt rotateYaw(rotation, duration);
 		wait duration+offset;
 	}
-	
+
 	wait offset2;
 	if (allowLinking == true) who unlink();
 	if (allowJumping == false) who allowJump(true);
@@ -1443,7 +1443,7 @@ actirespawnfix()
 {
 	respawn_cage = getEnt ("actirespawn_cage", "targetname");
 	respawn_cage notSolid();
-	
+
 	level waittill ("boatMoved");
 	wait 5;
 	respawn_cage solid();
@@ -1452,11 +1452,11 @@ actirespawnfix()
 actikillstreak()
 {
 	level waittill("activator", activ);
-	
+
 	oldkillamount = activ.kills;
 	level.activKills = 0;
 	killsteakamount = 3;
-	
+
 	while (level.activKills<killsteakamount)
 	{
 		if (activ.kills > oldkillamount)
@@ -1464,18 +1464,18 @@ actikillstreak()
 			level.activKills++;
 			oldkillamount = activ.kills;
 		}
-		
+
 		wait .1;
 	}
 	if (isDefined(level.activ) && isAlive(level.activ) && level.activKills == 3)
 	{
 		iPrintLnBold ("^1Activator^7 got ^23^1 kills^7!");
-		
+
 		Obj = spawn("script_model", activ.origin);
 		Obj setModel("tag_origin");
 		Obj playSound ("triplekill");
 		Obj delete();
-		
+
 		level.activKills = 0;
 	}
 }
@@ -1668,19 +1668,19 @@ endReached()
 {
 	trig = getEnt ("trig_endreached", "targetname");
 	orig = getEnt ("orig_actiend", "targetname");
-	
+
 	trig waittill ("trigger", player);
 	level notify("endreached");
-	
+
 	if (isDefined(level.activ) && isAlive(level.activ))
 	{
 		level.activ unlink();
 		level.activ allowJump(true);
-		
+
 		level.activ setOrigin (orig.origin);
 		level.activ setPlayerAngles (orig.angles);
 		level.activ thread resetVelocity();
-		
+
 		level.activ iPrintLnBold ("^3Wait^7 here while the ^2Jumper^7 chooses the ^4room^7...");
 	}
 	thread endRoomsReached();
@@ -1689,9 +1689,9 @@ endReached()
 endRoomsReached()
 {
 	trig = getEnt ("endmap_trig", "targetname");
-	
+
 	trig waittill ("trigger", player);
-	
+
 	hud_end = NewHudElem();
 	hud_end.alignX = "center";
 	hud_end.alignY = "top";
@@ -1760,7 +1760,7 @@ old_room()
 		player setPlayerAngles (oldjumper.angles);
 		player.maxhealth = 100;
 		player thread endTimer("^1Fight!", 0, 0);
-		
+
 		if( isDefined(level.activ) && isAlive(level.activ))
 		{
 			level.activ setOrigin (oldacti.origin);
@@ -2429,7 +2429,7 @@ superpower(s_maxhealth, s_jumpheight, s_movespeed, s_endgame)
 	self.health = self.maxhealth;
 	self notify("jumpheight_stop"); //stops old jumpheight threads
 	self thread jumpheight( s_jumpheight );
-	self SetMoveSpeedScale( s_movespeed );
+	self sr\api\_player::setPlayerSpeedScale( s_movespeed );
 
 	if (s_endgame == true)
 	{
@@ -2663,7 +2663,7 @@ quack()
 stringContains(player, target)
 {
 	boolean = false;
-	
+
 	for (i=0; i<player.size; i++)
 	{
 		if (toLower(player[i]) == toLower(target[0]))

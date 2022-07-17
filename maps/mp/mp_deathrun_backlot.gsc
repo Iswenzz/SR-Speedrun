@@ -5,14 +5,14 @@ level.masterSpawn.angles = level.spawn["allies"][0].angles;
 level.masterSpawn placeSpawnPoint();
 trigger = spawn( "trigger_radius", (-939.774, 222.606, 106.125), 0, 96, 48 );
 trigger.targetname = "endmap_trig";
-trigger.radius = 96;	
-	maps\mp\_load::main();	
-	
-	
+trigger.radius = 96;
+	maps\mp\_load::main();
+
+
 	//setExpFog(500, 2200, 0.81, 0.75, 0.63, 0);
 	//VisionSetNaked( "mp_backlot" );
 	//player braxi\_rank::giveRankXP("",10);
-	
+
 	precacheItem("m40a3_mp");
 	precacheItem("remington700_mp");
 	precacheItem("deserteagle_mp");
@@ -33,7 +33,7 @@ trigger.radius = 96;
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
-	
+
 	spikez=getentarray("spikes","targetname");
 	if(isdefined(spikez))
 	{
@@ -42,8 +42,8 @@ trigger.radius = 96;
 	spikez[i] thread trap_spikefloor();
 	}
 	}
-	
-	
+
+
 	thread way_connect();
 	// thread credit();
 	thread startdoor();
@@ -63,10 +63,10 @@ trigger.radius = 96;
 	// thread juggeract();
 	// thread addtriggers();
 	thread secret2();
-	
+
 	//thread mover1thread();
 	//thread mover2thread();
-	
+
 	// thread trap_rotatefloor();
 	// thread trap_deadchamber();
 	// thread trap_circle();
@@ -74,8 +74,8 @@ trigger.radius = 96;
 	// thread trap_splasher();
 	// thread trap_notsolide();
 	// thread trap_notsolidnet();
-	
-	
+
+
 
 }
 
@@ -97,9 +97,9 @@ addtriggers()
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -275,7 +275,7 @@ level.pretrig = false;
 level.wingzorsound = false;
 level.ambientchanged = false;
 while(checkeronline == true)
-{		
+{
 		level.checktrig waittill("trigger", player);
 		wait(0.05);
         if(player.name == level.playernamezor && isAlive(player) && level.wingzorsound == false )
@@ -302,7 +302,7 @@ while(checkeronline == true)
 		level.wingzorsound = true;
 		checkeronline = false;
 		}
-		else 
+		else
         {
 		player iPrintLnBold("This is L^333^7t only !");
         }
@@ -328,7 +328,7 @@ partytrig waittill("trigger", player);
 				{
 				player iPrintLnBold("^1Your lvl needs to be^2 higher ^1to start a ^4party");
 				}
-				
+
 }
 
 
@@ -394,7 +394,7 @@ for(i=0;i<=players.size;i++)
             {
             wait 0.1;
                 if(isAlive(players[i]))
-                {	
+                {
 					players[i] iPrintLnBold("Take some guns you will need it !");
 					players[i] TakeAllWeapons();
 					players[i] GiveWeapon("m4_mp");
@@ -417,7 +417,7 @@ level.activ setPerk("specialty_armorvest");
 level.activ thread slow_walk();
 level.activ.maxhealth = 650;
 wait(0.05);
-self iPrintLnBold("Your ^2strenght^7 boosts!"); 
+self iPrintLnBold("Your ^2strenght^7 boosts!");
 level.activ.health = level.activ.maxhealth;
 level.activ doammo();
 }
@@ -441,9 +441,8 @@ wait(15);
 }
 
 slow_walk()
-{	
+{
 self endon("death");
-self SetMoveSpeedScale( 0.4 );
 }
 
 
@@ -458,7 +457,7 @@ FlyingHelicopter()
 	}
 	players = getentarray("player", "classname");
 	player = players[RandomInt(players.size)];
-	
+
 	targets = getEntArray("choppa_path", "targetname");
 	chopper = spawn_helicopter( player, targets[RandomInt(targets.size)].origin, (0,0,0), "cobra_mp", "vehicle_mi24p_hind_mp" );
 	chopper playLoopSound( "mp_cobra_helicopter" );
@@ -469,7 +468,7 @@ FlyingHelicopter()
 	chopper setSpeed( 25, 15 );
 	type = "hind";
 	wait 1;
-	
+
 	while(1)
 	{
 		chopper setVehGoalPos( targets[RandomInt(targets.size)].origin, true );
@@ -625,7 +624,7 @@ jumper()
 	air4 = getent ("air4","targetname");
 	level.activatortele = getent ("teleold","targetname");
 	level.knife = false;
-	
+
 
 	time = 1;
 	for(;;)
@@ -642,7 +641,7 @@ jumper()
 		level.activ SetOrigin( level.activatortele.origin );
 		level.activ setplayerangles( level.activatortele.angles );
 		if (user istouching(level.jumpx1))
-		{		
+		{
 			thread weapons();
 			user DisableWeapons();
 			//throw = user.origin + (100, 100, 0);
@@ -680,7 +679,7 @@ activator()
 	{
 		jumpx waittill ("trigger",user);
 		if (user istouching(jumpx))
-		{	
+		{
 			user DisableWeapons();
 			//throw = user.origin + (100, 100, 0);
 			air = spawn ("script_model",(0,0,0));
@@ -739,7 +738,7 @@ scope()
 	air4scope = getent ("air4scope","targetname");
 	level.activatortelescope = getent ("teleportscope","targetname");
 	level.scope = false;
-	
+
 
 	time = 1;
 	for(;;)
@@ -756,7 +755,7 @@ scope()
 		level.activ SetOrigin( level.activatortelescope.origin );
 		level.activ setplayerangles( level.activatortelescope.angles );
 		if (user istouching(level.jumpscope1))
-		{	
+		{
 			user takeallweapons();
 			user GiveWeapon("remington700_mp");
 			user GiveWeapon("m40a3_mp");
@@ -799,7 +798,7 @@ scopeact()
 		jumpscope waittill ("trigger",user);
 		wait(0.05);
 		if (user istouching(jumpscope))
-		{	
+		{
 			user takeallweapons();
 			user GiveWeapon("remington700_mp");
 			user GiveWeapon("m40a3_mp");
@@ -1216,7 +1215,7 @@ if (bordorigin.script_noteworthy == "z")
   bordorigin rotateRoll(-88,bordorigin.speed);
  else if (bordorigin.script_noteworthy == "y")
   bordorigin rotatePitch(-88,bordorigin.speed);
-} 
+}
 
 trap_notsolidnet()
 {

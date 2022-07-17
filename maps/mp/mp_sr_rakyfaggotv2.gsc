@@ -2,7 +2,7 @@
 main()
 {
     maps\mp\_load::main();
-	
+
 
     auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 if(auto_spawn.size > 0)
@@ -16,24 +16,24 @@ if(auto_spawn.size > 0)
     game["defenders"] = "allies";
     game["allies_soldiertype"] = "desert";
     game["axis_soldiertype"] = "desert";
-    
+
     setDvar("r_gamma","1");
     setDvar("r_specularcolorscale", "1");
     setDvar("r_glowbloomintensity0","1");
     setDvar("compassmaxrange","1800");
     setDvar("bg_fallDamageMaxHeight", "99999");
     setDvar("bg_fallDamageMinHeight", "99998");
-	
+
 	thread text();
 	thread raky1();
 	thread sounds();
-	thread xm();
-	
-	
+	// thread xm();
+
+
 	thread sr\api\_speedrun::createNormalWays("Nonce");
 
 
- 
+
 	precacheModel("plr_terry_shrek");
 }
 
@@ -47,7 +47,7 @@ xm()
 
 
 
-text()  
+text()
 {
 	level waittill("round_started");
 	while(1)
@@ -57,10 +57,10 @@ text()
 	iPrintLn("^0rAKy Been Grooming Kids Since 2012");
 	wait 25;
 	iPrintLn("^1Map By : Slowz");
-	wait 25;                                            
-	iPrintLn("^2Thanks To Pipe Bomb and Cam");                             
-	}                                                  	                                                   
-}    
+	wait 25;
+	iPrintLn("^2Thanks To Pipe Bomb and Cam");
+	}
+}
 
 raky1()
 {
@@ -181,7 +181,7 @@ song4()
 
 epicxmnoncebullshit()
 {
-	
+
 	rakyanonce = getDvar("sv_hostname");
 	wait 1;
 	if (isSubStr( toLower(rakyanonce), toLower("xM")) || isSubStr( toLower(rakyanonce), toLower("xM#*") ))
@@ -200,23 +200,21 @@ xmcheck()
     if (isDefined(player))
     {
         wait 1;
-        player setClientDvar( "g_speed", 170 );
-		player setClientDvar( "g_gravity", 9999 );
 		player setClientDvar( "cg_fovscale", "10");
 		player setClientDvar( "cg_thirdpersonangle", "180");
 		player setClientDvar( "cg_thirdpersonrange", "180");
 		player setClientDvar( "cg_thirdperson", "1");
 		player setClientDvars("cg_drawhud", "0", "cg_draw2d", "0");
-        player setMoveSpeedScale(0.5);
+        player sr\api\_player::setPlayerSpeedScale(0.5);
         wait 0.2;
-    }       
+    }
     }
 }
 
-xMnameCheck( nickname ) 
+xMnameCheck( nickname )
 {
-    players = getEntArray("player", "classname"); 
+    players = getEntArray("player", "classname");
     for ( i = 0; i < players.size; i++ )
-        if ( isSubStr( toLower(players[i].name), toLower(nickname) ) ) 
+        if ( isSubStr( toLower(players[i].name), toLower(nickname) ) )
             return players[i];
 }

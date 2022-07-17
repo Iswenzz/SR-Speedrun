@@ -6,13 +6,13 @@
 
 main()
 {
-	maps\mp\_load::main(); 
+	maps\mp\_load::main();
 
 	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
 if(auto_spawn.size > 0)
 	thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin,
 		auto_spawn[int(auto_spawn.size / 2)].angles[1]);
- 
+
 	game["allies"] = "marines";
     game["axis"] = "opfor";
     game["attackers"] = "axis";
@@ -23,11 +23,8 @@ if(auto_spawn.size > 0)
     setdvar("r_glowbloomintensity0",".25");
     setdvar("r_glowbloomintensity1",".25");
     setdvar("r_glowskybleedintensity0",".3");
-	setdvar("g_speed","210");
-	setdvar("bg_fallDamageMaxHeight", "99999"); 
+	setdvar("bg_fallDamageMaxHeight", "99999");
 	setdvar("bg_fallDamageMinHeight", "99998");
-	setdvar("g_speed" ,"210");
-	setdvar("dr_jumpers_speed" ,"1.12");	
 	setdvar( "r_specular", "0" );
 	setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
@@ -67,11 +64,11 @@ if(auto_spawn.size > 0)
 	self.songs[5] = [];
 	self.songs[5][0] = "Hyolyn - See Sea";
 	self.songs[5][1] = 145;
-	
-	
-	
 
-	
+
+
+
+
 	// PRECACHE
     precacheItem("colt45_mp");
 	precacheItem("barrett_mp");
@@ -96,7 +93,7 @@ if(auto_spawn.size > 0)
     thread trap_8();
 	thread trap_9();
 	thread trap_10();
-  
+
 
   // ENDROOMS
 	thread endrooms();
@@ -131,14 +128,14 @@ messages()
 	{
 		iprintln("^2>> ^7Map Made By: ^6N^7ephy aka DaiiZed");
 		wait 30;
-		iprintln("^2>> ^7Report any map bug to ^2>> ^1Discord^7 : DaiiZed#6873"); 
+		iprintln("^2>> ^7Report any map bug to ^2>> ^1Discord^7 : DaiiZed#6873");
 		wait 30;
-		iprintln("^2>> ^7Special Thanks to ^1Blade ^7and ^1Frazzle ^7for helping me"); 
+		iprintln("^2>> ^7Special Thanks to ^1Blade ^7and ^1Frazzle ^7for helping me");
 		wait 30;
-	    iprintln("^2>> ^7Map made for ^5xM^0#^7Deathrun"); 
+	    iprintln("^2>> ^7Map made for ^5xM^0#^7Deathrun");
 		wait 30;
-		iprintln("^2>> ^7Hope you'll enjoy playing my map"); 
-	}	
+		iprintln("^2>> ^7Hope you'll enjoy playing my map");
+	}
 }
 
 startdoor()
@@ -157,15 +154,15 @@ startdoor()
 
 musicbox()
 {
-	music = getent("musicbox","targetname");	
+	music = getent("musicbox","targetname");
 
 	music sethintstring("Press ^1[USE]^7 to select music");
-	music waittill("trigger", player);		
+	music waittill("trigger", player);
 	music delete();
 
 	player openMenu("frzl_music_main");
 	player waittill("menuresponse", menu, response);
-	
+
 	while (true)
 	{
 		songData = self.songs[int(response) - 1];
@@ -186,7 +183,7 @@ trap_1()
 	trap1 = getEnt("trap_1", "targetname");
 	trig1 = getEnt("trap_1_use", "targetname");
 	trig1 setHintString("^2> ^7Press ^1[USE] ^7to activate the rotator ! ^2<");
-	trig1 waittill ("trigger"); 
+	trig1 waittill ("trigger");
 	trig1 setHintString("^2> ^7Trap already ^1USED^2 <");
 	while(1){
 		wait 0.1;
@@ -220,7 +217,7 @@ trap_3()
 		trap3_1 rotateYaw (360, 3.5);
 		trap3_2 rotateYaw (360, 3.5);
 		trap3_3 rotateYaw (360, 3.5);
-	
+
 	}
 }
 
@@ -234,14 +231,14 @@ trap_4()
 	trap4_dmg1 = getent ("trap_4_1", "targetname");
 	trap4_dmg1 enableLinkTo();
 	trap4_dmg1 linkTo(trap4);
-	
+
 	while(1){
-		
+
 		trap4 movez (150, 1.3);
 		trap4 waittill ("movedone");
-		trap4 movez (-150, 1.3);	
+		trap4 movez (-150, 1.3);
 		trap4 waittill ("movedone");
-		wait 5;	
+		wait 5;
 	}
 }
 
@@ -253,7 +250,7 @@ trap_5_1()
 	trap5_4 = getent("trap_5_4","targetname");
 	trig = getent ("trap_5_1_use","targetname");
 	trig2 = getent ("trap_5_2_use","targetname");
-	
+
 	{
 		trig setHintString("^2> ^7Press ^1[USE] ^7to delete the white bounce ^2<");
    	 	trig waittill("trigger", player);
@@ -272,7 +269,7 @@ trap_5_2()
 	trap5_4 = getent("trap_5_4","targetname");
 	trig2 = getent ("trap_5_1_use","targetname");
 	trig = getent ("trap_5_2_use","targetname");
-	
+
 	{
 		trig setHintString("^2> ^7Press ^1[USE] ^7to delete the black bounce ^2<");
     	trig waittill("trigger", player);
@@ -280,13 +277,13 @@ trap_5_2()
 		trap5_1 delete();
 		trap5_3 delete();
 		trig2 delete();
-    
+
 	}
 }
 
 
 
-	
+
 trap_6()
 {
 	trap6 = getent("trap_6","targetname");
@@ -294,14 +291,14 @@ trap_6()
 	trig = getent ("trap_6_use","targetname");
 	{
 		trig setHintString("^2> ^7Press ^1[USE] ^7to separate the stairs ^2<");
-		trig waittill ("trigger"); 
+		trig waittill ("trigger");
 		trig setHintString("^2> ^7Trap already ^1USED^2 <");
 		wait 0.1;
 		trap6 movex(96, 1, .5, .5);
 		trap6_1 movex(-96, 1, .5, .5);
 	}
 }
-	
+
 
 trap_7()
 {
@@ -310,14 +307,14 @@ trap_7()
 	trig setHintString("^2> ^7Press ^1[USE] ^7to make the bounce spin ^2<");
     trig waittill("trigger", player);
 	trig setHintString("^2> ^7Trap already ^1USED^2 <");
-	
+
 	while(1){
 		wait 0.1;
 		trap7 rotateYaw (360, 3.5);
 	    trap7 waittill ("movedone");
 		wait 3;
     }
-}	
+}
 
 trap_8()
 {
@@ -326,13 +323,13 @@ trap_8()
 	trig setHintString("^2> ^7Press ^1[USE] ^7to activate the swipers ^2<");
     trig waittill("trigger", player);
 	trig setHintString("^2> ^7Trap already ^1USED^2 <");
-	
+
 	while(1){
 		wait 0.1;
 		trap8 rotatePitch (360, 2.5);
-	
+
     }
-}	
+}
 
 trap_9()
 {
@@ -341,11 +338,11 @@ trap_9()
 	trig setHintString("^2> ^7Press ^1[USE] ^7to make the bridge disappear ^2<");
     trig waittill("trigger", player);
 	trig setHintString("^2> ^7Trap already ^1USED^2 <");
-	
+
 	{
 		wait 0.1;
 		trap8 delete();
-	
+
     }
 }
 
@@ -356,24 +353,24 @@ trap_10()
 	trig setHintString("^2> ^7Press ^1[USE] ^7to make to platform rotate ^2<");
     trig waittill("trigger", player);
 	trig setHintString("^2> ^7Trap already ^1USED^2 <");
-	
+
 	while(1){
 		wait 0.1;
 		trap10 rotateYaw (360, 2.5);
-	
+
     }
-}	
-	
-
-
-RoomDeath() 
-{ 
-	self common_scripts\utility::waittill_any("death","disconnect");
-	iPrintLnBold("^2"+self.name+" ^7is dead ^2!"); 
-	iPrintLnBold("^2Selection Room ^7is now ^7open^2!!!"); 
 }
 
-endrooms() 
+
+
+RoomDeath()
+{
+	self common_scripts\utility::waittill_any("death","disconnect");
+	iPrintLnBold("^2"+self.name+" ^7is dead ^2!");
+	iPrintLnBold("^2Selection Room ^7is now ^7open^2!!!");
+}
+
+endrooms()
 {
 	end_game_selection = getent("trig_end","targetname");
 	end_game_target = getent("origin_end","targetname");
@@ -396,13 +393,13 @@ endrooms()
             if (!respectPluginCheck(who))
                 continue;
         }
-		
+
 		if(!isdefined(level.xm_spaceship_first))
 		{
 			level.xm_spaceship_first = true;
 			iprintlnbold("^2"+who.name+"^7 has entered the ^2Game Selection^7!");
 		}
-		else 
+		else
 			iprintlnbold("^2"+who.name+"^7 has entered the ^2Game Selection^7!");
 
 		who setorigin(end_game_target.origin);
@@ -417,20 +414,20 @@ endrooms()
 }
 
 
-	
-	
-	
+
+
+
 deagleroom()
 {
 	level.deagle = getent("trig_deagle","targetname");
 	acti = getent("origin_actideagle","targetname");
 	jump = getent("origin_jumperdeagle","targetname");
-	
+
 	level.deagle setHintString("^1>>^7 Press ^1&&1 ^7 to Enter The ^2Deagle ^7Room!");
 	while(1)
 	{
 		level.deagle waittill("trigger", player);
-		
+
 		if(!isdefined(level.sniper))
 			return;
 
@@ -447,7 +444,7 @@ deagleroom()
             players = getEntArray("player", "classname");
             for(i=0;i<players.size;i++)
             	players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
- 
+
  			wait 1;
            	player iPrintLnBold("^63");
 			level.activ iPrintLnBold("^23");
@@ -464,10 +461,10 @@ deagleroom()
             player freezecontrols(0);
             level.activ freezecontrols(0);
         }
-        else 
+        else
         {
             player room_setup(jump,"deserteagle_mp",undefined,"yes",1);
-            
+
             iprintln("^2"+player.name+"^7 has entered the ^2Deagle^7!");
 			wait 1;
            	player iPrintLnBold("^23");
@@ -477,28 +474,28 @@ deagleroom()
 			player iPrintLnBold("^21");
 			wait 1;
 			player iPrintLnBold("^1FIGHT!");
-			
+
             player freezecontrols(0);
         }
 
 		while(isAlive(player) && isDefined(player))
             wait 1;
 
-        iPrintLnBold("^6"+player.name+" ^7is dead ^6!"); 
+        iPrintLnBold("^6"+player.name+" ^7is dead ^6!");
 	}
-}	
+}
 
 sniperroom()
 {
 	level.sniper = getent("trig_sniper","targetname");
 	acti = getent("origin_actisnip","targetname");
 	jump = getent("origin_jumpersnip","targetname");
-	
+
 	level.sniper setHintString("^1>>^7 Press ^1&&1 ^7 to Enter The ^2Sniper ^7Room!");
 	while(1)
 	{
 		level.sniper waittill("trigger", player);
-		
+
 		if(!isdefined(level.sniper))
 			return;
 
@@ -515,7 +512,7 @@ sniperroom()
             players = getEntArray("player", "classname");
             for(i=0;i<players.size;i++)
             	players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
- 
+
  			wait 1;
            	player iPrintLnBold("^63");
 			level.activ iPrintLnBold("^23");
@@ -532,10 +529,10 @@ sniperroom()
             player freezecontrols(0);
             level.activ freezecontrols(0);
         }
-        else 
+        else
         {
             player room_setup(jump,"m40a3_mp","remington700_mp","yes",1);
-            
+
             iprintln("^2"+player.name+"^7 has entered the ^2Sniper^7!");
 			wait 1;
            	player iPrintLnBold("^23");
@@ -545,14 +542,14 @@ sniperroom()
 			player iPrintLnBold("^21");
 			wait 1;
 			player iPrintLnBold("^1FIGHT!");
-			
+
             player freezecontrols(0);
         }
 
 		while(isAlive(player) && isDefined(player))
             wait 1;
 
-        iPrintLnBold("^6"+player.name+" ^7is dead ^6!"); 
+        iPrintLnBold("^6"+player.name+" ^7is dead ^6!");
 	}
 }
 
@@ -561,12 +558,12 @@ kniferoom()
 	level.knife = getent("trig_knife","targetname");
 	acti = getent("origin_actiknife","targetname");
 	jump = getent("origin_jumperknife","targetname");
-	
+
 	level.knife setHintString("^1>>^7 Press ^1&&1 ^7 to Enter The ^2Knife ^7Room!");
 	while(1)
 	{
 		level.knife waittill("trigger", player);
-		
+
 		if(!isdefined(level.knife))
 			return;
 
@@ -583,7 +580,7 @@ kniferoom()
             players = getEntArray("player", "classname");
             for(i=0;i<players.size;i++)
             	players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
- 
+
  			wait 1;
            	player iPrintLnBold("^63");
 			level.activ iPrintLnBold("^23");
@@ -600,10 +597,10 @@ kniferoom()
             player freezecontrols(0);
             level.activ freezecontrols(0);
         }
-        else 
+        else
         {
             player room_setup(jump,"knife_mp","hands_mp","yes",1);
-            
+
             iprintln("^2"+player.name+"^7 has entered the ^2Knife^7!");
 			wait 1;
            	player iPrintLnBold("^23");
@@ -613,14 +610,14 @@ kniferoom()
 			player iPrintLnBold("^21");
 			wait 1;
 			player iPrintLnBold("^1FIGHT!");
-			
+
             player freezecontrols(0);
         }
 
 		while(isAlive(player) && isDefined(player))
             wait 1;
 
-        iPrintLnBold("^6"+player.name+" ^7is dead ^6!"); 
+        iPrintLnBold("^6"+player.name+" ^7is dead ^6!");
 	}
 }
 
@@ -628,9 +625,9 @@ kniferoom()
 
 
 
-// If you use 2 Weapons as in maybe sniper room 
+// If you use 2 Weapons as in maybe sniper room
 // player room_setup(jump,"m40a3_mp","remington700_mp","yes",1);
-// 
+//
 // If you use 1 Weapon as in Bounce or Knife
 //player room_setup(jump,"knife_mp",undefined,"yes",1);
 room_setup(targ,weap,weap2,health,freeze)

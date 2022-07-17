@@ -8,7 +8,7 @@ level.masterSpawn.angles = level.spawn["allies"][0].angles;
 level.masterSpawn placeSpawnPoint();
  	maps\mp\_load::main();
  	maps\mp\mp_dr_asu_sound_fx::main();
- 
+
  	game["allies"] = "marines";
  	game["axis"] = "opfor";
  	game["attackers"] = "axis";
@@ -16,8 +16,6 @@ level.masterSpawn placeSpawnPoint();
  	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
 
-	setdvar("g_speed",190);
-	setdvar("dr_jumpers_speed" ,"1");
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
@@ -27,7 +25,7 @@ level.masterSpawn placeSpawnPoint();
 	level.noOld=false;
 
 	thread way_connect();
-	
+
 	//thread automusic();
 	thread startdoor();
 	//thread trap1();
@@ -83,10 +81,10 @@ level.masterSpawn placeSpawnPoint();
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -169,7 +167,7 @@ automusic()
 }
 
 startdoor()
-{	
+{
 	door=getent("sd","targetname");
 
 	door delete();
@@ -187,7 +185,7 @@ trap1()
 	trig sethintstring("Press ^1&&1^7 to activate the trap.");
 	trig waittill("trigger");
 	trig delete();
-	
+
 	switch(randomint(4))
 	{
 		case 0:
@@ -217,7 +215,7 @@ trap2()
 	trig sethintstring("Press ^1&&1^7 to activate the trap.");
 	trig waittill("trigger");
 	trig delete();
-	
+
 	while(1)
 	{
 		spin rotateyaw (360, 2.5);
@@ -238,7 +236,7 @@ trap3()
 
 	twoway moveY (80, 1.5);
 	wait 1.5;
-	
+
 	while(1)
 	{
 		twoway moveY (-160, 3);
@@ -270,7 +268,7 @@ trap4()
 	bspike moveZ (352, 1);
 
 	wait 10;
-	
+
 	spike delete();
 	bspike delete();
 	spike_hurt delete();
@@ -285,7 +283,7 @@ trap5()
 	trig sethintstring("Press ^1&&1^7 to activate the trap.");
 	trig waittill("trigger");
 	trig delete();
-	
+
 	while(1)
 	{
 		bou rotateyaw (-360, 4);
@@ -329,7 +327,7 @@ platf()
 		wait 2;
 		self moveZ (240, 2);
 		wait 2;
-	}	
+	}
 }
 
 platf2()
@@ -392,7 +390,7 @@ trap7()
 	trig sethintstring("Press ^1&&1^7 to activate the trap.");
 	trig waittill("trigger");
 	trig delete();
-	
+
 	wall_hurt enablelinkto();
 	wall_hurt linkto (wall);
 	wall moveZ (624, 2);
@@ -418,7 +416,7 @@ trap8()
 	trig sethintstring("Press ^1&&1^7 to activate the trap.");
 	trig waittill("trigger");
 	trig delete();
-	
+
 	x = Randomint(4);
 	if( x == 0 )
 	{
@@ -476,11 +474,11 @@ trap9()
 	trig delete();
 
 	pf0 delete();
-	
+
 	pf2 moveZ (-176, 3);
 	pf3 moveZ (-176, 3);
 	wait 3.1;
-	
+
 	while(1)
 	{
 		pf1 moveX (480, 3);
@@ -495,7 +493,7 @@ trap9()
 		pf2 moveZ (176, 3);
 		pf3 moveZ (176, 3);
 		wait 3.1;
-		
+
 		pf2 moveX (480, 3);
 		pf3 moveX (480, 3);
 		pf1 moveX (-480, 3);
@@ -542,10 +540,10 @@ secenter()
 		level.secenter_trigger waittill( "trigger", player );
 		 player sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste
 		//player thread secret_timer();
-		
+
 		player SetOrigin( telejumporigin.origin );
 		player setplayerangles( telejumporigin.angles );
-		
+
 		}
 }
 
@@ -560,7 +558,7 @@ secfail1()
 
 		player SetOrigin( telejumporigin.origin );
 		player setplayerangles( telejumporigin.angles );
-		
+
 		}
 }
 secfail2()
@@ -574,7 +572,7 @@ secfail2()
 
 		player SetOrigin( telejumporigin.origin );
 		player setplayerangles( telejumporigin.angles );
-		
+
 		}
 }
 
@@ -589,7 +587,7 @@ secfail3()
 
 		player SetOrigin( telejumporigin.origin );
 		player setplayerangles( telejumporigin.angles );
-		
+
 		}
 }
 
@@ -620,7 +618,7 @@ secfail5()
 
 		player SetOrigin( telejumporigin.origin );
 		player setplayerangles( telejumporigin.angles );
-		
+
 		}
 }
 
@@ -635,7 +633,7 @@ secfail6()
 
 		player SetOrigin( telejumporigin.origin );
 		player setplayerangles( telejumporigin.angles );
-		
+
 		}
 }
 
@@ -667,7 +665,7 @@ secfinish()
 
 		player SetOrigin( telejumporigin.origin );
 		player setplayerangles( telejumporigin.angles );
-		
+
 		level.PlayerInRoom = false;
 
 		}
@@ -678,10 +676,10 @@ secretd()
 	secdoor = getent("secretdoor", "targetname");
 	level.secretdoor_trigger = getent("trig_secretdoor", "targetname");
 	step1 = getent("thx", "targetname");
-		
+
 		wait 1;
 		secdoor delete();
-		
+
 }
 
 sniper()
@@ -689,7 +687,7 @@ sniper()
     level.sniper_trigger = getEnt( "trig_sniper", "targetname" );
     jump = getEnt( "sniper_jumper", "targetname" );
     acti = getEnt( "sniper_activator", "targetname" );
- 
+
     for(;;)
 	{
 		level.sniper_trigger SetHintString("Press &&1 to enter the Sniper room.");
@@ -708,7 +706,7 @@ sniper()
 			player createRoom(jump.origin,jump.angles,"m40a3_mp","remington700_mp",100,1);
 			level.activ createRoom(acti.origin,acti.angles,"m40a3_mp","remington700_mp",100,1);
 		}
-		else 
+		else
 			player createRoom(jump.origin,jump.angles,"m40a3_mp","remington700_mp",100,1);
 
 		iprintlnbold("^3"+player.name+"^6 has chosen the Sniper Room!");
@@ -726,7 +724,7 @@ knife()
     level.knife_trigger = getEnt( "trig_knife", "targetname" );
     jump = getEnt( "knife_jumper", "targetname" );
     acti = getEnt( "knife_activator", "targetname" );
- 
+
     for(;;)
 	{
 		level.knife_trigger SetHintString("Press &&1 to enter the Knife room.");
@@ -745,7 +743,7 @@ knife()
 			player createRoom(jump.origin,jump.angles,"knife_mp",undefined,100,1);
 			level.activ createRoom(acti.origin,acti.angles,"knife_mp",undefined,100,1);
 		}
-		else 
+		else
 			player createRoom(jump.origin,jump.angles,"knife_mp",undefined,100,1);
 
 		iprintlnbold("^3"+player.name+"^6 has chosen the Knife Room!");
@@ -762,7 +760,7 @@ bouplat1()
 {
 	plat = getEnt( "brplatform1", "targetname" );
 	level.bouplat1_trigger = getEnt( "trig_brplatform1", "targetname" );
-	
+
 	while(1)
 	{
 		level.bouplat1_trigger waittill( "trigger", player );
@@ -781,7 +779,7 @@ bouplat2()
 {
 	plat = getEnt( "brplatform2", "targetname" );
 	level.bouplat2_trigger = getEnt( "trig_brplatform2", "targetname" );
-	
+
 	while(1)
 	{
 		level.bouplat2_trigger waittill( "trigger", player );
@@ -801,7 +799,7 @@ bounce()
     level.bounce_trigger = getEnt( "trig_bounce", "targetname" );
     jump = getEnt( "bounce_jumper", "targetname" );
     acti = getEnt( "bounce_activator", "targetname" );
- 
+
     for(;;)
 	{
 		level.bounce_trigger SetHintString("Press &&1 to enter the Bounce room.");
@@ -820,7 +818,7 @@ bounce()
 			player createRoom(jump.origin,jump.angles,"knife_mp",undefined,100,1);
 			level.activ createRoom(acti.origin,acti.angles,"knife_mp",undefined,100,1);
 		}
-		else 
+		else
 			player createRoom(jump.origin,jump.angles,"knife_mp",undefined,100,1);
 
 		iprintlnbold("^3"+player.name+"^6 has chosen the Bounce Room!");
@@ -839,7 +837,7 @@ miniak()
     level.miniak_trigger = getEnt( "trig_random_weapon", "targetname" );
     jump = getEnt( "sniper_jumper", "targetname" );
     acti = getEnt( "sniper_activator", "targetname" );
- 
+
     for(;;)
 	{
 		level.miniak_trigger SetHintString("Press &&1 to enter the Ak74u room.");
@@ -858,7 +856,7 @@ miniak()
 			player createRoom(jump.origin,jump.angles,"ak74u_mp",undefined,100,1);
 			level.activ createRoom(acti.origin,acti.angles,"ak74u_mp",undefined,100,1);
 		}
-		else 
+		else
 			player createRoom(jump.origin,jump.angles,"ak74u_mp",undefined,100,1);
 
 		iprintlnbold("^3"+player.name+"^6 has chosen the Ak74u Room!");
@@ -893,7 +891,7 @@ createRoom(origin,angles,weapon,weapon2,health,freeze)
 
 bounce_f()
 {
-    trig = getEnt( "bounce_fail", "targetname" ); //trigger 
+    trig = getEnt( "bounce_fail", "targetname" ); //trigger
     jump = getEnt( "bounce_jumper", "targetname" ); //jumper origin
     acti = getEnt( "bounce_activator", "targetname" ); //acti origin
 
@@ -905,12 +903,12 @@ bounce_f()
     		if(player.pers["team"]=="allies")
     		{
     			player setplayerangles(jump.angles);
-                player setorigin(jump.origin); 
+                player setorigin(jump.origin);
     		}
-    		else 
+    		else
     		{
     			player setplayerangles(acti.angles);
-                player setorigin(acti.origin); 
+                player setorigin(acti.origin);
     		}
     	}
     }
@@ -924,7 +922,7 @@ bouncer700()
 		trig sethintstring("^3>>^1Press &&1 to pickup the sniper.^3<<");
 		trig waittill("trigger",who);
 		who giveweapon( "remington700_mp" );
-        who givemaxammo( "remington700_mp" );   
+        who givemaxammo( "remington700_mp" );
         who switchtoweapon( "remington700_mp" );
         iPrintLnBold( "^3"+who.name+" ^6has got a sniper!" );
         trig sethintstring("^3>>^1Loading^3<<");
@@ -936,7 +934,7 @@ thankyou()
 {
 	if(isdefined(level.topcredits))
         level.topcredits destroy();
- 
+
     level.topcredits = newHudElem();
     level.topcredits.foreground = true;
     level.topcredits.alignX = "center";
@@ -989,7 +987,7 @@ self.secretTimer.hidewheninmenu = true;
 self.secretTimer.label = &"Time in left: &&1";
 if(isdefined(level.randomcolor))
 self.secretTimer.glowColor=level.randomcolor;
-else 
+else
 self.secretTimer.glowColor=(1,0,0);
 
 time=120;
@@ -1039,7 +1037,7 @@ old_room()
 logo1()
 {
 	logo1 = getent( "vc_logo_1", "targetname");
-	
+
 	while(1)
 	{
 		{
@@ -1056,7 +1054,7 @@ logo1()
 logo2()
 {
 	logo2 = getent( "vc_logo_2", "targetname");
-	
+
 	while(1)
 	{
 		{
@@ -1073,7 +1071,7 @@ logo2()
 logob()
 {
 	logob = getent( "vc_logo_b", "targetname");
-	
+
 	while(1)
 	{
 		{
@@ -1090,7 +1088,7 @@ logob()
 logok()
 {
 	logok = getent( "vc_logo_k", "targetname");
-	
+
 	while(1)
 	{
 		{
@@ -1107,7 +1105,7 @@ logok()
 logos()
 {
 	logos = getent( "vc_logo_s", "targetname");
-	
+
 	while(1)
 	{
 		{

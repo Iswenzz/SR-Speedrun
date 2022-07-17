@@ -14,18 +14,23 @@ main()
 
 mode_190()
 {
-	self.moveSpeedScale = 1.05;
-	self.gravity = 800;
-	self.jumpHeight = 39;
-	self.speed = 190;
+	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.05);
+	self.gravity = sr\api\_map::getGravity(800);
+	self.jumpHeight = sr\api\_map::getJumpHeight(39);
+	self.speed = sr\api\_map::getSpeed(190);
 
 	if (sr\api\_speedrun::isSlide())
 	{
-		self.moveSpeedScale = 1.0;
-		self.gravity = 1000;
-		self.jumpHeight = 70;
-		self.speed = 190 * level.map_slide_multiplier;
+		self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.0);
+		self.gravity = sr\api\_map::getGravity(1000);
+		self.jumpHeight = sr\api\_map::getJumpHeight(70);
+		self.speed = sr\api\_map::getSpeed(190 * level.map_slide_multiplier);
 	}
+
+	self.spawnMoveSpeedScale = self.moveSpeedScale;
+	self.spawnGravity = self.gravity;
+	self.spawnJumpHeight = self.jumpHeight;
+	self.spawnSpeed = self.speed;
 
 	self setMoveSpeedScale(self.moveSpeedScale);
 	self setGravity(self.gravity);
@@ -35,19 +40,24 @@ mode_190()
 
 mode_210()
 {
-	self.moveSpeedScale = 1.12;
-	self.gravity = 800;
-	self.jumpHeight = 39;
-	self.speed = 210;
+	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.12);
+	self.gravity = sr\api\_map::getGravity(800);
+	self.jumpHeight = sr\api\_map::getJumpHeight(39);
+	self.speed = sr\api\_map::getSpeed(210);
 
 	if (sr\api\_speedrun::isSlide())
 	{
-		self.moveSpeedScale = 1.8;
-		self.gravity = 1000;
-		self.jumpHeight = 70;
-		self.speed = 190 * level.map_slide_multiplier;
+		self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.8);
+		self.gravity = sr\api\_map::getGravity(1000);
+		self.jumpHeight = sr\api\_map::getJumpHeight(70);
+		self.speed = sr\api\_map::getSpeed(190 * level.map_slide_multiplier);
 	}
-	
+
+	self.spawnMoveSpeedScale = self.moveSpeedScale;
+	self.spawnGravity = self.gravity;
+	self.spawnJumpHeight = self.jumpHeight;
+	self.spawnSpeed = self.speed;
+
 	self setMoveSpeedScale(self.moveSpeedScale);
 	self setGravity(self.gravity);
 	self setJumpHeight(self.jumpHeight);
@@ -60,7 +70,7 @@ onSpawn()
 
 	self.sr_mode = IfUndef(self.sr_mode, "190");
 	self.sr_way = "normal_0";
-	
+
 	self startMode();
 	self playerTimer();
 }
@@ -73,7 +83,7 @@ startMode()
 endmapTrig()
 {
 	wait 5;
-	
+
 	array = getEntArray("endmap_trig", "targetname");
 	if (!array.size)
 	{

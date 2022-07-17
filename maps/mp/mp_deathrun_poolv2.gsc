@@ -3,23 +3,21 @@
 main()
 {
  maps\mp\_load::main();
- 
+
  game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"]= "desert";
- 
-	setdvar("g_speed" ,"210");
-	setdvar("dr_jumpers_speed" ,"1.12");
+
 	setdvar( "r_specularcolorscale", "1" );
     setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
 	setdvar("r_glowskybleedintensity0",".1");
 	setDvar("bg_falldamagemaxheight", 99999);
     setDvar("bg_falldamageminheight", 99998);
-	
+
 	addTriggerToList("trig_trap1");
 	addTriggerToList("trig_trap2");
 	addTriggerToList("trig_trap3");
@@ -38,8 +36,8 @@ main()
 	//thread trap5();
 	//thread trap6();
     thread sr\api\_speedrun::createNormalWays("Normal Way;");
-    thread sr\api\_map::createSpawn((68,21,76),91); 
-} 
+    thread sr\api\_map::createSpawn((68,21,76),91);
+}
 
 addTriggerToList( name )
 {
@@ -97,11 +95,11 @@ DoorHUD(messages)
     level.hud_door = createHUD( 0, 100, "center", "top", 1, "objective", 1.5 );
     level.hud_door setText("^4Poolv2");
     level.hud_door setPulseFX( 40, waitTime*1000-offset, offset );
-    
+
 	level.hud_door2 = createHUD( 0, 100, "center", "middle", 1, "objective", 1.5 );
     level.hud_door2 setText("^7Map by ^4CM'Death");
     level.hud_door2 setPulseFX( 40, waitTime*1000-offset, offset );
-	
+
     wait waitTime;
     if (isDefined(level.hud_door)) level.hud_door destroy();
 	if (isDefined(level.hud_door2)) level.hud_door2 destroy();
@@ -114,7 +112,7 @@ messages()
    AmbientPlay("poolsong");
    wait 3;
    for(;;)
-{  
+{
    wait 5;
  x = randomintrange(0,4);
    if (x==0)
@@ -161,16 +159,16 @@ finishdoor()
 	trig waittill("trigger", player);
 
 	platform moveZ(-300,8);
-	
+
 	trig delete();
-    
+
 }
 
 movingplatform()
 {
    block = getent("movingplat","targetname");
-        
-} 
+
+}
 
 trap1()
 {
@@ -178,11 +176,11 @@ trap1()
    platformb = getent("trap1b", "targetname");
    platformc = getent("trap1c", "targetname");
    trig = getent("trig_trap1", "targetname");
-   
+
    trig setHintString("^5Trap1");
    trig waittill("trigger", player);
    trig setHintString("^1Activated.");
-   
+
   for(;;)
    {
    platforma moveZ (-100,2,1,1);
@@ -206,30 +204,30 @@ trap2()
    hurtc = getent("trap2_hurtc", "targetname");
    hurtd = getent("trap2_hurtd", "targetname");
    trig setHintString("Rotate the Cylinder!");
-   
+
    hurta enablelinkto();
    hurta linkto (laser);
-   
+
    hurtb enablelinkto();
    hurtb linkto (laser);
-   
+
    hurtc enablelinkto();
    hurtc linkto (laser);
-   
+
    hurtd enablelinkto();
    hurtd linkto (laser);
-   
+
    trig waittill ("trigger");
    trig setHintString("^1Activated.");
-   
+
    for(;;)
-  { 
+  {
    laser moveZ (-200,2);
    wait 1;
    laser moveZ (200,2);
    wait 1;
    }
-}   
+}
 
 trap3()
 {
@@ -238,7 +236,7 @@ trap3()
     trig setHintString("^5Trap3");
 	trig waittill("trigger", player);
 	trig setHintString("^1Activated.");
-    
+
 	for(;;)
 	{
 	platform notsolid();
@@ -255,7 +253,7 @@ trap4()
    trig setHintString("^5Trap4");
    trig waittill("trigger", player);
    trig setHintString("^1Activated.");
-   
+
      while(1)
    {
    platform rotateroll(360,5);
@@ -271,7 +269,7 @@ trap5()
    trig setHintString("^5Trap5");
    trig waittill("trigger", player);
    trig setHintString("^1Activated.");
-   
+
    for(;;)
    {
    platforma moveX (250,2);
@@ -281,7 +279,7 @@ trap5()
    platformb moveX (250,2);
    wait 1;
    }
-   
+
 }
 
 trap6()
@@ -291,7 +289,7 @@ trap6()
    trig setHintString("^5Trap6");
    trig waittill("trigger", player);
    trig setHintString("^1Activated.");
-   
+
    for(;;)
 	{
 	platform Rotatepitch(360,2);

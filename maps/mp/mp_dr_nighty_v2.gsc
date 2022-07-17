@@ -28,14 +28,14 @@ trigger.targetname = "endmap_trig";
 trigger.radius = 150;
  maps\mp\_load::main();
  maps\mp\_compass::setupMiniMap("compass_map_mp_surf_nighty");
- 
+
  game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"] = "desert";
- 
+
 	//SETDVAR**
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("compassmaxrange","1600");
@@ -74,17 +74,17 @@ trigger.radius = 150;
 	thread lvl1rollsetup();
 	thread lvl1pitchsetup();
 	//NG*
-	
+
 	//TURN**
-	
+
 	trip_1 = getEntArray("brush_turn_1_array","targetname");
 	for(i=0;i<trip_1.size;i++)
 	trip_1[i] thread trip1();
-	
+
 	trl = getEntArray("rift_rotate_l_array","targetname");
 	for(i=0;i<trl.size;i++)
 	trl[i] thread rt_l();
-	
+
 	trr = getEntArray("rift_rotate_r_array","targetname");
 	for(i=0;i<trr.size;i++)
 	trr[i] thread rt_r();
@@ -92,7 +92,7 @@ trigger.radius = 150;
 	t1 = getEntArray("c1_turn_l","targetname");
 	for(i=0;i<t1.size;i++)
 	t1[i] thread turnpitch();
-	
+
 	t2 = getEntArray("c1_turn_r","targetname");
 	for(i=0;i<t2.size;i++)
 	t2[i] thread turnpitch2();
@@ -113,15 +113,15 @@ trigger.radius = 150;
 	for(i=0;i<tlogo.size;i++)
 	tlogo[i] thread turnlogo();
 	//TURN*
-	
+
 	visionSetNaked("mp_dr_nighty_v2", 0);
-	
+
 }
 
 boost()
 {
 	b = getEnt("speed_boost","targetname");
-	
+
 	for(;;)
 	{
 		b waittill("trigger",p);
@@ -133,11 +133,11 @@ boostng()
 {
 	if(self.boosted)
 		return;
-	
+
 	self.boosted = true;
-	self SetMoveSpeedScale(5);
+	self sr\api\_player::setPlayerSpeedScale(5);
 	wait 5;
-	self SetMoveSpeedScale(1);
+	self sr\api\_player::setPlayerSpeedScale(1);
 	self.boosted = false;
 }
 
@@ -173,7 +173,7 @@ rift1()
 {
 	r = getEnt("rift_1","targetname");
 	rb = getEnt("rift_1_b","targetname");
-	
+
 	while(1){
 		r rotatePitch(360,16);
 		rb rotatePitch(-360,16);
@@ -185,7 +185,7 @@ rift3()
 {
 	r = getEnt("rift_3","targetname");
 	rb = getEnt("rift_3_b","targetname");
-	
+
 	while(1){
 		r rotatePitch(360,16);
 		rb rotatePitch(-360,16);
@@ -210,15 +210,15 @@ turnbox1()
 {
 	t = getEnt("turn_box","targetname");
 	o = spawn("script_origin", (-6528.5, 4674.5, 1248));
-	
+
 	level waittill("round_started");
 	// t enableLinkTo();
 	t linkTo(o);
-	
+
 	ang = 0;
-	
+
 	wait .05;
-	
+
 	while(isDefined(o.origin)){
 		o.angles = (o.angles + (0,ang,0));
 		ang += -0.002;
@@ -247,7 +247,7 @@ nr_tp_1()
 {
 	t = getEnt("nw_tp_trig_1", "targetname");
 	o = getEnt("nw_tp_ori_1", "targetname");
-	
+
 	for (;;)
 	{
 		t waittill("trigger", player);
@@ -307,11 +307,11 @@ wait 1;
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
 

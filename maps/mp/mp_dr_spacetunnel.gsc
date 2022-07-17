@@ -16,24 +16,24 @@ level.masterSpawn.angles = level.spawn["allies"][5].angles;
 	 level.spacelight1 = loadFX("deathrun/spacelight1");
 	 level.spacelight2 = loadFX("deathrun/spacelight2");
 	 level.boom = loadFX("deathrun/boom");
-	 
+
 	 game["allies"] = "sas";
 	 game["axis"] = "opfor";
 	 game["attackers"] = "axis";
 	 game["defenders"] = "allies";
 	 game["allies_soldiertype"] = "woodland";
 	 game["axis_soldiertype"] = "woodland";
-	 
+
 	 precacheShellShock("pain");
 	 precacheShellShock("frag_grenade_mp");
 	 precacheItem( "brick_blaster_mp" );
 	 //precacheModel("playermodel_baa_joker");
-	 
+
 	 setdvar( "r_specularcolorscale", "1" );
 	 setdvar("r_glowbloomintensity0",".25");
 	 setdvar("r_glowbloomintensity1",".25");
 	 setExpFog(3000, 4000, 0.4, 0.425, 0.44, 0.0);
-	 
+
 	 // thread credits();
 	 // thread laptop();
 	 // thread actibruz();
@@ -62,9 +62,9 @@ level.masterSpawn.angles = level.spawn["allies"][5].angles;
 	 // thread trap7();
 	 // thread sniper();
 	 // thread knife();
-	 
+
 	 self.hasfov = 0;
-	 
+
 	 // addTriggerToList( "trap1_trig" );
 	 // addTriggerToList( "trap2_trig" );
 	 // addTriggerToList( "trap3_trig" );
@@ -72,17 +72,17 @@ level.masterSpawn.angles = level.spawn["allies"][5].angles;
 	 // addTriggerToList( "trap5_trig" );
 	 // addTriggerToList( "trap6_trig" );
 	 // addTriggerToList( "trap7_trig" );
-	 
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
 
@@ -177,7 +177,7 @@ wait 20;
 }
 
 vip()
-{	
+{
 level.accepted1 = "11b05456"; //Sheep
 level.accepted2 = "c409ae43";//Blade
 trig = getent("vipon", "targetname");
@@ -186,7 +186,7 @@ while (1)
 trig waittill("trigger", player);
 friend = getSubStr(player getGuid(), 24, 32);
 if((friend == level.accepted1))
-{	
+{
 wait 1;
 player giveweapon( "brick_blaster_mp" );
 iprintln("^2Sheep Wizard ^1is online!");
@@ -300,8 +300,8 @@ teleporttrigger()//Thanks to lossy and darmuh for helping with this
 	self endon( "disconnect" );	 //end on disconnect
 	self endon( "joined_team" ); //end when joining team aka player gets switch to activator because old acti was afk...
 	self endon( "joined_spectators" ); //end when joining spectator
-	
-	
+
+
 	trig = getent("fov", "targetname");
 	level.fovtp = getent("fovtp", "targetname");
 	for(;;)
@@ -314,8 +314,8 @@ teleporttrigger()//Thanks to lossy and darmuh for helping with this
 onDeath()
 {
 	self endon("disconnect");
-	
-	self waittill("death"); 
+
+	self waittill("death");
 	self.hasfov = 0;
 }
 
@@ -327,41 +327,41 @@ self setOrigin(level.fovtp.origin);
 }
 
 addTestClients()
-{ 
-setDvar("scr_testclients", ""); 
-wait 1; 
-for(;;) 
-{ 
-if(getdvarInt("scr_testclients") > 0) 
-break; 
-wait 1; 
-} 
-testclients = getdvarInt("scr_testclients"); 
-setDvar( "scr_testclients", 0 ); 
-for(i=0;i<testclients;i++) 
-{ 
-ent[i] = addtestclient(); 
+{
+setDvar("scr_testclients", "");
+wait 1;
+for(;;)
+{
+if(getdvarInt("scr_testclients") > 0)
+break;
+wait 1;
+}
+testclients = getdvarInt("scr_testclients");
+setDvar( "scr_testclients", 0 );
+for(i=0;i<testclients;i++)
+{
+ent[i] = addtestclient();
 
-if (!isdefined(ent[i])) 
-{ 
-println("Could not add test client"); 
-wait 1; 
-continue; 
-} 
-ent[i].pers["isBot"] = true; 
-ent[i] thread TestClient("autoassign"); 
-} 
-thread addTestClients(); 
-} 
-TestClient(team) 
-{ 
-self endon( "disconnect" ); 
+if (!isdefined(ent[i]))
+{
+println("Could not add test client");
+wait 1;
+continue;
+}
+ent[i].pers["isBot"] = true;
+ent[i] thread TestClient("autoassign");
+}
+thread addTestClients();
+}
+TestClient(team)
+{
+self endon( "disconnect" );
 
-while(!isdefined(self.pers["team"])) 
-wait .05; 
+while(!isdefined(self.pers["team"]))
+wait .05;
 
-self notify("menuresponse", game["menu_team"], team); 
-wait 0.5; 
+self notify("menuresponse", game["menu_team"], team);
+wait 0.5;
 //scr_testclients 4
 }
 
@@ -381,16 +381,16 @@ iprintlnbold("^2"+ player.name + " "+ "is ^7smoking ^2bebe :D");
 PlayFXOnTag( level.smoke, player, "j_head" );
 }
 
-glass_break_01() 
+glass_break_01()
 {
-glass_01 = getent("glass_01","targetname"); 
+glass_01 = getent("glass_01","targetname");
 glasstag = getent("glasstag", "targetname");
 trig_glass_01 = getent("trig_glass_01","targetname");
 
 wait 1;
 
-glass_01 delete(); 
-trig_glass_01 delete(); 
+glass_01 delete();
+trig_glass_01 delete();
 glasstag delete();
 
 
@@ -638,17 +638,17 @@ sniper()
      level.sniper_trig = getEnt( "sniper", "targetname");
      sjump = getEnt( "jumps", "targetname" );
      sacti = getEnt( "actis", "targetname" );
-     
+
      if( !isDefined( level.sniper_trig ) )
          return;
-         
+
      while(1)
      {
         level.sniper_trig waittill( "trigger", player );
-        
+
         if(!isdefined(level.firstenter))
             level.firstenter=false;
-            
+
         if(level.firstenter==false)
         {
 		 level.knife_trig delete();
@@ -656,7 +656,7 @@ sniper()
         }
             level.activ freezeControls(1);
             player freezeControls(1);
-            
+
             player SetPlayerAngles( sjump.angles );
             player setOrigin( sjump.origin );
             level.activ setPlayerangles( sacti.angles );
@@ -664,14 +664,14 @@ sniper()
             level.activ TakeAllWeapons();
             player TakeAllWeapons();
 			level.activ.health = 100;
-            
+
             level.activ giveweapon( "m40a3_mp");
             player giveweapon( "m40a3_mp");
             player switchToWeapon( "m40a3_mp" );
             level.activ SwitchToWeapon( "m40a3_mp" );
             player giveMaxAmmo( "m40a3_mp" );
             level.activ giveMaxAmmo( "m40a3_mp" );
-			
+
 			level.activ giveweapon( "remington700_mp");
             player giveweapon( "remington700_mp");
             player switchToWeapon( "remington700_mp" );
@@ -680,24 +680,24 @@ sniper()
             level.activ giveMaxAmmo( "remington700_mp" );
 			player thread jump();
 			level.activ thread jump();
-     
+
                     noti = SpawnStruct();
                     noti.titleText = "Sniper Fight";
                     noti.notifyText = level.activ.name + " ^1VS^7 " + player.name;
                     noti.duration = 4;
                     noti.glowcolor = (0.9, 1.0, 0.0);
-                    
+
                     players = getEntArray("player", "classname");
                     for(i=0;i<players.size;i++)
                         players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-                    
+
             wait 2;
-            
+
             level.activ FreezeControls(0);
             player FreezeControls(0);
-            
+
             wait 0.1;
-                     
+
             while(isAlive(player))
                 wait 1;
 
@@ -709,17 +709,17 @@ knife()
      level.knife_trig = getEnt( "knife", "targetname");
      kjump = getEnt( "jumpk", "targetname" );
      kacti = getEnt( "actik", "targetname" );
-     
+
      if( !isDefined( level.knife_trig ) )
          return;
-         
+
      while(1)
      {
         level.knife_trig waittill( "trigger", player );
-        
+
         if(!isdefined(level.firstenter))
             level.firstenter=false;
-            
+
         if(level.firstenter==false)
         {
 		 level.sniper_trig delete();
@@ -727,7 +727,7 @@ knife()
         }
             level.activ freezeControls(1);
             player freezeControls(1);
-            
+
             player SetPlayerAngles( kjump.angles );
             player setOrigin( kjump.origin );
             level.activ setPlayerAngles( kacti.angles );
@@ -735,29 +735,29 @@ knife()
             level.activ takeAllWeapons();
             player takeAllWeapons();
 			level.activ.health = 100;
-            
+
             level.activ giveWeapon( "tomahawk_mp");
             player giveWeapon( "tomahawk_mp");
             player switchToWeapon( "tomahawk_mp" );
             level.activ switchToWeapon( "tomahawk_mp" );
 			player thread jump();
 			level.activ thread jump();
-			          
+
             noti = SpawnStruct();
             noti.titleText = "knife Fight";
             noti.notifyText = level.activ.name + " ^1VS^7 " + player.name;
             noti.duration = 4;
             noti.glowcolor = (0.9, 1.0, 0.0);
-                    
+
             players = getEntArray("player", "classname");
             for(i=0;i<players.size;i++)
-            players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );         
+            players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
             wait 2;
-            
+
             level.activ FreezeControls(0);
             player FreezeControls(0);
-            
-            wait 0.1;          
+
+            wait 0.1;
             while(isAlive(player))
                 wait 1;
 
@@ -767,9 +767,7 @@ knife()
 
 jump()
 {
-self setclientdvar("g_gravity", 130 );
-self waittill("death");
-self setclientdvar("g_gravity", 800 );
+
 
 }
 
