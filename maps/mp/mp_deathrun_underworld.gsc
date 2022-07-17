@@ -1,31 +1,7 @@
-////////////////////////////////////////////////////////
-//####//######///######//##/////##////###////########///
-///##//##////##/##////##/###///###///##/##///##/////##//
-///##//##///////##////##/####/####//##///##//##/////##//
-///##//##///////##////##/##/###/##/##/////##/########///
-///##//##///////##////##/##/////##/#########/##///##////
-///##//##////##/##////##/##/////##/##/////##/##////##///
-//####//######///######//##/////##/##/////##/##/////##//
-////////////////////////////////////////////////////////
-
-
-
-//////////////////////////////////////////////////
-////////////| mp_deathrun_underworld |////////////
-//////////////////////////////////////////////////
-//////////////| map made by Icomar |//////////////
-//////////////////////////////////////////////////
-///////////////| xFire: icomar727 |///////////////
-//////////////////////////////////////////////////
-///////////////| Thanks to: Blade |///////////////
-//////////////////////////////////////////////////
-
-
-
 main()
 {
     maps\mp\_load::main();
-	
+
 	precacheItem ( "brick_blaster_mp" );
 	precacheItem ( "mp5_mp" );
 	precacheItem ( "p90_mp" );
@@ -40,10 +16,12 @@ main()
     game["defenders"] = "allies";
     game["allies_soldiertype"] = "desert";
     game["axis_soldiertype"] = "desert";
-	
+
 	thread way_connect();
 	thread onConnect();
-	
+	thread sr\api\_speedrun::createTeleporter((-4583.22, 3943.88, 432.125), 85, 30, (-4453, 3930, 1596), 360, "freeze", "blue");
+	thread sr\api\_speedrun::createTeleporter((1421.94, -178.051, -63.875), 55, 40, (-4711, 4200, 236), 3, "freeze", "cyan", "secret_0");
+
 	//scripts
 	// maps\mp\underworld\endrooms::main();
 	// maps\mp\underworld\books::main();
@@ -54,17 +32,17 @@ main()
 	// maps\mp\underworld\other::main();
 	// maps\mp\underworld\secret::main();
 	// maps\mp\underworld\music::main();
-	
+
 	level.water = LoadFX ( "misc/watersplash_large" );
 	level.explosion = LoadFX ( "explosions/tanker_explosion" );
 	level.explosion_barrel = LoadFX ( "explosions/fuel_med_explosion" );
 	level.mine = LoadFX ( "explosions/artilleryExp_dirt_brown_low" );
 	level.fire = LoadFX ( "fire/firelp_barrel_pm" );
-	
+
 	//Doors
 	thread door_1();
 	thread door_2();
-	
+
 	//Effekte
 	// thread effect_on_death_1();
 	// thread effect_on_death_2();
@@ -73,7 +51,7 @@ main()
 
 	//Movings
 	thread move_1();
-	
+
 	thread elevator_1();
 
 	//triggerinfreerun
@@ -114,37 +92,16 @@ onPlayerSpawned()
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
-	thread secret_1();
-	
+
+
     for(;;)
     {
         level waittill( "connected", player );
-
+        // player thread sr\api\_speedrun::way_name();
     }
-}
-
-secret_1()
-{
-	trigger = spawn( "trigger_radius", (-4584.55, 4103.66, 225.125), 0, 35, 65 );
-	
-	wait 1;
-	trigger.radius = 35;
-	trigger.inAir = true;
-	thread sr\api\_map::createTriggerFx(trigger, "secret");
-	
-	for(;;)
-	{
-		trigger waittill("trigger",player);
-		if(!isDefined(player.secret_1))
-		{
-			player.secret_1 = true;
-			player sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste
-		}
-	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -153,11 +110,11 @@ elevator_1()
 {
     trigger = getEnt ("elevator_trigger_1", "targetname");
 	target = getEnt ("elevator_1", "targetname");
-	
+
 	while (1)
 	{
 	    trigger waittill ("trigger", player );
-	
+
 	    target moveZ (1095, 5);
 		target waittill ("movedone");
 		wait 3;
@@ -178,7 +135,7 @@ addTriggerToList( name )
 effect_on_death_1()
 {
     trigger = getEnt ("water_effect_on_death_1", "targetname");
-	
+
 	while (1)
 	{
 	    trigger waittill ("trigger", player );
@@ -189,7 +146,7 @@ effect_on_death_1()
 effect_on_death_2()
 {
     trigger = getEnt ("water_effect_on_death_2", "targetname");
-	
+
 	while (1)
 	{
 	    trigger waittill ("trigger", player );
@@ -202,7 +159,7 @@ effect_explosion()
     trigger = getEnt ("explosion_effect_1_trigger", "targetname");
 	target_1 = getEnt ("explosion_effect_1", "targetname");
 	target_2 = getEnt ("explosion_effect_2", "targetname");
-	
+
 	trigger waittill ("trigger", player );
     wait 0.5;
 	playFx ( level.explosion, target_1.origin );
@@ -217,9 +174,9 @@ door_1()
 {
     trigger = getEnt ("door_1_trigger", "targetname");
 	target = getEnt ("door_1", "targetname");
-	
+
 	trigger delete();
-	
+
 	target moveZ (112, 2);
 	wait 2;
 }
@@ -228,9 +185,9 @@ door_2()
 {
     trigger = getEnt ("door_2_trigger", "targetname");
 	target = getEnt ("door_2", "targetname");
-	
+
 	trigger delete();
-	
+
 	target moveZ (168, 3);
 	wait 3;
 }
@@ -239,7 +196,7 @@ door_2()
 move_1()
 {
     target = getEnt ("move_1", "targetname");
-	
+
 	while (1)
 	{
 	    target rotateYaw (180, 9);
