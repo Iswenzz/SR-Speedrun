@@ -6,62 +6,11 @@ main()
 {
     event("spawn", ::onSpawn);
 
-	addMode("190", ::mode_190);
-	addMode("210", ::mode_210);
+	addMode("190", speedrun\player\run\_190::start);
+	addMode("210", speedrun\player\run\_210::start);
+	addMode("Portal", speedrun\player\run\_portal::start);
 
     thread endmapTrig();
-}
-
-mode_190()
-{
-	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.05);
-	self.gravity = sr\api\_map::getGravity(800);
-	self.jumpHeight = sr\api\_map::getJumpHeight(39);
-	self.speed = sr\api\_map::getSpeed(190);
-
-	if (sr\api\_speedrun::isSlide())
-	{
-		self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.0);
-		self.gravity = sr\api\_map::getGravity(1000);
-		self.jumpHeight = sr\api\_map::getJumpHeight(70);
-		self.speed = sr\api\_map::getSpeed(190 * level.map_slide_multiplier);
-	}
-
-	self.spawnMoveSpeedScale = self.moveSpeedScale;
-	self.spawnGravity = self.gravity;
-	self.spawnJumpHeight = self.jumpHeight;
-	self.spawnSpeed = self.speed;
-
-	self setMoveSpeedScale(self.moveSpeedScale);
-	self setGravity(self.gravity);
-	self setJumpHeight(self.jumpHeight);
-	self setMoveSpeed(self.speed);
-}
-
-mode_210()
-{
-	self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.12);
-	self.gravity = sr\api\_map::getGravity(800);
-	self.jumpHeight = sr\api\_map::getJumpHeight(39);
-	self.speed = sr\api\_map::getSpeed(210);
-
-	if (sr\api\_speedrun::isSlide())
-	{
-		self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.8);
-		self.gravity = sr\api\_map::getGravity(1000);
-		self.jumpHeight = sr\api\_map::getJumpHeight(70);
-		self.speed = sr\api\_map::getSpeed(190 * level.map_slide_multiplier);
-	}
-
-	self.spawnMoveSpeedScale = self.moveSpeedScale;
-	self.spawnGravity = self.gravity;
-	self.spawnJumpHeight = self.jumpHeight;
-	self.spawnSpeed = self.speed;
-
-	self setMoveSpeedScale(self.moveSpeedScale);
-	self setGravity(self.gravity);
-	self setJumpHeight(self.jumpHeight);
-	self setMoveSpeed(self.speed);
 }
 
 onSpawn()
@@ -81,6 +30,7 @@ getLastMode()
 	{
 		case 1: return "190";
 		case 2: return "210";
+		case 3: return "Portal";
 	}
 	return "190";
 }
@@ -92,7 +42,7 @@ startMode()
 
 endmapTrig()
 {
-	wait 5;
+	waitMapLoad(2);
 
 	array = getEntArray("endmap_trig", "targetname");
 	if (!array.size)

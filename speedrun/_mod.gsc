@@ -18,9 +18,9 @@ main()
 	speedrun\game\_callbacks::main();
 	speedrun\game\_menus::main();
 	speedrun\game\_scoreboard::main();
-	speedrun\game\_run::main();
 	speedrun\game\_leaderboards::initLeaderboards();
 	speedrun\game\_pbs::initPBs();
+	speedrun\player\run\_main::main();
 	speedrun\player\huds\_cheat::main();
 	speedrun\player\huds\_speedrun::main();
 

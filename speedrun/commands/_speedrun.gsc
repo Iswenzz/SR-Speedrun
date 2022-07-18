@@ -3,7 +3,8 @@
 main()
 {
     cmd("player", 	"speed",    ::cmd_Speed);
-	cmd("player", 	"practise", ::cmd_Practise);
+    cmd("player", 	"portal",   ::cmd_Portal);
+	cmd("player", 	"practise",	::cmd_Practise);
 }
 
 cmd_Speed(args)
@@ -11,7 +12,15 @@ cmd_Speed(args)
     speed = Ternary(self.sr_mode == "190", "210", "190");
 	self setStat(1700, Ternary(speed == "190", 1, 2));
     self.sr_mode = speed;
-    self pm(fmt("Move speed set to %s", speed));
+    self pm(fmt("Run mode: ^5%s", speed));
+    self suicide();
+}
+
+cmd_Portal(args)
+{
+	self setStat(1700, 3);
+	self.sr_mode = "Portal";
+    self pm("Run mode: ^5Portal");
     self suicide();
 }
 
