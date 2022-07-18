@@ -18,9 +18,12 @@ cmd_Speed(args)
 
 cmd_Portal(args)
 {
+	if (self sr\player\modes\_main::isInMode("portal"))
+		return;
+
 	self setStat(1700, 3);
 	self.sr_mode = "Portal";
-    self pm("Run mode: ^5Portal");
+    self pm("Run mode: ^2(BETA) ^5Portal");
     self suicide();
 }
 
