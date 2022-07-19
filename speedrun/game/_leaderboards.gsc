@@ -44,13 +44,6 @@ onConnect()
 {
 	self endon("disconnect");
 
-	waitMapLoad(1);
-
-	if (!mapHasLeaderboards())
-		return;
-
-	names = getArrayKeys(level.leaderboards);
-
 	// Default
 	for (i = 0; i < level.leaderboard_max_page; i++)
 	{
@@ -60,8 +53,13 @@ onConnect()
 		self setClientDvar(fmt("secret_%d_name", i), "-");
 		wait 0.05;
 	}
+	waitMapLoad(1);
+
+	if (!mapHasLeaderboards())
+		return;
 
 	// Registred
+	names = getArrayKeys(level.leaderboards);
 	for (i = 0; i < names.size; i++)
 	{
 		leaderboard = level.leaderboards[names[i]];
