@@ -73,9 +73,8 @@ playerTimer()
 	if (game["state"] != "playing")
 		level waittill("round_started");
 
-	wait 0.1; // Spastic delay caused by bad modding, too bad...
-
-	self.time = originToTime(getTime());
+	delay = 100; // Spastic delay caused by bad modding, too bad...
+	self.time = originToTime(getTime() + delay);
 }
 
 endTimer()
