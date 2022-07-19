@@ -79,7 +79,7 @@ playerTimer()
 
 endTimer()
 {
-	if (self.finishedMap || self.sr_cheat)
+	if (self.finishedMap || self.sr_cheat || !isDefined(self.time))
 		return;
 
 	self.finishedMap = true;
