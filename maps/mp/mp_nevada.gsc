@@ -33,7 +33,10 @@ way_connect()
 {
     wait 0.05;
 	
-    level.masterSpawn = spawn("script_origin",(-2789,-1452,-308-60));
+    level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
+if (!level.spawn["allies"].size)
+	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
+level.masterSpawn = spawn("script_origin",(-2789,-1452,-308-60));
 	level.masterSpawn.angles = (0,0,0);
 
 	thread secret_1();

@@ -6,6 +6,9 @@
 																   // Add amb2.mp3 to mp_dr_blue.iwd/sound/ if you wish (its linked to soundaliases "skrillex")
 main()
 {
+level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
+if (!level.spawn["allies"].size)
+	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
 level.masterSpawn = spawn("script_origin", level.spawn["allies"][6].origin);
 level.masterSpawn.angles = level.spawn["allies"][6].angles;
 level.masterSpawn placeSpawnPoint();

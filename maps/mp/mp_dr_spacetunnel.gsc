@@ -5,6 +5,9 @@ xfire: paap15
 */
 main()
 {
+level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
+if (!level.spawn["allies"].size)
+	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
 level.masterSpawn = spawn("script_origin", level.spawn["allies"][5].origin - (159,0,0));
 level.masterSpawn.angles = level.spawn["allies"][5].angles;
 	thread way_connect();

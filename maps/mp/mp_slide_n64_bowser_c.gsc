@@ -52,7 +52,10 @@ way_connect()
 {
     wait 0.05;
 	
-    level.masterSpawn = spawn("script_origin",(2954,1626,1312));
+    level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
+if (!level.spawn["allies"].size)
+	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
+level.masterSpawn = spawn("script_origin",(2954,1626,1312));
     level.masterSpawn.angles = (0,270,0);
 
     sr\api\_speedrun::createNormalWays("Normal Way;");

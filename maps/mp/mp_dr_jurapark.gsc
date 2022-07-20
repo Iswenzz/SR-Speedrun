@@ -1,5 +1,8 @@
 main()
 {
+level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
+if (!level.spawn["allies"].size)
+	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
 level.masterSpawn = spawn("script_origin", (-321,295,-87));
 level.masterSpawn.angles = level.spawn["allies"][2].angles;
 trigger = spawn( "trigger_radius", (1007, 2044.27, -86.875), 0, 100, 90 );
@@ -10,16 +13,17 @@ trigger.radius = 100;
 	thread way_connect();
     maps\mp\_load::main();
 
+
 	//***** script ******//
 	maps\mp\mp_dr_jurapark\traps::main();
 	maps\mp\mp_dr_jurapark\visual::main();
 	//maps\mp\mp_dr_jurapark\mp_dr_jurapark::main();
 
-	maps\mp\_compass::setupMiniMap("compass_map_mp_jurapark");	
+	maps\mp\_compass::setupMiniMap("compass_map_mp_jurapark");
 	setdvar("compassmaxrange","1750");
 
 	// AmbientPlay( "song1" );
-	
+
 	//***************************//
 
         game["allies"] = "sas";
@@ -30,7 +34,7 @@ trigger.radius = 100;
         game["axis_soldiertype"] = "woodland";
 
 	//setdvar( "r_specularcolorscale", "1" );
-	
+
 	//setdvar("r_glowbloomintensity0",".25");
 	//setdvar("r_glowbloomintensity1",".25");
 	//setdvar("r_glowskybleedintensity0",".3");
@@ -63,10 +67,10 @@ del_weapon(name)
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
 

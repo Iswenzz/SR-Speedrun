@@ -2,6 +2,9 @@
 /*In case you are here to copy some of the work I have made, well... I have to disappoint you. Please try writing your own code and stop copying other people's work. Thank you.*/
 /* not rly */
   main() {
+level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
+if (!level.spawn["allies"].size)
+	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
 level.masterSpawn = spawn("script_origin",(1228, 786, -160));
 level.masterSpawn.angles = (0,90,0);
  game["allies"] = "marines";
