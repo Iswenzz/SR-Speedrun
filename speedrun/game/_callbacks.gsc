@@ -147,8 +147,8 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 	self.sessionstate = "spectator";
 	self.died = true;
 
-	if (self.settings["gfx_ragdoll"])
-		self thread ragdoll(sHitLoc, vDir, sWeapon, eInflictor, sMeansOfDeath, deathAnimDuration);
+	self thread ragdoll(sHitLoc, vDir, sWeapon, eInflictor, sMeansOfDeath, deathAnimDuration);
+
 	if (self.pers["team"] == "allies" && self canSpawn())
 		self eventSpawn();
 }

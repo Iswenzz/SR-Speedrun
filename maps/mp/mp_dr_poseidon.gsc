@@ -6,8 +6,8 @@ main()
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "woodland";
  game["axis_soldiertype"] = "woodland";
-       
-    
+
+
 	setdvar( "r_specularcolorscale", "1" );
     setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
@@ -15,21 +15,25 @@ main()
     setDvar("bg_falldamagemaxheight", 99999);
     setDvar("bg_falldamageminheight", 99998);
 
-    
-   thread sr\api\_map::createSpawn((-199,-34,92),90);
-   thread sr\api\_speedrun::createNormalWays("Normal Way;");
-   thread sr\api\_speedrun::createSecretWays("Secret Way;");
-   thread sr\api\_speedrun::createTeleporter((-33.3952, 189.139, 32.125), 50, 30, (-451, -6001, 124), 270, "freeze", "yellow", "secret_0");
-     thread sr\api\_speedrun::createEndMap((-2561.67, -9688.04, 64.125),190,95,"secret_0");
 
-   thread startdoor();
-   thread block();
-   thread moveplat();
-   thread secmoveplat();
-   thread tp1();
-   thread tp2();
-   thread ele();
+	thread sr\api\_map::deleteUnsupportedWeapons();
+	thread sr\api\_map::createSpawn((-199,-34,92),90);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread sr\api\_speedrun::createTeleporter((-33.3952, 189.139, 32.125), 50, 30, (-451, -6001, 124), 270, "freeze", "yellow", "secret_0");
+	thread sr\api\_speedrun::createEndMap((-2561.67, -9688.04, 64.125),190,95,"secret_0");
+
+	thread startdoor();
+	thread block();
+	thread moveplat();
+	thread secmoveplat();
+	thread tp1();
+	thread tp2();
+	thread ele();
+
 }
+
+
 
 startdoor()
 {
@@ -98,7 +102,7 @@ tp1()
    tele = getent ("gojumpers", "targetname");
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
 	 player setOrigin(tele.origin);
      player setPlayerAngles(tele.angles);
@@ -111,7 +115,7 @@ tp2()
    tele = getent ("f16_trig", "targetname");
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
 	 player setOrigin(tele.origin);
      player setPlayerAngles(tele.angles);

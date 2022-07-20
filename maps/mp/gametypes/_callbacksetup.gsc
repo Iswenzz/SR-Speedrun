@@ -31,7 +31,6 @@ CodeCallback_StartGameType()
 		if (isDefined(level.callbackStartGameType))
 			[[level.callbackStartGameType]]();
 		level.gametypestarted = true;
-		level.gamebegin = false;
 	}
 }
 

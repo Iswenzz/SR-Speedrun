@@ -10,7 +10,7 @@ Callback_StartGameType()
 {
 	if (!isDefined(game["allies"]))
 		game["allies"] = "marines";
-	if (!isDefined(game["axis"] ))
+	if (!isDefined(game["axis"]))
 		game["axis"] = "opfor";
 
 	speedrun\_mod::main();
