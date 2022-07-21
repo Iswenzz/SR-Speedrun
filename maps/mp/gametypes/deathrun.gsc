@@ -1,5 +1,7 @@
 main()
 {
+	sr\sys\_dvar::reset();
+
 	level.callbackStartGameType = ::Callback_StartGameType;
 
 	level.script = toLower(getDvar("mapname"));
