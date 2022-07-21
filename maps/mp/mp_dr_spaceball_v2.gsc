@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((511, 299, 1792), 270);
+thread sr\api\_map::createSpawnOrigin((511, 299, 1792), 270);
 	maps\mp\_load::main();
 
 	game["allies"] = "sas";
@@ -9,9 +9,9 @@ thread sr\api\_map::createSpawn((511, 299, 1792), 270);
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
-	
+
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
@@ -21,7 +21,7 @@ thread sr\api\_map::createSpawn((511, 299, 1792), 270);
 
         thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createTeleporter((-5954.7, -9727.3, 1344.13), 65, 30, (-9662, -7393, 1357), 90, "freeze", "blue");
-    
+
 	thread trap();
 	thread curv_pusher();
 	thread jumperdie();
@@ -41,11 +41,11 @@ trap2 delete();
 curv_pusher(who)
 {
 	trigger = getEnt ( "curv_pusher", "targetname" );
-	
+
 	while(1)
 	{
     	trigger waittill ( "trigger", who );
-	
+
 	    oldpos = who.origin;
 	    strenght = 10;
 	    for(i=0;i<strenght;i++)
@@ -62,6 +62,6 @@ target = getEnt( "safezone", "targetname");
 {
 self waittill("death");
 level.activ SetOrigin(target.origin);
-level.activ SetPlayerAngles( target.angles );	
-}		
+level.activ SetPlayerAngles( target.angles );
+}
 }

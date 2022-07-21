@@ -3,7 +3,7 @@
 #include common_scripts\utility;
 main()
 {
-thread sr\api\_map::createSpawn((-29, 77, 8), 271);
+thread sr\api\_map::createSpawnOrigin((-29, 77, 8), 271);
 	maps\mp\_load::main();
 
 		thread sr\api\_speedrun::createNormalWays("Normal Way;");
@@ -793,7 +793,7 @@ trap_17()
 	l6h delete();
 }
 
-blue_stuff() 
+blue_stuff()
 {
 	trig = getEnt( "thetele", "targetname" );
 	for(;;)

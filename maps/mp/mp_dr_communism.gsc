@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((93, -762, -853), 90);
+thread sr\api\_map::createSpawnOrigin((93, -762, -853), 90);
 maps\mp\_load::main();
 
 	game["allies"] = "sas";
@@ -16,7 +16,7 @@ maps\mp\_load::main();
 	setdvar("r_glowskybleedintensity0",".1");
 	setDvar("bg_falldamagemaxheight", 99999);
     setDvar("bg_falldamageminheight", 99998);
-	
+
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createSecretWays("Secret Way;");
 thread sr\api\_speedrun::createEndMap((-4249.65, 1669.53, -269.375), 135, 10, "normal_0");
@@ -27,7 +27,7 @@ thread lightningtrap();
 thread trap3();
 thread secretrespawn();
 thread secretend();
-	 
+
 }
 
 bridge()
@@ -57,13 +57,13 @@ trap3link delete();
 }
 
 trap3()
-{ 
+{
 lasers = getEnt( "syndkys", "targetname" );
 
 wait 0.1;
 lasers hide();
 lasers notsolid();
-	
+
 }
 
 secretrespawn()
@@ -76,7 +76,7 @@ while(1)
 secretrespawn waittill("trigger", player);
 player SetPlayerAngles( origin.angles );
 player setOrigin( origin.origin );
-}	
+}
 }
 
 secretend()

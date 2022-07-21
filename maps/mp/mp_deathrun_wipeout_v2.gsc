@@ -1,23 +1,23 @@
 main()
 /*
-                                     __                     __     __                                                                                           __                        ___     
-                                    /\ \                   /\ \__ /\ \                                                    __                                   /\ \__                   /'___`\   
-        ___ ___    _____            \_\ \      __      __  \ \ ,_\\ \ \___    _ __   __  __    ___            __  __  __ /\_\   _____      __     ___    __  __\ \ ,_\          __  __ /\_\ /\ \  
-      /' __` __`\ /\ '__`\          /'_` \   /'__`\  /'__`\ \ \ \/ \ \  _ `\ /\`'__\/\ \/\ \ /' _ `\         /\ \/\ \/\ \\/\ \ /\ '__`\  /'__`\  / __`\ /\ \/\ \\ \ \/         /\ \/\ \\/_/// /__ 
+                                     __                     __     __                                                                                           __                        ___
+                                    /\ \                   /\ \__ /\ \                                                    __                                   /\ \__                   /'___`\
+        ___ ___    _____            \_\ \      __      __  \ \ ,_\\ \ \___    _ __   __  __    ___            __  __  __ /\_\   _____      __     ___    __  __\ \ ,_\          __  __ /\_\ /\ \
+      /' __` __`\ /\ '__`\          /'_` \   /'__`\  /'__`\ \ \ \/ \ \  _ `\ /\`'__\/\ \/\ \ /' _ `\         /\ \/\ \/\ \\/\ \ /\ '__`\  /'__`\  / __`\ /\ \/\ \\ \ \/         /\ \/\ \\/_/// /__
       /\ \/\ \/\ \\ \ \L\ \        /\ \L\ \ /\  __/ /\ \L\.\_\ \ \_ \ \ \ \ \\ \ \/ \ \ \_\ \/\ \/\ \        \ \ \_/ \_/ \\ \ \\ \ \L\ \/\  __/ /\ \L\ \\ \ \_\ \\ \ \_        \ \ \_/ |  // /_\ \
       \ \_\ \_\ \_\\ \ ,__/        \ \___,_\\ \____\\ \__/.\_\\ \__\ \ \_\ \_\\ \_\  \ \____/\ \_\ \_\        \ \___x___/' \ \_\\ \ ,__/\ \____\\ \____/ \ \____/ \ \__\        \ \___/  /\______/
-       \/_/\/_/\/_/ \ \ \/   _______\/__,_ / \/____/ \/__/\/_/ \/__/  \/_/\/_/ \/_/   \/___/  \/_/\/_/  _______\/__//__/    \/_/ \ \ \/  \/____/ \/___/   \/___/   \/__/  _______\/__/   \/_____/ 
-                     \ \_\  /\______\                                                                  /\______\                  \ \_\                                  /\______\                
-                      \/_/  \/______/                                                                  \/______/                   \/_/                                  \/______/                
+       \/_/\/_/\/_/ \ \ \/   _______\/__,_ / \/____/ \/__/\/_/ \/__/  \/_/\/_/ \/_/   \/___/  \/_/\/_/  _______\/__//__/    \/_/ \ \ \/  \/____/ \/___/   \/___/   \/__/  _______\/__/   \/_____/
+                     \ \_\  /\______\                                                                  /\______\                  \ \_\                                  /\______\
+                      \/_/  \/______/                                                                  \/______/                   \/_/                                  \/______/
 										                                                                                                                                               By Paradise*/
 {
-thread sr\api\_map::createSpawn((-304, -672, 384), 0);
+thread sr\api\_map::createSpawnOrigin((-304, -672, 384), 0);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
 trigger = spawn( "trigger_radius", (1687, 3765, 524), 0, 300, 300 );
 trigger.targetname = "endmap_trig";
-trigger.radius = 300;	
+trigger.radius = 300;
 	maps\mp\_load::main();
 	game["allies"] = "sas";
 	game["axis"] = "russian";
@@ -25,7 +25,7 @@ trigger.radius = 300;
 	game["defenders"] = "axis";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	// AmbientPlay("zor");
 
 	setdvar( "r_specularcolorscale", "1" );
@@ -33,7 +33,7 @@ trigger.radius = 300;
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
-	
+
 thread way_connect();
 thread trap1a();
 thread trap2ground();
@@ -54,10 +54,10 @@ thread deathtrigger();
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
 
@@ -406,7 +406,7 @@ while(1)
 	rand = RandomIntRange( 0, pushers.size );
 	rand2 = RandomIntRange( 0, pushers.size );
 	rand3 = RandomIntRange( 0, pushers.size );
-	
+
 	if(rand!=rand2 && rand!=rand3 && rand2!=rand3)
 	{
 	pushers[rand] movey(50,0.1);
@@ -453,7 +453,7 @@ if (!isdefined(dropperturnpoint.script_noteworthy))
 		wait 0.5;
 		dropperturnpoint rotateRoll(90,dropperturnpoint.speed);
 		dropperturnpoint waittill("rotatedone");
-		
+
 		}
 }
 ///////////
@@ -476,7 +476,7 @@ if (!isdefined(dropperturnpoint.script_noteworthy))
 		wait 0.5;
 		dropperturnpoint rotateRoll(90,dropperturnpoint.speed);
 		dropperturnpoint waittill("rotatedone");
-		
+
 		}
 }
 /////////////
@@ -499,7 +499,7 @@ if (!isdefined(dropperturnpoint.script_noteworthy))
 		wait 0.5;
 		dropperturnpoint rotateRoll(90,dropperturnpoint.speed);
 		dropperturnpoint waittill("rotatedone");
-		
+
 		}
 }
 ////////////
@@ -522,7 +522,7 @@ if (!isdefined(dropperturnpoint.script_noteworthy))
 		wait 0.5;
 		dropperturnpoint rotateRoll(90,dropperturnpoint.speed);
 		dropperturnpoint waittill("rotatedone");
-		
+
 		}
 }
 ///////////////
@@ -545,7 +545,7 @@ if (!isdefined(dropperturnpoint.script_noteworthy))
 		wait 0.5;
 		dropperturnpoint rotateRoll(90,dropperturnpoint.speed);
 		dropperturnpoint waittill("rotatedone");
-		
+
 		}
 }
 /////////////
@@ -568,7 +568,7 @@ if (!isdefined(dropperturnpoint.script_noteworthy))
 		wait 0.5;
 		dropperturnpoint rotateRoll(90,dropperturnpoint.speed);
 		dropperturnpoint waittill("rotatedone");
-		
+
 		}
 }
 
@@ -611,7 +611,7 @@ players = getentarray("player", "classname");
 
 while(1)
 	{
-		player=level.survivor[level.ingame];					
+		player=level.survivor[level.ingame];
 		//if(isAlive(player) && player.teleported)
 		//	iprintln("someone is 1v1 with the activator");
 
@@ -621,16 +621,16 @@ while(1)
 			player.teleported=true;
 			thread newendgame(player);
 		}
-		
+
 		if(isdefined(player) && !isAlive(player))
 		{
 			player.teleported=false; //due respawn i guess
 			level.ingame=level.ingame+1;
 		}
-		
+
 		//iprintlnbold(level.ingame);
 		//player iprintlnbold("teleport is: " +player.teleported);
-		
+
 		wait 2;
 	}
 }
@@ -682,7 +682,7 @@ while(level.lastmanstanding==false)
 		for(i=0;i<players.size;i++)
 			if(isDefined(players[i].atSweeper) && isAlive(players[i]) && players[i]!=level.activ)
 				level.survivorsleft++;
-			
+
 		if(level.survivorsleft==1)
 			{
 				for(i=0;i<players.size;i++)
@@ -716,11 +716,11 @@ pos5=getent("org5","targetname");
 pos0=getent("org0","targetname");
 
 level.spots = [];
-	
+
 	i = 0;
 	while( isDefined( getEnt( "org" + i, "targetname" ) ) )
 	{
-		level.spots[ i ] = getEnt( "org" + i, "targetname" );		
+		level.spots[ i ] = getEnt( "org" + i, "targetname" );
 		i++;
 	}
 players = getentarray("player", "classname");
@@ -769,7 +769,7 @@ rope( start, end )
 {
 	if( !isDefined( self.linker ) )
 		self.linker = Spawn("script_origin", self GetEye()+(0,0,20) );
-	
+
 	self.isSliding = true;
 	// self iprintlnbold("You can fight the activator once it is your turn !");
 	self DisableWeapons();
@@ -820,7 +820,7 @@ if (!isdefined(trap3_outer.script_noteworthy))
  thread trap3innerswing();
 	while(1)
 		{
-		
+
 		rand = RandomIntRange( 3, 5 );
 		trap3_outer.speed = rand;
 		if (trap3_outer.script_noteworthy == "z")
@@ -843,7 +843,7 @@ if (!isdefined(trap3_inner.script_noteworthy))
  thread trap3lastswing();
 	while(1)
 		{
-		
+
 		rand = RandomIntRange( 3, 5 );
 		trap3_inner.speed = rand;
 		if (trap3_inner.script_noteworthy == "z")
@@ -865,7 +865,7 @@ if (!isdefined(trap3_last.script_noteworthy))
  trap3_last.script_noteworthy = "y";
 	while(1)
 		{
-		
+
 		rand = RandomIntRange( 4, 6 );
 		trap3_last.speed = rand;
 		side = RandomIntRange( 1, 10 );
@@ -873,7 +873,7 @@ if (!isdefined(trap3_last.script_noteworthy))
 			side=(360);
 		else
 		side=(-360);
-		
+
 		if (trap3_last.script_noteworthy == "z")
 		trap3_last rotateYaw(side,trap3_last.speed);
 		else if (trap3_last.script_noteworthy == "x")

@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-40, -30, 16), 90);
+thread sr\api\_map::createSpawnOrigin((-40, -30, 16), 90);
  maps\mp\_load::main();
 
  game["allies"] = "marines";
@@ -9,7 +9,7 @@ thread sr\api\_map::createSpawn((-40, -30, 16), 90);
  game["defenders"] = "axis";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"] = "desert";
-	
+
  setdvar( "r_specularcolorscale", "1" );
  setDvar("r_glowbloomintensity0",".1");
  setDvar("r_glowbloomintensity1",".1");
@@ -50,7 +50,7 @@ secret()
 {
    level.secret_trigger = getent("trig_tp1","targetname");
    telejumporigin = getent("secret_jumper", "targetname");
-   
+
    while(1)
    {
       level.secret_trigger waittill( "trigger", player );
@@ -58,11 +58,11 @@ secret()
       return;
       if(level.firstenter==true)
    wait(0.05);
-    
+
    player thread sr\api\_speedrun::changeWay("secret_0");
    player SetOrigin( telejumporigin.origin );
    player setplayerangles( telejumporigin.angles );
-   
+
 }
 }
 
@@ -70,7 +70,7 @@ secretjumpfail1()
 {
 	secretjumper = getEnt("secret_trigger_respawn", "targetname");
 	origin_jumper_secret = getEnt("origin_jumper_secret", "targetname");
-	
+
 	for (;;)
 	{
 		secretjumper waittill("trigger", player);
@@ -84,7 +84,7 @@ secretjumpfail2()
 {
 	secretjumper = getEnt("secret_trigger_respawn2", "targetname");
 	origin_jumper_secret = getEnt("origin_jumper_secret2", "targetname");
-	
+
 	for (;;)
 	{
 		secretjumper waittill("trigger", player);
@@ -98,7 +98,7 @@ secretjumpfail3()
 {
 	secretjumper = getEnt("secret_trigger_respawn3", "targetname");
 	origin_jumper_secret = getEnt("origin_jumper_secret2", "targetname");
-	
+
 	for (;;)
 	{
 		secretjumper waittill("trigger", player);
@@ -112,7 +112,7 @@ secretjumpfail4()
 {
 	secretjumper = getEnt("secret_trigger_respawn4", "targetname");
 	origin_jumper_secret = getEnt("origin_jumper_secret2", "targetname");
-	
+
 	for (;;)
 	{
 		secretjumper waittill("trigger", player);
@@ -126,7 +126,7 @@ secretjumpfail5()
 {
 	secretjumper = getEnt("secret_trigger_respawn5", "targetname");
 	origin_jumper_secret = getEnt("origin_jumper_secret3", "targetname");
-	
+
 	for (;;)
 	{
 		secretjumper waittill("trigger", player);
@@ -140,7 +140,7 @@ endsecret()
 {
    level.endsecret_trigger = getent("trig_endsecret","targetname");
    telejumporigin2 = getent("jumper_secretend", "targetname");
-   
+
    while(1)
    {
       level.endsecret_trigger waittill( "trigger", player );
@@ -148,11 +148,11 @@ endsecret()
       return;
       if(level.firstenter==true)
    wait(0.05);
-   
+
    player thread sr\api\_speedrun::finishWay("secret_0");
    player SetOrigin( telejumporigin2.origin );
    player setplayerangles( telejumporigin2.angles );
-  
-   
+
+
 }
 }

@@ -1,10 +1,10 @@
 /*
-______           __  _____  _____ 
+______           __  _____  _____
 | ___ \         /  ||  _  ||  _  |
 | |_/ /_____  __`| || |/' || |_| |
 |    // _ \ \/ / | ||  /| |\____ |
 | |\ \  __/>  < _| |\ |_/ /.___/ /
-\_| \_\___/_/\_\\___/\___/ \____/ 
+\_| \_\___/_/\_\\___/\___/ \____/
 
 Welcome to mp_dr_catherine script. Feel free to take any piece of code, no need to credit me.
 
@@ -12,7 +12,7 @@ Welcome to mp_dr_catherine script. Feel free to take any piece of code, no need 
 
 main()
 {
-thread sr\api\_map::createSpawn((-6, -92, 0), 90);
+thread sr\api\_map::createSpawnOrigin((-6, -92, 0), 90);
 	maps\mp\_load::main();
 
 	game["allies"] = "marines";
@@ -21,7 +21,7 @@ thread sr\api\_map::createSpawn((-6, -92, 0), 90);
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
+
 	if(!isdefined(level.music))
 	level.music=[];
 	level.music[0]["song"]    ="^5Catherine OST - Borodin Polovtsian Dances";
@@ -36,10 +36,10 @@ thread sr\api\_map::createSpawn((-6, -92, 0), 90);
 	level.music[4]["alias"]    ="radio5";
 	level.music[5]["song"]    ="Bass Modulators - Oxygen";
 	level.music[5]["alias"]    ="radio6";
-	
+
 	//GENERAL VARS
 	level.inroom = false;
-	
+
 	//PRECACHE
 	precacheItem("rpd_mp");
 	precacheItem("ak47_mp");
@@ -48,13 +48,13 @@ thread sr\api\_map::createSpawn((-6, -92, 0), 90);
 	level.endlight_fx = loadFx( "end_light" );
 	level.endlight_g_fx = loadFx( "end_light_godray" );
 	level.pickup_object = loadFx( "pickup" );
-	
+
 	//DISABLING FALLDAMAGE
 	setDvar("bg_falldamagemaxheight", 9999999 );
     setDvar("bg_falldamageminheight", 999999 );
-	
+
 	//thread addTestClients();
-	
+
 	//GENERAL THREADS
 	//thread bounce_givesniper();
 	//thread bounce_snipers_models_anim();
@@ -78,7 +78,7 @@ thread sr\api\_map::createSpawn((-6, -92, 0), 90);
 	//thread gap_fail_3();
 	//thread gap_fail_4();
 	//thread gap_end();
-	
+
 	//ACTIVATOR THREADS
 	addTriggerToList("trap1");
 	addTriggerToList("trap2");
@@ -88,7 +88,7 @@ thread sr\api\_map::createSpawn((-6, -92, 0), 90);
 	addTriggerToList("trap6");
 	addTriggerToList("trap7");
 	addTriggerToList("trap8");
-	
+
 	//thread trap1();
 	//thread trap2();
 	//thread trap3();
@@ -97,7 +97,7 @@ thread sr\api\_map::createSpawn((-6, -92, 0), 90);
 	//thread trap6();
 	//thread trap7();
 	//thread trap8();
-	
+
 	//BATTLE THREADS
 	//thread sniper();
 	//thread knife();
@@ -108,21 +108,21 @@ thread sr\api\_map::createSpawn((-6, -92, 0), 90);
 		thread sr\api\_speedrun::createNormalWays("Normal Way");
 	thread sr\api\_speedrun::createSecretWays("Secret_Way");
 	thread sr\api\_speedrun::createTeleporter((180.874, -30.3021, 0.125001), 50, 95, (7797, 1317, 414), 359, "freeze", "blue", "secret_0");
-	
+
 }
 
 /*
-   ___                       _ 
+   ___                       _
   / __|___ _ _  ___ _ _ __ _| |
  | (_ / -_) ' \/ -_) '_/ _` | |
   \___\___|_||_\___|_| \__,_|_|
-                               
+
 */
 
 secret_check_1()
 {
 	trigger = getEnt("secret_check_1","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -137,7 +137,7 @@ secret_check_1()
 secret_check_2()
 {
 	trigger = getEnt("secret_check_2","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -152,7 +152,7 @@ secret_check_2()
 secret_check_3()
 {
 	trigger = getEnt("secret_check_3","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -167,7 +167,7 @@ secret_check_3()
 secret_check_4()
 {
 	trigger = getEnt("secret_check_4","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -182,7 +182,7 @@ secret_check_4()
 secret_check_5()
 {
 	trigger = getEnt("secret_check_5","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -197,7 +197,7 @@ secret_check_5()
 secret_check_6()
 {
 	trigger = getEnt("secret_check_6","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -213,17 +213,17 @@ death_room()
 {
 	loser = getEnt( "death_loser_tp", "targetname" );
     winner = getEnt( "death_winner_tp", "targetname" );
-	
+
 	if( self.pers["team"] == "allies" )
 		{
 			if( isDefined( level.activ ))
 			{
-			level.activ TakeAllWeapons();	
+			level.activ TakeAllWeapons();
 			level.activ freezecontrols(1);
 			level.activ setOrigin( loser.origin );
 			level.activ setplayerangles( loser.angles );
 			}
-			
+
 			level.other freezecontrols(1);
 			level.other TakeAllWeapons();
 			level.other GiveWeapon( "knife_mp" );
@@ -233,14 +233,14 @@ death_room()
 			wait 2;
 			level.other freezecontrols(0);
 		}
-		
+
 	if( self.pers["team"] == "axis" )
 		{
-			level.other TakeAllWeapons();	
+			level.other TakeAllWeapons();
 			level.other freezecontrols(1);
 			level.other setOrigin( loser.origin );
 			level.other setplayerangles( loser.angles );
-			
+
 			if( isDefined( level.activ ))
 			{
 			level.activ freezecontrols(1);
@@ -259,13 +259,13 @@ gap_triggered()
 {
 	jump = getEnt( "sniper_jumper_tp", "targetname" );
     acti = getEnt( "sniper_acti_tp", "targetname" );
-	
+
 	if( self.pers["team"] == "allies" )
 	{
 		self setOrigin( jump.origin );
 		self setplayerangles( jump.angles );
 	}
-		
+
 	if( self.pers["team"] == "axis" )
 	{
 		self setOrigin( acti.origin );
@@ -372,7 +372,7 @@ bounce_givesniper()
         player giveMaxAmmo( "remington700_mp" );
 		player switchToWeapon( "m40a3_mp" );
 	}
-	
+
 }
 
 bounce_snipers_models_anim()
@@ -410,11 +410,11 @@ secret()
 	dest = getEnt( "secret_teleport", "targetname" );
 	secret_key = getEnt( "secret_key", "targetname" );
 	secret_door = getEnt( "secret_door", "targetname" );
-	
+
 	secret_key waittill ( "trigger", player );
-	
+
 	iPrintln("^1Something has been unleashed");
-	
+
 	while(1)
 	{
 		secret_door waittill ( "trigger", player );
@@ -435,7 +435,7 @@ secret_fail()
 	check4 = getEnt( "secret_check_4_tp", "targetname" );
 	check5 = getEnt( "secret_check_5_tp", "targetname" );
 	check6 = getEnt( "secret_check_6_tp", "targetname" );
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -486,17 +486,17 @@ blocks_fail()
 	dest_jumper = getEnt( "blocks_jumper_tp", "targetname" );
 
 	trigger = getEnt ( "blocks_fail_tp", "targetname" );
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
-		
+
 		if( player.pers["team"] == "allies" )
 		{
 			player setOrigin( dest_jumper.origin );
 			player setplayerangles( dest_jumper.angles );
 		}
-		
+
 		if( player.pers["team"] == "axis" )
 		{
 			player setOrigin( dest_acti.origin );
@@ -511,17 +511,17 @@ sniper_fail()
 	dest_jumper = getEnt( "sniper_jumper_tp", "targetname" );
 
 	trigger = getEnt ( "sniper_fail_tp", "targetname" );
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
-		
+
 		if( player.pers["team"] == "allies" )
 		{
 			player setOrigin( dest_jumper.origin );
 			player setplayerangles( dest_jumper.angles );
 		}
-		
+
 		if( player.pers["team"] == "axis" )
 		{
 			player setOrigin( dest_acti.origin );
@@ -536,17 +536,17 @@ bounce_fail()
 	dest_jumper = getEnt( "bounce_jumper_tp", "targetname" );
 
 	trigger = getEnt ( "bounce_fail_tp", "targetname" );
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
-		
+
 		if( player.pers["team"] == "allies" )
 		{
 			player setOrigin( dest_jumper.origin );
 			player setplayerangles( dest_jumper.angles );
 		}
-		
+
 		if( player.pers["team"] == "axis" )
 		{
 			player setOrigin( dest_acti.origin );
@@ -559,7 +559,7 @@ end()
 {
 	dest = getEnt( "end_teleport", "targetname" );
 	trigger = getEnt ( "endmap_trig", "targetname" );
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -610,7 +610,7 @@ musicBox()
     trig=getent("musicbox","targetname");
     trig waittill("trigger",p);
     trig delete();
-    
+
     p freezecontrols(1);
 	p thread musicfix();
     p musicMenu();
@@ -638,10 +638,10 @@ musicMenu()
     self endon( "spawned" );
     self endon( "joined_spectators" );
     self endon( "music thread terminated" );
- 
+
     self.hud_music = [];
     self.selection = 0;
- 
+
     // create huds
     i = 0;
     /*self.hud_music[i] = braxi\_mod::addTextHud( self, 160, 200, 0.6, "left", "top", 2 );
@@ -652,7 +652,7 @@ musicMenu()
     self.hud_music[i].sort = 880;
     self.hud_music[i] setShader( "white", 306, 20 );
     self.hud_music[i].color=(1,0.5,0);
-    
+
     i++;*/
     self.hud_music[i] = braxi\_mod::addTextHud( self, 320, 30, 0.93, "center", "top", 1.4 );
     self.hud_music[i].sort = 884;
@@ -662,13 +662,13 @@ musicMenu()
     //self.hud_music[i].glowalpha=1;
     /*if(isdefined(level.randomcolor))
         self.hud_music[i].glowcolor=level.randomcolor;
-    else 
+    else
         self.hud_music[i].glowcolor=(1,0.5,0);*/
     i++;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 320, 360, 1, "center", "bottom", 1.4 );
     self.hud_music[i].sort = 886;
     self.hud_music[i] setText("Scroll: ^3[{+attack}] ^7| Select: ^3[{+activate}] ^7| Close: ^3[{+frag}]");
- 
+
     for( j = 0; j < level.music.size; j++ )
     {
         i++;
@@ -678,34 +678,34 @@ musicMenu()
         self.hud_music[i].glowalpha=1;
         if(isdefined(level.randomcolor))
             self.hud_music[i].glowcolor=level.randomcolor;
-        else 
+        else
             self.hud_music[i].glowcolor=(1,0.5,0);
- 
+
         entry = level.music[j];
         self.hud_music[i] setText(entry["song"]);
     }
- 
+
     i++;
     self.hud_music[self.hud_music.size] = braxi\_mod::addTextHud( self, 320, 230, 0.4, "center", "top", 1.4 );
     self.hud_music[i].sort = 881;
     indicator = self.hud_music[self.hud_music.size-1];
     indicator setShader( "white", 550, 17 );
     indicator.color=(1,0,0.5);
-	
+
 	wait 0.5;
- 
+
     while(self.sessionstate == "playing")
     {
         wait 0.1;
- 
+
         if(self attackButtonPressed())
         {
             self.hud_music[2+self.selection].alpha = 0.93;
- 
+
             self.selection++;
             if( self.selection >= level.music.size )
                 self.selection = 0;
- 
+
             item = self.hud_music[2+self.selection];
             item.alpha = 1;
             indicator.y = item.y;
@@ -723,7 +723,7 @@ musicMenu()
             break;
         }
     }
-    
+
     if(!isdefined(self))
         return;
     if(isdefined(self.hud_music))
@@ -738,11 +738,11 @@ musicMenu()
 }
 
 /*
-    _      _   _          _           
-   /_\  __| |_(_)_ ____ _| |_ ___ _ _ 
+    _      _   _          _
+   /_\  __| |_(_)_ ____ _| |_ ___ _ _
   / _ \/ _|  _| \ V / _` |  _/ _ \ '_|
- /_/ \_\__|\__|_|\_/\__,_|\__\___/_|  
-                                      
+ /_/ \_\__|\__|_|\_/\__,_|\__\___/_|
+
 */
 
 trap1()
@@ -752,11 +752,11 @@ trap1()
 	trapact2 = getEnt("trapact1_2","targetname");
 	trapact2 enablelinkto();
 	trapact2 linkto(trapact1);
-	
+
 	trap waittill("trigger",player);
 
 	trap setHintString ("[^6Trap activated!^7]");
-	
+
 	trapact1 movez (-177,0.1);
 	wait 0.1;
 	trapact1 PlaySound("crush");
@@ -770,7 +770,7 @@ trap2()
 	trap = getEnt("trap2","targetname");
 	trapact = getEnt("trapact2","targetname");
 	mantle = getEnt("mantle_trap2","targetname");
-	
+
 	trap waittill("trigger",player);
 
 	trap setHintString ("[^6Trap activated!^7]");
@@ -787,19 +787,19 @@ trap3()
 	trap = getEnt("trap3","targetname");
 	trapact1 = getEnt("trapact3_1","targetname");
 	trapact2 = getEnt("trapact3_2","targetname");
-	
+
 	trapactx1 = getEnt("trapact3_1_xmodel","targetname");
 	trapactx2 = getEnt("trapact3_2_xmodel","targetname");
 	trapactx3 = getEnt("trapact3_3_xmodel","targetname");
 	trapactx4 = getEnt("trapact3_4_xmodel","targetname");
 	trapactx5 = getEnt("trapact3_5_xmodel","targetname");
-	
+
 	trapactx1 linkto(trapact1);
 	trapactx2 linkto(trapact1);
 	trapactx4 linkto(trapact1);
 	trapactx5 linkto(trapact1);
 	trapactx3 linkto(trapact2);
-	
+
 	trap waittill("trigger",player);
 
 	trap setHintString ("[^6Trap activated!^7]");
@@ -821,11 +821,11 @@ trap4()
 	fxspawn = getEnt("fx_wind","targetname");
 	trap = getEnt("trap4","targetname");
 	trapact = getEnt("trapact4","targetname");
-	
+
 	trap waittill("trigger",player);
-	
+
 	trap setHintString ("[^6Trap activated!^7]");
-	
+
 	while(1)
 	{
 		thread air_fan();
@@ -841,11 +841,11 @@ trap5()
 {
 	trap = getEnt("trap5","targetname");
 	trapact = getEnt("trapact5","targetname");
-	
+
 	trap waittill("trigger",player);
-	
+
 	trap setHintString ("[^6Trap activated!^7]");
-	
+
 	while(1)
 	{
 		trapact rotatePitch (90,5);
@@ -859,11 +859,11 @@ trap6()
 {
 	trap = getEnt("trap6","targetname");
 	trapact = getEnt("trapact6","targetname");
-	
+
 	trap waittill("trigger",player);
-	
+
 	trap setHintString ("[^6Trap activated!^7]");
-	
+
 	trapact hide();
 	trapact notsolid();
 	wait 5;
@@ -878,7 +878,7 @@ trap7()
 	trapact2 = getEnt("trapact7_2","targetname");
 	trapact2 enablelinkto();
 	trapact2 linkto(trapact1);
-	
+
 	trap waittill("trigger",player);
 
 	trap setHintString ("[^6Trap activated!^7]");
@@ -895,7 +895,7 @@ trap8()
 	trap = getEnt("trap8","targetname");
 	trapact1 = getEnt("trapact8_1","targetname");
 	trapact2 = getEnt("trapact8_2","targetname");
-	
+
 	trap waittill("trigger",player);
 
 	trap setHintString ("[^6Trap activated!^7]");
@@ -916,7 +916,7 @@ air_fan()
 {
 	level endon( "fan_end" );
 	trigger = getEnt ( "air_push", "targetname" );
-	
+
 	while(1)
 	{
     	trigger waittill ( "trigger", player );
@@ -938,11 +938,11 @@ air_fan()
 
 /*
 
-  ___       _   _   _     
- | _ ) __ _| |_| |_| |___ 
+  ___       _   _   _
+ | _ ) __ _| |_| |_| |___
  | _ \/ _` |  _|  _| / -_)
  |___/\__,_|\__|\__|_\___|
-                          
+
 */
 
 info(msg, submsg)
@@ -962,50 +962,50 @@ sniper()
         room = getEnt( "sniper_room", "targetname");
         jump = getEnt( "sniper_jumper_tp", "targetname" );
         acti = getEnt( "sniper_acti_tp", "targetname" );
- 
-        while(1) 
+
+        while(1)
 		{
                 room waittill( "trigger", player );
-				
+
 				if(!level.inroom)
 				{
 
 				level.inroom = true;
-				
-                if( !isDefined( room ) ) 
+
+                if( !isDefined( room ) )
                 return;
-			
+
 			    player freezecontrols(1);
 				level.activ freezecontrols(1);
-			
+
 				player SetPlayerAngles( jump.angles );
-                player setOrigin( jump.origin ); 
-                player TakeAllWeapons(); 
+                player setOrigin( jump.origin );
+                player TakeAllWeapons();
                 player GiveWeapon( "m40a3_mp" );
                 player giveMaxAmmo( "m40a3_mp" );
                 player GiveWeapon( "remington700_mp" );
                 player giveMaxAmmo( "remington700_mp" );
 				player switchToWeapon( "m40a3_mp" );
                 player.maxhealth = 100;
-               
-                
-                if( isDefined( level.activ ) && isAlive( level.activ ) ) 
+
+
+                if( isDefined( level.activ ) && isAlive( level.activ ) )
 				{
- 
+
 					level.activ setPlayerangles( acti.angles );
-                    level.activ setOrigin( acti.origin ); 
-                    level.activ TakeAllWeapons(); 
+                    level.activ setOrigin( acti.origin );
+                    level.activ TakeAllWeapons();
                     level.activ GiveWeapon( "m40a3_mp" );
 					level.activ giveMaxAmmo( "m40a3_mp" );
 					level.activ GiveWeapon( "remington700_mp" );
 					level.activ giveMaxAmmo( "remington700_mp" );
 					level.activ switchToWeapon( "m40a3_mp" );
-                    level.activ.maxhealth = 100; 
-                    
+                    level.activ.maxhealth = 100;
+
 				}
-                 
+
                 wait 0.05;
-               
+
             info("Sniper Room", player.name + " ^1VS ^7" + level.activ.name);
             wait 1;
             player iPrintlnBold( "^13" );
@@ -1021,8 +1021,8 @@ sniper()
             level.activ iPrintlnBold( "^2GO^7!" );
             player freezecontrols(0);
             level.activ freezecontrols(0);
-			
-                while( isAlive( player ) && isDefined( player ) ) 
+
+                while( isAlive( player ) && isDefined( player ) )
                         wait 1;
 			iPrintlnBold( player.name + " ^6died during a sniper fight!" );
 			iPrintlnBold( "^2Endroom is now free!" );
@@ -1036,44 +1036,44 @@ knife()
         room = getEnt( "knife_room", "targetname");
         jump = getEnt( "sniper_jumper_tp", "targetname" );
         acti = getEnt( "sniper_acti_tp", "targetname" );
- 
-        while(1) 
+
+        while(1)
 		{
                 room waittill( "trigger", player );
-				
+
 				if(!level.inroom)
 				{
-				
+
 				level.inroom = true;
-				
-                if( !isDefined( room ) ) 
+
+                if( !isDefined( room ) )
                 return;
-			
+
 			    player freezecontrols(1);
 				level.activ freezecontrols(1);
-			
+
 				player SetPlayerAngles( jump.angles );
-                player setOrigin( jump.origin ); 
-                player TakeAllWeapons(); 
+                player setOrigin( jump.origin );
+                player TakeAllWeapons();
                 player GiveWeapon( "knife_mp" );
 				player switchToWeapon( "knife_mp" );
                 player.maxhealth = 100;
-               
-                
-                if( isDefined( level.activ ) && isAlive( level.activ ) ) 
+
+
+                if( isDefined( level.activ ) && isAlive( level.activ ) )
 				{
- 
+
 					level.activ setPlayerangles( acti.angles );
-                    level.activ setOrigin( acti.origin ); 
-                    level.activ TakeAllWeapons(); 
+                    level.activ setOrigin( acti.origin );
+                    level.activ TakeAllWeapons();
                     level.activ GiveWeapon( "knife_mp" );
 					level.activ switchToWeapon( "knife_mp" );
-                    level.activ.maxhealth = 100; 
-                    
+                    level.activ.maxhealth = 100;
+
 				}
-                 
+
                 wait 0.05;
-               
+
             info("Knife Room", player.name + " ^1VS ^7" + level.activ.name);
             wait 1;
             player iPrintlnBold( "^13" );
@@ -1089,8 +1089,8 @@ knife()
             level.activ iPrintlnBold( "^2GO^7!" );
             player freezecontrols(0);
             level.activ freezecontrols(0);
-			
-                while( isAlive( player ) && isDefined( player ) ) 
+
+                while( isAlive( player ) && isDefined( player ) )
                         wait 1;
 			iPrintlnBold( player.name + " ^6died during a knife fight!" );
 			iPrintlnBold( "^2Endroom is now free!" );
@@ -1104,47 +1104,47 @@ bounce()
         room = getEnt( "bounce_room", "targetname");
         jump = getEnt( "bounce_jumper_tp", "targetname" );
         acti = getEnt( "bounce_acti_tp", "targetname" );
- 
-        while(1) 
+
+        while(1)
 		{
                 room waittill( "trigger", player );
-				
+
 				if(!level.inroom)
 				{
-				
+
 				level.inroom = true;
-				
-                if( !isDefined( room ) ) 
+
+                if( !isDefined( room ) )
                 return;
-				
+
 				if (!isDefined(level.bouncetriggered))
 					bounce_pickup_fx();
-				
+
 			    player freezecontrols(1);
 				level.activ freezecontrols(1);
-			
+
 				player SetPlayerAngles( jump.angles );
-                player setOrigin( jump.origin ); 
-                player TakeAllWeapons(); 
+                player setOrigin( jump.origin );
+                player TakeAllWeapons();
                 player GiveWeapon( "knife_mp" );
 				player switchToWeapon( "knife_mp" );
                 player.maxhealth = 100;
-               
-                
-                if( isDefined( level.activ ) && isAlive( level.activ ) ) 
+
+
+                if( isDefined( level.activ ) && isAlive( level.activ ) )
 				{
- 
+
 					level.activ setPlayerangles( acti.angles );
-                    level.activ setOrigin( acti.origin ); 
-                    level.activ TakeAllWeapons(); 
+                    level.activ setOrigin( acti.origin );
+                    level.activ TakeAllWeapons();
                     level.activ GiveWeapon( "knife_mp" );
 					level.activ switchToWeapon( "knife_mp" );
-                    level.activ.maxhealth = 100; 
-                    
+                    level.activ.maxhealth = 100;
+
 				}
-                 
+
                 wait 0.05;
-               
+
             info("Bounce Room", player.name + " ^1VS ^7" + level.activ.name);
             wait 1;
             player iPrintlnBold( "^13" );
@@ -1160,8 +1160,8 @@ bounce()
             level.activ iPrintlnBold( "^2GO^7!" );
             player freezecontrols(0);
             level.activ freezecontrols(0);
-			
-                while( isAlive( player ) && isDefined( player ) ) 
+
+                while( isAlive( player ) && isDefined( player ) )
                         wait 1;
 			iPrintlnBold( player.name + " ^6died during a bounce fight!" );
 			iPrintlnBold( "^2Endroom is now free!" );
@@ -1175,46 +1175,46 @@ gap()
         room = getEnt( "gap_room", "targetname");
         jump = getEnt( "gap_jumper_tp", "targetname" );
         acti = getEnt( "gap_acti_tp", "targetname" );
- 
-        while(1) 
+
+        while(1)
 		{
                 room waittill( "trigger", player );
-				
+
 				if(!level.inroom)
 				{
-				
+
 				level.inroom = true;
-				
-                if( !isDefined( room ) ) 
+
+                if( !isDefined( room ) )
                 return;
-				
+
 			    player freezecontrols(1);
 				level.activ freezecontrols(1);
-			
+
 				player SetPlayerAngles( jump.angles );
-                player setOrigin( jump.origin ); 
-                player TakeAllWeapons(); 
-                player GiveWeapon( "deserteagle_mp" ); 
+                player setOrigin( jump.origin );
+                player TakeAllWeapons();
+                player GiveWeapon( "deserteagle_mp" );
                 player giveMaxAmmo( "deserteagle_mp" );
 				player switchToWeapon( "deserteagle_mp" );
                 player.maxhealth = 100;
-               
-                
-                if( isDefined( level.activ ) && isAlive( level.activ ) ) 
+
+
+                if( isDefined( level.activ ) && isAlive( level.activ ) )
 				{
- 
+
 					level.activ setPlayerangles( acti.angles );
-                    level.activ setOrigin( acti.origin ); 
-                    level.activ TakeAllWeapons(); 
-                    level.activ GiveWeapon( "deserteagle_mp" ); 
+                    level.activ setOrigin( acti.origin );
+                    level.activ TakeAllWeapons();
+                    level.activ GiveWeapon( "deserteagle_mp" );
 					level.activ giveMaxAmmo( "deserteagle_mp" );
 					level.activ switchToWeapon( "deserteagle_mp" );
-                    level.activ.maxhealth = 100; 
-                    
+                    level.activ.maxhealth = 100;
+
 				}
-                 
+
                 wait 0.05;
-               
+
             info("Gap Room", player.name + " ^1VS ^7" + level.activ.name);
             wait 1;
             player iPrintlnBold( "^13" );
@@ -1230,24 +1230,24 @@ gap()
             level.activ iPrintlnBold( "^2GO^7!" );
             player freezecontrols(0);
             level.activ freezecontrols(0);
-			
+
 			level waittill( "gap_completed" );
 			level waittill( "gap_completed" );
-			
+
 			wait 1;
-			
+
 			player iPrintlnBold( "Get ready for the battle!" );
             level.activ iPrintlnBold( "Get ready for the battle!" );
-			
+
 			wait 3;
-			
+
 			player iPrintlnBold( "^1FIGHT!" );
             level.activ iPrintlnBold( "^1FIGHT!" );
-			
+
 			player freezecontrols(0);
 			level.activ freezecontrols(0);
-			
-                while( isAlive( player ) && isDefined( player ) ) 
+
+                while( isAlive( player ) && isDefined( player ) )
                         wait 1;
 			iPrintlnBold( player.name + " ^6died during a gap fight!" );
 			iPrintlnBold( "^2Endroom is now free!" );
@@ -1262,48 +1262,48 @@ pure_strafe()
         room = getEnt( "strafe_room", "targetname");
         jump = getEnt( "strafe_jumper_tp", "targetname" );
         acti = getEnt( "strafe_acti_tp", "targetname" );
- 
-        while(1) 
+
+        while(1)
 		{
                 room waittill( "trigger", player );
-				
+
 				level.other = player;
-				
+
 				if(!level.inroom)
 				{
-				
+
 				level.inroom = true;
-				
-                if( !isDefined( room ) ) 
+
+                if( !isDefined( room ) )
                 return;
-			
+
 			    player freezecontrols(1);
 				level.activ freezecontrols(1);
-			
+
 				player SetPlayerAngles( jump.angles );
-                player setOrigin( jump.origin ); 
-                player TakeAllWeapons(); 
-                player GiveWeapon( "deserteagle_mp" ); 
+                player setOrigin( jump.origin );
+                player TakeAllWeapons();
+                player GiveWeapon( "deserteagle_mp" );
                 player giveMaxAmmo( "deserteagle_mp" );
 				player switchToWeapon( "deserteagle_mp" );
                 player.maxhealth = 100;
-               
-                
-                if( isDefined( level.activ ) && isAlive( level.activ ) ) 
+
+
+                if( isDefined( level.activ ) && isAlive( level.activ ) )
 				{
- 
+
 					level.activ setPlayerangles( acti.angles );
-                    level.activ setOrigin( acti.origin ); 
-                    level.activ TakeAllWeapons(); 
-                    level.activ GiveWeapon( "deserteagle_mp" ); 
+                    level.activ setOrigin( acti.origin );
+                    level.activ TakeAllWeapons();
+                    level.activ GiveWeapon( "deserteagle_mp" );
 					level.activ giveMaxAmmo( "deserteagle_mp" );
 					level.activ switchToWeapon( "deserteagle_mp" );
-                    level.activ.maxhealth = 100; 
-                    
+                    level.activ.maxhealth = 100;
+
 				}
-                 
+
                 wait 0.05;
-               
+
             info("Pure Strafe Room", player.name + " ^1VS ^7" + level.activ.name);
             wait 1;
             player iPrintlnBold( "^13" );
@@ -1319,12 +1319,12 @@ pure_strafe()
             level.activ iPrintlnBold( "^2GO^7!" );
             player freezecontrols(0);
             level.activ freezecontrols(0);
-			
+
 			end waittill( "trigger", endplayer );
-			
+
 			endplayer death_room();
-			
-                while( isAlive( player ) && isDefined( player ) ) 
+
+                while( isAlive( player ) && isDefined( player ) )
                         wait 1;
 			iPrintlnBold( player.name + " ^6died during a strafe fight!" );
 			iPrintlnBold( "^2Endroom is now free!" );
@@ -1339,48 +1339,48 @@ blocks()
         room = getEnt( "blocks_room", "targetname");
         jump = getEnt( "blocks_jumper_tp", "targetname" );
         acti = getEnt( "blocks_acti_tp", "targetname" );
- 
-        while(1) 
+
+        while(1)
 		{
                 room waittill( "trigger", player );
-				
+
 				level.other = player;
-				
+
 				if(!level.inroom)
 				{
-				
+
 				level.inroom = true;
-				
-                if( !isDefined( room ) ) 
+
+                if( !isDefined( room ) )
                 return;
-			
+
 			    player freezecontrols(1);
 				level.activ freezecontrols(1);
-			
+
 				player SetPlayerAngles( jump.angles );
-                player setOrigin( jump.origin ); 
-                player TakeAllWeapons(); 
-                player GiveWeapon( "deserteagle_mp" ); 
+                player setOrigin( jump.origin );
+                player TakeAllWeapons();
+                player GiveWeapon( "deserteagle_mp" );
                 player giveMaxAmmo( "deserteagle_mp" );
 				player switchToWeapon( "deserteagle_mp" );
                 player.maxhealth = 100;
-               
-                
-                if( isDefined( level.activ ) && isAlive( level.activ ) ) 
+
+
+                if( isDefined( level.activ ) && isAlive( level.activ ) )
 				{
- 
+
 					level.activ setPlayerangles( acti.angles );
-                    level.activ setOrigin( acti.origin ); 
-                    level.activ TakeAllWeapons(); 
-                    level.activ GiveWeapon( "deserteagle_mp" ); 
+                    level.activ setOrigin( acti.origin );
+                    level.activ TakeAllWeapons();
+                    level.activ GiveWeapon( "deserteagle_mp" );
 					level.activ giveMaxAmmo( "deserteagle_mp" );
 					level.activ switchToWeapon( "deserteagle_mp" );
-                    level.activ.maxhealth = 100; 
-                    
+                    level.activ.maxhealth = 100;
+
 				}
-                 
+
                 wait 0.05;
-               
+
             info("Blocks Room", player.name + " ^1VS ^7" + level.activ.name);
             wait 1;
             player iPrintlnBold( "^13" );
@@ -1396,12 +1396,12 @@ blocks()
             level.activ iPrintlnBold( "^2GO^7!" );
             player freezecontrols(0);
             level.activ freezecontrols(0);
-			
+
 			end waittill( "trigger", endplayer );
-			
+
 			endplayer death_room();
-			
-                while( isAlive( player ) && isDefined( player ) ) 
+
+                while( isAlive( player ) && isDefined( player ) )
                         wait 1;
 			iPrintlnBold( player.name + " ^6died during a parkour fight!" );
 			iPrintlnBold( "^2Endroom is now free!" );
@@ -1445,7 +1445,7 @@ TestClient(team)
 
      while(!isdefined(self.pers["team"]))
          wait .05;
-         
+
      self notify("menuresponse", game["menu_team"], team);
      wait 0.5;
 }

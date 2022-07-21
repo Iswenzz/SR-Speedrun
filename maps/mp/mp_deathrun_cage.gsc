@@ -3,7 +3,7 @@
 */
 main()
 {
-thread sr\api\_map::createSpawn((13, -1, -20), 360);
+thread sr\api\_map::createSpawnOrigin((13, -1, -20), 360);
     maps\mp\_load::main();
 
     game["allies"] = "marines";
@@ -15,8 +15,8 @@ thread sr\api\_map::createSpawn((13, -1, -20), 360);
 
     //ambientPlay("mapsong");
     thread sr\api\_speedrun::createNormalWays("Normal Way");
-        thread sr\api\_speedrun::createTeleporter((-171.481, -2849.31, 542.125), 35, 105, (-252, -1436, 964), 360, "freeze");  
-    thread sr\api\_speedrun::createTeleporter((871.995, -727.389, 902.125), 95, 110, (483, -775, 1468), 90, "freeze");    
+        thread sr\api\_speedrun::createTeleporter((-171.481, -2849.31, 542.125), 35, 105, (-252, -1436, 964), 360, "freeze");
+    thread sr\api\_speedrun::createTeleporter((871.995, -727.389, 902.125), 95, 110, (483, -775, 1468), 90, "freeze");
     //thread trap1();
     //thread trap2();
     //thread trap3();
@@ -37,7 +37,7 @@ thread sr\api\_map::createSpawn((13, -1, -20), 360);
     //thread snip();
     //thread knife();
     //thread pistol();
-	
+
 	// FX
 	level.explosion = LoadFX ( "explosions/tanker_explosion" );
 }
@@ -48,10 +48,10 @@ trap1()
     object1 = getent("trap1a","targetname");
     object2 = getent("trap1b","targetname");
     object3 = getent("trap1c","targetname");
- 
+
     trig waittill ("trigger");
     trig delete();
- 
+
     while(1)
     {
         object1 movey(112, 5);
@@ -76,7 +76,7 @@ trap2()
 
     killtrigger enablelinkto ();
     killtrigger linkto (trap2);
- 
+
     while( 1 )
     {
         trap2 movex(-112, 5);
@@ -96,7 +96,7 @@ trap3()
 
     trig waittill ("trigger");
     trig delete();
- 
+
     while(1)
     {
         object1 rotatepitch(900, 5);
@@ -123,7 +123,7 @@ trap4()
 
     killtrigger enablelinkto ();
     killtrigger linkto (trap4);
- 
+
     while( 1 )
     {
         trap4 movez(45, 5);
@@ -148,7 +148,7 @@ trap5()
 
     trig waittill ("trigger");
     trig delete();
- 
+
     while(1)
     {
         object1 rotatepitch(900, 1);
@@ -199,7 +199,7 @@ trap6()
     object4 = getent("trap6d","targetname");
     object5 = getent("trap6e","targetname");
     object6 = getent("trap6f","targetname");
- 
+
     trig waittill ("trigger");
     trig delete();
 
@@ -384,7 +384,7 @@ trap8()
 
     trig waittill ("trigger");
     trig delete();
- 
+
     while(1)
     {
         object1 rotateroll(900, 5);
@@ -426,7 +426,7 @@ trap9()
 {
     trig = getEnt( "trig_trap9", "targetname" );
     object1 = getent("trap9","targetname");
- 
+
     trig waittill ("trigger");
     trig delete();
 
@@ -444,11 +444,11 @@ trap10()
     trig delete();
 
     killtrigger enablelinkto ();
-    killtrigger2 enablelinkto (); 
+    killtrigger2 enablelinkto ();
 
     killtrigger linkto (trap10);
     killtrigger2 linkto (trap10);
- 
+
     while( 1 )
     {
         trap10 movez(304, 5);
@@ -463,7 +463,7 @@ bridge()
     trig = getEnt( "trap_bridge", "targetname" );
     object1 = getent("bridge","targetname");
     object2 = getent("heli_bridge","targetname");
- 
+
     trig waittill ("trigger");
     trig delete();
 
@@ -573,7 +573,7 @@ automove7()
 
     killtrigger enablelinkto ();
     killtrigger linkto (trap13);
- 
+
     while( 1 )
     {
         trap13 movey(-176, 5);
@@ -588,16 +588,16 @@ trap2x12()
 	trig = getEnt("trap_bridgeg", "targetnamet");
 	brush = getEnt("bridge", "targetname");
 	fx = getEnt("trap_shit_fx", "targetname");
-	
+
 	trig setHintString("Press USE to activate");
 	trig waittill("trigger");
 	trig delete();
-	
+
 	playFx ( level.explosion, fx.origin );
 	wait 0.1;
 	earthquake ( 1, 1, fx.origin, 500 );
 	wait 0.1;
-	brush delete();	
+	brush delete();
 }
 
 lift1()
@@ -651,7 +651,7 @@ lift2()
     object3 = getent("jumper_vrata2","targetname");
     object4 = getent("jumper_vrata3","targetname");
     object5 = getent("jumper_vrata4","targetname");
-         
+
     trig waittill ("trigger");
 
     {
@@ -715,16 +715,16 @@ heli1()
 {
     heli = getent("heli","targetname");
 
-    {	
+    {
         wait 5;
-	    heli movex(10000,25);	
+	    heli movex(10000,25);
 	    wait 25;
 	    heli rotatepitch(-15,1);
         wait 1;
 	    heli rotateyaw(180,2.5);
         wait 5;
         heli rotatepitch(15,1);
-	    heli movex(-15000,30);	
+	    heli movex(-15000,30);
 	    wait 25;
 	    heli delete();
     }
@@ -734,16 +734,16 @@ heli2()
 {
     heli = getent("heli2","targetname");
 
-    {	
+    {
         wait 5;
-	    heli movex(10000,25);	
+	    heli movex(10000,25);
 	    wait 25;
 	    heli rotatepitch(-15,1);
         wait 1;
 	    heli rotateyaw(180,2.5);
         wait 5;
         heli rotatepitch(15,1);
-	    heli movex(-15000,30);	
+	    heli movex(-15000,30);
 	    wait 25;
 	    heli delete();
     }
@@ -753,16 +753,16 @@ heli3()
 {
     heli = getent("heli3","targetname");
 
-    {	
+    {
         wait 5;
-	    heli movex(10000,25);	
+	    heli movex(10000,25);
 	    wait 25;
 	    heli rotatepitch(-15,1);
         wait 1;
 	    heli rotateyaw(180,2.5);
         wait 5;
         heli rotatepitch(15,1);
-	    heli movex(-15000,30);	
+	    heli movex(-15000,30);
 	    wait 25;
 	    heli delete();
     }
@@ -772,7 +772,7 @@ printcredits()
 {
     if( isDefined( self.logoText ) )
         self.logoText destroy();
-     
+
     self.logoText = newHudElem();
     self.logoText.y = 10;
     self.logoText.alignX = "center";
@@ -782,7 +782,7 @@ printcredits()
     self.logoText.sort = -3;
     self.logoText.fontScale = 1.6;
     self.logoText.archieved = true;
-     
+
     for(;;)
     {
         self.logoText fadeOverTime(1);
@@ -828,26 +828,26 @@ snip()
     level.mus_trig3 = getEnt( "sniproom", "targetname" );
     tele_activator = getEnt( "acti_snip", "targetname" );
     tele_jumper = getEnt( "kreten", "targetname" );
-               
+
     level.finalJumper = undefined;
- 
+
     while( 1 )
     {
         level.mus_trig3 waittill( "trigger", player );
-   
+
         if( isDefined( level.finalJumper ) || player.pers["team"] != "allies" )
         continue;
- 
+
         level.mus_trig1 delete();
         level.mus_trig2 delete();
- 
+
         level.finalJumper = player;
         level.finalJumper thread finalMonitor();
-       
+
         level.finalJumper finalroom2( tele_jumper, "m40a3_mp", 100 );
         level.activ finalroom2( tele_activator, "m40a3_mp", 100 );
-       
-               
+
+
         noti = SpawnStruct();
                                 noti.titleText = "Snip Fight";
                                 noti.notifyText = level.activ.name + " ^5VS^7 " + player.name;
@@ -856,55 +856,55 @@ snip()
                                 players = getentarray("player", "classname");
                                 for(i=0;i<players.size;i++)
                                         players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
- 
+
     level.finalJumper FreezeControls(1);
     level.activ FreezeControls(1);
     wait 3;
     level.finalJumper FreezeControls(0);
     level.activ FreezeControls(0);
- 
- 
- 
+
+
+
     }
     // code never gets here
 }
- 
+
 finalroom2( tp, weap, health )
 {
     self SetPlayerAngles( tp.angles );
     self SetOrigin( tp.origin );
-   
+
     self TakeAllWeapons(); //this should be called so it takes away insertion perk in dr 1.2
     self GiveWeapon( weap );
     self GiveMaxAmmo( weap );
     self SwitchToWeapon( weap );
 }
- 
+
 knife()
 {
     level.mus_trig2 = getEnt( "kniferoom", "targetname" );
     tele_activator = getEnt( "actiknife", "targetname" );
     tele_jumper = getEnt( "knife", "targetname" );
-               
+
     level.finalJumper = undefined;
- 
+
     while( 1 )
     {
         level.mus_trig2 waittill( "trigger", player );
-   
+
         if( isDefined( level.finalJumper ) || player.pers["team"] != "allies" )
         continue;
- 
+
         level.mus_trig1 delete();
         level.mus_trig3 delete();
- 
+
         level.finalJumper = player;
         level.finalJumper thread finalMonitor();
-       
+
         level.finalJumper finalroom1( tele_jumper, "knife_mp", 100 );
         level.activ finalroom1( tele_activator, "knife_mp", 100 );
-       
-               
+
+
         noti = SpawnStruct();
                                 noti.titleText = "Knife Fight";
                                 noti.notifyText = level.activ.name + " ^5VS^7 " + player.name;
@@ -913,44 +913,44 @@ knife()
                                 players = getentarray("player", "classname");
                                 for(i=0;i<players.size;i++)
                                         players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
- 
+
     level.finalJumper FreezeControls(1);
     level.activ FreezeControls(1);
     wait 3;
     level.finalJumper FreezeControls(0);
     level.activ FreezeControls(0);
- 
- 
- 
+
+
+
     }
     // code never gets here
 }
- 
+
 pistol()
 {
     level.mus_trig2 = getEnt( "pistolroom", "targetname" );
     tele_activator = getEnt( "actipistol", "targetname" );
     tele_jumper = getEnt( "pistol", "targetname" );
-               
+
     level.finalJumper = undefined;
- 
+
     while( 1 )
     {
         level.mus_trig2 waittill( "trigger", player );
-   
+
         if( isDefined( level.finalJumper ) || player.pers["team"] != "allies" )
         continue;
- 
+
         level.mus_trig1 delete();
         level.mus_trig3 delete();
- 
+
         level.finalJumper = player;
         level.finalJumper thread finalMonitor();
-       
+
         level.finalJumper finalroom1( tele_jumper, "deserteagle_mp", 100 );
         level.activ finalroom1( tele_activator, "deserteagle_mp", 100 );
-       
-               
+
+
         noti = SpawnStruct();
                                 noti.titleText = "Pistol Fight";
                                 noti.notifyText = level.activ.name + " ^5VS^7 " + player.name;
@@ -959,44 +959,44 @@ pistol()
                                 players = getentarray("player", "classname");
                                 for(i=0;i<players.size;i++)
                                         players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
- 
+
     level.finalJumper FreezeControls(1);
     level.activ FreezeControls(1);
     wait 3;
     level.finalJumper FreezeControls(0);
     level.activ FreezeControls(0);
- 
- 
- 
+
+
+
     }
     // code never gets here
 }
- 
+
 old()
 {
     level.mus_trig1 = getEnt( "oldroom", "targetname" );
     tele_activator = getEnt( "acti_old", "targetname" );
     tele_jumper = getEnt( "old", "targetname" );
-               
+
     level.finalJumper = undefined;
- 
+
     while( 1 )
     {
         level.mus_trig1 waittill( "trigger", player );
-   
+
         if( isDefined( level.finalJumper ) || player.pers["team"] != "allies" )
         continue;
- 
+
         level.mus_trig2 delete();
         level.mus_trig3 delete();
- 
+
         level.finalJumper = player;
         level.finalJumper thread finalMonitor();
-       
+
         level.finalJumper finalroom( tele_jumper, "knife_mp", 100 );
         level.activ finalroom( tele_activator, "knife_mp", 100 );
-       
-               
+
+
         noti = SpawnStruct();
                                 noti.titleText = "FIGHT";
                                 noti.notifyText = level.activ.name + " ^5VS^7 " + player.name;
@@ -1005,15 +1005,15 @@ old()
                                 players = getentarray("player", "classname");
                                 for(i=0;i<players.size;i++)
                                         players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
- 
+
     level.finalJumper FreezeControls(1);
     level.activ FreezeControls(1);
     wait 3;
     level.finalJumper FreezeControls(0);
     level.activ FreezeControls(0);
- 
- 
- 
+
+
+
     }
     // code never gets here
 }
@@ -1022,29 +1022,29 @@ finalMonitor()
 {
     self endon( "disconnect" );
     self thread monitorDisconnect();
- 
+
     while( self.sessionstate == "playing" )
         wait 0.05;
     level.finalJumper = undefined;
 }
- 
+
 finalroom( tp, weap, health )
 {
     self SetPlayerAngles( tp.angles );
-    self SetOrigin( tp.origin );  
+    self SetOrigin( tp.origin );
 }
- 
+
 finalroom1( tp, weap, health )
 {
     self SetPlayerAngles( tp.angles );
     self SetOrigin( tp.origin );
-   
+
     self TakeAllWeapons(); //this should be called so it takes away insertion perk in dr 1.2
     self GiveWeapon( weap );
     self GiveMaxAmmo( weap );
     self SwitchToWeapon( weap );
 }
- 
+
 monitorDisconnect()
 {
     self waittill( "disconnect" );

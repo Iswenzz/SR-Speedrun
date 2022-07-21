@@ -1,10 +1,10 @@
 /*
 
-  _|_|_|            _|      _|      _|                  _|            
-_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|  
-  _|_|    _|    _|      _|          _|        _|    _|  _|      _|    
-      _|  _|    _|    _|  _|        _|        _|    _|  _|    _|      
-_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|  
+  _|_|_|            _|      _|      _|                  _|
+_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|
+  _|_|    _|    _|      _|          _|        _|    _|  _|      _|
+      _|  _|    _|    _|  _|        _|        _|    _|  _|    _|
+_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|
 
 Map and GSC Made By SuX Lolz.
 
@@ -22,18 +22,18 @@ Email Pro: suxlolz@outlook.fr
 
 main()
 {
-thread sr\api\_map::createSpawn((-56, 2592, -320), 180);
+thread sr\api\_map::createSpawnOrigin((-56, 2592, -320), 180);
 	maps\mp\_load::main();
 	maps\mp\enter_teleport\_teleport::main();
 	maps\mp\_compass::setupMiniMap("compass_mp_q3_slide_wsrc09_03");
- 
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
- 
+
 	setdvar("r_specularcolorscale","1");
 	setdvar("compassmaxrange","1600");
 	setdvar("r_glowbloomintensity0",".1");
@@ -54,14 +54,14 @@ thread sr\api\_map::createSpawn((-56, 2592, -320), 180);
 way_connect()
 {
     wait 0.05;
-	
+
     level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
-    
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
 
@@ -98,7 +98,7 @@ boost_do(trig)
 	self endon("disconnect");
 
 	self.boosted = true;
-	
+
 	if(self isTouching(trig))
 	{
 		for(i=0;i<4;i++)
@@ -107,9 +107,9 @@ boost_do(trig)
 			self finishPlayerDamage(self, self, 10000, 0, "MOD_PROJECTILE", "bh_mp", self.origin, AnglesToForward((0, 0, -90)), "none", 0);
 		}
 	}
-	
+
 	wait 2;
-	
+
 	self.boosted = false;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////

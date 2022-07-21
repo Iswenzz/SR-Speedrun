@@ -1,26 +1,26 @@
 main()
 {
-thread sr\api\_map::createSpawn((-80, 19, 16), 180);
+thread sr\api\_map::createSpawnOrigin((-80, 19, 16), 180);
 trigger = spawn( "trigger_radius", (-465.821, 975.085, 16.125), 0, 96, 48 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 96;
 	maps\mp\_load::main();
 
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
-	
+
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
-      	
+
         thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
 	thread start();
@@ -48,7 +48,7 @@ door2 delete();
 door3 delete();
 door4 delete();
 door5 delete();
-	
+
 }
 
 trap2()
@@ -65,7 +65,7 @@ dmg2  =getent("trap2_dmg2","targetname");
 dmg3  =getent("trap2_dmg3","targetname");
 dmg4  =getent("trap2_dmg4","targetname");
 dmg5  =getent("trap2_dmg5","targetname");
-dmg6  =getent("trap2_dmg6","targetname");	
+dmg6  =getent("trap2_dmg6","targetname");
 
 wait 0.1;
 
@@ -82,13 +82,13 @@ dmg3 delete();
 dmg4 delete();
 dmg5 delete();
 dmg6 delete();
-		
+
 }
 
 trap34()
 {
 trap  =getent("trap3","targetname");
-dmg1 =getent("dmg_trap3","targetname");	
+dmg1 =getent("dmg_trap3","targetname");
 dmg2 =getent("dmg_trap4","targetname");
 
 wait 0.1;
@@ -96,7 +96,7 @@ wait 0.1;
 trap delete();
 dmg1 delete();
 dmg2 delete();
-		
+
 }
 
 trap7()
@@ -156,5 +156,5 @@ barrel12 delete();
 barrel13 delete();
 barrel14 delete();
 barrel15 delete();
-	
+
 }

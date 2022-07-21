@@ -2,7 +2,7 @@
 //#include maps\mp\jr_util;
 main()
 {
-thread sr\api\_map::createSpawn((42.125, -64, 16.125), 0);
+thread sr\api\_map::createSpawnOrigin((42.125, -64, 16.125), 0);
 //Speedex
 maps\mp\_load::main();
 

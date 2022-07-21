@@ -3,7 +3,7 @@
 // Do not Change anything please if you want to change ask me before! xfire:wespatrick
 main()
 {
-thread sr\api\_map::createSpawn((-23.875, 32, 8.125), 0);
+thread sr\api\_map::createSpawnOrigin((-23.875, 32, 8.125), 0);
 trigger = spawn( "trigger_radius", (-279.875, 4833.46, 168.125), 0, 96, 48 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 96;
@@ -17,9 +17,9 @@ trigger.radius = 96;
 	game["defenders"] = "axis";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
+
 	//Custom Stuff
-	
+
 	//Define Triggers
 	level.trigger1 = getEnt("t1","targetname");//Trap 1 Remove brush
 	level.trigger2 = getEnt("t2","targetname");//Trap 2 Remove brush
@@ -28,7 +28,7 @@ trigger.radius = 96;
 	level.trigger5 = getEnt("t5","targetname");//Trap 5 Spinning trap
 	level.trigger6 = getEnt("t6","targetname");//Trap 6 little going down trap
 	level.trigger7 = getEnt("t7","targetname");//Trap 7 Going down brush at end
-	
+
 	//Adding Triggers to Freerun
 	attl("t1");
 	attl("t2");
@@ -37,7 +37,7 @@ trigger.radius = 96;
 	attl("t5");
 	attl("t6");
 	attl("t7");
-	
+
 	//Set Hintstring to right one
 	level.trigger1 sethintstring("Press [USE] to activate Trap");
 	level.trigger2 sethintstring("Press [USE] to activate Trap");
@@ -46,47 +46,47 @@ trigger.radius = 96;
 	level.trigger5 sethintstring("Press [USE] to activate Trap");
 	level.trigger6 sethintstring("Press [USE] to activate Trap");
 	level.trigger7 sethintstring("Press [USE] to activate Trap");
-	
+
 	//Define Traps
-	
+
 	//Trap 1 Remove brush
 	level.trap1 = getEnt("trap_remove_1","targetname");
-	
+
 	//Trap 2 Remove brush
 	level.trap2 = getEnt("trap_remove_2","targetname");
-	
+
 	//Trap 3 Rotator brush
 	level.trap3 = getEnt("rotator","targetname");
-		
+
 	//Trap 4 brush from top to down
 	level.trap4 = getEnt("trap_4","targetname");
 	level.trap4_2 = getEnt("trap4_hurt","targetname");
-	
+
 	//Trap 5 Spinning trap
 	level.trap5 = getEnt("dreh_1","targetname");
-	
+
 	//Trap 6 little going down trap
 	level.trap6 = getEnt("trap_7","targetname");
-	
+
 	//Trap 7 Going down brush at end
 	level.trap7 = getEnt("trap_goingdown","targetname");
 
 	//Define Others
-	
+
 	//First Mover
 	level.mover_1 = getEnt("mover_1","targetname");
-	
+
 	//Starting Door
 	level.startdoor_trig = getEnt("startingdoor_trig","targetname");
 	level.startdoor = getEnt("startingdoor","targetname");
-	
+
 	//Ending Door
 	level.enddoor_trig = getEnt("enddoor_trig","targetname");
 	level.enddoor = getEnt("enddoor","targetname");
 	level.enddoor2 = getEnt("enddoor_nodraw","targetname");
 
 	thread way_connect();
-	
+
 	//Call functions
 	thread startdoors();
 	thread mover1();
@@ -104,9 +104,9 @@ trigger.radius = 96;
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );

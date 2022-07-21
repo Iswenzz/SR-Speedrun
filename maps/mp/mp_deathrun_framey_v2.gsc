@@ -1,29 +1,29 @@
 main()
 {
-thread sr\api\_map::createSpawn((-5.325, -441.322, 0.125), 90);
+thread sr\api\_map::createSpawnOrigin((-5.325, -441.322, 0.125), 90);
 trigger = spawn( "trigger_radius", (-2423.35, 794.684, 4.90718), 0, 96, 48 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 96;
 	maps\mp\_load::main();
-	
+
 	// ambientplay("sound_1");
 	// Print3d( (0,0,0), "START", (1.0, 0.8, 0.5), 1000, 1000, 100000 );
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-		
+
 	setdvar( "r_specularcolorscale", "1" );
-	
+
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
-		
-		
+
+
 	thread way_connect();
 	// thread trap1();
 	// thread trap2();
@@ -42,7 +42,7 @@ trigger.radius = 96;
 	// thread trap_spinner();
 	// thread oldgame();
 	// thread jumpgame();
-	thread movejump1();	
+	thread movejump1();
 	thread movejump2();
 	// thread actdoor();
 	// thread jumperdoor();
@@ -58,9 +58,9 @@ trigger.radius = 96;
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -68,7 +68,7 @@ way_connect()
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 lift()
 {
 lift=getent("lift","targetname");
@@ -94,7 +94,7 @@ platform=getent("platform","targetname");
 // wait (2);
 // platform movey(900,5,0.5,4.5);
 // platform waittill ("movedone");
-// } 
+// }
 
 
 }
@@ -108,7 +108,7 @@ platformjump1 movey(-317,3,0.5,2.5);
 platformjump1 waittill ("movedone");
 platformjump1 movey(317,3,0.5,2.5);
 platformjump1 waittill ("movedone");
-} 
+}
 }
 
 movejump2()
@@ -120,7 +120,7 @@ platformjump2 movey(-317,3,0.5,2.5);
 platformjump2 waittill ("movedone");
 platformjump2 movey(317,3,0.5,2.5);
 platformjump2 waittill ("movedone");
-} 
+}
 }
 
 trap7_mover_mid()
@@ -132,7 +132,7 @@ self waittill("movedone");
 wait(1);
 self movez(75,0.5,0.1,0.4);
 self waittill("movedone");
-} 
+}
 }
 
 startdoor()
@@ -152,7 +152,7 @@ blocker waittill ("movedone");
 deagle_trigger()
 {
 trigger = getEnt("trigger_deagle", "targetname");
-precacheItem("deserteaglegold_mp");	
+precacheItem("deserteaglegold_mp");
 while(1)
 {
 trigger waittill("trigger", player);
@@ -165,7 +165,7 @@ player SwitchToWeapon( "deserteaglegold_mp" );
 m40a3_trigger()
 {
 trigger = getEnt("buy_m40a3", "targetname");
-precacheItem("m40a3_mp");	
+precacheItem("m40a3_mp");
 while(1)
 {
 trigger waittill("trigger", player);
@@ -178,7 +178,7 @@ player SwitchToWeapon( "m40a3_mp" );
 barrett_trigger()
 {
 trigger = getEnt("buy_50cal", "targetname");
-precacheItem("barrett_mp");	
+precacheItem("barrett_mp");
 while(1)
 {
 trigger waittill("trigger", player);
@@ -191,7 +191,7 @@ player SwitchToWeapon( "barrett_mp" );
 ak74u_trigger()
 {
 trigger = getEnt("buy_ak74u", "targetname");
-precacheItem("ak74u_mp");	
+precacheItem("ak74u_mp");
 while(1)
 {
 trigger waittill("trigger", player);
@@ -286,7 +286,7 @@ player SwitchToWeapon( "remington700_mp" );
 oldgame()
 {
 level.old_trigger = getEnt("trigger_old", "targetname");
-door_old = getEnt("door_old","targetname");	
+door_old = getEnt("door_old","targetname");
 level.old_trigger waittill("trigger", player);
 door_old movez(-400,5);
 level.jump_trigger delete();
@@ -300,7 +300,7 @@ iPrintLnBold("^1 " + player.name + " ^7Has picked ^2Classic!"); //Change the mes
 jumpgame()
 {
 level.jump_trigger = getEnt("trigger_jumpgame", "targetname");
-jumpgame = getEnt("jumpgame","targetname");	
+jumpgame = getEnt("jumpgame","targetname");
 end_right = getEnt("end_right","targetname");
 end_left = getEnt("end_left","targetname");
 jumpgameroom = getEnt("jumpgameroom","targetname");
@@ -312,8 +312,8 @@ level.old_trigger delete();
 level.jump_trigger delete();
 end_right movez(-1000,1);
 end_left movez(-1000,1);
-jumpgameroom movez(-350,1);	
-jumpgamewall movez(340,1);	
+jumpgameroom movez(-350,1);
+jumpgamewall movez(340,1);
 finaldoor = getEnt("finaldoor", "targetname");
 finaldoor moveZ( -210,2);
 iPrintLnBold("^1 " + player.name + " ^7Has picked ^2JumperGame!"); //Change the message if you want
@@ -351,19 +351,19 @@ door()
 
 weaponroommessage()
 {
-	trigger = getEnt("trigger_weaponroom", "targetname");	
+	trigger = getEnt("trigger_weaponroom", "targetname");
 	trigger waittill("trigger", player);
 	iPrintLnBold(player.name + "^3 has entered the Secret room!"); //Change the message if you want
 	trigger delete();
 }
-	
+
 walljump()
 {
-	trigger = getEnt("walljump", "targetname");	
+	trigger = getEnt("walljump", "targetname");
 	shortcut=getent("shortcut","targetname");
-	
+
 	trigger delete();
-	
+
 }
 
 trap1()
@@ -557,7 +557,7 @@ secretshaft()
 	iPrintLnBold(player.name + "^3 opened the shaft !"); //Change the message if you want
 	}
 	}
-	
+
 
 weaponroom()
 {

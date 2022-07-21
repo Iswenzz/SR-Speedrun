@@ -1,8 +1,8 @@
 main()
 {
-thread sr\api\_map::createSpawn((-1182, 15, 16), 359);
-	maps\mp\_load::main();	
-	
+thread sr\api\_map::createSpawnOrigin((-1182, 15, 16), 359);
+	maps\mp\_load::main();
+
 
 
 	game["allies"] = "marines";
@@ -51,8 +51,8 @@ thread sr\api\_map::createSpawn((-1182, 15, 16), 359);
 	// thread jumpfail();
 	// thread jumpfail2();
 	// thread music();
-	
-	
+
+
 	addTriggerToList( "trig1");
 	addTriggerToList( "trig2");
 	addTriggerToList( "trig3");
@@ -60,7 +60,7 @@ thread sr\api\_map::createSpawn((-1182, 15, 16), 359);
 	addTriggerToList( "trig5");
 	addTriggerToList( "trig6");
 	addTriggerToList( "trig7");
-	
+
 }
 
 addTriggerToList ( name )
@@ -92,11 +92,11 @@ tr1()
 	platform2 = getent("trap12", "targetname");
 	platform1 = getent("trap11", "targetname");
 	trig = getent("trig1", "targetname");
-	trig SetHintString("^3Moving platforms");	
+	trig SetHintString("^3Moving platforms");
 	trig waittill("trigger", player );
-		
+
 	trig delete();
-	
+
 	while(1)
 	{
 	platform2 moveZ(75, 1);
@@ -106,7 +106,7 @@ tr1()
 	platform1 moveZ(75, 1);
 	wait 1;
 	}
-	
+
 }
 tr2()
 {
@@ -116,16 +116,16 @@ tr2()
 	trig = getent("trig2", "targetname");
 	trig SetHintString("^3Split it");
 	trig waittill("trigger", player );
-	
+
 	trig delete();
-	
+
 	plat3 delete();
-	
+
 	wait 1;
 	plat1 moveY(75, 2);
 	wait 2;
 	plat2 moveY(-75, 2);
-	
+
 }
 tr3()
 {
@@ -133,24 +133,24 @@ tr3()
 	trig = getent("trig3", "targetname");
 	trig SetHintString("^2 Slow them down");
 	trig waittill("trigger", player );
-	
-	
+
+
 	trig delete();
-	
+
 	plat moveZ(-40, 2);
 }
 tr4()
 {
 	platform = getent("trap4", "targetname");
 	triger = getent("triger4", "targetname");
-	triger SetHintString("^2 Make them bounce");	
+	triger SetHintString("^2 Make them bounce");
 	triger waittill("trigger", player );
-	
-	
+
+
 	triger delete();
-	
-	platform delete();	
-	
+
+	platform delete();
+
 }
 tr5()
 {
@@ -163,9 +163,9 @@ tr5()
 	trig = getent("trig5", "targetname");
 	trig SetHintString("^1Rotate platforms");
 	trig waittill("trigger", player );
-		
+
 	trig delete();
-	
+
 	while(1)
 	{
 		plat1 rotateRoll(180, 0.5);
@@ -179,10 +179,10 @@ tr5()
 		plat5 rotateRoll(180, 0.5);
 		wait 0.5;
 		plat6 rotateRoll(180, 0.5);
-		wait 0.5;		
-		
+		wait 0.5;
+
 	}
-	
+
 }
 tr6()
 {
@@ -190,13 +190,13 @@ tr6()
 	trig = getent("trig6", "targetname");
 	trig SetHintString("^1Push!");
 	trig waittill("trigger", player );
-		
+
 	trig delete();
-	
+
 	plat moveY(-600,1);
 	wait 1.25;
 	plat moveY(600,1);
-	
+
 }
 tr7()
 {
@@ -204,9 +204,9 @@ tr7()
 	trig = getent("trig7", "targetname");
 	trig SetHintString("^1Rotate bounces");
 	trig waittill("trigger", player );
-	
+
 	trig delete();
-	
+
 	while(1)
 	{
 	plat rotateYaw(360, 1);
@@ -217,7 +217,7 @@ teleasy()
 {
 	trig = getent("easy", "targetname");
 	tele1 = getent("easytp", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger", player);
@@ -228,7 +228,7 @@ telhard()
 {
 	trig = getent("hard", "targetname");
 	tele1 = getent("hardtp", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger", player);
@@ -239,7 +239,7 @@ hardf()
 {
 	trig = getent("hardfail1", "targetname");
 	tele1 = getent("hardtp", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger", player);
@@ -250,7 +250,7 @@ hardf2()
 {
 	trig = getent("hardfail2", "targetname");
 	tele1 = getent("hardfailtp1", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger", player);
@@ -261,7 +261,7 @@ hardf3()
 {
 	trig = getent("hardfail3", "targetname");
 	tele1 = getent("hardfailtp2", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger", player);
@@ -272,113 +272,113 @@ hardf4()
 {
 	trig = getent("hardfinish", "targetname");
 	tele1 = getent("hardtofinish", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger", player);
 		player setOrigin(tele1.origin);
 	    player thread sr\api\_speedrun::finishWay("secret_0");
-		
+
 	}
 }
 easyf()
 {
 	trig = getent("easyfail", "targetname");
 	tele1 = getent("easytp", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger", player);
 		player setOrigin(tele1.origin);
-		
+
 	}
 }
 easyf2()
 {
 	trig = getent("easytofinish", "targetname");
 	tele1 = getent("easyfinish", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger", player);
 		player setOrigin(tele1.origin);
 	    player thread sr\api\_speedrun::finishWay("secret_1");
-		
+
 	}
 }
 actitp()
 {
 	trig = getent("actitp", "targetname");
-	tele1 = getent("actitp2", "targetname");	
+	tele1 = getent("actitp2", "targetname");
 	trig SetHintString("^5Teleport to the next room");
-	
+
 	trig waittill("trigger", player);
-	
+
 	player setOrigin(tele1.origin);
-		
+
 }
 actitp2()
 {
 	trig = getent("actitofun", "targetname");
-	tele1 = getent("actifun", "targetname");	
+	tele1 = getent("actifun", "targetname");
 	trig SetHintString("^5 What is it?");
-	
+
 	trig waittill("trigger", player);
-	
+
 	player setOrigin(tele1.origin);
-	
+
 	wait 1;
 	level.activ iPrintLnBold( "uh?" );
-	
-		
+
+
 }
 sniper()
 {
-        level.sniper_trig = getEnt( "snipertrig", "targetname"); //trigger 
+        level.sniper_trig = getEnt( "snipertrig", "targetname"); //trigger
         jump = getEnt( "sniperjumper", "targetname" ); //jumper origin
         acti = getEnt( "sniperacti", "targetname" ); //acti origin
 		level.deagle_trig = getEnt("deagletrig", "targetname");
 		level.jump_trig = getEnt( "jumptrig", "targetname");
- 
-        while(1) 
+
+        while(1)
 {
-                level.sniper_trig waittill( "trigger", player ); 
-                if( !isDefined( level.sniper_trig ) ) 
-                return;  
-            
+                level.sniper_trig waittill( "trigger", player );
+                if( !isDefined( level.sniper_trig ) )
+                return;
+
               level.deagle_trig delete();
 			  level.jump_trig delete();	  //deletes all other rooms from being used.
 			  level.weapon_trig delete();
-			  
+
             player SetPlayerAngles( jump.angles );
-                player setOrigin( jump.origin ); 
-                player TakeAllWeapons(); 
+                player setOrigin( jump.origin );
+                player TakeAllWeapons();
                 player GiveWeapon( "m40a3_mp" ); //Gives player weapon
                 player giveMaxAmmo( "m40a3_mp" ); //Gives player ammo
                 player GiveWeapon( "remington700_mp" );
-                player giveMaxAmmo( "remington700_mp" );   
+                player giveMaxAmmo( "remington700_mp" );
             player switchToWeapon( "m40a3_mp" ); //Makes player switch to weapon.
                 player.maxhealth = 100; //Sets players health to normal.
-               
-                
-                if( isDefined( level.activ ) && isAlive( level.activ ) ) 
+
+
+                if( isDefined( level.activ ) && isAlive( level.activ ) )
 {
- 
+
                level.activ setPlayerangles( acti.angles );
-                    level.activ setOrigin( acti.origin ); 
-                    level.activ TakeAllWeapons(); 
-                    level.activ GiveWeapon( "m40a3_mp" ); 
-                    level.activ giveMaxAmmo( "m40a3_mp" ); 
+                    level.activ setOrigin( acti.origin );
+                    level.activ TakeAllWeapons();
+                    level.activ GiveWeapon( "m40a3_mp" );
+                    level.activ giveMaxAmmo( "m40a3_mp" );
                     level.activ GiveWeapon( "remington700_mp" );
                     level.activ giveMaxAmmo( "remington700_mp" );
                level.activ SwitchToWeapon( "m40a3_mp" );
-                    level.activ.maxhealth = 100; 
-                    
+                    level.activ.maxhealth = 100;
+
 }
-                 
+
                 wait 0.05;
-               
-                iPrintLnBold( " ^5" + player.name + " ^7has chosen ^5Sniper ^7Room!" ); 
+
+                iPrintLnBold( " ^5" + player.name + " ^7has chosen ^5Sniper ^7Room!" );
             player freezecontrols(true); //Freeze the players when someone enters the room for three seconds.
             level.activ freezecontrols(true);
             wait 1;
@@ -395,52 +395,52 @@ sniper()
             level.activ iPrintlnBold( "^7Fight^5!" );
             player freezecontrols(false); //Disables the freeze.
             level.activ freezecontrols(false);
-                while( isAlive( player ) && isDefined( player ) ) 
+                while( isAlive( player ) && isDefined( player ) )
                         wait 1;
 }
 }
 jump()
 {
-        level.jump_trig = getEnt( "jumptrig", "targetname"); //trigger 
+        level.jump_trig = getEnt( "jumptrig", "targetname"); //trigger
         jump = getEnt( "jumpjumper", "targetname" ); //jumper origin
         acti = getEnt( "jumpacti", "targetname" ); //acti origin
 		level.deagle_trig = getEnt("deagletrig", "targetname");
 		level.sniper_trig = getEnt( "snipertrig", "targetname");
-		
-        while(1) 
+
+        while(1)
 {
-                level.jump_trig waittill( "trigger", player ); 
-                if( !isDefined( level.jump_trig ) ) 
-                return;  
-            
+                level.jump_trig waittill( "trigger", player );
+                if( !isDefined( level.jump_trig ) )
+                return;
+
               level.deagle_trig delete(); //deletes all other rooms from being used.
 			  level.sniper_trig delete();
 			  level.weapon_trig delete();
-			  
-			  
+
+
             player SetPlayerAngles( jump.angles );
-                player setOrigin( jump.origin ); 
-                player TakeAllWeapons(); 
+                player setOrigin( jump.origin );
+                player TakeAllWeapons();
                 player GiveWeapon( "knife_mp" );
-				player switchToWeapon( "knife_mp" );	
+				player switchToWeapon( "knife_mp" );
                 player.maxhealth = 100;
-               
-                
-                if( isDefined( level.activ ) && isAlive( level.activ ) ) 
+
+
+                if( isDefined( level.activ ) && isAlive( level.activ ) )
 {
- 
+
                level.activ setPlayerangles( acti.angles );
-                    level.activ setOrigin( acti.origin ); 
-                    level.activ TakeAllWeapons(); 
+                    level.activ setOrigin( acti.origin );
+                    level.activ TakeAllWeapons();
                     level.activ GiveWeapon( "knife_mp" );
-					level.activ switchToWeapon( "knife_mp" );				
-                    level.activ.maxhealth = 100; 
-                    
+					level.activ switchToWeapon( "knife_mp" );
+                    level.activ.maxhealth = 100;
+
 }
-                 
+
                 wait 0.05;
-               
-                iPrintLnBold( " ^3" + player.name + " ^7has chosen ^3Jump ^7Room!" ); 
+
+                iPrintLnBold( " ^3" + player.name + " ^7has chosen ^3Jump ^7Room!" );
             player freezecontrols(true); //Freeze the players when someone enters the room for three seconds.
             level.activ freezecontrols(true);
             wait 1;
@@ -457,52 +457,52 @@ jump()
             level.activ iPrintlnBold( "^7Fight^3!" );
             player freezecontrols(false); //Disables the freeze.
             level.activ freezecontrols(false);
-                while( isAlive( player ) && isDefined( player ) ) 
+                while( isAlive( player ) && isDefined( player ) )
                         wait 1;
 }
 }
 weapon()
 {
-        level.weapon_trig = getEnt( "weapontrig", "targetname"); //trigger 
+        level.weapon_trig = getEnt( "weapontrig", "targetname"); //trigger
         jump = getEnt( "weaponjumper", "targetname" ); //jumper origin
         acti = getEnt( "weaponacti", "targetname" ); //acti origin
 		level.deagle_trig = getEnt("deagletrig", "targetname");
 		level.sniper_trig = getEnt( "snipertrig", "targetname");
 		level.jump_trig = getEnt( "jumptrig", "targetname");
-		
-        while(1) 
+
+        while(1)
 {
-                level.weapon_trig waittill( "trigger", player ); 
-                if( !isDefined( level.weapon_trig ) ) 
-                return;  
-            
+                level.weapon_trig waittill( "trigger", player );
+                if( !isDefined( level.weapon_trig ) )
+                return;
+
               level.deagle_trig delete(); //deletes all other rooms from being used.
 			  level.sniper_trig delete();
 			  level.jump_trig delete();
-			  
+
             player SetPlayerAngles( jump.angles );
-                player setOrigin( jump.origin ); 
-                player TakeAllWeapons(); 
+                player setOrigin( jump.origin );
+                player TakeAllWeapons();
                 player GiveWeapon( "knife_mp" );
 				player switchToWeapon( "knife_mp" );
                 player.maxhealth = 100;
-               
-                
-                if( isDefined( level.activ ) && isAlive( level.activ ) ) 
+
+
+                if( isDefined( level.activ ) && isAlive( level.activ ) )
 {
- 
+
                level.activ setPlayerangles( acti.angles );
-                    level.activ setOrigin( acti.origin ); 
-                    level.activ TakeAllWeapons(); 
+                    level.activ setOrigin( acti.origin );
+                    level.activ TakeAllWeapons();
                     level.activ GiveWeapon( "knife_mp" );
-					level.activ switchToWeapon( "knife_mp" );				
-                    level.activ.maxhealth = 100; 
-                    
+					level.activ switchToWeapon( "knife_mp" );
+                    level.activ.maxhealth = 100;
+
 }
-                 
+
                 wait 0.05;
-               
-                iPrintLnBold( " ^2" + player.name + " ^7has chosen ^2Knife ^7Room!" ); 
+
+                iPrintLnBold( " ^2" + player.name + " ^7has chosen ^2Knife ^7Room!" );
             player freezecontrols(true); //Freeze the players when someone enters the room for three seconds.
             level.activ freezecontrols(true);
             wait 1;
@@ -519,54 +519,54 @@ weapon()
             level.activ iPrintlnBold( "^7Fight^2!" );
             player freezecontrols(false); //Disables the freeze.
             level.activ freezecontrols(false);
-                while( isAlive( player ) && isDefined( player ) ) 
+                while( isAlive( player ) && isDefined( player ) )
                         wait 1;
 }
 }
 deagle()
 {
-        level.deagle_trig = getEnt( "deagletrig", "targetname"); //trigger 
+        level.deagle_trig = getEnt( "deagletrig", "targetname"); //trigger
         jump = getEnt( "deaglejumper", "targetname" ); //jumper origin
         acti = getEnt( "deagleacti", "targetname" ); //acti origin
 		level.weapon_trig = getEnt("weapontrig", "targetname");
 		level.sniper_trig = getEnt( "snipertrig", "targetname");
 		level.jump_trig = getEnt( "jumptrig", "targetname");
-		
-        while(1) 
+
+        while(1)
 {
-                level.deagle_trig waittill( "trigger", player ); 
-                if( !isDefined( level.deagle_trig ) ) 
-                return;  
-            
+                level.deagle_trig waittill( "trigger", player );
+                if( !isDefined( level.deagle_trig ) )
+                return;
+
               level.weapon_trig delete(); //deletes all other rooms from being used.
 			  level.sniper_trig delete();
 			  level.jump_trig delete();
-			  
+
             player SetPlayerAngles( jump.angles );
-                player setOrigin( jump.origin ); 
-                player TakeAllWeapons(); 
+                player setOrigin( jump.origin );
+                player TakeAllWeapons();
                 player GiveWeapon( "deserteagle_mp" );
 				player giveMaxAmmo( "deserteagle_mp" );
 				player switchToWeapon( "deserteagle_mp" );
                 player.maxhealth = 100;
-               
-                
-                if( isDefined( level.activ ) && isAlive( level.activ ) ) 
+
+
+                if( isDefined( level.activ ) && isAlive( level.activ ) )
 {
- 
+
                level.activ setPlayerangles( acti.angles );
-                    level.activ setOrigin( acti.origin ); 
-                    level.activ TakeAllWeapons(); 
+                    level.activ setOrigin( acti.origin );
+                    level.activ TakeAllWeapons();
                     level.activ GiveWeapon( "deserteagle_mp" );
 					level.activ giveMaxAmmo( "deserteagle_mp" );
-					level.activ switchToWeapon( "deserteagle_mp" );				
-                    level.activ.maxhealth = 100; 
-                    
+					level.activ switchToWeapon( "deserteagle_mp" );
+                    level.activ.maxhealth = 100;
+
 }
-                 
+
                 wait 0.05;
-               
-                iPrintLnBold( " ^6" + player.name + " ^7has chosen ^6Deagle ^7Room!" ); 
+
+                iPrintLnBold( " ^6" + player.name + " ^7has chosen ^6Deagle ^7Room!" );
             player freezecontrols(true); //Freeze the players when someone enters the room for three seconds.
             level.activ freezecontrols(true);
             wait 1;
@@ -583,7 +583,7 @@ deagle()
             level.activ iPrintlnBold( "^7Fight^6!" );
             player freezecontrols(false); //Disables the freeze.
             level.activ freezecontrols(false);
-                while( isAlive( player ) && isDefined( player ) ) 
+                while( isAlive( player ) && isDefined( player ) )
                         wait 1;
 }
 }
@@ -591,7 +591,7 @@ jumpfail()
 {
 	trig = getent("jumperfail", "targetname");
 	tele1 = getent("jumpjumper", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger", player);
@@ -602,7 +602,7 @@ jumpfail2()
 {
 	trig = getent("actifail", "targetname");
 	tele1 = getent("jumpacti", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger", player);
@@ -612,7 +612,7 @@ jumpfail2()
 music()
 {
 
-	
+
     songs = [];
     songs[songs.size] = "song1";
     songs[songs.size] = "song2";
@@ -621,7 +621,7 @@ music()
 	songs[songs.size] = "song5";
 	songs[songs.size] = "song6";
 	songs[songs.size] = "song7";
-	
+
     selected = songs[ Randomint( songs.size ) ];
     AmbientPlay( selected );
 }

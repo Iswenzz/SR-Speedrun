@@ -1,15 +1,15 @@
 main()
 {
-thread sr\api\_map::createSpawn((-190, 939, 160), 270);
+thread sr\api\_map::createSpawnOrigin((-190, 939, 160), 270);
 maps\mp\_load::main();
- 
+
 game["allies"] = "marines";
 game["axis"] = "opfor";
 game["attackers"] = "axis";
 game["defenders"] = "allies";
 game["allies_soldiertype"] = "desert";
 game["axis_soldiertype"] = "desert";
- 
+
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
@@ -18,11 +18,11 @@ game["axis_soldiertype"] = "desert";
     setDvar("bg_falldamageminheight", 99998);
 
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
 thread startdoor();
 thread door();
-	
-	
+
+
 }
 
 startdoor()

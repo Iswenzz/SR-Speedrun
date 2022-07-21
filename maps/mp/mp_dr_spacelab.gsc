@@ -28,9 +28,9 @@
 #include braxi\_rank;
 main()
 {
-thread sr\api\_map::createSpawn((21, -10, 8), 89);
+thread sr\api\_map::createSpawnOrigin((21, -10, 8), 89);
 	maps\mp\_load::main();
- 
+
 	game["allies"] = "marines";
     game["axis"] = "opfor";
     game["attackers"] = "axis";
@@ -48,7 +48,7 @@ thread sr\api\_map::createSpawn((21, -10, 8), 89);
     setdvar("r_glowbloomintensity0",".25");
     setdvar("r_glowbloomintensity1",".25");
     setdvar("r_glowskybleedintensity0",".3");
-	setdvar("bg_fallDamageMaxHeight", "99999"); 
+	setdvar("bg_fallDamageMaxHeight", "99999");
 	setdvar("bg_fallDamageMinHeight", "99998");
 
 	thread gate();
@@ -93,7 +93,7 @@ thread sr\api\_map::createSpawn((21, -10, 8), 89);
 	thread h210();
 	thread i210();
 	thread secretend210();
-	
+
 	addTriggerToList( "trig_trap1" );
 	addTriggerToList( "trig_trap2" );
 	addTriggerToList( "trig_trap3" );
@@ -119,13 +119,13 @@ startdoor()
 {
 door = getEnt("startdoor", "targetname");
 door delete();
-}	
+}
 gate()
 {
 	left = getEnt("gateleft", "targetname");
 	right = getEnt("gateright", "targetname");
 	o = getEnt("o_gate", "targetname");
-	
+
 	left delete();
 	right delete();
 	o delete();
@@ -134,28 +134,28 @@ gate()
 plat1()
 {
 	trig = getEnt("trig_plat1", "targetname");
-	plat = getEnt("plat1", "targetname");	
+	plat = getEnt("plat1", "targetname");
 	plat moveZ(384,.5);
 }
 
 plat2()
 {
 	trig = getEnt("trig_plat2", "targetname");
-	plat = getEnt("plat2", "targetname");	
+	plat = getEnt("plat2", "targetname");
 	plat moveZ(384,.5);
 }
 
 plat3()
 {
 	trig = getEnt("trig_plat3", "targetname");
-	plat = getEnt("plat3", "targetname");	
+	plat = getEnt("plat3", "targetname");
 	plat moveZ(384,.5);
 }
 
 plat4()
 {
 	trig = getEnt("trig_plat4", "targetname");
-	plat = getEnt("plat4", "targetname");	
+	plat = getEnt("plat4", "targetname");
 	plat moveZ(384,.5);
 }
 
@@ -163,12 +163,12 @@ portal()
 {
 	trig = getEnt("trig_portal", "targetname");
 	o = getEnt("o_portal", "targetname");
-	
+
 	for (;;)
 	{
 		trig waittill("trigger", player);
 		player setOrigin(o.origin);
-		player setPlayerAngles(o.angles);		
+		player setPlayerAngles(o.angles);
 	}
 }
 
@@ -194,7 +194,7 @@ sdoor1()
 sdoor2()
 {
 	trig = getEnt("trig_sdoor2", "targetname");
-	plat = getEnt("sdoor2", "targetname");	
+	plat = getEnt("sdoor2", "targetname");
 	plat delete();
 }
 
@@ -416,7 +416,7 @@ trap13()
 		b moveZ(8000, 2);
 		wait 3;
 	}
-}		
+}
 
 main210()
 {
@@ -570,7 +570,7 @@ i210()
 }
 
 secretend210()
-{	
+{
 	trig = getEnt("trig_210secretend", "targetname");
 	o = getEnt("o_210secretend", "targetname");
 	for(;;)
@@ -732,7 +732,7 @@ i190()
 	}
 }
 secretend190()
-{	
+{
 	trig = getEnt("trig_190secretend", "targetname");
 	o = getEnt("o_190secretend", "targetname");
 	for(;;)

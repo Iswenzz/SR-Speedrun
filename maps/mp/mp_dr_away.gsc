@@ -8,7 +8,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((-1616, -1408, 1120), 90);
+thread sr\api\_map::createSpawnOrigin((-1616, -1408, 1120), 90);
 maps\mp\_load::main();
 
 

@@ -1,11 +1,11 @@
 main()
 {
-thread sr\api\_map::createSpawn((95, 353, 8), 270);
+thread sr\api\_map::createSpawnOrigin((95, 353, 8), 270);
 trigger = spawn( "trigger_radius", (1855.13, -2200.61, -183.875), 0, 96, 48 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 96;
 	maps\mp\_load::main();
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "russian";
 	game["attackers"] = "axis";
@@ -34,7 +34,7 @@ trigger.radius = 96;
 	 thread anticut_main();
 }
 
-anticut_main() 
+anticut_main()
 {
     trig1 = spawn( "trigger_radius", (1897.66, -2191.54, -183.875), 0, 100, 130 );
     trig1 thread anticut();
@@ -48,7 +48,7 @@ anticut()
 		player suicide();
         wait 0.5;
     }
-   
+
 }
 door()
 {
@@ -60,7 +60,7 @@ door()
 	door_1 delete ();
 	door_2 delete ();
 }
- trap1 () 
+ trap1 ()
 	      {
 			  level endon("triggeraadad");
 		  trig1 = getent ( "trig_1" , "targetname" ) ;
@@ -84,8 +84,8 @@ trap2 ()
 	  brush_2 rotatepitch (-360 , 4 );
 	  wait 0.5 ;
 	  }
-      }	  
-	  
+      }
+
 trap3 ()
 {
 	 		trig3 = getent ("trig_3", "targetname");
@@ -118,9 +118,9 @@ pushers()
 			trig4 delete ();
 			part1[randomInt(part1.size)] notsolid();
             part2[randomInt(part2.size)] notsolid();
-			
+
 			}
-			
+
 			trap5()
 			{
 				level endon("triggeraaggd");
@@ -161,7 +161,7 @@ pushers()
 			trig7 delete ();
 			brush_8 rotatepitch ( 90 , 1 ) ;
 			brush_9 rotatepitch (- 90, 1 ) ;
-			wait 2 ; 
+			wait 2 ;
 			brush_8 rotatepitch (- 90 , 1 ) ;
 			brush_9 rotatepitch ( 90 , 1 ) ;
 			wait 2 ;
@@ -183,7 +183,7 @@ pushers()
 			brush_12 rotateroll (360 ,6);
 			brush_10 movey (-112 , 1);
 			brush_11 movey (112, 1);
-			wait 1 ; 
+			wait 1 ;
 			brush_10 movey (112 , 1);
 			brush_11 movey (-112, 1);
 			wait 1;

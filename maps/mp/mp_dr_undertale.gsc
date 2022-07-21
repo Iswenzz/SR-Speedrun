@@ -1,10 +1,10 @@
 /*
-______           __  _____  _____ 
+______           __  _____  _____
 | ___ \         /  ||  _  ||  _  |
 | |_/ /_____  __`| || |/' || |_| |
 |    // _ \ \/ / | ||  /| |\____ |
 | |\ \  __/>  < _| |\ |_/ /.___/ /
-\_| \_\___/_/\_\\___/\___/ \____/ 
+\_| \_\___/_/\_\\___/\___/ \____/
 
 Welcome to mp_dr_undertale script. Feel free to take any piece of code, no need to credit me.
 
@@ -12,7 +12,7 @@ Welcome to mp_dr_undertale script. Feel free to take any piece of code, no need 
 
 main()
 {
-thread sr\api\_map::createSpawn((124, -12, 1), 89);
+thread sr\api\_map::createSpawnOrigin((124, -12, 1), 89);
 	maps\mp\_load::main();
 
 	game["allies"] = "marines";
@@ -21,7 +21,7 @@ thread sr\api\_map::createSpawn((124, -12, 1), 89);
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
+
 
 	if(!isdefined(level.music))
 	level.music=[];
@@ -33,10 +33,10 @@ thread sr\api\_map::createSpawn((124, -12, 1), 89);
 	level.music[2]["alias"]    ="radio3";
 	level.music[3]["song"]    ="Toby Fox - Asgore";
 	level.music[3]["alias"]    ="radio4";
-	
+
 	//END MUSIC
 	level.end_playing = false;
-	
+
 	//GENERAL THREADS
     thread sr\api\_speedrun::createNormalWays("Normal Way");
     	//thread secret_act();
@@ -45,7 +45,7 @@ thread sr\api\_map::createSpawn((124, -12, 1), 89);
 	thread opening();
 	//thread fananim();
 	//thread fantrigger();
-	
+
 	//ACTIVATOR THREADS
 	//TELEPORTS
 	//thread tpforward1();
@@ -61,7 +61,7 @@ thread sr\api\_map::createSpawn((124, -12, 1), 89);
 	addTriggerToList("trap6");
 	addTriggerToList("trap7");
 	addTriggerToList("trap8");
-	
+
 	//thread trap1();
 	//thread trap2();
 	//thread trap3();
@@ -70,20 +70,20 @@ thread sr\api\_map::createSpawn((124, -12, 1), 89);
 	//thread trap6();
 	//thread trap7();
 	//thread trap8();
-	
+
 	//BATTLE THREADS
 	//thread knife();
 	//thread sniper();
 	//thread deagle();
-	
+
 }
 
 /*
-   ___                       _ 
+   ___                       _
   / __|___ _ _  ___ _ _ __ _| |
  | (_ / -_) ' \/ -_) '_/ _` | |
   \___\___|_||_\___|_| \__,_|_|
-                               
+
 */
 
 playSoundOnAllPlayers( soundAlias )
@@ -107,7 +107,7 @@ musicBox()
     trig=getent("musicbox","targetname");
     trig waittill("trigger",p);
     trig delete();
-    
+
     p freezecontrols(1);
     p musicMenu();
 }
@@ -119,10 +119,10 @@ musicMenu()
     self endon( "spawned" );
     self endon( "joined_spectators" );
     self endon( "music thread terminated" );
- 
+
     self.hud_music = [];
     self.selection = 0;
- 
+
     // create huds
     i = 0;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 160, 200, 0.6, "left", "top", 2 );
@@ -133,7 +133,7 @@ musicMenu()
     self.hud_music[i].sort = 880;
     self.hud_music[i] setShader( "white", 306, 20 );
     self.hud_music[i].color=(1,0,0);
-    
+
     i++;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 210, 204, 0.93, "left", "top", 1.8 );
     self.hud_music[i].sort = 884;
@@ -141,13 +141,13 @@ musicMenu()
     self.hud_music[i].glowalpha=1;
     if(isdefined(level.randomcolor))
         self.hud_music[i].glowcolor=level.randomcolor;
-    else 
+    else
         self.hud_music[i].glowcolor=(1,0,0);
     i++;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 250, 360, 1, "center", "bottom", 1.4 );
     self.hud_music[i].sort = 886;
     self.hud_music[i] setText("Scroll: ^3[{+attack}] ^7| Select: ^3[{+activate}] ^7| Close: ^3[{+frag}]");
- 
+
     for( j = 0; j < level.music.size; j++ )
     {
         i++;
@@ -157,32 +157,32 @@ musicMenu()
         self.hud_music[i].glowalpha=1;
         if(isdefined(level.randomcolor))
             self.hud_music[i].glowcolor=level.randomcolor;
-        else 
+        else
             self.hud_music[i].glowcolor=(1,0,0);
- 
+
         entry = level.music[j];
         self.hud_music[i] setText(entry["song"]);
     }
- 
+
     i++;
     self.hud_music[self.hud_music.size] = braxi\_mod::addTextHud( self, 167, 230, 0.4, "left", "top", 1.4 );
     self.hud_music[i].sort = 881;
     indicator = self.hud_music[self.hud_music.size-1];
     indicator setShader( "white", 306, 17 );
     indicator.color=(1,0,0);
- 
+
     while(self.sessionstate == "playing")
     {
         wait 0.1;
- 
+
         if(self attackButtonPressed())
         {
             self.hud_music[4+self.selection].alpha = 0.93;
- 
+
             self.selection++;
             if( self.selection >= level.music.size )
                 self.selection = 0;
- 
+
             item = self.hud_music[4+self.selection];
             item.alpha = 1;
             indicator.y = item.y;
@@ -200,7 +200,7 @@ musicMenu()
             break;
         }
     }
-    
+
     if(!isdefined(self))
         return;
     if(isdefined(self.hud_music))
@@ -216,13 +216,13 @@ musicMenu()
 
 secret_act()
 {
-	
+
 	secret_activate = getEnt("secret_activate","targetname");
 	secret_graphics = getEnt("secret_graphics","targetname");
 	secret = getEnt("secret","targetname");
 	secret_start = getEnt( "secret_start", "targetname" );
 	secret enablelinkto();
-	secret linkto(secret_graphics); 
+	secret linkto(secret_graphics);
 	secret_activate waittill("trigger", player);
 	secret_activate setHintString ("^1Good Luck!");
 	player playSound("ee");
@@ -234,7 +234,7 @@ secret_act()
 	player setOrigin( secret_start.origin );
 	player setplayerangles( secret_start.angles );
 	}
-	
+
 }
 
 secret_end()
@@ -272,7 +272,7 @@ fananim()
 fantrigger()
 {
 	trigger = getEnt ( "fantrigger", "targetname" );
-	
+
 	while(1)
 	{
     	trigger waittill ( "trigger", player );
@@ -293,11 +293,11 @@ fantrigger()
 }
 
 /*
-    _      _   _          _           
-   /_\  __| |_(_)_ ____ _| |_ ___ _ _ 
+    _      _   _          _
+   /_\  __| |_(_)_ ____ _| |_ ___ _ _
   / _ \/ _|  _| \ V / _` |  _/ _ \ '_|
- /_/ \_\__|\__|_|\_/\__,_|\__\___/_|  
-                                      
+ /_/ \_\__|\__|_|\_/\__,_|\__\___/_|
+
 */
 
 tpforward1()
@@ -480,11 +480,11 @@ trap8()
 
 /*
 
-  ___       _   _   _     
- | _ ) __ _| |_| |_| |___ 
+  ___       _   _   _
+ | _ ) __ _| |_| |_| |___
  | _ \/ _` |  _|  _| / -_)
  |___/\__,_|\__|\__|_\___|
-                          
+
 */
 
 info(msg, submsg)
@@ -506,51 +506,51 @@ knife()
         level.knife_room = getEnt( "knife_room", "targetname");
         jump = getEnt( "battle_jumper", "targetname" );
         acti = getEnt( "battle_activator", "targetname" );
- 
-        while(1) 
+
+        while(1)
 {
                 level.knife_room waittill( "trigger", player );
-                if( !isDefined( level.knife_room ) ) 
+                if( !isDefined( level.knife_room ) )
                 return;
-            
+
 				if (level.end_playing == false)
 				{
 					level.end_playing = true;
 					ambientStop( 0 );
 					ambientPlay("end");
 				}
-				
+
 			level thread playSoundOnAllPlayers("battle");
-			
+
               level.sniper_room delete();
 			  level.deagle_room delete();
-			  
+
 			  wait (1);
-			  
+
             level thread playSoundOnAllPlayers("sans");
-			
+
             player SetPlayerAngles( jump.angles );
-                player setOrigin( jump.origin ); 
-                player TakeAllWeapons(); 
-                player GiveWeapon( "knife_mp" ); 
+                player setOrigin( jump.origin );
+                player TakeAllWeapons();
+                player GiveWeapon( "knife_mp" );
             player switchToWeapon( "knife_mp" ); //Makes player switch to weapon.
                 player.maxhealth = 100; //Sets players health to normal.
-               
-                
-                if( isDefined( level.activ ) && isAlive( level.activ ) ) 
+
+
+                if( isDefined( level.activ ) && isAlive( level.activ ) )
 {
- 
+
                level.activ setPlayerangles( acti.angles );
-                    level.activ setOrigin( acti.origin ); 
-                    level.activ TakeAllWeapons(); 
-                    level.activ GiveWeapon( "knife_mp" ); 
+                    level.activ setOrigin( acti.origin );
+                    level.activ TakeAllWeapons();
+                    level.activ GiveWeapon( "knife_mp" );
                level.activ SwitchToWeapon( "knife_mp" );
-                    level.activ.maxhealth = 100; 
-                    
+                    level.activ.maxhealth = 100;
+
 }
-                 
+
                 wait 0.05;
-               
+
             info("Knife Room", player.name + " ^1VS ^7" + level.activ.name);
             player freezecontrols(true); //Freeze the players when someone enters the room for three seconds.
             level.activ freezecontrols(true);
@@ -568,7 +568,7 @@ knife()
             level.activ iPrintlnBold( "^2GO^7!" );
             player freezecontrols(false); //Disables the freeze.
             level.activ freezecontrols(false);
-                while( isAlive( player ) && isDefined( player ) ) 
+                while( isAlive( player ) && isDefined( player ) )
                         wait 1;
 }
 		}
@@ -581,57 +581,57 @@ sniper()
         level.sniper_room = getEnt( "sniper_room", "targetname");
         jump = getEnt( "battle_jumper", "targetname" );
         acti = getEnt( "battle_activator", "targetname" );
- 
-        while(1) 
+
+        while(1)
 {
                 level.sniper_room waittill( "trigger", player );
-                if( !isDefined( level.sniper_room ) ) 
+                if( !isDefined( level.sniper_room ) )
                 return;
-            
+
 				if (level.end_playing == false)
 				{
 					level.end_playing = true;
 					ambientStop( 0 );
 					ambientPlay("end");
 				}
-				
+
 			level thread playSoundOnAllPlayers("battle");
-			
+
               level.knife_room delete();
 			  level.deagle_room delete();
-			  
+
 			  wait (1);
-			  
+
             level thread playSoundOnAllPlayers("sans");
-			
+
             player SetPlayerAngles( jump.angles );
-                player setOrigin( jump.origin ); 
-                player TakeAllWeapons(); 
+                player setOrigin( jump.origin );
+                player TakeAllWeapons();
                 player GiveWeapon( "m40a3_mp" ); //Gives player weapon
                 player giveMaxAmmo( "m40a3_mp" ); //Gives player ammo
                 player GiveWeapon( "remington700_mp" );
-                player giveMaxAmmo( "remington700_mp" );   
+                player giveMaxAmmo( "remington700_mp" );
             player switchToWeapon( "m40a3_mp" ); //Makes player switch to weapon.
                 player.maxhealth = 100; //Sets players health to normal.
-               
-                
-                if( isDefined( level.activ ) && isAlive( level.activ ) ) 
+
+
+                if( isDefined( level.activ ) && isAlive( level.activ ) )
 {
- 
+
                level.activ setPlayerangles( acti.angles );
-                    level.activ setOrigin( acti.origin ); 
-                    level.activ TakeAllWeapons(); 
-                    level.activ GiveWeapon( "m40a3_mp" ); 
-                    level.activ giveMaxAmmo( "m40a3_mp" ); 
+                    level.activ setOrigin( acti.origin );
+                    level.activ TakeAllWeapons();
+                    level.activ GiveWeapon( "m40a3_mp" );
+                    level.activ giveMaxAmmo( "m40a3_mp" );
                     level.activ GiveWeapon( "remington700_mp" );
                     level.activ giveMaxAmmo( "remington700_mp" );
                level.activ SwitchToWeapon( "m40a3_mp" );
-                    level.activ.maxhealth = 100; 
-                    
+                    level.activ.maxhealth = 100;
+
 }
-                 
+
                 wait 0.05;
-               
+
             info("Sniper Room", player.name + " ^1VS ^7" + level.activ.name);
             player freezecontrols(true); //Freeze the players when someone enters the room for three seconds.
             level.activ freezecontrols(true);
@@ -649,7 +649,7 @@ sniper()
             level.activ iPrintlnBold( "^2GO^7!" );
             player freezecontrols(false); //Disables the freeze.
             level.activ freezecontrols(false);
-                while( isAlive( player ) && isDefined( player ) ) 
+                while( isAlive( player ) && isDefined( player ) )
                         wait 1;
 }
 		}
@@ -662,53 +662,53 @@ deagle()
         level.deagle_room = getEnt( "deagle_room", "targetname");
         jump = getEnt( "battle_jumper", "targetname" );
         acti = getEnt( "battle_activator", "targetname" );
- 
-        while(1) 
+
+        while(1)
 {
                 level.deagle_room waittill( "trigger", player );
-                if( !isDefined( level.deagle_room ) ) 
+                if( !isDefined( level.deagle_room ) )
                 return;
-            
+
 				if (level.end_playing == false)
 				{
 					level.end_playing = true;
 					ambientStop( 0 );
 					ambientPlay("end");
 				}
-				
+
 			level thread playSoundOnAllPlayers("battle");
-			
+
               level.sniper_room delete();
 			  level.knife_room delete();
-			  
+
 			  wait (1);
-			  
+
             level thread playSoundOnAllPlayers("sans");
-			
+
             player SetPlayerAngles( jump.angles );
-                player setOrigin( jump.origin ); 
-                player TakeAllWeapons(); 
-                player GiveWeapon( "deserteaglegold_mp" ); 
+                player setOrigin( jump.origin );
+                player TakeAllWeapons();
+                player GiveWeapon( "deserteaglegold_mp" );
                 player giveMaxAmmo( "deserteaglegold_mp" );
             player switchToWeapon( "deserteaglegold_mp" ); //Makes player switch to weapon.
                 player.maxhealth = 100; //Sets players health to normal.
-               
-                
-                if( isDefined( level.activ ) && isAlive( level.activ ) ) 
+
+
+                if( isDefined( level.activ ) && isAlive( level.activ ) )
 {
- 
+
                level.activ setPlayerangles( acti.angles );
-                    level.activ setOrigin( acti.origin ); 
-                    level.activ TakeAllWeapons(); 
-                    level.activ GiveWeapon( "deserteaglegold_mp" ); 
-					level.activ giveMaxAmmo( "deserteaglegold_mp" ); 
+                    level.activ setOrigin( acti.origin );
+                    level.activ TakeAllWeapons();
+                    level.activ GiveWeapon( "deserteaglegold_mp" );
+					level.activ giveMaxAmmo( "deserteaglegold_mp" );
                level.activ SwitchToWeapon( "deserteaglegold_mp" );
-                    level.activ.maxhealth = 100; 
-                    
+                    level.activ.maxhealth = 100;
+
 }
-                 
+
                 wait 0.05;
-               
+
             info("Deagle Room", player.name + " ^1VS ^7" + level.activ.name);
             player freezecontrols(true); //Freeze the players when someone enters the room for three seconds.
             level.activ freezecontrols(true);
@@ -726,7 +726,7 @@ deagle()
             level.activ iPrintlnBold( "^2GO^7!" );
             player freezecontrols(false); //Disables the freeze.
             level.activ freezecontrols(false);
-                while( isAlive( player ) && isDefined( player ) ) 
+                while( isAlive( player ) && isDefined( player ) )
                         wait 1;
 }
 		}

@@ -3,29 +3,29 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((-30, 642, 130), 270);
+thread sr\api\_map::createSpawnOrigin((-30, 642, 130), 270);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
  maps\mp\_load::main();
- 
+
  game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"] = "desert";
- 
-	
+
+
 	setdvar( "r_specularcolorscale", "1" );
 
 	setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
 	setdvar("r_glowskybleedintensity0",".1");
-	
+
 	setDvar("bg_falldamagemaxheight", 2000000000 );
 	setDvar("bg_falldamageminheight", 1500000000 );
-	
+
 	level.boom_fx = LoadFx("explosions/default_explosion");
 
 	thread way_connect();
@@ -51,8 +51,8 @@ if (!level.spawn["allies"].size)
 	thread jumperteleport();
 //	thread activatorteleport();
 //	thread jumpweapon();
-	
-	
+
+
 	addTriggerToList( "trig_trap1" );
 	addTriggerToList( "trig_trap2" );
 	addTriggerToList( "trig_trap3" );
@@ -61,16 +61,16 @@ if (!level.spawn["allies"].size)
 	addTriggerToList( "trig_trap6" );
 	addTriggerToList( "trig_trap7" );
 	addTriggerToList( "trig_trap8" );
- 
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -110,7 +110,7 @@ trig1 = getent("song1_activate", "targetname");
 trig2 = getent("song2_activate", "targetname");
 trig3 = getent("song3_activate", "targetname");
 trig4 = getent("song4_activate", "targetname");
-trig1 sethintstring("^2 Maroon 5 - Animals");  
+trig1 sethintstring("^2 Maroon 5 - Animals");
 trig1 waittill ("trigger", player);
 {
 ambientPlay("guest1");
@@ -128,7 +128,7 @@ trig1 = getent("song1_activate", "targetname");
 trig2 = getent("song2_activate", "targetname");
 trig3 = getent("song3_activate", "targetname");
 trig4 = getent("song4_activate", "targetname");
-trig2 sethintstring("^2 Nicky Romero vs Krewella - Legacy (Vicetone Remix)");  
+trig2 sethintstring("^2 Nicky Romero vs Krewella - Legacy (Vicetone Remix)");
 trig2 waittill ("trigger", player);
 {
 ambientPlay("guest2");
@@ -205,7 +205,7 @@ x=randomint(1);
 	block5 delete();
 	block8 delete();
 	}
-	
+
 
 }
 
@@ -411,15 +411,15 @@ old()
 			level.sniper_trigger = getEnt("trig_sniper", "targetname");
 			level.jump_trigger = getent("trig_jump", "targetname");
 			oldorigin = getent ( "oldroom_teleport", "targetname" );
-		
+
 			while(1)
 			{
 			level.old_trigger waittill("trigger", player);
-			
+
 			level.knife_trigger delete();
 			level.sniper_trigger delete();
 			level.jump_trigger delete();
-		
+
 			iPrintLnBold("^3" + player.name + "^5 chosen the old room");
 
 			player setOrigin (oldorigin.origin);
@@ -428,7 +428,7 @@ old()
 
 
 sniper()
-{		
+{
 		level.teleactorigin3 = getEnt("sniper_activator", "targetname");
 		telejumporigin3 = getEnt("sniper_jumper", "targetname");
 		level.sniper_trigger = getEnt("trig_sniper", "targetname");
@@ -439,8 +439,8 @@ sniper()
 		while(1)
 		{
 		level.sniper_trigger waittill( "trigger", player );
-		
-		
+
+
 		level.old_trigger delete();
 		level.knife_trigger delete();
 		level.jump_trigger delete();
@@ -454,17 +454,17 @@ sniper()
 				level.old_trigger delete();
 				//level.jump_trigger delete();
 				level.firstenter=false;
-				} 
+				}
 				wait(0.05);
 		player setOrigin( telejumporigin3.origin );
 		player setPlayerAngles( telejumporigin3.angles );
 		player takeAllWeapons();
 		player giveWeapon("m40a3_mp");
-		player giveWeapon( "remington700_mp" ); 
+		player giveWeapon( "remington700_mp" );
 		player giveMaxAmmo("m40a3_mp");
 		player giveMaxAmmo( "remington700_mp" );
 		wait (0.05);
-		player switchToWeapon("m40a3_mp"); 
+		player switchToWeapon("m40a3_mp");
 		wait(0.05);
 		level.activ setOrigin (level.teleactorigin3.origin);
 		level.activ setPlayerAngles (level.teleactorigin3.angles);
@@ -475,13 +475,13 @@ sniper()
 		level.activ giveMaxAmmo( "remington700_mp" );
 		wait (0.05);
 		level.activ switchToWeapon("m40a3_mp");
-		player freezeControls(true); 
+		player freezeControls(true);
 		level.activ freezeControls(true);
 		iPrintLnBold( " ^3" + player.name + " ^5 has chosen the Sniper room^2!" );
 		wait 2;
-		player freezeControls(false); 
-		level.activ freezeControls(false); 
-		
+		player freezeControls(false);
+		level.activ freezeControls(false);
+
 		player waittill( "death" );
 		level.PlayerInRoom = false;
 
@@ -490,19 +490,19 @@ sniper()
 }
 
 knife()
-{		
+{
 		level.teleactorigin2 = getEnt("knife_activator", "targetname");
 		telejumporigin2 = getEnt("knife_jumper", "targetname");
 		level.knife_trigger = getent("trig_knife", "targetname");
 		level.sniper_trigger = getEnt("trig_sniper", "targetname");
 		level.old_trigger = getEnt("oldroom", "targetname");
 		level.jump_trigger = getent("trig_jump", "targetname");
-		
+
 		while(1)
 		{
 		level.knife_trigger waittill( "trigger", player );
-		
-		
+
+
 			if( !isDefined( level.knife_trigger ))
 			return;
 			if(level.firstenter==true)
@@ -512,28 +512,28 @@ knife()
 		level.jump_trigger delete();
 		level.firstenter=false;
 		}
-		
+
 		{
 		wait (0.05);
-		
+
 		player setOrigin( telejumporigin2.origin );
 		player setPlayerAngles( telejumporigin2.angles );
 		player takeAllWeapons();
 		player giveWeapon("knife_mp");
-		player switchToWeapon("knife_mp"); 
+		player switchToWeapon("knife_mp");
 		wait(0.05);
 		level.activ setOrigin (level.teleactorigin2.origin);
 		level.activ setPlayerAngles (level.teleactorigin2.angles);
 		level.activ takeAllWeapons();
 		level.activ giveWeapon( "knife_mp" );
-		level.activ switchToWeapon("knife_mp"); 
-		player freezeControls(true); 
+		level.activ switchToWeapon("knife_mp");
+		player freezeControls(true);
 		level.activ freezeControls(true);
-		iPrintLnBold( " ^3" + player.name + " ^5 has chosen the Knife room^2!" ); 		
+		iPrintLnBold( " ^3" + player.name + " ^5 has chosen the Knife room^2!" );
 		wait 2;
-		player freezeControls(false); 
-		level.activ freezeControls(false); 		
-		
+		player freezeControls(false);
+		level.activ freezeControls(false);
+
 		player waittill( "death" );
 		level.PlayerInRoom = false;
 
@@ -544,21 +544,21 @@ knife()
 }
 
 jump()
-{	
+{
 		level.teleactorigin = getEnt("jump_activator", "targetname");
 		telejumporigin = getEnt("jump_jumper", "targetname");
 		level.jump_trigger = getent("trig_jump", "targetname");
 		level.knife_trigger = getent("trig_knife", "targetname");
 		level.sniper_trigger = getEnt("trig_sniper", "targetname");
 		level.old_trigger = getEnt("oldroom", "targetname");
-		
-	
-		
+
+
+
 		while(1)
 		{
 		level.jump_trigger waittill( "trigger", player );
-		
-		
+
+
 		if( !isDefined( level.jump_trigger ))
 					return;
 			if(level.firstenter==true)
@@ -567,15 +567,15 @@ jump()
 				level.knife_trigger delete();
 				level.old_trigger delete();
 				level.firstenter=false;
-				} 
+				}
 				wait(0.05);
-		
+
 		player setOrigin( telejumporigin.origin );
 		player setPlayerAngles( telejumporigin.angles );
 		player takeAllWeapons();
 		player giveWeapon("knife_mp");
 		wait (0.05);
-		player switchToWeapon("knife_mp"); 
+		player switchToWeapon("knife_mp");
 		wait (0.05);
 		level.activ setOrigin (level.teleactorigin.origin);
 		level.activ setPlayerAngles (level.teleactorigin.angles);
@@ -583,13 +583,13 @@ jump()
 		level.activ giveWeapon( "knife_mp" );
 		wait (0.05);
 		level.activ switchToWeapon("knife_mp");
-		player freezeControls(true); 
+		player freezeControls(true);
 		level.activ freezeControls(true);
 		iPrintLnBold( " ^3" + player.name + " ^5 has chosen the Jump room^2!" );
 		wait 2;
-		player freezeControls(false); 
-		level.activ freezeControls(false); 
-		
+		player freezeControls(false);
+		level.activ freezeControls(false);
+
 		player waittill( "death" );
 		level.PlayerInRoom = false;
 		}
@@ -599,7 +599,7 @@ jumperteleport()
 {
 	trig = getent("trigger_teleport1", "targetname");
 	tele1 = getent("origin_teleport1", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger", player);
@@ -611,7 +611,7 @@ activatorteleport()
 {
 	trig2 = getent("trigger_teleport2", "targetname");
 	tele2 = getent ("origin_teleport2", "targetname");
-	
+
 	for(;;)
 	{
 		trig2 waittill("trigger", player);

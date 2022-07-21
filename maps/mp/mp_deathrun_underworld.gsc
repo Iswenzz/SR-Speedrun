@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((1539.817, -9.846, -63.875), 180);
+thread sr\api\_map::createSpawnOrigin((1539.817, -9.846, -63.875), 180);
     maps\mp\_load::main();
 
 	precacheItem ( "brick_blaster_mp" );

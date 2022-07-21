@@ -1,5 +1,5 @@
 main() {
-thread sr\api\_map::createSpawn((15.467, -17.973, 0.125), 0);
+thread sr\api\_map::createSpawnOrigin((15.467, -17.973, 0.125), 0);
 
 	maps\mp\_load::main();
 
@@ -69,13 +69,13 @@ thread sr\api\_map::createSpawn((15.467, -17.973, 0.125), 0);
     thread sr\api\_speedrun::createSecretWays("Secret Way");
 
     // Trigger List
-    addTriggerToList( "trap1_trig" ); 
-    addTriggerToList( "trap2_trig" ); 
-    addTriggerToList( "trap3_trig" ); 
-    addTriggerToList( "trap4_trig" ); 
-    addTriggerToList( "trap5_trig" ); 
-    addTriggerToList( "trap6_trig" ); 
-    addTriggerToList( "trap7_trig" ); 
+    addTriggerToList( "trap1_trig" );
+    addTriggerToList( "trap2_trig" );
+    addTriggerToList( "trap3_trig" );
+    addTriggerToList( "trap4_trig" );
+    addTriggerToList( "trap5_trig" );
+    addTriggerToList( "trap6_trig" );
+    addTriggerToList( "trap7_trig" );
     addTriggerToList( "trap8_trig" );
 }
 
@@ -135,7 +135,7 @@ secret_enter() {
 
     for( ;; ) {
         trig waittill( "trigger", player );
-         player thread sr\api\_speedrun::changeWay("secret_0"); 
+         player thread sr\api\_speedrun::changeWay("secret_0");
         player freezeControls( 1 );
         player setOrigin( origin_enter.origin );
         player setPlayerAngles( origin_enter.angles );
@@ -159,7 +159,7 @@ secret_finish() {
         player braxi\_rank::giveRankXp("trap_activation", 1000);
         player braxi\_rank::giveRankXp("trap_activation", 1000);
         player braxi\_rank::giveRankXp("trap_activation", 1000);
-    }    
+    }
 }
 
 i_secret_fail() {
@@ -169,7 +169,7 @@ i_secret_fail() {
 	check2 = getEnt( "origin_secret_check2", "targetname" );
 	check3 = getEnt( "origin_secret_check3", "targetname" );
 	check4 = getEnt( "origin_secret_check4", "targetname" );
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -210,7 +210,7 @@ i_secret_check_0()
 
 	trigger waittill ( "trigger", player );
 	player iPrintln( "^7Entered ^8Secret" );
-	
+
 	while(1)
 	{
         trigger waittill ( "trigger", player );
@@ -224,7 +224,7 @@ i_secret_check_0()
 i_secret_check_1()
 {
 	trigger = getEnt("i_secret_check_1","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -239,7 +239,7 @@ i_secret_check_1()
 i_secret_check_2()
 {
 	trigger = getEnt("i_secret_check_2","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -254,7 +254,7 @@ i_secret_check_2()
 i_secret_check_3()
 {
 	trigger = getEnt("i_secret_check_3","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -269,7 +269,7 @@ i_secret_check_3()
 i_secret_check_4()
 {
 	trigger = getEnt("i_secret_check_4","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -430,9 +430,9 @@ trap2() {
     trig waittill ("trigger");
     trig delete();
 
-    plat1 rotateYaw( -1050, 2, .25, .25 );  
-    plat2 rotateYaw( -1050, 2, .25, .25 );  
-    plat3 rotateYaw( -1050, 2, .25, .25 );    
+    plat1 rotateYaw( -1050, 2, .25, .25 );
+    plat2 rotateYaw( -1050, 2, .25, .25 );
+    plat3 rotateYaw( -1050, 2, .25, .25 );
     plat4 rotateYaw( -1050, 2, .25, .25 );
     plat5 rotateYaw( -1050, 2, .25, .25 );
     plat6 rotateYaw( -1050, 2, .25, .25 );
@@ -602,21 +602,21 @@ trap8() {
 }
 
 sniper_room() {
- 
-    level.sniper_trig = getEnt( "trig_enter_sniper", "targetname"); 
+
+    level.sniper_trig = getEnt( "trig_enter_sniper", "targetname");
     jump = getEnt( "origin_enter_sniper_jump", "targetname" );
-    acti = getEnt( "origin_enter_sniper_acti", "targetname" ); 
+    acti = getEnt( "origin_enter_sniper_acti", "targetname" );
 
     while( 1 ) {
 
         level.inRoom = false;
-        level.sniper_trig setHintString( "Press [^8F^7] choose Sniper!" );        
+        level.sniper_trig setHintString( "Press [^8F^7] choose Sniper!" );
         level.sniper_trig waittill( "trigger", player );
         level.sniper_trig setHintString( "^8" + player.name + " ^7is in Sniper battling it out with ^8" + level.activ.name + "^7!" );
 
         if( !level.inRoom ) {
-        
-            if( isDefined( level.sniper_trig ) ) 
+
+            if( isDefined( level.sniper_trig ) )
             level.inRoom = true;
             level.inSniper = true;
 
@@ -629,34 +629,34 @@ sniper_room() {
 		    sniper_hud.notifyText = player.name + " [^3VS^7] " + level.activ.name;     // change self.name to level.activ.name
 		    sniper_hud.glowcolor = (.1725, .7373, .8);
 		    sniper_hud.duration = 5;
-		    
+
             players = getEntArray( "player", "classname" );
 		    for ( i = 0; i < players.size; i++ ) {
 		        players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( sniper_hud );
 		    }
 
                 player SetPlayerAngles( jump.angles );
-                player setOrigin( jump.origin ); 
-                player TakeAllWeapons(); 
+                player setOrigin( jump.origin );
+                player TakeAllWeapons();
                 player GiveWeapon( "g3_gl_mp" );
                 player giveMaxAmmo( "g3_gl_mp" );
                 player GiveWeapon( "remington700_mp" );
-                player giveMaxAmmo( "remington700_mp" );   
+                player giveMaxAmmo( "remington700_mp" );
                 player switchToWeapon( "remington700_mp" );
                 player.maxhealth = 100;
 
             if( isDefined( level.activ ) && isAlive( level.activ ) ) {
-    
+
                 level.activ setPlayerangles( acti.angles );
-                level.activ setOrigin( acti.origin ); 
-                level.activ TakeAllWeapons(); 
-                level.activ GiveWeapon( "g3_gl_mp" ); 
-                level.activ giveMaxAmmo( "g3_gl_mp" ); 
+                level.activ setOrigin( acti.origin );
+                level.activ TakeAllWeapons();
+                level.activ GiveWeapon( "g3_gl_mp" );
+                level.activ giveMaxAmmo( "g3_gl_mp" );
                 level.activ GiveWeapon( "remington700_mp" );
                 level.activ giveMaxAmmo( "remington700_mp" );
                 level.activ SwitchToWeapon( "remington700_mp" );
-                level.activ.maxhealth = 100; 
-            }           
+                level.activ.maxhealth = 100;
+            }
 
             level.activ freezeControls( true );
             player freezeControls( true );
@@ -671,23 +671,23 @@ sniper_room() {
 }
 
 bounce_room() {
- 
+
     level.bounce_trig = getEnt( "trig_enter_bounce", "targetname");
     jump = getEnt( "origin_enter_bounce_jump", "targetname" );
     acti = getEnt( "origin_enter_bounce_acti", "targetname" );
 
     while( 1 ) {
-        
+
         level.inRoom = false;
-        level.bounce_trig setHintString( "Press [^8F^7] to choose Bounce!" );        
+        level.bounce_trig setHintString( "Press [^8F^7] to choose Bounce!" );
         level.bounce_trig waittill( "trigger", player );
         level.bounce_trig setHintString( "^8" + player.name + " ^7is in Bounce battling it out with ^8" + level.activ.name + "^7!" );
-            
+
             if( !level.inRoom ) {
-            
-                if( isDefined( level.bounce_trig ) ) 
+
+                if( isDefined( level.bounce_trig ) )
                 level.inRoom = true;
-                level.inBounce = true;  
+                level.inBounce = true;
 
                 level.sniper_trig delete();
                 level.knife_trig delete();
@@ -704,8 +704,8 @@ bounce_room() {
 	    	    }
 
                 player SetPlayerAngles( jump.angles );
-                player setOrigin( jump.origin ); 
-                player TakeAllWeapons(); 
+                player setOrigin( jump.origin );
+                player TakeAllWeapons();
                 player GiveWeapon( "m21_acog_mp" );
                 player switchToWeapon( "m21_acog_mp" );
                 player.maxhealth = 100;
@@ -713,10 +713,10 @@ bounce_room() {
                 if( isDefined( level.activ ) && isAlive( level.activ ) ) {
 
                     level.activ setPlayerangles( acti.angles );
-                    level.activ setOrigin( acti.origin ); 
-                    level.activ TakeAllWeapons(); 
+                    level.activ setOrigin( acti.origin );
+                    level.activ TakeAllWeapons();
                     level.activ GiveWeapon( "m21_acog_mp" );
-                    level.activ switchToWeapon( "m21_acog_mp" ); 
+                    level.activ switchToWeapon( "m21_acog_mp" );
                     level.activ.maxhealth = 100;
                 }
 
@@ -727,7 +727,7 @@ bounce_room() {
                 wait 3;
                 player freezeControls( false );
                 level.activ freezeControls( false );
-    
+
                 player waittill( "death" );
 	    	    level.inRoom = false;
         }
@@ -737,7 +737,7 @@ bounce_room() {
 bounce_weap() {
 
     weapon = getEnt( "trig_bounce_sniper", "targetname" );
-        weapon setHintString( "Press [^8F^7] to get a Weapon!" );     
+        weapon setHintString( "Press [^8F^7] to get a Weapon!" );
         weapon waittill( "trigger", player );
         player giveWeapon( "remington700_mp" );
         player giveMaxAmmo( "remington700_mp" );
@@ -750,7 +750,7 @@ bounce_weap() {
 }
 
 bounce_fail() {
-    
+
     jump = getEnt( "origin_enter_bounce_jump", "targetname" );
     acti = getEnt( "origin_enter_bounce_acti", "targetname" );
     trig = getEnt( "trig_bounce_room_fail", "targetname" );
@@ -773,26 +773,26 @@ bounce_fail() {
     }
 }
 
-boxing_room() {   
- 
+boxing_room() {
+
     level.knife_trig = getEnt( "trig_enter_boxing", "targetname");
     jump = getEnt( "origin_enter_boxing_jump", "targetname" );
-    acti = getEnt( "origin_enter_boxing_acti", "targetname" ); 
+    acti = getEnt( "origin_enter_boxing_acti", "targetname" );
 
     while( 1 ) {
 
         level.inRoom = false;
-        level.knife_trig setHintString( "Press [^8F^7] to choose a ^8Boxing ^7Match!" );        
+        level.knife_trig setHintString( "Press [^8F^7] to choose a ^8Boxing ^7Match!" );
         level.knife_trig waittill( "trigger", player );
         level.knife_trig setHintString( "^8" + player.name + " ^7is in a boxing match with ^8" + level.activ.name + "^7!" );  // change to level.activ
 
             if( !level.inRoom ) {
 
-            if( isDefined( level.knife_trig ) ) 
+            if( isDefined( level.knife_trig ) )
             level.inRoom = true;
             level.inKnife = true;
 
-                level.bounce_trig delete();    
+                level.bounce_trig delete();
                 level.sniper_trig delete();
 
                 wait 0.05;
@@ -808,19 +808,19 @@ boxing_room() {
 
                 player SetPlayerAngles( jump.angles );
                 player setOrigin( jump.origin );
-                player TakeAllWeapons(); 
+                player TakeAllWeapons();
                 player GiveWeapon( "m14_gl_mp" );
                 player switchToWeapon( "m14_gl_mp" );
-                player.maxhealth = 100; 
+                player.maxhealth = 100;
 
                 if( isDefined( level.activ ) && isAlive( level.activ ) ) {
 
                     level.activ setPlayerangles( acti.angles );
                     level.activ setOrigin( acti.origin );
-                    level.activ TakeAllWeapons(); 
+                    level.activ TakeAllWeapons();
                     level.activ GiveWeapon( "m14_gl_mp" );
-                    level.activ switchToWeapon( "m14_gl_mp" ); 
-                    level.activ.maxhealth = 100; 
+                    level.activ switchToWeapon( "m14_gl_mp" );
+                    level.activ.maxhealth = 100;
                 }
 
                 level.activ freezeControls( true );

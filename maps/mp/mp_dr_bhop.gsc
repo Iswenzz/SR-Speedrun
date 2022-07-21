@@ -2,16 +2,16 @@
 //Discord:Death#7416
 main()
 {
-thread sr\api\_map::createSpawn((-431, 127, -592), 360);
+thread sr\api\_map::createSpawnOrigin((-431, 127, -592), 360);
  maps\mp\_load::main();
- 
+
  game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"]= "desert";
- 
+
    setdvar( "r_specularcolorscale", "1" );
    setdvar("r_glowbloomintensity0",".1");
    setdvar("r_glowbloomintensity1",".1");
@@ -46,7 +46,7 @@ thread sr\api\_map::createSpawn((-431, 127, -592), 360);
    thread secret_step();
    thread sec_fail1();
    thread sec_fail2();
-   }	
+   }
 
 addTextHud( who, x, y, alpha, alignX, alignY, fontScale )
 {
@@ -85,72 +85,72 @@ createHUD( x, y, alignX, alignY, alpha, font, fontScale )
 sign1()
 {
    block = getent("signfinish","targetname");
-    
+
    block moveX(400,0.1);
-} 
+}
 
 sign2()
 {
    block1 = getent("signob","targetname");
    block2 = getent("signph","targetname");
-    
+
 	for(;;)
-   { 
+   {
    wait 0.1;
    block1 rotatepitch (-360,6);
    block2 rotatepitch (360,6);
    wait 0.1;
    }
-      
-} 
+
+}
 
 endsign()
 {
    block1 = getent("endmapsign","targetname");
    block2 = getent("endmapsign2","targetname");
    block3 = getent("endmapsign3","targetname");
-    
+
 	for(;;)
-   { 
+   {
    wait 0.1;
    block1 rotatepitch (360,6);
    block2 rotatepitch (-360,6);
    block3 rotateYaw (360,6);
    wait 0.1;
    }
-      
-} 
+
+}
 
 cmsign()
 {
    block1 = getent("cmsign1","targetname");
    block2 = getent("cmsign2","targetname");
    block3 = getent("cmsign3","targetname");
-    
+
 	for(;;)
-   { 
+   {
    wait 0.1;
    block1 rotateYaw (360,6);
    block2 rotateYaw (360,6);
    block3 rotatepitch (360,6);
    wait 0.1;
    }
-      
-} 
+
+}
 
 arrow()
 {
    arrow= getent("sign2","targetname");
-    
+
 	for(;;)
-   { 
+   {
    arrow moveX (150,3,1,1);
    wait 3;
    arrow moveX (-150,3,1,1);
    wait 3;
    }
-      
-} 
+
+}
 
 opendoor()
 {
@@ -164,7 +164,7 @@ finaldoor()
 {
    finishdoora = getent("finaldoora", "targetname");
    finishdoorb = getent("finaldoorb", "targetname");
-   
+
    finishdoora delete();
    finishdoorb delete();
 }
@@ -173,7 +173,7 @@ finaldoor2()
 {
    finishdoora = getent("finaldoor2a", "targetname");
    finishdoorb = getent("finaldoor2b", "targetname");
-   
+
    finishdoora delete();
    finishdoorb delete();
 
@@ -190,7 +190,7 @@ secret_step()
 
 	brush hide();
 	brush notSolid();
-	
+
 	brush2 hide();
 	brush2 notSolid();
 
@@ -211,7 +211,7 @@ secret_step()
 sec_fail1()
 {
    fail_triggera = getent("trig_secfail","targetname");
-   
+
    for(;;)
    {
       fail_triggera waittill("trigger",player);
@@ -222,7 +222,7 @@ sec_fail1()
 sec_fail2()
 {
    fail_triggerb = getent("trig_actisecfail","targetname");
-   
+
    for(;;)
    {
       fail_triggerb waittill("trigger",player);

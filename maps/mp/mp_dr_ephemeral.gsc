@@ -1,15 +1,15 @@
 /*
-___________      .__                                       .__   
-\_   _____/_____ |  |__   ____   _____   ________________  |  |  
- |    __)_\____ \|  |  \_/ __ \ /     \_/ __ \_  __ \__  \ |  |  
+___________      .__                                       .__
+\_   _____/_____ |  |__   ____   _____   ________________  |  |
+ |    __)_\____ \|  |  \_/ __ \ /     \_/ __ \_  __ \__  \ |  |
  |        \  |_> >   Y  \  ___/|  Y Y  \  ___/|  | \// __ \|  |__
 /_______  /   __/|___|  /\___  >__|_|  /\___  >__|  (____  /____/
-        \/|__|        \/     \/      \/     \/           \/      
-                                                                 
+        \/|__|        \/     \/      \/     \/           \/
+
                                                                 */
 main()
 {
-thread sr\api\_map::createSpawn((-74, -9, 0), 360);
+thread sr\api\_map::createSpawnOrigin((-74, -9, 0), 360);
 	maps\mp\_load::main();
 	game["allies"] = "sas";
 	game["axis"] = "russian";
@@ -22,7 +22,7 @@ thread sr\api\_map::createSpawn((-74, -9, 0), 360);
 	setdvar("r_drawdecals", "1"); //can change if you want, adds a lot to map/secrets require decals for hints (map is well optimized, performance hit is not bad)
 	level.hardsecretxp = 250; //DONT CHANGE
 	level.impossible = 10000;
-    
+
     thread sr\api\_speedrun::createNormalWays("Normal Way");
     thread sr\api\_speedrun::createSecretWays("Hard Secret;Easy Secret;");
         thread sr\api\_speedrun::createTeleporter((452.335, 208.407, 0.125), 80, 80, (-27706, 12404, 1934), 222, "freeze", "darkred", "secret_0");
@@ -108,105 +108,105 @@ music()
         switch (random)
         {
                 case 0: ambientPlay("muzzy");
-			    level.xx5 = newHudElem();	
-				level.xx5.x = 0;	
+			    level.xx5 = newHudElem();
+				level.xx5.x = 0;
 				level.xx5.y = 150;
-				level.xx5.horzAlign = "center";	
+				level.xx5.horzAlign = "center";
 				level.xx5.vertAlign = "middle";
 				level.xx5.alignX = "center";
 				level.xx5.alignY = "middle";
-				level.xx5.sort = 102;	
-				level.xx5.foreground = 1;	
-				level.xx5.archived = true;	
+				level.xx5.sort = 102;
+				level.xx5.foreground = 1;
+				level.xx5.archived = true;
 				level.xx5 fadeOverTime(2);
-				level.xx5.alpha = 1;	
+				level.xx5.alpha = 1;
 				level.xx5.fontScale = 4.6;
-				level.xx5.hidewheninmenu = false;	
-				level.xx5.color = (543,0,139);	
+				level.xx5.hidewheninmenu = false;
+				level.xx5.color = (543,0,139);
 				level.xx5.glowColor = (0.0, 0.0, 0.0);
 				level.xx5.glowAlpha = 1;
-				level.xx5.label = &"[DnB] - Muzzy - Feeling Stronger (feat. Charlotte Colley) (High Maintenance Remix)";	
+				level.xx5.label = &"[DnB] - Muzzy - Feeling Stronger (feat. Charlotte Colley) (High Maintenance Remix)";
 				wait 10;
 				level.xx5 fadeOverTime(4);
-				level.xx5.alpha = 0;	
+				level.xx5.alpha = 0;
 				wait 15;
 				level.xx5 destroy();
 				break;
                 case 1: Ambientplay("julian");
-                level.xx5 = newHudElem();	
-				level.xx5.x = 0;	
+                level.xx5 = newHudElem();
+				level.xx5.x = 0;
 				level.xx5.y = 150;
-				level.xx5.horzAlign = "center";	
+				level.xx5.horzAlign = "center";
 				level.xx5.vertAlign = "middle";
 				level.xx5.alignX = "center";
 				level.xx5.alignY = "middle";
-				level.xx5.sort = 102;	
-				level.xx5.foreground = 1;	
-				level.xx5.archived = true;	
+				level.xx5.sort = 102;
+				level.xx5.foreground = 1;
+				level.xx5.archived = true;
 				level.xx5 fadeOverTime(2);
-				level.xx5.alpha = 1;	
+				level.xx5.alpha = 1;
 				level.xx5.fontScale = 4.6;
-				level.xx5.hidewheninmenu = false;	
-				level.xx5.color = (236,0,139);	
+				level.xx5.hidewheninmenu = false;
+				level.xx5.color = (236,0,139);
 				level.xx5.glowColor = (0.0, 0.0, 0.0);
 				level.xx5.glowAlpha = 1;
-				level.xx5.label = &"Julian Jordan - Angels x Demons (Radio Edit) [Official]";	
+				level.xx5.label = &"Julian Jordan - Angels x Demons (Radio Edit) [Official]";
 				wait 10;
 				level.xx5 fadeOverTime(4);
-				level.xx5.alpha = 0;	
+				level.xx5.alpha = 0;
 				wait 15;
 				level.xx5 destroy();
-				break;            
+				break;
                 case 2: Ambientplay("young");
-                level.xx5 = newHudElem();	
-				level.xx5.x = 0;	
+                level.xx5 = newHudElem();
+				level.xx5.x = 0;
 				level.xx5.y = 150;
-				level.xx5.horzAlign = "center";	
+				level.xx5.horzAlign = "center";
 				level.xx5.vertAlign = "middle";
 				level.xx5.alignX = "center";
 				level.xx5.alignY = "middle";
-				level.xx5.sort = 102;	
-				level.xx5.foreground = 1;	
-				level.xx5.archived = true;	
+				level.xx5.sort = 102;
+				level.xx5.foreground = 1;
+				level.xx5.archived = true;
 				level.xx5 fadeOverTime(2);
-				level.xx5.alpha = 1;	
+				level.xx5.alpha = 1;
 				level.xx5.fontScale = 4.6;
-				level.xx5.hidewheninmenu = false;	
-				level.xx5.color = (134,0,139);	
+				level.xx5.hidewheninmenu = false;
+				level.xx5.color = (134,0,139);
 				level.xx5.glowColor = (0.0, 0.0, 0.0);
 				level.xx5.glowAlpha = 1;
-				level.xx5.label = &"If I Die Young - Dubstep Remix";	
+				level.xx5.label = &"If I Die Young - Dubstep Remix";
 				wait 10;
 				level.xx5 fadeOverTime(4);
-				level.xx5.alpha = 0;	
+				level.xx5.alpha = 0;
 				wait 15;
 				level.xx5 destroy();
-				break;        
+				break;
 				case 3: Ambientplay("ultraviolet");
-                level.xx5 = newHudElem();	
-				level.xx5.x = 0;	
+                level.xx5 = newHudElem();
+				level.xx5.x = 0;
 				level.xx5.y = 150;
-				level.xx5.horzAlign = "center";	
+				level.xx5.horzAlign = "center";
 				level.xx5.vertAlign = "middle";
 				level.xx5.alignX = "center";
 				level.xx5.alignY = "middle";
-				level.xx5.sort = 102;	
-				level.xx5.foreground = 1;	
-				level.xx5.archived = true;	
+				level.xx5.sort = 102;
+				level.xx5.foreground = 1;
+				level.xx5.archived = true;
 				level.xx5 fadeOverTime(2);
-				level.xx5.alpha = 1;	
+				level.xx5.alpha = 1;
 				level.xx5.fontScale = 4.6;
-				level.xx5.hidewheninmenu = false;	
-				level.xx5.color = (150,150,139);	
+				level.xx5.hidewheninmenu = false;
+				level.xx5.color = (150,150,139);
 				level.xx5.glowColor = (0.0, 0.0, 0.0);
 				level.xx5.glowAlpha = 1;
-				level.xx5.label = &"ANFM - 'Ultraviolet'";	
+				level.xx5.label = &"ANFM - 'Ultraviolet'";
 				wait 10;
 				level.xx5 fadeOverTime(4);
-				level.xx5.alpha = 0;	
+				level.xx5.alpha = 0;
 				wait 15;
 				level.xx5 destroy();
-				break;             
+				break;
         }
 }
 
@@ -272,7 +272,7 @@ secret() //if dont work then link
 	trig = getEnt( "secret_trig", "targetname" );
 	trig SetHintString("^2Hard Secret (Don't go in)");
 
-	
+
 	while(1)
 	{
 		trig waittill ( "trigger", player );
@@ -289,7 +289,7 @@ isecret() //if dont work then link
 	trig = getEnt( "i_secret_trig", "targetname" );
 	trig SetHintString("^9The Impossible Secret (You won't finish)");
 
-	
+
 	while(1)
 	{
 		trig waittill ( "trigger", player );
@@ -306,7 +306,7 @@ acti_tele1()
 	trig = getEnt( "acti_tele_1", "targetname" );
 	trig SetHintString("^1Press &&1 To Go To The ^6Next Area");
 
-	
+
 	while(1)
 	{
 		trig waittill ( "trigger", player );
@@ -321,7 +321,7 @@ acti_tele2()
 	trig = getEnt( "acti_tele_2", "targetname" );
 	trig SetHintString("^1Press &&1 To Go To The ^6Next Area");
 
-	
+
 	while(1)
 	{
 		trig waittill ( "trigger", player );
@@ -336,7 +336,7 @@ acti_tele3()
 	trig = getEnt( "acti_tele_3", "targetname" );
 	trig SetHintString("^1Press &&1 To Go To The ^6Next Area");
 
-	
+
 	while(1)
 	{
 		trig waittill ( "trigger", player );
@@ -351,7 +351,7 @@ acti_tele4()
 	trig = getEnt( "acti_tele_4", "targetname" );
 	trig SetHintString("^1Press &&1 To Go To The ^6Next Area");
 
-	
+
 	while(1)
 	{
 		trig waittill ( "trigger", player );
@@ -363,14 +363,14 @@ acti_tele4()
 secret_check_1()
 {
 	trigger = getEnt("secret_check_1","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
 		if (player.checkpointid < 1)
 		{
 			player.checkpointid = 1;
-			
+
 		}
 	}
 }
@@ -378,14 +378,14 @@ secret_check_1()
 secret_check_2()
 {
 	trigger = getEnt("secret_check_2","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
 		if (player.checkpointid < 2)
 		{
 			player.checkpointid = 2;
-			
+
 		}
 	}
 }
@@ -393,14 +393,14 @@ secret_check_2()
 secret_check_3()
 {
 	trigger = getEnt("secret_check_3","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
 		if (player.checkpointid < 3)
 		{
 			player.checkpointid = 3;
-			
+
 		}
 	}
 }
@@ -408,14 +408,14 @@ secret_check_3()
 secret_check_4()
 {
 	trigger = getEnt("secret_check_4","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
 		if (player.checkpointid < 4)
 		{
 			player.checkpointid = 4;
-			
+
 		}
 	}
 }
@@ -430,7 +430,7 @@ secret_fail()
 	check3 = getEnt( "secret_check_3_tp", "targetname" );
 	check4 = getEnt( "secret_check_4_tp", "targetname" );
 
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -479,7 +479,7 @@ secretend() //if dont work then link
 		player setOrigin( origin.origin );
 		player setplayerangles( origin.angles );
         player thread sr\api\_speedrun::finishWay("secret_1");
-        
+
     }
 
 }
@@ -507,18 +507,18 @@ sniper()
 	        player setOrigin( jump.origin );
 	        player TakeAllWeapons();
 	        player GiveWeapon( "remington700_mp" );
-			player GiveWeapon( "m40a3_mp" );        
+			player GiveWeapon( "m40a3_mp" );
 			player GiveMaxAmmo( "remington700_mp" );
 			player GiveMaxAmmo( "m40a3_mp" );
 	        level.activ setPlayerangles( acti.angles );
 	        level.activ setOrigin( acti.origin );
 	        level.activ TakeAllWeapons();
         	level.activ GiveWeapon( "remington700_mp" );
-        	level.activ GiveWeapon( "m40a3_mp" );         
+        	level.activ GiveWeapon( "m40a3_mp" );
         	level.activ GiveMaxAmmo( "remington700_mp" );
         	level.activ GiveMaxAmmo( "m40a3_mp" );
 	        wait .05;
-	        player switchToWeapon( "remington700_mp" ); 
+	        player switchToWeapon( "remington700_mp" );
 	        level.activ SwitchToWeapon( "remington700_mp" );
 	        player FreezeControls(1);
 			level.activ FreezeControls(1);
@@ -573,7 +573,7 @@ weapon()
 			level.activ GiveWeapon( "deserteagle_mp" );
 	        level.activ GiveMaxAmmo( "deserteagle_mp" );
 	        wait .05;
-	        player switchToWeapon( "ak74u_mp" ); 
+	        player switchToWeapon( "ak74u_mp" );
 	        level.activ SwitchToWeapon( "ak74u_mp" );
 	        player FreezeControls(1);
 			level.activ FreezeControls(1);
@@ -622,7 +622,7 @@ knife()
 	        level.activ TakeAllWeapons();
 	        level.activ GiveWeapon( "tomahawk_mp" );
 	        wait .05;
-	        player switchToWeapon( "tomahawk_mp" ); 
+	        player switchToWeapon( "tomahawk_mp" );
 	        level.activ SwitchToWeapon( "tomahawk_mp" );
 	        player FreezeControls(1);
 			level.activ FreezeControls(1);
@@ -693,7 +693,7 @@ trap1()
 		plat1[i] rotateYaw(360, 1);
 		wait 0.01;
 	}
-	
+
 }
 }
 
@@ -820,7 +820,7 @@ trap10()
 		spin rotateYaw(360, 8);
 		wait 0.01;
 	}
-	
+
 }
 
 trap11()
@@ -836,7 +836,7 @@ trap11()
 		spin rotateYaw(360, 6);
 		wait 0.01;
 	}
-	
+
 }
 
 trap12()
@@ -869,12 +869,12 @@ bouncer1(who)
 {
 	trigger = getEnt ( "fan1_trig", "targetname" );
 	origin = getent("fan_origin", "targetname");
-	
+
 	while(1)
 	{
 		self endon("trap12_stop");
     	trigger waittill ( "trigger", who );
-	
+
 	    oldpos = who.origin;
 		//playFx ( level.bounce, who.origin );
 	    strenght = 9;
@@ -899,7 +899,7 @@ trap13()
 		spin rotateYaw(360, 6);
 		wait 0.01;
 	}
-	
+
 }
 
 trap14()
@@ -930,12 +930,12 @@ bouncer2(who)
 {
 	trigger = getEnt ( "fan2_trig", "targetname" );
 	origin = getEnt ( "fan2_origin", "targetname" );
-	
+
 	while(1)
 	{
 		self endon("trap14_stop");
     	trigger waittill ( "trigger", who );
-	
+
 	    oldpos = who.origin;
 		//playFx ( level.bounce, who.origin );
 	    strenght = 9;
@@ -967,14 +967,14 @@ trap15()
 i_secret_check_1()
 {
 	trigger = getEnt("i_secret_check_1","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
 		if (player.icheckpointid < 1)
 		{
 			player.icheckpointid = 1;
-			
+
 		}
 	}
 }
@@ -982,14 +982,14 @@ i_secret_check_1()
 i_secret_check_2()
 {
 	trigger = getEnt("i_secret_check_2","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
 		if (player.icheckpointid < 2)
 		{
 			player.icheckpointid = 2;
-			
+
 		}
 	}
 }
@@ -997,14 +997,14 @@ i_secret_check_2()
 i_secret_check_3()
 {
 	trigger = getEnt("i_secret_check_3","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
 		if (player.icheckpointid < 3)
 		{
 			player.icheckpointid = 3;
-			
+
 		}
 	}
 }
@@ -1012,7 +1012,7 @@ i_secret_check_3()
 i_secret_check_4()
 {
 	trigger = getEnt("i_secret_check_4","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -1027,14 +1027,14 @@ i_secret_check_4()
 i_secret_check_5()
 {
 	trigger = getEnt("i_secret_check_5","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
 		if (player.icheckpointid < 5)
 		{
 			player.icheckpointid = 5;
-			
+
 		}
 	}
 }
@@ -1042,14 +1042,14 @@ i_secret_check_5()
 i_secret_check_6()
 {
 	trigger = getEnt("i_secret_check_6","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
 		if (player.icheckpointid < 6)
 		{
 			player.icheckpointid = 6;
-			
+
 		}
 	}
 }
@@ -1057,14 +1057,14 @@ i_secret_check_6()
 i_secret_check_7()
 {
 	trigger = getEnt("i_secret_check_7","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
 		if (player.icheckpointid < 7)
 		{
 			player.icheckpointid = 7;
-			
+
 		}
 	}
 }
@@ -1072,14 +1072,14 @@ i_secret_check_7()
 i_secret_check_8()
 {
 	trigger = getEnt("i_secret_check_8","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
 		if (player.icheckpointid < 8)
 		{
 			player.icheckpointid = 8;
-			
+
 		}
 	}
 }
@@ -1088,14 +1088,14 @@ i_secret_check_8()
 i_secret_check_9()
 {
 	trigger = getEnt("i_secret_check_9","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
 		if (player.icheckpointid < 9)
 		{
 			player.icheckpointid = 9;
-		
+
 		}
 	}
 }
@@ -1114,7 +1114,7 @@ i_secret_fail()
 	check7 = getEnt( "i_secret_check_7_tp", "targetname" );
 	check8 = getEnt( "i_secret_check_8_tp", "targetname" );
 	check9 = getEnt( "i_secret_check_9_tp", "targetname" );
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );

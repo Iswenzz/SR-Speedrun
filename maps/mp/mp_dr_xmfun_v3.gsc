@@ -30,7 +30,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((-602, -459, 16), 269);
+thread sr\api\_map::createSpawnOrigin((-602, -459, 16), 269);
     maps\mp\_load::main();
 
 	game["allies"] = "marines";
@@ -50,7 +50,7 @@ thread sr\api\_map::createSpawn((-602, -459, 16), 269);
 
 	msg_trig = getEnt("trig_spawnmsg","targetname");
 	msg_trig setHintString(">>Map ripped, rescripted and improved by ^1John^3The^1Ripper^7<<");
-    
+
 	thread sr\api\_speedrun::createNormalWays("Normal Way");
 		//thread logo();
 	//thread model();
@@ -65,7 +65,7 @@ thread sr\api\_map::createSpawn((-602, -459, 16), 269);
 	//thread trap6();
 	//thread trap7();
 
-	for (i = 1; i < 8; i++) 
+	for (i = 1; i < 8; i++)
 		addTriggerToList("trig_trap"+i);
 }
 
@@ -239,19 +239,19 @@ model()
 	trig = getEnt("trig_xm","targetname");
 
 	trig setHintString(">>Change your playermodel<<");
-	
+
 	while(1)
 	{
 		trig waittill("trigger", player);
 
 		if(isDefined(player.modelchanged))
 			continue;
-		
+
 		player setViewModel("viewhands_kermit");
 		player detachAll();
 		player setModel("playermodel_kermit_the_frog");
 		player iPrintLnBold("Your playermodel changed to ^2Kermit^7!");
-		
+
 		player.modelchanged = true;
 	}
 }

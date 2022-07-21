@@ -1,14 +1,14 @@
 #include maps\mp\_utility;
- 
+
 main()
  {
-thread sr\api\_map::createSpawn((153.772, 78.118, -3.875), 270);
+thread sr\api\_map::createSpawnOrigin((153.772, 78.118, -3.875), 270);
 trigger = spawn( "trigger_radius", (1507, -871, -896), 0, 300, 300 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 300;
 	maps\mp\_load::main();
     // ambientPlay("main1234");
-	
+
 	game["allies"] = "marines";
     game["axis"] = "opfor";
     game["attackers"] = "axis";
@@ -37,11 +37,11 @@ trigger.radius = 300;
 	thread teleport4();
 	thread teleport5();
 	// thread onPlayerConnect();
-	
-	 
+
+
     // addTriggerToList( "trap1_trig" );
 	// addTriggerToList( "trap2_trig" );
-    // addTriggerToList( "trap3_trig" ); 
+    // addTriggerToList( "trap3_trig" );
     // addTriggerToList( "trap4_trig" );
 	// addTriggerToList( "trap5_trig" );
 
@@ -56,10 +56,10 @@ trigger.radius = 300;
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -88,16 +88,16 @@ onPlayerConnect()
 /* message1()
      {
      so = getent ("write","targetname");
- 
+
     so waittill ("trigger",player);
      player iprintlnbold ("^3This map was created by ^7Google_Salt, ^3Thanks to ^7Spike, BurntToast and Fishy^3!");
      wait 1;
      player iprintlnbold ("^3Add me in Xfire ^7redsn0w12");
      wait 1;
      player iprintlnbold ("^3Music ^7=>^3Potter Harrison ^7- ^3Language UK Edit");
- 
+
     wait 100;
- 
+
     }
  */
 addTestClients()
@@ -134,11 +134,11 @@ addTestClients()
 
      while(!isdefined(self.pers["team"]))
           wait .05;
-          
+
      self notify("menuresponse", game["menu_team"], team);
       wait 0.5;
  }
- 
+
 
 addTriggerToList( name )
  {
@@ -146,30 +146,30 @@ addTriggerToList( name )
          level.trapTriggers = [];
      level.trapTriggers[level.trapTriggers.size] = getEnt( name, "targetname" );
  }
- 
+
 trap1()
  {
- 
+
     trig = getEnt ("trap1_trig", "targetname");
     lift = getEnt ("trap1_lift", "targetname");
-     
+
     trig waittill ("trigger");
     trig delete();
-     
+
     lift moveZ (244,2);
     wait 5;
     lift moveZ (-244,2);
-     
+
  }
 
 trap2()
 {
 	trig = getEnt ("trap2_trig", "targetname");
 	plat = getEnt ("trap2_rotate", "targetname");
-	
+
 	trig waittill("trigger");
 	trig delete();
-	
+
 	while(1)
 	{
 		plat rotateyaw (360, 2);
@@ -180,11 +180,11 @@ teleport1()
 {
 	trig = getEnt ("teleport_trigger", "targetname");
 	target = getEnt ("teleport_target", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill ("trigger", player);
-		
+
 		// iprintlnbold ("Gratz ^3" + player.name + " ^7found a secert! :o!");
 		player SetOrigin(target.origin);
 		player SetPlayerAngles( target.angles );
@@ -199,11 +199,11 @@ teleport2()
 	door = getEnt("olddoor", "targetname");
 	jumpblock = getEnt( "jump_block",  "targetname" );
     sniperblock = getEnt( "sniper_block",  "targetname" );
-	
+
 	for(;;)
 	{
 		level.old_trig waittill ("trigger", player);
-		
+
 		iprintlnbold ( "^3" + player.name + " ^7has chosen the ^3Old Way^7!");
 		player SetOrigin(target.origin);
 		player SetPlayerAngles( target.angles );
@@ -226,11 +226,11 @@ teleport3()
 {
 	trig = getEnt ("teleport2_trigger", "targetname");
 	target = getEnt ("teleport2_target", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill ("trigger", player);
-		
+
 		// iprintlnbold ("Gratz ^3" + player.name + " ^7has finished the secert!!");
 		// player SetOrigin(target.origin);
 		// player SetPlayerAngles( target.angles );
@@ -253,10 +253,10 @@ trap3()
 	twist1 = getEnt ("trap3_run1", "targetname");
 	twist2 = getEnt ("trap3_run2", "targetname");
 	twist3 = getEnt ("trap3_run3", "targetname");
-	
+
     trig waittill ("trigger");
     trig delete();
-	
+
 	while(1)
 	{
 		twist1 rotatepitch (900,3,0.1);
@@ -347,31 +347,31 @@ elevator_call()
 
 trap4()
 {
- 
+
     trig = getEnt ("trap4_trig", "targetname");
-    hurt = getEnt ("trap4_hurt", "targetname"); 
+    hurt = getEnt ("trap4_hurt", "targetname");
 	spikes = getEnt ("spikes", "targetname");
-    
-    hurt enablelinkto(); 
-	hurt linkto (spikes); 
+
+    hurt enablelinkto();
+	hurt linkto (spikes);
 
     trig waittill ("trigger");
     trig delete();
-    
+
     spikes moveZ (210,3);
     wait 5;
     spikes moveZ (-210,3);
-     
+
 }
- 
+
 trap5()
 {
 	trig = getEnt ("trap5_trig", "targetname");
 	plat = getEnt ("trap5_turn123", "targetname");
-	
+
 	trig waittill("trigger");
 	trig delete();
-	
+
 	while(1)
 	{
 		plat rotateyaw (900, 6 ,0.01);
@@ -386,7 +386,7 @@ sniper()
     acti = getEnt( "activator_enter_sniper", "targetname" );
     jumpblock = getEnt( "jump_block",  "targetname" );
     oldblock = getEnt( "old_block",  "targetname" );
-    
+
     while(1)
     {
         level.sniper_trig waittill( "trigger", player );
@@ -398,7 +398,7 @@ sniper()
         player setOrigin( jump.origin );
         player TakeAllWeapons();
         player GiveWeapon( "m40a3_mp" );
-		player GiveWeapon( "remington700_mp" );		//jumper weapon     remington700_mp   
+		player GiveWeapon( "remington700_mp" );		//jumper weapon     remington700_mp
         if(level.sniperacti == true)
     	{
     		level.activ setPlayerangles( acti.angles );
@@ -411,7 +411,7 @@ sniper()
 			oldblock moveY (40, 3, 0.5, 0.5);
     	}
     	level.acti GiveMaxAmmo( "m40a3_mp" );
-		level.acti GiveMaxAmmo( "remington700_mp" ); 
+		level.acti GiveMaxAmmo( "remington700_mp" );
         wait 0.05;
         player switchToWeapon( "m40a3_mp" ); //activator weapon      remington700_mp
         level.activ SwitchToWeapon( "m40a3_mp" );
@@ -428,7 +428,7 @@ jump()
     acti = getEnt( "activator_enter_jump", "targetname" );
     sniperblock = getEnt( "sniper_block",  "targetname" );
     oldblock = getEnt( "old_block",  "targetname" );
-    
+
     while(1)
     {
         level.jump_trig waittill( "trigger", player );
@@ -439,7 +439,7 @@ jump()
         player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
-        player GiveWeapon( "knife_mp" ); //jumper weapon     remington700_mp   
+        player GiveWeapon( "knife_mp" ); //jumper weapon     remington700_mp
         if(level.jumpacti == true)
     	{
     		level.activ setPlayerangles( acti.angles );
@@ -450,7 +450,7 @@ jump()
         	sniperblock moveY (40, 3, 0.5, 0.5);
 			oldblock moveY (40, 3, 0.5, 0.5);
     	}
-    	level.acti GiveMaxAmmo( "knife_mp" );       
+    	level.acti GiveMaxAmmo( "knife_mp" );
         wait 0.05;
         player switchToWeapon( "knife_mp" ); //activator weapon      remington700_mp
         level.activ SwitchToWeapon( "knife_mp" );
@@ -464,11 +464,11 @@ teleport4()
 {
 	trig = getEnt ("jump1_tele", "targetname");
 	target = getEnt ("jump1_tele1", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill ("trigger", player);
-		
+
 		player SetOrigin(target.origin);
 		player SetPlayerAngles( target.angles );
 	}
@@ -478,11 +478,11 @@ teleport5()
 {
 	trig = getEnt ("jump2_tele", "targetname");
 	target = getEnt ("jump2_tele1", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill ("trigger", player);
-		
+
 		player SetOrigin(target.origin);
 		player SetPlayerAngles( target.angles );
 	}

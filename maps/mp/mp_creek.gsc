@@ -3,14 +3,14 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((-3825, 5989, 184), 337);
+thread sr\api\_map::createSpawnOrigin((-3825, 5989, 184), 337);
 	setExpFog(612, 25000, 0.613, 0.671, 0.75, 0);
 	VisionSetNaked( "mp_creek", 0 );
 
 	maps\mp\_load::main();
-	
+
 	maps\mp\_compass::setupMiniMap("compass_map_mp_creek");
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "russian";
 	game["attackers"] = "axis";

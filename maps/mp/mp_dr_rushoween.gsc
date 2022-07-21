@@ -30,7 +30,7 @@
 #include braxi\_common;
 main()
 {
-thread sr\api\_map::createSpawn((-21, -263, 17), 89);
+thread sr\api\_map::createSpawnOrigin((-21, -263, 17), 89);
 maps\mp\_load::main();
 	game["allies"] = "marines";
     game["axis"] = "opfor";

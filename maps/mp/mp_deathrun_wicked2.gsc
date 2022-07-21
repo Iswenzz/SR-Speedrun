@@ -10,16 +10,16 @@ Water made by *Rycoon*
 
 main()
 {
-thread sr\api\_map::createSpawn((-239, 9, -320), 359);
+thread sr\api\_map::createSpawnOrigin((-239, 9, -320), 359);
     maps\mp\_load::main();
-	
+
 	level._effect["fire_blue"] = LoadFX("dr/fire_blue");
 	level._effect["fire_ryellow"] = LoadFX("dr/fire_ryellow");
 	level._effect["fire_large"] = LoadFX("dr/fire_large");
-	
+
 	level.wall_explosion_fx = LoadFX("explosions/boom");
 	level._effect[ "beacon_glow2" ] = loadfx( "misc/eglow" );
-	
+
 	level._effect[ "lightning" ] = loadfx( "weather/lightning_mp_farm" );
 	level._effect[ "fireflieslb" ] = loadfx( "misc/fireflieslb" );
 	level._effect[ "fireflies" ] = loadfx( "misc/fireflies" );
@@ -28,16 +28,16 @@ thread sr\api\_map::createSpawn((-239, 9, -320), 359);
 	level.mp44_trig = getEnt ("end_mp44", "targetname");
 	level.aku_trig = getEnt ("end_aku", "targetname");
 	level.knife_trig = getEnt ("end_knife", "targetname");
-	
+
 	precacheItem( "ak74u_mp" );
 	precacheItem( "m4_acog_mp" );
 	precacheModel( "viewhands_desert_opfor_clr" );
 
     setDvar("bg_falldamagemaxheight", 20000000 );
 	setDvar("bg_falldamageminheight", 15000000 );
-	
+
 	//Traps//
-	
+
 	thread sr\api\_speedrun::createNormalWays("Normal Way");
 		thread sr\api\_speedrun::createTeleporter((-2696.49, -3553.9, 368.125), 130, 105, (-1555, -3481, 428), 269, "freeze");
 	//thread trap1();
@@ -66,27 +66,27 @@ thread sr\api\_map::createSpawn((-239, 9, -320), 359);
 	thread startDoor();
 	thread Siirtaja1();
 	//thread sniper_ammo();
-	
+
 	//Endrooms//
-	
-	
+
+
 	//thread endRoom_old();
-	//thread endRoom( level.mp44_trig, "s_jumper", "s_acti", "m40a3_mp", "Sniper" , level.aku_trig, level.knife_trig);	
-	//thread endRoom( level.aku_trig, "jumper_aku", "acti_aku", "ak74u_mp", "Smg", level.mp44_trig, level.knife_trig );	
+	//thread endRoom( level.mp44_trig, "s_jumper", "s_acti", "m40a3_mp", "Sniper" , level.aku_trig, level.knife_trig);
+	//thread endRoom( level.aku_trig, "jumper_aku", "acti_aku", "ak74u_mp", "Smg", level.mp44_trig, level.knife_trig );
 	//thread endRoom( level.knife_trig, "jumper_knife", "acti_knife", "tomahawk_mp", "Knife", level.aku_trig, level.mp44_trig );
-	
+
 	//Thunder//
-	
+
 	//addThunder( (1608, 24, 408) );
 	//addThunder( (5416, -40, 808) );
 	//addThunder( (8744, -8, 728) );
-	
+
 	for( i = 1;i < 11;i++ )
 		addTriggerToList( "trap" + i + "_trig" );
 		addTriggerToList( "trap6a_trig");
 		addTriggerToList( "trap6b_trig");
 		addTriggerToList( "trap6c_trig");
-	
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
     game["attackers"] = "axis";
@@ -166,14 +166,14 @@ fireflies()
 	addFireflies( "bluefly", 7 );
 	addFireflies( "pinkfly", 10 );
 	addFireflies( "orangefly", 4 );
-	
+
 	glow1 = getEnt ("glow11", "targetname");
 glow3 = getEnt ("glow13", "targetname");
 
 level._effect[ "beacon_glow" ] = loadfx( "misc/eglow" );
 	maps\mp\_fx::loopfx("beacon_glow", (glow1.origin), 3, (glow1.origin) + (0, 0, 90));
 	maps\mp\_fx::loopfx("beacon_glow", (glow3.origin), 3, (glow3.origin) + (0, 0, 90));
-	
+
 }
 
 stageTwo()
@@ -299,7 +299,7 @@ createFX()
 		spawn_fire[i].v[ "delay" ] = -15;
 		spawn_fire[i].v[ "soundalias" ] = "fire_metal_large";
 	}
-	
+
 	fire_yellow = getentarray("fire_yellow", "targetname");
 	for(i=0;i<fire_yellow.size;i++)
 	{
@@ -310,7 +310,7 @@ createFX()
 		fire[i].v[ "delay" ] = -15;
 		fire[i].v[ "soundalias" ] = "fire_metal_large";
 	}
-	
+
 	stageglow = getentarray("stagetwoglows", "targetname");
 	for(i=0;i<stageglow.size;i++)
 	{
@@ -338,13 +338,13 @@ trap1()
 trap = getEnt ("trap1", "targetname");
 trig = getEnt("trap1_trig", "targetname");
 hurt = getEnt( "trap1_hurt", "targetname");
-	
+
 	hurt enableLinkTo();
 	hurt LinkTo(trap);
-	
+
 	trig waittill("trigger");
 	trig delete();
-	
+
 		trap moveZ( 18, 0.3, 0.1, 0.1);
 		wait 1.5;
 		trap moveZ( -18, 0.3, 0.1, 0.1);
@@ -353,8 +353,8 @@ trap2()
 {
 	trap = getEnt ("trap2", "targetname");
 	trig = getEnt("trap2_trig", "targetname");
-	
-	
+
+
 	trig waittill("trigger");
 	trig delete();
 
@@ -371,7 +371,7 @@ trap3_pushers()
 	trapb = getEnt ("trap3b", "targetname");
 	trapc = getEnt ("trap3c", "targetname");
 	trig = getEnt("trap3_trig", "targetname");
-	
+
 	trig waittill("trigger");
 	trig delete();
 
@@ -380,25 +380,25 @@ trap3_pushers()
 		trapa moveY (304, 0.43);
 		trapb moveY (-304, 0.43);
 		trapc moveY (304, 0.43);
-		
+
 		wait 0.48;
-		
+
 		trapa moveY (-304, 0.5);
 		trapb moveY (304, 0.5);
 		trapc moveY (-304, 0.5);
-		
+
 		wait 0.55;
-		
+
 		trapa moveY (304, 0.55);
 		trapb moveY (-304, 0.55);
 		trapc moveY (304, 0.55);
-		
+
 		wait 0.6;
-		
+
 		trapa moveY (-304, 0.45);
 		trapb moveY (304, 0.45);
 		trapc moveY (-304, 0.45);
-		
+
 		wait 0.5;
 	}
 }
@@ -407,11 +407,11 @@ trap4()
 {
 	rings = getEnt("trap4", "targetname");
 	trig = getEnt("trap4_trig", "targetname");
-	
-	
+
+
 	trig waittill("trigger");
 	trig delete();
-	
+
 while( 1 )
 	{
 
@@ -432,7 +432,7 @@ while( 1 )
 trap5()
 {
 	trig = getEnt("trap5_trig", "targetname");
-	
+
 	trig waittill("trigger");
 	trig delete();
 
@@ -460,23 +460,23 @@ trap8()
 	trig delete();
 
 	wait 0.05;
-	
+
 	thread ef( "ps1", 110, 0.8, 1.8 );
 	thread ef( "ps2", -100, 0.7, 1.65 );
-	thread ef( "ps3", 80, 0.65, 1.4 );	
+	thread ef( "ps3", 80, 0.65, 1.4 );
 	thread ef( "ps4", 90, 0.7, 1.4 );
-	thread ef( "ps5", -110, 0.8, 1.4 );	
-	thread ef( "ps6", 110, 0.8, 1.4 );	
-	thread ef( "ps7", -115, 0.9, 1.9 );	
-	thread ef( "ps8", 110, 0.8, 1.8 );	
-	thread ef( "ps9", -110, 0.8, 1.8 );	
+	thread ef( "ps5", -110, 0.8, 1.4 );
+	thread ef( "ps6", 110, 0.8, 1.4 );
+	thread ef( "ps7", -115, 0.9, 1.9 );
+	thread ef( "ps8", 110, 0.8, 1.8 );
+	thread ef( "ps9", -110, 0.8, 1.8 );
 	thread ef( "ps10", -100, 0.7, 1.65 );
 	thread ef( "ps11", 100, 0.7, 1.65 );
 	thread ef( "ps12", 80, 0.65, 1.4 );
 	thread ef( "ps13", -90, 0.9, 1.5 );
 	thread ef( "ps14", 110, 0.8, 1.4 );
 	thread ef( "ps15", -110, 0.8, 1.4 );
-	thread ef( "ps16", 115, 0.8, 1.9 );	
+	thread ef( "ps16", 115, 0.8, 1.9 );
 }
 
 
@@ -489,7 +489,7 @@ acti_move1()
 	air2 = getent ("a_air2","targetname");
 	air3 = getent ("a_air3","targetname");
 	air4 = getent ("a_air4", "targetname");
-	
+
 	time = .5;
 	for(;;)
 {
@@ -521,9 +521,9 @@ trap9()
 	trig = getEnt( "trap9_trig", "targetname" );
 
 	trig waittill( "trigger" );
-	
+
 	wait 0.05;
-	
+
 	pusher moveY( -232, 0.75, 0.1, 0.1 );
 	wait 2.5;
 	pusher moveY( 232, 1.3, 0.2, 0.2 );
@@ -535,7 +535,7 @@ trap10()
 
 	spinner = getEnt( "trap10", "targetname" );
 	trig = getEnt("trap10_trig", "targetname");
-	
+
 	trig waittill("trigger");
 	trig delete();
 
@@ -545,7 +545,7 @@ trap10()
 		{
 			yaw = -900;
 			if( i == 0 || i == 3 ) yaw = 900;
-			
+
 			spinner rotateYaw( yaw, 2.7, 0.4, 0.4 );
 			spinner waittill( "rotatedone" );
 			wait .5;
@@ -699,7 +699,7 @@ addTriggerToList( name )
     if( !isDefined( level.trapTriggers ) )
         level.trapTriggers = [];
     level.trapTriggers[level.trapTriggers.size] = getEnt( name, "targetname" );
-} 
+}
 
 
 addTestClients()
@@ -736,7 +736,7 @@ TestClient(team)
 
     while(!isdefined(self.pers["team"]))
         wait .05;
-        
+
     self notify("menuresponse", game["menu_team"], team);
     wait 0.5;
 }
@@ -756,7 +756,7 @@ endRoom( endRoom, j, a, weapon, name, del1, del2 )
 {
 	trig = endRoom;
 	if( !isDefined( trig ) ) return;
-	
+
 	jumper = getEnt( j, "targetname" );
 	acti = getEnt( a, "targetname" );
 
@@ -769,8 +769,8 @@ endRoom( endRoom, j, a, weapon, name, del1, del2 )
 		del1 delete();
 		del2 delete();
 		level.old_trig delete();
-		
-		
+
+
 		thread weaponStuff( player, jumper, weapon );
 		player freezeControls(1);
 		level.activ freezeControls(1);
@@ -780,7 +780,7 @@ endRoom( endRoom, j, a, weapon, name, del1, del2 )
 		thread weaponStuff( level.activ, acti, weapon );
 
 		thread drawInformation( 800, 0.8, 1, " " + player.name + " Has entered the " + name + " room" );
-		
+
 		while( isAlive( player ) && isDefined( player ) )
 			wait 1;
 	}
@@ -839,13 +839,13 @@ trigger = getEnt( "ts1_enter", "targetname" );
 
 for(;;)
 	{
-	
-	
+
+
 	trigger waittill ( "trigger", pelaaja);
 
-	
+
 	siirtaja = RandomIntRange (0,3);
-	
+
 	if( siirtaja == 0)
 	{
 		pelaaja sr\api\_player::antiElevator(false);
@@ -859,14 +859,14 @@ for(;;)
 		if( pelaaja istouching( trigger ) && !isDefined( pelaaja.ilmassa ) )
 		thread Siirrapelaaja( pelaaja, "ts1_air_21", "ts1_air_22", "ts1_air_23", "ts1_air_24", 0.45);
 	}
-	
+
 	if( siirtaja == 2)
 	{
 		pelaaja sr\api\_player::antiElevator(false);
 		if( pelaaja istouching( trigger ) && !isDefined( pelaaja.ilmassa ) )
 		thread Siirrapelaaja( pelaaja, "ts1_air_31", "ts1_air_32", "ts1_air_33", "ts1_air_34", 0.45);
 	}
-	
+
 	}
 }
 

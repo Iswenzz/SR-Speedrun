@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((2316, 71, 0), 0);
+thread sr\api\_map::createSpawnOrigin((2316, 71, 0), 0);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
@@ -89,10 +89,10 @@ thread bunkerkiller2();
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
 
@@ -114,7 +114,7 @@ trigger = getent("end","targetname");
 		else
 			{
 user iprintlnbold ("Congratulations, " + user.name + ", you have completed the map!");
-user iprintlnbold ("^1-^9= ^1CoD^8Jumper^3.^7com ^3- ^7For all your CoDJumping needs! ^9=^1-");		
+user iprintlnbold ("^1-^9= ^1CoD^8Jumper^3.^7com ^3- ^7For all your CoDJumping needs! ^9=^1-");
 			user.done = true;
 			}
 	}
@@ -278,7 +278,7 @@ tele()
 swingertrig = getent("swingertrig","targetname");
 while(1)
 {
-swingertrig waittill ("trigger",user); 
+swingertrig waittill ("trigger",user);
 org = (2200,-1440,-40);
 wait 0.1;
 user setOrigin(org, 0.1);
@@ -342,7 +342,7 @@ teleb()
 swinger2trig = getent("swinger2trig","targetname");
 while(1)
 {
-swinger2trig waittill ("trigger",user); 
+swinger2trig waittill ("trigger",user);
 org = (2200,-1440,-40);
 wait 0.1;
 user setOrigin(org, 0.1);
@@ -946,7 +946,7 @@ theteleport1()
 teleport1 = getent("teleport1","targetname");
 while(1)
 {
-teleport1 waittill ("trigger",user); 
+teleport1 waittill ("trigger",user);
 org = (2264,64,0);
 wait 0.1;
 user setOrigin(org, 0.1);
@@ -958,7 +958,7 @@ theteleport2()
 teleport2 = getent("teleport2","targetname");
 while(1)
 {
-teleport2 waittill ("trigger",user); 
+teleport2 waittill ("trigger",user);
 org = (5072,64,0);
 wait 0.1;
 user setOrigin(org, 0.1);
@@ -970,7 +970,7 @@ theteleport3()
 teleport3 = getent("teleport3","targetname");
 while(1)
 {
-teleport3 waittill ("trigger",user); 
+teleport3 waittill ("trigger",user);
 org = (7552,1600,236);
 wait 0.1;
 user setOrigin(org, 0.1);
@@ -982,7 +982,7 @@ theteleport4()
 teleport4 = getent("teleport4","targetname");
 while(1)
 {
-teleport4 waittill ("trigger",user); 
+teleport4 waittill ("trigger",user);
 org = (3040,1576,536);
 wait 0.1;
 user setOrigin(org, 0.1);
@@ -994,7 +994,7 @@ theteleport5()
 teleport5 = getent("teleport5","targetname");
 while(1)
 {
-teleport5 waittill ("trigger",user); 
+teleport5 waittill ("trigger",user);
 org = (1904,1352,536);
 wait 0.1;
 user setOrigin(org, 0.1);
@@ -1006,7 +1006,7 @@ theteleport6()
 teleport6 = getent("teleport6","targetname");
 while(1)
 {
-teleport6 waittill ("trigger",user); 
+teleport6 waittill ("trigger",user);
 org = (1920,-1000,-32);
 wait 0.1;
 user setOrigin(org, 0.1);
@@ -1018,7 +1018,7 @@ theteleport7()
 teleport7 = getent("teleport7","targetname");
 while(1)
 {
-teleport7 waittill ("trigger",user); 
+teleport7 waittill ("trigger",user);
 org = (5576,-1440,296);
 wait 0.1;
 user setOrigin(org, 0.1);
@@ -1030,7 +1030,7 @@ theteleport8()
 teleport8 = getent("teleport8","targetname");
 while(1)
 {
-teleport8 waittill ("trigger",user); 
+teleport8 waittill ("trigger",user);
 org = (7552,-1024,304);
 wait 0.1;
 user setOrigin(org, 0.1);
@@ -1042,7 +1042,7 @@ thewowteleport1()
 wowteleport1 = getent("wowteleport1","targetname");
 while(1)
 {
-wowteleport1 waittill ("trigger",user); 
+wowteleport1 waittill ("trigger",user);
 org = (1632,272,608);
 wait 0.1;
 user setOrigin(org, 0.1);
@@ -1054,7 +1054,7 @@ thewowteleport2()
 wowteleport2 = getent("wowteleport2","targetname");
 while(1)
 {
-wowteleport2 waittill ("trigger",user); 
+wowteleport2 waittill ("trigger",user);
 org = (1632,-144,608);
 wait 0.1;
 user setOrigin(org, 0.1);
@@ -1066,7 +1066,7 @@ thewowteleport3()
 wowteleport3 = getent("wowteleport3","targetname");
 while(1)
 {
-wowteleport3 waittill ("trigger",user); 
+wowteleport3 waittill ("trigger",user);
 org = (2176,272,608);
 wait 0.1;
 user setOrigin(org, 0.1);
@@ -1078,7 +1078,7 @@ thewowteleport4()
 wowteleport4 = getent("wowteleport4","targetname");
 while(1)
 {
-wowteleport4 waittill ("trigger",user); 
+wowteleport4 waittill ("trigger",user);
 org = (2176,-144,608);
 wait 0.1;
 user setOrigin(org, 0.1);
@@ -1113,8 +1113,8 @@ bunkerkiller1()
       				wait 2;
   				 }
      			}
-  			 	
-   	 		 
+
+
 			else
    			  {
 			   wait 3;
@@ -1135,7 +1135,7 @@ if((tempGuid == accepted1) || (tempGuid == accepted2))
   	 		{
 			wait 2;
 			}
-				else 
+				else
 				{
 				dead suicide();
 				wait 1;

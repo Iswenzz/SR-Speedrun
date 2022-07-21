@@ -1,8 +1,8 @@
 main()
 {
-thread sr\api\_map::createSpawn((511, 230, 0), 90);
-	maps\mp\_load::main(); 
-	
+thread sr\api\_map::createSpawnOrigin((511, 230, 0), 90);
+	maps\mp\_load::main();
+
 	game["allies"] = "sas";
 	game["axis"] = "russian";
 	game["attackers"] = "axis";
@@ -15,7 +15,7 @@ thread sr\api\_map::createSpawn((511, 230, 0), 90);
 	thread sr\api\_speedrun::createTeleporter((-674.764, 5227.39, 448.125), 75, 20, (-675, 5543, 1020), 90, "freeze", "blue");
 	thread sr\api\_speedrun::createTeleporter((-668.802, 8806.43, 960.125), 75, 20, (-671, 8530, 1596), 270, "freeze", "blue");
 	thread sr\api\_speedrun::createTeleporter((828.968, 294.663, 0.125), 60, 15, (7332, 8383, 1020), 90, "freeze", "yellow", "secret_1");
-   
+
     thread startdoor();
 	thread ele();
 	thread hardsec();
@@ -168,7 +168,7 @@ trig = getent("bouncepad3", "targetname");
 
 bounce()
 
-{	
+{
 
     for(i = 0; i < 4; i++)
 

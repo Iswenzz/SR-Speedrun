@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((112.125, -282, 0.125), 0);
+thread sr\api\_map::createSpawnOrigin((112.125, -282, 0.125), 0);
 trigger = spawn( "trigger_radius", (-4064.87, 1593.28, -63.875), 0, 96, 48 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 96;
@@ -14,23 +14,23 @@ trigger.radius = 96;
 	maps\mp\mp_deathrun_portal_sound_fx_v3::main();
 	maps\createart\mp_deathrun_portal_v3_art::main();
 	maps\mp\mp_deathrun_portal_v3_fx::main();
-   
+
 
 	precacheItem( "remington700_mp" );
 	precacheItem( "deserteagle_mp" );
-	
-	
-	
-	
+
+
+
+
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
-	
+
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
@@ -56,7 +56,7 @@ trigger.radius = 96;
 	// level.trig waittill("trigger");
 
 
-							
+
 
 }
 
@@ -65,9 +65,9 @@ trigger.radius = 96;
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -124,7 +124,7 @@ trap_3()
 	trig waittill( "trigger", who );
 	who PlaySound("button_synth_positive_01");
 	trig delete();
-	
+
 	brushGroup1[randomInt(brushGroup1.size)] notSolid();
 	brushGroup2[randomInt(brushGroup2.size)] notSolid();
 }
@@ -166,10 +166,10 @@ stairs()
 	stair17 = getEnt( "stair17", "targetname" );
 	stair18 = getEnt( "stair18", "targetname" );
 	stair19 = getEnt( "stair19", "targetname" );
-	stair20 = getEnt( "stair20", "targetname" );																
+	stair20 = getEnt( "stair20", "targetname" );
 
 	wait 0.5;
-	
+
 	stair1 movez( 16, 1 );
 	wait 0.2;
 	stair2 movez( 32, 1 );
@@ -209,7 +209,7 @@ stairs()
 	stair19 movez( 304, 1 );
 	wait 0.2;
 	stair20 movez( 320, 1 );
-	
+
 
 
 
@@ -221,7 +221,7 @@ clipdelete()
 	brush = getEnt( "clipdelete", "targetname" );
 
 	wait 0.5;
-	
+
 	trig delete();
 	brush delete();
 
@@ -321,10 +321,10 @@ finalDoor()
 	brush = getEnt( "door", "targetname" );
 
 	wait 0.5;
-	
+
 	trig delete();
 	brush delete();
-	
+
 }
 
 
@@ -332,9 +332,9 @@ finaldoor2()
 {
 	trig = getEnt( "triggerdoor1", "targetname" );
 	brush = getEnt( "finaldoorthing", "targetname" );
-	
+
 	wait 0.5;
-	
+
 	trig delete();
 	brush delete();
 

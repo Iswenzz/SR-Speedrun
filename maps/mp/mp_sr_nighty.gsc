@@ -1,16 +1,16 @@
 main()
 {
-thread sr\api\_map::createSpawn((-10682, -6165, -20936), 270);
+thread sr\api\_map::createSpawnOrigin((-10682, -6165, -20936), 270);
 	maps\mp\_load::main();
 	maps\mp\_compass::setupMiniMap("compass_mp_sr_pure_cancer");
- 
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
- 
+
 	setdvar("r_specularcolorscale","1");
 	setdvar("compassmaxrange","1600");
 	setdvar("r_glowbloomintensity0",".1");
@@ -32,7 +32,7 @@ tp1()
    ori.angles = (0,267,0);
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
 	 player thread sr_tp_safe(ori);
     }

@@ -1,21 +1,21 @@
 main()
 {
-thread sr\api\_map::createSpawn((1061, 12, 224), 360);
+thread sr\api\_map::createSpawnOrigin((1061, 12, 224), 360);
 maps\mp\_load::main();
-	
+
     game["allies"] = "sas";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
-     
+
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createTeleporter((6308.63, 3197.7, -767.875), 45, 20, (9274, 3842, -692), 360, "freeze", "blue", "normal_0");
 
@@ -30,13 +30,13 @@ thread trap11();
 }
 
 teleporters()
-{       
+{
  	entTransporter = getentarray( "teleporters", "targetname" );
 	if(isdefined(entTransporter))
 		for( i = 0; i < entTransporter.size; i++ )
 			entTransporter[i] thread transporter();
 }
- 
+
 transporter()
 {
 	if(self.classname == "trigger_use_touch")
@@ -58,8 +58,8 @@ door_b = getEnt("blue_door","targetname");
 door_r = getEnt("red_door","targetname");
 door_y = getEnt("yellow_door","targetname");
 door_g = getEnt("green_door","targetname");
-	
-wait 0.1;	
+
+wait 0.1;
 door_b delete();
 door_r delete();
 door_y delete();
@@ -108,7 +108,7 @@ roter = getEnt("t5as","targetname");
 
 wait 0.1;
 roter delete();
-		
+
 }
 
 trap7()
@@ -140,7 +140,7 @@ killtrig = getEnt("trap11killtrig","targetname");
 killtrig enablelinkto();
 killtrig linkto(wall);
 
-wait 0.1;	
+wait 0.1;
 wall movez(-500,0.1);
 
 }

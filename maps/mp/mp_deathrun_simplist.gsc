@@ -22,7 +22,7 @@
 //xfire: paap15
 main()
 {
-thread sr\api\_map::createSpawn((120, 108, 16), 270);
+thread sr\api\_map::createSpawnOrigin((120, 108, 16), 270);
 	thread sr\api\_speedrun::createNormalWays("^4Easy Way;^2Hard Way");
 	thread sr\api\_speedrun::createTeleporter((-53, -208, 76), 100, 150, (-969, -598, 16), 270, "freeze", "blue", "normal_0");
 	thread sr\api\_speedrun::createTeleporter((283, -208, 76), 100, 150, (1211, -595, 16), 270, "freeze", "green", "normal_1");
@@ -36,19 +36,19 @@ thread sr\api\_map::createSpawn((120, 108, 16), 270);
 	 level.spark = loadFX("deathrun/spark");
 	 level.spark2 = loadFX("deathrun/spark2");
 	 level.fire1 = loadFX("deathrun/fire1");
-	 
+
      game["allies"] = "sas";
      game["axis"] = "opfor";
      game["attackers"] = "axis";
      game["defenders"] = "allies";
      game["allies_soldiertype"] = "woodland";
      game["axis_soldiertype"] = "woodland";
-	 
+
 	 //dvars
 	 setdvar( "bg_falldamagemaxheight", "9999" );
      setdvar( "bg_falldamageminheight", "9998" );
 
-	
+
 	 //precache stuff
 	 precacheItem( "ak47_mp" );
 	 precacheItem( "deserteaglegold_mp" );
@@ -62,9 +62,9 @@ thread sr\api\_map::createSpawn((120, 108, 16), 270);
 	 precacheItem( "m40a3_acog_mp");
 	 precacheItem( "dragunov_mp" );
 	 precacheItem( "uzi_mp" );
-	 
-	 
-	 
+
+
+
 	 //thread
 	 thread start();
 	 thread trap1();
@@ -84,14 +84,14 @@ thread sr\api\_map::createSpawn((120, 108, 16), 270);
 	 /* [AUTO DELETE] GiveJumpersWeapon(); */
 	 /* [AUTO DELETE] secret(); */
 	 /* [AUTO DELETE] AddTestClients(); */
-	
+
  }
 
- 
+
  start()
  {
      start = getent("start","targetname");
-	 quake = getent("quake","targetname");      
+	 quake = getent("quake","targetname");
      sound = getent("sound","targetname");
 	 // wait(8);
 	 playLoopedFX(level.spark, 1, (-188, 260, 28));
@@ -101,11 +101,11 @@ thread sr\api\_map::createSpawn((120, 108, 16), 270);
 	 // wait 1;
 	 // /* [AUTO DELETE] iPrintLn ("^2Youtube ^1http://www.youtube.com/user/paap15"); */
 	 // wait 0.5;
-	 //  [AUTO DELETE] iPrintLn ("^2xfire ^1paap15"); 
+	 //  [AUTO DELETE] iPrintLn ("^2xfire ^1paap15");
 	 // wait 0.5;
 	 // /* [AUTO DELETE] iPrintLn ("^2Thanks you ^1Spicy Weiner ^2For emotional support"); */
 	 // wait(5);
-	 
+
 	 start delete();
 	 playLoopedFX(level.flash, 1, (128, -240, 32));
 	 playFX(level.burst, (288, -256, 48));
@@ -126,7 +126,7 @@ flip()//letter at start. Got idea from map terror
 	 flip5 = getent("flip5", "targetname");
 	 flip6 = getent("flip6", "targetname");
 	 flip7 = getent("flip7", "targetname");
-	 
+
 	 while(1)
 	 {
 	     flip rotateyaw (180, 4);
@@ -146,42 +146,42 @@ secret()//find me if you can
      trig = getent("trig_secret", "targetname");
 	 secret = getent("secret", "targetname");
 	 gift = getent("gift","targetname");
-	 
+
 	 trig waittill ("trigger", user);
 	 trig delete();
-	 
+
 	 secret notSolid();
-	 
+
 	 gift waittill ("trigger",player);
 	 gift delete();
-	 
+
 	 // /* [AUTO DELETE] player giveWeapon ("rpg_mp", 1 ); */
 	 // wait 0.01;
 	 // /* [AUTO DELETE] player SwitchToWeapon("rpg_mp"); */
-	 //  [AUTO DELETE] user iprintlnbold("A gift from me to you :D"); 
+	 //  [AUTO DELETE] user iprintlnbold("A gift from me to you :D");
 	 // /* [AUTO DELETE] user iPrintLn("Enjoy the picture ; */)");
 
-	 
+
 }
 
-	
+
 GiveJumpersWeapon( weap )
 {
 	 if( !isDefined( weap ) || weap == "" )
 		return;
- 
+
 	 players = getEntArray( "player", "classname" );
 	 for( i=0; i<players.size; i++ )
 	{
 		 if( !isAlive( players[i] ) || players[i].pers["team"] != "allies" )
 			continue;
-			
+
          /* [AUTO DELETE] players[i] TakeAllWeapons(); */
 		 wait 0.01;
 		 /* [AUTO DELETE] players[i] giveWeapon( weap ); */
 		 /* [AUTO DELETE] players[i] giveMaxAmmo( weap ); */
 		 players[i] SetSpawnWeapon( weap );
-		
+
 	}
 }
 
@@ -194,14 +194,14 @@ trap1()
 	level endon("trigger");
      trig = getent("trap1_trig", "targetname");
 	 up = getent("trap1_up", "targetname");
-	 
+
 	 trig waittill ("trigger", player);
 	 trig delete();
-	 
+
 	 up moveZ (69, 1);
 	 wait 4;
 	 up moveZ (-69, 3);
-	 
+
 }
 
 
@@ -211,10 +211,10 @@ trap2()
      trig = getent("trap2_trig", "targetname");
 	 spin = getent("trap2_spin", "targetname");
 	 spin1 = getent("trap2_spin1", "targetname");
-	 
+
 	 trig waittill ("trigger", player);
 	 trig delete();
-	 
+
 	 while(1)
 	 {
 	     spin rotateroll (180, 0.6);
@@ -230,10 +230,10 @@ trap3()
      trig = getent("trap3_trig", "targetname");
 	 plat = getent("trap3_plat", "targetname");
 	 plat2 = getent("trap3_plat2", "targetname");
-	 
+
 	 trig waittill ("trigger", player);
 	 trig delete();
-	 
+
 	 while(1)
 	 {
 	     plat moveZ (64, 0.8);
@@ -252,10 +252,10 @@ trap4()
      trig = getent("trap4_trig", "targetname");
 	 push = getent("trap4_push", "targetname");
 	 push2 = getent("trap4_push2", "targetname");
-	
+
 	 trig waittill ("trigger", player);
 	 trig delete();
-	 
+
 	 while(1)
 	 {
 	     push moveX (-400, 0.6);
@@ -274,10 +274,10 @@ trap5()
      trig = getent("trap5_trig", "targetname");
 	 slide = getent("trap5_slide", "targetname");
 	 slide2 = getent("trap5_slide2", "targetname");
-	 
+
 	 trig waittill ("trigger", player);
 	 trig delete();
-	 
+
 	 while(1)
 	 {
 	     slide moveX (150, 1.5);
@@ -287,7 +287,7 @@ trap5()
 		  slide2 moveZ (-48, 2);
 		 wait 0.3;
 		}
-	 
+
 }
 
 
@@ -296,10 +296,10 @@ trap6()
 	level endon("trigger");
      trig = getent("trap6_trig", "targetname");
 	 sp = getent("trap6_sp", "targetname");
-	 
+
 	 trig waittill ("trigger", player);
 	 trig delete();
-	 
+
 	 while(1)
 	 {
 	     sp rotateyaw (180,3);
@@ -313,10 +313,10 @@ trap7()
 	level endon("trigger");
      trig = getent("trap7_trig", "targetname");
 	 down = getent("trap7_down", "targetname");
-	 
+
 	 trig waittill ("trigger", player);
 	 trig delete();
-	 
+
 	 while(1)
 	 {
 	     down moveZ (-320,0.3);
@@ -332,10 +332,10 @@ trap8()
 	level endon("trigger");
      trig = getent("trap8_trig", "targetname");
 	 aaa = getent("trap8_aaa", "targetname");
-	 
+
 	 trig waittill ("trigger", player);
 	 trig delete();
-	 
+
 	 while(1)
 	 {
 	     aaa moveX (400,0.8);
@@ -351,10 +351,10 @@ trap9()
 	level endon("trigger");
      trig = getent("trap9_trig", "targetname");
 	 bbb = getent("trap9_bbb", "targetname");
-	 
+
 	 trig waittill ("trigger", player);
 	 trig delete();
-	 
+
 	 while(1)
 	 {
 	     bbb moveZ (-10,0.1);
@@ -371,7 +371,7 @@ trap10()
      trig = getent("trap10_trig", "targetname");
 	 ccc = getent("trap10_ccc", "targetname");
 	 ccc2 = getent("trap10_ccc2", "targetname");
-	
+
 	 trig waittill ("trigger", player);
 	 trig delete();
 
@@ -383,16 +383,16 @@ trap10()
 		}
 }
 
-	
+
 trap11()
  {
-	level endon("trigger");   
+	level endon("trigger");
 	 trig = getent("trap11_trig", "targetname");
 	 ddd = getent("trap11_ddd", "targetname");
-	 
+
 	 trig waittill ("trigger", player);
 	 trig delete();
-	 
+
 	 while(1)
 	 {
 	     ddd moveY (-240, 1);
@@ -408,10 +408,10 @@ trap12()
 	level endon("trigger");
      trig = getent("trap12_trig", "targetname");
 	 eee = getent("trap12_eee", "targetname");
-	 
+
 	 trig waittill ("trigger", player);
 	 trig delete();
-	 
+
 	 while(1)
 	 {
 	     eee rotatepitch (180, 1);
@@ -427,7 +427,7 @@ end()//end room add more weapons if you wish
 	 enddoor2 = getent("enddoor2", "targetname");
 	 apush = getent("apush", "targetname");
 	 rise = getent("rise", "targetname");
-	 
+
 	 // end waittill ("trigger", player);
 	 end delete();
 	 enddoor delete();
@@ -436,8 +436,8 @@ end()//end room add more weapons if you wish
 	 playloopedFX(level.fire1,1, (32, -8144, 16));
 	 playloopedFX(level.fire1,1, (300, -8144, 16));
 	 /* [AUTO DELETE] iprintlnbold("^2"+ player.name + " "+ "^1Finished ^2First"); *///change this if you want
-	 
-	 
+
+
 	 random = randomInt(9);
      x = randomInt(9);
 	 if(x == 0)
@@ -495,7 +495,7 @@ end()//end room add more weapons if you wish
 	     /* [AUTO DELETE] level.activ TakeAllWeapons(); */
 	     /* [AUTO DELETE] level.activ giveWeapon ("m40a3_acog_mp" ); */
 		}
-		
+
 	 wait 6;
 	 enddoor2 delete();
 }
@@ -536,7 +536,7 @@ TestClient(team)
 
     while(!isdefined(self.pers["team"]))
         wait .05;
-        
+
     self notify("menuresponse", game["menu_team"], team);
     wait 0.5;
 }

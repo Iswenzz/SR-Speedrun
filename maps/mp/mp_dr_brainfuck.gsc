@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-262, 259, 16), 360);
+thread sr\api\_map::createSpawnOrigin((-262, 259, 16), 360);
 maps\mp\_load::main();
 
 	game["allies"] = "sas";
@@ -9,7 +9,7 @@ maps\mp\_load::main();
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("r_glowbloomintensity0", ".25");
 	setdvar("r_glowbloomintensity1", ".25");
@@ -29,12 +29,12 @@ thread stage4();
 thread secret();
 
 ////////////////Double Bounce
-level.knockback = getDvarInt("g_knockback");	
-bounce   = getEntArray("bounce", "targetname");    
+level.knockback = getDvarInt("g_knockback");
+bounce   = getEntArray("bounce", "targetname");
 for(i = 0;i < bounce.size;i++)
 bounce[i] thread doublebounce();
 
-} 
+}
 
 secret()
 {
@@ -47,7 +47,7 @@ thread laser_secret();
 part2()	{
 	trigger = getent ("part2_trigger", "targetname");
 	target = getent ("part2_target", "targetname");
-	
+
 	for (;;){
 		trigger waittill ("trigger", player);
 		player freezeControls(true);
@@ -58,11 +58,11 @@ part2()	{
 	}
 }
 
-part3()	
+part3()
 {
 	trigger = getent ("part3_trigger", "targetname");
 	target = getent ("part3_target", "targetname");
-	
+
 	for (;;){
 		trigger waittill ("trigger", player);
 		player freezeControls(true);
@@ -73,11 +73,11 @@ part3()
 	}
 }
 
-secret1_finish() 
+secret1_finish()
 {
 	trigger = getent ("part4_trigger", "targetname");
 	target = getent ("part4_target", "targetname");
-	
+
 	for (;;)
 	{
 		trigger waittill ("trigger", player);
@@ -87,7 +87,7 @@ secret1_finish()
 	}
 }
 
-laser_secret() 
+laser_secret()
 {
 laser1 = getent ("laser_secret_1", "targetname");
 laser2 = getent ("laser_secret_2", "targetname");
@@ -104,7 +104,7 @@ laser3 hide();
 platform moveX (250,0.1);
 }
 
-kickstart() 
+kickstart()
 {
 object2 = getent ("ground_start", "targetname");
 
@@ -113,11 +113,11 @@ object2 notsolid();
 object2 hide();
 }
 
-afterkick() 
+afterkick()
 {
 object = getent ("notsolid_wall1", "targetname");
-	
-wait 0.1;	
+
+wait 0.1;
 object notsolid();
 object hide();
 }
@@ -128,7 +128,7 @@ doublebounce()	// script by  DanTheMan
 {
     for(;;){
 		self waittill("trigger", player);
-		
+
 		if(!isDefined(player.bouncing))
 		player thread player_bounce(self);
     }
@@ -161,13 +161,13 @@ player_bounce(trigger)
     while(self isTouching(trigger))
     wait 0.05;
     self.bouncing = undefined;
-}	
+}
 
-stage4() 
+stage4()
 {
 	trigger = getent ("stage4_teleport", "targetname");
 	target = getent ("stage4_target", "targetname");
-	
+
 	for(;;)	{
 		trigger waittill ("trigger", player);
 		player freezeControls(true);

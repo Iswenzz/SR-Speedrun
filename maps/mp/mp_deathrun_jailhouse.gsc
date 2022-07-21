@@ -3,7 +3,7 @@
 // Do not Change anything please if you want to change ask me before! xfire:wespatrick
 main()
 {
-thread sr\api\_map::createSpawn((976, 895, 64), 180);
+thread sr\api\_map::createSpawnOrigin((976, 895, 64), 180);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
@@ -21,7 +21,7 @@ trigger.radius = 96;
 	game["defenders"] = "axis";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
+
 	//Custom Scripts
 
 	// Call functions
@@ -45,10 +45,10 @@ trigger.radius = 96;
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 
-    for(;;) 
+    for(;;)
     {
         level waittill( "connected", player );
 
@@ -59,7 +59,7 @@ way_connect()
 defineentities()
 {
 	//Define Triggers
-	
+
 	level.trigger1 = getent("t1","targetname");// Trap 1 Remove 2 brushes
 	level.trigger2 = getent("t2","targetname");// Trap 2 Remove 2 brushes
 	level.trigger3 = getent("t3","targetname");// Trap 3 Remove Ground + oil
@@ -68,66 +68,66 @@ defineentities()
 	level.trigger6 = getent("t6","targetname");// Trap 6 Pushers
 	level.trigger7 = getent("t7","targetname");// Trap 7 Rolls
 	level.trigger8 = getent("t8","targetname");// Trap 8 Kill Triggers from top and ground
-	
-	
-	
+
+
+
 	//Define Traps
-	
+
 	// Trap 1
 	level.trap1_1 = getEntArray("trap1_1","targetname");
 	level.trap1_2 = getEntArray("trap1_2","targetname");
-	
+
 	// Trap 2
 	level.trap2_1 = getEntArray("trap2_1","targetname");
 	level.trap2_2 = getEntArray("trap2_2","targetname");
-	
+
 	// Trap 3
 	level.trap3 = getent("trap3","targetname");
 	level.trap3_oil = getent("trap3_oil","targetname");
-	
+
 	// Trap 4
 	level.trap4 = getent("trap4","targetname");
 	level.trap4_kill = getent("trap4_kill","targetname");
 	level.trap4_2 = getent("trap4_2","targetname");
 	level.trap4_2_kill = getent("trap4_2_kill","targetname");
-	
+
 	// Trap 5
 	level.trap5 = getent("trap5","targetname");
 	level.trap5_2 = getent("trap5_2","targetname");
 	level.trap5_kill = getent("trap5_kill","targetname");
 	level.trap5_2_kill = getent("trap5_2_kill","targetname");
-	
+
 	// Trap 6
 	level.trap6 = getent("trap6_1","targetname");
 	level.trap6_1 = getent("trap6_2","targetname");
-	
+
 	// Trap 7
 	level.trap7_1 = getent("trap7_1","targetname");
 	level.trap7_2 = getent("trap7_2","targetname");
-	
+
 	// Trap 8
 	level.trap8 = getent("trap8","targetname");
 	level.trap8_kill = getent("trap8_kill","targetname");
 	level.trap8_2 = getent("trap8_2","targetname");
 	level.trap8_2_kill = getent("trap8_2_kill","targetname");
-	
+
 	// Define Others
-	
+
 	// Startingdoor
 	level.startdoor = getent("door_start","targetname");//Door
 	level.startdoor_trig = getent ("tstart","targetname");//Trigger_Door
-	
+
 	// Endingdoor
 	level.endingdoor = getent("endingdoor","targetname"); //Enddoor
 	level.endingdoor_trig = getent("tend","targetname"); //Trigger_Enddoor
-	
+
 	// Mover 1
 	level.mover1 = getent("mover","targetname");
 	level.mover_blood = getent("mover_blood","targetname");
-	
+
 	// Mover 2
 	level.mover2 = getent("mover2","targetname");
-	
+
 
 }
 hintstrings()
@@ -381,4 +381,4 @@ Transporter()
     wait(0.10);
 	}
   }
-}	
+}

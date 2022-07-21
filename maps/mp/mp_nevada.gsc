@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-2789, -1452, -368), 0);
+thread sr\api\_map::createSpawnOrigin((-2789, -1452, -368), 0);
 
 	maps\mp\_load::main();
 	maps\mp\mp_nevada\_teleport::main();
@@ -33,17 +33,17 @@ thread sr\api\_map::createSpawn((-2789, -1452, -368), 0);
 way_connect()
 {
     wait 0.05;
-	
+
     level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
-	
+
 	thread secret_1();
 
     sr\api\_speedrun::createNormalWays("Easy Way;");
 	sr\api\_speedrun::createSecretWays("Hard Way;");
-	
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
 
@@ -82,7 +82,7 @@ secret_1_end()
 	for(;;)
 	{
 		trig waittill("trigger",player);
-		
+
 player thread sr\api\_speedrun::finishWay("secret_0");
 	}
 }

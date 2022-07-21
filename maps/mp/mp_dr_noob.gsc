@@ -2,7 +2,7 @@
 
 // Discord : Krista26<3#2595
 
-//Special Thanks CM'Nobody for help 
+//Special Thanks CM'Nobody for help
 
 //Thanks Ohh Rexy<3 for help
 
@@ -15,7 +15,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((76.125, 120, 32.125), 270);
+thread sr\api\_map::createSpawnOrigin((76.125, 120, 32.125), 270);
     maps\mp\_load::main();
 
     game["allies"] = "marines";
@@ -24,7 +24,7 @@ thread sr\api\_map::createSpawn((76.125, 120, 32.125), 270);
     game["defenders"] = "allies";
     game["allies_soldiertype"] = "desert";
     game["axis_soldiertype"] = "desert";
-    
+
     setDvar("r_gamma","1");
     setDvar("r_specularcolorscale", "1");
     setDvar("r_glowbloomintensity0","1");
@@ -47,8 +47,8 @@ thread sr\api\_map::createSpawn((76.125, 120, 32.125), 270);
     addtriggerTolist("trig_trap6");
     addtriggerTolist("trig_trap7");
 	addtriggerTolist("trig_trap8");
-	
-	
+
+
 	thread trap1();
 	thread trap2();
 	thread trap3();
@@ -181,12 +181,12 @@ bounce_sniper()
         player giveMaxAmmo( "remington700_mp" );
 		player switchToWeapon( "m40a3_mp" );
 	}
-	
+
 }
 teleport_acti1() {
 	trigger = getent ("acti", "targetname");
 	target = getent ("orig_acti", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -196,7 +196,7 @@ teleport_acti1() {
 teleport_1() {
 	trigger = getent ("secret", "targetname");
 	target = getent ("secret_jumper", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 	}
@@ -204,7 +204,7 @@ teleport_1() {
 teleport_2() {
 	trigger = getent ("secret_end", "targetname");
 	target = getent ("secret_jumper_end", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -215,7 +215,7 @@ teleport_3() {
 	trigger = getent ("trig_bounce", "targetname");
 	target = getent ("bounceroomactivator", "targetname");
 	target = getent ("bounceroomjumper", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -225,7 +225,7 @@ teleport_3() {
 teleport_acti2() {
 	trigger = getent ("acti2", "targetname");
 	target = getent ("orig_acti2", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -235,7 +235,7 @@ teleport_acti2() {
 teleport_acti3() {
 	trigger = getent ("acti_fail", "targetname");
 	target = getent ("acti_fail_spawn", "targetname");
-	
+
 	while(1) {
 		trigger waittill("trigger", player);
 		player setorigin (target.origin);
@@ -247,12 +247,12 @@ trap1()
 	trig = getent ("trig_trap1", "targetname");
     trap = getent ("trap_1", "targetname");
     trig setHintString ("^3Press [&&1] to activate");
-	     
-	while(1) 
+
+	while(1)
     {
         trig waittill("trigger", player);
         trig delete();
-		
+
 		trap hide();
 		trap notSolid();
 		wait 3;
@@ -267,7 +267,7 @@ trap2()
     trap2 = getent ("trap_2_2", "targetname");
     trig setHintString ("^3Press [&&1] to activate");
 
-      while(1) 
+      while(1)
     {
           trig waittill("trigger", player);
         trig delete();
@@ -295,7 +295,7 @@ trap3()
 
 	trap2 enablelinkto();
 	trap2 linkto(trap1);
-      while(1) 
+      while(1)
     {
           trig waittill("trigger", player);
         trig delete();
@@ -307,7 +307,7 @@ trap3()
             wait 3;
 			trap2 moveY(70, 3);
             wait 0.1;
-            trap1 moveY(-70, 3); 
+            trap1 moveY(-70, 3);
             wait 100;
         }
     }
@@ -318,18 +318,18 @@ trap4()
     trap = getent ("trap_4", "targetname");
     trig setHintString ("^3Press [&&1] to to activate");
 
-     while(1) 
+     while(1)
     {
         trig waittill("trigger", player);
         trig delete();
-		
+
 		for(;;)
 		{
-			trap rotateYaw(-360, 1.5);	
+			trap rotateYaw(-360, 1.5);
 			wait 1.51;
-			trap rotateYaw(-360, 1.5);	
+			trap rotateYaw(-360, 1.5);
 			wait 1.51;
-			trap rotateYaw(-360, 1.5);	
+			trap rotateYaw(-360, 1.5);
 			wait 1.51;
 
 			wait 5;
@@ -341,12 +341,12 @@ trap5()
 	trig = getent ("trig_trap5", "targetname");
     trap = getent ("trap_5", "targetname");
     trig setHintString ("^3Press [&&1] to activate");
-	     
-	while(1) 
+
+	while(1)
     {
         trig waittill("trigger", player);
         trig delete();
-		
+
 		trap hide();
 		wait 10;
 		trap show();
@@ -357,12 +357,12 @@ trap6()
 	trig = getent ("trig_trap6", "targetname");
     trap = getent ("trap_6", "targetname");
     trig setHintString ("^3Press [&&1] to activate");
-	     
-	while(1) 
+
+	while(1)
     {
         trig waittill("trigger", player);
         trig delete();
-		
+
 		trap hide();
 		trap notSolid();
 		wait 3;
@@ -375,12 +375,12 @@ trap7()
 	trig = getent ("trig_trap7", "targetname");
     trap = getent ("trap_7", "targetname");
     trig setHintString ("^3Press [&&1] to to activate");
-	     
-	 while(1) 
+
+	 while(1)
     {
         trig waittill("trigger", player);
         trig delete();
-		
+
 		trap notSolid();
 	}
 }
@@ -389,12 +389,12 @@ trap8()
 	trig = getent ("trig_trap8", "targetname");
     trap = getent ("trap_8", "targetname");
     trig setHintString ("^3Press [&&1] to to activate");
-	     
-	 while(1) 
+
+	 while(1)
     {
         trig waittill("trigger", player);
         trig delete();
-		
+
 		trap notSolid();
 	}
 }

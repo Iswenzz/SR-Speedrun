@@ -5,7 +5,7 @@ xfire: paap15
 */
 main()
 {
-thread sr\api\_map::createSpawn((-493.764, 253.429, 21.188), 235);
+thread sr\api\_map::createSpawnOrigin((-493.764, 253.429, 21.188), 235);
 trigger = spawn( "trigger_radius", (-612.406, -2376.85, -2087.88), 0, 75, 95 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 75;
@@ -15,7 +15,7 @@ trigger.radius = 75;
 	 maps\mp\mp_deathrun_island\endrooms::main();
 	 level._effect["islandfire"] = loadFX("deathrun/islandfire");
 	 level.greenspark = LoadFX("deathrun/greenspark");
-	 
+
 	 game["allies"] = "marines";
      game["axis"] = "opfor";
      game["attackers"] = "axis";
@@ -28,8 +28,8 @@ trigger.radius = 75;
 	 precacheItem( "ak47_mp" );
 	 precacheItem( "m14_silencer_mp" );
 	 precacheItem( "brick_blaster_mp" );
-	 
-	 
+
+
 	// thread platform();
 	// thread music();
 	 thread sheep();
@@ -48,7 +48,7 @@ trigger.radius = 75;
 	 thread jaja();
      thread way_connect();
      checktele();
-	 
+
 	 //setExpFog(3000, 4000, 0.4, 0.425, 0.44, 0.0);
 }
 
@@ -56,10 +56,10 @@ trigger.radius = 75;
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Island Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -107,27 +107,27 @@ music()
 {
      wait 15;
      ambientPlay("islandmusic");
-	 level.xx5 = newHudElem();	
-	 level.xx5.x = 0;	
+	 level.xx5 = newHudElem();
+	 level.xx5.x = 0;
 	 level.xx5.y = 150;
-	 level.xx5.horzAlign = "center";	
+	 level.xx5.horzAlign = "center";
 	 level.xx5.vertAlign = "middle";
 	 level.xx5.alignX = "center";
 	 level.xx5.alignY = "middle";
-	 level.xx5.sort = 102;	
-	 level.xx5.foreground = 1;	
-	 level.xx5.archived = true;	
+	 level.xx5.sort = 102;
+	 level.xx5.foreground = 1;
+	 level.xx5.archived = true;
 	 level.xx5 fadeOverTime(2);
-	 level.xx5.alpha = 1;	
+	 level.xx5.alpha = 1;
 	 level.xx5.fontScale = 4.6;
-	 level.xx5.hidewheninmenu = false;	
-	 level.xx5.color = (236,0,139);	
+	 level.xx5.hidewheninmenu = false;
+	 level.xx5.color = (236,0,139);
 	 level.xx5.glowColor = (0.3, 0.0, 0.3);
 	 level.xx5.glowAlpha = 1;
-	 level.xx5.label = &"MitiS - Born";	
+	 level.xx5.label = &"MitiS - Born";
 	 wait 4;
 	 level.xx5 fadeOverTime(4);
-	 level.xx5.alpha = 0;	
+	 level.xx5.alpha = 0;
 	 wait 10;
 	 level.xx5 destroy();
 }
@@ -140,8 +140,8 @@ start = getent("sheepstart", "targetname");
 end = getent("sheepend", "targetname");
 start2 = getent("wizardstart", "targetname");
 end2 = getent("wizardend", "targetname");
-trig = getent("sheeptrig", "targetname"); 
-brush2 = getent("leaver", "targetname"); 
+trig = getent("sheeptrig", "targetname");
+brush2 = getent("leaver", "targetname");
 brush moveto (end.origin, 0.1);
 brush rotateto (end.angles, 0.1);
 brush3 moveto (end2.origin, 0.1);
@@ -216,7 +216,7 @@ player setClientDvar( "r_specularMap", 1);
 deagle()
 {
 trig = getent("deagle", "targetname");
-trig waittill("trigger", player);	
+trig waittill("trigger", player);
 player FreezeControls(1);
 player iprintlnbold("^1Creating life...");
 wait 1;
@@ -240,17 +240,17 @@ MESSAGE ME ON XFIRE WHILE THE PRICES ARE LOW!!!!!
 ᵗʰᶦˢ ᶦˢ ᵃ ʲᵒᵏᵉ
 */
 vip()
-{	
+{
 	level.accepted1 = "11b05456"; //Sheep
 
 	while (1)
 	{
 		level waittill( "player_spawn", player );
-		
+
 		friend = getSubStr(player getGuid(), 24, 32);
-		
+
 		if((friend == level.accepted1))
-		{	
+		{
 		    wait 1;
 			player detachAll();
 			player setModel("playermodel_baa_joker");
@@ -273,42 +273,42 @@ player giveweapon( "m14_silencer_mp");
 player switchToWeapon( "m14_silencer_mp" );
 }
 
-addTestClients() 
-{ 
-setDvar("scr_testclients", ""); 
-wait 1; 
-for(;;) 
-{ 
-if(getdvarInt("scr_testclients") > 0) 
-break; 
-wait 1; 
-} 
-testclients = getdvarInt("scr_testclients"); 
-setDvar( "scr_testclients", 0 ); 
-for(i=0;i<testclients;i++) 
-{ 
-ent[i] = addtestclient(); 
+addTestClients()
+{
+setDvar("scr_testclients", "");
+wait 1;
+for(;;)
+{
+if(getdvarInt("scr_testclients") > 0)
+break;
+wait 1;
+}
+testclients = getdvarInt("scr_testclients");
+setDvar( "scr_testclients", 0 );
+for(i=0;i<testclients;i++)
+{
+ent[i] = addtestclient();
 
-if (!isdefined(ent[i])) 
-{ 
-println("Could not add test client"); 
-wait 1; 
-continue; 
-} 
-ent[i].pers["isBot"] = true; 
-ent[i] thread TestClient("autoassign"); 
-} 
-thread addTestClients(); 
-} 
-TestClient(team) 
-{ 
-self endon( "disconnect" ); 
+if (!isdefined(ent[i]))
+{
+println("Could not add test client");
+wait 1;
+continue;
+}
+ent[i].pers["isBot"] = true;
+ent[i] thread TestClient("autoassign");
+}
+thread addTestClients();
+}
+TestClient(team)
+{
+self endon( "disconnect" );
 
-while(!isdefined(self.pers["team"])) 
-wait .05; 
+while(!isdefined(self.pers["team"]))
+wait .05;
 
-self notify("menuresponse", game["menu_team"], team); 
-wait 0.5; 
+self notify("menuresponse", game["menu_team"], team);
+wait 0.5;
 //scr_testclients 4
 }
 
@@ -341,12 +341,12 @@ for(;;)
 	 }
 }
 
-beta() 
+beta()
 {
      level.xxx2 = newHudElem();	//hud visible for all, to make it only visible for one replace level. with self. and change newHudElem() to newClientHudElem(self)
 	 level.xxx2.x = 10;	//position on the x-axis
 	 level.xxx2.y = -200;	//position on the <-axis
-	 level.xxx2.horzAlign = "left";	
+	 level.xxx2.horzAlign = "left";
 	 level.xxx2.vertAlign = "middle";
 	 level.xxx2.alignX = "left";
 	 level.xxx2.alignY = "middle";
@@ -361,19 +361,19 @@ beta()
 }
 
 fx() //Thank you blade for this
-{ 
-	{ 
-		islandfire = getentarray("fire1", "targetname"); 
-		for(i=0;i<islandfire.size;i++) 
-		{ 
-			spawn_islandfire[i] = maps\mp\_utility::createOneshotEffect( "islandfire" ); 
-			spawn_islandfire[i].v[ "origin" ] = islandfire[i].origin; 
-			spawn_islandfire[i].v[ "angles" ] = ( 270, 0, 0 ); 
-			spawn_islandfire[i].v[ "fxid" ] = "islandfire"; 
-			spawn_islandfire[i].v[ "delay" ] = -13; 
-			spawn_islandfire[i].v[ "soundalias" ] = "fire_metal_large"; 
-		} 
-	} 
+{
+	{
+		islandfire = getentarray("fire1", "targetname");
+		for(i=0;i<islandfire.size;i++)
+		{
+			spawn_islandfire[i] = maps\mp\_utility::createOneshotEffect( "islandfire" );
+			spawn_islandfire[i].v[ "origin" ] = islandfire[i].origin;
+			spawn_islandfire[i].v[ "angles" ] = ( 270, 0, 0 );
+			spawn_islandfire[i].v[ "fxid" ] = "islandfire";
+			spawn_islandfire[i].v[ "delay" ] = -13;
+			spawn_islandfire[i].v[ "soundalias" ] = "fire_metal_large";
+		}
+	}
 }
 
 jaja()

@@ -1,9 +1,9 @@
-main() 
+main()
 {
-thread sr\api\_map::createSpawn((-2, 15, 16), 90);
+thread sr\api\_map::createSpawnOrigin((-2, 15, 16), 90);
 	maps\mp\mp_dr_quick_fx::main();
 	maps\mp\_load::main();
-    
+
 		thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
 	game["allies"] = "marines";
@@ -14,7 +14,7 @@ thread sr\api\_map::createSpawn((-2, 15, 16), 90);
 	game["axis_soldiertype"] = "desert";
 
 	setDvar("bg_FallDamageMaxHeight","99999");
-	setDvar("bg_FallDamageMinHeight","99998"); 
+	setDvar("bg_FallDamageMinHeight","99998");
 
 	thread start();
 	thread moveplat();

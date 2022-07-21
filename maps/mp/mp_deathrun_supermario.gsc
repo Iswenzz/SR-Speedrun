@@ -1,7 +1,7 @@
 /* Script map supermario beta by MR-X*/
 main()
 {
-thread sr\api\_map::createSpawn((-227.567, 194.154, 8.125), 0);
+thread sr\api\_map::createSpawnOrigin((-227.567, 194.154, 8.125), 0);
 trigger = spawn( "trigger_radius", (293.538, -1472, 8.12501), 0, 40, 50 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 40;
@@ -11,7 +11,7 @@ trigger.radius = 40;
 	//setExpFog(500, 3500, .5, 0.5, 0.45, 0);
 	//ambientPlay("mario_ambient");
 	//VisionSetNaked( "mp_deathrun_supermario" );
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "russian";
 	game["attackers"] = "axis";
@@ -72,7 +72,7 @@ trap1 ()
 		wait 1 ;
 		}
 	}
-	
+
 trap2 ()
 	{
 	part1 = getentarray ("part_1" ,"targetname");
@@ -83,77 +83,77 @@ trap2 ()
 	part1[randomInt(part1.size)] notsolid();
     part2[randomInt(part2.size)] notsolid();
 	}
-	
+
 trap3 ()
 	{
 	trig_3 = getent ("trig3","targetname");
 	brush_3 = getent ("brush_3","targetname");
 	killa = getent ("kill","targetname");
 	//brush = getent (brush_3.target, "targetname");
-	
+
 	trig_3 waittill ("trigger");
 	trig_3 delete ();
-	
+
 	//oldorigin = brush_3.origin ;
-	
+
 	killa enablelinkto ();
 	killa linkto (brush_3);
-	
+
 	brush_3 rotateroll(180,1);
 	wait 4 ;
 	brush_3 rotateroll (-180, 1 );
-	wait 4 ; 
+	wait 4 ;
 	}
 plat()
 	{
 	platform = getent ("platform","targetname");
 	mov = getent (platform.target , "targetname");
-	
+
 	oldorigin = platform.origin ;
-	
+
 	while (1)
 		{
 		platform moveto (mov.origin , 2 );
 		wait 2.5 ;
 		platform moveto (oldorigin , 2 );
-		wait 2.5 ; 
+		wait 2.5 ;
 		}
-		
+
 	}
-	
+
 trap4 ()
 	{
 	trig_4 = getent ("trig4","targetname");
 	spikes = getent ("spikes","targetname");
 	kill1 = getent ("kill1","targetname");
-	
+
 	trig_4 waittill ("trigger",player);
 	trig_4 delete ();
-	
+
 	kill1 enablelinkto();
 	kill1 linkto (spikes);
 	spikes movez (24 , 0.1);
 	wait 2;
-	
+
 	spikes movez (-24 , 0.5 );
 	wait 2 ;
-	
+
 	}
-	
+
 trap5 ()
 	{
 	trig_5 = getent ("trig5","targetname");
 	brush_5 = getent ("brushro","targetname");
-	
+
 	trig_5 waittill ("trigger",player);
 	trig_5 delete ();
-	
+
 	while (1)
 		{
 		brush_5 rotateyaw (360 , 4);
 		wait 1 ;
 		}
-		
+
 	}
 
 trap6 ()
@@ -166,17 +166,17 @@ trap6 ()
 	half_1[randomInt(half_1.size)] delete();
     half_2[randomInt(half_2.size)] delete();
 	}
-	
+
 moving ()
 	{
 	br1 = getent ("br1","targetname");
 	br2 = getent ("br2","targetname");
 	b3 = getent (br1.target,"targetname");
 	b4 = getent (br2.target,"targetname");
-	
+
 	oldorigin1 = br1.origin;
 	oldorigin2 = br2.origin;
-	
+
 	while (1)
 		{
 		br1 moveto(b3.origin , 1.5);
@@ -193,23 +193,23 @@ trap7()
 {
 	hid = getent ( "hid", "targetname" );
 	hid hide ();
-	
+
 	sh = getent( "sh", "targetname" );
 	teleporter = getent( "teleporter", "targetname" );
 	fill = getent( "fill", "targetname" );
 	trig_7 = getent( "trig7", "targetname" );
-	
+
 	trig_7 waittill( "trigger", player );
 	trig_7 delete();
-	
+
 	wait 0.1;
 	hid show();
 	sh hide();
-	
+
 	time = 10;
 	for( i = 0; i < time*5; i++ )
 	{
-		players = getEntArray( "player", "classname" );	
+		players = getEntArray( "player", "classname" );
 		for( j = 0; j < players.size; j++ )
 		{
 			if( players[j].sessionstate == "playing" && players[j] isTouching ( teleporter ) )
@@ -224,43 +224,43 @@ trap7()
 	sh show();
 	teleporter delete();
 }
-// <===	
-	
+// <===
+
 trap8 ()
 	{
 	trig_8 = getent ("trig8","targetname");
 	brush_8 = getent ("fall1","targetname");
 	killer = getent ("killer","targetname");
 	trag = getent (brush_8.target , "targetname");
-	
+
 	trig_8 waittill ("trigger");
 	trig_8 delete ();
-	
+
 	oldorigin = brush_8.origin ;
 	killer enablelinkto ();
 	killer linkto (brush_8);
-	
+
 	brush_8 moveto (trag.origin , 0.01 );
 	wait 4 ;
 	brush_8 delete ();
 	killer delete ();
-	
+
 	}
-	
+
 trap9 ()
 	{
 	trig_9 = getent ("trig9","targetname");
 	brush_9 = getent ("fall2","targetname");
 	killer1 = getent ("killer1","targetname");
 	trag1 = getent (brush_9.target , "targetname");
-	
+
 	trig_9 waittill ("trigger");
 	trig_9 delete ();
-	
+
 	oldorigin = brush_9.origin ;
 	killer1 enablelinkto ();
 	killer1 linkto (brush_9);
-	
+
 	brush_9 moveto (trag1.origin , 0.01 );
 	wait 4 ;
 	brush_9 delete ();
@@ -271,7 +271,7 @@ teleportertoflag ()
 	{
 	 seta = getent ("seta","targetname");
 	 sets = getent (seta.target,"targetname");
-	 
+
 	 while (1)
 		{
 		seta waittill ("trigger",Mrx); // ;D
@@ -279,34 +279,34 @@ teleportertoflag ()
 		wait 0.5 ;
 		}
 	}
-	
+
 lastmsg ()
 	{
 	ms = getent ("ms","targetname");
 	ms waittill ("trigger",player );
 	ms delete ();
 
-	
+
 	iprintlnbold ("Gratz" + "." + "^2"+ player.name + "^7."+ "finished SuperMario map at 1st place");
 	wait 1 ;
 	}
-	
-removalclips () 
+
+removalclips ()
 	{
 	flas = getent ("flas","targetname");
 	fla = getent (flas.target,"targetname");
 	oldorigin = flas.origin;
 	ma = fla.origin;
-	
+
 	clips = getent ("remove","targetname");
 	trigdown = getent ("down","targetname");
-	
+
 	trigdown waittill ("trigger",player);
 	trigdown delete ();
-	
+
 	player PlaySound ("endofgame");
 	flas moveto (ma , 1.5);
 	wait 1 ;
-	
+
 	clips delete ();
 	}

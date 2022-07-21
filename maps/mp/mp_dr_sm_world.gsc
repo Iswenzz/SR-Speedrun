@@ -11,13 +11,13 @@
 main()
 
 {
-thread sr\api\_map::createSpawn((3088.125, -3628, 16.125), 90);
+thread sr\api\_map::createSpawnOrigin((3088.125, -3628, 16.125), 90);
 trigger = spawn( "trigger_radius", (-3499.54, -2704.88, 64.125), 0, 96, 48 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 96;
-	
+
 	maps\mp\_load::main();
-	
+
 	maps\mp\_compass::setupMiniMap("compass_map_mp_dr_sm_world");
 
 
@@ -85,9 +85,9 @@ trigger.radius = 96;
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -158,7 +158,7 @@ TestClient(team)
 
 	while(!isdefined(self.pers["team"]))
 		wait .05;
-		
+
 	self notify("menuresponse", game["menu_team"], team);
 	wait 0.5;
 }

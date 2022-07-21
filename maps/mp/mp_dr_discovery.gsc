@@ -1,5 +1,5 @@
-/*			  
-  /\\  /\\  
+/*
+  /\\  /\\
   //\\_//\\     ____
   \_     _/    /   /
    / ^ ^ \    /^^^|
@@ -7,12 +7,12 @@
     /   \_    |   /
     \     \_  /  /
     | | | /  \/ _/
-    |_| | \__/_/               				  
+    |_| | \__/_/
 	By VC'Fox.
-		___    __  _       _______        
-	| | / (_)__/ /_(_)___  / ___/ /__ ____ 
+		___    __  _       _______
+	| | / (_)__/ /_(_)___  / ___/ /__ ____
 	| |/ / (_-< __/ / __/ / /__/ / _ `/ _ \
-	|___/_/___|__/_/\__/  \___/_/\_,_/_//_/ 
+	|___/_/___|__/_/\__/  \___/_/\_,_/_//_/
 
 	Thanks to VC'Blade for his Secret Timer Script and the original idea for this map.
 */
@@ -20,7 +20,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((-828, 23, 16), 358);
+thread sr\api\_map::createSpawnOrigin((-828, 23, 16), 358);
 	maps\mp\_load::main();
 
 	game["allies"] = "marines";
@@ -44,8 +44,8 @@ thread sr\api\_map::createSpawn((-828, 23, 16), 358);
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
- 	setdvar("bg_fallDamageMaxHeight", "99999"); 
-	setDvar("bg_FallDamageMinHeight","99998"); 
+ 	setdvar("bg_fallDamageMaxHeight", "99999");
+	setDvar("bg_FallDamageMinHeight","99998");
 
 	thread trap1();
 	thread trap2();
@@ -69,7 +69,7 @@ thread sr\api\_map::createSpawn((-828, 23, 16), 358);
 	thread jumper_tp1();
 
 
-	addTriggerToList("trig_trap1"); 
+	addTriggerToList("trig_trap1");
 	addTriggerToList("trig_trap2");
 	addTriggerToList("trig_trap3");
 	addTriggerToList("trig_trap4");
@@ -94,7 +94,7 @@ jumper_tp1()
 		player setPlayerAngles(here.angles);
 	}
 }
-setresp() 
+setresp()
 {
     trig1 = spawn( "trigger_radius", (-836.12, 37.6445, 16.125), 0, 140, 60 );
 
@@ -110,9 +110,9 @@ setting()
 		player.hard_checkpoint = 0;
 
     }
-   
+
 }
-addTriggerToList(name) 
+addTriggerToList(name)
 {
     if(!isDefined(level.trapTriggers))
     level.trapTriggers = [];
@@ -330,7 +330,7 @@ trap9()
 
 	kill delete();
 	trig delete();
-	sentry delete(); 
+	sentry delete();
 	sentry = undefined;
 	sentry_des show();
 }
@@ -437,7 +437,7 @@ secret_respawn()
 
 	while(1)
 	{
-		secret_fail waittill ("trigger", player);	
+		secret_fail waittill ("trigger", player);
 		if(player.checkpoint == 0)
 		{
 			player SetPlayerAngles(secret_reset_origin0.angles);
@@ -476,7 +476,7 @@ reset1_check()
 	while(true)
 	{
 		self waittill ("trigger", player);
-		player.checkpoint = 1;	
+		player.checkpoint = 1;
 		wait 0.2;
 	}
 }
@@ -486,7 +486,7 @@ reset2_check()
 	while(true)
 	{
 		self waittill ("trigger", player);
-		player.checkpoint = 2;	
+		player.checkpoint = 2;
 		wait 0.2;
 	}
 }
@@ -496,7 +496,7 @@ reset3_check()
 	while(true)
 	{
 		self waittill ("trigger", player);
-		player.checkpoint = 3;	
+		player.checkpoint = 3;
 		wait 0.2;
 	}
 }
@@ -506,7 +506,7 @@ reset4_check()
 	while(true)
 	{
 		self waittill ("trigger", player);
-		player.checkpoint = 4;	
+		player.checkpoint = 4;
 		wait 0.2;
 	}
 }
@@ -532,7 +532,7 @@ secret_respawn_hard()
 
 	while(true)
 	{
-		hard_secret_fail waittill ("trigger", player);	
+		hard_secret_fail waittill ("trigger", player);
 		if(player.hard_checkpoint == 0)
 		{
 			player SetPlayerAngles(hard_secret_reset_origin0.angles);
@@ -565,7 +565,7 @@ hard_reset1_check()
 	while(true)
 	{
 		self waittill ("trigger", player);
-		player.hard_checkpoint = 1;	
+		player.hard_checkpoint = 1;
 		wait 0.2;
 	}
 }
@@ -575,7 +575,7 @@ hard_reset2_check()
 	while(true)
 	{
 		self waittill ("trigger", player);
-		player.hard_checkpoint = 2;	
+		player.hard_checkpoint = 2;
 		wait 0.2;
 	}
 }
@@ -585,7 +585,7 @@ hard_reset3_check()
 	while(true)
 	{
 		self waittill ("trigger", player);
-		player.hard_checkpoint = 3;	
+		player.hard_checkpoint = 3;
 		wait 0.2;
 	}
 }
@@ -594,7 +594,7 @@ acti_leave()
 {
 	trig = getEnt("acti_leave","targetname");
 	here = getEnt("here7","targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger",player);

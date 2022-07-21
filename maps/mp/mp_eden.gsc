@@ -1,10 +1,10 @@
 /*
 
-  _|_|_|            _|      _|      _|                  _|            
-_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|  
-  _|_|    _|    _|      _|          _|        _|    _|  _|      _|    
-      _|  _|    _|    _|  _|        _|        _|    _|  _|    _|      
-_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|  
+  _|_|_|            _|      _|      _|                  _|
+_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|
+  _|_|    _|    _|      _|          _|        _|    _|  _|      _|
+      _|  _|    _|    _|  _|        _|        _|    _|  _|    _|
+_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|
 
 Map and GSC Made By SuX Lolz.
 
@@ -22,17 +22,17 @@ Email Pro: suxlolz@outlook.fr
 
 main()
 {
-thread sr\api\_map::createSpawn((400, 5311, -248), 90);
+thread sr\api\_map::createSpawnOrigin((400, 5311, -248), 90);
 	maps\mp\_load::main();
 	maps\mp\_compass::setupMiniMap("compass_mp_sr_pure_cancer");
- 
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
- 
+
 	setdvar("r_specularcolorscale","1");
 	setdvar("compassmaxrange","1600");
 	setdvar("r_glowbloomintensity0",".1");

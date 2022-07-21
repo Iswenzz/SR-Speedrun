@@ -11,13 +11,13 @@
                              \\ If you have a question about the following code, x-Fire add me borstey88//
                               \\!Please don't use this code or any variant of it without my permission!//
                                \\¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯//
-							
-THANKS ;)							
+
+THANKS ;)
 */
 
-main() 
+main()
 {
-thread sr\api\_map::createSpawn((-304, 0, 16.125), 0);
+thread sr\api\_map::createSpawnOrigin((-304, 0, 16.125), 0);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
@@ -27,22 +27,22 @@ trigger.radius = 220;
 trigger.inAirCustom = true;
 trigger.inAirValue = 20;
 	maps\mp\_load::main();
-		
+
 		thread bricky_fix();
 
-	// ambientPlay ("start"); 
-		
+	// ambientPlay ("start");
+
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-			
+
 	setdvar( "r_specularcolorscale", "1" );
 	setDvar("bg_falldamagemaxheight", 20000 );
 	setDvar("bg_falldamageminheight", 15000 );
-	
+
 	// precacheItem( "rpg_mp" );
 	// precacheItem( "remington700_mp" );
 	// precacheItem("frag_grenade_mp");
@@ -54,14 +54,14 @@ trigger.inAirValue = 20;
 	// precacheItem("skorpion_silencer_mp");
 	// precacheItem("m21_acog_mp");
 	// precacheItem("winchester1200_reflex_mp");
-	
+
 	level._effect["explo"] = loadfx("explosions/belltower_explosion");
 	level._effect["fire"] = loadfx("custom/fire_blue");
 	level._effect["blii"] = loadfx("custom/end_blitz");
 	level._effect["fireway"] = loadfx("custom/fire");
 
     thread sr\api\_speedrun::createTeleporter((-287.357, -163.664, 16.125), 55, 25, (1616, 6695, -1924), 270, "freeze", "blue", "secret_0");
-    
+
 	thread way_connect();
 	thread door();
 	// thread credit();
@@ -130,10 +130,10 @@ del_weapon(name)
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -161,11 +161,11 @@ door()
 	b3 = getEnt ("bl3", "targetname");
 	b4 = getEnt ("bl4", "targetname");
 	b5 = getEnt ("bl5", "targetname");
-	g1 = getEnt ("g", "targetname"); 
+	g1 = getEnt ("g", "targetname");
 	g2 = getEnt ("gg", "targetname");
 	g3 = getEnt ("ggg", "targetname");
 	g4 = getEnt ("gggg", "targetname");
-	
+
 	wait 0.1;
     playfx(level._effect["explo"],fx_point.origin);
 	wait 0.1;
@@ -251,11 +251,11 @@ trap1()
 
 	trap1 = getEnt ("trap1", "targetname");
 	trig = getEnt ("trap1_trig", "targetname");
-	
+
 	trig setHintString("^2USE ^7T^0o ^7A^0ctivate^2!");
 	trig waittill("trigger", player);
 	trig setHintString("^5Activated^2!");
-	
+
 	while(1)
 	{
 		trap1 rotateRoll (360, 1);
@@ -270,17 +270,17 @@ trap1()
 		wait 0.5;
 	}
 }
-	
+
 trap2()
 {
 	trap2_1 = getEnt ("trap2_1", "targetname");
 	trap2_2 = getEnt ("trap2_2", "targetname");
-	trig = getEnt ("trap2_trig", "targetname"); 
+	trig = getEnt ("trap2_trig", "targetname");
 
 	trig setHintString("^2USE ^7T^0o ^7A^0ctivate^2!");
 	trig waittill("trigger", player);
 	trig setHintString("^5Activated^2!");
-	
+
 	while(1)
 	{
 	trap2_1 RotateRoll (360, 2.3);
@@ -296,7 +296,7 @@ trap3()
 	trap3_2 = getEnt ("trap3_2", "targetname");
 	trap3_3 = getEnt ("trap3_3", "targetname");
 	trig = getEnt ("trap3_trig", "targetname");
-	
+
 	trig setHintString("^2USE ^7T^0o ^7A^0ctivate^2!");
 	trig waittill("trigger", player);
 	trig setHintString("^5Activated^2!");
@@ -318,7 +318,7 @@ trap4()
 	trap4_2 = getEnt ("trap4_2", "targetname");
 	trap4_3 = getEnt ("trap4_3", "targetname");
 	trig = getEnt ("trap4_trig", "targetname");
-	
+
 	trig setHintString("^2USE ^7T^0o ^7A^0ctivate^2!");
 	trig waittill("trigger", player);
 	trig setHintString("^5Activated^2!");
@@ -333,14 +333,14 @@ trap4()
 	}
 }
 
-trap5() 
+trap5()
 {
 	t1 = getEnt ("trap5_1", "targetname");
 	t2 = getEnt ("trap5_2", "targetname");
 	t3 = getEnt ("trap5_3", "targetname");
 	t4 = getEnt ("trap5_4", "targetname");
 	trig = getEnt ("trap5_trig", "targetname");
-	
+
 	trig setHintString("^2USE ^7T^0o ^7A^0ctivate^2!");
 	trig waittill("trigger", player);
 	trig setHintString("^5Activated^2!");
@@ -361,13 +361,13 @@ trap6()
 	t6 = getEnt ("trap6", "targetname");
 	t7 = getEnt ("trap6_1", "targetname");
 	trig = getEnt ("trap6_trig", "targetname");
-	
+
 	trig setHintString("^2USE ^7T^0o ^7A^0ctivate^2!");
 	trig waittill("trigger", player);
 	trig setHintString("^5Activated^2!");
- 
+
  	t7 delete();
-	
+
 	while(1)
 	{
 	t6 moveX (-150, 0.7);
@@ -382,7 +382,7 @@ trap7()
 	trap7_1 = getEnt ("trap7_1", "targetname");
 	trap7_2 = getEnt ("trap7_2", "targetname");
 	trig = getEnt ("trap7_trig", "targetname");
-	
+
 	trig setHintString("^2USE ^7T^0o ^7A^0ctivate^2!");
 	trig waittill("trigger", player);
 	trig setHintString("^5Activated^2!");
@@ -429,7 +429,7 @@ trap9()
 	trig setHintString("^2USE ^7T^0o ^7A^0ctivate^2!");
 	trig waittill("trigger", player);
 	trig setHintString("^5Activated^2!");
-	
+
 	while(1)
 	{
 	trap9_1 RotateRoll (360, 2.5);
@@ -437,14 +437,14 @@ trap9()
 	wait 0.5;
 	}
 }
-	
+
 spin()
 {
 	sp1 = getEnt ("spin1", "targetname");
 	sp2 = getEnt ("spin2", "targetname");
 	sp3 = getEnt ("wall", "targetname");
 	sp4 = getEnt ("boden", "targetname");
-	
+
 	while(1)
 	{
 	sp1 RotateYaw (-360, 3);
@@ -470,13 +470,13 @@ secretback()
     trig = getEnt ("back_trig", "targetname");
     end = getEnt ("tp_re", "targetname");
 
-    
+
     while(1)
     {
         trig waittill ("trigger", player);
 
-		player thread sr\api\_speedrun::finishWay("secret_0");          
-		
+		player thread sr\api\_speedrun::finishWay("secret_0");
+
 	}
 }
 
@@ -495,10 +495,10 @@ secretfail()
     trig = getEnt ("fail_trig", "targetname");
     end = getEnt ("tp_fail", "targetname");
 
-    
+
     while(1)
     {
-        trig waittill ("trigger", player);  
+        trig waittill ("trigger", player);
         player SetOrigin(end.origin);
         player SetPlayerAngles( end.angles );
 	}
@@ -509,10 +509,10 @@ fail2()
     trig = getEnt ("fail2_trig", "targetname");
     end = getEnt ("fail2", "targetname");
 
-    
+
     while(1)
     {
-        trig waittill ("trigger", player);  
+        trig waittill ("trigger", player);
         player SetOrigin(end.origin);
         player SetPlayerAngles( end.angles );
 	}
@@ -523,10 +523,10 @@ fail3()
     trig = getEnt ("fail3_trig", "targetname");
     end = getEnt ("fail3", "targetname");
 
-    
+
     while(1)
     {
-        trig waittill ("trigger", player);  
+        trig waittill ("trigger", player);
         player SetOrigin(end.origin);
         player SetPlayerAngles( end.angles );
 	}
@@ -536,7 +536,7 @@ fail3()
 ammo() //nade room ammo
 {
 	trig = getEnt ("nade_trig", "targetname");
-	
+
 	while(1)
 	{
 	trig waittill("trigger", player);
@@ -548,7 +548,7 @@ ammo() //nade room ammo
 ammo2() //nade room ammo
 {
 	trig = getEnt ("nade2_trig", "targetname");
-	
+
 	while(1)
 	{
 	trig waittill("trigger", player);
@@ -560,7 +560,7 @@ ammo2() //nade room ammo
 rpga() //Rpg ammo
 {
 	trig = getEnt ("rpg_trig", "targetname");
-	
+
 	while(1)
 	{
 	trig waittill("trigger", player);
@@ -572,7 +572,7 @@ rpga() //Rpg ammo
 rpga2() //Rpg ammo
 {
 	trig = getEnt ("rpg2_trig", "targetname");
-	
+
 	while(1)
 	{
 	trig waittill("trigger", player);
@@ -587,35 +587,35 @@ sniper()
 	level.final_sniper_trig = getEnt( "final_sniper_trig", "targetname");
     jump = getEnt( "sniper_j", "targetname" );
     acti = getEnt( "sniper_a", "targetname" );
-	
+
 
      while(1)
     {
         level.final_sniper_trig waittill( "trigger", player );
         if( !isDefined( level.final_sniper_trig ) )
             return;
-        
+
 		//level.final_sniper_trig delete();
 		level.final_knife_trig delete();
         level.final_wep_trig delete();
 		level.final_rpg_trig delete();
 		level.final_nade_trig delete();
-		
-		
+
+
          player.health = player.maxhealth;
 		 level.activ.health = level.activ.maxhealth;
 		player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
         player GiveWeapon( "remington700_mp" );
-		player GiveWeapon( "m40a3_mp" );        
+		player GiveWeapon( "m40a3_mp" );
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
         level.activ GiveWeapon( "remington700_mp" );
-        level.activ GiveWeapon( "m40a3_mp" );         
+        level.activ GiveWeapon( "m40a3_mp" );
         wait 0.05;
-        player switchToWeapon( "remington700_mp" ); 
+        player switchToWeapon( "remington700_mp" );
         level.activ SwitchToWeapon( "remington700_mp" );
         player FreezeControls(1);
 		level.activ FreezeControls(1);
@@ -632,7 +632,7 @@ sniper()
 				level.activ FreezeControls(0);
         while( isAlive( player ) && isDefined( player ) )
             wait 1;
-			
+
     }
 
 }
@@ -643,38 +643,38 @@ rpg()
 	level.final_rpg_trig = getEnt( "final_rpg_trig", "targetname");
     jump = getEnt( "rpg_j", "targetname" );
     acti = getEnt( "rpg_a", "targetname" );
-	    
+
      while(1)
     {
-		
+
         level.final_rpg_trig waittill( "trigger", player );
         if( !isDefined( level.final_rpg_trig ) )
             return;
-        
+
 		level.final_sniper_trig delete();
 		level.final_knife_trig delete();
         level.final_wep_trig delete();
 		//level.final_rpg_trig delete();
 		level.final_nade_trig delete();
-      
+
          player.health = player.maxhealth;
 		 level.activ.health = level.activ.maxhealth;
 		player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
         player GiveWeapon( "rpg_mp" );
-		player GiveWeapon( "rpg_mp" );  
+		player GiveWeapon( "rpg_mp" );
 		player giveMaxammo("rpg_mp");
-		player giveMaxammo("rpg_mp");		
+		player giveMaxammo("rpg_mp");
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
         level.activ GiveWeapon( "rpg_mp" );
-        level.activ GiveWeapon( "rpg_mp" ); 
+        level.activ GiveWeapon( "rpg_mp" );
 		level.activ giveMaxammo("rpg_mp");
-		level.activ giveMaxammo("rpg_mp");        
+		level.activ giveMaxammo("rpg_mp");
         wait 0.05;
-        player switchToWeapon( "rpg_mp" ); 
+        player switchToWeapon( "rpg_mp" );
         level.activ SwitchToWeapon( "rpg_mp" );
         player FreezeControls(1);
 		level.activ FreezeControls(1);
@@ -691,45 +691,45 @@ rpg()
 				level.activ FreezeControls(0);
         while( isAlive( player ) && isDefined( player ) )
             wait 1;
-			
+
     }
 
 }
 
 weapon()
-{	
-	
+{
+
 	level.final_wep_trig = getEnt( "final_wep_trig", "targetname");
     jump = getEnt ("wep_j", "targetname");
     acti = getEnt ("wep_a", "targetname");
-	
+
      while(1)
     {
         level.final_wep_trig waittill( "trigger", player );
         if( !isDefined( level.final_wep_trig ) )
             return;
-        
+
 		level.final_sniper_trig delete();
 		level.final_knife_trig delete();
         //level.final_wep_trig delete();
 		level.final_rpg_trig delete();
 		level.final_nade_trig delete();
 
-      
+
          player.health = player.maxhealth;
 		 level.activ.health = level.activ.maxhealth;
 		player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
         player GiveWeapon( "winchester1200_reflex_mp" );
-		player GiveWeapon( "winchester1200_reflex_mp" );        
+		player GiveWeapon( "winchester1200_reflex_mp" );
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
         level.activ GiveWeapon( "winchester1200_reflex_mp" );
-        level.activ GiveWeapon( "winchester1200_reflex_mp" );         
+        level.activ GiveWeapon( "winchester1200_reflex_mp" );
         wait 0.05;
-        player switchToWeapon( "winchester1200_reflex_mp" ); 
+        player switchToWeapon( "winchester1200_reflex_mp" );
         level.activ SwitchToWeapon( "winchester1200_reflex_mp" );
         player FreezeControls(1);
 		level.activ FreezeControls(1);
@@ -746,7 +746,7 @@ weapon()
 				level.activ FreezeControls(0);
         while( isAlive( player ) && isDefined( player ) )
             wait 1;
-			
+
     }
 }
 
@@ -756,33 +756,33 @@ nade()
 	level.final_nade_trig = getEnt( "final_nade_trig", "targetname");
     jump = getEnt ("nade_j", "targetname");
     acti = getEnt ("nade_a", "targetname");
-	
+
      while(1)
     {
         level.final_nade_trig waittill( "trigger", player );
         if( !isDefined( level.final_nade_trig ) )
             return;
-        
+
      	level.final_sniper_trig delete();
 		level.final_knife_trig delete();
         level.final_wep_trig delete();
 		level.final_rpg_trig delete();
 		//level.final_nade_trig delete();
-      
+
          player.health = player.maxhealth;
 		 level.activ.health = level.activ.maxhealth;
 		player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
         player GiveWeapon( "frag_grenade_mp" );
-		player GiveWeapon( "frag_grenade_mp" );        
+		player GiveWeapon( "frag_grenade_mp" );
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
         level.activ GiveWeapon( "frag_grenade_mp" );
-        level.activ GiveWeapon( "frag_grenade_mp" );         
+        level.activ GiveWeapon( "frag_grenade_mp" );
         wait 0.05;
-        player switchToWeapon( "frag_grenade_mp" ); 
+        player switchToWeapon( "frag_grenade_mp" );
         level.activ SwitchToWeapon( "frag_grenade_mp" );
         player FreezeControls(1);
 		level.activ FreezeControls(1);
@@ -798,7 +798,7 @@ nade()
 				player FreezeControls(0);
 				level.activ FreezeControls(0);
         while( isAlive( player ) && isDefined( player ) )
-            wait 1;		
+            wait 1;
     }
 }
 
@@ -808,33 +808,33 @@ knife()
 	level.final_knife_trig = getEnt( "final_knife_trig", "targetname");
     jump = getEnt( "enter_jumper_k", "targetname" );
     acti = getEnt( "activator_enter_k", "targetname" );
-	
+
      while(1)
     {
         level.final_knife_trig waittill( "trigger", player );
         if( !isDefined( level.final_knife_trig ) )
             return;
-        
+
 		level.final_sniper_trig delete();
 		//level.final_knife_trig delete();
         level.final_wep_trig delete();
 		level.final_rpg_trig delete();
 		level.final_nade_trig delete();
-      
+
          player.health = player.maxhealth;
 		 level.activ.health = level.activ.maxhealth;
 		player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
         player GiveWeapon( "knife_mp" );
-		player GiveWeapon( "knife_mp" );        
+		player GiveWeapon( "knife_mp" );
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
         level.activ GiveWeapon( "knife_mp" );
-        level.activ GiveWeapon( "knife_mp" );         
+        level.activ GiveWeapon( "knife_mp" );
         wait 0.05;
-        player switchToWeapon( "knife_mp" ); 
+        player switchToWeapon( "knife_mp" );
         level.activ SwitchToWeapon( "knife_mp" );
         player FreezeControls(1);
 		level.activ FreezeControls(1);

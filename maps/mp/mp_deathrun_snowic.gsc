@@ -1,10 +1,10 @@
 main()
 {
-thread sr\api\_map::createSpawn((221, -149, 1173), 234);
+thread sr\api\_map::createSpawnOrigin((221, -149, 1173), 234);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
-maps\mp\_load::main(); 
+maps\mp\_load::main();
 
 game["allies"] = "marines";
 game["axis"] = "opfor";
@@ -34,7 +34,7 @@ thread startdoor();
 }
 
 startdoor()
-{      
+{
 door = getent("map_starter","targetname");
 
 wait 0.1;

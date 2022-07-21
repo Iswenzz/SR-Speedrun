@@ -1,13 +1,13 @@
 main()
 {
-thread sr\api\_map::createSpawn((-159, 200, 8), 359);
+thread sr\api\_map::createSpawnOrigin((-159, 200, 8), 359);
 trigger = spawn( "trigger_radius", (106.077, 2241.14, 64.125), 0, 55, 50 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 55;;
 	maps\mp\_load::main();
-	
+
 	//maps\mp\_compass::setupMiniMap("compass_map_mp_dusk");
-	
+
 	setExpFog(300, 3500, .5, 0.5, 0.45, 0);
 	//ambientPlay("ambient_dusk");
 	VisionSetNaked( "armada_ground" );
@@ -48,7 +48,7 @@ trigg delete();
 door_1 delete();
 }
 
-trap1() 
+trap1()
 {
 brush1a = getent ("brush1a","targetname");
 brush1 = getent ("brush1","targetname");
@@ -66,7 +66,7 @@ trap2()
 {
 brush2 = getent ("brush2","targetname");
 brush2a = getent ("brush2a","targetname");
- 
+
 level waittill("round_started");
 brush2 delete();
 brush2a delete();
@@ -92,7 +92,7 @@ brush2a delete();
  killer enablelinkto();
  killer linkto (brush4);
  brush4 movez (24 , 0.5);
- wait 4 ; 
+ wait 4 ;
  brush4 movez(-24,4);
  wait 5 ;
  }
@@ -108,7 +108,7 @@ brush2a delete();
  wait 1 ;
  }
  }
-  trap6 () 
+  trap6 ()
 	      {
 		  trig6 = getent ( "trig_6" , "targetname" ) ;
 		  half_1= getentarray ( "half_1","targetname" ) ;
@@ -130,9 +130,9 @@ brush2a delete();
 			push3 rotateroll (45 ,0.4);
 			push4 rotateroll (-45 ,0.4);
 			wait 0.4;
-			while (1) 
+			while (1)
 			{
-			
+
 			push1 rotateroll (-90 ,0.8);
 			push2 rotateroll (90 ,0.8);
 			push3 rotateroll (-90 ,0.8);
@@ -149,7 +149,7 @@ brush2a delete();
 trap7 ()
 {
 m1= getentarray ("m1","targetname");
-			
+
 level waittill("round_started");
 
 m1[0] delete();
@@ -205,7 +205,7 @@ m1[7] delete();
 			trig9 delete ();
 			part1[randomInt(part1.size)] notsolid();
             part2[randomInt(part2.size)] notsolid();
-			
+
 			}
 			movingbrushs ()
 			{
@@ -217,13 +217,13 @@ m1[7] delete();
 			wait 0.5;
 			while (1)
 			{
-			brushc rotatepitch (360 , 1.5 ); 
+			brushc rotatepitch (360 , 1.5 );
 			brusha movex (64 , 0.7);
 			brushb movex (-64 , 0.7);
-			wait 0.7 ; 
+			wait 0.7 ;
 			brusha movex (-64 , 0.7);
 			brushb movex (64 , 0.7);
-			wait 0.7 ; 
+			wait 0.7 ;
 			}
 			}
 			lastdoor1 ()
@@ -235,4 +235,3 @@ m1[7] delete();
 			lastdoor rotateyaw (90 , 1.5);
 			wait 1 ;
 			}
-			

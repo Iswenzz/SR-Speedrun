@@ -1,18 +1,18 @@
-main() 
+main()
 {
-thread sr\api\_map::createSpawn((26754, 2631, 2512), 360); 
+thread sr\api\_map::createSpawnOrigin((26754, 2631, 2512), 360);
 	//maps\mp\mp_pizzahut_v2_fx::main();
 	//maps\createart\mp_pizzahut_art::main();
-	maps\mp\_load::main();	
-	
+	maps\mp\_load::main();
+
 	//maps\mp\_compass::setupMiniMap("compass_map_mp_pizzahut_v2");
 
 	//setExpFog(500, 2200, 0.81, 0.75, 0.63, 0);
 	//VisionSetNaked( "mp_pizzahut" );
 	//ambientPlay("ambient_backlot_ext");
 	precacheItem("rpg_mp");
-	
-	
+
+
 	///////SR Stuff`
 	thread sr\api\_speedrun::createNormalWays("Normal Way;Easy Way;Inter Way;Hard Way");
 		thread sr\api\_speedrun::createTeleporter((26755, 3004, 2572), 60, 80, (26960, -10564, 2330), 359, "freeze", "blue", "normal_1");
@@ -23,8 +23,8 @@ thread sr\api\_map::createSpawn((26754, 2631, 2512), 360);
 	thread sr\api\_speedrun::createEndMap((21086.4, -968.617, -5030.38),115, 5,"normal_1");
 	thread sr\api\_speedrun::createEndMap((20607.9, -6476.54, -3141.88),55, 5,"normal_3");
 	thread sr\api\_speedrun::createEndMap((1569.05, -990.628, -17071.4),655, 5, "normal_0");
-	
-	
+
+
 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
@@ -32,27 +32,27 @@ thread sr\api\_map::createSpawn((26754, 2631, 2512), 360);
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
-	if( getDvarInt( "jump_slowdownEnable" ) > 0 ) 
-		setDvar( "jump_slowdownEnable", 0 ); 
 
-	if( getDvarInt( "bg_falldamagemaxheight" ) < 9999 ) 
+	if( getDvarInt( "jump_slowdownEnable" ) > 0 )
+		setDvar( "jump_slowdownEnable", 0 );
+
+	if( getDvarInt( "bg_falldamagemaxheight" ) < 9999 )
 		setdvar("bg_falldamagemaxheight", 9999);
-	
+
 	if( getDvarInt( "bg_fallDamageMinHeight") < 9998 )
-		setDvar( "bg_fallDamageMinHeight", "9998" ); 
-	
+		setDvar( "bg_fallDamageMinHeight", "9998" );
+
 	setdvar( "r_specularcolorscale", "1" );
 
 	setdvar( "r_glowbloomintensity0", ".25" );
 	setdvar( "r_glowbloomintensity1", ".25" );
 	setdvar( "r_glowskybleedintensity0", ".3" );
 
-	entTransporter = getentarray( "coolteleporter", "targetname" ); 
-	if( isdefined( entTransporter ) ) 
-	{ 
-		for( lp = 0; lp < entTransporter.size; lp = lp + 1 ) 
-			entTransporter[lp] thread Transporter(); 
+	entTransporter = getentarray( "coolteleporter", "targetname" );
+	if( isdefined( entTransporter ) )
+	{
+		for( lp = 0; lp < entTransporter.size; lp = lp + 1 )
+			entTransporter[lp] thread Transporter();
 	}
 	thread onPlayerConnect();
 //	thread MadeBySpam();
@@ -66,26 +66,26 @@ thread sr\api\_map::createSpawn((26754, 2631, 2512), 360);
 //	thread FinishInter();
 	// thread FinishHard();
 	thread rpg();
-	
+
 }
 
-transporter() 
-{ 
-	while( true ) 
-	{ 
+transporter()
+{
+	while( true )
+	{
 		self waittill( "trigger", other );
-		entTarget = getent( self.target, "targetname" ); 
-		other setorigin( entTarget.origin ); 
+		entTarget = getent( self.target, "targetname" );
+		other setorigin( entTarget.origin );
 		other setplayerangles( entTarget.angles );
-		
-	} 
+
+	}
 }
 
 rpg()
 {
-  
+
    trigger = spawn( "trigger_radius", (24899.8, -1749.86, -3608.88), 0, 155, 5 );
-   
+
    while( true )
    {
     trigger waittill("trigger", other);
@@ -104,7 +104,7 @@ onPlayerConnect()
     while( 1 )
     {
 		level waittill( "connecting", player ); //needs to be 'connecting' not 'connected'
-		
+
 		player.easyfinish = 0;
 		player.interfinish = 0;
 		player.hardfinish = 0;
@@ -128,7 +128,7 @@ MadeBySpam()
 BoemYouAreDead()
 {
 	trig = getEntArray( "kill", "targetname" );
-	
+
 	for( i = 0; i < trig.size; i++ )
 	{
 		trig[i] thread BoemYouAreDeadV2();
@@ -152,7 +152,7 @@ Credits1()
 		for( i = 0; i < trig.size; i++ )
 			trig[i] thread Credits1_2();
 }
-	
+
 Credits1_2()
 {
 	while( 1 )
@@ -160,9 +160,9 @@ Credits1_2()
 		self waittill( "trigger", player );
 		if( player.textcredits1 == 0 )
 		{
-			player iPrintLnBold( "^1BIG ^7thanks for testing ^3Easy:" );	
+			player iPrintLnBold( "^1BIG ^7thanks for testing ^3Easy:" );
 			wait 2;
-			player iPrintLnBold( "^3Blueseven, Bynd, Eiachh, BurntToast" );	
+			player iPrintLnBold( "^3Blueseven, Bynd, Eiachh, BurntToast" );
 			player.textcredits1 = 1;
 		}
 	}
@@ -175,7 +175,7 @@ Credits2()
 		for( i = 0; i < trig.size; i++ )
 			trig[i] thread Credits2_2();
 }
-	
+
 Credits2_2()
 {
 	while( 1 )
@@ -183,9 +183,9 @@ Credits2_2()
 		self waittill( "trigger", player );
 		if( player.textcredits2 == 0 )
 		{
-			player iPrintLnBold( "^1BIG ^7thanks for testing ^2Inter:" );	
+			player iPrintLnBold( "^1BIG ^7thanks for testing ^2Inter:" );
 			wait 2;
-			player iPrintLnBold( "^2n1kjs, Bynd, Frisbeesky, Killer007, Zombie, Blueseven, Saint, Deej,d*.*b" );	
+			player iPrintLnBold( "^2n1kjs, Bynd, Frisbeesky, Killer007, Zombie, Blueseven, Saint, Deej,d*.*b" );
 			player.textcredits2 = 1;
 		}
 	}
@@ -198,7 +198,7 @@ Credits3()
 		for( i = 0; i < trig.size; i++ )
 			trig[i] thread Credits3_2();
 }
-	
+
 Credits3_2()
 {
 	while( 1 )
@@ -206,9 +206,9 @@ Credits3_2()
 		self waittill( "trigger", player );
 		if( player.textcredits3 == 0 )
 		{
-			player iPrintLnBold( "^1BIG ^7thanks for testing ^1Hard:" );	
+			player iPrintLnBold( "^1BIG ^7thanks for testing ^1Hard:" );
 			wait 2;
-			player iPrintLnBold( "^1Skorpiik, Zombie, Skazy, Seven, Siv, Candy, Meister, Saint, Axle" );	
+			player iPrintLnBold( "^1Skorpiik, Zombie, Skazy, Seven, Siv, Candy, Meister, Saint, Axle" );
 			player.textcredits3 = 1;
 		}
 	}
@@ -221,7 +221,7 @@ Credits4()
 		for( i = 0; i < trig.size; i++ )
 			trig[i] thread Credits4_2();
 }
-	
+
 Credits4_2()
 {
 	while( 1 )
@@ -229,7 +229,7 @@ Credits4_2()
 		self waittill( "trigger", player );
 		if( player.textcredits4 == 0 )
 		{
-			player iPrintLnBold( "^1BIG ^7thanks for all the support!" );		
+			player iPrintLnBold( "^1BIG ^7thanks for all the support!" );
 			player.textcredits4 = 1;
 		}
 	}
@@ -254,7 +254,7 @@ Text1()
 FinishEasy()
 {
 	trig = getEnt( "easyfinish", "targetname" );		//Radiant trigger naam: Key = targetname Value = easy
-	
+
 	while( 1 )
 	{
 		trig waittill( "trigger", player );
@@ -270,7 +270,7 @@ FinishEasy()
 FinishInter()
 {
 	trig = getEnt( "interfinish", "targetname" );		//Radiant trigger naam: Key = targetname Value = inter
-	
+
 	while( 1 )
 	{
 		trig waittill( "trigger", player );
@@ -286,14 +286,14 @@ FinishInter()
 FinishHard()
 {
 	trig = getEnt( "hardfinish", "targetname" );		//Radiant trigger naam: Key = targetname Value = hard
-	
+
 	while( 1 )
 	{
 		trig waittill( "trigger", player );
 		if( player.hardfinish == 0 )
 		{
 			iPrintLnBold( "Congrats "  + player.name +  " you've finished ^1Hard Way!" );			//Tekst hier plaatsen, kleuren kan("^1Example")
-		//	iPrintLnBold("Congrats" + player.name + "You've finsihed blabla");	Player ervoor is message aan de player only			
+		//	iPrintLnBold("Congrats" + player.name + "You've finsihed blabla");	Player ervoor is message aan de player only
 			player.hardfinish = 1;
 		}
 	}

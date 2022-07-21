@@ -22,7 +22,7 @@
 #include common_scripts\utility;
 
 main() {
-thread sr\api\_map::createSpawn((-5318, -679, 312), 0);
+thread sr\api\_map::createSpawnOrigin((-5318, -679, 312), 0);
     game["allies"] = "marines";
     game["axis"] = "opfor";
     game["attackers"] = "axis";
@@ -42,7 +42,7 @@ thread sr\api\_map::createSpawn((-5318, -679, 312), 0);
 
     //########################### Threads ###########################\\
     thread sr\api\_speedrun::createNormalWays("Normal Way;");
-    
+
     thread tools();
     // thread connect();
     // thread music();
@@ -193,27 +193,27 @@ music() {
 initMusic() {
 
         level.music = [];
- 
+
     i = 0;
         level.music[i]["artist"] = "Lucian & Remmi";
         level.music[i]["title"] = "Bobby K";
         level.music[i]["alias"] = "song1";
-        
+
         i++;
         level.music[i]["artist"] = "Rusko";
         level.music[i]["title"] = "Somebody To Love (Sigma Remix)";
         level.music[i]["alias"] = "song2";
-        
+
         i++;
         level.music[i]["artist"] = "Unknown Brain";
         level.music[i]["title"] = "Separate Ways";
         level.music[i]["alias"] = "song3";
-        
+
         i++;
         level.music[i]["artist"] = "Trivecta";
         level.music[i]["title"] = "Labyrinth (ft. Miyoki)";
         level.music[i]["alias"] = "song4";
-        
+
         i++;
         level.music[i]["artist"] = "Seven Lions";
         level.music[i]["title"] = "Silent Skies (ft. Karra)";
@@ -222,75 +222,75 @@ initMusic() {
         precacheShader( "black" );
         precacheShader( "white" );
 }
- 
+
 musicMenu() {
-   
+
     self endon( "death" );
- 
+
     self thread onDeath();
     self thread onDisconnect();
- 
+
     self.hud_music = [];
     self.selection = 0;
- 
+
     i = 0;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 160, 200, 0.35, "left", "top", 2 );
     self.hud_music[i].sort = 880;
     self.hud_music[i] setShader( "black", 320, 160 );
-   
+
     i++;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 270, 180, 1, "left", "top", 1.8 );
     self.hud_music[i].sort = 883;
     self.hud_music[i] setText( "^1>> ^7Music Menu ^1<<" );
-   
+
     i++;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 270, 204, 0.93, "left", "top", 1.8 );
     self.hud_music[i].sort = 884;
     self.hud_music[i] setText( "^1>> ^7Select a Song ^1<<" );
- 
+
     i++;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 288, 360, 1, "center", "top", 1.4 );
     self.hud_music[i].sort = 885;
     self.hud_music[i] setText( "^1>> Press ^^1[^7USE^1]^7: ^^7Play ^7Song ^1<<" );
- 
+
     i++;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 235, 360, 1, "center", "bottom", 1.4 );
     self.hud_music[i].sort = 886;
- 
+
     for( j = 0; j < level.music.size; j++ ) {
         i++;
         self.hud_music[i] = braxi\_mod::addTextHud( self, 172, 230+(j*16), 0.93, "left", "top", 1.4 );
         self.hud_music[i].sort = 882;
         self.hud_music[i].font = "objective";
- 
+
         entry = level.music[j];
         self.hud_music[i] setText( entry["artist"] + " ^2-^7 " + entry["title"] );
     }
- 
+
     i++;
     self.hud_music[self.hud_music.size] = braxi\_mod::addTextHud( self, 167, 230, 0.4, "left", "top", 1.4 );
     self.hud_music[i].sort = 881;
     indicator = self.hud_music[self.hud_music.size-1];
     indicator setShader( "white", 306, 17 );
-    
+
     while( 1 ) {
         wait 0.1;
- 
+
         if( self attackButtonPressed() )
         {
             self.hud_music[5+self.selection].alpha = 0.93;
- 
+
             self.selection++;
             if( self.selection >= level.music.size )
                 self.selection = 0;
- 
+
             item = self.hud_music[5+self.selection];
             item.alpha = 1;
             indicator.y = item.y;
         }
         else if( self useButtonPressed() ) {
             iPrintln( "^5Now playing: ^7" + level.music[self.selection]["artist"]+" - ^2" +level.music[self.selection]["title"] );
- 
+
             ambientPlay( level.music[self.selection]["alias"], 3 );
             self freezeControls(0);
             level notify ( "song_picked" );
@@ -302,38 +302,38 @@ musicMenu() {
             break;
         }
     }
- 
+
     self cleanUpMusic();
 }
- 
+
 musictrig() {
     trigger = getEnt ( "musicTrig", "targetname" ); //musicmenu is the trigger to pick songs
     trigger setHintString( "^1>>^7Press ^1[^7USE^1] ^7to Choose ^1Music^7!^1<<" );
- 
+
     trigger waittill( "trigger", player );
     trigger delete();
     level endon ( "song_picked" );
     player thread musicMenu();
     player freezeControls(1);
 }
- 
+
 onDeath() {
     self endon( "disconnect" );
     self endon( "music thread terminated" );
     self waittill( "death" );
     self cleanUpMusic();
 }
- 
+
 onDisconnect() {
     self endon( "music thread terminated" );
     self waittill( "disconnect" );
     self cleanUpMusic();
 }
- 
+
 cleanUpMusic() {
     if( !isDefined( self ) )
         return;
- 
+
     if( isDefined( self.hud_music ) )
     {
         for( i = 0; i < self.hud_music.size; i++ )
@@ -400,7 +400,7 @@ teleports() {
         for( i = 0; i < entTransporter.size; i++ ) {
             entTransporter[i] thread transporter();
         }
-    }           
+    }
 }
 
 endRooms() {
@@ -472,7 +472,7 @@ knifeRoom() {
     // level.knifeTrig setHintString("^1>>^7Press ^1[^7Use^1] ^7to Enter the ^1Knife ^7Room!^1<<");
 	level.knifeTrig waittill("trigger", player);
 	thread room_song("knife");
-	while(1) 
+	while(1)
 	{
 		level.knifeTrig waittill("trigger", player);
 			if(level.playerInRoom == undefined) {
@@ -521,7 +521,7 @@ knifeRoom() {
 					player iPrintLnBold("^1Wait ^7Your ^1Turn^7!");
 				}
 
-				
+
 		}
 	}
 }
@@ -534,7 +534,7 @@ sniperRoom() {
     // level.sniperTrig setHintString("^1>>^7Press ^1[^7Use^1] ^7to Enter the ^1Sniper ^7Room!^1<<");
 	level.sniperTrig waittill("trigger", player);
 	thread room_song("sniper");
-	while(1) 
+	while(1)
 	{
 		if(level.playerInRoom == undefined) {
 			level.sniperTrig waittill("trigger", player);
@@ -563,7 +563,7 @@ sniperRoom() {
 			level.activ giveMaxAmmo("remington700_mp");
 			level.activ switchToWeapon("m40a3_mp");
 
-			
+
 
 			level.playerInRoom FreezeControls(1);
 			level.activ FreezeControls(1);
@@ -604,7 +604,7 @@ bounceRoom() {
     returnTrig = getEnt("bounceReturn", "targetname");
 	level.bounceTrig waittill("trigger", player);
 	thread room_song("bounce");
-	while(1) 
+	while(1)
 		{
 		level.bounceTrig waittill("trigger", player);
 		if(level.playerInRoom == undefined) {
@@ -631,7 +631,7 @@ bounceRoom() {
 
 			level.playerInRoom thread kys_weapon();
 			level.activ thread kys_weapon();
-	
+
 
 			level.playerInRoom FreezeControls(1);
 			level.activ FreezeControls(1);
@@ -798,7 +798,7 @@ nitro() {
     level.harambe delete();
     level.soloking delete();
     level.voidix delete();
-	
+
 }
 
 voidix() {
@@ -832,7 +832,7 @@ transporter() { // non
 
 /*
   * @param msg - Enter the message you would like to be printed
-*/ 
+*/
 sendMessage(msg) {
   players = getentarray("player" , "classname");
 
@@ -840,8 +840,8 @@ sendMessage(msg) {
     noti.titleText = msg;
     noti.duration = 5;
     noti.glowcolor = (1, 0, 0);
-        
+
     for(i=0; i<players.size; i++) {
-    players[i] thread maps\mp\gametypes\_hud_message::notifyMessage(noti);  
-  } 
+    players[i] thread maps\mp\gametypes\_hud_message::notifyMessage(noti);
+  }
 }

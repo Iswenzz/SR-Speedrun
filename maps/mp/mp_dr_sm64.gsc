@@ -5,10 +5,10 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((-5963, -7623, 1392), 357);
+thread sr\api\_map::createSpawnOrigin((-5963, -7623, 1392), 357);
 	maps\mp\_load::main();
 	maps\mp\_compass::setupMiniMap("compass_map_mp_dr_sm64");
-	 
+
 	level._effect[ "explolarge" ] = loadfx( "explosions/custom_explo_large" );
 	level._effect[ "explosmall" ] = loadfx( "explosions/custom_explo_small" );
 	level._effect[ "smokelarge" ] = loadfx( "smoke/custom_smoke_large" );
@@ -19,14 +19,14 @@ thread sr\api\_map::createSpawn((-5963, -7623, 1392), 357);
 	level._effect[ "waterbodydump" ] = LoadFX ( "impacts/water_splash_bodydump" );
 	level._effect[ "watergush" ] = LoadFX ( "misc/water_gush" );
 	level._effect[ "enter1" ] = LoadFX ( "impacts/enter_painting" );
-	 
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
- 
+
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("compassmaxrange","1600");
 	setdvar("r_glowbloomintensity0",".1");
@@ -39,10 +39,10 @@ thread sr\api\_map::createSpawn((-5963, -7623, 1392), 357);
 	thread sr\api\_speedrun::createSecretWays("^5Slide Secret;^1Hard Secret;");
 
 	eztp = getEnt("secret_slide_tp","targetname");
-	thread sr\api\_speedrun::createTeleporter((-5992, -8082, 1452), 100, 150, 
+	thread sr\api\_speedrun::createTeleporter((-5992, -8082, 1452), 100, 150,
 		eztp.origin, eztp.angles[1], "freeze", "cyan", "secret_0");
 	htp = getEnt("hardsecret_enter_tp","targetname");
-	thread sr\api\_speedrun::createTeleporter((-5748, -8070, 1452), 100, 150, 
+	thread sr\api\_speedrun::createTeleporter((-5748, -8070, 1452), 100, 150,
 		htp.origin, htp.angles[1], "freeze", "darkred", "secret_1");
 	//thread sr\api\_speedrun::createSecretWays("Slide Secret;Hard Secret;"); // TODO
 
@@ -196,7 +196,7 @@ i = randomintrange(0, 2);
 
 	{
 		activator = GetActivator();
-	
+
 		if(i == 0)
 		{
 			activator playLocalSound("song1");
@@ -392,7 +392,7 @@ i = randomintrange(0, 2);
 	for(;;)
 	{
 	ambienttrig3 waittill("trigger",player);
-	
+
 		if(i == 0)
 		{
 			player playLocalSound("song1");
@@ -536,7 +536,7 @@ if(self.pers["time3"]<1)
 self suicide();
 }
 }
- 
+
 timehud3()
 {
 self endon ("death");
@@ -561,7 +561,7 @@ self thread destroyondeath3();
 wait 60;
 self thread destroytimehud3();
 }
- 
+
 destroyondeath3()
 {
         self waittill_any("death", "disconnect", "finished");
@@ -577,7 +577,7 @@ self.time_hud3 setText( self.pers["time3"] );
 wait 0.1;
 }
 }
- 
+
 destroytimehud3()
 {
         if( isDefined( self.time_hud3) )
@@ -646,7 +646,7 @@ endEasySecretTimer()
 	self.finishedEasySecret = true;
 
 	time1 = (getTime() - self.timer1StartTime) / 1000;
-	
+
 	self.hud_easysecret destroy();
 	self.hud_easysecret1 = addTextHud( self, 9, 12, 1, "center", "top", 3 );
 	self.hud_easysecret1.horzAlign = "center";
@@ -666,14 +666,14 @@ easySecretTimer()
 {
 	self endon( "disconnect" );
 	self endon( "death" );
-	
+
 	wait 0.05;
 	self playSound("warp1");
 	self iPrintLnBold("^5You ^7have^6 60 ^7seconds to ^5finish ^7!");
-	
+
 	self.pers["time1"] = 99999999;
 	self.pers["time1death"] = 60;
-	
+
 	self.hud_easysecret = addTextHud( self, 9, 12, 1, "center", "top", 2.5 );
 	self.hud_easysecret.horzAlign = "center";
 	self.hud_easysecret.vertAlign = "top";
@@ -683,7 +683,7 @@ easySecretTimer()
 	self.hud_easysecret setTenthsTimerUp( 1 );
 
 	self.timer1StartTime = getTime();
-	
+
 	for(;;)
 	{
 		wait 1;
@@ -701,7 +701,7 @@ endHardSecretTimer()
 	self.finishedHardSecret = true;
 
 	time2 = (getTime() - self.timer2StartTime) / 1000;
-	
+
 	self.hud_hardsecret destroy();
 	self.hud_hardsecret1 = addTextHud( self, 9, 12, 1, "center", "top", 3 );
 	self.hud_hardsecret1.horzAlign = "center";
@@ -721,14 +721,14 @@ hardSecretTimer()
 {
 	self endon( "disconnect" );
 	self endon( "death" );
-	
+
 	wait 0.05;
 	self playSound("warp1");
 	self iPrintLnBold("^1You have^8 30 ^7seconds to ^1finish ^7!");
-	
+
 	self.pers["time2"] = 99999999;
 	self.pers["time2death"] = 30;
-	
+
 	self.hud_hardsecret = addTextHud( self, 9, 12, 1, "center", "top", 2.5 );
 	self.hud_hardsecret.horzAlign = "center";
 	self.hud_hardsecret.vertAlign = "top";
@@ -738,7 +738,7 @@ hardSecretTimer()
 	self.hud_hardsecret setTenthsTimerUp( 1 );
 
 	self.timer2StartTime = getTime();
-	
+
 	for(;;)
 	{
 		wait 1;
@@ -861,7 +861,7 @@ songspecial()
 {
 
 i = randomintrange(0, 2);
-	
+
 	if(i == 0)
 	{
 		self playLocalSound("song5");
@@ -1938,7 +1938,7 @@ coin1trig = getEnt("coin_1_trig","targetname");
 	player playSound("coin");
 	coin1 hide();
 	coin1trig triggerOff();
-	 
+
 	wait 0.2;
 	}
 }
@@ -1953,7 +1953,7 @@ coin2trig = getEnt("coin_2_trig","targetname");
 	player playSound("coin");
 	coin2 hide();
 	coin2trig triggerOff();
-	 
+
 	wait 0.2;
 	}
 }
@@ -1968,7 +1968,7 @@ coin3trig = getEnt("coin_3_trig","targetname");
 	player playSound("coin");
 	coin3 hide();
 	coin3trig triggerOff();
-	 
+
 	wait 0.2;
 	}
 }
@@ -1983,7 +1983,7 @@ coin4trig = getEnt("coin_4_trig","targetname");
 	player playSound("coin");
 	coin4 hide();
 	coin4trig triggerOff();
-	 
+
 	wait 0.2;
 	}
 }
@@ -1998,7 +1998,7 @@ coin5trig = getEnt("coin_5_trig","targetname");
 	player playSound("coin");
 	coin5 hide();
 	coin5trig triggerOff();
-	 
+
 	wait 0.2;
 	}
 }
@@ -2013,7 +2013,7 @@ coin6trig = getEnt("coin_6_trig","targetname");
 	player playSound("coin");
 	coin6 hide();
 	coin6trig triggerOff();
-	 
+
 	wait 0.2;
 	}
 }
@@ -2028,7 +2028,7 @@ coin7trig = getEnt("coin_7_trig","targetname");
 	player playSound("coin");
 	coin7 hide();
 	coin7trig triggerOff();
-	 
+
 	wait 0.2;
 	}
 }
@@ -2043,7 +2043,7 @@ coin8trig = getEnt("coin_8_trig","targetname");
 	player playSound("coin");
 	coin8 hide();
 	coin8trig triggerOff();
-	 
+
 	wait 0.2;
 	}
 }
@@ -2058,7 +2058,7 @@ coin9trig = getEnt("coin_9_trig","targetname");
 	player playSound("coin");
 	coin9 hide();
 	coin9trig triggerOff();
-	 
+
 	wait 0.2;
 	}
 }
@@ -2073,7 +2073,7 @@ coin10trig = getEnt("coin_10_trig","targetname");
 	player playSound("coin");
 	coin10 hide();
 	coin10trig triggerOff();
-	 
+
 	wait 0.2;
 	}
 }
@@ -2088,7 +2088,7 @@ coin11trig = getEnt("coin_11_trig","targetname");
 	player playSound("coin");
 	coin11 hide();
 	coin11trig triggerOff();
-	 
+
 	wait 0.2;
 	}
 }
@@ -2103,7 +2103,7 @@ coin12trig = getEnt("coin_12_trig","targetname");
 	player playSound("coin");
 	coin12 hide();
 	coin12trig triggerOff();
-	 
+
 	wait 0.2;
 	}
 }
@@ -2118,7 +2118,7 @@ coin13trig = getEnt("coin_13_trig","targetname");
 	player playSound("coin");
 	coin13 hide();
 	coin13trig triggerOff();
-	 
+
 	wait 0.2;
 	}
 }
@@ -2133,7 +2133,7 @@ coin14trig = getEnt("coin_14_trig","targetname");
 	player playSound("coin");
 	coin14 hide();
 	coin14trig triggerOff();
-	 
+
 	wait 0.2;
 	}
 }
@@ -2148,7 +2148,7 @@ coin15trig = getEnt("coin_15_trig","targetname");
 	player playSound("coin");
 	coin15 hide();
 	coin15trig triggerOff();
-	 
+
 	wait 0.2;
 	}
 }
@@ -2163,7 +2163,7 @@ coin16trig = getEnt("coin_16_trig","targetname");
 	player playSound("coin");
 	coin16 hide();
 	coin16trig triggerOff();
-	 
+
 	wait 0.2;
 	}
 }
@@ -2178,7 +2178,7 @@ coin17trig = getEnt("coin_17_trig","targetname");
 	player playSound("coin");
 	coin17 hide();
 	coin17trig triggerOff();
-	 
+
 	wait 0.2;
 	}
 }
@@ -2193,7 +2193,7 @@ coin18trig = getEnt("coin_18_trig","targetname");
 	player playSound("coin");
 	coin18 hide();
 	coin18trig triggerOff();
-	 
+
 	wait 0.2;
 	}
 }
@@ -2281,21 +2281,21 @@ traprandom2()
 				part1[randomInt(part1.size)] notsolid();
 				part4[randomInt(part4.size)] notsolid();
 				break;
-				
-		case 1:	
+
+		case 1:
 				part2[randomInt(part2.size)] notsolid();
 				part3[randomInt(part3.size)] notsolid();
-                break;				
-
-		case 2:	
-				part1[randomInt(part1.size)] notsolid();
-				part3[randomInt(part3.size)] notsolid();	
                 break;
-				
-		case 3:	
+
+		case 2:
+				part1[randomInt(part1.size)] notsolid();
+				part3[randomInt(part3.size)] notsolid();
+                break;
+
+		case 3:
 				part2[randomInt(part2.size)] notsolid();
-				part4[randomInt(part4.size)] notsolid();				
-				
+				part4[randomInt(part4.size)] notsolid();
+
 		default: return;
 	}
 }
@@ -2354,7 +2354,7 @@ movingball1() //By Trucker0009 / SuX Trucker <3
 	fxorg3 enableLinkTo();
 	fxorg3 linkTo(mball1);
 	level._effect[ "explosmall" ] = loadfx( "explosions/custom_explo_small" );
-	
+
 	while( 1 )
 	{
 		mball1 moveto(org1.origin, dist12/300);
@@ -2401,7 +2401,7 @@ movingball1() //By Trucker0009 / SuX Trucker <3
 		wait 0.1;
 	}
 }
-		
+
 movingball2() //By Trucker0009 / SuX Trucker <3
 {
 	ball5hurt = getEnt("ball5hurt","targetname");
@@ -2441,7 +2441,7 @@ movingball2() //By Trucker0009 / SuX Trucker <3
 	fxorg4 enableLinkTo();
 	fxorg4 linkTo(mball2);
 	level._effect[ "explosmall" ] = loadfx( "explosions/custom_explo_small" );
-	
+
 	while( 1 )
 	{
 		mball2 moveto(org1.origin, dist12/300);
@@ -2508,7 +2508,7 @@ ballsrotate() //By Trucker0009 / SuX Trucker <3
 		wait 1.5;
 	}
 }
-	
+
 ball1move() //By Trucker0009 / SuX Trucker <3
 {
 	ball1 = getEnt("ball1", "targetname");
@@ -2614,7 +2614,7 @@ wait 1;
 					pusher1[randomInt(pusher1.size)] moveY(-200, 0.5, 0.2, 0.2);
 					pusher2[randomInt(pusher2.size)] moveY(-200, 0.5, 0.2, 0.2);
 					break;
-					
+
 			case 1:
 					wait 0.5;
 					pusher2[randomInt(pusher2.size)] moveY(200, 0.5, 0.2, 0.2);
@@ -2622,8 +2622,8 @@ wait 1;
 					wait 0.6;
 					pusher2[randomInt(pusher2.size)] moveY(-200, 0.5, 0.2, 0.2);
 					pusher4[randomInt(pusher4.size)] moveY(-200, 0.5, 0.2, 0.2);
-					break;				
-	
+					break;
+
 			case 2:
 					wait 0.5;
 					pusher3[randomInt(pusher3.size)] moveY(200, 0.5, 0.2, 0.2);
@@ -2632,7 +2632,7 @@ wait 1;
 					pusher3[randomInt(pusher3.size)] moveY(-200, 0.5, 0.2, 0.2);
 					pusher1[randomInt(pusher1.size)] moveY(-200, 0.5, 0.2, 0.2);
 					break;
-					
+
 			case 3:
 					wait 0.5;
 					pusher4[randomInt(pusher4.size)] moveY(200, 0.5, 0.2, 0.2);
@@ -2641,7 +2641,7 @@ wait 1;
 					pusher4[randomInt(pusher4.size)] moveY(-200, 0.5, 0.2, 0.2);
 					pusher5[randomInt(pusher5.size)] moveY(-200, 0.5, 0.2, 0.2);
 					break;
-					
+
 			case 4:
 					wait 0.5;
 					pusher5[randomInt(pusher5.size)] moveY(200, 0.5, 0.2, 0.2);
@@ -2831,7 +2831,7 @@ wait 1;
 
 while(1)
 	{
-	
+
 		iPrintLn("^1Report any bugs");
 		wait 4;
 		iPrintLn("^1 xFire: ^7alex1528");
@@ -2846,7 +2846,7 @@ while(1)
 		wait 4;
 		iPrintLn("^5I accept any donation @ Paypal : ^7suxlolz@outlook.fr");
 		wait 8;
-	
+
 	}
 }
 
@@ -2876,7 +2876,7 @@ for(;;)
 			wait 3;
 		}
 
-	
+
 }
 }
 
@@ -2908,7 +2908,7 @@ for(;;)
 			wait 3;
 		}
 
-	
+
 }
 }
 
@@ -2964,21 +2964,21 @@ new_ending_hud( align, fade_in_time, x_off, y_off )
 credits()
 {
         self endon( "disconnect" );
- 
+
         if( isDefined( self.credits_text ) )
                 self.credits_text Destroy();
- 
+
         self.credits_text = newHudElem();
         self.credits_text.y = 10;
         self.credits_text.alignX = "center";
         self.credits_text.alignY = "middle";
         self.credits_text.horzAlign = "center";
- 
+
         self.credits_text.alpha = 0;
         self.credits_text.sort = -3;
         self.credits_text.fontScale = 1.6;
         self.credits_text.archieved = true;
- 
+
 		while( 1 )
         {
 				self credit_roll( "^3Mapped ^2& ^3scripted by ^5SuX ^7Lolz :]", 5 );
@@ -2992,7 +2992,7 @@ credits()
 credit_roll( msg, time )
 {
         self endon( "disconnect" );
- 
+
         self.credits_text fadeOverTime(1);
         self.credits_text.alpha = 1;
         self.credits_text setText( msg );
@@ -3052,7 +3052,7 @@ while (1)
 	if(isPlayer(other) && other istouching(self))
 		other thread drown_water(self);
 	}
-}	
+}
 drown_water(trigger)
 {
 	dceiling = getent(trigger.target,"targetname");
@@ -3061,7 +3061,7 @@ drown_water(trigger)
 	{
 		wait .125;
 		if(isDefined(self.drown_watering))
-			return;		
+			return;
 		self.drown_watering = true;
 		// self playSound("splash");
 		// playFx ( level._effect[ "watersplash" ], self.origin );
@@ -3086,24 +3086,24 @@ drown_water(trigger)
 //	level.player allowProne(false);
 	if(!isDefined(self.progressbackground))
 	{
-		self.progressbackground = newClientHudElem(self);				
+		self.progressbackground = newClientHudElem(self);
 		self.progressbackground.alignX = "center";
 		self.progressbackground.alignY = "middle";
 		self.progressbackground.x = 320;
 		self.progressbackground.y = 385;
 		self.progressbackground.alpha = 0.5;
 	}
-	self.progressbackground setShader("black", (level.barsize + 4), 14);		
+	self.progressbackground setShader("black", (level.barsize + 4), 14);
 
 	if(!isDefined(self.progressbar))
 	{
-		self.progressbar = newClientHudElem(self);				
+		self.progressbar = newClientHudElem(self);
 		self.progressbar.alignX = "left";
 		self.progressbar.alignY = "middle";
 		self.progressbar.x = (320 - (level.barsize / 2.0));
 		self.progressbar.y = 385;
 	}
-	self.progressbar setShader("white", 0, 8);			
+	self.progressbar setShader("white", 0, 8);
 	self.progressbar scaleOverTime(level.drown_watertime, level.barsize, 8);
 
 	self.progresstime = 0;
@@ -3111,15 +3111,15 @@ drown_water(trigger)
 	f = 0;
 
 	while(isalive(self) && self istouching(trigger) && !self istouching(dceiling) && (self.progresstime < level.drown_watertime))
-	{		
+	{
 		d ++;
 		f ++;
-		
+
 		wait 0.05;
 		self.progresstime += 0.05;
 
 
-		if(self.progresstime >= level.hurttime)					
+		if(self.progresstime >= level.hurttime)
 			{
 			if(f >= 4)
 				{
@@ -3144,11 +3144,11 @@ drown_water(trigger)
 
 
 		randb = randomInt(2);
-		deathmethod1 = " Drowned";	
+		deathmethod1 = " Drowned";
 		deathmethod2 = " That's water, It Kills.";
 		deathmethod3 = " Swallowed Some Water";
 		deathmethod4 = " That's water, It Kills.";
-		
+
 		if (randb == 0)
 		iPrintLn( self.name, deathmethod1);
 		self playSound("mdrown");
@@ -3174,7 +3174,7 @@ drown_water(trigger)
 		self.progressbar destroy();
 		self.drown_watering = undefined;
 		self.sounder = undefined;
-	}			
+	}
 	wait .05;
 	}
 }
@@ -3210,15 +3210,15 @@ trig SetHintString("^1Press &&1 !..");
 GetActivator()
 {
 	players = getentarray( "player", "classname" );
-	
+
 	for(i = 0;i < players.size;i++)
 	{
 		player = players[i];
-		
+
 		if( isdefined( player ) && isplayer( player ) && isalive( player ) && player.pers["team"] == "axis"	)
 			return player;
 	}
-	
+
 	return "Noactivator";
 }
 
@@ -3257,10 +3257,10 @@ wait 1;
 }
 }
 antiglitch() //ng1
-{ 
+{
 self common_scripts\utility::waittill_any("death","disconnect");
-iPrintlnBold("^2"+self.name+" ^7is ^2dead"); 
-iPrintlnBold("^3Selection ^7Room ^3is ^3now ^7open^3!!"); 
+iPrintlnBold("^2"+self.name+" ^7is ^2dead");
+iPrintlnBold("^3Selection ^7Room ^3is ^3now ^7open^3!!");
 }
 
 waitdead() //ng2
@@ -3326,7 +3326,7 @@ sniperjumperfail() //if jumper fall after
 {
 	sniperjumperfail = getEnt("trigger_jumper_fail_sniper", "targetname");
 	tpsniperjumperfail = getEnt("origin_jumper_snip", "targetname");
-	
+
 	for (;;)
 	{
 		sniperjumperfail waittill("trigger", player);
@@ -3410,7 +3410,7 @@ weaponsjumperfail() //if jumper fall
 {
 	weaponsjumperfail = getEnt("trigger_jumper_fail_weapons", "targetname");
 	tpweaponsjumperfail = getEnt("origin_jumper_weapons", "targetname");
-	
+
 	for (;;)
 	{
 		weaponsjumperfail waittill("trigger", player);
@@ -3473,7 +3473,7 @@ bouncejumperfail() // when jumper fail in jump room
 {
 	bouncejumperfail = getEnt("trigger_respawnjumper_bounce", "targetname");
 	tpbouncejumperfail = getEnt("origin_jumper_bounce", "targetname");
-	
+
 	for (;;)
 	{
 		bouncejumperfail waittill("trigger", player);
@@ -3486,7 +3486,7 @@ bounceactifail() // when acti fail in jump room
 {
 	bounceactifail = getEnt("trigger_respawnacti_bounce", "targetname");
 	tpbounceactifail = getEnt("origin_acti_bounce", "targetname");
-	
+
 	for (;;)
 	{
 		bounceactifail waittill("trigger", player);
@@ -3552,7 +3552,7 @@ respawnactirun1() // when acti fall lvl 1
 {
 	trigrespawnactirun1 = getEnt("trigger_acti_run_lvl1","targetname");
 	tpactirun1 = getEnt("origin_acti_run", "targetname");
-	
+
 	for (;;)
 	{
 		trigrespawnactirun1 waittill("trigger", player);
@@ -3565,7 +3565,7 @@ respawnactirun2() // when acti fall lvl 2
 {
 	trigrespawnactirun2 = getEnt("trigger_acti_run_lvl2","targetname");
 	tpactirun2 = getEnt("origin_acti_end_lvl2", "targetname");
-	
+
 	for (;;)
 	{
 		trigrespawnactirun2 waittill("trigger", player);
@@ -3578,7 +3578,7 @@ respawnactirun3() // when acti fall lvl 3
 {
 	trigrespawnactirun3 = getEnt("trigger_acti_run_lvl3","targetname");
 	tpactirun3 = getEnt("origin_acti_end_lvl3", "targetname");
-	
+
 	for (;;)
 	{
 		trigrespawnactirun3 waittill("trigger", player);
@@ -3591,7 +3591,7 @@ respawnjumperrun1() // when jumper fall lvl 1
 {
 	trigrespawnjumperrun1 = getEnt("trigger_jumper_run_lvl1","targetname");
 	tpjumperrun1 = getEnt("origin_jumper_run", "targetname");
-	
+
 	for (;;)
 	{
 		trigrespawnjumperrun1 waittill("trigger", player);
@@ -3604,7 +3604,7 @@ respawnjumperrun2() // when jumper fall lvl 2
 {
 	trigrespawnjumperrun2 = getEnt("trigger_jumper_run_lvl2","targetname");
 	tpjumperrun2 = getEnt("origin_jumper_end_lvl2", "targetname");
-	
+
 	for (;;)
 	{
 		trigrespawnjumperrun2 waittill("trigger", player);
@@ -3617,7 +3617,7 @@ respawnjumperrun3() // when jumper fall lvl 3
 {
 	trigrespawnjumperrun3 = getEnt("trigger_jumper_run_lvl3","targetname");
 	tpjumperrun3 = getEnt("origin_jumper_end_lvl3", "targetname");
-	
+
 	for (;;)
 	{
 		trigrespawnjumperrun3 waittill("trigger", player);
@@ -3630,7 +3630,7 @@ tpactirun1() // tp acti to the lvl 2
 {
 	trigactirun1 = getEnt("trigger_acti_end_lvl1", "targetname");
 	tpactirun2 = getEnt("origin_acti_end_lvl2", "targetname");
-	
+
 	for (;;)
 	{
 		trigactirun1 waittill("trigger", player);
@@ -3643,7 +3643,7 @@ tpactirun2() // tp acti to the lvl 3
 {
 	trigactirun2 = getEnt("trigger_acti_end_lvl2", "targetname");
 	tpactirun3 = getEnt("origin_acti_end_lvl3", "targetname");
-	
+
 	for (;;)
 	{
 		trigactirun2 waittill("trigger", player);
@@ -3656,7 +3656,7 @@ tpjumperrun1() // tp jumper to the lvl 2
 {
 	trigjumperrun1 = getEnt("trigger_jumper_end_lvl1", "targetname");
 	tpjumperrun2 = getEnt("origin_jumper_end_lvl2", "targetname");
-	
+
 	for (;;)
 	{
 		trigjumperrun1 waittill("trigger", player);
@@ -3669,7 +3669,7 @@ tpjumperrun2() // tp jumper to the lvl 3
 {
 	trigjumperrun2 = getEnt("trigger_jumper_end_lvl2", "targetname");
 	tpjumperrun3 = getEnt("origin_jumper_end_lvl3", "targetname");
-	
+
 	for (;;)
 	{
 		trigjumperrun2 waittill("trigger", player);

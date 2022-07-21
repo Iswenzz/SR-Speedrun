@@ -11,7 +11,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((-842, -1, -337), 181);
+thread sr\api\_map::createSpawnOrigin((-842, -1, -337), 181);
     maps\mp\_load::main();
 
     game["allies"] = "marines";
@@ -24,7 +24,7 @@ thread sr\api\_map::createSpawn((-842, -1, -337), 181);
     	thread sr\api\_speedrun::createNormalWays("Normal Way;");
     thread sr\api\_speedrun::createSecretWays("Secret Way;");
     thread sr\api\_speedrun::createTeleporter((-1058.49, -282.462, -348.497), 80, 130, (781, 2755, -3331), 181, "freeze", "blue", "secret_0");
- 
+
     setdvar( "r_specularcolorscale", "1" );
     setdvar("r_glowbloomintensity0",".1");
     setdvar("r_glowbloomintensity1",".1");
@@ -75,12 +75,12 @@ thread sr\api\_map::createSpawn((-842, -1, -337), 181);
     thread secret2();
     thread secret3();
     thread secret4();
-    thread jumper_secret_end(); 
+    thread jumper_secret_end();
     thread setresp();
     thread trap2init();
 
 }
-setresp() 
+setresp()
 {
     trig1 = spawn( "trigger_radius", (-914.439, -0.413066, -340.751), 0, 135, 65 );
 
@@ -96,7 +96,7 @@ setting()
 
 
     }
-   
+
 }
 door()
 {
@@ -122,11 +122,11 @@ trap1()
 {
 	level endon("triggera");
     trig = getent ("trig_trap1", "targetname");
-    trig setHintString ("^3Press [&&1] to activate");  
+    trig setHintString ("^3Press [&&1] to activate");
     trap = getent ("trap1", "targetname");
     trapbutton = getent ("trap1_button", "targetname");
 
-    while(1) 
+    while(1)
     {
         trig waittill("triggera", player);
         trig delete();
@@ -144,7 +144,7 @@ trap2()
     trig = getent ("trig_trap2", "targetname");
     trapbutton = getent ("trap2_button", "targetname");
 
-    while(1) 
+    while(1)
     {
         trig waittill("triggerb", player);
         trig delete();
@@ -204,7 +204,7 @@ trap2a()
 
     trap = getent("trap2_a","targetname"); // trap
     death_trigger = getent("trap2a_trig","targetname"); //Death trigger
-    death_trigger enablelinkto(); 
+    death_trigger enablelinkto();
     death_trigger linkto(trap);
     trap moveY (232, 0.25);
     wait 0.35;
@@ -216,7 +216,7 @@ trap2b()
 {
     trap = getent("trap2_b","targetname"); // trap
     death_trigger = getent("trap2b_trig","targetname"); //Death trigger
-    death_trigger enablelinkto(); 
+    death_trigger enablelinkto();
     death_trigger linkto(trap);
     trap moveY (240, 0.25);
     wait 0.50;
@@ -229,7 +229,7 @@ trap2c()
 {
     trap = getent("trap2_c","targetname"); // trap
     death_trigger = getent("trap2c_trig","targetname"); //Death trigger
-    death_trigger enablelinkto(); 
+    death_trigger enablelinkto();
     death_trigger linkto(trap);
     trap moveY (272, 0.25);
     wait 0.75;
@@ -241,7 +241,7 @@ trap2d()
 {
     trap = getent("trap2_d","targetname"); // trap
     death_trigger = getent("trap2d_trig","targetname"); //Death trigger
-    death_trigger enablelinkto(); 
+    death_trigger enablelinkto();
     death_trigger linkto(trap);
     trap moveY (224, 0.25);
     wait 0.9;
@@ -253,7 +253,7 @@ trap2e()
 {
     trap = getent("trap2_e","targetname"); // trap
     death_trigger = getent("trap2e_trig","targetname"); //Death trigger
-    death_trigger enablelinkto(); 
+    death_trigger enablelinkto();
     death_trigger linkto(trap);
     trap moveY (240, 0.25);
     wait 1;
@@ -266,11 +266,11 @@ trap3()
 {
 	level endon("triggerc");
     trig = getent ("trig_trap3", "targetname");
-    trig setHintString ("^3Press [&&1] to activate");  
+    trig setHintString ("^3Press [&&1] to activate");
     trap = getent ("trap3", "targetname");
-    trapbutton = getent ("trap3_button", "targetname"); 
+    trapbutton = getent ("trap3_button", "targetname");
 
-    while(1) 
+    while(1)
     {
         trig waittill("triggerc", player);
         trig delete();
@@ -280,7 +280,7 @@ trap3()
         wait 0.5;
         trapbutton moveZ (2, 0.5);
         wait 2;
-        trap moveZ (256, 2);    
+        trap moveZ (256, 2);
     }
 }
 
@@ -291,17 +291,17 @@ trap4()
 {
 	level endon("triggerd");
     trig = getent ("trig_trap4", "targetname");
-    trig setHintString ("^3Press [&&1] to activate");  
+    trig setHintString ("^3Press [&&1] to activate");
     trap = getent ("trap4", "targetname");
     doors = getent ("trap4_doors", "targetname");
     death_trigger = getent ("trap4_death", "targetname");
     wall = getent ("trap4_wall", "targetname");
-    death_trigger enablelinkto(); 
+    death_trigger enablelinkto();
     death_trigger linkto(wall);
     wait 0.5;
     doors moveZ(-173, 0.1);
-    trapbutton = getent ("trap4_button", "targetname"); 
-    while(1) 
+    trapbutton = getent ("trap4_button", "targetname");
+    while(1)
     {
         trig waittill("triggerd", player);
         trig delete();
@@ -332,7 +332,7 @@ trap5()
 	level endon("triggere");
     trapbutton = getent ("trap5_button", "targetname");
     trig = getent ("trig_trap5", "targetname");
-    trig setHintString ("^3Press [&&1] to activate");  
+    trig setHintString ("^3Press [&&1] to activate");
     trap1 = getent ("trap5_a", "targetname");
     trap2 = getent ("trap5_b", "targetname");
     trap3 = getent ("trap5_c", "targetname");
@@ -341,19 +341,19 @@ trap5()
     trapbutton = getent ("trap5_button", "targetname");
     wait 0.5;
     death_a = getent ("trap5_a_death", "targetname");
-    death_a enablelinkto(); 
+    death_a enablelinkto();
     death_a linkto(trap1);
     death_b = getent ("trap5_b_death", "targetname");
-    death_b enablelinkto(); 
+    death_b enablelinkto();
     death_b linkto(trap2);
     death_c = getent ("trap5_c_death", "targetname");
-    death_c enablelinkto(); 
+    death_c enablelinkto();
     death_c linkto(trap3);
     death_d = getent ("trap5_d_death", "targetname");
-    death_d enablelinkto(); 
+    death_d enablelinkto();
     death_d linkto(trap4);
     death_e = getent ("trap5_e_death", "targetname");
-    death_e enablelinkto(); 
+    death_e enablelinkto();
     death_e linkto(trap5);
 
     trap1 moveZ (-126, 0.3);
@@ -362,7 +362,7 @@ trap5()
     trap4 moveZ (-126, 0.3);
     trap5 moveZ (-126, 0.3);
 
-    while(1) 
+    while(1)
     {
         trig waittill("triggere", player);
         trig delete();
@@ -427,7 +427,7 @@ trap6()
 	level endon("triggerf");
     trapbutton = getent ("trap6_button", "targetname");
     trig = getent ("trig_trap6", "targetname");
-    trig setHintString ("^3Press [&&1] to activate");  
+    trig setHintString ("^3Press [&&1] to activate");
     trap1 = getent ("trap6_a", "targetname");
     trap2 = getent ("trap6_b", "targetname");
     trap3 = getent ("trap6_c", "targetname");
@@ -436,19 +436,19 @@ trap6()
     trapbutton = getent ("trap6_button", "targetname");
 
     death_a = getent ("trap6_a_death", "targetname");
-    death_a enablelinkto(); 
+    death_a enablelinkto();
     death_a linkto(trap1);
     death_b = getent ("trap6_b_death", "targetname");
-    death_b enablelinkto(); 
+    death_b enablelinkto();
     death_b linkto(trap2);
     death_c = getent ("trap6_c_death", "targetname");
-    death_c enablelinkto(); 
+    death_c enablelinkto();
     death_c linkto(trap3);
     death_d = getent ("trap6_d_death", "targetname");
-    death_d enablelinkto(); 
+    death_d enablelinkto();
     death_d linkto(trap4);
     death_e = getent ("trap6_e_death", "targetname");
-    death_e enablelinkto(); 
+    death_e enablelinkto();
     death_e linkto(trap5);
     wait 0.5;
     trap1 moveZ (-126, 0.3);
@@ -457,7 +457,7 @@ trap6()
     trap4 moveZ (-126, 0.3);
     trap5 moveZ (-126, 0.3);
 
-    while(1) 
+    while(1)
     {
         trig waittill("triggerf", player);
         trig delete();
@@ -519,7 +519,7 @@ trap7()
 	level endon("triggerg");
     trapbutton = getent ("trap7_button", "targetname");
     trig = getent ("trig_trap7", "targetname");
-    trig setHintString ("^3Press [&&1] to activate");  
+    trig setHintString ("^3Press [&&1] to activate");
     trap = getent ("trap7", "targetname");
     clip = getent ("trap7_clip", "targetname");
     death_trigger = getent ("trap7_death", "targetname");
@@ -536,7 +536,7 @@ trap7()
     wait 1;
     trap moveX(128, 0.5);
     clip moveX(128, 0.5);
-    while(1) 
+    while(1)
     {
         trig waittill("triggerg", player);
         trig delete();
@@ -570,7 +570,7 @@ trap8()
 	level endon("triggerh");
     trapbutton = getent ("trap8_button", "targetname");
     trig = getent ("trig_trap8", "targetname");
-    trig setHintString ("^3Press [&&1] to activate");  
+    trig setHintString ("^3Press [&&1] to activate");
     trapa = getent ("trap8_a", "targetname");
     trapb = getent ("trap8_b", "targetname");
     trapc = getent ("trap8_c", "targetname");
@@ -587,7 +587,7 @@ trap8()
     trapa_death delete();
 
 
-    while(1) 
+    while(1)
     {
         trig waittill("triggerh", player);
         trig delete();
@@ -612,11 +612,11 @@ trap9()
 {
 	level endon("triggeri");
     trig = getent ("trig_trap9", "targetname");
-    trig setHintString ("^3Press [&&1] to activate");  
+    trig setHintString ("^3Press [&&1] to activate");
     trap_right = getent ("trap9_a", "targetname");
     trap_left = getent ("trap9_b", "targetname");
-    trapbutton = getent ("trap9_button", "targetname"); 
-    while(1) 
+    trapbutton = getent ("trap9_button", "targetname");
+    while(1)
     {
         trig waittill("triggeri", player);
         trig delete();
@@ -624,8 +624,8 @@ trap9()
         wait 0.5;
         trapbutton moveZ (2, 0.5);
         trap_left moveY(-136, 2);
-        trap_right moveY(136, 2);   
-        wait 3; 
+        trap_right moveY(136, 2);
+        wait 3;
         for(;;)
         {
             trap_left moveY(136, 1);
@@ -653,9 +653,9 @@ trap10()
     trap_left moveTo(o2.origin, 1);
 
     trig = getent ("trig_trap10", "targetname");
-    trig setHintString ("^3Press [&&1] to activate");  
-    trapbutton = getent ("trap10_button", "targetname");    
-    while(1) 
+    trig setHintString ("^3Press [&&1] to activate");
+    trapbutton = getent ("trap10_button", "targetname");
+    while(1)
     {
         trig waittill("triggerj", player);
         trig delete();
@@ -682,26 +682,26 @@ trap11()
     trap_first_right = getent ("trap11_firstdoor_right", "targetname");
 
     trap_second_right_trig = getent ("trap11_secondoor_right_trig", "targetname");
-    trap_second_right_trig enablelinkto(); 
+    trap_second_right_trig enablelinkto();
     trap_second_right_trig linkto(trap_second_right);
 
     trap_second_left_trig = getent ("trap11_secondoor_left_trig", "targetname");
-    trap_second_left_trig enablelinkto(); 
+    trap_second_left_trig enablelinkto();
     trap_second_left_trig linkto(trap_second_left);
 
     trap_first_right_trig = getent ("trap11_firstdoor_right_trig", "targetname");
-    trap_first_right_trig enablelinkto(); 
+    trap_first_right_trig enablelinkto();
     trap_first_right_trig linkto(trap_first_right);
 
     trap_first_left_trig = getent ("trap11_firstdoor_left_trig", "targetname");
-    trap_first_left_trig enablelinkto(); 
+    trap_first_left_trig enablelinkto();
     trap_first_left_trig linkto(trap_first_left);
 
     level.trap11_first = 0;
     trig = getent ("trig_trap11", "targetname");
-    trig setHintString ("^3Press [&&1] to activate");  
-    trapbutton = getent ("trap11_button", "targetname");    
-    while(1) 
+    trig setHintString ("^3Press [&&1] to activate");
+    trapbutton = getent ("trap11_button", "targetname");
+    while(1)
     {
         trig waittill("triggerk", player);
         trig delete();
@@ -725,7 +725,7 @@ trap11_1()
         wait 99999;
         trap_second_right moveY(176, 0.7);
         trap_second_left moveY(-176, 0.7);
-    }  
+    }
 }
 
 
@@ -742,7 +742,7 @@ trap11_2()
         wait 0999999;
         trap_first_right moveY(176, 0.7);
         trap_first_left moveY(-176, 0.7);
-    }  
+    }
 }
 
 
@@ -796,9 +796,9 @@ trap12()
 {
 	level endon("triggerl");
     trig = getent ("trig_trap12", "targetname");
-    trig setHintString ("^3Press [&&1] to activate");  
-    trapbutton = getent ("trap12_button", "targetname");    
-    while(1) 
+    trig setHintString ("^3Press [&&1] to activate");
+    trapbutton = getent ("trap12_button", "targetname");
+    while(1)
     {
         trig waittill("triggerl", player);
         trig delete();
@@ -807,7 +807,7 @@ trap12()
         thread trap12_c();
         trapbutton moveZ (-2, 0.5);
         wait 0.5;
-        trapbutton moveZ (2, 0.5);  
+        trapbutton moveZ (2, 0.5);
     }
 }
 
@@ -817,14 +817,14 @@ trap12_a()
 	level endon("triggerm");
     trig = getent ("trap12_a_trig", "targetname");
     trap_a = getent ("trap12_a", "targetname");
-    trig waittill("trigger", player);   
-    while(1) 
+    trig waittill("trigger", player);
+    while(1)
     {
         trig waittill("triggerm", player);
         trap_a moveZ (-55, 1);
         wait 1.5;
         trap_a moveZ (55, 1);
-        wait 1.5;   
+        wait 1.5;
     }
 }
 
@@ -834,8 +834,8 @@ trap12_b()
 	level endon("triggern");
     trig = getent ("trap12_b_trig", "targetname");
     trap_b = getent ("trap12_b", "targetname");
-    trig waittill("trigger", player);   
-    while(1) 
+    trig waittill("trigger", player);
+    while(1)
     {
         trig waittill("triggern", player);
         trap_b moveZ (-55, 1);
@@ -850,14 +850,14 @@ trap12_c()
 {
 	level endon("triggero");
     trig = getent ("trap12_c_trig", "targetname");
-    trap_c = getent ("trap12_c", "targetname"); 
-    while(1) 
+    trap_c = getent ("trap12_c", "targetname");
+    while(1)
     {
         trig waittill("triggero", player);
         trap_c moveZ (-55, 1);
         wait 1.5;
         trap_c moveZ (55, 1);
-        wait 1.5;   
+        wait 1.5;
     }
 }
 
@@ -872,19 +872,19 @@ trap13()
     trap5 = getent ("trap13_e", "targetname");
 
     death_a = getent ("trap13_a_death", "targetname");
-    death_a enablelinkto(); 
+    death_a enablelinkto();
     death_a linkto(trap1);
     death_b = getent ("trap13_b_death", "targetname");
-    death_b enablelinkto(); 
+    death_b enablelinkto();
     death_b linkto(trap2);
     death_c = getent ("trap13_c_death", "targetname");
-    death_c enablelinkto(); 
+    death_c enablelinkto();
     death_c linkto(trap3);
     death_d = getent ("trap13_d_death", "targetname");
-    death_d enablelinkto(); 
+    death_d enablelinkto();
     death_d linkto(trap4);
     death_e = getent ("trap13_e_death", "targetname");
-    death_e enablelinkto(); 
+    death_e enablelinkto();
     death_e linkto(trap5);
 
     trap1 moveZ (-126, 0.3);
@@ -900,19 +900,19 @@ trap13()
     trap5_2 = getent ("trap13_e_2", "targetname");
 
     death_a_2 = getent ("trap13_a_death_2", "targetname");
-    death_a_2 enablelinkto(); 
+    death_a_2 enablelinkto();
     death_a_2 linkto(trap1_2);
     death_b_2 = getent ("trap13_b_death_2", "targetname");
-    death_b_2 enablelinkto(); 
+    death_b_2 enablelinkto();
     death_b_2 linkto(trap2_2);
     death_c_2 = getent ("trap13_c_death_2", "targetname");
-    death_c_2 enablelinkto(); 
+    death_c_2 enablelinkto();
     death_c_2 linkto(trap3_2);
     death_d_2 = getent ("trap13_d_death_2", "targetname");
-    death_d_2 enablelinkto(); 
+    death_d_2 enablelinkto();
     death_d_2 linkto(trap4_2);
     death_e_2 = getent ("trap13_e_death_2", "targetname");
-    death_e_2 enablelinkto(); 
+    death_e_2 enablelinkto();
     death_e_2 linkto(trap5_2);
 
     trap1_2 moveZ (-126, 0.3);
@@ -923,9 +923,9 @@ trap13()
 
     trapbutton = getent ("trap13_button", "targetname");
     trig = getent ("trig_trap13", "targetname");
-    trig setHintString ("^3Press [&&1] to activate");  
+    trig setHintString ("^3Press [&&1] to activate");
     trapbutton = getent ("trap13_button", "targetname");
-    while(1) 
+    while(1)
     {
         trig waittill("triggerp", player);
         trig delete();
@@ -947,22 +947,22 @@ trap13_a()
     trap5 = getent ("trap13_e", "targetname");
 
     death_a = getent ("trap13_a_death", "targetname");
-    death_a enablelinkto(); 
+    death_a enablelinkto();
     death_a linkto(trap1);
     death_b = getent ("trap13_b_death", "targetname");
-    death_b enablelinkto(); 
+    death_b enablelinkto();
     death_b linkto(trap2);
     death_c = getent ("trap13_c_death", "targetname");
-    death_c enablelinkto(); 
+    death_c enablelinkto();
     death_c linkto(trap3);
     death_d = getent ("trap13_d_death", "targetname");
-    death_d enablelinkto(); 
+    death_d enablelinkto();
     death_d linkto(trap4);
     death_e = getent ("trap13_e_death", "targetname");
-    death_e enablelinkto(); 
+    death_e enablelinkto();
     death_e linkto(trap5);
 
-    while(1) 
+    while(1)
     {
         for(;;)
         {
@@ -1024,23 +1024,23 @@ trap13_b()
     trap5 = getent ("trap13_e_2", "targetname");
 
     death_a = getent ("trap13_a_death_2", "targetname");
-    death_a enablelinkto(); 
+    death_a enablelinkto();
     death_a linkto(trap1);
     death_b = getent ("trap13_b_death_2", "targetname");
-    death_b enablelinkto(); 
+    death_b enablelinkto();
     death_b linkto(trap2);
     death_c = getent ("trap13_c_death_2", "targetname");
-    death_c enablelinkto(); 
+    death_c enablelinkto();
     death_c linkto(trap3);
     death_d = getent ("trap13_d_death_2", "targetname");
-    death_d enablelinkto(); 
+    death_d enablelinkto();
     death_d linkto(trap4);
     death_e = getent ("trap13_e_death_2", "targetname");
-    death_e enablelinkto(); 
+    death_e enablelinkto();
     death_e linkto(trap5);
 
 
-    while(1) 
+    while(1)
     {
         for(;;)
         {
@@ -1097,7 +1097,7 @@ trap14()
 {
 	level endon("triggerq");
     trig = getent ("trig_trap14", "targetname");
-    trig setHintString ("^3Press [&&1] to activate");  
+    trig setHintString ("^3Press [&&1] to activate");
     trap_a = getent ("trap14_a", "targetname");
     trap_b = getent ("trap14_b", "targetname");
     trap_c = getent ("trap14_c", "targetname");
@@ -1106,11 +1106,11 @@ trap14()
     trap_f = getent ("trap14_f", "targetname");
     trapbutton = getent ("trap14_button", "targetname");
 
-    while(1) 
+    while(1)
     {
         trig waittill("triggerq", player);
         trig delete();
-    }   
+    }
 }
 
 
@@ -1129,9 +1129,9 @@ trap15()
 
     trapbutton = getent ("trap15_button", "targetname");
     trig = getent ("trig_trap15", "targetname");
-    trig setHintString ("^3Press [&&1] to activate");  
+    trig setHintString ("^3Press [&&1] to activate");
     trapbutton = getent ("trap15_button", "targetname");
-    while(1) 
+    while(1)
     {
         trig waittill("triggerr", player);
         trig delete();
@@ -1155,7 +1155,7 @@ trap15_a()
 {
 	level endon("triggers");
     trigger = getent("trap15_trig_a", "targetname");
-    
+
     while(1)
     {
         trigger waittill ( "triggers", player );
@@ -1168,7 +1168,7 @@ trap15_b()
 {
 	level endon("triggert");
     trigger = getent("trap15_trig_b", "targetname");
-    
+
     while(1)
     {
         trigger waittill ( "triggert", player );
@@ -1180,7 +1180,7 @@ trap15_c()
 {
 	level endon("triggeru");
     trigger = getent("trap15_trig_c", "targetname");
-    
+
     while(1)
     {
         trigger waittill ( "triggeru", player );
@@ -1197,10 +1197,10 @@ trap16()
     trap_a = getent ("trap16_a", "targetname");
     trap_b = getent ("trap16_b", "targetname");
     trap_1 = getent ("trap16_1", "targetname");
-    trap_2 = getent ("trap16_2", "targetname"); 
+    trap_2 = getent ("trap16_2", "targetname");
 
 
-    while(1) 
+    while(1)
     {
         trig waittill("triggerv", player);
         trig delete();
@@ -1230,59 +1230,59 @@ trap16()
 
 trap17init()
 {
-    trap_1_left = getent ("trap17_left_6", "targetname");   
+    trap_1_left = getent ("trap17_left_6", "targetname");
     trap_1_left_trigger = getent ("trap17_left_6_trigger", "targetname");
-    trap_1_left_trigger enablelinkto(); 
+    trap_1_left_trigger enablelinkto();
     trap_1_left_trigger linkto(trap_1_left);
 
-    trap_2_left = getent ("trap17_left_2", "targetname");   
+    trap_2_left = getent ("trap17_left_2", "targetname");
     trap_2_left_trigger = getent ("trap17_left_2_trigger", "targetname");
-    trap_2_left_trigger enablelinkto(); 
+    trap_2_left_trigger enablelinkto();
     trap_2_left_trigger linkto(trap_2_left);
 
-    trap_3_left = getent ("trap17_left_3", "targetname");   
+    trap_3_left = getent ("trap17_left_3", "targetname");
     trap_3_left_trigger = getent ("trap17_left_3_trigger", "targetname");
-    trap_3_left_trigger enablelinkto(); 
+    trap_3_left_trigger enablelinkto();
     trap_3_left_trigger linkto(trap_3_left);
 
-    trap_7_left = getent ("trap17_left_7", "targetname");   
+    trap_7_left = getent ("trap17_left_7", "targetname");
     trap_7_left_trigger = getent ("trap17_left_7_trigger", "targetname");
-    trap_7_left_trigger enablelinkto(); 
+    trap_7_left_trigger enablelinkto();
     trap_7_left_trigger linkto(trap_7_left);
 
-    trap_1_right = getent ("trap17_right_1", "targetname"); 
+    trap_1_right = getent ("trap17_right_1", "targetname");
     trap_1_right_trigger = getent ("trap17_right_1_trigger", "targetname");
-    trap_1_right_trigger enablelinkto(); 
+    trap_1_right_trigger enablelinkto();
     trap_1_right_trigger linkto(trap_1_right);
 
-    trap_2_right = getent ("trap17_right_2", "targetname"); 
+    trap_2_right = getent ("trap17_right_2", "targetname");
     trap_2_right_trigger = getent ("trap17_right_2_trigger", "targetname");
-    trap_2_right_trigger enablelinkto(); 
+    trap_2_right_trigger enablelinkto();
     trap_2_right_trigger linkto(trap_2_right);
 
-    trap_3_right = getent ("trap17_right_3", "targetname"); 
+    trap_3_right = getent ("trap17_right_3", "targetname");
     trap_3_right_trigger = getent ("trap17_right_3_trigger", "targetname");
-    trap_3_right_trigger enablelinkto(); 
+    trap_3_right_trigger enablelinkto();
     trap_3_right_trigger linkto(trap_3_right);
 
     trap_1_left moveY(64, 0.10);
     trap_2_left moveY(64, 0.10);
-    trap_3_left moveY(64, 0.10); 
+    trap_3_left moveY(64, 0.10);
     trap_7_left moveY(64, 0.10);
 
     trap_1_right moveY(-64, 0.10);
-    trap_2_right moveY(-64, 0.10); 
+    trap_2_right moveY(-64, 0.10);
     trap_3_right moveY(-64, 0.10);
 
     wait 0.5;
 
     trap_1_left moveZ(-32, 0.10);
     trap_2_left moveZ(-32, 0.10);
-    trap_3_left moveZ(-32, 0.10); 
+    trap_3_left moveZ(-32, 0.10);
     trap_7_left moveZ(-32, 0.10);
 
     trap_1_right moveZ(-32, 0.10);
-    trap_2_right moveZ(-32, 0.10); 
+    trap_2_right moveZ(-32, 0.10);
     trap_3_right moveZ(-32, 0.10);
 }
 
@@ -1294,7 +1294,7 @@ trap17()
     trig setHintString ("^3Press [&&1] to activate");
     trapbutton = getent ("trap17_button", "targetname");
 
-    while(1) 
+    while(1)
     {
         trig waittill("triggerx", player);
         trig delete();
@@ -1321,9 +1321,9 @@ trap17()
 
 trap17_left_a()
 {
-    trap_1_left = getent ("trap17_left_6", "targetname");   
+    trap_1_left = getent ("trap17_left_6", "targetname");
     trap_1_left_trigger = getent ("trap17_left_6_trigger", "targetname");
-    trap_1_left_trigger enablelinkto(); 
+    trap_1_left_trigger enablelinkto();
     trap_1_left_trigger linkto(trap_1_left);
 
     trap_1_left rotateroll(90, 0.7);
@@ -1333,9 +1333,9 @@ trap17_left_a()
 
 trap17_left_b()
 {
-    trap_2_left = getent ("trap17_left_2", "targetname");   
+    trap_2_left = getent ("trap17_left_2", "targetname");
     trap_2_left_trigger = getent ("trap17_left_2_trigger", "targetname");
-    trap_2_left_trigger enablelinkto(); 
+    trap_2_left_trigger enablelinkto();
     trap_2_left_trigger linkto(trap_2_left);
 
     trap_2_left rotateroll(90, 0.7);
@@ -1345,9 +1345,9 @@ trap17_left_b()
 
 trap17_left_c()
 {
-    trap_3_left = getent ("trap17_left_3", "targetname");   
+    trap_3_left = getent ("trap17_left_3", "targetname");
     trap_3_left_trigger = getent ("trap17_left_3_trigger", "targetname");
-    trap_3_left_trigger enablelinkto(); 
+    trap_3_left_trigger enablelinkto();
     trap_3_left_trigger linkto(trap_3_left);
 
     trap_3_left rotateroll(90, 0.7);
@@ -1357,9 +1357,9 @@ trap17_left_c()
 
 trap17_left_d()
 {
-    trap_7_left = getent ("trap17_left_7", "targetname");   
+    trap_7_left = getent ("trap17_left_7", "targetname");
     trap_7_left_trigger = getent ("trap17_left_7_trigger", "targetname");
-    trap_7_left_trigger enablelinkto(); 
+    trap_7_left_trigger enablelinkto();
     trap_7_left_trigger linkto(trap_7_left);
 
     trap_7_left rotateroll(90, 0.7);
@@ -1369,9 +1369,9 @@ trap17_left_d()
 
 trap17_right_a()
 {
-    trap_1_right = getent ("trap17_right_1", "targetname"); 
+    trap_1_right = getent ("trap17_right_1", "targetname");
     trap_1_right_trigger = getent ("trap17_right_1_trigger", "targetname");
-    trap_1_right_trigger enablelinkto(); 
+    trap_1_right_trigger enablelinkto();
     trap_1_right_trigger linkto(trap_1_right);
 
     trap_1_right rotateroll(-90, 0.7);
@@ -1381,9 +1381,9 @@ trap17_right_a()
 
 trap17_right_b()
 {
-    trap_2_right = getent ("trap17_right_2", "targetname"); 
+    trap_2_right = getent ("trap17_right_2", "targetname");
     trap_2_right_trigger = getent ("trap17_right_2_trigger", "targetname");
-    trap_2_right_trigger enablelinkto(); 
+    trap_2_right_trigger enablelinkto();
     trap_2_right_trigger linkto(trap_2_right);
 
     trap_2_right rotateroll(-90, 0.7);
@@ -1393,9 +1393,9 @@ trap17_right_b()
 
 trap17_right_c()
 {
-    trap_3_right = getent ("trap17_right_3", "targetname"); 
+    trap_3_right = getent ("trap17_right_3", "targetname");
     trap_3_right_trigger = getent ("trap17_right_3_trigger", "targetname");
-    trap_3_right_trigger enablelinkto(); 
+    trap_3_right_trigger enablelinkto();
     trap_3_right_trigger linkto(trap_3_right);
 
     trap_3_right rotateroll(-90, 0.7);
@@ -1403,21 +1403,21 @@ trap17_right_c()
     trap_3_right rotateroll(90, 0.7);
 }
 
-part2_jumper() 
+part2_jumper()
 {
     trigger = getent ("part2_jumper_trigger", "targetname");
     target = getent ("part2_jumper_origin", "targetname");
-    
+
     while(1) {
         trigger waittill("trigger", player);
         player setorigin (target.origin);
         player setplayerangles (target.angles);
     }
 }
-jumper_secret_end() 
+jumper_secret_end()
 {
     trigger = getent ("jumper_end_secret", "targetname");
-    
+
     while(1)
     {
         trigger waittill ("trigger", player);
@@ -1426,7 +1426,7 @@ jumper_secret_end()
 }
 secret1() {
     trigger = getent ("secret_trigger1", "targetname");
-    
+
     while(1) {
         trigger waittill("trigger", player);
         player.secret = 1;
@@ -1434,7 +1434,7 @@ secret1() {
 }
 secret2() {
     trigger = getent ("secret_trigger2", "targetname");
-    
+
     while(1) {
         trigger waittill("trigger", player);
         player.secret = 2;
@@ -1442,23 +1442,23 @@ secret2() {
 }
 secret3() {
     trigger = getent ("secret_trigger3", "targetname");
-    
+
     while(1) {
         trigger waittill("trigger", player);
         player.secret = 3;
-    
+
     }
 }
 secret4() {
     trigger = getent ("secret_trigger4", "targetname");
-    
+
     while(1) {
         trigger waittill("trigger", player);
         player.secret = 4;
 
     }
 }
-secret() 
+secret()
 {
     trigger = getent ("secret_trig_fail", "targetname");
 
@@ -1469,7 +1469,7 @@ secret()
     origin4 = getent ("secret_origin4", "targetname");
     origin5 = getent ("secret_origin5", "targetname");
 
-    while(1) 
+    while(1)
     {
         trigger waittill("trigger", player);
 

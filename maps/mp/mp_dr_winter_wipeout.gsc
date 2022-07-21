@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-647, 2557, -256), 1);
+thread sr\api\_map::createSpawnOrigin((-647, 2557, -256), 1);
 	maps\mp\_load::main();
 
 	game["allies"] = "sas";
@@ -146,7 +146,7 @@ trap5()
 		trapa hide();
 		trapa delete();
 	}
-	else 
+	else
 	{
 		trapa delete();
 		trapb show();
@@ -158,7 +158,7 @@ trap5()
 		wait .5;
 		trapb hide();
 		trapb delete();
-	}	
+	}
 }
 
 trap6()
@@ -219,7 +219,7 @@ trap7()
 trap8()
 {
     trig=getent("trap8_trig","targetname");
-   
+
    	trig sethintstring("Press ^1&&1^7 to activate the Obstacle");
 	trig waittill("trigger");
 	trig delete();
@@ -331,7 +331,7 @@ trap13()
 trap13_rotate()
 {
 	targ=getent("trap13_rotate","targetname");
-	
+
 	wait 0.1;
 	targ delete();
 }
@@ -362,12 +362,12 @@ trap15()
 	trapa=getent("trap15a","targetname");
 	trapb=getent("trap15b","targetname");
 	trapc=getent("trap15_solid","targetname");
-    
+
 	wait 0.1;
 	trapa delete();
 	trapb delete();
 	trapc delete();
-	
+
 }
 
 trap16()

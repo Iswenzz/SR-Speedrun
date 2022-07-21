@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((0, -321, -496), 90);
+thread sr\api\_map::createSpawnOrigin((0, -321, -496), 90);
 maps\mp\_teleport2::main();
 
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
@@ -17,15 +17,15 @@ thread trap4();
 
 secretend()
 {
- 
+
     trig = getent("teleport","targetname");
     tele = getent("secret_finish", "targetname");
-       
+
         for(;;)
         {
         trig waittill("trigger", player);
-        player thread sr\api\_speedrun::finishWay("secret_0");						
-		player setorigin(tele.origin);				
+        player thread sr\api\_speedrun::finishWay("secret_0");
+		player setorigin(tele.origin);
         }
 }
 

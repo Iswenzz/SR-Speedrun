@@ -2,7 +2,7 @@
 #include common_scripts\utility;
 main()
 {
-thread sr\api\_map::createSpawn((-3021, -120, 16), 360);
+thread sr\api\_map::createSpawnOrigin((-3021, -120, 16), 360);
 maps\mp\_load::main();
 
 	game["allies"] = "marines";

@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-2335, -2954, 16), 89);
+thread sr\api\_map::createSpawnOrigin((-2335, -2954, 16), 89);
               maps\mp\_load::main();
              thread sr\api\_speedrun::createNormalWays("Normal Way");
                           thread sr\api\_speedrun::createEndMap((-2354.89, 3768.64, 16.125), 125, 115);
@@ -40,7 +40,7 @@ addTriggerToList( name )
 
 
 door()
-{ 
+{
                   trig = getEnt("door_trig","targetname");
                   brush = getEnt("door","targetname");
                     trig delete();
@@ -53,7 +53,7 @@ trap1()
                trig = getEnt( "trap1_trig","targetname" );
                brush1 = getEnt( "trap1.1", "targetname" );
                brush2 = getEnt( "trap1.2", "targetname" );
-               
+
                  trig waittill("trigger");
                  {
                                           brush1 moveX(-240,1);
@@ -69,7 +69,7 @@ trap1()
                  }
 }
 trap2()
-{ 
+{
               trig = getEnt("trap2_trig","targetname");
               brush = getEnt("trap2","targetname");
 
@@ -78,7 +78,7 @@ trap2()
                     brush delete();
 }
 trap3()
-{ 
+{
               trig = getEnt("trap3_trig","targetname");
               brush = getEnt("trap3","targetname");
 
@@ -90,12 +90,12 @@ trap4()
 {
                   trig = getEnt("trap4_trig","targetname");
                   brush = getEnt("trap4","targetname");
-                  
+
                  trig waittill("trigger");
                  trig delete();
-                 
+
                  while(true)
-                 {  
+                 {
                                brush rotatepitch(360,1);
                                wait 1;
                  }
@@ -104,12 +104,12 @@ trap5()
 {
                   trig = getEnt("trap5_trig","targetname");
                   brush = getEnt("trap5","targetname");
-                  
+
                  trig waittill("trigger");
                  trig delete();
-                 
+
                  while(true)
-                 {  
+                 {
                                brush rotateYaw(360,2);
                                wait 1;
                  }
@@ -118,12 +118,12 @@ trap6()
 {
                   trig = getEnt("trap6_trig","targetname");
                  rotate = getEnt("trap6","targetname");
-                  
+
                  trig waittill("trigger");
                  trig delete();
-                 
+
                  while( isdefined( rotate ) )
-                 {    
+                 {
                                rotate rotateroll(-360,5);
                                wait 2;
                  }
@@ -136,7 +136,7 @@ trap7()
 
 	trig waittill("trigger");
 	trig delete();
-	
+
 	brushGroup1[randomInt(brushGroup1.size)] notSolid();
 	brushGroup2[randomInt(brushGroup2.size)] notSolid();
 }
@@ -154,7 +154,7 @@ trap8()
                  }
 }
 door2()
-{ 
+{
                   trig = getEnt("door2_trig","targetname");
                   brush = getEnt("door2","targetname");
                     trig delete();
@@ -163,15 +163,15 @@ door2()
                     }
 }
 trap9()
-{ 
+{
                   trig = getEnt("trap9_trig","targetname");
                   brush1 = getEnt( "trap9.1", "targetname" );
                   brush2 = getEnt( "trap9.2", "targetname" );
                   brush3 = getEnt( "trap9.3", "targetname" );
                   brush4 = getEnt( "trap9.4", "targetname" );
-                   
+
                   trig waittill("trigger");
-                    
+
                     while(true)
                     {
                              brush1 rotateYaw(360,2);
@@ -189,7 +189,7 @@ trap9_1()
 
                   trig waittill("trigger");
                   trig delete();
-                  {     
+                  {
                           brush1 moveX(-300,3);
                           brush3 moveX(-300,3);
                           wait 1;
@@ -212,4 +212,4 @@ door3()
                   {
                     brush delete();
                   }
-}	
+}

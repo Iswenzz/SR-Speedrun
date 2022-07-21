@@ -1,7 +1,7 @@
 //exec deatehrun.cfg +set fs_game Mods/deathrun_updated +set scr_game_playerwaittime 0 +set scr_game_matchstarttime 0 +exec deathrun.cfg +developer 0 +devmap mp_deathrun_skypillar
 main()
 {
-thread sr\api\_map::createSpawn((208.500, -2547, -5343.875), 90);
+thread sr\api\_map::createSpawnOrigin((208.500, -2547, -5343.875), 90);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
@@ -9,7 +9,7 @@ trigger = spawn( "trigger_radius", (-2044.31, -338.131, 1057.13), 0, 96, 48 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 96;
 	maps\mp\_load::main();
-	
+
 	// ambientPlay("ambient1");
 	game["allies"] = "sas";
 	game["axis"] = "russian";
@@ -17,11 +17,11 @@ trigger.radius = 96;
 	game["defenders"] = "axis";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
 
 	setdvar("compassmaxrange","2000");
-	
+
 	precacheItem("m40a3_mp");
 	precacheItem("remington700_mp");
 	precacheItem("ak74u_mp");
@@ -29,7 +29,7 @@ trigger.radius = 96;
 	precacheItem("rpg_mp");
 	// level.expbullt = loadfx("explosions/grenadeExp_concrete_1");
 	// level.flame = loadfx("fire/tank_fire_engine");
-	
+
 	swingarmparts = getentarray("swingarms","targetname");
 	if(isdefined(swingarmparts))
 	{
@@ -38,7 +38,7 @@ trigger.radius = 96;
 	swingarmparts[i] thread swingarm();
 	}
 	}
-	
+
 	tolparts = getentarray("tol","targetname");
 	if(isdefined(tolparts))
 	{
@@ -47,7 +47,7 @@ trigger.radius = 96;
 	tolparts[i] thread toltrap();
 	}
 	}
-		
+
 	floor = getentarray("rotate2bars","targetname");
 	if(isdefined(floor))
 	{
@@ -56,7 +56,7 @@ trigger.radius = 96;
 	floor[i] thread rotate2bars();
 	}
 	}
-	
+
 	//threads
 	thread way_connect();
 	// thread creatorcredit();
@@ -93,10 +93,10 @@ trigger.radius = 96;
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -124,7 +124,7 @@ BugFix()
 		{
 			if( isDefined(players[i]) && players[i].pers["team"] == "allies" && distance(spawnpoint, players[i].origin) >= 1010 && distance(falldingsbums, players[i].origin) >= 800 && distance(station, players[i].origin) >= 1500 && players[i].origin[2] <= -5270)
 				players[i] suicide();
-			if( isDefined(players[i]) && distance(lamp, players[i].origin) <= 100 )			
+			if( isDefined(players[i]) && distance(lamp, players[i].origin) <= 100 )
 				players[i] setOrigin(spawnlamp);
 		}
 		wait .05;
@@ -596,9 +596,9 @@ step1_move()
 	org = self.origin;
 	step1 = getentarray("step","targetname");
     while(1)
-    {	
+    {
 	for(i=0;i<step1.size;i++)
-	{	
+	{
 		step1[i] moveto ((org_start + (0,-100,16)), 0.1);
 		wait(0.05);
 		step1[i] moveto ((org_start + (0,-10,0)), 2);
@@ -770,7 +770,7 @@ level.activ freezeControls( false );
 airtest()
 {
 xptrig = getEnt("trigger_aistrike", "targetname");
-precacheItem("deserteaglegold_mp");	
+precacheItem("deserteaglegold_mp");
 enabled = true;
 while(1)
 {
@@ -821,81 +821,81 @@ discocheck( requiredPlayersCount )
 		for( i = 0; i < players.size; i++ )
 			if( players[i] isPlaying() )
 				count++;
- 
+
 		if( count == requiredPlayersCount )
 		{
-SetExpFog(1024, 2048, 1, 0, 0, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0, 1, 0, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0, 0, 1, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0.4, 1, 0.8, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0.8, 0, 0.6, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 1, 1, 0.6, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 1, 1, 1, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0, 0, 0.8, 0); 
-wait .1;  
-SetExpFog(1024, 2048, 0.2, 1, 0.8, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0.4, 0.4, 1, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0, 0, 0, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0.4, 0.2, 0.2, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0.4, 1, 1, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0.6, 0, 0.4, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 1, 0, 0.8, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 1, 1, 0, 0);  
-wait .1;   
-SetExpFog(1024, 2048, 0.6, 1, 0.6, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 1, 0, 0, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0, 1, 0, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0, 0, 1, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0.4, 1, 0.8, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0.8, 0, 0.6, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 1, 1, 0.6, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 1, 1, 1, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0, 0, 0.8, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0.2, 1, 0.8, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0.4, 0.4, 1, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0, 0, 0, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0.4, 0.2, 0.2, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0.4, 1, 1, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0.6, 0, 0.4, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 1, 0, 0.8, 0); 
-wait .1;  
-SetExpFog(1024, 2048, 1, 1, 0, 0);  
-wait .1;  
-SetExpFog(1024, 2048, 0.6, 1, 0.6, 0); 
+SetExpFog(1024, 2048, 1, 0, 0, 0);
+wait .1;
+SetExpFog(1024, 2048, 0, 1, 0, 0);
+wait .1;
+SetExpFog(1024, 2048, 0, 0, 1, 0);
+wait .1;
+SetExpFog(1024, 2048, 0.4, 1, 0.8, 0);
+wait .1;
+SetExpFog(1024, 2048, 0.8, 0, 0.6, 0);
+wait .1;
+SetExpFog(1024, 2048, 1, 1, 0.6, 0);
+wait .1;
+SetExpFog(1024, 2048, 1, 1, 1, 0);
+wait .1;
+SetExpFog(1024, 2048, 0, 0, 0.8, 0);
+wait .1;
+SetExpFog(1024, 2048, 0.2, 1, 0.8, 0);
+wait .1;
+SetExpFog(1024, 2048, 0.4, 0.4, 1, 0);
+wait .1;
+SetExpFog(1024, 2048, 0, 0, 0, 0);
+wait .1;
+SetExpFog(1024, 2048, 0.4, 0.2, 0.2, 0);
+wait .1;
+SetExpFog(1024, 2048, 0.4, 1, 1, 0);
+wait .1;
+SetExpFog(1024, 2048, 0.6, 0, 0.4, 0);
+wait .1;
+SetExpFog(1024, 2048, 1, 0, 0.8, 0);
+wait .1;
+SetExpFog(1024, 2048, 1, 1, 0, 0);
+wait .1;
+SetExpFog(1024, 2048, 0.6, 1, 0.6, 0);
+wait .1;
+SetExpFog(1024, 2048, 1, 0, 0, 0);
+wait .1;
+SetExpFog(1024, 2048, 0, 1, 0, 0);
+wait .1;
+SetExpFog(1024, 2048, 0, 0, 1, 0);
+wait .1;
+SetExpFog(1024, 2048, 0.4, 1, 0.8, 0);
+wait .1;
+SetExpFog(1024, 2048, 0.8, 0, 0.6, 0);
+wait .1;
+SetExpFog(1024, 2048, 1, 1, 0.6, 0);
+wait .1;
+SetExpFog(1024, 2048, 1, 1, 1, 0);
+wait .1;
+SetExpFog(1024, 2048, 0, 0, 0.8, 0);
+wait .1;
+SetExpFog(1024, 2048, 0.2, 1, 0.8, 0);
+wait .1;
+SetExpFog(1024, 2048, 0.4, 0.4, 1, 0);
+wait .1;
+SetExpFog(1024, 2048, 0, 0, 0, 0);
+wait .1;
+SetExpFog(1024, 2048, 0.4, 0.2, 0.2, 0);
+wait .1;
+SetExpFog(1024, 2048, 0.4, 1, 1, 0);
+wait .1;
+SetExpFog(1024, 2048, 0.6, 0, 0.4, 0);
+wait .1;
+SetExpFog(1024, 2048, 1, 0, 0.8, 0);
+wait .1;
+SetExpFog(1024, 2048, 1, 1, 0, 0);
+wait .1;
+SetExpFog(1024, 2048, 0.6, 1, 0.6, 0);
 }
 else
 {
-SetExpFog(2048, 4096, 0, 0, 0, 0); 
-}	
+SetExpFog(2048, 4096, 0, 0, 0, 0);
+}
 }
 }
 
@@ -909,7 +909,7 @@ isReallyAlive()
 {
 	return self.sessionstate == "playing";
 }
- 
+
 isPlaying()
 {
 	return isReallyAlive();

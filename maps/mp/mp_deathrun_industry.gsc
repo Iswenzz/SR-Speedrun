@@ -1,11 +1,11 @@
 main()
 {
-thread sr\api\_map::createSpawn((25, 100, 16), 360);
+thread sr\api\_map::createSpawnOrigin((25, 100, 16), 360);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
-	
+
  level._effect["fire_trap"] = loadfx( "custome/fire_trap" );
-	
+
     thread end();
 
     thread sr\api\_speedrun::createTeleporter((235, -23, 76), 50, 15, (-4376, -5640, 573), 0, "freeze", "blue", "secret_0");
@@ -39,21 +39,21 @@ thread sr\api\_map::createSpawn((25, 100, 16), 360);
 	maps\mp\mp_deathrun_industry\_teleport9::main();
 	maps\mp\mp_deathrun_industry\_teleport10::main();
 	maps\mp\mp_deathrun_industry\_rotate::main();
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
-	
+
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
-	
+
 	thread startdoor();
 	thread plat();
 	thread trap1();
@@ -73,7 +73,7 @@ thread sr\api\_map::createSpawn((25, 100, 16), 360);
 	thread jumproom();
 	/* [AUTO DELETE] thread sniperoom(); */
 	/* [AUTO DELETE] thread old(); */
-	// thread  [AUTO DELETE] jump_weapon(); 
+	// thread  [AUTO DELETE] jump_weapon();
 	// thread map_by();
 
 
@@ -116,7 +116,7 @@ trap1()
     trigger delete();
 	a = getent("t1a","targetname");
 	b = getent("t1b","targetname");
-	
+
 	while(1)
 	{
 		a moveZ(56,0.5);
@@ -130,7 +130,7 @@ trap1()
 		wait 0.5;
 		a moveZ(-56,0.5);
 		b moveZ(56,0.5);
-        wait 0.5;		
+        wait 0.5;
 	}
 }
 
@@ -185,7 +185,7 @@ trap4()
     trigger delete();
 	a = getent("t4a","targetname");
 	b = getent("t4b","targetname");
-	
+
 	while(1)
 	{
 		a notsolid();
@@ -195,15 +195,15 @@ trap4()
 		a show();
 		b notsolid();
 		b hide();
-		wait 2;	
+		wait 2;
         b solid();
         b show();
         a notsolid();
         a hide();
         wait 2;
         a solid();
-        a show();	
-        wait 2;		
+        a show();
+        wait 2;
 	}
 }
 
@@ -280,7 +280,7 @@ trap8()
     trigger delete();
 	a = getent("t8a","targetname");
 	b = getent("t8b","targetname");
-	
+
 	while(1)
 	{
 		a moveX(32,0.5);
@@ -288,7 +288,7 @@ trap8()
 		wait 0.5;
 		a moveX(-32,0.5);
 		b moveX(32,0.5);
-		wait 0.5;		
+		wait 0.5;
      	a moveX(32,0.5);
 		b moveX(-32,0.5);
 		wait 0.5;
@@ -308,14 +308,14 @@ trap9()
     trigger delete();
 	a = getent("t9a","targetname");
 	b = getent("t9b","targetname");
-	
+
 	{
 		a moveX(-256,2.5);
 		b moveX(256,2.5);
 		wait 4;
 		a moveX(256,2.5);
 		b moveX(-256,2.5);
-		wait 4;		
+		wait 4;
 	}
 }
 
@@ -363,7 +363,7 @@ trap12()
 	part4 = getentarray ("trap12_4" ,"targetname");
 	trig = getent ("trig_trap12" , "targetname");
 
- 	trig waittill( "trigger", user ); 
+ 	trig waittill( "trigger", user );
 	trig delete ();
 	random = randomint(4);
 
@@ -373,21 +373,21 @@ trap12()
 				part1[randomInt(part1.size)] moveZ (-192, 1);
 				part4[randomInt(part4.size)] moveZ (-192, 1);
 				break;
-				
-		case 1:	
+
+		case 1:
 				part3[randomInt(part3.size)] moveZ (-192, 1);
 				part2[randomInt(part2.size)] moveZ (-192, 1);
 				break;
-				
-		case 2:	
+
+		case 2:
 				part1[randomInt(part1.size)] moveZ (-192, 1);
 				part3[randomInt(part3.size)] moveZ (-192, 1);
 				break;
-				
-		case 3:	
+
+		case 3:
 				part2[randomInt(part2.size)] moveZ (-192, 1);
 				part4[randomInt(part4.size)] moveZ (-192, 1);
-				
+
 		default: return;
 	}
 }
@@ -425,7 +425,7 @@ kniferoom()
     level.knife_trig = getEnt( "knife", "targetname");
     jump = getEnt( "jumper_knife", "targetname" );
     acti = getEnt( "acti_knife", "targetname" );
-    
+
     while(1)
     {
         level.knife_trig waittill( "trigger", player );
@@ -439,15 +439,15 @@ kniferoom()
  		level.jump_trig delete();
 		level.firstenter=false;
 		}
-		
+
         player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         /* [AUTO DELETE] player TakeAllWeapons(); */
-        /* [AUTO DELETE] player GiveWeapon( "knife_mp" ); */       
+        /* [AUTO DELETE] player GiveWeapon( "knife_mp" ); */
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         /* [AUTO DELETE] level.activ TakeAllWeapons(); */
-        /* [AUTO DELETE] level.activ GiveWeapon( "knife_mp" ); */        
+        /* [AUTO DELETE] level.activ GiveWeapon( "knife_mp" ); */
         wait 0.05;
         /* [AUTO DELETE] player switchToWeapon( "knife_mp" ); */
         /* [AUTO DELETE] level.activ SwitchToWeapon( "knife_mp" ); */
@@ -467,7 +467,7 @@ jumproom()
     {
         level.jump_trig waittill( "trigger", player );
         if(level.firstenter==true)
-		{        
+		{
 	    level.snipe_trig delete();
         level.old_trig delete();
 		level.knife_trig delete();
@@ -476,11 +476,11 @@ jumproom()
         player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         /* [AUTO DELETE] player TakeAllWeapons(); */
-        /* [AUTO DELETE] player GiveWeapon( "knife_mp" ); */       
+        /* [AUTO DELETE] player GiveWeapon( "knife_mp" ); */
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         /* [AUTO DELETE] level.activ TakeAllWeapons(); */
-        /* [AUTO DELETE] level.activ GiveWeapon( "knife_mp" ); */        
+        /* [AUTO DELETE] level.activ GiveWeapon( "knife_mp" ); */
         /* [AUTO DELETE] wait 0.05; */
         /* [AUTO DELETE] player switchToWeapon( "knife_mp" ); */
         /* [AUTO DELETE] level.activ SwitchToWeapon( "knife_mp" ); */
@@ -498,13 +498,13 @@ sniperoom()
     jump = getEnt( "jump_snipe", "targetname" );
     acti = getEnt( "acti_snipe", "targetname" );
 
-    
+
     while(1)
     {
         level.snipe_trig waittill( "trigger", player );
         if( !isDefined( level.snipe_trig ) )
             return;
-			
+
 		if(level.firstenter==true)
 		{
                 level.old_trig delete();
@@ -539,7 +539,7 @@ old()
     level.old_trig = getEnt( "old", "targetname");
     jump = getEnt( "jumper_old", "targetname" );
     acti = getEnt( "acti_old", "targetname" );
-    
+
     while(1)
     {
         level.old_trig waittill( "trigger", player );
@@ -552,13 +552,13 @@ old()
  		level.jump_trig delete();
 		level.firstenter=false;
 		}
-		
+
         player SetPlayerAngles( jump.angles );
-        player setOrigin( jump.origin );      
+        player setOrigin( jump.origin );
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         /* [AUTO DELETE] level.activ TakeAllWeapons(); */
-        /* [AUTO DELETE] level.activ GiveWeapon( "knife_mp" ); */        
+        /* [AUTO DELETE] level.activ GiveWeapon( "knife_mp" ); */
         /* [AUTO DELETE] wait 0.05; */
         /* [AUTO DELETE] level.activ SwitchToWeapon( "knife_mp" ); */
         /* [AUTO DELETE] iPrintlnBold( " ^4" + player.name + " picked ^1OLD!" ); */
@@ -573,7 +573,7 @@ jump_weapon()
 trigger = getent ("weapon_trig","targetname");
 {
 trigger waittill ("trigger",user);
-wait(0.2);    
+wait(0.2);
 /* [AUTO DELETE] user giveWeapon( "remington700_mp"); */
 /* [AUTO DELETE] user giveMaxammo("remington700_mp"); */
 wait 0.1;
@@ -591,7 +591,7 @@ trigger.targetname = "endmap_trig";
 	// trigger waittill ("trigger", user);
 	// trigger delete();
 	// 	{
-	// 	 [AUTO DELETE] iprintlnbold( "^7" + user.name + " ^1Finished ^41st"); 
+	// 	 [AUTO DELETE] iprintlnbold( "^7" + user.name + " ^1Finished ^41st");
 	// 	wait 4;
 	// 	}
 	// }
@@ -611,6 +611,6 @@ map_by()
    	hud_creator.font = "objective";
    	hud_creator.glowColor = (.0, .1, 1);
    	hud_creator.glowAlpha = 1;
-   	hud_creator.hideWhenInMenu = true;	
+   	hud_creator.hideWhenInMenu = true;
 	hud_creator setText("Map By eBc|Legend");
 }

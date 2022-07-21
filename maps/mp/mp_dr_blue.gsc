@@ -6,7 +6,7 @@
 																   // Add amb2.mp3 to mp_dr_blue.iwd/sound/ if you wish (its linked to soundaliases "skrillex")
 main()
 {
-thread sr\api\_map::createSpawn((336, -48.100, -119.875), 180);
+thread sr\api\_map::createSpawnOrigin((336, -48.100, -119.875), 180);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");

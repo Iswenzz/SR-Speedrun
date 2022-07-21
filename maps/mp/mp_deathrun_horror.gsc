@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-316, 541, 16), 360);
+thread sr\api\_map::createSpawnOrigin((-316, 541, 16), 360);
 
     precacheModel( "playermodel_mw2_usmc_smg_a" );
 	precacheModel( "playermodel_ghost_recon" );
@@ -16,7 +16,7 @@ thread sr\api\_map::createSpawn((-316, 541, 16), 360);
 	precacheItem( "knife_mp" );
 	precacheItem( "p90_mp" );
 	precacheItem( "rpg_mp" );
-	
+
 	level._effect["cannon"] = loadfx( "horror/cannon" );
 	level._effect["cannon_fire"] = loadfx( "horror/cannon_fire" );
 
@@ -33,7 +33,7 @@ thread sr\api\_map::createSpawn((-316, 541, 16), 360);
   //  addTriggerToList( "trig_trap11" );
    // addTriggerToList( "trig_trap12" );
    // addTriggerToList( "trig_trap13" );
-	
+
 	maps\mp\_load::main();
 	maps\mp\_horror_acti_skin::main();
 	maps\mp\_horror_jumper_skin::main();
@@ -43,23 +43,23 @@ thread sr\api\_map::createSpawn((-316, 541, 16), 360);
 	maps\mp\_teleport4::main();
 
 	//ambientPlay("music1");
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
-	
+
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
 
 	thread way_connect();
-	
+
 	thread startdoor();
 	thread trap1();
 	thread trap2();
@@ -89,14 +89,14 @@ thread sr\api\_map::createSpawn((-316, 541, 16), 360);
 way_connect()
 {
     wait 0.05;
-    
+
     level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
-	    
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-    
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
 
@@ -244,8 +244,8 @@ trap7()
 	part4 = getentarray ("trap7_4" ,"targetname");
 	trig = getent ("trig_trap7" , "targetname");
 
- 	trig waittill( "trigger", user ); 
-	
+ 	trig waittill( "trigger", user );
+
 }
 
 trap8()
@@ -282,7 +282,7 @@ trap11()
 	//object1 = getent("trap11_1","targetname");
 	object2 = getent("trap11_2","targetname");
 	trig waittill("trigger", user );
-	
+
 }
 
 trap12()
@@ -290,7 +290,7 @@ trap12()
 	trig = getent("trig_trap12","targetname");
 	object = getent("trap12","targetname");
 	trig waittill("trigger", user );
-	
+
 }
 
 trap13()
@@ -298,7 +298,7 @@ trap13()
 	level.fan = getEnt("trap13","targetname");
 	trig = getent("trig_trap13","targetname");
 	trig waittill("trigger", user);
-	
+
 }
 
 
@@ -307,11 +307,11 @@ trap13_pusher()
 {
 	level.pusher = getEnt ( "pusher", "targetname" );
 	thread stop();
-	
+
 	while(1)
 	{
     	level.pusher waittill ( "trigger", who );
-	
+
 	    oldpos = who.origin;
 	    strenght = 10;
 	    for(i=0;i<strenght;i++)
@@ -344,7 +344,7 @@ end_door()
 doHud()
 {
 	level endon( "intermission" );
-		
+
 	colour = randomInt(20);
 	switch(colour)
 	{
@@ -377,7 +377,7 @@ doHud()
 			break;
 		case 9:
 			level.randomcolour = (1.0, 0.0, 0.0);
-			break;			
+			break;
 		case 10:
 			level.randomcolour = (1.0, 0.0, 0.4);
 			break;
@@ -401,7 +401,7 @@ doHud()
 			break;
 		case 17:
 			level.randomcolour = (0.0, 0.5, 1.0);
-			break;	
+			break;
 		case 18:
 			level.randomcolour = (0.5, 0.0, 0.2);
 			break;
@@ -414,11 +414,11 @@ doHud()
 		case 21:
 			level.randomcolour = (0.0, 1.0, 1.0);
 			break;
-		default: 
+		default:
 			level.randomcolour = (0.0, 0.0, 1.0);
 			break;
 	}
-	
+
 	//0.5, 0.0, 0.8 - Sexxy purple
 	//1.0, 0.0, 0.0 - Epic Red
 	//1.0, 0.0, 0.4 - Preppy Pink
@@ -433,7 +433,7 @@ doHud()
 	//0.0, 0.0, 0.0 - Black
 	//1.0, 1.0, 1.0 - White
 	//0.0, 1.0, 1.0 - Cyan
-	
+
 }
 
 sniperoom()
@@ -442,13 +442,13 @@ sniperoom()
     jump = getEnt( "jump_snipe", "targetname" );
     acti = getEnt( "acti_snipe", "targetname" );
 
-    
+
     while(1)
     {
         level.snipe_trig waittill( "trigger", player );
         if( !isDefined( level.snipe_trig ) )
             return;
-			
+
 		if(level.firstenter==true)
 		{
 		level.jump_trig delete();
@@ -457,7 +457,7 @@ sniperoom()
 		level.old_trig delete();
 		level.firstenter=false;
 		}
-        
+
 			noti = SpawnStruct();
 			noti.titleText = "^2>|^7Sniper Room^2|<";
 			noti.notifyText = level.activ.name + " ^5VS^7 " + player.name;
@@ -499,13 +499,13 @@ jumproom()
     jump = getEnt( "jumper_jump", "targetname" );
     acti = getEnt( "acti_jump", "targetname" );
 
-    
+
     while(1)
     {
         level.jump_trig waittill( "trigger", player );
         if( !isDefined( level.jump_trig ) )
             return;
-			
+
 		if(level.firstenter==true)
 		{
 		level.snipe_trig delete();
@@ -514,7 +514,7 @@ jumproom()
 		level.old_trig delete();
 		level.firstenter=false;
 		}
-        
+
 			noti = SpawnStruct();
 			noti.titleText = "^2>|^7Jump Room^2|<";
 			noti.notifyText = level.activ.name + " ^5VS^7 " + player.name;
@@ -535,12 +535,12 @@ jumproom()
 	    player freezeControls(true);
 		level.activ freezeControls(true);
 	    wait 0.1;
-        player GiveWeapon( "deserteagle_mp" );  
+        player GiveWeapon( "deserteagle_mp" );
         player switchToWeapon( " deserteagle_mp" );
 		player setWeaponAmmoClip("deserteagle_mp", 0 );
 		player setWeaponAmmoStock( "deserteagle_mp", 0 );
 	    wait 0.1;
-        level.activ GiveWeapon( "deserteagle_mp" );  
+        level.activ GiveWeapon( "deserteagle_mp" );
         level.activ switchToWeapon ( "deserteagle_mp" );
 		level.activ setWeaponAmmoClip("deserteagle_mp", 0 );
 		level.activ setWeaponAmmoStock( "deserteagle_mp", 0 );
@@ -555,8 +555,8 @@ jumproom()
 jumproom_wep()
 {
 trigger = getent ("jump_wep","targetname");
-trigger waittill ("trigger",user); 
-{  
+trigger waittill ("trigger",user);
+{
 trigger delete();
 user giveWeapon( "m40a3_mp");
 user setWeaponAmmoStock ( "m40a3_mp", 5 );
@@ -572,13 +572,13 @@ virusroom()
     jump = getEnt( "jumper_virus", "targetname" );
     acti = getEnt( "acti_virus", "targetname" );
 
-    
+
     while(1)
     {
         level.virus_trig waittill( "trigger", player );
         if( !isDefined( level.virus_trig ) )
             return;
-			
+
 		if(level.firstenter==true)
 		{
 		level.snipe_trig delete();
@@ -587,7 +587,7 @@ virusroom()
 		level.old_trig delete();
 		level.firstenter=false;
 		}
-        
+
 			noti = SpawnStruct();
 			noti.titleText = "^2>|^7Virus Room^2|<";
 			noti.notifyText = level.activ.name + " ^5VS^7 " + player.name;
@@ -608,9 +608,9 @@ virusroom()
 	 	player freezeControls(true);
 		level.activ freezeControls(true);
 	    wait 0.1;
-        player GiveWeapon( "deserteagle_mp" ); 
+        player GiveWeapon( "deserteagle_mp" );
         player setWeaponAmmoClip("deserteagle_mp", 0 );
-		player setWeaponAmmoStock( "deserteagle_mp", 0 ); 
+		player setWeaponAmmoStock( "deserteagle_mp", 0 );
         player switchToWeapon( " deserteagle_mp" );
 		player.maxhealth = 300;
 		player.health = player.maxhealth;
@@ -619,8 +619,8 @@ virusroom()
 	    level.activ iprintlnbold("^1Y^7ou ^1H^7ave ^1A^7ll ^1S^7nipers");
         level.activ giveWeapon("remington700_mp" );
         level.activ giveWeapon("m40a3_mp ");
-        level.activ giveWeapon("dragunov_mp"); 
-        level.activ giveWeapon("barrett_mp" ); 
+        level.activ giveWeapon("dragunov_mp");
+        level.activ giveWeapon("barrett_mp" );
         level.activ giveMaxammo("remington700_mp");
         level.activ giveMaxammo("m40a3_mp");
         level.activ giveMaxammo("dragunov_mp");
@@ -656,13 +656,13 @@ weaponroom()
     jump = getEnt( "jumper_wep", "targetname" );
     acti = getEnt( "acti_wep", "targetname" );
 
-    
+
     while(1)
     {
         level.weapon_trig waittill( "trigger", player );
         if( !isDefined( level.weapon_trig ) )
             return;
-			
+
 		if(level.firstenter==true)
 		{
 		level.snipe_trig delete();
@@ -671,7 +671,7 @@ weaponroom()
 		level.old_trig delete();
 		level.firstenter=false;
 		}
-        
+
 			noti = SpawnStruct();
 			noti.titleText = "^2>|^7Weapon Room^2|<";
 			noti.notifyText = level.activ.name + " ^5VS^7 " + player.name;
@@ -693,7 +693,7 @@ weaponroom()
 		level.activ freezeControls(true);
 	    wait 0.1;
 	    level.player = player;
-        thread player_wep(); 
+        thread player_wep();
         thread acti_wep();
         wait 6;
         player freezeControls(false);
@@ -712,8 +712,8 @@ player_wep()
 		case 0:
 				level.player giveWeapon("ak47_mp");
 				level.player switchToWeapon("ak47_mp");
-				break;	
-		case 1:	
+				break;
+		case 1:
 				level.player giveWeapon("ak74u_mp");
 				level.player switchToWeapon("ak74u_mp");
 				break;
@@ -748,7 +748,7 @@ player_wep()
 		case 9:
 				level.player giveWeapon("rpg_mp");
 				level.player switchToWeapon("rpg_mp");
-				
+
 		default: return;
 	}
 
@@ -764,8 +764,8 @@ acti_wep()
 		case 0:
 				level.activ giveWeapon("ak47_mp");
 				level.activ switchToWeapon("ak47_mp");
-				break;	
-		case 1:	
+				break;
+		case 1:
 				level.activ giveWeapon("ak74u_mp");
 				level.activ switchToWeapon("ak74u_mp");
 				break;
@@ -800,7 +800,7 @@ acti_wep()
 		case 9:
 				level.activ giveWeapon("rpg_mp");
 				level.activ switchToWeapon("rpg_mp");
-				
+
 		default: return;
 	}
 

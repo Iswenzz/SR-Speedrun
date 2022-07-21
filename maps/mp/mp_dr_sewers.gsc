@@ -1,22 +1,22 @@
-/*                                      
-MMMMMMM MMMMMM  MMMMMM  MMMMMM   MMMMMM8  MMMMMM  
-  MMI   MMOII7 .MM  MM  MM. MM  MM    MM  MM .MM  
-  MM    MM=     MM MM   MM MM   MM   .MM  MM MM   
-  MM    MMMMMM  MM MMM .MM DMM   MMMMMM   MM :MM 
+/*
+MMMMMMM MMMMMM  MMMMMM  MMMMMM   MMMMMM8  MMMMMM
+  MMI   MMOII7 .MM  MM  MM. MM  MM    MM  MM .MM
+  MM    MM=     MM MM   MM MM   MM   .MM  MM MM
+  MM    MMMMMM  MM MMM .MM DMM   MMMMMM   MM :MM
 */
 
 main()
 {
-thread sr\api\_map::createSpawn((498, -568, 14), 92);
+thread sr\api\_map::createSpawnOrigin((498, -568, 14), 92);
 	maps\mp\_load::main();
-	
+
     //addTriggerToList( "trap8_trig" );
-	
+
 	//PrecacheModel( "" );
 	//PrecacheItem( "" );
 	precacheItem( "ak74u_mp" );
 	setExpFog(600, 600, 0, 0, 0, 0);
-	
+
 	level._effect["blinking"] = LoadFX( "rock/blinking_light" );
 	level.brick = loadfx("test/brickblast_25");
 	level.boom = loadfx("explosions/airlift_explosion_large");
@@ -32,23 +32,23 @@ thread sr\api\_map::createSpawn((498, -568, 14), 92);
 	level.fx_fireball["idle_red"] = LoadFX( "sewer/fireball_idle_red" );
 	level.fx_fireball["explosion_red"] = LoadFX( "sewer/fireball_explosion_red" );
 	level.trap = LoadFX( "explosions/aerial_explosion" );
-	
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
-	
+
+
 	//////////dvars/////////////////////////////
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("r_glowbloomintensity0",".1");
-	setdvar("r_glowbloomintensity1",".1"); 
-	setdvar("r_glowskybleedintensity0",".1"); 
-	
-	//ambientPlay("ambient_middleeast_ext"); 
-	
+	setdvar("r_glowbloomintensity1",".1");
+	setdvar("r_glowskybleedintensity0",".1");
+
+	//ambientPlay("ambient_middleeast_ext");
+
 	//////////////threads////////////////
 	thread sr\api\_speedrun::createNormalWays("Normal Way");
 		thread onConnected();
@@ -77,7 +77,7 @@ thread sr\api\_map::createSpawn((498, -568, 14), 92);
 addBlinkingLight()
 {
 	ent = getEntArray("org_light", "targetname");
-	
+
 	for(i=0;i<ent.size;i++)
 	{
 		blink = maps\mp\_utility::createOneshotEffect( "blinking" );
@@ -109,7 +109,7 @@ onConnected()
 tourch_fire()
 {
 	ent = getEntArray("torch", "targetname");
-	
+
 	for(i=0;i<ent.size;i++)
 	{
 		torch = maps\mp\_utility::createOneshotEffect( "fire" );
@@ -126,7 +126,7 @@ laser()
 {
 	laser_ori =getent( "laser_ori", "targetname" );
 	statue_fire =getent("statue_fire","targetname");
-	
+
 	wait 5;
 	playFx(level.laser, laser_ori.origin);
 	wait 3;
@@ -141,7 +141,7 @@ laser()
 addorb()
 {
 	ent = getEntArray("pot_fire", "targetname");
-	
+
 	for(i=0;i<ent.size;i++)
 	{
 		orb = maps\mp\_utility::createOneshotEffect( "orb" );
@@ -157,10 +157,10 @@ addorb()
 axe()
 {
 	axe = getent("axe","targetname");
-	
+
 	axe waittill("trigger",player);
 	axe delete();
-	
+
 	player iPrintLnBold("^5S^7orry^5, ^5y^7ou ^5c^7an't ^5H^7andle ^5T^7his ^5P^7ower^5f^7ul ^5A^7xe^5.");
 }
 
@@ -171,16 +171,16 @@ axe()
 secret()
 {
 	secret = getent("secret","targetname");
-	
+
 	secret waittill("trigger",player);
 	secret delete();
-	
+
 	iPrintLnBold( player.name + " ^5f^7ound ^5a ^5S^7niper^5!!");
 	player GiveWeapon( "remington700_mp" );
-	player giveMaxAmmo( "remington700_mp" );	
+	player giveMaxAmmo( "remington700_mp" );
 	player switchToWeapon( "remington700_mp" );
-	
-	
+
+
 }
 
 
@@ -190,7 +190,7 @@ secret()
 aod()
 {
 	ent = getEntArray("aod_fire", "targetname");
-	
+
 	for(i=0;i<ent.size;i++)
 	{
 		aodorb = maps\mp\_utility::createOneshotEffect( "aod" );
@@ -206,7 +206,7 @@ aod()
 torch_sound()
 {
 	ent = getEntArray("torch", "targetname");
-	
+
 	for(i=0;i<ent.size;i++)
 		ent[i] playLoopsound("fire_wood_small");
 }
@@ -222,14 +222,14 @@ trap2()
 	trap2_ori = getent("trap2_ori","targetname");
 	trap2_hurt = getent("trap2_hurt","targetname");
 	trap2_push = getent("trap2_push","targetname");
-	
+
 	trap2_hurt enablelinkto();
 	trap2_hurt linkto (trap2_brush);
-	
+
 	trap2_trig waittill("trigger");
 	trap2_push movey(6,2);
 	trap2_trig delete();
-	
+
 	trap2_brush movey(-236,1);
 	wait 1;
 	trap2_ori playsound("wall");
@@ -249,11 +249,11 @@ trap5()
 	trap5_brush = getent("trap5","targetname");
 	trap5_ori = getent("trap5_ori","targetname");
 	trap5_push = getent("trap5_push","targetname");
-	
+
 	trap5_trig waittill("trigger");
 	trap5_push movey(6,2);
 	trap5_trig delete();
-	
+
 	trap5_brush movez(200,1);
 	wait 1;
 	trap5_ori playsound("wall");
@@ -279,14 +279,14 @@ trap4()
 	trap4_bomborg1=getent("trap4_bomborg1","targetname");
 	trap4_bomborg2=getent("trap4_bomborg2","targetname");
 	trap4_push = getent("trap4_push","targetname");
-	
+
 	trap4_broken hide();
-	
+
 	trap4_trig waittill("trigger");
 	trap4_push movex(6,2);
 	trap4_trig delete();
-	
-	
+
+
 	PlayFX( level.fx_fireball["explosion"], trap4_bomborg1.origin );
 	PlayFX( level.fx_fireball["explosion"], trap4_bomborg2.origin );
 	EarthQuake( 1, 1, trap4_bomborg1.origin, 500 );
@@ -319,7 +319,7 @@ trap3()
 	trap3_trig waittill("trigger");
 	trap3_push movex(6,2);
 	trap3_trig delete();
-	
+
 	PlayFX( level.fx_fireball["start"], start.origin );
 	wait 1.5;
 
@@ -348,11 +348,11 @@ trap7()
 	trap7_rotate = getent("trap7_rotate","targetname");
 	trap7_trig = getent("trap7_trig","targetname");
 	trap7_push = getent("trap7_push","targetname");
-	
+
 	trap7_trig waittill("trigger");
 	trap7_push movex(6,2);
 	trap7_trig delete();;
-	
+
 	while(1)
 	{
 		trap7_rotate rotateroll (-720,2.5);
@@ -370,11 +370,11 @@ trap8()
 	trap8_b = getent("trap8_b","targetname");
 	trap8_trig = getent("trap8_trig","targetname");
 	trap8_push = getent("trap8_push","targetname");
-	
+
 	trap8_trig waittill("trigger");
 	trap8_push movex(6,2);
 	trap8_trig delete();;
-	
+
 	trap8_a movex(-120,.5);
 	trap8_b movex(120,.5);
 	wait 5;
@@ -391,7 +391,7 @@ finaldoor()
 	final_door_a = getent("final_door_a","targetname");
 	final_door_b = getent("final_door_b","targetname");
 	final_door_open = getent("final_door_open","targetname");
-	
+
 	while(1)
 	{
 		final_door_open waittill("trigger");
@@ -411,39 +411,39 @@ trap6()
 {
 	trap6_push = getEnt( "trap6_push", "targetname" );
 	trap6_trig = getEnt( "trap6_trig", "targetname" );
-	
+
 	trap6_a = getEnt( "trap6_a", "targetname" );
 	trap6_a2 = getEnt( "trap6_a2", "targetname" );
 	trap6_ahurt = getEnt( "trap6_ahurt", "targetname" );
-	
+
 	trap6_b = getEnt( "trap6_b", "targetname" );
 	trap6_b2 = getEnt( "trap6_b2", "targetname" );
 	trap6_bhurt = getEnt( "trap6_bhurt", "targetname" );
-	
+
 	trap6_c = getEnt( "trap6_c", "targetname" );
 	trap6_c2 = getEnt( "trap6_c2", "targetname" );
 	trap6_churt = getEnt( "trap6_churt", "targetname" );
-	
+
 	trap6_d = getEnt( "trap6_d", "targetname" );
 	trap6_d2 = getEnt( "trap6_d2", "targetname" );
 	trap6_dhurt = getEnt( "trap6_dhurt", "targetname" );
-	
+
 	trap6_ahurt enablelinkto();
 	trap6_ahurt linkto (trap6_a);
-	
+
 	trap6_bhurt enablelinkto();
 	trap6_bhurt linkto (trap6_b);
-	
+
 	trap6_churt enablelinkto();
 	trap6_churt linkto (trap6_c);
-	
+
 	trap6_dhurt enablelinkto();
 	trap6_dhurt linkto (trap6_d);
 
 	trap6_trig waittill("trigger");
 	trap6_push movex(6,2);
 	trap6_trig delete();
-	
+
 	trap6_a movex(-448,1);
 	trap6_c movex(-448,1);
 	wait 2;
@@ -474,34 +474,34 @@ trap6()
 secretz()
 {
 	secret2 = getEnt( "secret2", "targetname" );
-	
+
 	secret2 waittill("trigger",player);
 	secret2 delete();
-	
+
 	possibility = randomIntRange(0,3);
 	if(possibility == 0)
 	{
 		player iPrintLnBold("^5H^7ow ^5D^7are ^5y^7ou ^5T^7ry ^5T^7o ^5H^7andle ^5T^7his ^5P^7owerFul ^5W^7and^5!!");
 		RadiusDamage( player.origin, 300, 60, 20 );
 	}
-	
+
 	if(possibility == 1)
-	
+
 	{
 		player iPrintLnBold("^5W^7elcome ^5M^7y ^5L^7ord, ^5I ^5A^7m ^5a^7t ^5Y^7our ^5S^7ervice^5!!");
 		player GiveWeapon( "ak74u_mp" );
 		player switchToWeapon( "ak74u_mp" );
 	}
-	
+
 	if(possibility == 2)
-	
+
 	{
 		player iPrintLnBold("^5H^7ow ^5D^7are ^5y^7ou ^5T^7ry ^5T^7o ^5H^7andle ^5T^7his ^5P^7owerFul ^5W^7and^5!!");
 		RadiusDamage( player.origin, 300, 60, 20 );
 	}
-	
+
 	if(possibility == 3)
-	
+
 	{
 		player iPrintLnBold("^5W^7elcome ^5M^7y ^5L^7ord, ^5I ^5A^7m ^5a^7t ^5Y^7our ^5S^7ervice^5!!");
 		player GiveWeapon( "ak74u_mp" );

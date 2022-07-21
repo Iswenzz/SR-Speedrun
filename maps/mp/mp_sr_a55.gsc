@@ -1,18 +1,18 @@
 main()
 {
-thread sr\api\_map::createSpawn((-3008, -656, 2552), 0);
+thread sr\api\_map::createSpawnOrigin((-3008, -656, 2552), 0);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
     maps\mp\_load::main();
- 
+
     game["allies"] = "sas";
     game["axis"] = "opfor";
     game["attackers"] = "axis";
     game["defenders"] = "allies";
     game["allies_soldiertype"] = "woodland";
     game["axis_soldiertype"] = "woodland";
- 
+
     setdvar( "r_specularcolorscale", "1" );
     setdvar("r_glowbloomintensity0",".25");
     setdvar("r_glowbloomintensity1",".25");
@@ -30,11 +30,11 @@ if (!level.spawn["allies"].size)
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
 
@@ -51,11 +51,11 @@ secret()
 
 	wait 1;
 	thread sr\api\_map::createTriggerFx(trig, "secret");
-	
+
 	while(1)
     	{
-        trig waittill ("trigger", player); 
-        player sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste       
+        trig waittill ("trigger", player);
+        player sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste
 		player SetOrigin(end.origin);
         player SetPlayerAngles( end.angles );
 	}

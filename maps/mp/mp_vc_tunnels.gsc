@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((124, -3, 16), 180);
+thread sr\api\_map::createSpawnOrigin((124, -3, 16), 180);
 
 
 	maps\mp\_load::main();
@@ -14,7 +14,7 @@ thread sr\api\_map::createSpawn((124, -3, 16), 180);
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "2" );
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
@@ -74,7 +74,7 @@ start_walls()
 }
 
 teleporter()
-{       
+{
  	entTransporter = getentarray( "enter", "targetname" );
 	if(isdefined(entTransporter))
 		for( i = 0; i < entTransporter.size; i++ )
@@ -82,7 +82,7 @@ teleporter()
 			entTransporter[i] thread transporter();
 		}
 }
- 
+
 transporter()
 {
 	for(;;)

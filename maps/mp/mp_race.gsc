@@ -1,4 +1,4 @@
-//Map by 3xP' Noob 
+//Map by 3xP' Noob
 //My Steam id is "ross_"
 //Scripts by Sheep Wizard, Viruz, Mirko, Noob, with help from IzNoGod and Sux Lolz
 //Stealing scripts is for nubs
@@ -10,10 +10,10 @@
 #include common_scripts\utility;
 main()
 {
-thread sr\api\_map::createSpawn((-23318, -50, 40080), 0);
+thread sr\api\_map::createSpawnOrigin((-23318, -50, 40080), 0);
 	maps\mp\_load::main();
 	//maps\mp\_teleport::main();
-	
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
@@ -23,7 +23,7 @@ thread sr\api\_map::createSpawn((-23318, -50, 40080), 0);
 
     setDvar("bg_falldamagemaxheight", 2000000000 );
     setDvar("bg_falldamageminheight", 1500000000 );
-	
+
 	trigwords("map", "^5Map by 3xP' Noob");
 	trigwords("thankstest", "^5Thanks to all testers who gave feedback and made this map possible, you know who you are! \n ^5Big thanks to ^2Funk^5, ^2Leejey ^5and  ^2Gheetah ^5for constant testing!");
 	trigwords("thanks3xp", "^5Thanks to all members of the ^63xP' Clan ^5for support and bug finding! \n ^2mp_bouncebuilder ^5is the fucking best");
@@ -32,12 +32,12 @@ thread sr\api\_map::createSpawn((-23318, -50, 40080), 0);
 	trigwords("roofland", "^5oooh look at mr.pro landing on the roof!");
 	trigwords("gg", "gg wp");
 	trigwords("bhoppro", "^5Damn, bunnyhop pro!");
-	
+
 	// thread onPlayerConnect();
 	level.accepted1 = "11b05456"; //Sheep
     level.accepted2 = "47aac932"; //Lowjey
     level.accepted3 = "3e07cdb8"; //Gheetah
-	level.accepted4 = "58b554fb"; //Noob 
+	level.accepted4 = "58b554fb"; //Noob
 	level.accepted5 = "7daf0d52"; //Drizz
 	level.accepted6 = "5b7631e9"; //SuX Lolz
 	level.accepted7 =  "53c44772"; //Toxije
@@ -74,7 +74,7 @@ thread sr\api\_map::createSpawn((-23318, -50, 40080), 0);
 	level.accepted38 = "bea271a2"; //Weezie
 	level.accepted39 = "3b6654c0"; //Kenedko
 	level.accepted40 = "698845cd"; //ZeeZ
-	
+
     thread sr\api\_speedrun::createNormalWays("Easy Way;");
     thread sr\api\_speedrun::createSecretWays("Hard Way;Fun Way;Bhop Way;Inter+ Way;Inter Way;");
         thread sr\api\_speedrun::createTeleporter((-20034.8, -61.3096, 40080.1), 130, 90, (34572, 58542, 14480), 290, "freeze", "green");
@@ -89,13 +89,13 @@ thread sr\api\_map::createSpawn((-23318, -50, 40080), 0);
     thread sr\api\_speedrun::createEndMap((-14964.3, -53958.9, -14001.4), 260, 125, "secret_3");
     thread sr\api\_speedrun::createEndMap((-9378.84, 26427.5, -14001.4), 140, 240, "secret_4");
     thread sr\api\_speedrun::createEndMap((53179.6, 33804, 3752.63), 210, 100, "normal_0");
-    
+
 	// thread door_slider();
 	// thread vipdoor();
 	// thread keydoor();
 	// thread rotate();
 	// thread secret();
-    // thread fov80();  
+    // thread fov80();
     // thread fov90();
     // thread fov96();
 	// thread nogun();
@@ -106,7 +106,7 @@ thread sr\api\_map::createSpawn((-23318, -50, 40080), 0);
 	// thread wow();
 	// thread admindeagle();
 	//thread gravgun();
-	
+
 	// thread easyStart();
      //thread easyEnd();
     // thread interStart();
@@ -119,7 +119,7 @@ thread sr\api\_map::createSpawn((-23318, -50, 40080), 0);
     //thread funEnd();
     // thread bhopStart();
    // thread bhopEnd();
-	
+
 	// thread cj_menu();
    //  thread vars();
 	precacheMenu("cj_leaderboard");
@@ -149,13 +149,13 @@ thread sr\api\_map::createSpawn((-23318, -50, 40080), 0);
     precacheShader("mtl_clank_eyes");
     precacheShader("mtl_clank_hands");
     precacheModel("ratchet");
-	
+
 	//Joker Model
     precacheShader("mtl_plr_baa_joker_body");
     precacheShader("mtl_plr_baa_joker_hair");
     precacheShader("mtl_plr_baa_joker_head");
     precacheModel("playermodel_baa_joker");
-	
+
 	//Captain America Model
 	precacheShader("mtl_captainamerica_eye1");
     precacheShader("mtl_captainamerica_eye2");
@@ -169,7 +169,7 @@ thread sr\api\_map::createSpawn((-23318, -50, 40080), 0);
     precacheShader("mtl_captainamerica_shield_back");
     precacheShader("mtl_captainamerica_viewhands");
     precacheModel("captainamerica");
-	
+
 	//Deadpool
     precacheShader("mtl_deadpool_guns");
     precacheShader("mtl_deadpool_body");
@@ -177,8 +177,8 @@ thread sr\api\_map::createSpawn((-23318, -50, 40080), 0);
 	precacheShader("mtl_deadpool_misc");
     precacheShader("mtl_deadpool_swords");
     precacheModel("deadpool");
-	
-		
+
+
 	//duke
     precacheShader("mtl_plr_dnf_duke_body");
     precacheShader("mtl_plr_dnf_duke_glasses");
@@ -186,7 +186,7 @@ thread sr\api\_map::createSpawn((-23318, -50, 40080), 0);
 	precacheShader("mtl_plr_dnf_duke_hand");
     precacheShader("mtl_plr_dnf_duke_head");
     precacheModel("playermodel_dnf_duke");
-	
+
 	// thread tsonic();
 	// thread tshadow();
 	// thread tcaptainamerica();
@@ -202,7 +202,7 @@ thread sr\api\_map::createSpawn((-23318, -50, 40080), 0);
 	// thread key5();
 	// thread all5();
 	// thread keyroom();
-}	
+}
 onPlayerConnect() {
     level endon("game_ended");
     while (1) {
@@ -349,13 +349,13 @@ keyroom()
 	}
 }
 checkvip()
-{  
+{
     friend = getSubStr(self getGuid(), 24, 32);
     if(friend == level.accepted1 || friend == level.accepted3)
-    {  
+    {
 		self setPlayermodel("playermodel_baa_joker");
         self iprintln("^5oi fuckhead, here's some shit for helping xo ^1<3");
-		wait .5;		
+		wait .5;
 		self giveWeapon( "usp_mp");
 		self giveMaxammo("usp_mp");
 		self giveWeapon( "deserteaglegold_mp");
@@ -413,7 +413,7 @@ checkvip()
 		self switchtoweapon("deserteaglegold_mp");
 		}
 }
-setPlayerModel(model){ 
+setPlayerModel(model){
 	self detachHead();
 	self SetModel(model);
 }
@@ -575,26 +575,26 @@ showwords(message)
 	}
 }
 
-door_slider() 
-{ 
-	door = getent( "door", "targetname" ); 
-	trig = getent( "doortrig", "targetname" ); 
-	while(true) 
-	{ 
-		trig waittill ( "trigger" ); 
-		door movez ( 170, 2, 0, 0.6 ); 
-		door waittill ( "movedone" ); 
+door_slider()
+{
+	door = getent( "door", "targetname" );
+	trig = getent( "doortrig", "targetname" );
+	while(true)
+	{
+		trig waittill ( "trigger" );
+		door movez ( 170, 2, 0, 0.6 );
+		door waittill ( "movedone" );
 		wait 15;
-		door movez( -170, 2, 0, 0.6 ); 
-		door waittill ( "movedone" ); 
-	} 
+		door movez( -170, 2, 0, 0.6 );
+		door waittill ( "movedone" );
+	}
 }
 rotate()
 	{
 	brush = getEnt("rotate", "targetname");
 	while(1) {
-	wait 0.01;                                            
-	brush rotateyaw (360, 10); 
+	wait 0.01;
+	brush rotateyaw (360, 10);
 	}
 }
 secret()
@@ -602,7 +602,7 @@ secret()
     trig = getEnt("secret", "targetname"); {
             trig waittill("trigger", player);
              { iprintln("^2" + player.name + "^5 got to the secret first!"); }
-             trig delete();  
+             trig delete();
 	}
 }
 viponly(){
@@ -614,34 +614,34 @@ if(friend == level.accepted1 || friend == level.accepted2 || friend == level.acc
 else{user thread killthem();}}
 }
 killthem(){self suicide();self iprintlnbold("^1Access Denied motherfucker!");}
-vipdoor() 
-{ 
+vipdoor()
+{
 	for(;;){
-	vipdoor = getent( "vipdoor", "targetname" ); 
-	trig = getent( "vipdoortrig", "targetname" ); 
+	vipdoor = getent( "vipdoor", "targetname" );
+	trig = getent( "vipdoortrig", "targetname" );
 	trig waittill("trigger", user);
 	friend = getSubStr(user getGuid(), 24, 32);
-		 if(friend == level.accepted1 || friend == level.accepted2 || friend == level.accepted3 || friend == level.accepted4 || friend == level.accepted5 || friend == level.accepted6 || friend == level.accepted7 || friend == level.accepted8 || friend == level.accepted9 || friend == level.accepted10 || friend == level.accepted11 || friend == level.accepted12 || friend == level.accepted13 || friend == level.accepted14  || friend == level.accepted15  || friend == level.accepted16  || friend == level.accepted17  || friend == level.accepted18 || friend == level.accepted19 || friend == level.accepted20 || friend == level.accepted21 || friend == level.accepted22 || friend == level.accepted23 || friend == level.accepted24 || friend == level.accepted25 || friend == level.accepted26 || friend == level.accepted27 || friend == level.accepted28 || friend == level.accepted29 || friend == level.accepted30 || friend == level.accepted31 || friend == level.accepted32 || friend == level.accepted33 || friend == level.accepted34  || friend == level.accepted35 || friend == level.accepted36 || friend == level.accepted37 || friend == level.accepted38 || friend == level.accepted39)    
-	{ 
+		 if(friend == level.accepted1 || friend == level.accepted2 || friend == level.accepted3 || friend == level.accepted4 || friend == level.accepted5 || friend == level.accepted6 || friend == level.accepted7 || friend == level.accepted8 || friend == level.accepted9 || friend == level.accepted10 || friend == level.accepted11 || friend == level.accepted12 || friend == level.accepted13 || friend == level.accepted14  || friend == level.accepted15  || friend == level.accepted16  || friend == level.accepted17  || friend == level.accepted18 || friend == level.accepted19 || friend == level.accepted20 || friend == level.accepted21 || friend == level.accepted22 || friend == level.accepted23 || friend == level.accepted24 || friend == level.accepted25 || friend == level.accepted26 || friend == level.accepted27 || friend == level.accepted28 || friend == level.accepted29 || friend == level.accepted30 || friend == level.accepted31 || friend == level.accepted32 || friend == level.accepted33 || friend == level.accepted34  || friend == level.accepted35 || friend == level.accepted36 || friend == level.accepted37 || friend == level.accepted38 || friend == level.accepted39)
+	{
 		user iprintln("^2Access Granted");
-		vipdoor movez ( -224, 2, 0, 0.6 ); 
-		vipdoor waittill ( "movedone" ); 
+		vipdoor movez ( -224, 2, 0, 0.6 );
+		vipdoor waittill ( "movedone" );
 		wait 2;
-		vipdoor movez( 224, 2, 0, 0.6 ); 
-		vipdoor waittill ( "movedone" ); 
-	} 
+		vipdoor movez( 224, 2, 0, 0.6 );
+		vipdoor waittill ( "movedone" );
+	}
 	else{
 	user iprintln("^1Access Denied");
 	wait 1;
 	}
 	}
 }
-keydoor() 
-{ 
-	keydoor = getent( "keydoor", "targetname" ); 
-	trig = getent( "keydoortrig", "targetname" ); 
+keydoor()
+{
+	keydoor = getent( "keydoor", "targetname" );
+	trig = getent( "keydoortrig", "targetname" );
 	for(;;){
-	trig waittill ("trigger", player); 
+	trig waittill ("trigger", player);
 	if ( player.key1 + player.key2 + player.key3 == 0)
 	{player iprintln ("^7You need to find ^25 ^7keys to open the door!"); wait 2;}
 	else if ( player.key1 + player.key2 + player.key3 + player.key4 + player.key5 == 1)
@@ -654,13 +654,13 @@ keydoor()
 	{player iprintln ("^7You need to find ^21 ^7more key to open the door!");}
 	else if ( player.key1 + player.key2 + player.key3 + player.key4 + player.key5 == 5)
 	{player iprintln ("^5Welcome, ^7" + player.name);
-	keydoor movez ( -180, 2, 0, 0.6 ); 
-	keydoor waittill ( "movedone" ); 
+	keydoor movez ( -180, 2, 0, 0.6 );
+	keydoor waittill ( "movedone" );
 	wait 2;
-	keydoor movez( 180, 2, 0, 0.6 ); 
-	keydoor waittill ( "movedone" ); 
+	keydoor movez( 180, 2, 0, 0.6 );
+	keydoor waittill ( "movedone" );
 	}
-}	
+}
 }
 asshole()
 {
@@ -878,7 +878,7 @@ leaderboard(number, playername, way, guid, jumper)
     if((way == "easy" && number <= 220000) || (way == "inter" && number <= 210000) ||  (way == "interplus" && number <= 220000) || (way == "hard" && number <= 300000) || (way == "fun" && number <= 200000) || (way == "bhop" && number <= 200000))
         return;
     if(way == "easy")
-    {  
+    {
              //if new top record is set
         if(number < level.easy_lb[5]["time"])
         {
@@ -886,7 +886,7 @@ leaderboard(number, playername, way, guid, jumper)
             jumper setPlayermodel("ratchet");
 			jumper iPrintLnBold("^3You got a new record! \n ^2Ratchet ^5model equipped!");
 			jumper iPrintLn("^5Going to spec or suicide will remove skin!");
-        }	
+        }
         for(i=5; i>-1; i--)
         {
             //If players new time is slower then their old time
@@ -906,7 +906,7 @@ leaderboard(number, playername, way, guid, jumper)
                 level.easy_lb[i]["time"] = number;
                 level.easy_lb[i]["player"] = playername;
                 level.easy_lb[i]["guid"] = guid;
- 
+
                 for(z=0; z<i; z++)
                 {
                     //Check that player doesnt have an old time in leaderboard
@@ -953,12 +953,12 @@ leaderboard(number, playername, way, guid, jumper)
                 level.inter_lb[i]["time"] = number;
                 level.inter_lb[i]["player"] = playername;
                 level.inter_lb[i]["guid"] = guid;
- 
+
                 for(z=0; z<i; z++)
                 {
                     if(level.inter_lb[z]["guid"] == guid && level.inter_lb[z]["time"] != number)
                     {
- 
+
                         for(p=z; p>0; p--)
                         {
                             level.inter_lb[p]["time"] = level.inter_lb[p-1]["time"];
@@ -967,7 +967,7 @@ leaderboard(number, playername, way, guid, jumper)
                         }
                         saveScores();
                         return;
- 
+
                     }
                 }
                 saveScores();
@@ -983,15 +983,15 @@ leaderboard(number, playername, way, guid, jumper)
 			jumper setPlayermodel("captainamerica");
 			jumper iPrintLnBold("^3You got a new record! \n ^1Captain America^5 model equipped!");
 			jumper iPrintLn("Going to spec or suicide will remove skin!");
-			
+
        for(i=5; i>-1; i--)
         {
             if(level.interplus_lb[i]["guid"] == guid && level.interplus_lb[i]["time"] < number )
                 return;
- 
+
             if(level.interplus_lb[i]["time"] > number)
             {
-               
+
                 for(x=0; x<i; x++)
                 {
                     level.interplus_lb[x]["time"] = level.interplus_lb[x+1]["time"];
@@ -1001,12 +1001,12 @@ leaderboard(number, playername, way, guid, jumper)
                 level.interplus_lb[i]["time"] = number;
                 level.interplus_lb[i]["player"] = playername;
                 level.interplus_lb[i]["guid"] = guid;
- 
+
                 for(z=0; z<i; z++)
                 {
                     if(level.interplus_lb[z]["guid"] == guid && level.interplus_lb[z]["time"] != number)
                     {
- 
+
                         for(p=z; p>0; p--)
                         {
                             level.interplus_lb[p]["time"] = level.interplus_lb[p-1]["time"];
@@ -1015,10 +1015,10 @@ leaderboard(number, playername, way, guid, jumper)
                         }
                         saveScores();
                         return;
- 
+
                     }
                 }
- 
+
                 saveScores();
                 return;
             }
@@ -1036,10 +1036,10 @@ leaderboard(number, playername, way, guid, jumper)
         {
             if(level.hard_lb[i]["guid"] == guid && level.hard_lb[i]["time"] < number )
                 return;
- 
+
             if(level.hard_lb[i]["time"] > number)
             {
-               
+
                 for(x=0; x<i; x++)
                 {
                     level.hard_lb[x]["time"] = level.hard_lb[x+1]["time"];
@@ -1049,12 +1049,12 @@ leaderboard(number, playername, way, guid, jumper)
                 level.hard_lb[i]["time"] = number;
                 level.hard_lb[i]["player"] = playername;
                 level.hard_lb[i]["guid"] = guid;
- 
+
                 for(z=0; z<i; z++)
                 {
                     if(level.hard_lb[z]["guid"] == guid && level.hard_lb[z]["time"] != number)
                     {
- 
+
                         for(p=z; p>0; p--)
                         {
                             level.hard_lb[p]["time"] = level.hard_lb[p-1]["time"];
@@ -1063,10 +1063,10 @@ leaderboard(number, playername, way, guid, jumper)
                         }
                         saveScores();
                         return;
- 
+
                     }
                 }
- 
+
                 saveScores();
                 return;
             }
@@ -1084,10 +1084,10 @@ leaderboard(number, playername, way, guid, jumper)
         {
             if(level.fun_lb[i]["guid"] == guid && level.fun_lb[i]["time"] < number )
                 return;
- 
+
             if(level.fun_lb[i]["time"] > number)
             {
-               
+
                 for(x=0; x<i; x++)
                 {
                     level.fun_lb[x]["time"] = level.fun_lb[x+1]["time"];
@@ -1097,12 +1097,12 @@ leaderboard(number, playername, way, guid, jumper)
                 level.fun_lb[i]["time"] = number;
                 level.fun_lb[i]["player"] = playername;
                 level.fun_lb[i]["guid"] = guid;
- 
+
                 for(z=0; z<i; z++)
                 {
                     if(level.fun_lb[z]["guid"] == guid && level.fun_lb[z]["time"] != number)
                     {
- 
+
                         for(p=z; p>0; p--)
                         {
                             level.fun_lb[p]["time"] = level.fun_lb[p-1]["time"];
@@ -1111,10 +1111,10 @@ leaderboard(number, playername, way, guid, jumper)
                         }
                         saveScores();
                         return;
- 
+
                     }
                 }
- 
+
                 saveScores();
                 return;
             }
@@ -1132,10 +1132,10 @@ leaderboard(number, playername, way, guid, jumper)
         {
             if(level.bhop_lb[i]["guid"] == guid && level.bhop_lb[i]["time"] < number )
                 return;
- 
+
             if(level.bhop_lb[i]["time"] > number)
             {
-               
+
                 for(x=0; x<i; x++)
                 {
                     level.bhop_lb[x]["time"] = level.bhop_lb[x+1]["time"];
@@ -1145,12 +1145,12 @@ leaderboard(number, playername, way, guid, jumper)
                 level.bhop_lb[i]["time"] = number;
                 level.bhop_lb[i]["player"] = playername;
                 level.bhop_lb[i]["guid"] = guid;
- 
+
                 for(z=0; z<i; z++)
                 {
                     if(level.bhop_lb[z]["guid"] == guid && level.bhop_lb[z]["time"] != number)
                     {
- 
+
                         for(p=z; p>0; p--)
                         {
                             level.bhop_lb[p]["time"] = level.bhop_lb[p-1]["time"];
@@ -1159,23 +1159,23 @@ leaderboard(number, playername, way, guid, jumper)
                         }
                         saveScores();
                         return;
- 
+
                     }
                 }
- 
+
                 saveScores();
                 return;
             }
         }
     }
 }
- 
+
 //update map dvar
 addToDvar(dvar, var)
 {
     setDvar(dvar, getDvar(dvar) + var);
 }
- 
+
 //saves scores to dvar
 //to reset scores set dvar 'scores_'mapname to " "
 //rcon set scores_mp_race " "
@@ -1184,7 +1184,7 @@ saveScores()
     score = "";
     mapname = getDvar("mapname");
     setDvar("scores_" + mapname, "" );
- 
+
     for(i=0; i<6; i++)
     {
         score = level.easy_lb[i]["time"] + "\\";
@@ -1205,10 +1205,10 @@ saveScores()
         score = score + level.bhop_lb[i]["time"] + "\\";
         score = score + level.bhop_lb[i]["player"] + "\\";
         score = score + level.bhop_lb[i]["guid"] + "\n";
-        addToDvar("scores_" + mapname, score);  
+        addToDvar("scores_" + mapname, score);
     }
     wait 0.1;
- 
+
 }
 //convert time to readable time
 realtime(number)
@@ -1218,22 +1218,22 @@ realtime(number)
         playertime = "???";
         return playertime;
     }
- 
+
     seconds = int(number / 1000);
     hours = int(seconds/3600);
     seconds = seconds % 3600;
     minutes = int(seconds/60);
     seconds = seconds % 60;
- 
+
     if(seconds <= 9)
         seconds = "0" + seconds;
     if(minutes <= 9)
         minutes = "0" + minutes;
     if(hours <= 9)
         hours = "0" + hours;
- 
+
      playertime =  "" + hours + ":" + minutes + ":" + seconds;
- 
+
     return playertime;
 }
 //open leaderboard menu
@@ -1243,12 +1243,12 @@ cj_menu()
     while(1)
     {
         trig waittill("trigger", player);
-       
+
         player thread openleaderboardMenu();
         wait 0.05;
     }
 }
- 
+
 //set player dvars for leaderboard menu
 openleaderboardMenu()
 {
@@ -1256,7 +1256,7 @@ openleaderboardMenu()
     self notify("restart_menuthread");
     self endon("restart_menuthread");
     self endon("disconnect");
-   
+
     //menus opsn on easy
     self openMenu("cj_leaderboard_easy");
     self setClientDvars( "cj_leaderboard_1_n", level.easy_lb[5]["player"],
@@ -1271,8 +1271,8 @@ openleaderboardMenu()
                          "cj_leaderboard_5_t", realtime(level.easy_lb[1]["time"]),
                          "cj_leaderboard_6_n", level.easy_lb[0]["player"],
                          "cj_leaderboard_6_t", realtime(level.easy_lb[0]["time"]));
- 
-                         
+
+
     while(1)
     {
         self waittill("menuresponse", menu, response);
@@ -1293,7 +1293,7 @@ openleaderboardMenu()
         }
         if(response == "inter_scores" && menu == "cj_leaderboard_easy")
         {
- 
+
              self setClientDvars( "cj_leaderboard_1_n", level.inter_lb[5]["player"],
                          "cj_leaderboard_1_t", realtime(level.inter_lb[5]["time"]),
                          "cj_leaderboard_2_n", level.inter_lb[4]["player"],
@@ -1306,10 +1306,10 @@ openleaderboardMenu()
                          "cj_leaderboard_5_t", realtime(level.inter_lb[1]["time"]),
                          "cj_leaderboard_6_n", level.inter_lb[0]["player"],
                          "cj_leaderboard_6_t", realtime(level.inter_lb[0]["time"]));
-        }  
+        }
         if(response == "interplus_scores" && menu == "cj_leaderboard_easy")
         {
- 
+
             self setClientDvars( "cj_leaderboard_1_n", level.interplus_lb[5]["player"],
                          "cj_leaderboard_1_t", realtime(level.interplus_lb[5]["time"]),
                          "cj_leaderboard_2_n", level.interplus_lb[4]["player"],
@@ -1391,7 +1391,7 @@ checkpointreset()
     self.bhopchk1 = undefined;
     self.bhopchk2 = undefined;
     self.bhopchk3 = undefined;
- 
+
     self.easyEnd = undefined;
     self.startTimeEasy = undefined;
     self.interEnd = undefined;
@@ -1403,40 +1403,40 @@ checkpointreset()
     self.funEnd = undefined;
     self.startTimeFun = undefined;
     self.bhopEnd = undefined;
-    self.startTimeBhop = undefined;  
-}  
+    self.startTimeBhop = undefined;
+}
 //EASY TIMER
 easyStart()
 {
     level endon("game_ended");
-   
+
     trigger = getent("easybegin", "targetname");
- 
+
     while(1)
     {
         trigger waittill("trigger", player);
-       
+
         if(player.sessionstate == "playing")
         {
             player checkpointreset();
             player.startTimeEasy = getTime();
             player.easyend = undefined;
             player thread easychk();
-        }                      
+        }
     }
 }
 easyEnd()
 {
     level endon("game_ended");
-   
+
     trigger = getent("easyend", "targetname");
     while(1)
     {
         trigger waittill("trigger", player);
-       
+
         if(player.sessionstate != "playing" || isDefined(player.easyend) || !isDefined(player.startTimeEasy))
             continue;
-   
+
         else
         {
             if(isDefined(player.easychk1) && isDefined(player.easychk2) && isDefined(player.easychk3))
@@ -1449,9 +1449,9 @@ easyEnd()
                 player.startTimeEasy = undefined;
                 player notify("easy_stop");
                 player thread checkpointreset();
-            }    
+            }
         }
-       
+
     }
 }
 easychk()
@@ -1462,7 +1462,7 @@ easychk()
     trig1 = getEnt("easy_chk_1", "targetname");
     trig2 = getEnt("easy_chk_2", "targetname");
     trig3 = getEnt("easy_chk_3", "targetname");
- 
+
     while(1)
     {
         if(!isDefined(self.easychk1) && self isTouching(trig1))
@@ -1473,19 +1473,19 @@ easychk()
             self.easychk3 = true;
         wait 0.05;
     }
- 
+
 }
 //INTER TIMER
 interStart()
 {
     level endon("game_ended");
-   
+
     trigger = getent("interbegin", "targetname");
- 
+
     while(1)
     {
         trigger waittill("trigger", player);
-       
+
         if(player.sessionstate == "playing")
         {
             player checkpointreset();
@@ -1493,21 +1493,21 @@ interStart()
             player.interend = undefined;
             player thread interchk();
         }
-                           
+
     }
 }
 interEnd()
 {
     level endon("game_ended");
-   
+
     trigger = getent("interend", "targetname");
     while(1)
     {
         trigger waittill("trigger", player);
-       
+
         if(player.sessionstate != "playing" || isDefined(player.interend) || !isDefined(player.startTimeInter))
             continue;
-   
+
         else
         {
             if(isDefined(player.interchk1) && isDefined(player.interchk2) && isDefined(player.interchk3))
@@ -1520,9 +1520,9 @@ interEnd()
                 player.startTimeInter = undefined;
                 player notify("inter_stop");
                 player thread checkpointreset();
-            }    
+            }
         }
-       
+
     }
 }
 interchk()
@@ -1533,7 +1533,7 @@ interchk()
     trig1 = getEnt("inter_chk_1", "targetname");
     trig2 = getEnt("inter_chk_2", "targetname");
     trig3 = getEnt("inter_chk_3", "targetname");
- 
+
     while(1)
     {
         if(!isDefined(self.interchk1) && self isTouching(trig1))
@@ -1549,13 +1549,13 @@ interchk()
 interplusStart()
 {
     level endon("game_ended");
-   
+
     trigger = getent("interplusbegin", "targetname");
- 
+
     while(1)
     {
         trigger waittill("trigger", player);
-       
+
         if(player.sessionstate == "playing")
         {
             player checkpointreset();
@@ -1563,21 +1563,21 @@ interplusStart()
             player.interplusend = undefined;
             player thread interpluschk();
         }
-                               
+
     }
 }
 interplusEnd()
 {
     level endon("game_ended");
-   
+
     trigger = getent("interplusend", "targetname");
     while(1)
     {
         trigger waittill("trigger", player);
-       
+
         if(player.sessionstate != "playing" || isDefined(player.interplusend) || !isDefined(player.startTimeInterplus))
             continue;
-   
+
         else
         {
             if(isDefined(player.interpluschk1) && isDefined(player.interpluschk2) && isDefined(player.interpluschk3))
@@ -1590,9 +1590,9 @@ interplusEnd()
                 player.startTimeInterplus = undefined;
                 player notify("interplus_stop");
                 player thread checkpointreset();
-            }    
+            }
         }
-       
+
     }
 }
 interpluschk()
@@ -1603,7 +1603,7 @@ interpluschk()
     trig1 = getEnt("interplus_chk_1", "targetname");
     trig2 = getEnt("interplus_chk_2", "targetname");
     trig3 = getEnt("interplus_chk_3", "targetname");
- 
+
     while(1)
     {
         if(!isDefined(self.interpluschk1) && self isTouching(trig1))
@@ -1619,13 +1619,13 @@ interpluschk()
 hardStart()
 {
     level endon("game_ended");
-   
+
     trigger = getent("hardbegin", "targetname");
- 
+
     while(1)
     {
         trigger waittill("trigger", player);
-       
+
         if(player.sessionstate == "playing")
         {
             player checkpointreset();
@@ -1633,21 +1633,21 @@ hardStart()
             player.hardend = undefined;
             player thread hardchk();
         }
-                       
+
     }
 }
 hardEnd()
 {
     level endon("game_ended");
-   
+
     trigger = getent("hardend", "targetname");
     while(1)
     {
         trigger waittill("trigger", player);
-       
+
         if(player.sessionstate != "playing" || isDefined(player.hardend) || !isDefined(player.startTimehard))
             continue;
-   
+
         else
         {
             if(isDefined(player.hardchk1) && isDefined(player.hardchk2) && isDefined(player.hardchk3))
@@ -1661,9 +1661,9 @@ hardEnd()
                 player notify("hard_stop");
                  player thread checkpointreset();
 
-            }    
+            }
         }
-       
+
     }
 }
 hardchk()
@@ -1674,7 +1674,7 @@ hardchk()
     trig1 = getEnt("hard_chk_1", "targetname");
     trig2 = getEnt("hard_chk_2", "targetname");
     trig3 = getEnt("hard_chk_3", "targetname");
- 
+
     while(1)
     {
         if(!isDefined(self.hardchk1) && self isTouching(trig1))
@@ -1690,13 +1690,13 @@ hardchk()
 funStart()
 {
     level endon("game_ended");
-   
+
     trigger = getent("funbegin", "targetname");
- 
+
     while(1)
     {
         trigger waittill("trigger", player);
-       
+
         if(player.sessionstate == "playing")
         {
             player checkpointreset();
@@ -1704,13 +1704,13 @@ funStart()
             player.funend = undefined;
             player thread funchk();
         }
-                       
+
     }
 }
 funEnd()
 {
     level endon("game_ended");
-   
+
     trigger = getent("funend", "targetname");
     while(1)
     {
@@ -1729,9 +1729,9 @@ funEnd()
                 player.startTimeFun = undefined;
                 player notify("fun_stop");
                 player thread checkpointreset();
-            }    
+            }
         }
-       
+
     }
 }
 funchk()
@@ -1742,7 +1742,7 @@ funchk()
     trig1 = getEnt("fun_chk_1", "targetname");
     trig2 = getEnt("fun_chk_2", "targetname");
     trig3 = getEnt("fun_chk_3", "targetname");
- 
+
     while(1)
     {
         if(!isDefined(self.funchk1) && self isTouching(trig1))
@@ -1758,13 +1758,13 @@ funchk()
 bhopStart()
 {
     level endon("game_ended");
-   
+
     trigger = getent("bhopbegin", "targetname");
- 
+
     while(1)
     {
         trigger waittill("trigger", player);
-       
+
         if(player.sessionstate == "playing")
         {
             player checkpointreset();
@@ -1772,21 +1772,21 @@ bhopStart()
             player.easybhop = undefined;
             player thread bhopchk();
         }
-                       
+
     }
 }
 bhopEnd()
 {
     level endon("game_ended");
-   
+
     trigger = getent("bhopend", "targetname");
     while(1)
     {
         trigger waittill("trigger", player);
-       
+
         if(player.sessionstate != "playing" || isDefined(player.bhopend) || !isDefined(player.startTimeBhop))
             continue;
-   
+
         else
         {
             if(isDefined(player.bhopchk1) && isDefined(player.bhopchk2) && isDefined(player.bhopchk3))
@@ -1799,9 +1799,9 @@ bhopEnd()
                 player.startTimeBhop = undefined;
                 player notify("bhop_stop");
                 player thread checkpointreset();
-            }    
+            }
         }
-       
+
     }
 }
 bhopchk()
@@ -1812,7 +1812,7 @@ bhopchk()
     trig1 = getEnt("bhop_chk_1", "targetname");
     trig2 = getEnt("bhop_chk_2", "targetname");
     trig3 = getEnt("bhop_chk_3", "targetname");
- 
+
     while(1)
     {
         if(!isDefined(self.bhopchk1) && self isTouching(trig1))

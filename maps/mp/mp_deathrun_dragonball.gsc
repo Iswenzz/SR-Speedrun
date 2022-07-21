@@ -14,7 +14,7 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 */
 main()
 {
-thread sr\api\_map::createSpawn((1572, 99, -64), 180);
+thread sr\api\_map::createSpawnOrigin((1572, 99, -64), 180);
 trigger = spawn( "trigger_radius", (-19136.2, 13545.1, 256.125), 0, 325, 110 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 325;

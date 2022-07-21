@@ -13,26 +13,26 @@
 				 //                  All textures & Skybox by Lolz                   \\
 				 //                     'sixzoRR Skype: dinac777                     \\
 				 //               Lolz Steam: iswenzz1528 / SuX Lolz :]              \\
-				 ///////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\   
-					  
+				 ///////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
 #include maps\mp\_utility;
 #include maps\mp\gametypes\_hud_util;
 #include common_scripts\utility;
 
 main()
 {
-thread sr\api\_map::createSpawn((-66.063, 538.287, 14.125), 307);
+thread sr\api\_map::createSpawnOrigin((-66.063, 538.287, 14.125), 307);
  maps\mp\_load::main();
-	
+
  level._effect[ "firepartic" ] = loadfx( "fire/custom_fire_r" );
-	
+
  game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"] = "desert";
-	
+
 	//SETDVAR**
 	setdvar( "r_specularcolorscale", "1" );
 
@@ -44,9 +44,9 @@ thread sr\api\_map::createSpawn((-66.063, 538.287, 14.125), 307);
 	setDvar("bg_falldamagemaxheight", 2000000000 );
 	setDvar("bg_falldamageminheight", 1500000000 );
 	//SETDVAR*
-	
+
 	//THREAD**
-	
+
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
 
@@ -56,7 +56,7 @@ thread sr\api\_map::createSpawn((-66.063, 538.287, 14.125), 307);
 	thread secret1();
 	thread mrotate();
 	thread end();
-	
+
 	entTransporter = getentarray( "enter", "targetname" );
 	if(isdefined(entTransporter))
 	for( i = 0; i < entTransporter.size; i++ )
@@ -117,7 +117,7 @@ fire10 = getEnt("fx_fire10", "targetname");
 fire11 = getEnt("fx_fire11", "targetname");
 fire12 = getEnt("fx_fire12", "targetname");
 level._effect[ "firepartic" ] = loadfx( "fire/custom_fire_r" );
-	
+
 	while(1)
 	{
 	playFx(level._effect["firepartic"],fire1.origin);
@@ -139,7 +139,7 @@ level._effect[ "firepartic" ] = loadfx( "fire/custom_fire_r" );
 lift()
 {
 elev4 = getent("lift","targetname");
-trigger = getent("lift_trigger","targetname"); 
+trigger = getent("lift_trigger","targetname");
 trigger waittill ("trigger", player );
 trigger delete();
 while(1)
@@ -175,7 +175,7 @@ secret = getEnt("secret_1", "targetname");
 mapper()
 {
 	object1 = getent("mapper","targetname");
-       
+
      while(1)
     {
 	    object1 rotateYaw(360, 4);

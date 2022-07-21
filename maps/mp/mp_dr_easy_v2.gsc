@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-287.875, 26.667, 0.125), 0);
+thread sr\api\_map::createSpawnOrigin((-287.875, 26.667, 0.125), 0);
 trigger = spawn( "trigger_radius", (12701.4, 2072.74, -143.875), 0, 300, 300 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 300;
@@ -13,21 +13,21 @@ trigger.radius = 300;
 	// maps\mp\_teleport5::main();
 	// maps\mp\_teleport6::main();
 
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
-	
+
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
-	
+
 	thread way_connect();
 	thread startdoor();
 	// thread messages();
@@ -66,9 +66,9 @@ trigger.radius = 300;
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -172,7 +172,7 @@ trap1()
 	part4 = getentarray ("trap1_4" ,"targetname");
 	trig = getent ("trig_trap1" , "targetname");
 
- 	trig waittill( "trigger", user ); 
+ 	trig waittill( "trigger", user );
 	trig delete ();
 	random = randomint(4);
 
@@ -182,21 +182,21 @@ trap1()
 				part1[randomInt(part1.size)] notsolid();
 				part4[randomInt(part4.size)] notsolid();
 				break;
-				
-		case 1:	
+
+		case 1:
 				part2[randomInt(part2.size)] notsolid();
 				part3[randomInt(part3.size)] notsolid();
-                break;				
-
-		case 2:	
-				part1[randomInt(part1.size)] notsolid();
-				part3[randomInt(part3.size)] notsolid();	
                 break;
-				
-		case 3:	
+
+		case 2:
+				part1[randomInt(part1.size)] notsolid();
+				part3[randomInt(part3.size)] notsolid();
+                break;
+
+		case 3:
 				part2[randomInt(part2.size)] notsolid();
-				part4[randomInt(part4.size)] notsolid();				
-				
+				part4[randomInt(part4.size)] notsolid();
+
 		default: return;
 	}
 }
@@ -243,7 +243,7 @@ trap4()
 	d = getent("t4d","targetname");
 	e = getent("t4e","targetname");
 	f = getent("t4f","targetname");
-	
+
 	while(1)
 	{
 		a moveZ(56,0.5);
@@ -299,7 +299,7 @@ trap7()
 	part2 = getentarray ("trap7_2" ,"targetname");
 	trig = getent ("trig_trap7" , "targetname");
 
- 	trig waittill( "trigger", user ); 
+ 	trig waittill( "trigger", user );
 	trig delete ();
 	random = randomint(2);
 
@@ -309,11 +309,11 @@ trap7()
 				part1[randomInt(part1.size)] notsolid();
 				part1[randomInt(part1.size)] hide();
 				break;
-				
-		case 1:	
+
+		case 1:
 				part2[randomInt(part2.size)] notsolid();
-                part2[randomInt(part2.size)] hide();				
-				
+                part2[randomInt(part2.size)] hide();
+
 		default: return;
 	}
 }
@@ -486,7 +486,7 @@ trap17()
 	part5 = getentarray ("trap17_5" ,"targetname");
 	trig = getent ("trig_trap17" , "targetname");
 
- 	trig waittill( "trigger", user ); 
+ 	trig waittill( "trigger", user );
 	trig delete ();
 	random = randomint(4);
 
@@ -503,8 +503,8 @@ trap17()
 				part2[randomInt(part2.size)] solid();
 				part2[randomInt(part2.size)] show();
 				break;
-				
-		case 1:	
+
+		case 1:
 				part2[randomInt(part2.size)] notsolid();
 				part2[randomInt(part2.size)] hide();
 				part3[randomInt(part3.size)] notsolid();
@@ -514,21 +514,21 @@ trap17()
 				part2[randomInt(part2.size)] show();
 				part3[randomInt(part3.size)] solid();
 				part3[randomInt(part3.size)] show();
-                break;				
+                break;
 
-		case 2:	
+		case 2:
 				part3[randomInt(part1.size)] notsolid();
 				part3[randomInt(part1.size)] hide();
 				part4[randomInt(part4.size)] notsolid();
                 part4[randomInt(part4.size)] hide();
-                wait 2;				
+                wait 2;
 				part3[randomInt(part1.size)] solid();
 				part3[randomInt(part1.size)] show();
 				part4[randomInt(part4.size)] solid();
-                part4[randomInt(part4.size)] show();				
+                part4[randomInt(part4.size)] show();
                 break;
-				
-		case 3:	
+
+		case 3:
 				part4[randomInt(part4.size)] notsolid();
 				part4[randomInt(part4.size)] hide();
 				part5[randomInt(part5.size)] notsolid();
@@ -537,8 +537,8 @@ trap17()
 				part4[randomInt(part4.size)] solid();
 				part4[randomInt(part4.size)] show();
 				part5[randomInt(part5.size)] solid();
-                part5[randomInt(part5.size)] show();				
-				
+                part5[randomInt(part5.size)] show();
+
 		default: return;
 	}
 }
@@ -564,7 +564,7 @@ trap19()
 	part4 = getentarray ("trap19_4" ,"targetname");
 	trig = getent ("trig_trap19" , "targetname");
 
- 	trig waittill( "trigger", user ); 
+ 	trig waittill( "trigger", user );
 	trig delete ();
 	random = randomint(4);
 
@@ -574,21 +574,21 @@ trap19()
 				part1[randomInt(part1.size)] notsolid();
 				part4[randomInt(part4.size)] notsolid();
 				break;
-				
-		case 1:	
+
+		case 1:
 				part2[randomInt(part2.size)] notsolid();
 				part3[randomInt(part3.size)] notsolid();
-                break;				
-
-		case 2:	
-				part1[randomInt(part1.size)] notsolid();
-				part3[randomInt(part3.size)] notsolid();	
                 break;
-				
-		case 3:	
+
+		case 2:
+				part1[randomInt(part1.size)] notsolid();
+				part3[randomInt(part3.size)] notsolid();
+                break;
+
+		case 3:
 				part2[randomInt(part2.size)] notsolid();
-				part4[randomInt(part4.size)] notsolid();				
-				
+				part4[randomInt(part4.size)] notsolid();
+
 		default: return;
 	}
 }
@@ -623,7 +623,7 @@ kniferoom()
 	level.knife_brick = getEnt( "knife_brick","targetname");
     jump = getEnt( "jumper_knife", "targetname" );
     acti = getEnt( "acti_knife", "targetname" );
-    
+
     while(1)
     {
         level.knife_trig waittill( "trigger", player );
@@ -639,7 +639,7 @@ kniferoom()
 		level.jump_brick delete();
 		level.firstenter=false;
 		}
-		
+
 		player freezeControls(true);
 		level.activ freezeControls(true);
         player SetPlayerAngles( jump.angles );
@@ -651,9 +651,9 @@ kniferoom()
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "deserteagle_mp" ); 
+        level.activ GiveWeapon( "deserteagle_mp" );
         level.activ setWeaponAmmoClip("deserteagle_mp", 0 );
-        level.activ setWeaponAmmoStock( "deserteagle_mp", 0 );		
+        level.activ setWeaponAmmoStock( "deserteagle_mp", 0 );
         wait 0.05;
         player switchToWeapon( "deserteagle_mp" );
         level.activ SwitchToWeapon( "deserteagle_mp" );
@@ -680,13 +680,13 @@ sniperoom()
     jump = getEnt( "jump_snipe", "targetname" );
     acti = getEnt( "acti_snipe", "targetname" );
 
-    
+
     while(1)
     {
         level.snipe_trig waittill( "trigger", player );
         if( !isDefined( level.snipe_trig ) )
             return;
-			
+
 		if(level.firstenter==true)
 		{
         level.old_trig delete();
@@ -741,7 +741,7 @@ jumproom()
     {
         level.jump_trig waittill( "trigger", player );
         if(level.firstenter==true)
-		{     
+		{
 	    level.snipe_trig delete();
 		level.snipe_brick delete();
 		level.knife_trig delete();
@@ -755,15 +755,15 @@ jumproom()
         player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
-        player GiveWeapon( "deserteagle_mp" ); 
+        player GiveWeapon( "deserteagle_mp" );
 		player setWeaponAmmoClip("deserteagle_mp", 0 );
-		player setWeaponAmmoStock( "deserteagle_mp", 0 );		
+		player setWeaponAmmoStock( "deserteagle_mp", 0 );
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "deserteagle_mp" );  
+        level.activ GiveWeapon( "deserteagle_mp" );
 		level.activ setWeaponAmmoClip("deserteagle_mp", 0 );
-		level.activ setWeaponAmmoStock( "deserteagle_mp", 0 );			
+		level.activ setWeaponAmmoStock( "deserteagle_mp", 0 );
         wait 0.05;
         player switchToWeapon( "deserteagle_mp" );
         level.activ SwitchToWeapon( "deserteagle_mp" );

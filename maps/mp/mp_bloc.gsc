@@ -1,8 +1,8 @@
 main()
 {
-thread sr\api\_map::createSpawn((-2016, -4342, 52), 360);
+thread sr\api\_map::createSpawnOrigin((-2016, -4342, 52), 360);
 	maps\mp\_load::main();
-	
+
 	maps\mp\_compass::setupMiniMap("compass_map_mp_bloc");
 
 	game["allies"] = "sas";
@@ -19,7 +19,7 @@ thread sr\api\_map::createSpawn((-2016, -4342, 52), 360);
 	setdvar("r_glowskybleedintensity0",".1");
 	setDvar("bg_falldamagemaxheight", 20000000 );
 	setDvar("bg_falldamageminheight", 15000000 );
-	
+
 	// raise up planes to avoid them flying through buildings
 	level.airstrikeHeightScale = 1.8;
 

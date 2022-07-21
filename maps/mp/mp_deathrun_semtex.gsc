@@ -1,5 +1,5 @@
 						//////////////////////////////////////////////////////////
-						//	 ____  _____    _  _____ _   _ ____  _   _ _   _ 	//	
+						//	 ____  _____    _  _____ _   _ ____  _   _ _   _ 	//
 						//	|  _ \| ____|  / \|_   _| | | |  _ \| | | | \ | |	//
 						//	| | | |  _|   / _ \ | | | |_| | |_) | | | |  \| |	//
 						//	| |_| | |___ / ___ \| | |  _  |  _ <| |_| | |\  |	//
@@ -10,7 +10,7 @@
 						//		 ___) | |___| |  | | | | | |___ /  \ 			//
 						//		|____/|_____|_|  |_| |_| |_____/_/\_\			//
 						//////////////////////////////////////////////////////////
-		
+
 		//////////////////////////////////////////////////////////////////////////////////
 		//		 __  __           _        _             _  __             _  __    	//
 		//		|  \/  |         | |      | |           | |/ /            | |/ /    	//
@@ -34,7 +34,7 @@
 		Date: 2013. 06. 10.
 		Xfire: rohatapad & vakihun
 		Website: www.semtex.tk
-		
+
 		Update 1.1
 		Fixed some litle bug
 		Removed Bounce After C4 Trap
@@ -44,11 +44,11 @@
 */
 
 
-		
+
 #include maps\mp\_utility;
 main()
 {
-thread sr\api\_map::createSpawn((176.125, -227.368, 16.125), 0);
+thread sr\api\_map::createSpawnOrigin((176.125, -227.368, 16.125), 0);
 	maps\mp\_load::main();
 	precacheitem("usp_silencer_mp");
 	precacheitem("uzi_silencer_mp");
@@ -67,7 +67,7 @@ thread sr\api\_map::createSpawn((176.125, -227.368, 16.125), 0);
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
-	game["axis_soldiertype"] = "desert";	
+	game["axis_soldiertype"] = "desert";
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
@@ -137,9 +137,9 @@ for(;;)
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -261,7 +261,7 @@ for(;;)
 	{
 		jumper setorigin(jumperorigin.origin);
 		jumper setPlayerAngles(jumperorigin.angles);
-	}	
+	}
 	}
 	else if(player == acti)
 	{
@@ -388,7 +388,7 @@ for(;;)
 		{
 			idiot iprintlnbold("^2Secret Step^3:^1 " + idiot.secretnumber + "^5/^1" + k + " ^2Complet!");
 		}
-	}	
+	}
 }
 }
 
@@ -413,15 +413,15 @@ trig SetHintString("^1Press &&1 !..");
 GetActivator()
 {
 	players = getentarray( "player", "classname" );
-	
+
 	for(i = 0;i < players.size;i++)
 	{
 		player = players[i];
-		
+
 		if( isdefined( player ) && isplayer( player ) && isalive( player ) && player.pers["team"] == "axis"	)
 			return player;
 	}
-	
+
 	return "Noactivator";
 }
 
@@ -772,7 +772,7 @@ knife[1] triggerOn();
 if(level.lavadown == 1)
 {
 	lava triggerOn();
-}	
+}
 level.jatekosend = 0;
 }
 
@@ -807,7 +807,7 @@ for(;;)
 	self waittill ("movedone");
 	self moveto(path2.origin, 3);
 	self waittill ("movedone");
-	self moveto(path3.origin, 3);	
+	self moveto(path3.origin, 3);
 	self waittill ("movedone");
 	self moveto(path4.origin, 3);
 	self waittill ("movedone");
@@ -827,7 +827,7 @@ for(;;)
 		}
 	}
 	wait .1;
-	
+
 }
 
 secret_w_setup()
@@ -1192,7 +1192,7 @@ trap movez(160, 1);
 
 suicide_setup()
 {
-players = getEntArray("player","classname");	
+players = getEntArray("player","classname");
 for(k = 0; k < players.size; k++)
 {
 	if(players[k] isTouching(self))
@@ -1248,7 +1248,7 @@ but SetHintString("^1Activated");
 trap PlaySound("grenade_explode_metal");
 playFx(level._effect["c4"],trap.origin);
 trap hide();
-players = getEntArray("player","classname");	
+players = getEntArray("player","classname");
 for(k=0;k<players.size;k++)
 {
 	dist = Distance2D(players[k].origin, trap.origin);

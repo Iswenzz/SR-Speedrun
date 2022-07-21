@@ -27,7 +27,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((480, -234, 18), 180);
+thread sr\api\_map::createSpawnOrigin((480, -234, 18), 180);
 	thread sr\api\_speedrun::createNormalWays("^2Easy Way;^1Hard Way");
 	thread sr\api\_speedrun::createSecretWays("^2Easy Secret;^1Hard Secret");
 	 maps\mp\_compass::setupMiniMap("compass_map_mp_dr_lolz");

@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-70, -1922, -960), 90);
+thread sr\api\_map::createSpawnOrigin((-70, -1922, -960), 90);
 maps\mp\_load::main();
 
 game["allies"] = "marines";
@@ -22,7 +22,7 @@ thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
 thread startdoor();
 
-	
+
 }
 
 startdoor()

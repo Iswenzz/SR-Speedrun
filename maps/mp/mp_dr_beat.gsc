@@ -1,14 +1,14 @@
 main()
 {
-thread sr\api\_map::createSpawn((-240, -32, 32.090), 0);
+thread sr\api\_map::createSpawnOrigin((-240, -32, 32.090), 0);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
-	maps\mp\_load::main();	
+	maps\mp\_load::main();
  	// ambientPlay("ambient1");
-	
-	level.flary = loadFX("deathrun/flary"); 
-	
+
+	level.flary = loadFX("deathrun/flary");
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
@@ -26,11 +26,11 @@ if (!level.spawn["allies"].size)
 
 	// addTriggerToList( "trap1_trigger" );
 	// addTriggerToList( "trap2_trigger" );
-	// addTriggerToList( "trap3_trigger" );	
-	// addTriggerToList( "trap4_trigger" );	
-	// addTriggerToList( "trap5_trigger" );	
+	// addTriggerToList( "trap3_trigger" );
+	// addTriggerToList( "trap4_trigger" );
+	// addTriggerToList( "trap5_trigger" );
 	// addTriggerToList( "trap6_trigger" );
-	
+
 	thread way_connect();
 	thread erik();
 	thread fx1();
@@ -50,9 +50,9 @@ if (!level.spawn["allies"].size)
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -67,7 +67,7 @@ addTriggerToList( name )
     if( !isDefined( level.trapTriggers ) )
         level.trapTriggers = [];
     level.trapTriggers[level.trapTriggers.size] = getEnt( name, "targetname" );
-} 
+}
 
 erik()
 {
@@ -91,7 +91,7 @@ fx1()
 	trig = getent("fx1_trigger", "targetname");
 {
 	trig waittill ("trigger", player);
-	
+
 	trig delete();
 	playFx(level.flary, fx.origin);
 }
@@ -103,7 +103,7 @@ fx2()
 	trig = getent("fx2_trigger", "targetname");
 {
 	trig waittill ("trigger", player);
-	
+
 	trig delete();
 	playFx(level.flary, fx.origin);
 }
@@ -115,7 +115,7 @@ fx3()
 	trig = getent("fx3_trigger", "targetname");
 {
 	trig waittill ("trigger", player);
-	
+
 	trig delete();
 	playFx(level.flary, fx.origin);
 }
@@ -127,7 +127,7 @@ fx4()
 	trig = getent("fx4_trigger", "targetname");
 {
 	trig waittill ("trigger", player);
-	
+
 	trig delete();
 	playFx(level.flary, fx.origin);
 }
@@ -137,7 +137,7 @@ trap1()
 {
 	brush = getent ("trap1_brush", "targetname");
 	trig = getent ("trap1_trigger", "targetname");
-	
+
 	trig waittill("trigger");
 	while(1)
 {
@@ -153,7 +153,7 @@ trap2()
 	brush = getEnt( "trap2_brush", "targetname" );
 
 	trig waittill( "trigger" );
-	
+
 	while(1)
 {
 	trig SetHintString("^9Activated");
@@ -175,7 +175,7 @@ trap3()
 	brush6 = getEnt( "trap3_brush6", "targetname" );
 
 	trig waittill( "trigger" );
-	
+
 	while(1)
 {
 	trig SetHintString("^9Activated");
@@ -203,7 +203,7 @@ trap4()
 	brush2 = getEnt( "trap4_brush2", "targetname" );
 
 	trig waittill( "trigger" );
-	
+
 	while(1)
 {
 	trig SetHintString("^9Activated");
@@ -223,7 +223,7 @@ trap5()
 	brush2 = getEnt( "trap5_brush2", "targetname" );
 
 	trig waittill( "trigger" );
-	
+
 	while(1)
 	{
 	trig delete();
@@ -249,7 +249,7 @@ trap6()
 	brush = getEnt( "trap6_brush", "targetname" );
 
 	trig waittill( "trigger" );
-	
+
 	while(1)
 {
 	trig SetHintString("^9Activated");
@@ -265,11 +265,11 @@ end()
 {
 	trig = getEnt ("end_trigger", "targetname");
 	target = getEnt ("end_target", "targetname");
-	
+
 	for(;;)
 	{
 	trig waittill ("trigger", player);
-	
+
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 	}

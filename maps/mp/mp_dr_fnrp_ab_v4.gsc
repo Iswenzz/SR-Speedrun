@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-3019, -3243, -32), 180);
+thread sr\api\_map::createSpawnOrigin((-3019, -3243, -32), 180);
  maps\mp\_load::main();
 
  game["allies"] = "marines";
@@ -9,14 +9,14 @@ thread sr\api\_map::createSpawn((-3019, -3243, -32), 180);
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"] = "desert";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
     setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
 	setdvar("r_glowskybleedintensity0",".1");
 	setDvar("bg_falldamagemaxheight", 99999);
     setDvar("bg_falldamageminheight", 99998);
-	
+
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createSecretWays("Secret Way;");
 thread sr\api\_speedrun::createTeleporter((5067.83, 2418.18, -11.875), 180, 95, (2176, 4576, 44), 0, "freeze","blue","normal_0");
@@ -44,7 +44,7 @@ secret()
 acti = getent("secret_enter", "targetname");
 platform = getent("npc_platform", "targetname");
 box = getent("box_npc", "targetname");
-	
+
 wait 0.1;
 
 acti enablelinkto ();
@@ -54,14 +54,14 @@ box delete();
 }
 
 tele1()
-{    
+{
      trig = getEnt("tele1", "targetname");
 	 tele = getEnt("origin_tele1", "targetname");
-	 
+
 	 for(;;)
 	 {
 		trig waittill("trigger", player);
-		 
+
 		player setorigin(tele.origin);
 		player setPlayerAngles (tele.angles);
 		player freezeControls(1);
@@ -72,14 +72,14 @@ tele1()
 
 
 tele2()
-{    
+{
      trig = getEnt("tele2", "targetname");
 	 tele = getEnt("origin_tele2", "targetname");
-	 
+
 	 for(;;)
 	 {
 		trig waittill("trigger", player);
-		 
+
 		player setorigin(tele.origin);
 		player setPlayerAngles (tele.angles);
 		player freezeControls(1);
@@ -89,14 +89,14 @@ tele2()
 }
 
 tele3()
-{    
+{
      trig = getEnt("tele3", "targetname");
 	 tele = getEnt("origin_tele3", "targetname");
-	 
+
 	 for(;;)
 	 {
 		trig waittill("trigger", player);
-		 
+
 		player setorigin(tele.origin);
 		player setPlayerAngles (tele.angles);
 		player freezeControls(1);
@@ -107,14 +107,14 @@ tele3()
 
 
 tele4()
-{    
+{
      trig = getEnt("tele4", "targetname");
 	 tele = getEnt("origin_tele4", "targetname");
-	 
+
 	 for(;;)
 	 {
 		trig waittill("trigger", player);
-		 
+
 		player setorigin(tele.origin);
 		player setPlayerAngles (tele.angles);
 		player freezeControls(1);
@@ -124,14 +124,14 @@ tele4()
 }
 
 tele5()
-{    
+{
      trig = getEnt("tele5", "targetname");
 	 tele = getEnt("origin_tele5", "targetname");
-	 
+
 	 for(;;)
 	 {
 		trig waittill("trigger", player);
-		 
+
 		player setorigin(tele.origin);
 		player setPlayerAngles (tele.angles);
 		player freezeControls(1);
@@ -141,14 +141,14 @@ tele5()
 }
 
 tele6()
-{    
+{
      trig = getEnt("tele6", "targetname");
 	 tele = getEnt("origin_tele6", "targetname");
-	 
+
 	 for(;;)
 	 {
 		trig waittill("trigger", player);
-		 
+
 		player setorigin(tele.origin);
 		player setPlayerAngles (tele.angles);
 		player freezeControls(1);
@@ -158,10 +158,10 @@ tele6()
 }
 
 tele7()
-{    
+{
      trig = getEnt("tele7", "targetname");
 	 tele = getEnt("origin_tele7", "targetname");
-	 
+
 	 for(;;)
 	 {
 		 trig waittill("trigger", player);
@@ -174,10 +174,10 @@ tele7()
 }
 
 tele8()
-{    
+{
      trig = getEnt("tele8", "targetname");
 	 tele = getEnt("origin_tele8", "targetname");
-	 
+
 	 for(;;)
 	 {
 		 trig waittill("trigger", player);
@@ -191,10 +191,10 @@ tele8()
 
 
 tele9()
-{    
+{
      trig = getEnt("tele9", "targetname");
 	 tele = getEnt("origin_tele9", "targetname");
-	 
+
 	 for(;;)
 	 {
 		 trig waittill("trigger", player);
@@ -207,10 +207,10 @@ tele9()
 }
 
 tele10()
-{    
+{
      trig = getEnt("tele10", "targetname");
 	 tele = getEnt("origin_tele10", "targetname");
-	 
+
 	 for(;;)
 	 {
 		 trig waittill("trigger", player);
@@ -223,10 +223,10 @@ tele10()
 }
 
 tele11()
-{    
+{
      trig = getEnt("tele11", "targetname");
 	 tele = getEnt("origin_tele11", "targetname");
-	 
+
 	 for(;;)
 	 {
 		 trig waittill("trigger", player);
@@ -239,10 +239,10 @@ tele11()
 }
 
 tele12()
-{    
+{
      trig = getEnt("tele12", "targetname");
 	 tele = getEnt("origin_tele12", "targetname");
-	 
+
 	 for(;;)
 	 {
 		 trig waittill("trigger", player);
@@ -256,10 +256,10 @@ tele12()
 }
 
 tele13()
-{    
+{
      trig = getEnt("secret_enter", "targetname");
 	 tele = getEnt("origin_secret", "targetname");
-	 
+
 	 for(;;)
 	 {
 		 trig waittill("trigger", player);

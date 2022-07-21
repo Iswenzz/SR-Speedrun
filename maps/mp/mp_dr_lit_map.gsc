@@ -1,15 +1,15 @@
 main()
 {
-thread sr\api\_map::createSpawn((681, -466, 16), 180);
+thread sr\api\_map::createSpawnOrigin((681, -466, 16), 180);
 maps\mp\_load::main();
- 
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
- 
+
 	setdvar("r_specularcolorscale","1");
 	setdvar("compassmaxrange","1600");
 	setdvar("r_glowbloomintensity0",".1");

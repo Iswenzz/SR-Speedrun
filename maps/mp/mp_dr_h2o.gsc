@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-241.846, -380.986, 16.125), 0);
+thread sr\api\_map::createSpawnOrigin((-241.846, -380.986, 16.125), 0);
 
 	maps\mp\_load::main();
 

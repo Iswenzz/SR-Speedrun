@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-9, 227, 16), 90);
+thread sr\api\_map::createSpawnOrigin((-9, 227, 16), 90);
  maps\mp\_load::main();
 
  game["allies"] = "sas";
@@ -9,8 +9,8 @@ thread sr\api\_map::createSpawn((-9, 227, 16), 90);
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "woodland";
  game["axis_soldiertype"] = "woodland";
-       
-///DVARS       
+
+///DVARS
 	setdvar( "r_specularcolorscale", "1" );
     setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
@@ -35,11 +35,11 @@ thread secfinish();
 startdoor()
 {
 	startdoor = getent("startdoor","targetname");
-	
+
     wait 0.1;
 	startdoor Delete();
 
- 	
+
 }
 
 tp1()
@@ -48,11 +48,11 @@ tp1()
    tele1 = getent ("originstage1", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
 	player setOrigin(tele1.origin);
     player setPlayerAngles(tele1.angles);
-    
+
     }
 }
 
@@ -63,11 +63,11 @@ tp2()
    tele1 = getent ("originstage2", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
 	player setOrigin(tele1.origin);
     player setPlayerAngles(tele1.angles);
-    
+
     }
 }
 
@@ -77,11 +77,11 @@ tp3()
    tele1 = getent ("originstage3", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
 	player setOrigin(tele1.origin);
     player setPlayerAngles(tele1.angles);
-    
+
     }
 }
 
@@ -105,11 +105,11 @@ secfail()
    tele1 = getent ("originsecretre", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
 	player setOrigin(tele1.origin);
     player setPlayerAngles(tele1.angles);
-    
+
     }
 }
 
@@ -118,7 +118,7 @@ secfinish()
    trig = getent("trigger_complete", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
     player thread sr\api\_speedrun::finishWay("secret_0");
     }

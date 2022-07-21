@@ -3,25 +3,25 @@ mp_dr_aperture
 Map Made by Elpredatore
 Created for Braxi's Deathrun 1.2 mod for CoD4
 
- /$$$$$$$$ /$$                                     /$$             /$$                                  
-| $$_____/| $$                                    | $$            | $$                                  
-| $$      | $$  /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$$  /$$$$$$  /$$$$$$    /$$$$$$   /$$$$$$   /$$$$$$ 
+ /$$$$$$$$ /$$                                     /$$             /$$
+| $$_____/| $$                                    | $$            | $$
+| $$      | $$  /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$$  /$$$$$$  /$$$$$$    /$$$$$$   /$$$$$$   /$$$$$$
 | $$$$$   | $$ /$$__  $$ /$$__  $$ /$$__  $$ /$$__  $$ |____  $$|_  $$_/   /$$__  $$ /$$__  $$ /$$__  $$
 | $$__/   | $$| $$  \ $$| $$  \__/| $$$$$$$$| $$  | $$  /$$$$$$$  | $$    | $$  \ $$| $$  \__/| $$$$$$$$
 | $$      | $$| $$  | $$| $$      | $$_____/| $$  | $$ /$$__  $$  | $$ /$$| $$  | $$| $$      | $$_____/
 | $$$$$$$$| $$| $$$$$$$/| $$      |  $$$$$$$|  $$$$$$$|  $$$$$$$  |  $$$$/|  $$$$$$/| $$      |  $$$$$$$
 |________/|__/| $$____/ |__/       \_______/ \_______/ \_______/   \___/   \______/ |__/       \_______/
-              | $$                                                                                      
-              | $$                                                                                      
-              |__/   
+              | $$
+              | $$
+              |__/
 
 CREDITS:
-			 
+
 PORTAL MODELS BY : http://cfgfactory.com/downloads/show/5659df6b4115b
 
 THANK YOU TO VC' BLADE FOR THE MUSIC MENU SCRIPT
-	 
-	Why are you decompiling my map ? :D		 
+
+	Why are you decompiling my map ? :D
 */
 
 #include braxi\_common;
@@ -30,7 +30,7 @@ THANK YOU TO VC' BLADE FOR THE MUSIC MENU SCRIPT
 
 main()
 {
-thread sr\api\_map::createSpawn((-535.875, 504, 0.125), 0);
+thread sr\api\_map::createSpawnOrigin((-535.875, 504, 0.125), 0);
 	maps\mp\_load::main();
 
  	thread sr\api\_speedrun::createNormalWays("Normal Way;");
@@ -48,7 +48,7 @@ thread sr\api\_map::createSpawn((-535.875, 504, 0.125), 0);
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
-	
+
 	 precacheModel("portal_big_button");
 	 precacheModel("portal_button");
 	 precacheModel("portal_cake");
@@ -58,7 +58,7 @@ thread sr\api\_map::createSpawn((-535.875, 504, 0.125), 0);
 	 precacheModel("portal_glados_p1_p2");
 	 precacheModel("portal_glados_p2");
 	 precacheModel("portal_glados_p3");
-	 precacheModel("portal_radio"); 
+	 precacheModel("portal_radio");
 	 precacheModel("portal_turret");
 
 	precacheItem("remington700_mp");
@@ -66,8 +66,8 @@ thread sr\api\_map::createSpawn((-535.875, 504, 0.125), 0);
 	precacheItem("tomahawk_mp");
 	precacheItem("ak47_mp");
 	precacheItem("m40a3_mp");
-	precacheItem("saw_mp"); 
- 
+	precacheItem("saw_mp");
+
 /////////////////////JUMPPADS/////////////////
 	setupJumppads();
 if( isDefined( level.jumppads ) && level.jumppads.size )
@@ -79,15 +79,15 @@ if( !isDefined( pad ) )
 continue;
 spawnJumppad( pad.origin , pad.angles , pad.height , pad.radius , pad.dirPos , pad.model , pad.power , pad.sound );
 
-jumppads = getEntArray( "jumppad" , "targetname" ); 
+jumppads = getEntArray( "jumppad" , "targetname" );
 if( isDefined( jumppads ) && jumppads.size )
 {
 for( i = 0 ; i < jumppads.size ; i++ )
 {
 pad = jumppads[i];
 if( !isDefined( pad ) )
-continue; 
-pad thread monitorUsage(); 
+continue;
+pad thread monitorUsage();
 }
 }
 }
@@ -99,7 +99,7 @@ level.fire = loadFX("fire/window_fire_large");
 thread ambient();
 thread musicbox();
 
-//put inside the main   
+//put inside the main
 level.music=[];
 level.music[0]["song"]    = "Mike Shinoda - About You";
 level.music[0]["alias"]    ="song1";
@@ -171,11 +171,11 @@ oldfight(){
 	{
 	while( 1 )
     {
-		
+
 		level.old_trig waittill( "trigger", player );
         if( !isDefined( level.old_trig ) )
             return;
-		thread OldTeleport();	
+		thread OldTeleport();
 		if(level.firstenter==true)
 		{
 		level.jump_trig delete();
@@ -186,15 +186,15 @@ oldfight(){
 		level.runner_trig delete();
 		level.firstenter=false;
 		}
-    
-	
+
+
 	if( level.freeRun || isDefined( level.finalJumper ) || player.pers["team"] != "allies" )
             continue;
-		
+
 		iPrintlnBold( " ^7" + player.name + " ^3 HAS OPENED THE OLD WAY^7!" );
 		}
-		
-	}	
+
+	}
 }
 
 OldTeleport(){
@@ -231,19 +231,19 @@ knifefight(){
 		level.runner_trig delete();
 		level.firstenter=false;
 		}
-		
+
 		player.maxhealth = 100;
 		player.health = player.maxhealth;
 		level.activ.maxhealth = 100;
-		level.activ.health = level.activ.maxhealth;  
+		level.activ.health = level.activ.maxhealth;
         player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
-        player GiveWeapon( "knife_mp" );       
+        player GiveWeapon( "knife_mp" );
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "knife_mp" );        
+        level.activ GiveWeapon( "knife_mp" );
         wait 0.05;
         player switchToWeapon( "knife_mp" );
         level.activ SwitchToWeapon( "knife_mp" );
@@ -251,7 +251,7 @@ knifefight(){
 		while( isAlive( player ) && isDefined( player ) )
 			wait 0.1;
 		iPrintLnBold("^7Knife Room is now Open!");
-		player = undefined;	
+		player = undefined;
     }
 }
 
@@ -265,7 +265,7 @@ sniperfight(){
         level.snipe_trig waittill( "trigger", player );
         if( !isDefined( level.snipe_trig ) )
             return;
-			
+
 		if(level.firstenter==true)
 		{
 		level.jump_trig delete();
@@ -286,7 +286,7 @@ sniperfight(){
 		player.maxhealth = 100;
 		player.health = player.maxhealth;
 		level.activ.maxhealth = 100;
-		level.activ.health = level.activ.maxhealth;  
+		level.activ.health = level.activ.maxhealth;
 		iprintlnbold ( "^33" );
 		wait 1;
         player GiveWeapon( "M40A3_mp" );
@@ -303,38 +303,38 @@ sniperfight(){
 		while( isAlive( player ) && isDefined( player ) )
 			wait 0.1;
 		iPrintLnBold("^7Snipe Room is now Open!");
-		player = undefined;	
+		player = undefined;
     }
 }
 
 ammobox1()
 {
 		trigger = getent ("ammo_box1", "targetname");
-		
+
 	while(1)
 	    {
 		trigger waittill( "trigger", player );
 		player givemaxammo ( "m40a3_mp" );
 		player givemaxammo ( "remington700_mp" );
 		player iprintlnbold ("^3Ammo Replenished");
-	    }    
+	    }
 }
 ammobox2()
 {
 		trigger = getent ("ammo_box2", "targetname");
-		
+
 	while(1)
 	    {
 		trigger waittill( "trigger", player );
 		player givemaxammo ( "m40a3_mp" );
 		player givemaxammo ( "remington700_mp" );
 		player iprintlnbold ("^3Ammo Replenished");
-	    }    
+	    }
 }
 ammobox3()
 {
 		trigger = getent ("ammo_box3", "targetname");
-		
+
 	while(1)
 	    {
 		trigger waittill( "trigger", player );
@@ -345,7 +345,7 @@ ammobox3()
 		player givemaxammo ( "saw_mp" );
 		}
 		player iprintlnbold ("^3Ammo Replenished");
-	    }    
+	    }
 }
 
 bouncefight(){
@@ -371,15 +371,15 @@ bouncefight(){
 		player.maxhealth = 100;
 		player.health = player.maxhealth;
 		level.activ.maxhealth = 100;
-		level.activ.health = level.activ.maxhealth;  
+		level.activ.health = level.activ.maxhealth;
         player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
-        player GiveWeapon( "knife_mp" );       
+        player GiveWeapon( "knife_mp" );
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "knife_mp" );        
+        level.activ GiveWeapon( "knife_mp" );
         wait 0.05;
         player switchToWeapon( "knife_mp" );
         level.activ SwitchToWeapon( "knife_mp" );
@@ -396,11 +396,11 @@ bounceweapon(){
 	trigger = getent ("bounce_room_weapon", "targetname");
 	trigger setHintString("^3Press [F] to get a weapon!");
 	while(1){
-		trigger waittill ("trigger", user);	
+		trigger waittill ("trigger", user);
 		user giveWeapon("m40a3_mp", 100, 500 );
 		user switchToWeapon("m40a3_mp");
 		user givemaxammo ( "m40a3_mp" );
-	}				
+	}
 }
 
 bouncerespawn(){
@@ -416,10 +416,10 @@ bouncerespawn(){
 			player SetOrigin(jumper.origin);
 			player SetPlayerAngles( jumper.angles );
 		}
-		else if(player.pers["team"] == "axis")	
+		else if(player.pers["team"] == "axis")
 		{
 			player SetOrigin(activator.origin);
-			player SetPlayerAngles( activator.angles );			
+			player SetPlayerAngles( activator.angles );
 		}
 	}
 }
@@ -434,7 +434,7 @@ akfight(){
         level.ak_trig waittill( "trigger", player );
         if( !isDefined( level.ak_trig ) )
             return;
-			
+
 		if(level.firstenter==true)
 		{
 		level.jump_trig delete();
@@ -456,7 +456,7 @@ akfight(){
 		player.maxhealth = 100;
 		player.health = player.maxhealth;
 		level.activ.maxhealth = 100;
-		level.activ.health = level.activ.maxhealth;  
+		level.activ.health = level.activ.maxhealth;
 		iprintlnbold ( "^33" );
 		wait 1;
         player GiveWeapon( "ak47_mp" );
@@ -471,7 +471,7 @@ akfight(){
 		while( isAlive( player ) && isDefined( player ) )
 			wait 0.1;
 		iPrintLnBold("^7Ak Room is now Open!");
-		player = undefined;	
+		player = undefined;
     }
 }
 
@@ -485,7 +485,7 @@ mgfight(){
         level.mg_trig waittill( "trigger", player );
         if( !isDefined( level.mg_trig ) )
             return;
-			
+
 		if(level.firstenter==true)
 		{
 		level.jump_trig delete();
@@ -507,7 +507,7 @@ mgfight(){
 		player.maxhealth = 100;
 		player.health = player.maxhealth;
 		level.activ.maxhealth = 100;
-		level.activ.health = level.activ.maxhealth;  
+		level.activ.health = level.activ.maxhealth;
 		iprintlnbold ( "^33" );
 		wait 1;
         player giveWeapon("saw_mp");
@@ -522,7 +522,7 @@ mgfight(){
 		while( isAlive( player ) && isDefined( player ) )
 			wait 0.1;
 		iPrintLnBold("^7Saw Room is now Open!");
-		player = undefined;	
+		player = undefined;
     }
 }
 
@@ -537,7 +537,7 @@ runner(){
 		level.runner = player;
         if( !isDefined( level.runner_trig ) )
             return;
-			
+
 		if(level.firstenter==true)
 		{
 		level.jump_trig delete();
@@ -558,7 +558,7 @@ runner(){
 		player.maxhealth = 100;
 		player.health = player.maxhealth;
 		level.activ.maxhealth = 100;
-		level.activ.health = level.activ.maxhealth;  
+		level.activ.health = level.activ.maxhealth;
 		runnerdoor();
 		iprintlnbold ( "^33" );
 		wait 1;
@@ -578,7 +578,7 @@ runner(){
 
 		iPrintLnBold("^7Runner Room is now Open!");
 		runnerreset();
-		player = undefined;	
+		player = undefined;
     }
 }
 runnerfail(){
@@ -595,7 +595,7 @@ runnerfail(){
 			level.activ SetPlayerAngles( winner.angles );
 			level.runner freezeControls(1);
 		}
-		else if(player.pers["team"] == "axis")	
+		else if(player.pers["team"] == "axis")
 		{
 			level.activ SetOrigin(looser.origin);
 			level.activ SetPlayerAngles( looser.angles );
@@ -617,13 +617,13 @@ runnertp(){
 			player SetOrigin(jump.origin);
 			player SetPlayerAngles( jump.angles );
 		}
-			else if(player.pers["team"] == "axis")	
+			else if(player.pers["team"] == "axis")
 		{
 			player SetOrigin(acti.origin);
 			player SetPlayerAngles( acti.angles );
 		}
-					
-			
+
+
 	}
 }
 movewall(){
@@ -660,33 +660,33 @@ addTriggerToList( name )
 
 trap1(){
 	trigger = getEnt( "trap1", "targetname" );
-	
+
 	hurt1 = getEnt( "trap1_trigger1", "targetname" );
 	hurt2 = getEnt( "trap1_trigger2", "targetname" );
 	hurt3 = getEnt( "trap1_trigger3", "targetname" );
 	hurt4 = getEnt( "trap1_trigger4", "targetname" );
-	
+
 	cone1 = getEnt( "trap1_cone1", "targetname" );
 	cone2 = getEnt( "trap1_cone2", "targetname" );
 	cone3 = getEnt( "trap1_cone3", "targetname" );
 	cone4 = getEnt( "trap1_cone4", "targetname" );
-	
+
 	hurt1 enablelinkto();
 	hurt1 linkto(cone1);
-	
+
 	hurt2 enablelinkto();
 	hurt2 linkto(cone2);
-	
+
 	hurt3 enablelinkto();
 	hurt3 linkto(cone3);
-	
+
     hurt4 enablelinkto();
 	hurt4 linkto(cone4);
-	
+
 	trigger setHintString ("^3Random Smasher");
 	trigger waittill( "trigger",player);
 	trigger delete();
-	
+
 	while(1){
 		random = randomInt(4);
 		wait 0.25;
@@ -741,7 +741,7 @@ trap2(){
 	turret3 linkto(belt);
 	hurt enablelinkto();
 	hurt linkto(belt);
-	
+
 	belt2 = getEnt("belt2","targetname");
 	turret4 = getEnt("turret4","targetname");
 	turret5 = getEnt("turret5","targetname");
@@ -755,11 +755,11 @@ trap2(){
 	turret6 linkto(belt2);
 	hurt2 enablelinkto();
 	hurt2 linkto(belt2);
-	
+
 	trigger setHintString ("^3Start the turret production!");
 	trigger waittill( "trigger",player);
 	trigger delete();
-	
+
 	while(1){
 		belt moveY(1200,2);
 		belt2 moveY(-1200,2);
@@ -774,24 +774,24 @@ trap2(){
 		belt2 moveZ(1200,1);
 		belt waittill("movedone");
 	}
-	
+
 }
 
 trap3(){
 	trigger = getEnt("trap3","targetname");
 	hurt = getEnt("trap3_hurt","targetname");
 	cone = getEnt("trap3_cone","targetname");
-	
+
 	hurt enablelinkto();
 	hurt linkto(cone);
-	
+
 	trigger setHintString ("^3Make The Red Portal deadly for a short time!");
 	trigger waittill( "trigger",player);
 	trigger delete();
-	
+
 	cone moveZ(300,2);
 	wait 3;
-	cone moveZ(-300,2);	
+	cone moveZ(-300,2);
 }
 
 trap4(){
@@ -800,11 +800,11 @@ trap4(){
 	plat2 = getEnt("trap4_plat2","targetname");
 	plat3 = getEnt("trap4_plat3","targetname");
 	plat4 = getEnt("trap4_plat4","targetname");
-	
+
 	trigger setHintString ("^3Make The Platforms move!");
 	trigger waittill( "trigger",player);
 	trigger delete();
-	
+
 	while(1){
 		plat1 moveX(1000,1);
 		plat1 waittill("movedone");
@@ -851,7 +851,7 @@ trap6(){
 	cylinder = getEnt("trap6_cylinder","targetname");
 	plate =	getEnt("trap6_spinner","targetname");
 	trap6 = getEnt("trap6","targetname");
-	
+
 	trap6 setHintString ("^3Activate the large Spinner");
 	trap6 waittill("trigger",player);
 	trap6 delete();
@@ -872,11 +872,11 @@ trap7(){
 	cat4 =	getEnt("catwalk4","targetname");
 	cat5 =	getEnt("catwalk5","targetname");
 	cat6 =	getEnt("catwalk6","targetname");
-	
+
 	trap7 setHintString ("^3Make 5 of the 6 paths not solid!");
 	trap7 waittill("trigger",player);
 	trap7 delete();
-	
+
 	random = randomInt(6);
 
 	if(random == 0){
@@ -961,7 +961,7 @@ text()
 		wait 10;
 		hud_clock fadeOverTime(1);
 		hud_clock.alpha = 0;
-		wait 1;	
+		wait 1;
 		hud_clock fadeOverTime(1);
 		hud_clock.alpha = 1;
 		hud_clock setText("The cake is a lie");
@@ -970,7 +970,7 @@ text()
 		hud_clock.alpha = 0;
 		wait 1;
 	}
-} 
+}
 
 //////////////////////////// MUSIC ////////
 ambient(){
@@ -1003,10 +1003,10 @@ musicmenu()
     self endon( "spawned" );
     self endon( "joined_spectators" );
     self endon( "music thread terminated" );
- 
+
     self.hud_music = [];
     self.selection = 0;
- 
+
     // create huds
     i = 0;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 160, 200, 0.6, "left", "top", 2 );
@@ -1017,7 +1017,7 @@ musicmenu()
     self.hud_music[i].sort = 880;
     self.hud_music[i] setShader( "white", 306, 20 ); //should be bar image, i suggest to not change cuz your texture will be stretched
     self.hud_music[i].color=(0,.7,.8);
-    
+
     i++;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 210, 204, 0.93, "left", "top", 1.8 );
     self.hud_music[i].sort = 884;
@@ -1025,13 +1025,13 @@ musicmenu()
     self.hud_music[i].glowalpha=1;
     if(isdefined(level.randomcolor))
         self.hud_music[i].glowcolor=level.randomcolor;
-    else 
+    else
         self.hud_music[i].glowcolor=(0,.7,.8); //title text color
     i++;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 250, 360, 1, "center", "bottom", 1.4 );
     self.hud_music[i].sort = 900;
     self.hud_music[i] setText("                                   Scroll: ^1[{+attack}] ^7| Select: ^1[{+activate}] ^7| Close: ^1[{+frag}]"); //just change numbers of colors here if you need different ones
- 
+
     for( j = 0; j < level.music.size; j++ )
     {
         i++;
@@ -1041,32 +1041,32 @@ musicmenu()
         self.hud_music[i].glowalpha=1;
         if(isdefined(level.randomcolor))
             self.hud_music[i].glowcolor=level.randomcolor;
-        else 
+        else
             self.hud_music[i].glowcolor=(0,.7,.8);
- 
+
         entry = level.music[j];
         self.hud_music[i] setText(entry["song"]);
     }
- 
+
     i++;
     self.hud_music[self.hud_music.size] = braxi\_mod::addTextHud( self, 167, 230, 0.4, "left", "top", 1.4 );
     self.hud_music[i].sort = 881;
     indicator = self.hud_music[self.hud_music.size-1];
     indicator setShader( "white", 306, 17 ); //another bar image that will most likely stretch, i suggest to only change colors
     indicator.color=(0,.7,.8);
- 
+
     while(self.sessionstate == "playing")
     {
         wait 0.1;
- 
+
         if(self attackButtonPressed())
         {
             self.hud_music[4+self.selection].alpha = 0.93;
- 
+
             self.selection++;
             if( self.selection >= level.music.size )
                 self.selection = 0;
- 
+
             item = self.hud_music[4+self.selection];
             item.alpha = 1;
             indicator.y = item.y;
@@ -1085,7 +1085,7 @@ musicmenu()
            break;
         }
     }
-    
+
     if(!isdefined(self))
         return;
     if(isdefined(self.hud_music))
@@ -1115,7 +1115,7 @@ roomele(){
 		ele waittill("movedone");
 		wait 2;
 	}
-	
+
 }
 
 endele(){
@@ -1132,13 +1132,13 @@ endele(){
 		ele waittill("movedone");
 		wait 2;
 	}
-	
+
 }
 start(){
 	trigger = getEnt( "start_door_trig", "targetname" );
 	cube = getEnt( "comp_cube", "targetname" );
-	door = getEnt( "startdoor", "targetname" );	
-	
+	door = getEnt( "startdoor", "targetname" );
+
 	trigger setHintString ("Sacrifice your best friend to Glados");
 	trigger waittill( "trigger",player);
 	trigger delete();
@@ -1155,7 +1155,7 @@ portal(){
 	tp_portal_trig = getent ("red_portal","targetname");
 
 	for(;; )
-	{  
+	{
 		tp_portal_trig waittill("trigger", player);
 		player SetPlayerAngles( tp_origin.angles );
 		player setOrigin(tp_origin.origin);
@@ -1169,15 +1169,15 @@ enddoor(){
 	doorright = getent("endright","targetname");
 	hurt = getent("endhurt","targetname");
 	cubedoor = getent("cubedoorleft","targetname");
-	
+
 	hurt enablelinkto();
 	hurt linkto(cube);
-	
+
 	trigger setHintString ("Open the door to the final stage");
 	trigger waittill( "trigger",player);
 	trigger delete();
-	
-	cubedoor rotateto( ( 90, 0, 0 ), 2); 
+
+	cubedoor rotateto( ( 90, 0, 0 ), 2);
 	cubedoor moveX(-52,2);
     //cubedoor waittill ( "rotatedone" );
 	wait 1.3;
@@ -1186,9 +1186,9 @@ enddoor(){
 	doorleft moveY(100,2);
     doorright moveY(-100,2);
 	doorleft waittill ("movedone");
-	
+
 	iPrintlnBold( " ^5" + player.name + " ^3 opened the door to the final chamber^7!" );
-	
+
 }
 //////////////////////////// SECRET ////////
 cakeroom(){
@@ -1224,7 +1224,7 @@ cakeroom(){
 	thread secretfail();
 	thread secretexit();
 	for(;; )
-	{   
+	{
 		secret_tp waittill("trigger", player);
 		player SetPlayerAngles( tp_origin.angles );
 		player setOrigin(tp_origin.origin);
@@ -1266,43 +1266,43 @@ turretdance(){
 	turret15 = getEnt("caraturret15","targetname");
 	turret16 = getEnt("caraturret16","targetname");
     turret17 = getEnt("caraturret17","targetname");
-	
+
 	while(1){
 		turret1 moveZ(1000,3);
 		turret2 moveZ(1000,3);
 		turret3 moveZ(1000,3);
-		turret4 moveZ(1000,3);		
+		turret4 moveZ(1000,3);
 		turret5 moveZ(1000,3);
 		turret6 moveZ(1000,3);
 		turret7 moveZ(1000,3);
 		turret8 moveZ(1000,3);
 		turret9 moveZ(1000,3);
-		turret10 moveZ(1000,3);		
+		turret10 moveZ(1000,3);
 		turret11 moveZ(1000,3);
 		turret12 moveZ(1000,3);
 		turret13 moveZ(1000,3);
 		turret14 moveZ(1000,3);
 		turret15 moveZ(1000,3);
-		turret16 moveZ(1000,3);		
+		turret16 moveZ(1000,3);
 		turret17 moveZ(1000,3);
 		turret1 waittill("movedone");
 		wait 0.1;
 		turret1 moveZ(-1000,3);
 		turret2 moveZ(-1000,3);
 		turret3 moveZ(-1000,3);
-		turret4 moveZ(-1000,3);		
+		turret4 moveZ(-1000,3);
 		turret5 moveZ(-1000,3);
 		turret6 moveZ(-1000,3);
 		turret7 moveZ(-1000,3);
 		turret8 moveZ(-1000,3);
 		turret9 moveZ(-1000,3);
-		turret10 moveZ(-1000,3);		
+		turret10 moveZ(-1000,3);
 		turret11 moveZ(-1000,3);
 		turret12 moveZ(-1000,3);
 		turret13 moveZ(-1000,3);
 		turret14 moveZ(-1000,3);
 		turret15 moveZ(-1000,3);
-		turret16 moveZ(-1000,3);		
+		turret16 moveZ(-1000,3);
 		turret17 moveZ(-1000,3);
 		turret1 waittill("movedone");
 		wait 0.1;
@@ -1311,10 +1311,10 @@ turretdance(){
 secretturretdance(){
 	turret = getEnt("secret_turret","targetname");
 	clip = getEnt("secret_clip","targetname");
-	
+
 	clip enablelinkto();
 	clip linkto(turret);
-	
+
 	while(1){
 		turret moveZ(30,1);
 		turret waittill("movedone");
@@ -1325,42 +1325,42 @@ secretturretdance(){
 secretfail(){
 	tp_origin = getent ("tp_secret_origin","targetname");
 	trigger = getent("secret_fail","targetname");
-	
+
 	for(;; )
-	{   
+	{
 		trigger waittill("trigger", player);
 		player SetPlayerAngles( tp_origin.angles );
 		player setOrigin(tp_origin.origin);
 	}
-	
+
 }
 
 secretexit(){
 	tp_origin = getent ("tp_secret_exit_origin","targetname");
 	trigger = getent("secret_exit","targetname");
-	
+
 	for(;; )
-	{   
+	{
 		trigger waittill("trigger", player);
 		player SetPlayerAngles( tp_origin.angles );
 		player setOrigin(tp_origin.origin);
 		iPrintlnBold( " ^5" + player.name + " ^3 finished the cake room!" );
 	}
-	
+
 }
 ////////////////////////// JUMPPADS ///////////////////////
 setupJumppads() //3 als beispiel
 {
 //precacheModel( "xmodel/serthy_buildzone" );                         //falls model erwünscht, unbeding precachen! sonst crasht der server
- 
+
 level.jumppads = [];                                            // ganz wichtig! muss zuerst stehen!
- 
+
 level.jumppads[level.jumppads.size] = spawnStruct();                        //muss immer zuerst stehen bei jedem neuen jumppad
-level.jumppads[level.jumppads.size - 1].origin = ( 2800,1296, 30 );        //wo?          
+level.jumppads[level.jumppads.size - 1].origin = ( 2800,1296, 30 );        //wo?
 level.jumppads[level.jumppads.size - 1].angles = ( 0 , 0 , 0 );             //winkel?
 level.jumppads[level.jumppads.size - 1].height =  20;                       //trigger höhe
 level.jumppads[level.jumppads.size - 1].radius = 80;                        //trigger radius
-level.jumppads[level.jumppads.size - 1].dirPos = ( 2800 , 1326 , 150 );           //richtung, sollte im bereich von +/- 50 neben dem origin sich befinden: origin + ( 50 , -30 , 32 )   
+level.jumppads[level.jumppads.size - 1].dirPos = ( 2800 , 1326 , 150 );           //richtung, sollte im bereich von +/- 50 neben dem origin sich befinden: origin + ( 50 , -30 , 32 )
 //level.jumppads[level.jumppads.size - 1].model = "xmodel/serthy_buildzone";      //damit man es erkennt? muss precached werden!!!
 level.jumppads[level.jumppads.size - 1].power = 75000;                      //wie stark das jumppad ist
 //level.jumppads[level.jumppads.size - 1].sound = "minefield_click";          //sound welcher abgespielt wird
@@ -1372,88 +1372,88 @@ spawnJumppad( origin , angles , height , radius , dirPos , model , power , sound
 if( !isDefined( radius ) )      radius = 5;
 if( !isDefined( height ) )      height = 1;
 if( !isDefined( angles ) )      angles = ( 0 , 0 , 0 );
- 
+
 jumppad = spawn( "trigger_radius" , origin , 0 , radius , height );
 jumppad.angles = angles;
 jumppad.targetname = "jumppad";
 jumppad.jumpSound = sound;
 jumppad.power = power;
- 
+
 if( isDefined( model ) )
 {
 jumppad.vis = spawn( "script_model" , origin );
 jumppad.vis setmodel( model );
 }
- 
+
 if( isDefined( dirPos ) )
 jumppad.dir = vectorNormalize( dirPos - origin );
 }
- 
+
 monitorUsage()
 {
 if( isDefined( self.target ) )
 {
 target = getEnt( self.target , "targetname" );
- 
+
 if( isDefined( target ) )
 {
 self.dir = vectorNormalize( self.target.origin - self.origin );
 self.target delete();
 }
 }
- 
+
 if( isDefined( self.script_noteworthy ) )
 {
 tokens = strTok( self.script_noteworthy , "," );
 self.power = tokens[0];
 self.jumpSound = tokens[1];
 }
- 
+
 while( isDefined( self ) )
 {
 wait( 0.05 );
- 
+
 self waittill( "trigger" , player );
- 
+
 if( !isDefined( player.isOnJumppad ) )
 self bouncePlayer( player , self.power , self.dir );
 }
 }
- 
+
 bouncePlayer( player , power , dir )
 {
 player endon( "disconnect" );
- 
+
 player.isOnJumppad = undefined;
- 
+
 if( isDefined( self.jumpSound ) && self.jumpSound != "" )
 self playSound( self.jumpSound );
- 
+
 if( !isDefined( dir ) )
 dir = ( 0 , 0 , 1 );
- 
+
 if( !isDefined( power ) )
 power = 150000;
- 
+
 //player iPrintLnBold( "Yippieeeh!" );
- 
+
 while( isDefined( self ) && isDefined( player ) )
 {
 if( player.sessionstate != "playing" )
 break;
 else if( !player isTouching( self ) )
 break;
- 
+
 power = int( player.maxhealth * power );
 health = player.health;
 player.health += power;
- 
+
 player finishPlayerDamage( self , self , power , 0 , "MOD_PROJECTILE" , "none" , self.origin , dir , "none" , 0 );
- 
+
 player.health = health;
- 
+
 wait( 0.05 );
 }
- 
+
 player.isOnJumppad = undefined;
-}	
+}

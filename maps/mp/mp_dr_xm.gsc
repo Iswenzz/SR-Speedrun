@@ -8,7 +8,7 @@ _____________________________________________
 */
 main()
 {
-thread sr\api\_map::createSpawn((-223.875, 256, -1015.875), 180);
+thread sr\api\_map::createSpawnOrigin((-223.875, 256, -1015.875), 180);
 trigger = spawn( "trigger_radius", (-10213, 2535.82, -1423.88), 0, 110, 120 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 110;

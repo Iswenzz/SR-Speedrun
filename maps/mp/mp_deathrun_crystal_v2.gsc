@@ -1,16 +1,16 @@
 main()
 {
-thread sr\api\_map::createSpawn((645, -2, 96), 360);
+thread sr\api\_map::createSpawnOrigin((645, -2, 96), 360);
 maps\mp\_load::main();
-	
+
 game["allies"] = "sas";
 game["axis"] = "opfor";
 game["attackers"] = "axis";
 game["defenders"] = "allies";
 game["allies_soldiertype"] = "woodland";
 game["axis_soldiertype"] = "woodland";
-	
-setdvar( "r_specularcolorscale", "2" );	
+
+setdvar( "r_specularcolorscale", "2" );
 setdvar("r_glowbloomintensity0",".25");
 setdvar("r_glowbloomintensity1",".25");
 setdvar("r_glowskybleedintensity0",".3");

@@ -1,6 +1,6 @@
-main() 
+main()
 {
-thread sr\api\_map::createSpawn((-106, 139, 21), 270);
+thread sr\api\_map::createSpawnOrigin((-106, 139, 21), 270);
     game["allies"] = "marines";
     game["axis"] = "opfor";
     game["attackers"] = "axis";
@@ -65,8 +65,8 @@ tele1 = getEnt("hard_ori", "targetname");
 
         player thread sr\api\_speedrun::changeWay("secret_0");
 		player setOrigin(tele1.origin);
-		player setPlayerAngles(tele1.angles);		
-        
+		player setPlayerAngles(tele1.angles);
+
 		}
 }
 
@@ -81,8 +81,8 @@ tele1 = getEnt("hard_finish_ori", "targetname");
 
         player thread sr\api\_speedrun::finishWay("secret_0");
 		player setOrigin(tele1.origin);
-		player setPlayerAngles(tele1.angles);		
-        
+		player setPlayerAngles(tele1.angles);
+
 		}
 }
 
@@ -97,8 +97,8 @@ tele1 = getEnt("easy_ori", "targetname");
 
         player thread sr\api\_speedrun::changeWay("secret_1");
 		player setOrigin(tele1.origin);
-		player setPlayerAngles(tele1.angles);		
-        
+		player setPlayerAngles(tele1.angles);
+
 		}
 }
 
@@ -113,7 +113,7 @@ tele1 = getEnt("easy_finish_ori", "targetname");
 
         player thread sr\api\_speedrun::finishWay("secret_1");
 		player setOrigin(tele1.origin);
-		player setPlayerAngles(tele1.angles);		
-        
+		player setPlayerAngles(tele1.angles);
+
 		}
 }

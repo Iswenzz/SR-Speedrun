@@ -7,15 +7,15 @@
 //      \ \_\ \ \_\ \_\ \____\\ \____/ \ \_\/\_/\_\\ \_\\ \____\   //
 //       \/_/  \/_/\/_/\/____/ \/___/   \/_/\//\/_/ \/_/ \/____/  //
 //                                                               //
-//////////////////////////////////////////////////////////////////                                                        
+//////////////////////////////////////////////////////////////////
 
 
 //!ATTENTION!// THIS MAP WAS MADE IN 12 HOURS //
 
 main()
 {
-thread sr\api\_map::createSpawn((-53, -244, 0), 88);
-	maps\mp\_load::main();	
+thread sr\api\_map::createSpawnOrigin((-53, -244, 0), 88);
+	maps\mp\_load::main();
 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
@@ -133,7 +133,7 @@ trap_spinner()
 }
 trap_spikes()
 {
-	
+
 	trigger = getEnt ("trig_spikes","targetname");
 	trigger waittill ("trigger", player );
 	thread spikes1();
@@ -264,13 +264,13 @@ rpg_room()
 
 		player createroomport("rpg_mp",undefined,1,jump,100);
         level.activ createroomport("rpg_mp",undefined,1,acti,100);
- 
+
         player thread countdown();
         level.activ thread countdown();
 
         player thread refreshAmmo();
         level.activ thread refreshAmmo();
- 
+
        	while(isalive(player)&&isdefined(player))
             wait 1;
 
@@ -321,11 +321,11 @@ sniper_room()
 
 		player createroomport("remington700_mp","m40a3_mp",1,jump,100);
         level.activ createroomport("remington700_mp","m40a3_mp",1,acti,100);
- 
+
         player thread countdown();
         level.activ thread countdown();
 
- 
+
        	while(isalive(player)&&isdefined(player))
             wait 1;
 
@@ -366,10 +366,10 @@ knife_room()
 
 		player createroomport("knife_mp",undefined,1,jump,100);
         level.activ createroomport("knife_mp",undefined,1,acti,100);
- 
+
         player thread countdown();
         level.activ thread countdown();
- 
+
        	while(isalive(player)&&isdefined(player))
             wait 1;
 
@@ -384,11 +384,11 @@ createroomport(weapon,weapon2,freeze,where,health)
     if(isdefined(weapon2))
     	self giveweapon(weapon2);
     self switchtoweapon(weapon);
- 
+
     self freezecontrols(freeze);
     self setorigin(where.origin);
     self setplayerangles(where.angles);
- 
+
     self.health=health;
 }
 countdown()

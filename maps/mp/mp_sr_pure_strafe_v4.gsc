@@ -1,16 +1,16 @@
 /*
-______           __  _____  _____ 
+______           __  _____  _____
 | ___ \         /  ||  _  ||  _  |
 | |_/ /_____  __`| || |/' || |_| |
 |    // _ \ \/ / | ||  /| |\____ |
 | |\ \  __/>  < _| |\ |_/ /.___/ /
-\_| \_\___/_/\_\\___/\___/ \____/ 
+\_| \_\___/_/\_\\___/\___/ \____/
 
 */
 
 main()
 {
-thread sr\api\_map::createSpawn((-198.375, -526.900, 16.125), 300);
+thread sr\api\_map::createSpawnOrigin((-198.375, -526.900, 16.125), 300);
 	maps\mp\_load::main();
 
 	game["allies"] = "marines";
@@ -19,7 +19,7 @@ thread sr\api\_map::createSpawn((-198.375, -526.900, 16.125), 300);
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
+
 	thread sr\api\_speedrun::createNormalWays("Normal Way");
     thread sr\api\_speedrun::createSecretWays("Secret Way");
 

@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-44, -14, 0), 360);
+thread sr\api\_map::createSpawnOrigin((-44, -14, 0), 360);
 trigger = spawn( "trigger_radius", (1295.09, 1986.1, -632.477), 0, 200, 20 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 200;
@@ -12,7 +12,7 @@ trigger.radius = 200;
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
@@ -22,7 +22,7 @@ trigger.radius = 200;
 	    thread sr\api\_speedrun::createNormalWays("Normal Way;");
     thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	thread sr\api\_speedrun::createTeleporter((3837.89, -35.4303, 16.125), 55, 20, (5288, -1, 76), 360, "freeze", "blue");
-    
+
     thread sr_tp();
 	thread tp1();
 	thread secfinish();
@@ -45,7 +45,7 @@ sr_tp()
 	for(;;)
 	{
 		trig waittill("trigger",player);
-        
+
 		player thread sr\api\_speedrun::changeWay("secret_0");
 		player freezecontrols(1);
 		player SetOrigin(ori_t.origin);
@@ -61,7 +61,7 @@ tp1()
    tele = getent ("gohere1", "targetname");
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
 	 player setOrigin(tele.origin);
      player setPlayerAngles(tele.angles);
@@ -74,7 +74,7 @@ secfinish()
    tele = getent ("gohere6", "targetname");
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
 
 	 player thread sr\api\_speedrun::finishWay("secret_0");
@@ -97,11 +97,11 @@ enter5 delete();
 pusher()
 {
 	trigger = getEnt ( "pusher", "targetname" );
-	
+
 	while(1)
 	{
     	trigger waittill ( "trigger", who );
-	
+
 	    oldpos = who.origin;
 	    strenght = 6;
 	    for(i=0;i<strenght;i++)
@@ -119,7 +119,7 @@ trigger = GetEnt( "finish", "targetname" );
     for(;;)
 	{
 	trigger waittill ("trigger", player);
-		
+
     player thread sr\api\_speedrun::finishWay("normal_0");
 	}
 }

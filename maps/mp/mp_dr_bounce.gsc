@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-688, -2480, -319.875), 90);
+thread sr\api\_map::createSpawnOrigin((-688, -2480, -319.875), 90);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
@@ -21,7 +21,7 @@ if (!level.spawn["allies"].size)
 	PreCacheItem("deserteaglegold_mp");
 	PreCacheItem("remington700_mp");
 	PreCacheItem("winchester1200_grip_mp");
-	
+
 	setdvar( "r_specularcolorscale", "1" );
 
 	setdvar("r_glowbloomintensity0",".25");
@@ -74,10 +74,10 @@ if (!level.spawn["allies"].size)
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Easy Way;");
     sr\api\_speedrun::createSecretWays("Hard Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -193,9 +193,9 @@ addTriggerToList( name )
 teleport()
 {
 	entTransporter = getentarray( "enter", "targetname" );
- 
+
 	level waittill("round_started");
- 
+
 	if(isdefined(entTransporter))
 	{
 		for( i = 0; i < entTransporter.size; i++ )
@@ -210,21 +210,21 @@ teleport()
 }
 
 transporter(i)
-{	
+{
 	while(true)
 	{
 		self waittill( "trigger", player );
-		
+
 		// iprintlnbold(i);
 		// iprintlnbold(self.target);
 
 		// if(!isDefined(player.secret_1_endtrig) && self.target == "auto19")
 		// {
 		// 	player.secret_1_endtrig = true;
-			
+
 player thread sr\api\_speedrun::finishWay("secret_0");
 		// }
-		
+
 		if(self.target == "auto16")
 			player sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste
 
@@ -253,7 +253,7 @@ nothing()
 
 	wait 0.5;
 	hide_trigs();
-	
+
 }
 
 hide_trigs()
@@ -315,7 +315,7 @@ gun()
 	wait 4;
 	show_trigs();
 	thread take_gun();
-	
+
 }
 
 take_gun()
@@ -335,7 +335,7 @@ take_gun()
 	block moveZ(54,0.5);
 	wait 0.5;
 	iprintlnbold("^3Activator ^7got his ^3Gold Eagle!!!");
-	
+
 }
 
 trap1()
@@ -356,7 +356,7 @@ trap1()
 	left moveZ(-100,1);
 	center moveZ(-100,1);
 	right moveZ(-100,1);
-	
+
 }
 
 trap2()
@@ -394,7 +394,7 @@ trap3()
 
 	trap moveX(416,1);
 	lift moveX(-310,1);
-	
+
 }
 
 trap4()
@@ -464,7 +464,7 @@ trap5()
 	trap moveX(192,2);
 	wait 2;
 	trap moveX(-192,2);
-	
+
 }
 
 trap6()
@@ -538,7 +538,7 @@ trap8()
 	spikes moveZ(-300,2);
 	spikes waittill("movedone");
 	spikes delete();
-	
+
 }
 
 trap9()
@@ -763,7 +763,7 @@ trap18()
 	trap moveX(880,1);
 	trap waittill("movedone");
 	trap delete();
-	
+
 }
 
 trap19()
@@ -778,7 +778,7 @@ trap19()
 	brush moveZ(368,0.5);
 	wait 3;
 	brush moveZ(-368,3);
-	
+
 }
 
 final()
@@ -787,11 +787,11 @@ final()
 	trig = getEnt("final_door_trig","targetname");
 	brush = getEnt("final_door","targetname");
 	games = getEnt("games","targetname");
-	
+
 	trig waittill("trigger", player);
 	trig delete();
 	games delete();
-	
+
 	brush moveZ(-128,2);
 	brush waittill("movedone");
 	brush delete();
@@ -847,7 +847,7 @@ sniper()
 		wait 0.01;
 		player SwitchToWeapon("remington700_mp");
 		player AllowSprint(true);
-		
+
 		if( GetTeamPlayersAlive("axis") >= 1)
 		{
 			players = getentarray("player", "classname");
@@ -882,7 +882,7 @@ knife()
 		wait 0.01;
 		player SwitchToWeapon("knife_mp");
 		player AllowSprint(true);
-		
+
 		if( GetTeamPlayersAlive("axis") >= 1)
 		{
 			players = getentarray("player", "classname");
@@ -917,7 +917,7 @@ shotgun()
 		wait 0.01;
 		player SwitchToWeapon("winchester1200_grip_mp");
 		player AllowSprint(true);
-		
+
 		if( GetTeamPlayersAlive("axis") >= 1)
 		{
 			players = getentarray("player", "classname");
@@ -944,9 +944,9 @@ onDeath()
         self endon("disconnect");
 
         self waittill("death");
-		
+
 		iprintlnbold("^3" + self.name + "^1 died");
- 
+
 }
 
 ammo()

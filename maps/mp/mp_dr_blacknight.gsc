@@ -1,16 +1,16 @@
 main()
 {
-thread sr\api\_map::createSpawn((-222, 2467, -70), 270);
+thread sr\api\_map::createSpawnOrigin((-222, 2467, -70), 270);
     maps\mp\_load::main();
 	maps\mp\_teleport::main();
- 
+
     game["allies"] = "marines";
     game["axis"] = "opfor";
     game["attackers"] = "axis";
     game["defenders"] = "allies";
     game["allies_soldiertype"] = "desert";
     game["axis_soldiertype"] = "desert";
- 
+
     setdvar( "r_specularcolorscale", "1" );
     setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
@@ -26,13 +26,13 @@ thread sr\api\_map::createSpawn((-222, 2467, -70), 270);
 
     thread startdoor();
 	thread lift();
-}			
-		
+}
+
 startdoor()
 {
 door=getent("startdoor","targetname");
 enter=getentArray("enter","targetname");
-	
+
 wait 0.1;
 door delete();
 enter[0] delete();

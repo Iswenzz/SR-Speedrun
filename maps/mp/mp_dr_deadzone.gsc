@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((0.125, 0, 0.125), 180);
+thread sr\api\_map::createSpawnOrigin((0.125, 0, 0.125), 180);
 
 maps\mp\_load::main();
 
@@ -77,10 +77,10 @@ thread fail2();
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -96,7 +96,7 @@ trap1()
 
 	trap1 = getEnt ("trap1", "targetname");
 	trig = getEnt ("trap1_trigger", "targetname");
-	
+
 	trig setHintString("^1USE ^2T^0o ^3A^0ctivate^1!");
 	trig waittill("trigger", player);
 	trig setHintString("^8Activated^9!");
@@ -110,12 +110,12 @@ trap2()
 
 	trap2 = getEnt ("trap2", "targetname");
 	trig = getEnt ("trap2_trigger", "targetname");
-	
+
 	trig setHintString("^1USE ^2T^0o ^3A^0ctivate^1!");
 	trig waittill("trigger", player);
 	trig setHintString("^8Activated^9!");
 	trig delete();
-	
+
 	while(1)
 	{
 		trap2 rotateyaw(360,5);
@@ -128,12 +128,12 @@ trap3()
 
 	trap3 = getEnt ("trap3", "targetname");
 	trig = getEnt ("trap3_trigger", "targetname");
-	
+
 	trig setHintString("^1USE ^2T^0o ^3A^0ctivate^1!");
 	trig waittill("trigger", player);
 	trig setHintString("^8Activated^9!");
 	trig delete();
-	
+
 	while(1)
 	{
 		trap3 movez (64,0.5);
@@ -149,7 +149,7 @@ trap4()
 
 	trap4 = getEnt ("trap4", "targetname");
 	trig = getEnt ("trap4_trigger", "targetname");
-	
+
 	trig setHintString("^1USE ^2T^0o ^3A^0ctivate^1!");
 	trig waittill("trigger", player);
 	trig setHintString("^8Activated^9!");
@@ -166,12 +166,12 @@ trap5()
 {
 
 	trap5 = getEnt ("trap5", "targetname");
-	hurt = getEnt ("trap5_hurt", "targetname");	
+	hurt = getEnt ("trap5_hurt", "targetname");
 	trig = getEnt ("trap5_trigger", "targetname");
-	
-	hurt enablelinkto(); 
-	hurt linkto (trap5);	
-	
+
+	hurt enablelinkto();
+	hurt linkto (trap5);
+
 	trig setHintString("^1USE ^2T^0o ^3A^0ctivate^1!");
 	trig waittill("trigger", player);
 	trig setHintString("^8Activated^9!");
@@ -189,12 +189,12 @@ trap6()
 
 	trap6 = getEnt ("trap6", "targetname");
 	trig = getEnt ("trap6_trigger", "targetname");
-	
+
 	trig setHintString("^1USE ^2T^0o ^3A^0ctivate^1!");
 	trig waittill("trigger", player);
 	trig setHintString("^8Activated^9!");
 	trig delete();
-	
+
 		trap6 delete();
 }
 
@@ -207,7 +207,7 @@ addTriggerToList( name, positionOfIconAboveTrap )
     if( !isDefined( level.icon_origins ) )
         level.icon_origins = [];
     level.icon_origins[level.icon_origins.size] = positionOfIconAboveTrap;
-} 
+}
 
 //Rooms
 
@@ -218,14 +218,14 @@ sniper()
     jump = getEnt( "sniper_j", "targetname" );
     acti = getEnt( "sniper_a", "targetname" );
 	level.final_sniper_trig setHintString("^0Sniper ^2Room!");
-	
+
 
      while(1)
     {
         level.final_sniper_trig waittill( "trigger", player );
         if( !isDefined( level.final_sniper_trig ) )
             return;
-        
+
 		//level.final_sniper_trig delete();
 		level.final_rpg_trig delete();
 		level.final_pistol_trig delete();
@@ -234,22 +234,22 @@ sniper()
 		level.final_shotgun_trig delete();
 		level.final_knife_trig delete();
 		level.final_crazy_trig delete();
-		
-		
+
+
          player.health = player.maxhealth;
 		 level.activ.health = level.activ.maxhealth;
 		player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
         player GiveWeapon( "remington700_mp" );
-		player GiveWeapon( "m40a3_mp" );        
+		player GiveWeapon( "m40a3_mp" );
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
         level.activ GiveWeapon( "remington700_mp" );
-        level.activ GiveWeapon( "m40a3_mp" );         
+        level.activ GiveWeapon( "m40a3_mp" );
         wait 0.05;
-        player switchToWeapon( "remington700_mp" ); 
+        player switchToWeapon( "remington700_mp" );
         level.activ SwitchToWeapon( "remington700_mp" );
         player FreezeControls(1);
 		level.activ FreezeControls(1);
@@ -266,7 +266,7 @@ sniper()
 				level.activ FreezeControls(0);
         while( isAlive( player ) && isDefined( player ) )
             wait 1;
-			
+
     }
 
 }
@@ -276,10 +276,10 @@ sniper_fail()
     trig = getEnt ("sniper_fail_trig", "targetname");
     end = getEnt ("sniper_fail_tp", "targetname");
 
-    
+
     while(1)
     {
-        trig waittill ("trigger", player);  
+        trig waittill ("trigger", player);
         player SetOrigin(end.origin);
         player SetPlayerAngles( end.angles );
 	}
@@ -292,14 +292,14 @@ rpg()
     jump = getEnt( "sniper_j", "targetname" );
     acti = getEnt( "sniper_a", "targetname" );
 	level.final_rpg_trig setHintString("^0RPG ^2Room!");
-	    
+
      while(1)
     {
-		
+
         level.final_rpg_trig waittill( "trigger", player );
         if( !isDefined( level.final_rpg_trig ) )
             return;
-        
+
 		level.final_sniper_trig delete();
 		//level.final_rpg_trig delete();
 		level.final_pistol_trig delete();
@@ -308,14 +308,14 @@ rpg()
 		level.final_shotgun_trig delete();
 		level.final_knife_trig delete();
 		level.final_crazy_trig delete();
-      
+
          player.health = player.maxhealth;
 		 level.activ.health = level.activ.maxhealth;
 		player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
         player GiveWeapon( "rpg_mp" );
-		player GiveWeapon( "rpg_mp" );  
+		player GiveWeapon( "rpg_mp" );
 		player giveMaxammo("rpg_mp");
 		player giveMaxammo("rpg_mp");
 		player thread infinite_ammo();
@@ -323,12 +323,12 @@ rpg()
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
         level.activ GiveWeapon( "rpg_mp" );
-        level.activ GiveWeapon( "rpg_mp" ); 
+        level.activ GiveWeapon( "rpg_mp" );
 		level.activ giveMaxammo("rpg_mp");
-		level.activ giveMaxammo("rpg_mp");   
+		level.activ giveMaxammo("rpg_mp");
 		level.activ thread infinite_ammo();
         wait 0.05;
-        player switchToWeapon( "rpg_mp" ); 
+        player switchToWeapon( "rpg_mp" );
         level.activ SwitchToWeapon( "rpg_mp" );
         player FreezeControls(1);
 		level.activ FreezeControls(1);
@@ -345,7 +345,7 @@ rpg()
 				level.activ FreezeControls(0);
         while( isAlive( player ) && isDefined( player ) )
             wait 1;
-			
+
     }
 
 }
@@ -357,14 +357,14 @@ pistol()
     jump = getEnt( "sniper_j", "targetname" );
     acti = getEnt( "sniper_a", "targetname" );
 	level.final_pistol_trig setHintString("^0Pistol ^2Room!");
-	    
+
      while(1)
     {
-		
+
         level.final_pistol_trig waittill( "trigger", player );
         if( !isDefined( level.final_pistol_trig ) )
             return;
-        
+
 		level.final_sniper_trig delete();
 		level.final_rpg_trig delete();
 		//level.final_pistol_trig delete();
@@ -373,25 +373,25 @@ pistol()
 		level.final_shotgun_trig delete();
 		level.final_knife_trig delete();
 		level.final_crazy_trig delete();
-      
+
          player.health = player.maxhealth;
 		 level.activ.health = level.activ.maxhealth;
 		player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
         player GiveWeapon( "colt45_mp" );
-		player GiveWeapon( "colt45_mp" );  
+		player GiveWeapon( "colt45_mp" );
 		player giveMaxammo("colt45_mp");
-		player giveMaxammo("colt45_mp");		
+		player giveMaxammo("colt45_mp");
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
         level.activ GiveWeapon( "colt45_mp" );
-        level.activ GiveWeapon( "colt45_mp" ); 
+        level.activ GiveWeapon( "colt45_mp" );
 		level.activ giveMaxammo("colt45_mp");
-		level.activ giveMaxammo("colt45_mp");        
+		level.activ giveMaxammo("colt45_mp");
         wait 0.05;
-        player switchToWeapon( "colt45_mp" ); 
+        player switchToWeapon( "colt45_mp" );
         level.activ SwitchToWeapon( "colt45_mp" );
         player FreezeControls(1);
 		level.activ FreezeControls(1);
@@ -408,7 +408,7 @@ pistol()
 				level.activ FreezeControls(0);
         while( isAlive( player ) && isDefined( player ) )
             wait 1;
-			
+
     }
 
 }
@@ -420,14 +420,14 @@ old()
     jump = getEnt( "old_tp_j", "targetname" );
 	acti = getEnt( "old_tp_a", "targetname" );
 	level.final_old_trig setHintString("^0Old^2!");
-	    
+
      while(1)
     {
-		
+
         level.final_old_trig waittill( "trigger", player );
         if( !isDefined( level.final_old_trig ) )
             return;
-        
+
 		level.final_sniper_trig delete();
 		level.final_rpg_trig delete();
 		level.final_pistol_trig delete();
@@ -436,11 +436,11 @@ old()
 		level.final_shotgun_trig delete();
 		level.final_knife_trig delete();
 		level.final_crazy_trig delete();
-      
+
          player.health = player.maxhealth;
 		 level.activ.health = level.activ.maxhealth;
 		player SetPlayerAngles( jump.angles );
-        player setOrigin( jump.origin );	
+        player setOrigin( jump.origin );
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         player FreezeControls(1);
@@ -458,7 +458,7 @@ old()
 				level.activ FreezeControls(0);
         while( isAlive( player ) && isDefined( player ) )
             wait 1;
-			
+
     }
 
 }
@@ -470,14 +470,14 @@ jump()
     jump = getEnt( "jump_j", "targetname" );
 	acti = getEnt( "jump_a", "targetname" );
 	level.final_jump_trig setHintString("^0Jump ^2Room!");
-	    
+
      while(1)
     {
-		
+
         level.final_jump_trig waittill( "trigger", player );
         if( !isDefined( level.final_jump_trig ) )
             return;
-        
+
 		level.final_sniper_trig delete();
 		level.final_rpg_trig delete();
 		level.final_pistol_trig delete();
@@ -486,11 +486,11 @@ jump()
 		level.final_shotgun_trig delete();
 		level.final_knife_trig delete();
 		level.final_crazy_trig delete();
-      
+
          player.health = player.maxhealth;
 		 level.activ.health = level.activ.maxhealth;
 		player SetPlayerAngles( jump.angles );
-        player setOrigin( jump.origin );	
+        player setOrigin( jump.origin );
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         player FreezeControls(1);
@@ -508,7 +508,7 @@ jump()
 				level.activ FreezeControls(0);
         while( isAlive( player ) && isDefined( player ) )
             wait 1;
-			
+
     }
 
 }
@@ -518,10 +518,10 @@ jump_fail_j()
     trig = getEnt ("jump_fail_trig_j", "targetname");
     end = getEnt ("jump_j", "targetname");
 
-    
+
     while(1)
     {
-        trig waittill ("trigger", player);  
+        trig waittill ("trigger", player);
         player SetOrigin(end.origin);
         player SetPlayerAngles( end.angles );
 	}
@@ -532,10 +532,10 @@ jump_fail_a()
     trig = getEnt ("jump_fail_trig_a", "targetname");
     end = getEnt ("jump_a", "targetname");
 
-    
+
     while(1)
     {
-        trig waittill ("trigger", player);  
+        trig waittill ("trigger", player);
         player SetOrigin(end.origin);
         player SetPlayerAngles( end.angles );
 	}
@@ -544,11 +544,11 @@ jump_fail_a()
 jump_finish_j()
 {
 	trig = getEnt ("jump_finish_j", "targetname");
-	end = getEnt ("sniper_j", "targetname");    
+	end = getEnt ("sniper_j", "targetname");
 	while(1)
 	{
 		trig waittill ("trigger", player);
-	
+
 		player SetOrigin(end.origin);
         player SetPlayerAngles( end.angles );
 		iprintlnbold("^1" + player.name + " ^2Has finished the ^3Jump Room!");
@@ -558,11 +558,11 @@ jump_finish_j()
 jump_finish_a()
 {
 	trig = getEnt ("jump_finish_a", "targetname");
-	end = getEnt ("sniper_a", "targetname");    
+	end = getEnt ("sniper_a", "targetname");
 	while(1)
 	{
 		trig waittill ("trigger", player);
-	
+
 		player SetOrigin(end.origin);
         player SetPlayerAngles( end.angles );
 		iprintlnbold("^1Activator ^2Has finished the ^3Jump Room!");
@@ -576,14 +576,14 @@ shotgun()
     jump = getEnt( "sniper_j", "targetname" );
     acti = getEnt( "sniper_a", "targetname" );
 	level.final_shotgun_trig setHintString("^0Shotgun ^2Room!");
-	    
+
      while(1)
     {
-		
+
         level.final_shotgun_trig waittill( "trigger", player );
         if( !isDefined( level.final_shotgun_trig ) )
             return;
-        
+
 		level.final_sniper_trig delete();
 		level.final_rpg_trig delete();
 		level.final_pistol_trig delete();
@@ -592,25 +592,25 @@ shotgun()
 		//level.final_shotgun_trig delete();
 		level.final_knife_trig delete();
 		level.final_crazy_trig delete();
-      
+
          player.health = player.maxhealth;
 		 level.activ.health = level.activ.maxhealth;
 		player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
         player GiveWeapon( "winchester1200_mp" );
-		player GiveWeapon( "winchester1200_mp" );  
+		player GiveWeapon( "winchester1200_mp" );
 		player giveMaxammo("winchester1200_mp");
-		player giveMaxammo("winchester1200_mp");		
+		player giveMaxammo("winchester1200_mp");
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
         level.activ GiveWeapon( "winchester1200_mp" );
-        level.activ GiveWeapon( "winchester1200_mp" ); 
+        level.activ GiveWeapon( "winchester1200_mp" );
 		level.activ giveMaxammo("winchester1200_mp");
-		level.activ giveMaxammo("winchester1200_mp");        
+		level.activ giveMaxammo("winchester1200_mp");
         wait 0.05;
-        player switchToWeapon( "winchester1200_mp" ); 
+        player switchToWeapon( "winchester1200_mp" );
         level.activ SwitchToWeapon( "winchester1200_mp" );
         player FreezeControls(1);
 		level.activ FreezeControls(1);
@@ -627,7 +627,7 @@ shotgun()
 				level.activ FreezeControls(0);
         while( isAlive( player ) && isDefined( player ) )
             wait 1;
-			
+
     }
 
 }
@@ -639,14 +639,14 @@ knife()
     jump = getEnt( "old_tp_j", "targetname" );
     acti = getEnt( "old_tp_a", "targetname" );
 	level.final_knife_trig setHintString("^0Knife ^2Room!");
-	    
+
      while(1)
     {
-		
+
         level.final_knife_trig waittill( "trigger", player );
         if( !isDefined( level.final_knife_trig ) )
             return;
-        
+
 		level.final_sniper_trig delete();
 		level.final_rpg_trig delete();
 		level.final_pistol_trig delete();
@@ -655,25 +655,25 @@ knife()
 		level.final_shotgun_trig delete();
 		//level.final_knife_trig delete();
 		level.final_crazy_trig delete();
-      
+
          player.health = player.maxhealth;
 		 level.activ.health = level.activ.maxhealth;
 		player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
         player GiveWeapon( "knife_mp" );
-		player GiveWeapon( "knife_mp" );  
+		player GiveWeapon( "knife_mp" );
 		player giveMaxammo("knife_mp");
-		player giveMaxammo("knife_mp");		
+		player giveMaxammo("knife_mp");
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
         level.activ GiveWeapon( "knife_mp" );
-        level.activ GiveWeapon( "knife_mp" ); 
+        level.activ GiveWeapon( "knife_mp" );
 		level.activ giveMaxammo("knife_mp");
-		level.activ giveMaxammo("knife_mp");        
+		level.activ giveMaxammo("knife_mp");
         wait 0.05;
-        player switchToWeapon( "knife_mp" ); 
+        player switchToWeapon( "knife_mp" );
         level.activ SwitchToWeapon( "knife_mp" );
         player FreezeControls(1);
 		level.activ FreezeControls(1);
@@ -690,7 +690,7 @@ knife()
 				level.activ FreezeControls(0);
         while( isAlive( player ) && isDefined( player ) )
             wait 1;
-			
+
     }
 
 }
@@ -702,14 +702,14 @@ crazy()
     jump = getEnt( "crazy_j", "targetname" );
     acti = getEnt( "crazy_a", "targetname" );
 	level.final_crazy_trig setHintString("^0CRAZY ^2Room!");
-	    
+
      while(1)
     {
-		
+
         level.final_crazy_trig waittill( "trigger", player );
         if( !isDefined( level.final_crazy_trig ) )
             return;
-        
+
 		level.final_sniper_trig delete();
 		level.final_rpg_trig delete();
 		level.final_pistol_trig delete();
@@ -718,14 +718,14 @@ crazy()
 		level.final_shotgun_trig delete();
 		level.final_knife_trig delete();
 		//level.final_crazy_trig delete();
-	  
+
          player.health = player.maxhealth;
 		 level.activ.health = level.activ.maxhealth;
 		player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
-		
+
 		level.cgun = [];
 		level.cgun[level.cgun.size] = "colt44_mp";
 		level.cgun[level.cgun.size] = "remington700_mp";
@@ -742,24 +742,24 @@ crazy()
 		level.cgun[level.cgun.size] = "m21_acog_mp";
 		level.cgun[level.cgun.size] = "saw_mp";
 		level.cgun[level.cgun.size] = "brick_blaster_mp";
-		
+
 		rz = randomint(level.cgun.size);
 		weap = level.cgun[rz];
-		
+
 		player TakeAllWeapons();
 		level.activ TakeAllWeapons();
 		player GiveWeapon( weap );
-		player GiveWeapon( weap );  
+		player GiveWeapon( weap );
 		player giveMaxammo(weap);
-		player giveMaxammo(weap);	
+		player giveMaxammo(weap);
 		level.activ GiveWeapon( weap );
-        level.activ GiveWeapon( weap ); 
+        level.activ GiveWeapon( weap );
 		level.activ giveMaxammo(weap);
-		level.activ giveMaxammo(weap);   
-		
-		player switchToWeapon( weap ); 
+		level.activ giveMaxammo(weap);
+
+		player switchToWeapon( weap );
         level.activ SwitchToWeapon( weap );
-		
+
         player FreezeControls(1);
 		level.activ FreezeControls(1);
 		noti = SpawnStruct();
@@ -775,7 +775,7 @@ crazy()
 				level.activ FreezeControls(0);
         while( isAlive( player ) && isDefined( player ) )
             wait 1;
-			
+
     }
 
 }
@@ -808,11 +808,11 @@ elevator()
 secret_tp()
 {
     trig = getEnt ("tp_trig", "targetname");
-    end = getEnt ("tp_end", "targetname");    
+    end = getEnt ("tp_end", "targetname");
     while(1)
     {
-        trig waittill ("trigger", player);     
-	
+        trig waittill ("trigger", player);
+
         player SetOrigin(end.origin);
         player SetPlayerAngles( end.angles );
 		player sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste
@@ -825,11 +825,11 @@ secret_end()
     trig = getEnt ("back_trig", "targetname");
     end = getEnt ("tp_re", "targetname");
 
-    
+
     while(1)
     {
-        trig waittill ("trigger", player);          
-		
+        trig waittill ("trigger", player);
+
         player SetOrigin(end.origin);
         player SetPlayerAngles( end.angles );
 		// iprintlnbold("^1" + player.name + " ^2Has Finished the ^0DEADZONE^3!");
@@ -844,7 +844,7 @@ secret_open()
 	trig = getEnt ("del_trig", "targetname");
 
 	// trig waittill("trigger", player);
-	
+
 	// iPrintln ("^1The ^2Chicken ^3Is ^0MAD^3!");
 	secretblock delete();
 }
@@ -854,10 +854,10 @@ secret_fail()
     trig = getEnt ("fail_trig", "targetname");
     end = getEnt ("tp_fail", "targetname");
 
-    
+
     while(1)
     {
-        trig waittill ("trigger", player);  
+        trig waittill ("trigger", player);
         player SetOrigin(end.origin);
         player SetPlayerAngles( end.angles );
 	}
@@ -868,10 +868,10 @@ fail2()
     trig = getEnt ("fail2_trig", "targetname");
     end = getEnt ("fail2", "targetname");
 
-    
+
     while(1)
     {
-        trig waittill ("trigger", player);  
+        trig waittill ("trigger", player);
         player SetOrigin(end.origin);
         player SetPlayerAngles( end.angles );
 	}
@@ -881,9 +881,9 @@ finish()
 {
 
 	trig = getEnt ("finish_trigger", "targetname");
-	
+
 	trig waittill("trigger", player);
-	
+
 	// iprintlnbold("^0" + player.name + " ^2Has Finished le Tower of DEAD at ^0FIRST ^2Place^3!");
 	// ambientPlay("ambient3");
 	trig delete();

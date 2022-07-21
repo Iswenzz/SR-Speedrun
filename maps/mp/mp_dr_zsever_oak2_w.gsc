@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((6, 0, 8), 90);
+thread sr\api\_map::createSpawnOrigin((6, 0, 8), 90);
  maps\mp\_load::main();
 
  game["allies"] = "sas";
@@ -9,7 +9,7 @@ thread sr\api\_map::createSpawn((6, 0, 8), 90);
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "woodland";
  game["axis_soldiertype"] = "woodland";
-            
+
 	setdvar( "r_specularcolorscale", "1" );
     setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
@@ -34,11 +34,11 @@ thread secfinish();
 startdoor()
 {
 	startdoor = getent("startdoor","targetname");
-	
+
     wait 0.1;
 	startdoor Delete();
 
- 	
+
 }
 
 tp1()
@@ -47,11 +47,11 @@ tp1()
    tele1 = getent ("jumper_origin", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
 	player setOrigin(tele1.origin);
     player setPlayerAngles(tele1.angles);
-    
+
     }
 }
 
@@ -61,11 +61,11 @@ tp2()
    tele1 = getent ("jumper_origin", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
 	player setOrigin(tele1.origin);
     player setPlayerAngles(tele1.angles);
-    
+
     }
 }
 
@@ -75,11 +75,11 @@ tp3()
    tele1 = getent ("jumper_origin", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
 	player setOrigin(tele1.origin);
     player setPlayerAngles(tele1.angles);
-    
+
     }
 }
 
@@ -88,9 +88,9 @@ secfail1()
    trig = getent("jumprespawn1", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
-	player suicide(); 
+	player suicide();
     }
 }
 
@@ -99,9 +99,9 @@ secfail2()
    trig = getent("jumprespawn2", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
-    player suicide();  
+    player suicide();
     }
 }
 
@@ -110,7 +110,7 @@ secfinish()
    trig = getent("jumpendtrigger", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
     player thread sr\api\_speedrun::finishWay("secret_0");
     }

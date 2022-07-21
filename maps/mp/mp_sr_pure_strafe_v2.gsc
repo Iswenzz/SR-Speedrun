@@ -1,10 +1,10 @@
 /*
 
-  _|_|_|            _|      _|      _|                  _|            
-_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|  
-  _|_|    _|    _|      _|          _|        _|    _|  _|      _|    
-      _|  _|    _|    _|  _|        _|        _|    _|  _|    _|      
-_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|  
+  _|_|_|            _|      _|      _|                  _|
+_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|
+  _|_|    _|    _|      _|          _|        _|    _|  _|      _|
+      _|  _|    _|    _|  _|        _|        _|    _|  _|    _|
+_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|
 
 Map and GSC Made By SuX Lolz.
 
@@ -22,18 +22,18 @@ Email Pro: suxlolz@outlook.fr
 
 main()
 {
-thread sr\api\_map::createSpawn((6394.125, 9372, -773.875), 180);
+thread sr\api\_map::createSpawnOrigin((6394.125, 9372, -773.875), 180);
 	maps\mp\_load::main();
 	maps\mp\enter_teleport\_teleport::main();
 	maps\mp\_compass::setupMiniMap("compass_mp_sr_pure_strafe_v2");
- 
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
- 
+
 	setdvar("r_specularcolorscale","1");
 	setdvar("compassmaxrange","1600");
 	setdvar("r_glowbloomintensity0",".1");
@@ -53,13 +53,13 @@ thread sr\api\_map::createSpawn((6394.125, 9372, -773.875), 180);
 way_connect()
 {
     wait 0.05;
-	
+
 	sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
 
 	thread secret_1();
-	
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
 

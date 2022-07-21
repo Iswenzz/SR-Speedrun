@@ -1,21 +1,21 @@
  main()
 {
-thread sr\api\_map::createSpawn((-5203, -334, 8123), 359);
+thread sr\api\_map::createSpawnOrigin((-5203, -334, 8123), 359);
 
 
 /////////////////////////////////////////////////
 
  maps\mp\_load::main();
  //maps\mp\teleports::main();
- 
- 
+
+
  game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"] = "desert";
- 
+
  setDvar("bg_falldamagemaxheight", 30000000000 );
  setDvar("bg_falldamageminheight", 12800000000 );
  setdvar( "r_specularcolorscale", "9" );
@@ -59,11 +59,11 @@ trigger = getent("msgwelcome","targetname");
      {
    wait 6;
     user iprintlnbold ("Welcome to ^5mp_Palm");
- user iprintlnbold ("Map created by ^1Furi"); 
-   
+ user iprintlnbold ("Map created by ^1Furi");
+
    user.welcome = true;
      }
- 
+
  wait .05;
  }
 }
@@ -78,10 +78,10 @@ trigger = getent("msginter","targetname");
   if ( isPlayer( user ) && isAlive( user ) && !(isdefined( user.interfinish ) ))
      {
    user iprintlnbold ("" + user.name + " you finished ^4Inter Way!");
-user iprintlnbold ("Map created by ^1Furi");  
+user iprintlnbold ("Map created by ^1Furi");
    user.interfinish = true;
      }
- 
+
  wait .05;
  }
 }
@@ -128,7 +128,7 @@ trigger = getent("msgthanks1","targetname");
    iprintlnbold ("Thanks to ^1Chusteen ^7and ^4Kev ^7for testing!");
    user.thanks = true;
      }
- 
+
  wait .05;
  }
 }
@@ -145,7 +145,7 @@ trigger = getent("msgthanks2","targetname");
    iprintlnbold ("Thanks to ^1Chusteen ^7for all his mapping help!");
    user.thanks1 = true;
      }
- 
+
  wait .05;
  }
 }
@@ -162,7 +162,7 @@ trigger = getent("msgpro","targetname");
    iprintlnbold ("" + user.name + " is ^4Pro^7!");
    user.pro = true;
      }
- 
+
  wait .05;
  }
 }
@@ -179,7 +179,7 @@ trigger = getent("msgfatdick","targetname");
    iprintlnbold ("" + user.name + " loves fat ^6Dick^7!");
    user.dick = true;
      }
- 
+
  wait .05;
  }
 }

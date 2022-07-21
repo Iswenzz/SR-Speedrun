@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-832, -232, 20), 90);
+thread sr\api\_map::createSpawnOrigin((-832, -232, 20), 90);
 	thread sr\api\_speedrun::createEndMap((3988, 3257, 156), 100, 150);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 			maps\mp\_load::main();

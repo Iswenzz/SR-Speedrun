@@ -9,13 +9,13 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((-3024, -528, 1672), 0);
+thread sr\api\_map::createSpawnOrigin((-3024, -528, 1672), 0);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
 	thread way_connect();
 	maps\mp\_load::main();
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "russian";
 	game["attackers"] = "axis";
@@ -24,7 +24,7 @@ if (!level.spawn["allies"].size)
 	game["axis_soldiertype"] = "woodland";
 
 	//setdvar( "r_specularcolorscale", "1" );
-	
+
 	//Precaching//
 	level._effect["waterfall"] = LoadFX("misc/watersplash_small"); //"misc/waterfall_hunted"
 	level._effect["clouds_big"] = LoadFX("custom/clouds_big_white");
@@ -40,7 +40,7 @@ if (!level.spawn["allies"].size)
 	// PreCacheItem("barrett_mp");
 	// PreCacheItem("rpg_mp");
 	//
-	
+
 	//Variables//
 	level.end_active = false;
 	level.end_old_chosen = false;
@@ -55,8 +55,8 @@ if (!level.spawn["allies"].size)
 	level.ambient2 = 0;
 	level.ambient3 = 0;
 	//
-	
-	
+
+
 	// addTriggerToList("trap1_trig");
 	// addTriggerToList("trap2_trig");
 	// addTriggerToList("trap3_trig");
@@ -68,8 +68,8 @@ if (!level.spawn["allies"].size)
 	// addTriggerToList("trap9_trig");
 	// addTriggerToList("trap10_trig");
 	// addTriggerToList("trap11_trig");
-	
-	
+
+
 	//Threading//
 	thread doFX();
 	thread windmill();
@@ -81,16 +81,16 @@ if (!level.spawn["allies"].size)
 	thread antiIdiotActi();
 	thread fallDeath();
 	// thread cleptomaniac();
-	
+
 	// thread musicVote0();
 	// thread musicVote1();
 	// thread musicVote2();
 	// thread musicVote3();
-	
+
 	thread hp_regen1();
 	thread hp_regen2();
 	thread hp_regen3();
-	
+
 	// thread trap1();
 	// thread trap2();
 	// thread trap3();
@@ -102,7 +102,7 @@ if (!level.spawn["allies"].size)
 	// thread trap9();
 	// thread trap10();
 	// thread trap11();
-	
+
 	// thread end();
 	// thread end_old();
 	// thread end_sniper();
@@ -110,15 +110,15 @@ if (!level.spawn["allies"].size)
 	// thread end_knife();
 	// thread end_islands();
 	// thread end_deagle();
-	
+
 	// thread end_append();
 	//thread end_counter();
 	// thread watch_players_death();
 	// thread watch_players_dc();
 	//
-	
 
-//	thread addTestClients();	
+
+//	thread addTestClients();
 
 
 
@@ -129,10 +129,10 @@ if (!level.spawn["allies"].size)
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
 
@@ -146,7 +146,7 @@ addTriggerToList(name)
 	{
 		level.trapTriggers = [];
 	}
-	level.trapTriggers[level.trapTriggers.size] = getEnt( name, "targetname" );	
+	level.trapTriggers[level.trapTriggers.size] = getEnt( name, "targetname" );
 }
 doFX()
 {
@@ -217,7 +217,7 @@ fog()
 	/*
 	trig waittill("trigger");
 	trig delete();
-	
+
 	iprintlnbold("fog is coming up...");
 	SetExpFog(1,250,0.9,0.9,0.9,30);
 	//auch m�glich �berall clouds big zu loopen!
@@ -230,7 +230,7 @@ secret_lumber()
 	trig = getEnt("secret_lumber_trig","targetname");
 	tree = getEnt("secret_lumber_tree","targetname");
 	brush = getEnt("secret_lumber_brush","targetname");
-	
+
 	i = 0;
 	while(i!=10)
 	{
@@ -238,7 +238,7 @@ secret_lumber()
 		i++;
 	}
 	trig delete();
-	
+
 	tree rotatepitch(70,4,3,0);
 	brush rotatepitch(70,4,3,0);
 }
@@ -307,7 +307,7 @@ hp_regen1()
 {
 	trig = getEnt("health_restore1","targetname");
 	trig setHintString("Eat a watermelon?");
-	
+
 	while(true)
 	{
 		trig waittill("trigger",player);
@@ -320,7 +320,7 @@ hp_regen2()
 {
 	trig = getEnt("health_restore2","targetname");
 	trig setHintString("Eat an orange?");
-	
+
 	while(true)
 	{
 		trig waittill("trigger",player);
@@ -333,7 +333,7 @@ hp_regen3()
 {
 	trig = getEnt("health_restore3","targetname");
 	trig setHintString("Drink from the spring?");
-	
+
 	while(true)
 	{
 		trig waittill("trigger",player);
@@ -348,11 +348,11 @@ start_door()
 	door_l = getEnt("start_door_left","targetname");
 	trig = getEnt("start_door_trig","targetname");
 	trig setHintString("Press [USE] to open the doors!");
-	
+
 	// trig waittill("trigger");
 	wait 1;
 	trig delete();
-	
+
 	// iprintlnbold("Start door opening....");
 	// iprintln("^2Map by DeltaBoss");
 	// iprintln("^3Sponsored by Universal Alliance");
@@ -361,14 +361,14 @@ start_door()
 	door_r rotateyaw(-120,4);
 	door_l rotateyaw(120,4);
 	level.start_door_opened = true;
-	
+
 	// playVotedMusic();
 }
 playVotedMusic()
 {
 	//player_amount = getAllPlayers().size;
 	if(level.ambient0 > level.ambient1 && level.ambient0 > level.ambient2 && level.ambient0 > level.ambient3)
-	{	
+	{
 		iprintln("Playing no ambient");
 		return;
 	}
@@ -420,7 +420,7 @@ zipline1_ng(user)
 	air3 = getent ("zipline1c","targetname");
 
 	time = 1;
-	
+
 		//throw = user.origin + (100, 100, 0);
 		air = spawn ("script_model",(0,0,0));
 		air.origin = user.origin;
@@ -460,7 +460,7 @@ zipline2_ng(user)
 	air3 = getent ("zipline2c","targetname");
 
 	time = 1;
-	
+
 		//throw = user.origin + (100, 100, 0);
 		air = spawn ("script_model",(0,0,0));
 		air.origin = user.origin;
@@ -508,12 +508,12 @@ cleptomaniac()
 	thread clepto_ladder();
 	thread clepto_wc();
 	thread clepto_bike();
-	
+
 	trig_end = getEnt("secret_clepto_end","targetname");
-	
+
 	trig = getEnt("secret_clepto_chair","targetname");
 	model = getEnt("secret_clepto_chair_m","targetname");
-	
+
 	for(i=0;i<42;i++)
 	{
 		trig waittill("trigger");
@@ -525,7 +525,7 @@ cleptomaniac()
 	player iprintlnbold("If you want it THAT bad, take it.");
 	thread watch_clepto(player);
 	model linkTo(player);
-	
+
 	while(isDefined(trig_end))
 	{
 		trig_end waittill("trigger",player);
@@ -562,7 +562,7 @@ clepto_lawnmower()
 {
 	trig = getEnt("secret_clepto_lawnmower","targetname");
 	model = getEnt("secret_clepto_lawnmower_m","targetname");
-	
+
 	while(isDefined(trig))
 	{
 		trig waittill("trigger",player);
@@ -583,7 +583,7 @@ clepto_couch()
 {
 	trig = getEnt("secret_clepto_couch","targetname");
 	model = getEnt("secret_clepto_couch_m","targetname");
-	
+
 	while(isDefined(trig))
 	{
 		trig waittill("trigger",player);
@@ -604,7 +604,7 @@ clepto_pc()
 {
 	trig = getEnt("secret_clepto_pc","targetname");
 	model = getEnt("secret_clepto_pc_m","targetname");
-	
+
 	while(isDefined(trig))
 	{
 		trig waittill("trigger",player);
@@ -625,7 +625,7 @@ clepto_bag()
 {
 	trig = getEnt("secret_clepto_bag","targetname");
 	model = getEnt("secret_clepto_bag_m","targetname");
-	
+
 	while(isDefined(trig))
 	{
 		trig waittill("trigger",player);
@@ -646,7 +646,7 @@ clepto_cashier()
 {
 	trig = getEnt("secret_clepto_cashier","targetname");
 	model = getEnt("secret_clepto_cashier_m","targetname");
-	
+
 	while(isDefined(trig))
 	{
 		trig waittill("trigger",player);
@@ -667,7 +667,7 @@ clepto_ladder()
 {
 	trig = getEnt("secret_clepto_ladder","targetname");
 	model = getEnt("secret_clepto_ladder_m","targetname");
-	
+
 	while(isDefined(trig))
 	{
 		trig waittill("trigger",player);
@@ -688,7 +688,7 @@ clepto_wc()
 {
 	trig = getEnt("secret_clepto_wc","targetname");
 	model = getEnt("secret_clepto_wc_m","targetname");
-	
+
 	while(isDefined(trig))
 	{
 		trig waittill("trigger",player);
@@ -709,7 +709,7 @@ clepto_bike()
 {
 	trig = getEnt("secret_clepto_bike","targetname");
 	model = getEnt("secret_clepto_bike_m","targetname");
-	
+
 	while(isDefined(trig))
 	{
 		trig waittill("trigger",player);
@@ -733,10 +733,10 @@ trap1()
 {
 	rocks = getEntArray("trap1_rock","targetname");
 	trig = getEnt("trap1_trig","targetname");
-	
+
 	trig waittill("trigger");
 	trig delete();
-	
+
 	while(true)
 	{
 		wait 0.05;
@@ -760,10 +760,10 @@ trap2()
 {
 	trig = getEnt("trap2_trig","targetname");
 	bridge = getEnt("trap2_bridge","targetname");
-	
+
 	trig waittill("trigger");
 	trig delete();
-	
+
 	while(1)
 	{
 		bridge rotateroll(80,2);
@@ -773,7 +773,7 @@ trap2()
 		bridge rotateroll(75,1.5);
 		wait 1.5;
 		bridge rotateroll(-10,0.5);
-		
+
 		wait 5;
 	}
 }
@@ -783,16 +783,16 @@ trap3()
 	hurt1 = getEnt("trap3_hurt1","targetname");
 	rock2 = getEnt("trap3_rock2","targetname");
 	hurt2 = getEnt("trap3_hurt2","targetname");
-	trig = getEnt("trap3_trig","targetname");	
-	
+	trig = getEnt("trap3_trig","targetname");
+
 	hurt1 enableLinkTo();
 	hurt2 enableLinkTo();
 	hurt1 linkTo(rock1);
 	hurt2 linkTo(rock2);
-	
+
 	trig waittill("trigger");
 	trig delete();
-	
+
 	rock1 movez(-434,1,0.5,0.25);
 	rock2 movez(-434,1,0.5,0.25);
 }
@@ -802,13 +802,13 @@ trap4()
 	rock = getEnt("trap4_rocks","targetname");
 	rock2 = getEnt("trap4_rocks2","targetname");
 	trig = getEnt("trap4_trig","targetname");
-	
+
 	trig waittill("trigger");
 	trig delete();
-	
+
 	rock movez(-3040*fall,5,5,0);
 	rock2 movez(-3040*fall,5,5,0);
-	
+
 	wait 5;
 	rock delete();
 	rock2 delete();
@@ -818,10 +818,10 @@ trap5()
 	rock = getEnt("trap5_rock","targetname");
 	trig = getEnt("trap5_trig","targetname");
 	quake = getEnt("trap5_quake","targetname");
-	
+
 	trig waittill("trigger");
 	trig delete();
-	
+
 	earthquake(1,5,quake.origin,400);
 	rock rotateroll(90,5,5,0);
 	wait 10;
@@ -838,10 +838,10 @@ trap6()
 	hurt enableLinkTo();
 	hurt LinkTo(log);
 	hurt.dmg = 0;
-	
+
 	trig waittill("trigger");
 	trig delete();
-	
+
 	hurt.dmg = 2000;
 	log moveto(dest1.origin,7,6,0);
 	log rotateroll(3600,9,7,2);
@@ -849,7 +849,7 @@ trap6()
 	wait 7;
 	log moveto(dest2.origin,2,0,2);
 	brush moveto(dest2.origin,2,0,2);
-	wait 2;	
+	wait 2;
 	//earthquake(0.1,log.origin,50);
 	hurt delete();
 }
@@ -864,7 +864,7 @@ trap7()
 	hurt3 = getEnt("trap7_hurt3","targetname");
 	spike4 = getEnt("trap7_spikes4","targetname");
 	hurt4 = getEnt("trap7_hurt4","targetname");
-	
+
 	hurt1 enableLinkTo();
 	hurt1 linkTo(spike1);
 	hurt2 enableLinkTo();
@@ -873,26 +873,26 @@ trap7()
 	hurt3 linkTo(spike3);
 	hurt4 enableLinkTo();
 	hurt4 linkTo(spike4);
-	
+
 	trig = getEnt("trap7_trig","targetname");
-	
+
 	trig waittill("trigger");
 	trig delete();
-	
+
 	while(true)
 	{
 		spike1 movez(187,0.6);
 		spike2 movez(187,0.6);
 		spike3 movez(187,0.6);
 		spike4 movez(187,0.6);
-		
+
 		wait 0.8;
-		
+
 		spike1 movez(-187,4);
 		spike2 movez(-187,4);
 		spike3 movez(-187,4);
 		spike4 movez(-187,4);
-		
+
 		wait 5;
 	}
 }
@@ -902,10 +902,10 @@ trap8()
 	bridge = getEnt("trap8_bridge","targetname");
 	fx = getEnt("trap8_fx","targetname");
 	trig = getEnt("trap8_trig","targetname");
-	
+
 	trig waittill("trigger");
 	trig delete();
-	
+
 	//playSound();
 	bridge movez(-9000,5,5,0);
 	wait 5;
@@ -919,14 +919,14 @@ trap9()
 	sound = getEnt("trap9_fx_top","targetname");
 	fx = getEnt("trap9_fx_bottom","targetname");
 	trig = getEnt("trap9_trig","targetname");
-	
+
 	hurt enableLinkTo();
 	hurt linkTo(rock);
 	hurt.dmg = 0;
-	
+
 	trig waittill("trigger");
 	trig delete();
-	
+
 	//playSound();
 	hurt.dmg = 2000;
 	rock movez(-442,0.8,0.8,0);
@@ -946,17 +946,17 @@ trap10()
 	rock2 = getEnt("trap10_rock2","targetname");
 	rock3 = getEnt("trap10_rock3","targetname");
 	trig = getEnt("trap10_trig","targetname");
-	
+
 	trig waittill("trigger");
-	
+
 	rock1 movey(144,1);
 	rock2 movey(-144,1);
 	rock3 movey(144,1);
 	wait 1;
-	
+
 	trig waittill("trigger");
 	trig delete();
-	
+
 	rock1 movey(-144,1);
 	rock2 movey(144,1);
 	rock3 movey(-144,1);
@@ -971,10 +971,10 @@ trap11()
 	rock5 = getEnt("trap11_rock5","targetname");
 	rock6 = getEnt("trap11_rock6","targetname");
 	trig = getEnt("trap11_trig","targetname");
-	
+
 	trig waittill("trigger");
 	trig delete();
-	
+
 	while(true)
 	{
 		rock1 movex(336,2,0.8,0.8);
@@ -984,7 +984,7 @@ trap11()
 		rock5 movex(336,2,0.8,0.8);
 		rock6 movex(-336,2,0.8,0.8);
 		wait 2;
-		
+
 		rock1 movex(-336,2,0.8,0.8);
 		rock2 movex(336,2,0.8,0.8);
 		rock3 movex(-336,2,0.8,0.8);
@@ -1000,7 +1000,7 @@ trap11()
 end()
 {
 	trig = getEnt("endmap_trig","targetname");
-	
+
 	trig waittill("trigger",player);
 	iPrintLnBold("^5"+player.name+" ^6reached the end!");
 	ambientStop(1);
@@ -1031,7 +1031,7 @@ end_old() //old
 	rock5 = getEnt("end_old_r5","targetname");
 	rock6 = getEnt("end_old_r6","targetname");
 	rock7 = getEnt("end_old_r7","targetname");
-    
+
 	while(isDefined(trig))
 	{
 		trig waittill("trigger", player );
@@ -1063,7 +1063,7 @@ end_old() //old
 		}
 		trig delete();
 	}
-	
+
 	brush delete();
 	rock1 movez(272+160,3,1,1);
 	rock2 movez(-128-64,4,1.5,1.5);
@@ -1071,12 +1071,12 @@ end_old() //old
 	rock4 movez(-176-64,6,2.5,2.5);
 	rock5 movez(272+160,7,3,3);
 	rock6 movez(-128-64,8,3.5,3.5);
-	rock7 movez(288,9,4,4);	
+	rock7 movez(288,9,4,4);
 }
 end_sniper()
 {
 	trig = GetEnt("end_sniper_trig","targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger",player);
@@ -1129,9 +1129,9 @@ end_sniper_do(player)
 {
 	jump = getEnt("end_sniper_jumper","targetname");
 	acti = getEnt("end_sniper_acti","targetname");
-	
+
 	finalJumper = player;
-	
+
 	rand = RandomInt(5);
 	if (rand == 0)
 	{
@@ -1153,17 +1153,17 @@ end_sniper_do(player)
 	{
 		weap = "barrett_mp";
 	}
-	
+
 	finalJumper finalRoom(jump,weap,100);
 	if(isDefined(level.activ))
 		level.activ finalRoom(acti,weap,100);
 
 	finalJumper FreezeControls(1);
 	if(isDefined(level.activ))
-		level.activ FreezeControls(1);      
-	
+		level.activ FreezeControls(1);
+
 	wait 0.05;
-	iPrintlnBold("^5" + player.name + " ^4picked a sniper fight!"); 
+	iPrintlnBold("^5" + player.name + " ^4picked a sniper fight!");
 	wait 3;
 	iPrintlnBold("^1 GET READY!");
 	wait 1;
@@ -1181,7 +1181,7 @@ end_sniper_do(player)
 end_deagle()
 {
 	trig = GetEnt("end_deagle_trig","targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger",player);
@@ -1234,19 +1234,19 @@ end_deagle_do(player)
 {
 	jump = getEnt("end_deagle_jumper","targetname");
 	acti = getEnt("end_deagle_acti","targetname");
-	
+
 	finalJumper = player;
-	
+
 	finalJumper finalRoom(jump,"deserteagle_mp",100);
 	if(isDefined(level.activ))
 		level.activ finalRoom(acti,"deserteagle_mp",100);
 
 	finalJumper FreezeControls(1);
 	if(isDefined(level.activ))
-		level.activ FreezeControls(1);      
-	
+		level.activ FreezeControls(1);
+
 	wait 0.05;
-	iPrintlnBold("^5" + player.name + " ^4is a deagle bro!"); 
+	iPrintlnBold("^5" + player.name + " ^4is a deagle bro!");
 	wait 3;
 	iPrintlnBold("^1 GET READY!");
 	wait 1;
@@ -1264,7 +1264,7 @@ end_deagle_do(player)
 end_knife()
 {
 	trig = GetEnt("end_knife_trig","targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger",player);
@@ -1317,9 +1317,9 @@ end_knife_do(player)
 {
 	jump = getEnt("end_knife_jumper","targetname");
 	acti = getEnt("end_knife_acti","targetname");
-	
+
 	finalJumper = player;
-	
+
 	finalJumper finalRoom(jump,"knife_mp",100);
 	if(isDefined(level.activ))
 		level.activ finalRoom(acti,"knife_mp",100);
@@ -1327,9 +1327,9 @@ end_knife_do(player)
 	finalJumper FreezeControls(1);
 	if(isDefined(level.activ))
 		level.activ FreezeControls(1);
-	
+
 	wait 0.05;
-	iPrintlnBold("^5" + player.name + " ^4picked a knife fight!"); 
+	iPrintlnBold("^5" + player.name + " ^4picked a knife fight!");
 	wait 3;
 	iPrintlnBold("^1GET READY!");
 	wait 1;
@@ -1347,9 +1347,9 @@ end_knife_do(player)
 end_islands()
 {
 	trig = GetEnt("end_islands_trig","targetname");
-	
+
 	jumps = [];
-	
+
 	trig1 = getEnt("end_islands_trig1","targetname");
 	trig2 = getEnt("end_islands_trig2","targetname");
 	trig3 = getEnt("end_islands_trig3","targetname");
@@ -1387,7 +1387,7 @@ end_islands()
 	trig35 = getEnt("end_islands_trig35","targetname");
 	trig36 = getEnt("end_islands_trig36","targetname");
 	trig37 = getEnt("end_islands_trig37","targetname");
-	
+
 	trig1.dest = (-5956, 4304, 1860);
 	trig2.dest = (-5072, 3524, 1412);
 	trig3.dest = (-3884, 2500, 1612);
@@ -1425,7 +1425,7 @@ end_islands()
 	trig35.dest = (-3948, -928, 1336);
 	trig36.dest = (-4944, -32, 1656);
 	trig37.dest = (-6312, -168, 1484);
-	
+
 	jumps[0] = trig1;
 	jumps[1] = trig2;
 	jumps[2] = trig3;
@@ -1463,8 +1463,8 @@ end_islands()
 	jumps[34] = trig35;
 	jumps[35] = trig36;
 	jumps[36] = trig37;
-	
-	
+
+
 	while(1)
 	{
 		trig waittill("trigger",player);
@@ -1526,19 +1526,19 @@ end_islands_do(player)
 {
 	jump = getEnt("end_islands_jumper","targetname");
 	acti = getEnt("end_islands_acti","targetname");
-	
+
 	finalJumper = player;
-	
+
 	finalJumper finalRoom(jump,"rpg_mp",100);
 	if(isDefined(level.activ))
 		level.activ finalRoom(acti,"rpg_mp",100);
 
 	finalJumper FreezeControls(1);
 	if(isDefined(level.activ))
-		level.activ FreezeControls(1);      
-	
+		level.activ FreezeControls(1);
+
 	wait 0.05;
-	iPrintlnBold("^5" + player.name + " ^4is an island-jumper!"); 
+	iPrintlnBold("^5" + player.name + " ^4is an island-jumper!");
 	wait 3;
 	iPrintlnBold("^1 GET READY!");
 	wait 1;
@@ -1575,7 +1575,7 @@ end_islands_jumps(who,jumps)
 {
 	who endon("death");
 	who endon("disconnect");
-	
+
 	who.isFlying = false;
 	while(true)
 	{
@@ -1591,12 +1591,12 @@ end_islands_jumps(who,jumps)
 	}
 }
 end_islands_transport(who, where)
-{	
+{
 	who.isFlying = true;
 	air = spawn ("script_model",(0,0,0));
 	air.origin = who.origin;
 	air.angles = who.angles;
-	
+
 	who linkTo(air);
 	air moveTo(where+(0,0,25), 1.75);
 	wait 1.75;
@@ -1611,10 +1611,10 @@ end_islands_transport2(who, where)
 	temp1 = vector_scale(temp1, 0.33);
 	temp2 = (where-who.origin);
 	temp2 = vector_scale(temp2, 0.66);*/
-	
+
 	temp1 = who.origin + vector_scale(where-who.origin,0.33);
 	temp2 = who.origin + vector_scale(where-who.origin,0.66);
-	
+
 	if(who.origin[2]>where[2])
 	{
 		temp1 = temp1 + (0,0,100);
@@ -1625,8 +1625,8 @@ end_islands_transport2(who, where)
 		temp1 = temp1 + (0,0,100);
 		temp2 = temp2 + (0,0,200);
 	}
-	
-	
+
+
 	time = 0.7;
 	air = spawn ("script_model",(0,0,0));
 	air.origin = who.origin;
@@ -1650,7 +1650,7 @@ vector_scale(vec, scale)
 end_jump()
 {
 	trig = GetEnt("end_jump_trig","targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger",player);
@@ -1706,7 +1706,7 @@ end_jump_do(player)
 	pos6 = getEnt("end_jump_pos6","targetname");
 	pos7 = getEnt("end_jump_pos7","targetname");
 	trig = getEnt("end_jump_trig","targetname");
-	
+
 	finalJumper = player;
 	finalJumper finalRoom(pos1,"tomahawk_mp",100);
 	if(isDefined(level.activ))
@@ -1759,7 +1759,7 @@ end_jump_tp()
 	pos6 = getEnt("end_jump_pos6","targetname");
 	pos7 = getEnt("end_jump_pos7","targetname");
 	trig = getEnt("end_jump_falltrig","targetname");
-	
+
 	while(true)
 	{
 		trig waittill("trigger",player);
@@ -1794,7 +1794,7 @@ end_jump_rot()
 	rock4 = getEnt("end_jump_rocks4","targetname");
 	rock5 = getEnt("end_jump_rocks5","targetname");
 	weap = getEnt("end_jump_model","targetname");
-	
+
 	while(true)
 	{
 		rock1 rotateyaw(360,4);
@@ -1809,7 +1809,7 @@ end_jump_rot()
 //
 //append
 //
-getPlayerByNr(nr) 
+getPlayerByNr(nr)
 {
 	players = getAllPlayers();
 	for(i=0;i<players.size;i++)
@@ -1830,7 +1830,7 @@ end_append()
 	trig = getEnt("end_append_trig","targetname");
 	level.finishers = [];
 	i = 0;
-	
+
 	while(1)
 	{
 		trig waittill("trigger",player);
@@ -2039,7 +2039,7 @@ TestClient(team)
 
     while(!isdefined(self.pers["team"]))
         wait .05;
-        
+
     self notify("menuresponse", game["menu_team"], team);
     wait 0.5;
 }

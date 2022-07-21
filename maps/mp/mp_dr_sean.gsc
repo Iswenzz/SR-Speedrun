@@ -1,15 +1,15 @@
 /*
    ___________   _  __
   / __/ __/ _ | / |/ /
- _\ \/ _// __ |/    / 
-/___/___/_/ |_/_/|_/  
-                     
+ _\ \/ _// __ |/    /
+/___/___/_/ |_/_/|_/
+
 
 Map by Sean
 */
 
 main(){
-thread sr\api\_map::createSpawn((-21, -640, 8), 90);
+thread sr\api\_map::createSpawnOrigin((-21, -640, 8), 90);
 	maps\mp\_load::main();
 
 	game["allies"] = "marines";
@@ -80,11 +80,11 @@ startDoor(){
 platform(){
 	platform = getEnt("seanmove","targetname");
 	trig = getEnt("trig_seanmover","targetname");
-	
+
 	trig waittill("trigger", player);
 	trig Delete();
-	
-	while(true){ 
+
+	while(true){
 	platform MoveY(1152, 3);
 	platform waittill("movedone");
 	wait 1;
@@ -99,17 +99,17 @@ platform(){
 
 /* - Fox Stuff added below -
 	Pretty basic traps but you can always edit */
-	
+
 ///////////////////////////////////////////
 ///////////////////////////////////////////
 
 trap1()
 {
-	trig = getEnt("trig_trap1", "targetname"); 
+	trig = getEnt("trig_trap1", "targetname");
 	trap = getEnt("trap1", "targetname");
 
 	trig setHintString("Press [^3use^7] to Activate");
-	
+
 	trig waittill("trigger", player);
 
 	trig delete();
@@ -118,11 +118,11 @@ trap1()
 
 trap2()
 {
-	trig = getEnt("trig_trap2", "targetname"); 
+	trig = getEnt("trig_trap2", "targetname");
 	trap = getEnt("trap2", "targetname");
 
 	trig setHintString("Press [^3use^7] to Activate");
-	
+
 	trig waittill("trigger", player);
 
 	trig delete();
@@ -133,11 +133,11 @@ trap2()
 
 trap3()
 {
-	trig = getEnt("trig_trap3", "targetname"); 
+	trig = getEnt("trig_trap3", "targetname");
 	trap = getEnt("trap3", "targetname");
 
 	trig setHintString("Press [^3use^7] to Activate");
-	
+
 	trig waittill("trigger", player);
 
 	trig delete();
@@ -148,11 +148,11 @@ trap3()
 
 trap4()
 {
-	trig = getEnt("trig_trap4", "targetname"); 
+	trig = getEnt("trig_trap4", "targetname");
 	trap = getEnt("trap4", "targetname");
 
 	trig setHintString("Press [^3use^7] to Activate");
-	
+
 	trig waittill("trigger", player);
 
 	trig delete();
@@ -161,11 +161,11 @@ trap4()
 
 trap5()
 {
-	trig = getEnt("trig_trap5", "targetname"); 
+	trig = getEnt("trig_trap5", "targetname");
 	trap = getEnt("trap5", "targetname");
 
 	trig setHintString("Press [^3use^7] to Activate");
-	
+
 	trig waittill("trigger", player);
 
 	trig delete();
@@ -176,11 +176,11 @@ trap5()
 
 trap6()
 {
-	trig = getEnt("trig_trap6", "targetname"); 
+	trig = getEnt("trig_trap6", "targetname");
 	trap = getEnt("trap6", "targetname");
 
 	trig setHintString("Press [^3use^7] to Activate");
-	
+
 	trig waittill("trigger", player);
 
 	trig delete();
@@ -208,8 +208,8 @@ sec_enter()
 
 sec_exit()
 {
-	trig = getEnt("sec_exit", "targetname"); 
-	tele1 = getEnt("here_1", "targetname"); 
+	trig = getEnt("sec_exit", "targetname");
+	tele1 = getEnt("here_1", "targetname");
 
 	trig setHintString("Press [^3use^7] to Finish Secret!");
 
@@ -229,37 +229,37 @@ knife_room()
 		level.trigknife = getEnt("trig_knife","targetname");
 		acti = getEnt("here_acti","targetname");
 		jump = getEnt("here_jumper","targetname");
-		
+
 		level.trigknife setHintString("Knife");
-		
+
 		level.trigknife waittill("trigger", player);
 
 		iPrintLnBold("^3" + player.name + "^7 has entered Knife");
-		
+
 		level.trigold delete();
 		level.trigsniper delete();
-		
+
 		player setOrigin (jump.origin);
 		player setPlayerAngles (jump.angles);
 
 		level.activ setOrigin (acti.origin);
 		level.activ setPlayerAngles (acti.angles);
-	
+
 		player takeAllWeapons();
 		level.activ takeAllWeapons();
-		
+
 		player freezeControls(1);
 		level.activ freezeControls(1);
-		
+
 		player.maxhealth = 100;
 		player.health = player.maxhealth;
 		level.activ.maxhealth = 100;
-		level.activ.health = level.activ.maxhealth;  
-			
+		level.activ.health = level.activ.maxhealth;
+
 		player takeAllWeapons();
 		player giveWeapon("knife_mp");
 		player switchToWeapon("knife_mp");
-		
+
 		level.activ takeAllWeapons();
 		level.activ giveWeapon("knife_mp");
 		level.activ switchToWeapon("knife_mp");
@@ -267,16 +267,16 @@ knife_room()
 		wait 5;
 		player iPrintLnBold("^7FIGHT!");
 		level.activ iPrintLnBold("^7FIGHT!");
-		
+
 		player freezeControls(0);
 		level.activ freezeControls(0);
-	
+
 		while( isAlive( player ) && isDefined( player ) && player.sessionstate == "playing" )
 		wait 0.5;
-		
+
 		iPrintLnBold("^3" + player.name + "^7 was killed!");
 		wait 1;
-		player = undefined;	
+		player = undefined;
 	}
 }
 
@@ -288,40 +288,40 @@ sniper_room()
 		level.trigsniper = getEnt("trig_sniper","targetname");
 		acti = getEnt("here_acti","targetname");
 		jump = getEnt("here_jumper","targetname");
-		
+
 		level.trigsniper setHintString("sniper");
-		
+
 		level.trigsniper waittill("trigger", player);
 
 		iPrintLnBold("^3" + player.name + "^7 has entered Sniper");
-		
+
 		level.trigold delete();
 		level.trigknife delete();
-		
+
 		player setOrigin (jump.origin);
 		player setPlayerAngles (jump.angles);
 
 		level.activ setOrigin (acti.origin);
 		level.activ setPlayerAngles (acti.angles);
-	
+
 		player takeAllWeapons();
 		level.activ takeAllWeapons();
-		
+
 		player freezeControls(1);
 		level.activ freezeControls(1);
-		
+
 		player.maxhealth = 100;
 		player.health = player.maxhealth;
 		level.activ.maxhealth = 100;
-		level.activ.health = level.activ.maxhealth;  
-			
+		level.activ.health = level.activ.maxhealth;
+
 		player takeAllWeapons();
 		player giveWeapon("remington700_mp");
 		player giveMaxAmmo("remington700_mp");
 		player giveWeapon("m40a3_mp");
 		player giveMaxAmmo("m40a3_mp");
 		player switchToWeapon("m40a3_mp");
-		
+
 		level.activ takeAllWeapons();
 		level.activ giveWeapon("remington700_mp");
 		level.activ giveMaxAmmo("remington700_mp");
@@ -332,16 +332,16 @@ sniper_room()
 		wait 5;
 		player iPrintLnBold("^7FIGHT!");
 		level.activ iPrintLnBold("^7FIGHT!");
-		
+
 		player freezeControls(0);
 		level.activ freezeControls(0);
-	
+
 		while( isAlive( player ) && isDefined( player ) && player.sessionstate == "playing" )
 		wait 0.5;
-		
+
 		iPrintLnBold("^3" + player.name + "^7 was killed!");
 		wait 1;
-		player = undefined;	
+		player = undefined;
 	}
 }
 
@@ -352,19 +352,19 @@ old_room()
 	level.trigold = getEnt("trig_old","targetname");
 	acti = getEnt("here_acti","targetname");
 	door = getEnt("door_old","targetname");
-		
+
 	level.trigold setHintString("Old Way");
-		
+
 	level.trigold waittill("trigger", player);
 
 	ambientStop(1);
 	ambientPlay("mp_time_running_out_losing");
 
 	iPrintLnBold("^3" + player.name + "^7 has entered Old");
-		
+
 	level.trigsniper delete();
 	level.trigknife delete();
-		
+
 	level.activ setOrigin (acti.origin);
 	level.activ setPlayerAngles (acti.angles);
 

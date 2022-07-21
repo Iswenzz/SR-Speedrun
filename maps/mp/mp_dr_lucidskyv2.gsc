@@ -1,5 +1,5 @@
 main() {
-thread sr\api\_map::createSpawn((-74, -9, 0), 360);
+thread sr\api\_map::createSpawnOrigin((-74, -9, 0), 360);
 
 	maps\mp\_load::main();
 
@@ -126,8 +126,8 @@ vip() {
 			players[i] endon( "disconnect" );
 			players[i] detachAll();
          		players[i] setModel( "space_robot_kyle" );
-			players[i] iprintLnBold("^8You ^7are now ^8Space Robot Kyle ^7& ^7recieved a ^8Bloodhound" );	
-			
+			players[i] iprintLnBold("^8You ^7are now ^8Space Robot Kyle ^7& ^7recieved a ^8Bloodhound" );
+
 		}
 	}
 }
@@ -140,7 +140,7 @@ secret_activate() {
     trig waittill( "trigger", player );
     trig delete();
     bounce_thing delete();
-    
+
     iPrintLnBold( "^8Something ^7has happened..." );
     thread secret_step2();
 
@@ -171,7 +171,7 @@ secret_fail() {
 	check6 = getEnt( "origin_secret_check6", "targetname" );
 	check7 = getEnt( "origin_secret_check7", "targetname" );
 	check8 = getEnt( "origin_secret_check8", "targetname" );
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -227,7 +227,7 @@ secret_check_0()
 
 	trigger waittill ( "trigger", player );
 	player iPrintln( "^7Entered ^8Secret" );
-	
+
 	while(1)
 	{
         trigger waittill ( "trigger", player );
@@ -241,7 +241,7 @@ secret_check_0()
 secret_check_1()
 {
 	trigger = getEnt("trig_secret_check1","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -256,7 +256,7 @@ secret_check_1()
 secret_check_2()
 {
 	trigger = getEnt("trig_secret_check2","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -271,7 +271,7 @@ secret_check_2()
 secret_check_3()
 {
 	trigger = getEnt("trig_secret_check3","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -286,7 +286,7 @@ secret_check_3()
 secret_check_5()
 {
 	trigger = getEnt("trig_secret_check5","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -301,7 +301,7 @@ secret_check_5()
 secret_check_6()
 {
 	trigger = getEnt("trig_secret_check6","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -316,7 +316,7 @@ secret_check_6()
 secret_check_7()
 {
 	trigger = getEnt("trig_secret_check7","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -331,7 +331,7 @@ secret_check_7()
 secret_check_8()
 {
 	trigger = getEnt("trig_secret_check8","targetname");
-	
+
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
@@ -356,7 +356,7 @@ secret_finish() {
         // player braxi\_rank::giveRankXp("trap_activation", 1000);
         // player braxi\_rank::giveRankXp("trap_activation", 1000);
          player thread sr\api\_speedrun::finishWay("secret_0");
-    }    
+    }
 }
 
 mover() {
@@ -433,11 +433,11 @@ acti_tele_4() {
     }
 }
 
-spawndoor() 
+spawndoor()
 {
 door = getEnt( "startdoor", "targetname" );
 
-wait 0.1;     
+wait 0.1;
 door delete();
 }
 
@@ -503,14 +503,14 @@ trap2() {
     }
 }
 
-trap3() 
+trap3()
 {
 c3 = getEnt( "trap3_3", "targetname" );
 
 wait 0.1;
 c3 moveX(900,0.1);
 
-   
+
 }
 
 trap4() {
@@ -522,7 +522,7 @@ trap4() {
 
     trig SetHintString( "^7Press ^8&&1 ^7To Activate" );
     trig waittill( "trigger", player );
-    trig SetHintString( "^8Activated" );  
+    trig SetHintString( "^8Activated" );
 
     while( 1 ) {
         spin1 rotateYaw( 360, 3, 1, 1 );
@@ -546,7 +546,7 @@ trap5() {
 
     trig SetHintString( "^7Press ^8&&1 ^7To Activate" );
     trig waittill( "trigger", player );
-    trig SetHintString( "^8Activated" );  
+    trig SetHintString( "^8Activated" );
 
     while( 1 ) {
         plat1 moveZ( -300, 3, 1, 1 );
@@ -643,26 +643,26 @@ old() {
     door moveZ( -92, 3, 1, 1 );
 }
 
-knife() {   
- 
+knife() {
+
     level.knife = getEnt( "trig_knife", "targetname");
     jump = getEnt( "origin_knife_jump", "targetname" );
-    acti = getEnt( "origin_knife_acti", "targetname" ); 
+    acti = getEnt( "origin_knife_acti", "targetname" );
 
     while( 1 ) {
 
         level.inRoom = false;
-        level.knife setHintString( "Press ^8&&1 ^7to choose ^8Knife!" );        
+        level.knife setHintString( "Press ^8&&1 ^7to choose ^8Knife!" );
         level.knife waittill( "trigger", player );
         level.knife setHintString( "^8" + player.name + " ^7is in the knife room with ^8" + level.activ.name + "^7!" );  // change to level.activ
 
             if( !level.inRoom ) {
 
-            if( isDefined( level.knife ) ) 
+            if( isDefined( level.knife ) )
             level.inRoom = true;
             level.inKnife = true;
 
-                level.old delete();    
+                level.old delete();
                 level.bounce delete();
                 level.revolver delete();
 
@@ -679,19 +679,19 @@ knife() {
 
                 player SetPlayerAngles( jump.angles );
                 player setOrigin( jump.origin );
-                player TakeAllWeapons(); 
+                player TakeAllWeapons();
                 player GiveWeapon( "knife_mp" );
                 player switchToWeapon( "knife_mp" );
-                player.maxhealth = 100; 
+                player.maxhealth = 100;
 
                 if( isDefined( level.activ ) && isAlive( level.activ ) ) {
 
                     level.activ setPlayerangles( acti.angles );
                     level.activ setOrigin( acti.origin );
-                    level.activ TakeAllWeapons(); 
+                    level.activ TakeAllWeapons();
                     level.activ GiveWeapon( "knife_mp" );
-                    level.activ switchToWeapon( "knife_mp" ); 
-                    level.activ.maxhealth = 100; 
+                    level.activ switchToWeapon( "knife_mp" );
+                    level.activ.maxhealth = 100;
                 }
 
                 level.activ freezeControls( true );
@@ -706,26 +706,26 @@ knife() {
     }
 }
 
-revolver() {   
- 
+revolver() {
+
     level.revolver = getEnt( "trig_revolver", "targetname");
     jump = getEnt( "origin_revolver_jump", "targetname" );
-    acti = getEnt( "origin_revolver_acti", "targetname" ); 
+    acti = getEnt( "origin_revolver_acti", "targetname" );
 
     while( 1 ) {
 
         level.inRoom = false;
-        level.revolver setHintString( "Press ^8&&1 ^7to choose ^8Revolver!" );        
+        level.revolver setHintString( "Press ^8&&1 ^7to choose ^8Revolver!" );
         level.revolver waittill( "trigger", player );
         level.revolver setHintString( "^8" + player.name + " ^7is in the Revolver room with ^8" + level.activ.name + "^7!" );  // change to level.activ
 
             if( !level.inRoom ) {
 
-            if( isDefined( level.knife ) ) 
+            if( isDefined( level.knife ) )
             level.inRoom = true;
             level.inRevolver = true;
 
-                level.old delete();    
+                level.old delete();
                 level.bounce delete();
                 level.knife delete();
 
@@ -742,21 +742,21 @@ revolver() {
 
                 player SetPlayerAngles( jump.angles );
                 player setOrigin( jump.origin );
-                player TakeAllWeapons(); 
+                player TakeAllWeapons();
                 player GiveWeapon( "bloodhound_mp" );
                 player GiveMaxAmmo( "bloodhound_mp" );
                 player switchToWeapon( "bloodhound_mp" );
-                player.maxhealth = 100; 
+                player.maxhealth = 100;
 
                 if( isDefined( level.activ ) && isAlive( level.activ ) ) {
 
                     level.activ setPlayerangles( acti.angles );
                     level.activ setOrigin( acti.origin );
-                    level.activ TakeAllWeapons(); 
+                    level.activ TakeAllWeapons();
                     level.activ GiveWeapon( "bloodhound_mp" );
                     level.activ GiveMaxAmmo( "bloodhound_mp" );
-                    level.activ switchToWeapon( "bloodhound_mp" ); 
-                    level.activ.maxhealth = 100; 
+                    level.activ switchToWeapon( "bloodhound_mp" );
+                    level.activ.maxhealth = 100;
                 }
 
                 level.activ freezeControls( true );
@@ -772,23 +772,23 @@ revolver() {
 }
 
 bounce() {
- 
+
     level.bounce = getEnt( "trig_bounce", "targetname");
     jump = getEnt( "origin_bounce_jump", "targetname" );
     acti = getEnt( "origin_bounce_acti", "targetname" );
 
     while( 1 ) {
-        
+
         level.inRoom = false;
-        level.bounce setHintString( "Press ^8&&1 ^7to choose ^8Bounce!" );        
+        level.bounce setHintString( "Press ^8&&1 ^7to choose ^8Bounce!" );
         level.bounce waittill( "trigger", player );
         level.bounce setHintString( "^8" + player.name + " ^7is in Bounce battling it out with ^8" + level.activ.name + "^7!" );
-            
+
             if( !level.inRoom ) {
-            
-                if( isDefined( level.bounce ) ) 
+
+                if( isDefined( level.bounce ) )
                 level.inRoom = true;
-                level.inBounce = true;  
+                level.inBounce = true;
 
                 level.old delete();
                 level.knife delete();
@@ -806,8 +806,8 @@ bounce() {
 	    	    }
 
                 player SetPlayerAngles( jump.angles );
-                player setOrigin( jump.origin ); 
-                player TakeAllWeapons(); 
+                player setOrigin( jump.origin );
+                player TakeAllWeapons();
                 player GiveWeapon( "knife_mp" );
                 player switchToWeapon( "knife_mp" );
                 player GiveWeapon( "knife_mp" );
@@ -817,8 +817,8 @@ bounce() {
                 if( isDefined( level.activ ) && isAlive( level.activ ) ) {
 
                     level.activ setPlayerangles( acti.angles );
-                    level.activ setOrigin( acti.origin ); 
-                    level.activ TakeAllWeapons(); 
+                    level.activ setOrigin( acti.origin );
+                    level.activ TakeAllWeapons();
                     level.activ GiveWeapon( "knife_mp" );
                     level.activ switchToWeapon( "knife_mp" );
                     level.activ GiveWeapon( "knife_mp" );
@@ -833,7 +833,7 @@ bounce() {
                 wait 3;
                 player freezeControls( false );
                 level.activ freezeControls( false );
-    
+
                 player waittill( "death" );
 	    	    level.inRoom = false;
         }
@@ -843,7 +843,7 @@ bounce() {
 bounce_weap() {
 
     weapon = getEnt( "trig_bounce_weap", "targetname" );
-    weapon setHintString( "Press ^8&&1 ^7to get a ^8Weapon!" );    
+    weapon setHintString( "Press ^8&&1 ^7to get a ^8Weapon!" );
 
 	while( 1 ) {
 		weapon waittill( "trigger", player );
@@ -858,7 +858,7 @@ bounce_weap() {
 }
 
 bounce_fail() {
-    
+
     jump = getEnt( "origin_bounce_jump", "targetname" );
     acti = getEnt( "origin_bounce_acti", "targetname" );
     trig = getEnt( "trig_bounce_fail", "targetname" );

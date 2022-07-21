@@ -1,10 +1,10 @@
 main()
 {
-thread sr\api\_map::createSpawn((-498, -394, 16), 90);
+thread sr\api\_map::createSpawnOrigin((-498, -394, 16), 90);
 trigger = spawn( "trigger_radius", (-30.625, -839.474, 768.125), 0, 96, 48 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 96;
-	    
+
         thread sr\api\_speedrun::createNormalWays("Normal Way");
                 thread sr\api\_speedrun::createTeleporter((-757.779, 4766.55, 0.124998), 95, 115, (-511, 4861, 790), 270, "freeze");
         thread smrt ();
@@ -36,16 +36,16 @@ level._effect[ "redflash" ] = loadfx( "misc/icbm_post_light_red" );
         maps\mp\_load::main();
 
     ambientPlay("dirt");
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
-	
+
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
@@ -67,11 +67,11 @@ smrt()
 {
 	smrt1 = getentarray("smrt", "targetname");
 	if (smrt1.size > 0)
-	                 
+
 	for(i = 0; i < smrt1.size; i++)
 	{
 		smrt1[i] thread smrt_think();
-	}	
+	}
 }
 
 smrt_think()
@@ -79,7 +79,7 @@ smrt_think()
 	while (1)
 	{
 		self waittill ("trigger",other);
-		
+
 		if(isPlayer(other))
 			other thread smrt_kill(self);
 	}
@@ -89,7 +89,7 @@ smrt_kill(trigger)
 {
 	if(isDefined(self.smrt))
 		return;
-		
+
 	self.smrt = true;
 
 	if(isdefined(self) && self istouching(trigger))
@@ -101,21 +101,21 @@ smrt_kill(trigger)
 
 		radiusDamage(origin, range, maxdamage, mindamage);
 	}
-	
+
 	self.smrt = undefined;
 }
 
 teleport()
 {
 	entTransporter = getentarray( "tele", "targetname" );
- 
+
 	if(isdefined(entTransporter))
 	{
 		for( i = 0; i < entTransporter.size; i++ )
 			entTransporter[i] thread transporter();
 	}
 }
- 
+
 transporter()
 {
 	while(true)
@@ -210,7 +210,7 @@ wait 0.5;
 		kyvadlo1 rotatePitch( 360, 3, 0.4, 0.4  );
 		kyvadlo2 rotatePitch( -360, 3, 0.4, 0.4  );
 		kyvadlo3 rotatePitch( 360, 3, 0.4, 0.4  );
-		wait 3;	
+		wait 3;
 	}
 }
 
@@ -286,11 +286,11 @@ r3 = getent( "pad3" , "targetname" );
         r2 movez (320, cas);
         wait cas;
         r3 movez (320, cas);
-        r1 movez (-320, cas);			
+        r1 movez (-320, cas);
         wait 4;
         r2 movez (-320, cas);
         r3 movez (-320, cas);
-        wait cas;		
+        wait cas;
 		}
 }
 
@@ -304,7 +304,7 @@ r3 = getent( "pad3_2" , "targetname" );
         r1 movez (160, cas);
         wait cas;
 	    r2 movez (160, cas);
-        wait cas;	
+        wait cas;
         r3 movez (160, cas);
 
     while( 1 )
@@ -315,11 +315,11 @@ r3 = getent( "pad3_2" , "targetname" );
         r2 movez (-320, cas);
         wait cas;
         r3 movez (-320, cas);
-        r1 movez (320, cas);			
+        r1 movez (320, cas);
         wait 4;
         r2 movez (320, cas);
         r3 movez (320, cas);
-        wait cas;		
+        wait cas;
 		}
 }
 
@@ -337,11 +337,11 @@ r3 = getent( "pad3_3" , "targetname" );
         r2 movez (-320, cas);
         wait cas;
         r3 movez (-320, cas);
-        r1 movez (320, cas);			
+        r1 movez (320, cas);
         wait 4;
         r2 movez (320, cas);
         r3 movez (320, cas);
-        wait cas;		
+        wait cas;
 		}
 }
 
@@ -357,7 +357,7 @@ fx = PlayLoopedFX( level._effect["redflash"], 1, red.origin );
 if ( randomInt(99)%2 == 0 )
 thread t6_2();
 else
-thread t6_1(); 
+thread t6_1();
 }
 
 t6_2()
@@ -444,7 +444,7 @@ fx = PlayLoopedFX( level._effect["redflash"], 1, red.origin );
 if ( randomInt(99)%2 == 0 )
 thread kill2();
 else
-thread kill1(); 
+thread kill1();
 }
 
 trap10_b()
@@ -455,7 +455,7 @@ t10 waittill ("trigger");
 if ( randomInt(99)%2 == 0 )
 thread kill4();
 else
-thread kill3(); 
+thread kill3();
 }
 
 trap10_c()
@@ -466,7 +466,7 @@ t10 waittill ("trigger");
 if ( randomInt(99)%2 == 0 )
 thread kill6();
 else
-thread kill5(); 
+thread kill5();
 }
 
 kill1()

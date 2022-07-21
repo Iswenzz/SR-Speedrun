@@ -1,13 +1,13 @@
 main()
 {
-thread sr\api\_map::createSpawn((-1244, -59, 4005), 0);
+thread sr\api\_map::createSpawnOrigin((-1244, -59, 4005), 0);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
   thread sr\api\_speedrun::createSecretWays("Secret Way;");
 
-  
+
 maps\mp\_load::main();
 /* [AUTO DELETE] ambientPlay("fullmap"); */
 
@@ -42,7 +42,7 @@ maps\mp\_load::main();
  // thread finalFight2();
  // thread finalFight3();
  // thread finalFight4();
- // thread  [AUTO DELETE] moveknife(); 
+ // thread  [AUTO DELETE] moveknife();
  thread teleportacti();
  thread teleportacti2();
  thread teleportacti3();
@@ -59,9 +59,9 @@ preCacheItem( "mp5_mp" );
  addTriggerToList( "trap2trig" );
  addTriggerToList( "trap3trig" );
  addTriggerToList( "trap4trig" );
- addTriggerToList( "trap5trig" ); 
- addTriggerToList( "trap6trig" ); 
- addTriggerToList( "trap7trig" ); 
+ addTriggerToList( "trap5trig" );
+ addTriggerToList( "trap6trig" );
+ addTriggerToList( "trap7trig" );
 
 }
 
@@ -76,12 +76,12 @@ addTriggerToList( name )
 
 teleport1()
 {
-  trig = getEnt( "spawn", "targetname"); 
+  trig = getEnt( "spawn", "targetname");
   target = getEnt( "spawned", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -90,12 +90,12 @@ teleport1()
 
 teleport2()
 {
-  trig = getEnt( "lifespawn", "targetname"); 
+  trig = getEnt( "lifespawn", "targetname");
   target = getEnt( "lifespawned", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -104,12 +104,12 @@ teleport2()
 
 teleport3()
 {
-  trig = getEnt( "act2", "targetname"); 
+  trig = getEnt( "act2", "targetname");
   target = getEnt( "acti2", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -118,12 +118,12 @@ teleport3()
 
 teleport4()
 {
-  trig = getEnt( "act3", "targetname"); 
+  trig = getEnt( "act3", "targetname");
   target = getEnt( "acti3", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -131,12 +131,12 @@ teleport4()
 
 teleport5()
 {
-  trig = getEnt( "act4", "targetname"); 
+  trig = getEnt( "act4", "targetname");
   target = getEnt( "acti4", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -145,12 +145,12 @@ teleport5()
 
 teleport6()
 {
-  trig = getEnt( "rpgback1", "targetname"); 
+  trig = getEnt( "rpgback1", "targetname");
   target = getEnt( "rpgbacked1", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -159,12 +159,12 @@ teleport6()
 
 teleport7()
 {
-  trig = getEnt( "rpgback2", "targetname"); 
+  trig = getEnt( "rpgback2", "targetname");
   target = getEnt( "rpgbacked2", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -173,12 +173,12 @@ teleport7()
 
 teleport8()
 {
-  trig = getEnt( "secretenter", "targetname"); 
+  trig = getEnt( "secretenter", "targetname");
   target = getEnt( "secretentered", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
 
@@ -189,12 +189,12 @@ player thread sr\api\_speedrun::changeWay("secret_0");
 
 teleport9()
 {
-  trig = getEnt( "secretback", "targetname"); 
+  trig = getEnt( "secretback", "targetname");
   target = getEnt( "secretbacked", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
      }
@@ -203,12 +203,12 @@ teleport9()
 
 teleport10()
 {
-  trig = getEnt( "secretfinish", "targetname"); 
+  trig = getEnt( "secretfinish", "targetname");
   target = getEnt( "secretfinished", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
     player thread sr\api\_speedrun::finishWay("secret_0");
       }
 }
@@ -237,10 +237,10 @@ wait(60);
 
 move11()
 {
- 
+
 move11 = getEnt( "move11", "targetname" );
- 
- 
+
+
 {
 // wait 13;
 move11 movex( 4700, 0.05 );
@@ -252,10 +252,10 @@ move11 movex( 4700, 0.05 );
 
 move2()
 {
- 
+
 move2 = getEnt( "move2", "targetname" );
- 
- 
+
+
 {
 wait 13;
 move2 movex( 4700, 5 );
@@ -269,15 +269,15 @@ move2 movez( 150, 2 );
 trap1()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trap1trig", "targetname" );
 rotate1 = getEnt( "trap1", "targetname" );
 rotate2 = getEnt( "trap11", "targetname" );
 rotate3 = getEnt( "trap111", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
- 
+
 while( 1 )
 {
 
@@ -297,14 +297,14 @@ wait 4;
 trap2()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trap2trig", "targetname" );
 left = getEnt( "trap2", "targetname" );
 right = getEnt( "trap22", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
- 
+
 while( 1 )
 {
 
@@ -328,13 +328,13 @@ wait 1;
 trap3()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trap3trig", "targetname" );
 rotate = getEnt( "trap3", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
- 
+
 while( 1 )
 {
 
@@ -350,14 +350,14 @@ wait 5;
 trap4()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trap4trig", "targetname" );
 ham1 = getEnt( "trap4", "targetname" );
 ham2 = getEnt( "trap44", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
- 
+
 while( 1 )
 {
 
@@ -378,15 +378,15 @@ wait 1;
 trap5()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trap5trig", "targetname" );
 hamm1 = getEnt( "trap5", "targetname" );
 hamm2 = getEnt( "trap55", "targetname" );
 hamm3 = getEnt( "trap555", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
- 
+
 while( 1 )
 {
 
@@ -404,13 +404,13 @@ wait 2;
 trap6()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trap6trig", "targetname" );
 hammm1 = getEnt( "trap6", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
- 
+
 while( 1 )
 {
 
@@ -425,13 +425,13 @@ wait 6;
 trap7()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trap7trig", "targetname" );
 hammmm1 = getEnt( "trap7", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
- 
+
 {
 
 hammmm1 rotateyaw( 360, 3 );
@@ -444,10 +444,10 @@ wait 3;
 
 old()
 {
- 
+
 oldmove = getEnt( "oldmove", "targetname" );
- 
- 
+
+
 {
 
 oldmove movez( -10, 1 );
@@ -462,7 +462,7 @@ finalFight1()
     trig = getEnt( "kniferoom", "targetname" );
     tele_activator = getEnt( "knife_activator", "targetname" );
     tele_jumper = getEnt( "knife_jumper", "targetname" );
-                
+
     level.finalJumper = undefined;
 
     while( 1 )
@@ -475,7 +475,7 @@ finalFight1()
 
         level.finalJumper = player;
         level.finalJumper thread finalMonitor();
-        
+
         level.finalJumper finalRoom( tele_jumper, "knife_mp", 100 );
         /* [AUTO DELETE] iPrintLnBold(player.name+ "^4 has entered the ^2Knife Room"); */
         level.activ finalRoom( tele_activator, "knife_mp", 100 );
@@ -491,7 +491,7 @@ finalFight2()
     trig = getEnt( "rpgroom", "targetname" );
     tele_activator = getEnt( "rpg_activator", "targetname" );
     tele_jumper = getEnt( "rpg_jumper", "targetname" );
-                
+
     level.finalJumper = undefined;
 
     while( 1 )
@@ -504,7 +504,7 @@ finalFight2()
 
         level.finalJumper = player;
         level.finalJumper thread finalMonitor();
-        
+
         level.finalJumper finalRoom( tele_jumper, "winchester1200_mp", 100 );
         /* [AUTO DELETE] iPrintLnBold(player.name+ "^4 has entered the ^2Shotgun Room"); */
         level.activ finalRoom( tele_activator, "winchester1200_mp", 100 );
@@ -519,7 +519,7 @@ finalFight3()
     trig = getEnt( "sniperroom", "targetname" );
     tele_activator = getEnt( "snip_activator", "targetname" );
     tele_jumper = getEnt( "snip_jumper", "targetname" );
-                
+
     level.finalJumper = undefined;
 
     while( 1 )
@@ -532,7 +532,7 @@ finalFight3()
 
         level.finalJumper = player;
         level.finalJumper thread finalMonitor();
-        
+
         level.finalJumper finalRoom( tele_jumper, "m40a3_mp", 100 );
         /* [AUTO DELETE] iPrintLnBold(player.name+ "^4 has entered the ^2Sniper Room"); */
         level.activ finalRoom( tele_activator, "m40a3_mp", 100 );
@@ -547,7 +547,7 @@ finalFight4()
     trig = getEnt( "jumproom", "targetname" );
     tele_activator = getEnt( "jump_activator", "targetname" );
     tele_jumper = getEnt( "jump_jumper", "targetname" );
-                
+
     level.finalJumper = undefined;
 
     while( 1 )
@@ -560,7 +560,7 @@ finalFight4()
 
         level.finalJumper = player;
         level.finalJumper thread finalMonitor();
-        
+
         level.finalJumper finalRoom( tele_jumper, "mp5_mp", 100 );
         /* [AUTO DELETE] iPrintLnBold(player.name+ "^4 has entered the ^2Crazy Weapon Room"); */
         level.activ finalRoom( tele_activator, "mp5_mp", 100 );
@@ -575,19 +575,19 @@ finalFight5()
     trig = getEnt( "oldroom", "targetname" );
     tele_activator = getEnt( "oldactivator", "targetname" );
     tele_jumper = getEnt( "oldjumper", "targetname" );
-                
+
     level.finalJumper = undefined;
 
     while( 1 )
     {
         trig waittill( "trigger", player );
-   
-        if (player.pers["team"] != "allies" ) 
+
+        if (player.pers["team"] != "allies" )
         continue;
 
         level.finalJumper = player;
         level.finalJumper thread finalMonitor();
-        
+
         level.finalJumper finalRoom1( tele_jumper, "tomahawk_mp", 100 );
         /* [AUTO DELETE] iPrintLnBold(player.name+ "^4 has entered the ^2OLD Room"); */
         level.activ finalRoom( tele_activator, "tomahawk_mp", 100 );
@@ -619,7 +619,7 @@ finalRoom( tp, weap, health )
 {
     self SetPlayerAngles( tp.angles );
     self SetOrigin( tp.origin );
-    
+
     self TakeAllWeapons(); //this should be called so it takes away insertion perk in dr 1.2
     /* [AUTO DELETE] self GiveWeapon( weap ); */
     /* [AUTO DELETE] self GiveMaxAmmo( weap ); */
@@ -632,7 +632,7 @@ finalRoom1( tp, weap, health )
 {
     self SetPlayerAngles( tp.angles );
     self SetOrigin( tp.origin );
-    
+
     /* [AUTO DELETE] self GiveWeapon( weap ); */
     /* [AUTO DELETE] self GiveMaxAmmo( weap ); */
 
@@ -642,84 +642,84 @@ finalRoom1( tp, weap, health )
 partymode()
 {
 	for(;;)
-	{	
-		SetExpFog(256, 900, 1, 0, 0, 0.1); 
-        wait .5; 
-        SetExpFog(256, 900, 0, 1, 0, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0, 0, 1, 0.1); 
-		wait .5; 
-        SetExpFog(256, 900, 0.4, 1, 0.8, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0.8, 0, 0.6, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 1, 1, 0.6, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 1, 1, 1, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0, 0, 0.8, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0.2, 1, 0.8, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0.4, 0.4, 1, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0, 0, 0, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0.4, 0.2, 0.2, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0.4, 1, 1, 0.1); 
-        wait .5; 
-        SetExpFog(256, 900, 0.6, 0, 0.4, 0.1); 
-       wait .5; 
-        SetExpFog(256, 900, 1, 0, 0.8, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 1, 1, 0, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0.6, 1, 0.6, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 1, 0, 0, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0, 1, 0, 0.1); 
-        wait .5; 
-        SetExpFog(256, 900, 0, 0, 1, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0.4, 1, 0.8, 0.1); 
-        wait .5; 
-        SetExpFog(256, 900, 0.8, 0, 0.6, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 1, 1, 0.6, 0.1); 
-        wait .5; 
-        SetExpFog(256, 900, 1, 1, 1, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0, 0, 0.8, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0.2, 1, 0.8, 0.1); 
-        wait .5; 
-        SetExpFog(256, 900, 0.4, 0.4, 1, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0, 0, 0, 0.1); 
-        wait .5; 
-        SetExpFog(256, 900, 0.4, 0.2, 0.2, 0.1); 
-       wait .5; 
-        SetExpFog(256, 900, 0.4, 1, 1, 0.1); 
-        wait .5; 
-        SetExpFog(256, 900, 0.6, 0, 0.4, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 1, 0, 0.8, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 1, 1, 0, 0.1); 
-         wait .5; 
-        SetExpFog(256, 900, 0.6, 1, 0.6, 0.1); 
+	{
+		SetExpFog(256, 900, 1, 0, 0, 0.1);
+        wait .5;
+        SetExpFog(256, 900, 0, 1, 0, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0, 0, 1, 0.1);
+		wait .5;
+        SetExpFog(256, 900, 0.4, 1, 0.8, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0.8, 0, 0.6, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 1, 1, 0.6, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 1, 1, 1, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0, 0, 0.8, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0.2, 1, 0.8, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0.4, 0.4, 1, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0, 0, 0, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0.4, 0.2, 0.2, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0.4, 1, 1, 0.1);
+        wait .5;
+        SetExpFog(256, 900, 0.6, 0, 0.4, 0.1);
+       wait .5;
+        SetExpFog(256, 900, 1, 0, 0.8, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 1, 1, 0, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0.6, 1, 0.6, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 1, 0, 0, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0, 1, 0, 0.1);
+        wait .5;
+        SetExpFog(256, 900, 0, 0, 1, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0.4, 1, 0.8, 0.1);
+        wait .5;
+        SetExpFog(256, 900, 0.8, 0, 0.6, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 1, 1, 0.6, 0.1);
+        wait .5;
+        SetExpFog(256, 900, 1, 1, 1, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0, 0, 0.8, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0.2, 1, 0.8, 0.1);
+        wait .5;
+        SetExpFog(256, 900, 0.4, 0.4, 1, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0, 0, 0, 0.1);
+        wait .5;
+        SetExpFog(256, 900, 0.4, 0.2, 0.2, 0.1);
+       wait .5;
+        SetExpFog(256, 900, 0.4, 1, 1, 0.1);
+        wait .5;
+        SetExpFog(256, 900, 0.6, 0, 0.4, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 1, 0, 0.8, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 1, 1, 0, 0.1);
+         wait .5;
+        SetExpFog(256, 900, 0.6, 1, 0.6, 0.1);
 	}
 }
 
 
 moveknife()
 {
- 
+
 moveknife = getEnt( "knifemove", "targetname" );
- 
- 
+
+
 {
 wait 1;
 moveknife rotateroll( 180, 1 );
@@ -730,13 +730,13 @@ moveknife rotateroll( 180, 1 );
 
 teleportacti()
 {
-  trig = getEnt( "actback2", "targetname"); 
+  trig = getEnt( "actback2", "targetname");
   target = getEnt( "actbacked", "targetname");
 
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -745,13 +745,13 @@ teleportacti()
 
 teleportacti2()
 {
-  trig = getEnt( "actback3", "targetname"); 
+  trig = getEnt( "actback3", "targetname");
   target = getEnt( "actbacked3", "targetname");
 
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -760,13 +760,13 @@ teleportacti2()
 
 teleportacti3()
 {
-  trig = getEnt( "actback5", "targetname"); 
+  trig = getEnt( "actback5", "targetname");
   target = getEnt( "actbacked5", "targetname");
 
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -775,13 +775,13 @@ teleportacti3()
 
 teleportold()
 {
-  trig = getEnt( "oldenter", "targetname"); 
+  trig = getEnt( "oldenter", "targetname");
   target = getEnt( "oldentered", "targetname");
 
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
      /* [AUTO DELETE] iPrintLnBold(player.name+ "^4 has entered the ^2OLD Room"); */
@@ -791,10 +791,10 @@ teleportold()
 
 ballrotate1()
 {
- 
+
 ballrotate1 = getEnt( "rotateball1", "targetname" );
 
- 
+
 while( 1 )
 {
 
@@ -807,10 +807,10 @@ wait 2;
 
 ballrotate2()
 {
- 
+
 ballrotate2 = getEnt( "rotateball2", "targetname" );
 
- 
+
 while( 1 )
 {
 
@@ -823,10 +823,10 @@ wait 2;
 
 ballrotate3()
 {
- 
+
 ballrotate3 = getEnt( "rotateball3", "targetname" );
 
- 
+
 while( 1 )
 {
 
@@ -839,10 +839,10 @@ wait 2;
 
 ballrotate4()
 {
- 
+
 ballrotate4 = getEnt( "rotateball4", "targetname" );
 
- 
+
 while( 1 )
 {
 
@@ -855,13 +855,13 @@ wait 4;
 
 secretroom()
 {
- 
+
 trig = getEnt( "secretdoortrig", "targetname" );
 secretdoor = getEnt( "secretdoor", "targetname" );
- 
+
 // trig waittill ("trigger");
 // trig delete();
- 
+
 {
 
 /* [AUTO DELETE] ambientPlay("secret"); */
@@ -873,7 +873,7 @@ wait 2;
 }
 
 
- 
+
 new_ending_hud( align, fade_in_time, x_off, y_off )
 {
         hud = newClientHudElem( self );
@@ -884,14 +884,14 @@ new_ending_hud( align, fade_in_time, x_off, y_off )
         hud.alignY = "middle";
         hud.horzAlign = align;
         hud.vertAlign = "middle";
- 
+
         hud.fontScale = 1.6;
- 
+
         hud.color = (1, 1, 1);
         hud.font = "objective";
         hud.glowColor = (0.8, 0.3, 0.8);
         hud.glowAlpha = 0.5;
- 
+
         hud.alpha = 1;
         hud fadeovertime( fade_in_time );
         hud.alpha = 1;
@@ -900,7 +900,7 @@ new_ending_hud( align, fade_in_time, x_off, y_off )
         return hud;
 }
 
- 
+
 drawInformationUp( start_offset, movetime, mult, text )
 {
         start_offset *= mult;
@@ -914,12 +914,12 @@ drawInformationUp( start_offset, movetime, mult, text )
         wait 5;
         hud moveOverTime( movetime );
         hud.x = start_offset * -1;
- 
+
         wait movetime;
         hud destroy();
 }
 
- 
+
 drawInformationDown( start_offset, movetime, mult, text )
 {
         start_offset *= mult;
@@ -933,7 +933,7 @@ drawInformationDown( start_offset, movetime, mult, text )
         wait 5;
         hud moveOverTime( movetime );
         hud.x = start_offset * -1;
- 
+
         wait movetime;
         hud destroy();
 }

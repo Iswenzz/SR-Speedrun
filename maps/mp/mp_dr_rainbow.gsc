@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-1019.875, -7168, 4.125), 0);
+thread sr\api\_map::createSpawnOrigin((-1019.875, -7168, 4.125), 0);
 	// ambientPlay("ambient_mp_dr_rainbow");
 
 	game["allies"] = "marines";
@@ -18,7 +18,7 @@ thread sr\api\_map::createSpawn((-1019.875, -7168, 4.125), 0);
 	setdvar("compassmaxrange","1800");
 	setDvar("bg_falldamagemaxheight", 9999999999 );
 	setDvar("bg_falldamageminheight", 999999999 );
-	
+
 	thread sr\api\_speedrun::createNormalWays("^2Easy Way;^2Easy+ Way;^3Inter Way;^3Inter+ Way;^1Hard Way;");
 	thread sr\api\_speedrun::createSecretWays("^2Easy Secret;^2Easy+ Secret;^3Inter Secret;^3Inter+ Secret;^1Hard Secret;");
 	thread sr\api\_speedrun::createTeleporter((-2500.17, 4086.94, -159.875), 110, 15, (-4834, 4309, -356), 180, "freeze", "blue", "normal_1");
@@ -45,15 +45,15 @@ thread sr\api\_map::createSpawn((-1019.875, -7168, 4.125), 0);
 		// thread adV();
 		// thread adJ();
 		// thread adO();
-		
-		
-		
+
+
+
 	// thread tb1();
 	// thread tb2();
 	// thread tb3();
 	// thread tb4();
 	// thread string();
-	
+
 	// thread tv1();
 	thread tv2();
 	// thread tv3();
@@ -66,9 +66,9 @@ thread sr\api\_map::createSpawn((-1019.875, -7168, 4.125), 0);
 	// thread tj2();
 	// thread to1();
 	// thread to2();
-	
-	
-	
+
+
+
 	// thread First();
 	// thread games();
 	// thread Death();
@@ -85,7 +85,7 @@ thread sr\api\_map::createSpawn((-1019.875, -7168, 4.125), 0);
 	// thread be12();
 	// thread be22();
 	// thread bounce_sniper();
-	
+
 	thread secret_ez();
 	thread secret_ezz();
 	thread secret_hard();
@@ -96,12 +96,12 @@ thread sr\api\_map::createSpawn((-1019.875, -7168, 4.125), 0);
 	thread secret_hard2();
 	thread secret_i2();
 	thread secret_ii2();
-	
+
 	// thread secret_a();
 	// thread secret_a2();
-	
-	
-	
+
+
+
 		// addTriggerToList("tb1pt");
 		// addTriggerToList("tb2pt");
 		// addTriggerToList("tb3pt");
@@ -113,10 +113,10 @@ thread sr\api\_map::createSpawn((-1019.875, -7168, 4.125), 0);
 		// addTriggerToList("tj2pt");
 		// addTriggerToList("to1t");
 		// addTriggerToList("to2t");
-		
+
 	// thread musictrig();
 	// thread message2();
-	
+
 	// if(!isdefined(level.music))
 	// 	level.music=[];
 
@@ -165,7 +165,7 @@ transporter()
 	self waittill( "disconnect" );
 	self cleanUp();
 }
- 
+
 	onDeath()
 {
 	self endon( "disconnect" );
@@ -181,19 +181,19 @@ musicMenu()
 	self endon( "spawned" );
 	self endon( "joined_spectators" );
 	self endon( "music thread terminated" );
- 
+
 	self thread onDeath();
 	self thread onDisconnect();
-	
+
 	self.hud_music = [];
 	self.selection = 0;
- 
+
 	// create huds
 	i = 0;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 160, 200, 0.6, "left", "top", 2 );
 	self.hud_music[i].sort = 880;
 	self.hud_music[i] setShader( "black", 320, 160 );
-	
+
 	i++;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 210, 204, 0.93, "left", "top", 1.8 );
 	self.hud_music[i].sort = 884;
@@ -201,14 +201,14 @@ musicMenu()
 	self.hud_music[i].glowalpha=1;
 	if(isdefined(level.randomcolor))
 		self.hud_music[i].glowcolor=level.randomcolor;
-	else 
+	else
 		self.hud_music[i].glowcolor=(1,0,0);
 
 	i++;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 250, 360, 1, "center", "bottom", 1.4 );
 	self.hud_music[i].sort = 886;
 	self.hud_music[i] setText("Scroll: ^3[{+attack}] ^7| Select: ^3[{+activate}] ^7| Close: ^3[{+frag}]");
- 
+
 	for( j = 0; j < level.music.size; j++ )
 	{
 		i++;
@@ -218,31 +218,31 @@ musicMenu()
 		self.hud_music[i].glowalpha=1;
 		if(isdefined(level.randomcolor))
 			self.hud_music[i].glowcolor=level.randomcolor;
-		else 
+		else
 			self.hud_music[i].glowcolor=(1,0,0);
- 
+
 		entry = level.music[j];
 		self.hud_music[i] setText(entry["song"]);
 	}
- 
+
 	i++;
 	self.hud_music[self.hud_music.size] = braxi\_mod::addTextHud( self, 167, 230, 0.4, "left", "top", 1.4 );
 	self.hud_music[i].sort = 881;
 	indicator = self.hud_music[self.hud_music.size-1];
 	indicator setShader( "white", 306, 17 );
- 
+
 	while(self.sessionstate == "playing")
 	{
 		wait 0.1;
- 
+
 		if(self attackButtonPressed())
 		{
 			self.hud_music[3+self.selection].alpha = 0.93;
- 
+
 			self.selection++;
 			if( self.selection >= level.music.size )
 				self.selection = 0;
- 
+
 			item = self.hud_music[3+self.selection];
 			item.alpha = 1;
 			indicator.y = item.y;
@@ -260,15 +260,15 @@ musicMenu()
 			break;
 		}
 	}
- 
+
 	self cleanUp();
 }
- 
+
 	musictrig()
 {
 	trig = getEnt ("musictrig", "targetname");
 	trig setHintString("^7Press ^3[USE] ^7to choose Music");
- 
+
 	trig waittill("trigger",player);
 	player freezecontrols(1);
 	trig delete();
@@ -280,8 +280,8 @@ musicMenu()
 	if( !isDefined( self ) )
 		return;
 
-	
- 
+
+
 	if( isDefined( self.hud_music ) )
 	{
 		for( i = 0; i < self.hud_music.size; i++ )
@@ -326,29 +326,29 @@ Br11()
 {
 	o2=getent("o2","targetname");
 	p2=getent("p2","targetname");
-	
+
     level waittill("round_started");
 	o2 RotatePitch(15, 0.1);
-	p2 RotatePitch(15, 0.1);	
-	
+	p2 RotatePitch(15, 0.1);
+
 }
 
 Br12()
 {
 	ao2=getent("ao2","targetname");
 	ap2=getent("ap2","targetname");
-	
+
 	level waittill("round_started");
 	ao2 RotatePitch(15, 0.1);
 	ap2 RotatePitch(15, 0.1);
-		
+
 }
 
 Br21()
 {
 	r3p1=getent("r3p1","targetname");
 	r3o1=getent("r3o1","targetname");
-	
+
 	level waittill("round_started");
 
     r3p1 MoveX(-1000,0.1);
@@ -356,20 +356,20 @@ Br21()
 	wait 0.2;
 	r3p1 RotateYaw(270,0.1);
 	r3o1 RotateYaw(270,0.1);
-	
+
 }
 
 Br22()
 {
 	r3p2=getent("r3p2","targetname");
 	r3o2=getent("r3o2","targetname");
-	
+
     level waittill("round_started");
 
 	r3p2 RotatePitch(15,0.1);
 	r3o2 RotatePitch(15,0.1);
-	
-	
+
+
 }
 
 Rpb1()
@@ -466,7 +466,7 @@ Rpb22()
 	rpb2p4 moveX(4050,0.1);
 	rpb2p5 moveX(5500,0.1);
 	rpb2p6 moveX(6050,0.1);
-	
+
 }
 
 Rpb23()
@@ -478,7 +478,7 @@ Rpb23()
 	wait 4;
 	while (1)
 	{
-		
+
 		rpb2p3 show();
 		rpb2p3 MoveTo(rpb2o2.origin, 10);
 		wait 12;
@@ -486,9 +486,9 @@ Rpb23()
 		rpb2p3 MoveTo(rpb2o1.origin, .1);
 		wait 2;
 	}
-	
-	
-	
+
+
+
 }
 
 
@@ -501,7 +501,7 @@ Rpb24()
 	wait 6;
 	while (1)
 	{
-		
+
 		rpb2p4 show();
 		rpb2p4 MoveTo(rpb2o2.origin, 10);
 		wait 12;
@@ -509,9 +509,9 @@ Rpb24()
 		rpb2p4 MoveTo(rpb2o1.origin, .1);
 		wait 2;
 	}
-	
-	
-	
+
+
+
 }
 
 
@@ -524,7 +524,7 @@ Rpb25()
 	wait 8;
 	while (1)
 	{
-		
+
 		rpb2p5 show();
 		rpb2p5 MoveTo(rpb2o2.origin, 10);
 		wait 12;
@@ -532,9 +532,9 @@ Rpb25()
 		rpb2p5 MoveTo(rpb2o1.origin, .1);
 		wait 2;
 	}
-	
-	
-	
+
+
+
 }
 
 Rpb26()
@@ -546,7 +546,7 @@ Rpb26()
 	wait 10;
 	while (1)
 	{
-		
+
 		rpb2p6 show();
 		rpb2p6 MoveTo(rpb2o2.origin, 10);
 		wait 12;
@@ -554,9 +554,9 @@ Rpb26()
 		rpb2p6 MoveTo(rpb2o1.origin, .1);
 		wait 2;
 	}
-	
-	
-	
+
+
+
 }
 
 Rpb27()
@@ -568,7 +568,7 @@ Rpb27()
 	wait 12;
 	while (1)
 	{
-		
+
 		rpb2p7 show();
 		rpb2p7 MoveTo(rpb2o2.origin, 10);
 		wait 12;
@@ -576,28 +576,28 @@ Rpb27()
 		rpb2p7 MoveTo(rpb2o1.origin, .1);
 		wait 2;
 	}
-	
-	
-	
+
+
+
 }
 
 Rpb4()
 {
 	rpb4p1=getent("rpb4p1","targetname");
 	rpb4p2=getent("rpb4p2","targetname");
-		
+
 }
 
 rpdb()
 {
-	
+
 	rpdb1t=getent("rpdb1t","targetname");
 	rpdb2t=getent("rpdb2t","targetname");
 	rpdb3t=getent("rpdb3t","targetname");
 	rpdb1=getent("rpdb1","targetname");
 	rpdb2=getent("rpdb2","targetname");
 	rpdb3=getent("rpdb3","targetname");
-	
+
     level waittill ("round_started");
 
 	rpdb1t delete();
@@ -612,14 +612,14 @@ rpdb()
 
 rpdv()
 {
-	
+
 	rpdv1t=getent("rpdv1t","targetname");
 	rpdv2t=getent("rpdv2t","targetname");
 	rpdv3t=getent("rpdv3t","targetname");
 	rpdv1=getent("rpdv1","targetname");
 	rpdv2=getent("rpdv2","targetname");
 	rpdv3=getent("rpdv3","targetname");
-	
+
 	level waittill ("round_started");
 
 	rpdv1t delete();
@@ -635,7 +635,7 @@ adB()
 {
 	adb=getent("adb","targetname");
 	adbt=getent("adbt","targetname");
-	
+
 	adbt SetHintString("^3[USE]");
 	adbt waittill("trigger");
 		adb RotateYaw(90, 3, 0, 1);
@@ -646,7 +646,7 @@ adV()
 {
 	adv=getent("adv","targetname");
 	advt=getent("advt","targetname");
-	
+
 	advt SetHintString("^3[USE]");
 	advt waittill("trigger");
 		adv RotateYaw(90, 3, 0, 1);
@@ -657,7 +657,7 @@ adJ()
 {
 	adj=getent("adj","targetname");
 	adjt=getent("adjt","targetname");
-	
+
 	adjt SetHintString("^3[USE]");
 	adjt waittill("trigger");
 		adj RotateYaw(90, 3, 0, 1);
@@ -668,7 +668,7 @@ adO()
 {
 	ado=getent("ado","targetname");
 	adot=getent("adot","targetname");
-	
+
 	adot SetHintString("^3[USE]");
 	adot waittill("trigger");
 		ado RotateYaw(90, 3, 0, 1);
@@ -709,11 +709,11 @@ tb3()
 	tb3h=getent("tb3h","targetname");
 	tb3h enablelinkto();
 	tb3h linkTo(tb3p);
-	
+
 	tb3pt SetHintString("^3[USE]");
 	tb3pt waittill("trigger");
 	tb3pt delete();
-	
+
 	tb3p MoveZ(160, 2, 0, 1);
 	wait 4;
 	tb3p MoveZ(-160, 3, 2, 0);
@@ -724,11 +724,11 @@ tb4()
 {
 	tb4p=getent("tb4p","targetname");
 	tb4pt=getent("tb4pt","targetname");
-	
+
 	tb4pt SetHintString("^3[USE]");
 	tb4pt waittill("trigger");
 	tb4pt delete();
-	
+
 	tb4p RotatePitch(60, 3, 0, 2.5);
 	wait 6;
 	tb4p RotatePitch(-60, 4, 0, 2);
@@ -740,11 +740,11 @@ tv1()
 	tv1p=getent("tv1p","targetname");
 	tv1p2=getent("tv1p2","targetname");
 	tv1pt=getent("tv1pt","targetname");
-	
+
 	tv1pt SetHintString("^3[USE]");
 	tv1pt waittill("trigger");
 	tv1pt delete();
-	
+
 	while(1)
 	{
 		tv1p movey(-448, 4, 2, 2);
@@ -753,23 +753,23 @@ tv1()
 		tv1p movey(448, 4, 2, 2);
 		tv1p2 movey(-448, 4, 2, 2);
 		wait 4;
-		
+
 	}
-	
+
 }
 
 
 tv2()
 {
 	tv2p2=getent("tv2p2","targetname");
-	
+
 	level waittill("round_started");
 
 	tv2p2 RotatePitch(390,0.1);
 	wait 0.1;
 	tv2p2 moveZ(-150,0.1);
-	
-	
+
+
 }
 
 tv3()
@@ -777,11 +777,11 @@ tv3()
 	tv3p1=getent("tv3p1","targetname");
 	tv3p2=getent("tv3p2","targetname");
 	tv3pt=getent("tv3pt","targetname");
-	
+
 	tv3pt SetHintString("^3[USE]");
 	tv3pt waittill("trigger");
 	tv3pt delete();
-	
+
 	while(1)
 	{
 	tv3p1 moveZ(-256, 2, 0, 1);
@@ -791,7 +791,7 @@ tv3()
 	tv3p2 moveZ(192, 2, 0, 1);
 	wait 6;
 	}
-	
+
 }
 
 string()
@@ -811,10 +811,10 @@ rpv1s()
 	rpv1p=getent("rpv1p", "targetname");
 	rpv1 waittill("trigger");
 	rpv1 delete();
-	
+
 	while(1)
 	{
-	rpv1p movez(256, 3, 1, 1);	
+	rpv1p movez(256, 3, 1, 1);
 	wait 3;
 	rpv1p movez(-256, 3, 1, 1);
 	wait 3;
@@ -827,12 +827,12 @@ rpv2s()
 	rpv2p=getent("rpv2p", "targetname");
 	rpv2 waittill("trigger");
 	rpv2 delete();
-	
+
 	while(1)
 	{
-	rpv2p moveX(-2048, 8, 2, 2);	
+	rpv2p moveX(-2048, 8, 2, 2);
 	wait 8;
-	rpv2p moveX(2048, 8, 2, 2);	
+	rpv2p moveX(2048, 8, 2, 2);
 	wait 8;
 	}
 }
@@ -840,7 +840,7 @@ rpv2s()
 rpv3s()
 {
 	rpv3p=getent("rpv3p", "targetname");
-	
+
 	level waittill("round_started");
 
 	rpv3p RotatePitch(390,0.1);
@@ -853,10 +853,10 @@ rpj1()
 	rpj1t=getent("rpj1t", "targetname");
 	rpj1t waittill("trigger");
 	rpj1t delete();
-	
+
 	while(1)
 	{
-	rpj1p movex(-2880, 7, 1, 1);	
+	rpj1p movex(-2880, 7, 1, 1);
 	wait 9;
 	rpj1p movex(2880, 7, 1, 1);
 	wait 14;
@@ -867,7 +867,7 @@ rpj2()
 {
 	rpj2p=getent("rpj2p", "targetname");
 	rpj2o2=getent("rpj2o2", "targetname");
-	
+
 	level waittill("round_started");
 
 	rpj2p moveto(rpj2o2.origin,0.1);
@@ -884,7 +884,7 @@ tj2()
 	tj2pt SetHintString("^3[USE]");
 	tj2pt waittill("trigger");
 	tj2pt delete();
-	
+
 	while(1)
 	{
 	tj2p1 MoveZ(-460, 2, .5, .5);
@@ -908,7 +908,7 @@ tj1()
 	tj1pt SetHintString("^3[USE]");
 	tj1pt waittill("trigger");
 	tj1pt delete();
-	
+
 	while(1)
 	{
 	tj1p RotateYaw(360, 5, 1, 1);
@@ -926,7 +926,7 @@ to1()
 	to1t SetHintString("^3[USE]");
 	to1t waittill("trigger");
 	to1t delete();
-	
+
 	while(1)
 	{
 	to1p RotateYaw(360, 5, 1, 1);
@@ -941,27 +941,27 @@ to2()
 	to2t SetHintString("^3[USE]");
 	to2t waittill("trigger");
 	to2t delete();
-	
+
 
 	to2p MoveY(912, 2, .5, .5);
 	wait 6;
 	to2p MoveY(-912, 5, 1, 1);
-	
-	
+
+
 }
 
 GetActivator()
 {
 	players = getentarray( "player", "classname" );
-	
+
 	for(i = 0;i < players.size;i++)
 	{
 		player = players[i];
-		
+
 		if( isdefined( player ) && isplayer( player ) && isalive( player ) && player.pers["team"] == "axis"	)
 			return player;
 	}
-	
+
 	return "Noactivator";
 }
 
@@ -998,12 +998,12 @@ Death()
 
 sniper()
 {
-        trig = getEnt( "sniper_trig", "targetname"); 
+        trig = getEnt( "sniper_trig", "targetname");
 		old_trig = getEnt( "old_trig", "targetname");
-		
+
         jumper = getEnt( "sniper1", "targetname" );
-        acti = getEnt( "sniper2", "targetname" ); 
-	
+        acti = getEnt( "sniper2", "targetname" );
+
 	while(1)
 	{
 		trig waittill("trigger",player);
@@ -1012,24 +1012,24 @@ sniper()
 		iprintlnbold("^4" + player.name + "^7 entered the sniper room");
 		player SetOrigin(jumper.origin);
 		player SetPlayerAngles(jumper.angles);
-		player TakeAllWeapons(); 
+		player TakeAllWeapons();
 		player GiveWeapon("remington700_mp");
 		player GiveMaxAmmo("remington700_mp");
 		player GiveWeapon("m40a3_mp");
 		player GiveMaxAmmo("m40a3_mp");
 		player SwitchToWeapon("m40a3_mp");
 		activator = GetActivator();
-		
-	
+
+
 			activator setPlayerangles( acti.angles );
-			activator setOrigin( acti.origin ); 
-			activator TakeAllWeapons(); 
-			activator GiveWeapon( "m40a3_mp" ); 
-			activator giveMaxAmmo( "m40a3_mp" ); 
+			activator setOrigin( acti.origin );
+			activator TakeAllWeapons();
+			activator GiveWeapon( "m40a3_mp" );
+			activator giveMaxAmmo( "m40a3_mp" );
 			activator GiveWeapon( "remington700_mp" );
 			activator giveMaxAmmo( "remington700_mp" );
             activator SwitchToWeapon( "m40a3_mp" );
-         
+
 		}
 	}
 
@@ -1041,10 +1041,10 @@ old()
 		bounce_trig = getEnt( "bounce_trig", "targetname");
 		surf_trig = getEnt( "surf_trig", "targetname");
 		knife_trig = getEnt( "knife_trig", "targetname");
-		
+
         jumper = getEnt( "old1", "targetname" );
-        acti = getEnt( "old2", "targetname" ); 
-	
+        acti = getEnt( "old2", "targetname" );
+
 	while(1)
 	{
 		trig waittill("trigger",player);
@@ -1055,26 +1055,26 @@ old()
 		iprintlnbold("^4" + player.name + "^7 entered the old room");
 		player SetOrigin(jumper.origin);
 		player SetPlayerAngles(jumper.angles);
-		
-		
+
+
 		activator = GetActivator();
-	
+
 			activator setPlayerangles( acti.angles );
-			activator setOrigin( acti.origin ); 
-			
-         
+			activator setOrigin( acti.origin );
+
+
 		}
 	}
 
 
 surf()
 {
-        trig = getEnt( "surf_trig", "targetname"); 
+        trig = getEnt( "surf_trig", "targetname");
 		old_trig = getEnt( "old_trig", "targetname");
-		
+
         jumper = getEnt( "surf1", "targetname" );
-        acti = getEnt( "surf2", "targetname" ); 
-	
+        acti = getEnt( "surf2", "targetname" );
+
 	while(1)
 	{
 		trig waittill("trigger",player);
@@ -1083,14 +1083,14 @@ surf()
 		iprintlnbold("^4" + player.name + "^7 entered the surf room");
 		player SetOrigin(jumper.origin);
 		player SetPlayerAngles(jumper.angles);
-		
-		
+
+
 		activator = GetActivator();
-	
+
 			activator setPlayerangles( acti.angles );
-			activator setOrigin( acti.origin ); 
-			
-         
+			activator setOrigin( acti.origin );
+
+
 		}
 	}
 
@@ -1104,7 +1104,7 @@ surf_end_1()
 		trig waittill("trigger", player);
 		player setOrigin(ori.origin);
 		player setPlayerangles(ori.origin);
-		player TakeAllWeapons(); 
+		player TakeAllWeapons();
 		player GiveWeapon("remington700_mp");
 		player GiveMaxAmmo("remington700_mp");
 		player GiveWeapon("m40a3_mp");
@@ -1112,7 +1112,7 @@ surf_end_1()
 		player SwitchToWeapon("m40a3_mp");
 		wait .1;
 	}
-	
+
 }
 
 surf_end_2()
@@ -1124,7 +1124,7 @@ surf_end_2()
 		trig waittill("trigger", player);
 		player setOrigin(ori.origin);
 		player setPlayerangles(ori.origin);
-		player TakeAllWeapons(); 
+		player TakeAllWeapons();
 		player GiveWeapon("remington700_mp");
 		player GiveMaxAmmo("remington700_mp");
 		player GiveWeapon("m40a3_mp");
@@ -1132,18 +1132,18 @@ surf_end_2()
 		player SwitchToWeapon("m40a3_mp");
 		wait .1;
 	}
-	
+
 }
 
 
 bounce()
 {
-        trig = getEnt( "bounce_trig", "targetname"); 
+        trig = getEnt( "bounce_trig", "targetname");
 		old_trig = getEnt( "old_trig", "targetname");
-		
+
         jumper = getEnt( "bounce1", "targetname" );
-        acti = getEnt( "bounce2", "targetname" ); 
-	
+        acti = getEnt( "bounce2", "targetname" );
+
 	while(1)
 	{
 		trig waittill("trigger",player);
@@ -1152,36 +1152,36 @@ bounce()
 		iprintlnbold("^4" + player.name + "^7 entered the bounce room");
 		player SetOrigin(jumper.origin);
 		player SetPlayerAngles(jumper.angles);
-		player TakeAllWeapons(); 
-        player GiveWeapon( "knife_mp" ); 
+		player TakeAllWeapons();
+        player GiveWeapon( "knife_mp" );
         player GiveWeapon( "deserteagle_mp" );
 		player SetWeaponAmmoClip("deserteagle_mp", 0);
         player SetWeaponAmmoStock("deserteagle_mp", 0);
-        player switchToWeapon( "deserteagle_mp" ); 
-		
+        player switchToWeapon( "deserteagle_mp" );
+
 		activator = GetActivator();
-	
+
 			activator setPlayerangles( acti.angles );
-			activator setOrigin( acti.origin ); 
-			activator TakeAllWeapons(); 
-		    activator GiveWeapon( "knife_mp" ); 
+			activator setOrigin( acti.origin );
+			activator TakeAllWeapons();
+		    activator GiveWeapon( "knife_mp" );
 			activator GiveWeapon( "deserteagle_mp" );
 			activator SetWeaponAmmoClip("deserteagle_mp", 0);
 			activator SetWeaponAmmoStock("deserteagle_mp", 0);
-			activator switchToWeapon( "deserteagle_mp" ); 
-         
+			activator switchToWeapon( "deserteagle_mp" );
+
 		}
 	}
 
 
 knife()
 {
-        trig = getEnt( "knife_trig", "targetname"); 
+        trig = getEnt( "knife_trig", "targetname");
 		old_trig = getEnt( "old_trig", "targetname");
-		
+
         jumper = getEnt( "knife1", "targetname" );
-        acti = getEnt( "knife2", "targetname" ); 
-	
+        acti = getEnt( "knife2", "targetname" );
+
 	while(1)
 	{
 		trig waittill("trigger",player);
@@ -1190,24 +1190,24 @@ knife()
 		iprintlnbold("^4" + player.name + "^7 entered the knife room");
 		player SetOrigin(jumper.origin);
 		player SetPlayerAngles(jumper.angles);
-		player TakeAllWeapons(); 
-        player GiveWeapon( "knife_mp" ); 
+		player TakeAllWeapons();
+        player GiveWeapon( "knife_mp" );
         player GiveWeapon( "deserteagle_mp" );
 		player SetWeaponAmmoClip("deserteagle_mp", 0);
         player SetWeaponAmmoStock("deserteagle_mp", 0);
-        player switchToWeapon( "deserteagle_mp" ); 
-		
+        player switchToWeapon( "deserteagle_mp" );
+
 		activator = GetActivator();
-	
+
 			activator setPlayerangles( acti.angles );
-			activator setOrigin( acti.origin ); 
-			activator TakeAllWeapons(); 
-		    activator GiveWeapon( "knife_mp" ); 
+			activator setOrigin( acti.origin );
+			activator TakeAllWeapons();
+		    activator GiveWeapon( "knife_mp" );
 			activator GiveWeapon( "deserteagle_mp" );
 			activator SetWeaponAmmoClip("deserteagle_mp", 0);
 			activator SetWeaponAmmoStock("deserteagle_mp", 0);
-			activator switchToWeapon( "deserteagle_mp" ); 
-         
+			activator switchToWeapon( "deserteagle_mp" );
+
 		}
 	}
 
@@ -1220,7 +1220,7 @@ knife_bouncer()
 		{
                 bouncer waittill("trigger", player);
 					for(i = 0; i < 3; i++)
-                        
+
                         player.health = player.health + 160;
                         eInflictor = player;
                         eAttacker = player;
@@ -1232,9 +1232,9 @@ knife_bouncer()
                         vDir = AnglesToForward((-90,0,0));
                         sHitLoc = "none";
                         psOffsetTime = 0;
- 
+
                         player finishPlayerDamage( eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime );
-               
+
         }
 }
 
@@ -1308,11 +1308,11 @@ wait 1;
 bounce_sniper()
 {
 	trig=getent("bounce_end","targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger", player);
-		player TakeAllWeapons(); 
+		player TakeAllWeapons();
 		player GiveWeapon("remington700_mp");
 		player GiveMaxAmmo("remington700_mp");
 		player GiveWeapon("m40a3_mp");
@@ -1320,7 +1320,7 @@ bounce_sniper()
 		player SwitchToWeapon("m40a3_mp");
 		wait 5;
 	}
-	
+
 }
 
 
@@ -1411,7 +1411,7 @@ secret_ii()
 secret_hard2()
 {
 	trig=getent("h_secret_enter", "targetname");
-	
+
 	while(1)
 	{
 	trig waittill("trigger", player);
@@ -1423,7 +1423,7 @@ secret_hard2()
 secret_ez2()
 {
 	trig=getent("ez_secret_enter", "targetname");
-	
+
 	while(1)
 	{
 	trig waittill("trigger", player);
@@ -1436,7 +1436,7 @@ secret_ez2()
 secret_ezz2()
 {
 	trig=getent("ezz_secret_enter", "targetname");
-	
+
 	while(1)
 	{
 	trig waittill("trigger", player);
@@ -1448,7 +1448,7 @@ secret_ezz2()
 secret_i2()
 {
 	trig=getent("i_secret_enter", "targetname");
-	
+
 	while(1)
 	{
 	trig waittill("trigger", player);
@@ -1461,7 +1461,7 @@ secret_i2()
 secret_ii2()
 {
 	trig=getent("ii_secret_enter", "targetname");
-	
+
 	while(1)
 	{
 	trig waittill("trigger", player);

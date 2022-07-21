@@ -1,17 +1,17 @@
 main()//Made by Phill580
 {
-thread sr\api\_map::createSpawn((-322.542, -642.667, 16.125), 90);
+thread sr\api\_map::createSpawnOrigin((-322.542, -642.667, 16.125), 90);
 trigger = spawn( "trigger_radius", (553, -611, 92), 0, 300, 300 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 300;
           maps\mp\_load::main();
 
           PreCacheItem("brick_blaster_mp");
-         
+
          // ambientPlay("ambient_wtf");
 
          thread way_connect();
-         
+
            //thread crush();
           // thread fan();
           // thread squares();
@@ -19,7 +19,7 @@ trigger.radius = 300;
           // thread trap5();
           // thread Tunnel();
           // thread drawbridge_open ();
-          // thread trap7();          
+          // thread trap7();
          //  thread Gladiator();
          //  thread findphill();
 
@@ -34,9 +34,9 @@ trigger.radius = 300;
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -79,7 +79,7 @@ TestClient(team)
 
 	while(!isdefined(self.pers["team"]))
 		wait .05;
-		
+
 	self notify("menuresponse", game["menu_team"], team);
 	wait 0.5;
 }
@@ -89,13 +89,13 @@ WatchSniper()
 	level.snip_trig = getEnt( "trigger_sniper", "targetname");
 	jump = getEnt( "sniper_jumper", "targetname" );
 	acti = getEnt( "sniper_activator", "targetname" );
-	
+
 	while( 1 )
 	{
 		level.snip_trig waittill( "trigger", player );
 		if( !isDefined( level.snip_trig ) )
 			return;
-		
+
 		level.knife_trig delete();
 		player SetPlayerAngles( jump.angles );
 		player setOrigin( jump.origin );
@@ -121,13 +121,13 @@ WatchKnife()
 	level.knife_trig = getEnt( "trigger_knife", "targetname");
 	jump = getEnt( "knife_jumper", "targetname" );
 	acti = getEnt( "knife_activator", "targetname" );
-	
+
 	while( 1 )
 	{
 		level.knife_trig waittill( "trigger", player );
 		if( !isDefined( level.knife_trig ) )
 			return;
-		
+
 		level.snip_trig delete();
 		player SetPlayerAngles( jump.angles );
 		player setOrigin( jump.origin );
@@ -188,7 +188,7 @@ crush()
             }
 }
 fan()
-{     
+{
          trig = getEnt("trig2","targetname");
           brush = getEnt("trap2","targetname");
           hurt = getEnt("trap2_hurt","targetname");
@@ -224,7 +224,7 @@ squares()
 
                   trig waittill("trigger");
                   trig delete();
-	brushGroup4[randomInt(brushGroup1.size)] delete();	
+	brushGroup4[randomInt(brushGroup1.size)] delete();
 }
 impossible()
 {
@@ -256,12 +256,12 @@ trap5()
                         wait 5;
                         brush moveY(-144,1);
             }
-}                        
+}
 Tunnel()
 {
             trig = getEnt("trig5","targetname");
             brush = getEnt("trap5","targetname");
-            
+
             trig waittill("trigger");
             trig delete();
 
@@ -271,25 +271,25 @@ Tunnel()
                               wait 1;
                      }
 }
-drawbridge_open() 
-{ 
-	drawbridge = getent( "drawbridge", "targetname" ); 
-	trig = getent( "lower_bridge", "targetname" ); 
- 
-while(true) 
-{ 
-	trig waittill ("trigger"); 
-	drawbridge rotateto( (-90,0,0),1); 
-	drawbridge waittill ("rotatedone"); 
-	wait 1; 
-	trig waittill ("trigger"); 
-	drawbridge rotateto( (0,0,0),1); 
-	drawbridge waittill ("rotatedone"); 
-	} 
+drawbridge_open()
+{
+	drawbridge = getent( "drawbridge", "targetname" );
+	trig = getent( "lower_bridge", "targetname" );
+
+while(true)
+{
+	trig waittill ("trigger");
+	drawbridge rotateto( (-90,0,0),1);
+	drawbridge waittill ("rotatedone");
+	wait 1;
+	trig waittill ("trigger");
+	drawbridge rotateto( (0,0,0),1);
+	drawbridge waittill ("rotatedone");
+	}
 }
 trap7()
 {
-         
+
           trig = GetEnt("trig7","targetname");
           brush = GetEnt("trap7","targetname");
            hurt = getEnt("hurt_7","targetname");
@@ -299,7 +299,7 @@ trap7()
 
            trig waittill("trigger",player);
            trig delete();
-          
+
           while(1)
           {
                              brush moveX(-976,3);
@@ -315,7 +315,7 @@ Gladiator()
          trig waittill("trigger",players);
          trig delete();
           {
-           
+
                   hud_clock = NewHudElem();
 	hud_clock.alignX = "center";
 	hud_clock.alignY = "middle";
@@ -382,7 +382,7 @@ findphill()
 findphill()
 {
 	wait 10;
-	
+
 	players = getentarray("player", "classname");
 	for(i=0;i<players.size;i++)
 	{

@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((181, 1, 16), 360);
+thread sr\api\_map::createSpawnOrigin((181, 1, 16), 360);
     addTriggerToList("trig_trap1");
 	addTriggerToList("trig_trap2");
 	addTriggerToList("trig_trap3");
@@ -14,27 +14,27 @@ thread sr\api\_map::createSpawn((181, 1, 16), 360);
 	addTriggerToList("trig_trap11");
 
 	maps\mp\_load::main();
-	maps\mp\_teleport1::main(); 
+	maps\mp\_teleport1::main();
 	maps\mp\_teleport2::main();
 	maps\mp\_teleport4::main();
 	maps\mp\_teleport6::main();
 	maps\mp\_teleport7::main();
 	maps\mp\_teleport8::main();
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
-	
+
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
-	
+
 	thread sr\api\_speedrun::createNormalWays("Normal Way");
 	thread sr\api\_speedrun::createSecretWays("Secret Way");
 		thread sr\api\_speedrun::createEndMap((-325.249, 3.00147, 16.125), 70, 100);
@@ -63,8 +63,8 @@ thread sr\api\_map::createSpawn((181, 1, 16), 360);
 	if(isdefined(entTransporter))
 		for( i = 0; i < entTransporter.size; i++ )
 			entTransporter[i] thread transporter();
-	
-	
+
+
 }
 
 addTriggerToList( name )
@@ -72,7 +72,7 @@ addTriggerToList( name )
   if( !isDefined( level.trapTriggers ) )
       level.trapTriggers = [];
   level.trapTriggers[level.trapTriggers.size] = getEnt( name, "targetname" );
-}	
+}
 
 credit()
 {
@@ -129,7 +129,7 @@ start_door()
 {
 object = getent("start_door","targetname");
 {
-ambientPlay("music2");	
+ambientPlay("music2");
 object delete();
 }
 }
@@ -324,13 +324,13 @@ sniperoom()
     jump = getEnt( "jump_sniper", "targetname" );
     acti = getEnt( "acti_sniper", "targetname" );
 
-    
+
     while(1)
     {
         level.snipe_trig waittill( "trigger", player );
         if( !isDefined( level.snipe_trig ) )
             return;
-			
+
 		if(level.firstenter==true)
 		{
         level.jump_trig delete();
@@ -374,7 +374,7 @@ kniferoom()
     level.knife_trig = getEnt( "knife", "targetname");
     jump = getEnt( "jumper_knife", "targetname" );
     acti = getEnt( "acti_knife", "targetname" );
-    
+
     while(1)
     {
         level.knife_trig waittill( "trigger", player );
@@ -386,7 +386,7 @@ kniferoom()
         level.jump_trig delete();
 		level.firstenter=false;
 		}
-		
+
 		player freezeControls(true);
 		level.activ freezeControls(true);
         player SetPlayerAngles( jump.angles );
@@ -396,7 +396,7 @@ kniferoom()
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "knife_mp" );     
+        level.activ GiveWeapon( "knife_mp" );
         wait 0.05;
         player switchToWeapon( "knife_mp" );
         level.activ SwitchToWeapon( "knife_mp" );
@@ -421,7 +421,7 @@ jumproom()
     level.jump_trig = getEnt( "jump", "targetname");
     jump = getEnt( "jumper_jump", "targetname" );
     acti = getEnt( "acti_jump", "targetname" );
-    
+
     while(1)
     {
         level.jump_trig waittill( "trigger", player );
@@ -433,7 +433,7 @@ jumproom()
         level.knife_trig delete();
 		level.firstenter=false;
 		}
-		
+
 		player freezeControls(true);
 		level.activ freezeControls(true);
         player SetPlayerAngles( jump.angles );
@@ -443,7 +443,7 @@ jumproom()
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "knife_mp" );     
+        level.activ GiveWeapon( "knife_mp" );
         wait 0.05;
         player switchToWeapon( "knife_mp" );
         level.activ SwitchToWeapon( "knife_mp" );
@@ -495,7 +495,7 @@ while (1)
 		}
 	}
 }
- 
+
 transporter()
 {
 	for(;;)

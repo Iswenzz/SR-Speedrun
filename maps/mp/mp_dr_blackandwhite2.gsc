@@ -1,8 +1,8 @@
 main()
 {
-thread sr\api\_map::createSpawn((-3289, -1565, 16), 90);
+thread sr\api\_map::createSpawnOrigin((-3289, -1565, 16), 90);
 maps\mp\_load::main();
- 
+
 	game["allies"] = "marines";
     game["axis"] = "opfor";
     game["attackers"] = "axis";
@@ -17,7 +17,7 @@ maps\mp\_load::main();
     setdvar("r_glowskybleedintensity0",".3");
 	setDvar("bg_falldamagemaxheight", 99999);
     setDvar("bg_falldamageminheight", 99998);
-	
+
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createSecretWays("Jumper Secret;Acti Secret;");
 thread sr\api\_speedrun::createEndMap((11768.5, -1717.77, 120.125), 110, 10, "normal_0");
@@ -41,7 +41,7 @@ door = getEnt("startdoor", "targetname");
 wait 0.1;
 door delete();
 
-}	
+}
 
 ploop()
 {
@@ -66,7 +66,7 @@ wait 0.1;
 
 endmover()
 {
-block = getEnt ("endmover", "targetname"); 
+block = getEnt ("endmover", "targetname");
 left = getEnt ("bel", "targetname");
 right = getEnt ("ber", "targetname");
 up = getEnt ("beu", "targetname");
@@ -85,8 +85,8 @@ tpsecret()
 {
 	trig = getEnt("tpsecret", "targetname");
 	arrivo = getEnt("o_tpsecret", "targetname");
-  for (;;) 
-  {	
+  for (;;)
+  {
 	trig waittill("trigger", player);
 	player setOrigin(arrivo.origin);
 	player SetPlayerAngles(arrivo.angles);
@@ -96,29 +96,29 @@ tpsecret()
 secretend()
 {
 	trig = getEnt("trig_secretend", "targetname");
-  for (;;) 
-  {	
+  for (;;)
+  {
 	trig waittill("trigger", player);
 	player thread sr\api\_speedrun::finishWay("secret_0");
   }
-} 
+}
 
 endactisecret()
 {
 	trig = getEnt("trig_endactisecret", "targetname");
-  for (;;) 
-  {	
+  for (;;)
+  {
 	trig waittill("trigger", player);
 	player thread sr\api\_speedrun::finishWay("secret_1");
   }
 }
- 
+
 actisecretr()
 {
 	trig = getEnt("trig_actisecretr", "targetname");
 	arrivo = getEnt("o_actisecretr", "targetname");
-  for (;;) 
-  {	
+  for (;;)
+  {
 	trig waittill("trigger", player);
 	player setOrigin(arrivo.origin);
 	player SetPlayerAngles(arrivo.angles);

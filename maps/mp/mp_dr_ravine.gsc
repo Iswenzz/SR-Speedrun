@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-774, -3072, 272.125), 90);
+thread sr\api\_map::createSpawnOrigin((-774, -3072, 272.125), 90);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
@@ -22,7 +22,7 @@ if (!level.spawn["allies"].size)
 ////////////////////////////////////////////////////////////////////////////
 
 maps\mp\_load::main();
- 
+
  game["allies"] = "sas";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
@@ -35,7 +35,7 @@ maps\mp\_load::main();
  setdvar("r_glowbloomintensity1",".25");
  setdvar("r_glowskybleedintensity0",".3");
  setdvar("compassmaxrange","1800");
- 
+
  // addTriggerToList( "trap1_switch" );
  // addTriggerToList( "panic1_switch" );
  // addTriggerToList( "trap2_switch" );
@@ -48,7 +48,7 @@ maps\mp\_load::main();
  // addTriggerToList( "trap9_switch" );
  // addTriggerToList( "trap10_switch" );
  // addTriggerToList( "trap11_switch" );
- 
+
  thread way_connect();
  // thread messages();
  thread gate();
@@ -119,7 +119,7 @@ maps\mp\_load::main();
  thread wave46();
  thread wave47();
  thread wave48();
- thread wave49(); 
+ thread wave49();
  // thread trap9();
  // thread trap10();
  // thread trap11();
@@ -141,10 +141,10 @@ maps\mp\_load::main();
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -159,13 +159,13 @@ addTriggerToList( name )
         level.trapTriggers = [];
     level.trapTriggers[level.trapTriggers.size] = getEnt( name, "targetname" );
 }
-messages() 
+messages()
 {
 wait 1;
 
 while(1)
 	{
-	
+
 	                        	iprintlnbold("^2mp_dr_ravine");
 	                        	wait 30;
 	                        	iprintlnbold("^2Map created by Matty ^1[^2Creator of mp_dr_hardest_game^1]");
@@ -210,31 +210,31 @@ effects()
 		 maps\mp\_fx::loopfx("cloud_bank", (1040.0, 4416.0, -4250.0), 43);
 		 maps\mp\_fx::loopfx("cloud_bank", (1904.0, 3984.0, -4250.0), 44);
 		 maps\mp\_fx::loopfx("cloud_bank", (2608.0, 3952.0, -4250.0), 45);
-  
+
 		 level._effect[ "firelp_barrel_pm" ] = loadfx( "firelp_barrel_pm" );
 		 level._effect[ "lights" ] = loadfx( "misc/lights" );
 		 maps\mp\_fx::loopfx("lights", (-768.0, -512.0, 200.0), 46);
 }
 gate()
 {
-   
+
    level waittill( "round_started" );
    gate = getent("gate","targetname");
    wait 1;
-    
+
    // ambientPlay( "north" );
 
-                             
+
                              gate movez (336,8);
                              gate waittill ("movedone");
-                             
+
 }
 teleport1()
 {
 
  trigger = getent("jumper_teleport1","targetname");
  jumper_teleport1_origin = getent("jumper_teleport1_origin","targetname");
- 
+
  for(;;)
                          {
 						 trigger waittill ("trigger", player );
@@ -247,14 +247,14 @@ trap2()
 
  trigger = getent("trap2_switch","targetname");
  trap2 = getent("trap2","targetname");
- 
+
  killtrigger1 = getent("trap2_hurt","targetname");
  killtrigger1 enablelinkto();
  killtrigger1 linkto (trap2);
- 
+
  trigger waittill ("trigger", player );
  trigger delete();
- 
+
  while(1)
 
                          {
@@ -271,10 +271,10 @@ trap3()
  fall3 = getent("fall3","targetname");
  fall4 = getent("fall4","targetname");
  fall5 = getent("fall5","targetname");
- 
+
  trigger waittill ("trigger", player );
  trigger delete();
- 
+
                          {
 						 fall1 moveZ (-500,21);
 						 fall2 moveZ (-600,18);
@@ -288,7 +288,7 @@ trap4()
 {
 
  trigger = getent("trap4_switch","targetname");
- 
+
  spike_door1 = getent("spike_door1","targetname");
  spike_door2 = getent("spike_door2","targetname");
  spike_door3 = getent("spike_door3","targetname");
@@ -296,7 +296,7 @@ trap4()
  spike_door5 = getent("spike_door5","targetname");
  spike_door6 = getent("spike_door6","targetname");
  spike_door7 = getent("spike_door7","targetname");
- 
+
  killtrigger2 = getent("spike_door1_hurt","targetname");
  killtrigger2 enablelinkto();
  killtrigger2 linkto (spike_door1);
@@ -318,12 +318,12 @@ trap4()
  killtrigger8 = getent("spike_door7_hurt","targetname");
  killtrigger8 enablelinkto();
  killtrigger8 linkto (spike_door7);
- 
+
  trigger waittill ("trigger", player );
  trigger delete();
- 
+
  while(1)
- 
+
                                   {
                                    spike_door1 rotateYaw (-180,1);
 						           spike_door2 rotateYaw (90,1);
@@ -358,12 +358,12 @@ secret_lift2()
 {
   trigger = getent("secret_lift2_switch","targetname");
   secret_lift2 = getent("secret_lift2","targetname");
-  
+
   trigger waittill ("trigger", player );
   trigger delete();
- 
+
  while(1)
- 
+
                                   {
                                    secret_lift2 movez (128,4,2,2);
 								   secret_lift2 waittill ("movedone");
@@ -1014,13 +1014,13 @@ trap1()
 {
 
  trigger = getent("trap1_switch","targetname");
- 
+
  slide = getent("slide","targetname");
 
 
  trigger waittill ("trigger", player );
  trigger delete();
- 
+
 
                          {
 						 slide MoveZ (2053,2);
@@ -1032,11 +1032,11 @@ panic1()
 
  trigger = getent("panic1_switch","targetname");
  panic1 = getent("panic1","targetname");
- 
- 
+
+
  trigger waittill ("trigger", player );
  trigger delete();
- 
+
                          {
 						 panic1 MoveZ (50,2);
 						 wait(12);
@@ -1047,16 +1047,16 @@ trap5()
 {
 
  trigger = getent("trap5_switch","targetname");
- 
+
  slab1 = getent("slab1","targetname");
  slab2 = getent("slab2","targetname");
  slab3 = getent("slab3","targetname");
  slab4 = getent("slab4","targetname");
- 
- 
+
+
  trigger waittill ("trigger", player );
  trigger delete();
- 
+
  while(1)
                          {
 						 slab1 MoveZ (-200,2);
@@ -1075,13 +1075,13 @@ trap7()
 {
 
  trigger = getent("trap7_switch","targetname");
- 
+
  platform = getent("platform","targetname");
 
- 
+
  trigger waittill ("trigger", player );
  trigger delete();
- 
+
                          {
                          platform delete();
 						 }
@@ -1090,17 +1090,17 @@ trap8()
 {
 
  trigger = getent("trap8_switch","targetname");
- 
+
  laser = getent("laser","targetname");
- 
+
  killtrigger13 = getent("laser_hurt","targetname");
  killtrigger13 enablelinkto();
  killtrigger13 linkto (laser);
 
- 
+
  trigger waittill ("trigger", player );
  trigger delete();
- 
+
  while(1)
                          {
                          laser MoveZ (-199,4);
@@ -1113,12 +1113,12 @@ floor()
 {
 
  trigger = getent("floor_switch","targetname");
- 
+
  floor = getent("floor","targetname");
- 
+
  trigger waittill ("trigger", player );
  trigger delete();
- 
+
  while(1)
                          {
                          floor MoveY (-958,8);
@@ -1133,10 +1133,10 @@ trap9()
 {
 
  trigger = getent("trap9_switch","targetname");
- 
+
  laser1 = getent("laser1","targetname");
  laser2 = getent("laser2","targetname");
- 
+
  killtrigger14 = getent("laser1_hurt","targetname");
  killtrigger14 enablelinkto();
  killtrigger14 linkto (laser1);
@@ -1148,23 +1148,23 @@ trap9()
 
  trigger waittill ("trigger", player );
  trigger delete();
- 
+
  while(1)
                          {
                          laser1 MoveZ (-253,3);
-						 laser2 MoveZ (-125,3);	
+						 laser2 MoveZ (-125,3);
 						 wait(3);
 						 laser1 MoveZ (253,3);
-						 laser2 MoveZ (125,3);	
+						 laser2 MoveZ (125,3);
 						 wait(3);
 						 }
 }
 secret_teleport1()
 {
- 
+
  trigger = getent("secret_teleport1","targetname");
  secret_teleport1_origin = getent("secret_teleport1_origin","targetname");
- 
+
  for(;;)
                          {
 						 trigger waittill ("trigger", player );
@@ -1174,10 +1174,10 @@ secret_teleport1()
 }
 secret_teleport2()
 {
- 
+
  trigger = getent("secret_teleport2","targetname");
  secret_teleport2_origin = getent("secret_teleport2_origin","targetname");
- 
+
  for(;;)
                          {
 						 trigger waittill ("trigger", player );
@@ -1187,10 +1187,10 @@ secret_teleport2()
 }
 activator_teleport1()
 {
- 
+
  trigger = getent("activator_teleport1","targetname");
  activator_teleport1_origin = getent("activator_teleport1_origin","targetname");
- 
+
  for(;;)
                          {
 						 trigger waittill ("trigger", player );
@@ -1200,10 +1200,10 @@ activator_teleport1()
 }
 activator_teleport2()
 {
- 
+
  trigger = getent("activator_teleport2","targetname");
  activator_teleport2_origin = getent("activator_teleport2_origin","targetname");
- 
+
  for(;;)
                          {
 						 trigger waittill ("trigger", player );
@@ -1213,10 +1213,10 @@ activator_teleport2()
 }
 secret_teleport0()
 {
- 
+
  trigger = getent("secret_teleport0","targetname");
  secret_teleport0_origin = getent("secret_teleport0_origin","targetname");
- 
+
  for(;;)
                          {
 						 trigger waittill ("trigger", player );
@@ -1229,12 +1229,12 @@ trap10()
 {
 
  trigger = getent("trap10_switch","targetname");
- 
+
  poles = getent("poles","targetname");
 
  trigger waittill ("trigger", player );
  trigger delete();
- 
+
  while(1)
                          {
                          poles MoveZ (100,2);
@@ -1249,12 +1249,12 @@ trap11()
 {
 
  trigger = getent("trap11_switch","targetname");
- 
+
  break1 = getent("break1","targetname");
 
  trigger waittill ("trigger", player );
  trigger delete();
- 
+
                          {
 						 break1 moveZ (-400,7);
 						 wait(12);
@@ -1263,7 +1263,7 @@ trap11()
 }
 water_lighting_fix()
 {
-  
+
   water_lighting_fix = getent("water_lighting_fix","targetname");
 
                          {
@@ -1274,12 +1274,12 @@ water_lighting_fix()
 secret_switch()
 {
  trigger = getent("secret_door_switch","targetname");
- 
+
  secret_clip = getent("secret_clip","targetname");
 
  wait 1;
  trigger delete();
- 
+
                          {
 						 secret_clip delete();
 						 }
@@ -1289,25 +1289,25 @@ room1()
         level.room1_trig = getEnt( "sniper1", "targetname");
         jump = getEnt( "sniper2", "targetname" );
         acti = getEnt( "sniper3", "targetname" );
- 
- 
+
+
         while(1)
         {
-                
-				
-				
+
+
+
 			    level.room1_trig waittill( "trigger", player );
-				
-            
+
+
 				if( !isDefined( level.room1_trig ) )
                         return;
-						
+
 				level.room2_trig delete();
 				level.room3_trig delete();
 				level.room4_trig delete();
 				level.room5_trig delete();
 				level.room6_trig delete();
-						
+
                 player SetPlayerAngles( jump.angles );
                 player setOrigin( jump.origin );
                 player TakeAllWeapons();
@@ -1323,11 +1323,11 @@ room1()
 						level.activ giveMaxAmmo( "m40a3_mp" );
                         level.activ SwitchToWeapon( "m40a3_mp" );
                         wait 0.05;
-                       
+
                 }
                 wait 0.05;
-               
-                iPrintlnBold( " ^1" + player.name + " ^2Has Chosen the sniper room^1!" ); 
+
+                iPrintlnBold( " ^1" + player.name + " ^2Has Chosen the sniper room^1!" );
             player freezecontrols(true);
             level.activ freezecontrols(true);
             wait 1;
@@ -1353,21 +1353,21 @@ room2()
         level.room2_trig = getEnt( "sniper4", "targetname");
         jump = getEnt( "sniper5", "targetname" );
         acti = getEnt( "sniper6", "targetname" );
-		
+
         while(1)
         {
-                
+
 			    level.room2_trig waittill( "trigger", player );
-            
+
 				if( !isDefined( level.room2_trig ) )
                         return;
-				
+
 				level.room1_trig delete();
 				level.room3_trig delete();
 				level.room4_trig delete();
 				level.room5_trig delete();
 				level.room6_trig delete();
-						
+
                 player SetPlayerAngles( jump.angles );
                 player setOrigin( jump.origin );
                 player TakeAllWeapons();
@@ -1383,11 +1383,11 @@ room2()
 						level.activ giveMaxAmmo( "m40a3_mp" );
                         level.activ SwitchToWeapon( "m40a3_mp" );
                         wait 0.05;
-                       
+
                 }
                 wait 0.05;
-               
-                iPrintlnBold( " ^1" + player.name + " ^2Has Chosen the sniper room^1!" ); 
+
+                iPrintlnBold( " ^1" + player.name + " ^2Has Chosen the sniper room^1!" );
             player freezecontrols(true);
             level.activ freezecontrols(true);
             wait 1;
@@ -1413,23 +1413,23 @@ room3()
         level.room3_trig = getEnt( "sniper7", "targetname");
         jump = getEnt( "sniper8", "targetname" );
         acti = getEnt( "sniper9", "targetname" );
-		
- 
- 
+
+
+
         while(1)
         {
-                
+
 			    level.room3_trig waittill( "trigger", player );
-				   
+
 				if( !isDefined( level.room3_trig ) )
                         return;
-				
+
 				level.room1_trig delete();
 				level.room2_trig delete();
 				level.room4_trig delete();
 				level.room5_trig delete();
 				level.room6_trig delete();
-						
+
                 player SetPlayerAngles( jump.angles );
                 player setOrigin( jump.origin );
                 player TakeAllWeapons();
@@ -1445,11 +1445,11 @@ room3()
 						level.activ giveMaxAmmo( "remington700_mp" );
                         level.activ SwitchToWeapon( "remington700_mp" );
                         wait 0.05;
-                       
+
                 }
                 wait 0.05;
-               
-                iPrintlnBold( " ^1" + player.name + " ^2Has Chosen the sniper room^1!" ); 
+
+                iPrintlnBold( " ^1" + player.name + " ^2Has Chosen the sniper room^1!" );
             player freezecontrols(true);
             level.activ freezecontrols(true);
             wait 1;
@@ -1475,30 +1475,30 @@ room4()
         level.room4_trig = getEnt( "knife1", "targetname");
         jump = getEnt( "knife2", "targetname" );
         acti = getEnt( "knife3", "targetname" );
- 
- 
+
+
         while(1)
         {
                 level.room4_trig waittill( "trigger", player );
-				
-				
+
+
                 if( !isDefined( level.room4_trig ) )
                         return;
- 
+
                 level.room1_trig delete();
 				level.room2_trig delete();
 				level.room3_trig delete();
 				level.room5_trig delete();
 				level.room6_trig delete();
-				
 
-				
+
+
                 player SetPlayerAngles( jump.angles );
                 player setOrigin( jump.origin );
                 player TakeAllWeapons();
-                player GiveWeapon( "knife_mp" ); //jumper weapon  
+                player GiveWeapon( "knife_mp" ); //jumper weapon
                 player switchToWeapon( "knife_mp" );
-				
+
                 if(isDefined(level.activ) && isAlive(level.activ))
                 {
                         level.activ setPlayerangles( acti.angles );
@@ -1507,13 +1507,13 @@ room4()
                         level.activ GiveWeapon( "knife_mp" );
                         level.activ SwitchToWeapon( "knife_mp" );
                         wait 0.05;
-                       
+
                 }
                 wait 0.05;
-               
+
                 iPrintlnBold( " ^1" + player.name + "^2 Has Chosen knife room^1!" );     //change to what you want it to be
-            
-			
+
+
 			player freezecontrols(true);
             level.activ freezecontrols(true);
             wait 1;
@@ -1530,9 +1530,9 @@ room4()
             level.activ iPrintlnBold( "^2Fight^1!" );
             player freezecontrols(false); //Disables the freeze.
             level.activ freezecontrols(false);
-                
+
 				while( isAlive( player ) && isDefined( player ) )
-                        
+
 						wait 1;
    }
 }
@@ -1541,14 +1541,14 @@ room5()
         level.room5_trig = getEnt( "bounce1", "targetname");
         jump = getEnt( "bounce2", "targetname" );
         acti = getEnt( "bounce3", "targetname" );
-		
- 
- 
+
+
+
         while(1)
         {
                 level.room5_trig waittill( "trigger", player );
-				
-				
+
+
                 if( !isDefined( level.room5_trig ) )
                         return;
                 level.room1_trig delete();
@@ -1556,11 +1556,11 @@ room5()
 				level.room3_trig delete();
 				level.room4_trig delete();
 				level.room6_trig delete();
- 
+
                 player SetPlayerAngles( jump.angles );
                 player setOrigin( jump.origin );
                 player TakeAllWeapons();
-                player GiveWeapon( "knife_mp" ); //jumper weapon  
+                player GiveWeapon( "knife_mp" ); //jumper weapon
                 player switchToWeapon( "knife_mp" );
                 if(isDefined(level.activ) && isAlive(level.activ))
                 {
@@ -1570,10 +1570,10 @@ room5()
                         level.activ GiveWeapon( "knife_mp" );
                         level.activ SwitchToWeapon( "knife_mp" );
                         wait 0.05;
-                       
+
                 }
                 wait 0.05;
-               
+
                 iPrintlnBold( " ^1" + player.name + "^2 Has Chosen the bounce room^1!" );
             player freezecontrols(true);
             level.activ freezecontrols(true);
@@ -1600,12 +1600,12 @@ room6()
         level.room6_trig = getEnt( "deagle1", "targetname");
         jump = getEnt( "deagle2", "targetname" );
         acti = getEnt( "deagle3", "targetname" );
-		
+
         while(1)
         {
                 level.room6_trig waittill( "trigger", player );
-				
-				
+
+
                 if( !isDefined( level.room6_trig ) )
                         return;
                 level.room1_trig delete();
@@ -1613,7 +1613,7 @@ room6()
 				level.room3_trig delete();
 				level.room4_trig delete();
 				level.room5_trig delete();
- 
+
                 player SetPlayerAngles( jump.angles );
                 player setOrigin( jump.origin );
                 player TakeAllWeapons();
@@ -1629,10 +1629,10 @@ room6()
 						level.activ giveMaxAmmo( "deserteagle_mp" );
                         level.activ SwitchToWeapon( "deserteagle_mp" );
                         wait 0.05;
-                       
+
                 }
                 wait 0.05;
-               
+
                 iPrintlnBold( " ^1" + player.name + "^2 Has Chosen the Pistol room^1!" );
             player freezecontrols(true);
             level.activ freezecontrols(true);
@@ -1658,38 +1658,38 @@ bounce_give_weapon()
 {
 
  bounce_give_sniper = getent("bounce_give_sniper","targetname");
- 
- 
+
+
                  while(1)
                  {
 				         bounce_give_sniper waittill( "trigger", player );
-						 
+
 						 if( !isDefined( bounce_give_sniper ) )
-                         
+
 						 return;
-						 
+
                          player GiveWeapon( "m40a3_mp" );
                          player giveMaxAmmo( "m40a3_mp" );
                          player switchToWeapon( "m40a3_mp" );
 						 wait 0.05;
                          }
 }
-bouncefall() 
+bouncefall()
 {
 	fall = getEnt("fall","targetname");
-	spawn_jump = getEnt("spawn_jump","targetname"); 
+	spawn_jump = getEnt("spawn_jump","targetname");
 	spawn_acti = getEnt("spawn_acti","targetname");
-	
+
 	while(1)
 	{
 		fall waittill("trigger", player );
-		if( player.pers["team"] == "allies" ) 
+		if( player.pers["team"] == "allies" )
 		{
 			player setOrigin( spawn_jump.origin );
 			player setPlayerAngles( spawn_jump.angles );
 		}
 		else
-		{		
+		{
 			player setOrigin( spawn_acti.origin );
 			player setPlayerAngles(spawn_acti.angles );
 		}
@@ -1716,7 +1716,7 @@ x = randomint(4);
 	{
 	ambientplay("endmusic2");
 	iprintlnbold("^2Now playing ^1Taylor Swift - Style");
-	}	
+	}
 	if(x == 2)
 	{
 	ambientplay("endmusic3");

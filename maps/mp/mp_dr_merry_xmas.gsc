@@ -20,8 +20,8 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((49, -1873, 20), 89);
-	maps\mp\_load::main(); 
+thread sr\api\_map::createSpawnOrigin((49, -1873, 20), 89);
+	maps\mp\_load::main();
 
 
 	level.snowplode=loadfx("explosions/snowtreefall");
@@ -30,7 +30,7 @@ thread sr\api\_map::createSpawn((49, -1873, 20), 89);
 
 
 	//setExpFog(500, 2200, 0.81, 0.75, 0.63, 0);
-	
+
 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
@@ -415,11 +415,11 @@ thread sr\api\_map::createSpawn((49, -1873, 20), 89);
 	while(1)
     	{
         trig waittill ("trigger", player);
-	/* [AUTO DELETE] player braxi\_rank::giveRankXP("", 123); */         
+	/* [AUTO DELETE] player braxi\_rank::giveRankXP("", 123); */
 	player SetOrigin(go.origin);
         player SetPlayerAngles( go.angles );
 	/* [AUTO DELETE] player iPrintlnBold(" ^5MERRY CHRISTMAS! "); */
-	/* [AUTO DELETE] wait 8; */        
+	/* [AUTO DELETE] wait 8; */
 	player SetOrigin(out.origin);
         player SetPlayerAngles( out.angles );
 	}
@@ -450,7 +450,7 @@ thread sr\api\_map::createSpawn((49, -1873, 20), 89);
 	tree2_fx = getEnt ("tree2_fx","targetname");
 	tree_sound = getEnt ("tree_sound","targetname");
 	clip = getEnt ("treetrap","targetname");
-	
+
 	trig waittill ("trigger", player);
 	/* [AUTO DELETE] player braxi\_rank::giveRankXP("", 20); */
 	trig SetHintString("^5Activated");
@@ -1283,7 +1283,7 @@ thread sr\api\_map::createSpawn((49, -1873, 20), 89);
 		clip9 delete();
 		playfx(level.snowplode,fx9_1.origin);
 		playfx(level.snowplode,fx9_2.origin);
-		fx9_1 playSound("boxplode");	
+		fx9_1 playSound("boxplode");
 	}
 	else if(i == 3)
 	{
@@ -1348,7 +1348,7 @@ thread sr\api\_map::createSpawn((49, -1873, 20), 89);
 		clip12 delete();
 		playfx(level.snowplode,fx12_1.origin);
 		playfx(level.snowplode,fx12_2.origin);
-		fx12_1 playSound("boxplode");	
+		fx12_1 playSound("boxplode");
 	}
 	else if(i == 4)
 	{
@@ -1413,7 +1413,7 @@ thread sr\api\_map::createSpawn((49, -1873, 20), 89);
 		clip9 delete();
 		playfx(level.snowplode,fx9_1.origin);
 		playfx(level.snowplode,fx9_2.origin);
-		fx9_1 playSound("boxplode");	
+		fx9_1 playSound("boxplode");
 	}
 	else if(i == 5)
 	{
@@ -1708,7 +1708,7 @@ thread sr\api\_map::createSpawn((49, -1873, 20), 89);
 	tree2_fx = getEnt ("tree2_fx2","targetname");
 	tree_sound = getEnt ("tree2_sound","targetname");
 	clip = getEnt ("treetrap2","targetname");
-	
+
 	trig waittill ("trigger", player);
 	/* [AUTO DELETE] player braxi\_rank::giveRankXP("", 20); */
 	trig SetHintString("^5Activated");

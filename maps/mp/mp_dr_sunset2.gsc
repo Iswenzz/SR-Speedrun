@@ -6,7 +6,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((-605, -1175, 416), 90);
+thread sr\api\_map::createSpawnOrigin((-605, -1175, 416), 90);
 
 	game["allies"] = "marines";
     game["axis"] = "opfor";

@@ -13,14 +13,14 @@
 	Scripts and map made by Rycoon!
 |*************************************|
 	Xfire: phaedrean
-	
+
 	Permission that I am allowed to make v2 of deathrun glass:
-	
+
 	AoD'Rycoon: hai m8
 	iNext.Mr-X: hi
 	AoD'Rycoon: could i have a lil permission from yu?
 	iNext.Mr-X: ofc
-	AoD'Rycoon: well, i would like to make glass2 
+	AoD'Rycoon: well, i would like to make glass2
 	AoD'Rycoon: for dr
 	iNext.Mr-X: ofc
 	iNext.Mr-X: u can
@@ -28,7 +28,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((471.554, 246.286, 16.125), 90);
+thread sr\api\_map::createSpawnOrigin((471.554, 246.286, 16.125), 90);
 trigger = spawn( "trigger_radius", (3492.48, 3184.86, 32.125), 0, 65, 75 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 65;
@@ -42,10 +42,10 @@ trigger.radius = 65;
 	game["axis_soldiertype"] = "woodland";
 
 	setdvar("compassmaxrange", "4200");
-	
+
 	level.bloodFX = LoadFX("deathrun/body_smash");
 	level.huge_fanFX = LoadFX("deathrun/huge_fan");
-	
+
 	thread way_connect();
 	// thread addTestClients();
 	thread WatchGame();
@@ -55,9 +55,9 @@ trigger.radius = 65;
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -85,18 +85,18 @@ GetEndDoor()
 {
 	door = getEnt("end_door", "targetname");
 	trig = getEnt("end_door_trig", "targetname");
-	
+
 	wait 0.05;
-	
+
 	door RotateYaw( 105, 2, 0.5, 0.5 );
 }
 
 StartDoor()
 {
 	trig = getent("trigger_startdoor", "targetname");
-	
+
 	wait 0.05;
-	
+
 	door = getent("startdoor", "targetname");
 	door MoveZ( 134, 4, 0.5, 0.1 );
 }
@@ -119,7 +119,7 @@ GetTraps()
 		for(i=0;i<level.trapTriggers.size;i++)
 			level.trapTriggers[i] delete();
 	}
-	
+
 	level.trapTriggers[0] thread DoTrap1();
 	level.trapTriggers[1] thread DoTrap2();
 	level.trapTriggers[2] thread DoTrap3();
@@ -136,15 +136,15 @@ DoTrap1()
 {
 	doora = getEnt("trap1_a", "targetname");
 	doorb = getEnt("trap1_b", "targetname");
-	
+
 	self waittill("trigger");
 	self delete();
-	
+
 	doora RotatePitch( 90, 0.5, 0.25, 0.25 );
 	doorb RotatePitch( -90, 0.5, 0.25, 0.25 );
-	
+
 	wait 3;
-	
+
 	doora RotatePitch( -90, 0.5, 0.25, 0.25 );
 	doorb RotatePitch( 90, 0.5, 0.25, 0.25 );
 }
@@ -153,7 +153,7 @@ DoTrap2()
 {
 	spikes = getEnt("trap2_spikes", "targetname");
 	smasher = getEnt("trap2_smasher", "targetname");
-	
+
 	spikes.oldpos = spikes.origin;
 	spikes_trig = getEnt("trap2_spikes_trig", "targetname");
 	spikes_trig EnableLinkTo();
@@ -164,19 +164,19 @@ DoTrap2()
 	smasher_trig EnableLinkTo();
 	smasher_trig LinkTo( smasher );
 	smasher_trig thread BloodyTrigger(2);
-	
+
 	self waittill("trigger");
 	self delete();
-	
+
 	spikes MoveZ( 48, 0.5, 0.5, 0 );
 	smasher MoveZ( -240, 0.5, 0.5, 0 );
 	smasher PlayLoopSound("stonemove_fast");
 	wait 0.5;
 	smasher StopLoopSound();
 	smasher PlaySound("ironimpact");
-	
+
 	wait 3;
-	
+
 	spikes MoveTo( spikes.oldpos, 1, 0.5, 0.5 );
 	smasher MoveTo( smasher.oldpos, 2, 1, 1 );
 }
@@ -185,12 +185,12 @@ DoTrap3()
 {
 	inside = getEnt("trap3_inside", "targetname");
 	outside = getEnt("trap3_outside", "targetname");
-	
+
 	inside NotSolid();
-	
+
 	self waittill("trigger");
 	self delete();
-	
+
 	inside Solid();
 	outside NotSolid();
 }
@@ -200,10 +200,10 @@ DoTrap4()
 	platform1 = getEnt("trap4_platform1", "targetname");
 	platform2 = getEnt("trap4_platform2", "targetname");
 	platform3 = getEnt("trap4_platform3", "targetname");
-	
+
 	self waittill("trigger");
 	self delete();
-	
+
 	platform1 thread MovePlatformRandom( -256 );
 	platform2 thread MovePlatformRandom( 256 );
 	platform3 thread MovePlatformRandom( -256 );
@@ -227,10 +227,10 @@ MovePlatformRandom( amount )
 DoTrap5()
 {
 	hammer = getEnt("trap5_hammer", "targetname");
-	
+
 	self waittill("trigger");
 	self delete();
-	
+
 	while(1)
 	{
 		hammer RotateRoll( 360, 3, 0, 0 );
@@ -243,18 +243,18 @@ DoTrap6()
 	//392 y
 	smasher = getEnt("trap6_smasher", "targetname");
 	smasher.oldpos = smasher.origin;
-	
+
 	self waittill("trigger");
 	self delete();
-	
+
 	smasher MoveY( 392, 1, 1, 0 );
 	smasher PlayLoopSound("stonemove_fast");
 	wait 1;
 	smasher StopLoopSound();
 	smasher PlaySound("stoneimpact");
-	
+
 	wait 2;
-	
+
 	smasher MoveTo( smasher.oldpos, 3, 1, 1 );
 }
 
@@ -263,15 +263,15 @@ DoTrap7()
 	//-36 z
 	spikes = getEnt("trap7_spikes", "targetname");
 	spikes.oldpos = spikes.origin;
-	
+
 	spikes_trig = getEnt("trap7_trig", "targetname");
 	spikes_trig EnableLinkTo();
 	spikes_trig LinkTo( spikes );
 	spikes_trig thread BloodyTrigger(1);
-	
+
 	self waittill("trigger");
 	self delete();
-	
+
 	spikes MoveZ( -36, 1, 0.5, 0 );
 	wait 3;
 	spikes MoveTo( spikes.oldpos, 1, 0.5, 0 );
@@ -280,10 +280,10 @@ DoTrap7()
 DoTrap8()
 {
 	rotator = getEnt("trap8_rotator", "targetname");
-	
+
 	self waittill("trigger");
 	self delete();
-	
+
 	while(1)
 	{
 		rotator RotateRoll( -360, 2.5, 0, 0 );
@@ -299,10 +299,10 @@ DoTrap9()
 	block_down = getEntArray("trap9_blocker_down", "targetname");
 	for(i=0;i<block_down.size;i++)
 		block_down[i].up = false;
-	
+
 	self waittill("trigger");
 	self delete();
-	
+
 	//z 136
 	while(1)
 	{
@@ -339,10 +339,10 @@ DoTrap11()
 	fan.online = false;
 	fan thread FanPush( pusher );
 	fan LinkTo( pusher );
-	
+
 	self waittill("trigger");
 	self delete();
-	
+
 	while(1)
 	{
 		if( !fan.online )
@@ -384,7 +384,7 @@ CheckPusherHit( player )
 	trace = BulletTrace( self.origin, player GetEye(), true, self);
 	trace2 = BulletTrace( self.origin, player.origin, true, self);
 	trace3 = BulletTrace( self.origin, player GetTagOrigin("j_spinelower"), true, self);
-	
+
 	if( ( isDefined( trace["entity"] ) && trace["entity"] == player ) || ( isDefined( trace2["entity"] ) && trace2["entity"] == player ) || ( isDefined( trace3["entity"] ) && trace3["entity"] == player ) )
 		return true;
 	else
@@ -394,10 +394,10 @@ CheckPusherHit( player )
 BloodyTrigger( count )
 {
 	self endon("stop_trig");
-	
+
 	if( !isDefined( count ) || count < 1 )
 		count = 1;
-	
+
 	while( isDefined( self ) )
 	{
 		self waittill("trigger", player );
@@ -441,7 +441,7 @@ TestClient(team)
 
 	while(!isdefined(self.pers["team"]))
 		wait .05;
-		
+
 	self notify("menuresponse", game["menu_team"], team);
 	wait 0.5;
 }

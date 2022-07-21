@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-511, 846, 16), 270);
+thread sr\api\_map::createSpawnOrigin((-511, 846, 16), 270);
 maps\mp\_load::main();
 
 game["allies"] = "sas";
@@ -50,7 +50,7 @@ ori = spawn("script_origin",(2778,-2786,284));
 	ori.angles = (0,180,0);
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
 	player thread sr_tp_safe(ori);
     }
@@ -70,9 +70,9 @@ secfinish()
 trig = getent("secret_exit", "targetname");
 
     for(;;)
-    {   
+    {
     trig waittill("trigger", player);
     player thread sr\api\_speedrun::finishWay("secret_0");
     }
-    
+
 }

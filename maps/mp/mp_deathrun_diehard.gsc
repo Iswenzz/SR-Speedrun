@@ -1,44 +1,44 @@
 main()
 {
-thread sr\api\_map::createSpawn((-785.908, -487.271, -111.875), 0);
+thread sr\api\_map::createSpawnOrigin((-785.908, -487.271, -111.875), 0);
 trigger = spawn( "trigger_radius", (-1095.76, -2331.43, 643.575), 0, 96, 48 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 96;
 	maps\mp\_load::main();
-	
-	
+
+
 	setExpFog(500, 2200, 0.81, 0.75, 0.63, 0.5);
-	
-	
+
+
 	precacheItem("m40a3_mp");
 	precacheItem("remington700_mp");
 	precacheItem("ak74u_mp");
-	precacheItem("deserteaglegold_mp");	
-	
-	
+	precacheItem("deserteaglegold_mp");
+
+
 	//ambientPlay("ambient1");
-	
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
-		
+
+
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
-	
+
 	rotateplanksz = getentarray("rotatestickz","targetname");
 	for(i=0;i<rotateplanksz.size;i++)
 		rotateplanksz[i] delete();
-	
+
 	twisterparts = getentarray("trap_twisters","targetname");
 	for(i=0;i<twisterparts.size;i++)
 		twisterparts[i] delete();
-	
+
 	thread way_connect();
 	thread startdoor();
 	thread startdoor2();
@@ -78,7 +78,7 @@ trigger.radius = 96;
 	thread jumperendclip();
 	thread unlock_door();
 	thread sr_tp();
-	
+
 }
 
 sr_tp()
@@ -113,10 +113,10 @@ safe_tp(ori)
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -142,7 +142,7 @@ startdoor2()
 door2=getent("startdoor2","targetname");
 door2 delete();
 }
-	
+
 rotateplanks_always()
 {
 if (!isdefined(self.speed))
@@ -192,7 +192,7 @@ platform waittill ("movedone");
 wait (2);
 platform movey(540,5,0.5,4.5);
 platform waittill ("movedone");
-} 
+}
 }
 
 trap_spikes_left()

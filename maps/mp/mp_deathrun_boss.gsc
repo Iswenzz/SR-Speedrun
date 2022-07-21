@@ -1,11 +1,11 @@
 main()
 {
-thread sr\api\_map::createSpawn((112, 128, -1472), 90);
+thread sr\api\_map::createSpawnOrigin((112, 128, -1472), 90);
 	//maps\mp\_load::main();
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	// spawn auto placement
-	
+
 thread sr\api\_speedrun::createTeleporter((-107.477, 243.677, -1487.88), 50, 25, (-7256, 9127, -2276), 90, "freeze", "cyan", "secret_0");
 
 	game["allies"] = "sas";
@@ -14,12 +14,12 @@ thread sr\api\_speedrun::createTeleporter((-107.477, 243.677, -1487.88), 50, 25,
 	game["defenders"] = "axis";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	    setdvar( "r_specularcolorscale", "1" );
         setdvar("r_glowbloomintensity0",".25");
         setdvar("r_glowbloomintensity1",".25");
         setdvar("r_glowskybleedintensity0",".3");
-		
+
 /////////////		Teles etc..			\\\\\\\\\\\\\\\\\\
 
 	// thread credits();
@@ -30,7 +30,7 @@ thread sr\api\_speedrun::createTeleporter((-107.477, 243.677, -1487.88), 50, 25,
 	thread secretend();
 	// thread music();
 	// thread addTestClients();
-	
+
 ////////////			Traps			\\\\\\\\\\\\\\\\\\\
 
 	thread trap1();
@@ -39,13 +39,13 @@ thread sr\api\_speedrun::createTeleporter((-107.477, 243.677, -1487.88), 50, 25,
 	//thread trap4();
 	//thread trap5();
 	//thread trap6();
-	
+
 ////////////			Rooms			\\\\\\\\\\\\\\\\\\\\
 
 	// thread sniper();
 	// thread knife();
 	// thread old();
-	
+
 ////////////		Triggerlist			\\\\\\\\\\\\\\\\\\\\
 
 	addTriggerToList( "trap1_trig" );
@@ -114,11 +114,11 @@ actitele1()
 {
     trig = getEnt("acti1tele_trig", "targetname");
     target = getEnt("acti1tele_origin", "targetname");
-       
+
     while(1)
     {
         trig waittill("trigger", player);
-                   
+
         {
             player setOrigin( target.origin );
             player setPlayerAngles( target.angles );
@@ -130,7 +130,7 @@ actitele1()
 startdoor()
 {
 door=getent("spawndoor","targetname");
-  
+
 wait 0.1;
 door delete();
 }
@@ -244,15 +244,15 @@ secretend()
 {
 	trig = getEnt("backtomap", "targetname");
 	target = getEnt("backtomap_origin", "targetname");
-	
+
 	for(;;)
 	{
 	trig waittill("trigger", player);
-		 
+
 	player thread sr\api\_speedrun::finishWay("secret_0");
 	player setOrigin( target.origin );
 	player setPlayerAngles( target.angles );
-					
+
 	}
 }
 
@@ -262,17 +262,17 @@ sniper() //WINGZOOOOR :D:D:D:D:D:D:D:D:d:DDDD:D:D:D:D:D:D
      level.sniper_trig = getEnt( "sniper", "targetname");
      sjump = getEnt( "sniperplayer", "targetname" );
      sacti = getEnt( "sniperacti", "targetname" );
-	 
+
 	 if( !isDefined( level.sniper_trig ) )
          return;
-		 
+
 	 while(1)
 	 {
 		level.sniper_trig waittill( "trigger", player );
-		
+
 		if(!isdefined(level.firstenter))
 			level.firstenter=false;
-			
+
 		if(level.firstenter==false)
 		{
 		 level.knife_trig delete();
@@ -281,48 +281,48 @@ sniper() //WINGZOOOOR :D:D:D:D:D:D:D:D:d:DDDD:D:D:D:D:D:D
 		}
 			level.activ freezeControls(1);
 			player FreezeControls(1);
-			
+
 			player SetPlayerAngles( sjump.angles );
 			player setOrigin( sjump.origin );
 			level.activ setPlayerangles( sacti.angles );
 			level.activ setOrigin( sacti.origin );
 			/* [AUTO DELETE] level.activ TakeAllWeapons(); */
 			/* [AUTO DELETE] player TakeAllWeapons(); */
-			
+
 			/* [AUTO DELETE] level.activ giveweapon( "m40a3_mp"); */
 			/* [AUTO DELETE] player giveweapon( "m40a3_mp"); */
 			/* [AUTO DELETE] player switchToWeapon( "m40a3_mp" ); */
 			/* [AUTO DELETE] level.activ SwitchToWeapon( "m40a3_mp" ); */
 			/* [AUTO DELETE] player giveMaxAmmo( "m40a3_mp" ); */
 			/* [AUTO DELETE] level.activ giveMaxAmmo( "m40a3_mp" ); */
-			
+
 			/* [AUTO DELETE] level.activ giveweapon( "remington700_mp"); */
 			/* [AUTO DELETE] player giveweapon( "remington700_mp"); */
 			/* [AUTO DELETE] player switchToWeapon( "remington700_mp" ); */
 			/* [AUTO DELETE] level.activ SwitchToWeapon( "remington700_mp" ); */
 			/* [AUTO DELETE] player giveMaxAmmo( "remington700_mp" ); */
 			/* [AUTO DELETE] level.activ giveMaxAmmo( "remington700_mp" ); */
-			
+
 			level.activ freezeControls(1);
 			player FreezeControls(1);
-			
+
 					noti = SpawnStruct();
 					noti.titleText = (player.name+"^3Has ^6Chosen ^5Sniper ^2Fight!");
 					noti.notifyText = level.activ.name + " ^1VS^5 " + player.name;
 					noti.duration = 6;
 					noti.glowcolor = (0, 0, 1.0);
-					
+
 					players = getEntArray("player", "classname");
 					for(i=0;i<players.size;i++)
 						players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-					
+
 			wait 2;
-			
+
 			level.activ FreezeControls(0);
 			player FreezeControls(0);
-			
+
 			wait 0.1;
-                     
+
 			while(isAlive(player))
 				wait 1;
 
@@ -335,17 +335,17 @@ knife() //WINGZOOOOR :D:D:D:D:D:D:D:D:D:D:D:D:D:D:DDDD:D:
      level.knife_trig = getEnt( "knife", "targetname");
      kjump = getEnt( "knifeplayer", "targetname" );
      kacti = getEnt( "knifeacti", "targetname" );
-	 
+
 	if( !isDefined( level.knife_trig ) )
          return;
-		 
+
 	 while(1)
 	 {
 		level.knife_trig waittill( "trigger", player );
-		
+
 		if(!isdefined(level.firstenter))
 			level.firstenter=false;
-			
+
 		if(level.firstenter==false)
 		{
 		 level.sniper_trig delete();
@@ -354,39 +354,39 @@ knife() //WINGZOOOOR :D:D:D:D:D:D:D:D:D:D:D:D:D:D:DDDD:D:
 		}
 			level.activ freezeControls(1);
 			player FreezeControls(1);
-			
+
 			player SetPlayerAngles( kjump.angles );
 			player setOrigin( kjump.origin );
 			level.activ setPlayerangles( kacti.angles );
 			level.activ setOrigin( kacti.origin );
 			/* [AUTO DELETE] level.activ TakeAllWeapons(); */
 			/* [AUTO DELETE] player TakeAllWeapons(); */
-			
+
 			/* [AUTO DELETE] level.activ giveweapon( "knife_mp"); */
 			/* [AUTO DELETE] player giveweapon( "knife_mp"); */
 			/* [AUTO DELETE] player switchToWeapon( "knife_mp" ); */
 			/* [AUTO DELETE] level.activ SwitchToWeapon( "knife_mp" ); */
-			
+
 			level.activ freezeControls(1);
 			player FreezeControls(1);
-			
+
 					noti = SpawnStruct();
 					noti.titleText = (player.name+"^3Has ^6Chosen ^5Knife ^2Fight!");
 					noti.notifyText = level.activ.name + " ^1VS^7 " + player.name;
 					noti.duration = 6;
 					noti.glowcolor = (0, 0, 1.0);
-					
+
 					players = getEntArray("player", "classname");
 					for(i=0;i<players.size;i++)
 						players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-					
+
 			wait 2;
-			
+
 			level.activ FreezeControls(0);
 			player FreezeControls(0);
-			
+
 			wait 0.1;
-                     
+
 			while(isAlive(player))
 				wait 1;
 
@@ -399,51 +399,51 @@ old()
      level.old_trig = getEnt( "old", "targetname");
      ojump = getEnt( "playerold", "targetname" );
      oacti = getEnt( "actiold", "targetname" );
-	 
+
 	if( !isDefined( level.old_trig ) )
          return;
-		 
+
 	 while(1)
 	 {
 		level.old_trig waittill( "trigger", player );
-		
+
 		{
 		 level.sniper_trig delete();
 		 level.knife_trig delete();
 		}
 			level.activ freezeControls(0);
 			player FreezeControls(0);
-			
+
 			player SetPlayerAngles( ojump.angles );
 			player setOrigin( ojump.origin );
 			level.activ setPlayerangles( oacti.angles );
 			level.activ setOrigin( oacti.origin );
 			/* [AUTO DELETE] level.activ TakeAllWeapons(); */
 			/* [AUTO DELETE] player TakeAllWeapons(); */
-			
+
 			/* [AUTO DELETE] level.activ giveweapon( "deserteaglegold_mp"); */
 			/* [AUTO DELETE] player giveweapon( "deserteaglegold_mp"); */
 			/* [AUTO DELETE] player switchToWeapon( "deserteaglegold_mp" ); */
 			/* [AUTO DELETE] level.activ SwitchToWeapon( "deserteaglegold_mp" ); */
-			
+
 			level.activ freezeControls(0);
 			player FreezeControls(0);
-			
+
 					noti = SpawnStruct();
 					noti.titleText = (player.name+"^3Has ^6Chosen ^5Old!");
 					noti.notifyText = level.activ.name + " ^1VS^7 " + player.name;
 					noti.duration = 6;
 					noti.glowcolor = (0, 0, 1.0);
-					
+
 					players = getEntArray("player", "classname");
 					for(i=0;i<players.size;i++)
 						players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-					
+
 			/* [AUTO DELETE] wait 2; */
-			
+
 			level.activ FreezeControls(0);
 			player FreezeControls(0);
-			
+
 			/* [AUTO DELETE] wait 0.1; */
 
 		}
@@ -496,9 +496,9 @@ trap6b()
 music()
 {
     level waittill( "round_started" );
-    
+
     wait 1;
-    
+
     /* [AUTO DELETE] ambientPlay( "song1" ); */
 }
 
@@ -539,7 +539,7 @@ TestClient(team)
 
      while(!isdefined(self.pers["team"]))
          wait .05;
-         
+
      self notify("menuresponse", game["menu_team"], team);
      wait 0.5;
 }

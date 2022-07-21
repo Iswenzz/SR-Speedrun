@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((192.125, 0, 0.125), 45);
+thread sr\api\_map::createSpawnOrigin((192.125, 0, 0.125), 45);
 
 maps\mp\_load::main();
 
@@ -87,10 +87,10 @@ thread secret2_finish();
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -153,10 +153,10 @@ trap2()
 	spike1_trig = getEnt("trap2_spike1_trig","targetname");
 	spike2_trig = getEnt("trap2_spike2_trig","targetname");
 
-	spike1_trig enablelinkto(); 
-	spike1_trig linkto (spike1);	
-	spike2_trig enablelinkto(); 
-	spike2_trig linkto (spike2);	
+	spike1_trig enablelinkto();
+	spike1_trig linkto (spike1);
+	spike2_trig enablelinkto();
+	spike2_trig linkto (spike2);
 
 	trig setHintString("^7Press ^1&&1 ^7to Activate Trap");
 	trig waittill("trigger", player);
@@ -580,7 +580,7 @@ secret1_finish()
 secret2_activate()
 {
 	trig = getEnt("secret2_activate_trig","targetname");
-	
+
 	for(;;)
 	{
 	trig waittill("trigger", player);
@@ -711,18 +711,18 @@ rm_snip()
         player setOrigin( jump.origin );
         player TakeAllWeapons();
         player GiveWeapon( "remington700_mp" );
-		player GiveWeapon( "m40a3_mp" );        
+		player GiveWeapon( "m40a3_mp" );
 		player GiveMaxAmmo( "remington700_mp" );
 		player GiveMaxAmmo( "m40a3_mp" );
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
         level.activ GiveWeapon( "remington700_mp" );
-        level.activ GiveWeapon( "m40a3_mp" );         
+        level.activ GiveWeapon( "m40a3_mp" );
         level.activ GiveMaxAmmo( "remington700_mp" );
         level.activ GiveMaxAmmo( "m40a3_mp" );
         wait 0.05;
-        player switchToWeapon( "remington700_mp" ); 
+        player switchToWeapon( "remington700_mp" );
         level.activ SwitchToWeapon( "remington700_mp" );
         player FreezeControls(1);
 		level.activ FreezeControls(1);
@@ -772,7 +772,7 @@ rm_knife()
         level.activ TakeAllWeapons();
         level.activ GiveWeapon( "knife_mp" );
         wait 0.05;
-        player switchToWeapon( "knife_mp" ); 
+        player switchToWeapon( "knife_mp" );
         level.activ SwitchToWeapon( "knife_mp" );
         player FreezeControls(1);
 		level.activ FreezeControls(1);
@@ -852,7 +852,7 @@ rm_jump()
         level.activ TakeAllWeapons();
         level.activ GiveWeapon( "knife_mp" );
         wait 0.05;
-        player switchToWeapon( "knife_mp" ); 
+        player switchToWeapon( "knife_mp" );
         level.activ SwitchToWeapon( "knife_mp" );
         player FreezeControls(1);
 		level.activ FreezeControls(1);
@@ -918,4 +918,4 @@ addTriggerToList( name, positionOfIconAboveTrap )
     if( !isDefined( level.icon_origins ) )
         level.icon_origins = [];
     level.icon_origins[level.icon_origins.size] = positionOfIconAboveTrap;
-} 
+}

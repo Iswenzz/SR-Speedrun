@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((520, -1773, 64), 87);
+thread sr\api\_map::createSpawnOrigin((520, -1773, 64), 87);
 
 	PrecacheModel("vehicle_mig29_desert");
 	PrecacheModel("projectile_cbu97_clusterbomb");
@@ -31,10 +31,10 @@ thread sr\api\_map::createSpawn((520, -1773, 64), 87);
 	//maps\mp\_rotateufo::main();
 	//maps\mp\_deathsound::main();
 	//maps\mp\_dynamic_foliage2::initdfs();
-	
-	
-	
-	
+
+
+
+
 	game["allies"] = "sas";
 	game["axis"] = "russian";
 	game["attackers"] = "axis";
@@ -95,7 +95,7 @@ way_connect()
 
     sr\api\_speedrun::createNormalWays("Normal Way;");
 
-    for(;;) 
+    for(;;)
     {
         level waittill( "connected", player );
 
@@ -124,16 +124,16 @@ trap_2()
 	brush = getEnt( "trap1", "targetname" );
 
 	trig waittill( "trigger", who );
-	
-	
+
+
 }
 
 trap_3()
 {
 	trig = getEnt( "trigger3", "targetname" );
-	
+
 	trig waittill("trigger", who );
-	
+
 }
 
 trap_4()
@@ -151,7 +151,7 @@ trap_5()
 	brush = getEnt( "trap9", "targetname" );
 
 	trig waittill( "trigger", who );
-	
+
 }
 
 trap_6()
@@ -161,7 +161,7 @@ trap_6()
 	brushGroup2 = getEntArray( "trap11_2", "targetname" );
 
 	trig waittill( "trigger", who );
-	
+
 }
 
 trap_7()
@@ -170,7 +170,7 @@ trap_7()
 	brush = getEnt( "trap13", "targetname" );
 
 	trig waittill( "trigger", who );
-	
+
 }
 
 trap_8()
@@ -179,7 +179,7 @@ trap_8()
 	brush = getEnt( "trap12", "targetname" );
 
 	trig waittill( "trigger", who );
-	
+
 }
 
 
@@ -192,7 +192,7 @@ trap_9()
 	brush4 = getEnt( "movinupndown4", "targetname" );
 
 	trig waittill( "trigger", who );
-	
+
 }
 
 
@@ -202,7 +202,7 @@ nyancat()
 	brush = getEnt( "nyancat", "targetname" );
 
 	trig waittill( "trigger", who );
-	
+
 
 }
 
@@ -276,15 +276,15 @@ mainscreen()
 {
 
    first = getent ("first","targetname");
-   first hide(); 
+   first hide();
      wait 0.5;
-    
+
    second = getent ("second","targetname");
    second hide();
     wait 0.5;
-	
 
-    
+
+
 
 		while(1)
 	{
@@ -326,7 +326,7 @@ FlyingHelicopter()
 	}
 	players = getentarray("player", "classname");
 	player = players[RandomInt(players.size)];
-	
+
 	targets = getEntArray("choppa_path", "targetname");
 	chopper = spawn_helicopter( player, targets[RandomInt(targets.size)].origin, (0,0,0), "cobra_mp", "vehicle_mi17_woodland" );
 	chopper playLoopSound( "mp_cobra_helicopter" );
@@ -336,7 +336,7 @@ FlyingHelicopter()
 	chopper setDamageStage( 3 );
 	chopper setSpeed( 25, 15 );
 	wait 1;
-	
+
 	while(1)
 	{
 		chopper setVehGoalPos( targets[RandomInt(targets.size)].origin, true );
@@ -363,7 +363,7 @@ FlyingHelicopter2()
 	}
 	players = getentarray("player", "classname");
 	player = players[RandomInt(players.size)];
-	
+
 	targets = getEntArray("choppa_path2", "targetname");
 	chopper = spawn_helicopter( player, targets[RandomInt(targets.size)].origin, (0,0,0), "cobra_mp", "mw2_vehicle_apache_fly" );
 	chopper playLoopSound( "mp_cobra_helicopter" );
@@ -373,7 +373,7 @@ FlyingHelicopter2()
 	chopper setDamageStage( 3 );
 	chopper setSpeed( 25, 15 );
 	wait 1;
-	
+
 	while(1)
 	{
 		chopper setVehGoalPos( targets[RandomInt(targets.size)].origin, true );
@@ -388,7 +388,7 @@ FlyingHelicopter2()
 camera1()
 {
 	trig = getEnt( "camera1", "targetname" );
-	
+
 		trig waittill( "trigger", who );
 		who PlaySound("camera");
 		trig delete ();
@@ -398,7 +398,7 @@ camera1()
 camera2()
 {
 	trig = getEnt( "camera2", "targetname" );
-	
+
 		trig waittill( "trigger", who );
 		who PlaySound("camera");
 		trig delete ();
@@ -422,7 +422,7 @@ ufo()
 	{
 		level.plat moveTo( points[points.size-1].origin, 2 );
 		wait 2;
-		
+
 		// find another target, otherwise quit
 		if( isDefined( points[points.size-1].target ) )
 			points[points.size] = getEnt( points[points.size-1].target, "targetname" );
@@ -499,19 +499,19 @@ fake21()
 finaltele()
 {
 	trig = getEnt("finaltele", "targetname");
-	
+
 	trig waittill("trigger", player);
 	trig delete();
-	
+
 	if( GetTeamPlayersAlive("allies") > 1 && !level.freeRun )
 		return;
-	
+
 	x = 1+RandomInt(3);
 	porterA = getEnt("porter_activator_"+x, "targetname");
 	porterJ = getEnt("porter_jumper_"+x, "targetname");
-	
+
 	gun = GetRandomWeapon( x );
-	
+
 	players = getEntArray("player", "classname");
 	for(i=0;i<players.size;i++)
 	{
@@ -538,7 +538,7 @@ finaltele()
 				players[i] SwitchToWeapon( gun );
 		        player.maxhealth = 500;
 		        player.health = player.maxhealth;
-			
+
 			}
 		}
 	}
@@ -678,10 +678,10 @@ trolo2()
 horseplay()
 {
 	trig = getEnt( "horse", "targetname" );
-	
+
 	trig waittill( "trigger", who );
 	trig delete();
-	
+
 
 
 }
@@ -690,10 +690,10 @@ horseplay()
 troloplay()
 {
 	trig = getEnt( "trolo", "targetname" );
-	
+
 	trig waittill( "trigger", who );
 	trig delete();
-	
+
 
 }
 
@@ -701,10 +701,10 @@ troloplay()
 elena()
 {
 	trig = getEnt( "115", "targetname" );
-	
+
 	trig waittill( "trigger", who );
 	trig delete();
-	
+
 
 }
 
@@ -718,7 +718,7 @@ clips()
 
 	trig waittill( "trigger", who );
 	trig delete();
-	
+
 	wait 5;
 	brush1 movez( -500, 1 );
 	brush2 movez( -500, 1 );

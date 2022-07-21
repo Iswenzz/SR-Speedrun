@@ -1,15 +1,15 @@
 main()
 {
-thread sr\api\_map::createSpawn((214, -468, -512), 90);
+thread sr\api\_map::createSpawnOrigin((214, -468, -512), 90);
 maps\mp\_load::main();
- 
+
  game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"]= "desert";
- 
+
     setdvar( "r_specularcolorscale", "1" );
     setdvar( "r_glowbloomintensity0", ".25" );
     setdvar( "r_glowbloomintensity1", ".25" );
@@ -46,11 +46,11 @@ maps\mp\_load::main();
 startdoor()
 {
 	target = getEnt("start_door", "targetname");
-	
+
 	level waittill("round_started");
-	
+
 	target delete();
-	
+
 }
 
 bounce(player)
@@ -58,17 +58,17 @@ bounce(player)
 	trigger = getEnt( "trigger_bounce", "targetname" );
 	multiplyer = 3;
 	strenght = 180;
-	
+
 	while(1)
 	{
     	trigger waittill ( "trigger", player );
-		
+
 		if (isalive(player) && isdefined(player))
 		{
 			oldpos = player.origin;
 			playFx( level.fx_fire_up, player.origin );
 			musicPlay ("jump_pad");
-		
+
 			for(i = 0; i < multiplyer; i++)
 			{
 				player.health += strenght;
@@ -83,7 +83,7 @@ endmap()
    trig = getent("endmap_trig", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
     player thread sr\api\_speedrun::finishWay("normal_0");
     }
@@ -94,15 +94,15 @@ bounce_scrt(player)
 	trigger = getEnt( "trigger_bounce_scrt", "targetname" );
 	multiplyer = 3;
 	strenght = 200;
-	
+
 	while(1)
 	{
     	trigger waittill ( "trigger", player );
-		
+
 		if (isalive(player) && isdefined(player))
 		{
 			oldpos = player.origin;
-		
+
 			for(i = 0; i < multiplyer; i++)
 			{
 				player.health += strenght;
@@ -117,7 +117,7 @@ secfinish()
    trig = getent("toilet_trigger", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
     player thread sr\api\_speedrun::finishWay("secret_0");
     }
@@ -129,14 +129,14 @@ trap3()
 	spikes_02 = getEnt( "trap_03_spikes_02", "targetname" );
 	spikes_01_hurt = getEnt( "trap_03_hurt_01", "targetname" );
 	spikes_02_hurt = getEnt( "trap_03_hurt_02", "targetname" );
-	
+
 	level waittill("round_started");
-	
+
 	spikes_01 delete();
 	spikes_02 delete();
 	spikes_01_hurt delete();
 	spikes_02_hurt delete();
-	
+
 }
 
 trap1()
@@ -144,44 +144,44 @@ trap1()
 	floor = getEnt( "trap_01_obj_01", "targetname" );
 	trigger = getEnt( "trap_01_trigger", "targetname" );
 	floor moveZ( -16, 1);
-	
+
 	trigger sethintstring( "Press ^1[USE]^7 to activate" );
     trigger waittill ( "trigger", player );
-	
+
 	trigger sethintstring( "^1ACTIVATED" );
-	
+
 	floor moveZ(16, 1);
 	wait 1;
-	
+
 	floor delete();
 }
 
 trap2()
 {
 	trigger = getEnt( "trap_02_trigger", "targetname" );
-	
+
 	fx_origin_01 = getEnt( "trap_02_origin_01", "targetname" );
 	fx_origin_02 = getEnt( "trap_02_origin_02", "targetname" );
-	
+
 	trigger sethintstring( "Press ^1[USE]^7 to activate" );
     trigger waittill ( "trigger", player );
-	
+
 	trigger sethintstring( "^1ACTIVATED" );
-	
+
 	fx_origin_01 linkTo(level.obj_01);
 	fx_origin_02 linkTo(level.obj_02);
-	
+
 	for(i = 0; i < 10; i++)
-	{		
+	{
 		level.obj_01 Hide();
 		level.obj_02 Hide();
 		level.obj_01 notSolid();
 		level.obj_02 notSolid();
-		
+
 		wait randomInt(5) + 1;
-		
+
 		wait 2;
-		
+
 		level.obj_01 Show();
 		level.obj_02 Show();
 		level.obj_01 Solid();
@@ -194,12 +194,12 @@ trap4()
 {
 	trigger = getEnt( "trap_04_trigger", "targetname" );
 	target =getEnt( "trap_04_target", "targetname" );
-		
+
 	trigger sethintstring( "Press ^1[USE]^7 to activate" );
     trigger waittill ( "trigger", player );
-	
+
 	trigger sethintstring( "^1ACTIVATED" );
-	
+
 	while(1)
 	{
 		target moveY(-352, 4, 1, 3);
@@ -214,15 +214,15 @@ trap5()
 	trigger = getEnt( "trap_05_trigger", "targetname" );
 	down = getEnt( "trap_05_down_entity", "targetname" );
 	top = getEnt( "trap_05_top_entity", "targetname" );
-	
+
 	top moveZ(48, 1);
 	down moveZ(-136, 1);
-	
+
 	trigger sethintstring( "Press ^1[USE]^7 to activate" );
     trigger waittill ( "trigger", player );
-	
+
 	trigger sethintstring( "^1ACTIVATED" );
-	
+
 	top moveZ(-48, 3, 1, 2);
 	down moveZ(136, 3, 1, 2);
 	wait 3;
@@ -232,14 +232,14 @@ trap6()
 {
 	trigger = getEnt( "trap_06_trigger", "targetname" );
 	pusher = getEnt( "trap_06_pusher", "targetname" );
-	
+
 	pusher moveX(272, 1);
-	
+
 	trigger sethintstring( "Press ^1[USE]^7 to activate" );
     trigger waittill ( "trigger", player );
-	
+
 	trigger sethintstring( "^1ACTIVATED" );
-	
+
 	while(1)
 	{
 		pusher moveX(-272, 3, 2, 1);
@@ -256,13 +256,13 @@ secret_wall1()
 	brick_02 = getEnt( "secret_brick_07", "targetname" );
 	brick_03 = getEnt( "secret_brick_08", "targetname" );
 	brick_04 = getEnt( "secret_brick_09", "targetname" );
-	
+
 	brick_01 moveY(32, 1);
 	brick_02 moveY(16, 1);
 	brick_03 moveY(32, 1);
 	brick_04 moveY(-48, 1);
-	
-	
+
+
 }
 
 secret_wall2()
@@ -272,21 +272,21 @@ secret_wall2()
 	brick_03 = getEnt( "secret_brick_03", "targetname" );
 	brick_04 = getEnt( "secret_brick_04", "targetname" );
 	brick_05 = getEnt( "secret_brick_05", "targetname" );
-	
+
 	brick_01 moveX(-48, 1);
 	brick_02 moveX(64, 1);
 	brick_03 moveX(-40, 1);
 	brick_04 moveX(-48, 1);
 	brick_05 moveY(-64, 1);
-	
+
 }
 
 secret_wall3()
 {
 	brick = getEnt( "secret_brick_ac", "targetname" );
-	
+
 	brick moveY(16, 1);
-	
+
 }
 
 secret_brick()
@@ -299,7 +299,7 @@ secret_brick()
 	bricks[5] = getEnt( "find_brick_06", "targetname" );
 	bricks[6] = getEnt( "find_brick_07", "targetname" );
 	bricks[7] = getEnt( "find_brick_08", "targetname" );
-	
+
 	bricks[0] moveY(16, 1);
 	bricks[1] moveY(16, 1);
 	bricks[2] moveX(16, 1);
@@ -308,18 +308,18 @@ secret_brick()
 	bricks[5] moveY(-16, 1);
 	bricks[6] moveX(-16, 1);
 	bricks[7] moveX(-16, 1);
-	
+
 }
 
 endrotate()
 {
 	target = getEnt( "end_rotate", "targetname" );
-	
+
 	while(1)
 	{
 		target rotateYaw(180, 5, 2, 3);
 		wait 5.5;
-		
+
 		target rotateYaw(180, 5, 2, 3);
 		wait 5.5;
 	}

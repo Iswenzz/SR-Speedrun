@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((180, 156, 16), 90);
+thread sr\api\_map::createSpawnOrigin((180, 156, 16), 90);
 maps\mp\_load::main();
 
 game["allies"] = "marines";

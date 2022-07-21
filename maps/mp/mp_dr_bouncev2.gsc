@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-496, -14, 6), 0);
+thread sr\api\_map::createSpawnOrigin((-496, -14, 6), 0);
 	thread sr\api\_speedrun::createNormalWays("^2Easy Way;^1Hard Way;");
 		maps\mp\_load::main();
 setdvar( "r_specularcolorscale", "1" );

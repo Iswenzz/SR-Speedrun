@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((3, 22, 16), 270);
+thread sr\api\_map::createSpawnOrigin((3, 22, 16), 270);
     maps\mp\_load::main();
 
     thread sr\api\_speedrun::createNormalWays("Normal Way;");
@@ -20,7 +20,7 @@ thread sr\api\_map::createSpawn((3, 22, 16), 270);
 	//thread trap8();
 	//thread trap9();
 	//thread finaldoor();
-	
+
     addTriggerToList ("trap2_trig");
 	addTriggerToList ("vanish_trigger");
 	addTriggerToList ("trap4_trig");
@@ -29,7 +29,7 @@ thread sr\api\_map::createSpawn((3, 22, 16), 270);
 	addTriggerToList ("trap7_trig");
 	addTriggerToList ("trap8_trig");
 	addTriggerToList ("trap9_trig");
-	
+
 }
 
 addTriggerToList( name )
@@ -38,33 +38,33 @@ addTriggerToList( name )
         level.trapTriggers = [];
     level.trapTriggers[level.trapTriggers.size] = getEnt( name, "targetname" );
 }
-	
+
 trap1()
 {
 
 	moving = getEnt ("trap1_moving", "targetname");
-		
+
 	while (1)
 	{
-		
+
 		moving moveY (-256,2);
 		wait 2;
 		moving moveY (256,2);
 		wait 2;
-		
+
 	}
 }
 
 trap2()
-{ 
+{
 			trig = getEnt ("trap2_trig", "targetname");
 			spin = getEnt ("trap2_spin", "targetname");
-			
+
 			trig waittill ("trigger", who);
 			trig delete();
-			
+
 			spin rotatepitch(2160,5);
-		
+
 }
 
 vanish()
@@ -82,14 +82,14 @@ vanish()
 }
 
 elevator()
-{             
+{
     button = getEnt ("elevator_button", "targetname");
     body = getEnt ("elevator_body", "targetname");
     door = getEnt ("elevator_door", "targetname");
     door2 = getEnt ("elevator_door2", "targetname");
-            
+
     for(;;)
-    {      
+    {
     button waittill ("trigger", who);
         {
             door moveX (-256,3);
@@ -102,20 +102,20 @@ elevator()
 			wait 3;
             body moveZ (-288,3);
 			wait 3;
-            door moveX (256,3);    
+            door moveX (256,3);
         }
-    }      
+    }
 }
 
 elevator2()
-{             
+{
     button = getEnt ("elevator2_button", "targetname");
     body = getEnt ("elevator2_body", "targetname");
     door = getEnt ("elevator2_door", "targetname");
     door2 = getEnt ("elevator2_door2", "targetname");
-            
+
     for(;;)
-    {      
+    {
     button waittill ("trigger", who);
         {
             door moveX (192,3);
@@ -128,39 +128,39 @@ elevator2()
 			wait 3;
             body moveZ (-288,3);
 			wait 3;
-            door moveX (-192,3);    
+            door moveX (-192,3);
         }
-    }      
+    }
 }
-			
-			
+
+
 trap4()
 {
 
 	trig = getEnt ("trap4_trig", "targetname");
 	lift = getEnt ("trap4_lift", "targetname");
-		
+
 	trig waittill ("trigger", who);
 	trig delete();
-	
+
 	lift moveZ (240,1);
 	wait 3;
 	lift moveZ (-240,5);
-	
-}		
-	
+
+}
+
 trap5()
 {
 	trig = getEnt ("trap5_trig", "targetname");
 	hurt = getEnt ("trap5_hurt", "targetname");
 	fall = getEnt ("trap5_fall", "targetname");
-	
-	hurt enablelinkto(); 
-	hurt linkto (fall); 
+
+	hurt enablelinkto();
+	hurt linkto (fall);
 
 	trig waittill ("trigger");
 	trig delete();
-	{ 
+	{
 	fall moveZ (-256,1);
 	wait 3;
 	fall moveZ (256,1);
@@ -171,10 +171,10 @@ trap6()
 {
 	trig = getEnt ("trap6_trig","targetname");
 	spin = getEnt ("trap6_rotate", "targetname");
-	
+
 	trig waittill ("trigger", who);
 	trig delete();
-	
+
 	while (1)
 	{
 		spin rotateroll (360,1);
@@ -186,10 +186,10 @@ trap7()
 {
 	trig = getEnt ("trap7_trig","targetname");
 	spin = getEnt ("trap7_rotate", "targetname");
-	
+
 	trig waittill ("trigger", who);
 	trig delete();
-	
+
 	while (1)
 	{
 		spin rotateroll (360,1);
@@ -204,14 +204,14 @@ secret()// FEARZ WROTE THIS CAUSE HE'S A SEXY CUNT!
 	trigger1 = getEnt ("teleport_trigger1", "targetname");
 	trigger2 = getEnt ("teleport_trigger2", "targetname");
 
-	
+
 	thread random2();
 	for(;;)
 	{
 	trigger1 waittill ("trigger", player);
 	if( randomInt(2) == 0 )
 		{
-		
+
 			player SetPlayerAngles( target.angles );
 			player SetOrigin( target.origin );
 			player iprintlnbold("Correct... Enjoy!"); // remove or change the textedddd if you like
@@ -238,7 +238,7 @@ random2()
 	trigger2 waittill ("trigger", player);
 	if( randomInt(2) == 0 )
 		{
-		
+
 			player SetPlayerAngles( target.angles );
 			player SetOrigin( target.origin );
 			player iprintlnbold("Correct... Enjoy!"); // remove or change the textedddd if you like
@@ -254,10 +254,10 @@ random2()
 }
 
 mapteleport()
-{ 
+{
 	target = getEnt ("map_target", "targetname");
 	trig = getEnt ("map_trigger", "targetname");
-	
+
 	for(;;)
 	{
 	trig waittill ("trigger", player);
@@ -269,58 +269,58 @@ mapteleport()
 		}
 	}
 }
-		
+
 trap8()
 {
 	trig = getEnt ("trap8_trig","targetname");
 	spin = getEnt ("trap8_spin", "targetname");
-	
+
 	trig waittill ("trigger", who);
 	trig delete();
-	
+
 	while (1)
 	{
 		spin rotateyaw (360,1);
 		wait 1;
 	}
 }
-	
+
 trap9()
 {
 	trig = getEnt ("trap9_trig", "targetname");
 	fall = getEnt ("trap9_fall", "targetname");
-	
+
 	trig waittill ("trigger", who);
 	trig delete();
-	
+
 	fall moveZ (-352,3);
 	wait 4;
 	fall moveZ (352,1);
-	
+
 }
 
 finaldoor()
 {
 	trig = getEnt ("final_trig", "targetname");
 	door = getEnt ("final_door", "targetname");
-	
+
 	trig waittill ("trigger", player);
 	trig delete();
-	
+
 	iprintlnbold(player.name + " Is about to take on the ^1activator!");
-	
+
 	door moveZ (256,2);
-	
+
 }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+

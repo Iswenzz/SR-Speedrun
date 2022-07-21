@@ -1,18 +1,18 @@
-// __/\\\________/\\\_______________________________________________________________________/\\\\\\\\\__/\\\\\\_________________________________        
-//  _\/\\\_______\/\\\____________________________________________________________________/\\\////////__\////\\\_________________________________       
-//   _\//\\\______/\\\___/\\\__________________/\\\_______/\\\___________________________/\\\/______________\/\\\_________________________________      
-//   __\//\\\____/\\\___\///___/\\\\\\\\\\__/\\\\\\\\\\\_\///______/\\\\\\\\____________/\\\________________\/\\\_____/\\\\\\\\\_____/\\/\\\\\\___     
-//    ___\//\\\__/\\\_____/\\\_\/\\\//////__\////\\\////___/\\\___/\\\//////____________\/\\\________________\/\\\____\////////\\\___\/\\\////\\\__    
-//     ____\//\\\/\\\_____\/\\\_\/\\\\\\\\\\____\/\\\______\/\\\__/\\\___________________\//\\\_______________\/\\\______/\\\\\\\\\\__\/\\\__\//\\\_   
-//      _____\//\\\\\______\/\\\_\////////\\\____\/\\\_/\\__\/\\\_\//\\\___________________\///\\\_____________\/\\\_____/\\\/////\\\__\/\\\___\/\\\_  
-//       ______\//\\\_______\/\\\__/\\\\\\\\\\____\//\\\\\___\/\\\__\///\\\\\\\\______________\////\\\\\\\\\__/\\\\\\\\\_\//\\\\\\\\/\\_\/\\\___\/\\\_ 
+// __/\\\________/\\\_______________________________________________________________________/\\\\\\\\\__/\\\\\\_________________________________
+//  _\/\\\_______\/\\\____________________________________________________________________/\\\////////__\////\\\_________________________________
+//   _\//\\\______/\\\___/\\\__________________/\\\_______/\\\___________________________/\\\/______________\/\\\_________________________________
+//   __\//\\\____/\\\___\///___/\\\\\\\\\\__/\\\\\\\\\\\_\///______/\\\\\\\\____________/\\\________________\/\\\_____/\\\\\\\\\_____/\\/\\\\\\___
+//    ___\//\\\__/\\\_____/\\\_\/\\\//////__\////\\\////___/\\\___/\\\//////____________\/\\\________________\/\\\____\////////\\\___\/\\\////\\\__
+//     ____\//\\\/\\\_____\/\\\_\/\\\\\\\\\\____\/\\\______\/\\\__/\\\___________________\//\\\_______________\/\\\______/\\\\\\\\\\__\/\\\__\//\\\_
+//      _____\//\\\\\______\/\\\_\////////\\\____\/\\\_/\\__\/\\\_\//\\\___________________\///\\\_____________\/\\\_____/\\\/////\\\__\/\\\___\/\\\_
+//       ______\//\\\_______\/\\\__/\\\\\\\\\\____\//\\\\\___\/\\\__\///\\\\\\\\______________\////\\\\\\\\\__/\\\\\\\\\_\//\\\\\\\\/\\_\/\\\___\/\\\_
 //        _______\///________\///__\//////////______\/////____\///_____\////////__________________\/////////__\/////////___\////////\//__\///____\///__
 
 /*
-  _   ________   ___  __        __   
- | | / / ___( ) / _ )/ /__ ____/ /__ 
+  _   ________   ___  __        __
+ | | / / ___( ) / _ )/ /__ ____/ /__
  | |/ / /__ |/ / _  / / _ `/ _  / -_)
- |___/\___/   /____/_/\_,_/\_,_/\__/ 
+ |___/\___/   /____/_/\_,_/\_,_/\__/
 
  © VC' Blade
 
@@ -20,7 +20,7 @@
 #include braxi\_common;
 main()
 {
-thread sr\api\_map::createSpawn((-703, 1120, 32), 270);
+thread sr\api\_map::createSpawnOrigin((-703, 1120, 32), 270);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
@@ -41,7 +41,7 @@ player thread braxi\_mod::endTimer();
     maps\mp\sanctuary\_mystic::main();
 
     // ambientplay("sanctuary");
-	
+
 	game["allies"] = "marines";
     game["axis"] = "opfor";
     game["attackers"] = "axis";
@@ -101,11 +101,11 @@ player thread braxi\_mod::endTimer();
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
 
@@ -217,7 +217,7 @@ trap2()
     level.repair_b3 notsolid();
     level.repair_b4 notsolid();
 
-   
+
 }
 
 trap2_repair()
@@ -263,7 +263,7 @@ trap2_repair()
             level.repair_b4 solid();
             level.repair_trig delete();
         }
-        wait 1; 
+        wait 1;
     }
 }
 
@@ -272,7 +272,7 @@ trap3()
     trig=getent("trig_trap3","targetname");
     trig sethintstring("Press ^1[USE]^7 to activate");
     trig waittill("trigger");
-    trig delete();  
+    trig delete();
 
     if(isdefined(level.ropetim1))
         level.ropetim1 unlink();
@@ -288,7 +288,7 @@ trap4()
     trap=getent("trap_4","targetname");
     trig sethintstring("Press ^1[USE]^7 to activate");
     trig waittill("trigger");
-    trig delete(); 
+    trig delete();
     trap notsolid();
     wait 5+randomint(4);
     trap solid();
@@ -300,7 +300,7 @@ trap5()
     trap=getent("trap_5","targetname");
     trig sethintstring("Press ^1[USE]^7 to activate");
     trig waittill("trigger");
-    trig delete(); 
+    trig delete();
 
     while(1)
     {
@@ -320,7 +320,7 @@ trap6()
     trapd=getent("trap_6d","targetname");
     trig sethintstring("Press ^1[USE]^7 to activate");
     trig waittill("trigger");
-    trig delete(); 
+    trig delete();
 
     while(1)
     {
@@ -343,7 +343,7 @@ trap7()
     hfx=undefined;
     trapa maps\mp\_utility::triggerOff();
     trapb maps\mp\_utility::triggerOff();
-   
+
 }
 
 trap8()
@@ -373,7 +373,7 @@ trap9()
     trig sethintstring("Press ^1[USE]^7 to activate");
     trapa maps\mp\_utility::triggerOff();
     trapb maps\mp\_utility::triggerOff();
-   
+
 }
 
 // Moves
@@ -385,7 +385,7 @@ rope1()
     rop3 = getEnt ("rope1_targ3", "targetname");
 
 	trig sethintstring("Press ^1[USE]^7 to move over");
-	
+
     for(;;)
     {
         trig waittill ("trigger",user);
@@ -405,7 +405,7 @@ rope1_ng(user)
     rop3 = getEnt ("rope1_targ3", "targetname");
 
     user sr\api\_player::antiElevator(false);
-	
+
 			rope1=spawn("script_model",(5,7,1));
             rope1.origin=user.origin;
             rope1.angles=user.angles;
@@ -435,7 +435,7 @@ rope2()
     rop3 = getEnt ("rope2_targ3", "targetname");
 
 	trig sethintstring("Press ^1[USE]^7 to move over");
-	
+
     for(;;)
     {
         trig waittill ("trigger",user);
@@ -454,7 +454,7 @@ rope2_ng(user)
     rop1 = getEnt ("rope2_targ1", "targetname");
     rop2 = getEnt ("rope2_targ2", "targetname");
     rop3 = getEnt ("rope2_targ3", "targetname");
-	
+
     user sr\api\_player::antiElevator(false);
 
 			rope2=spawn("script_model",(5,7,1));
@@ -486,7 +486,7 @@ rope3()
     rop3 = getEnt ("rope3_targ3", "targetname");
 
 	trig sethintstring("Press ^1[USE]^7 to move over");
-	
+
     for(;;)
     {
         trig waittill ("trigger",user);
@@ -507,7 +507,7 @@ rope3_ng(user)
     rop3 = getEnt ("rope3_targ3", "targetname");
 
     user sr\api\_player::antiElevator(false);
-	
+
 			rope3=spawn("script_model",(5,7,1));
             rope3.origin=user.origin;
             rope3.angles=user.angles;
@@ -524,7 +524,7 @@ rope3_ng(user)
             user unlink();
             wait 0.2;
             user EnableWeapons();
-            wait 0.1;  
+            wait 0.1;
             user sr\api\_player::antiElevator(true);
 }
 
@@ -542,7 +542,7 @@ topcredits()
 
     if(isDefined(level.topcredits))
         level.topcredits destroy();
- 
+
     level.topcredits = newHudElem();
     level.topcredits.foreground = true;
     level.topcredits.alignX = "center";
@@ -643,25 +643,25 @@ endroom_choice()
     self endon("disconnect");
     self freezecontrols(1);
 
-    self.menu = addTextHudend( self, 750, 50, 0.4, "left", "top", 0, 0, (0,0,0) );  
+    self.menu = addTextHudend( self, 750, 50, 0.4, "left", "top", 0, 0, (0,0,0) );
     self.menu setShader("black", 200, 240);
-    
+
     self.header1 = addTextHudend( self, 760, 55, 1, "left", "top", 1.5, 2, level.sanctuaryglow );
     self.header1 setText("^1E^7ndroom ^1C^7hoice");
-    
-    self.bar1 = addTextHudend( self, 750, 50, 1, "left", "top", 0, 1, (0,0,0) );    
+
+    self.bar1 = addTextHudend( self, 750, 50, 1, "left", "top", 0, 1, (0,0,0) );
     self.bar1 setShader("black", 200, 30);
-    
-    self.bar2 = addTextHudend( self, 750, 290, 1, "left", "top", 0, 1, (0,0,0) );   
+
+    self.bar2 = addTextHudend( self, 750, 290, 1, "left", "top", 0, 1, (0,0,0) );
     self.bar2 setShader("black", 200, 50);
-    
+
     self.text1 = addTextHudend( self, 760, 290, 1, "left", "top", 1.4, 2, level.sanctuaryglow );
-    self.text1 setText("^1[{+attack}]^7: Move down\n^1[{+activate}]^7: Select\n^1>>^7     Vistic Clan     ^1<<");  
-    
-    self.item1 = addTextHudend( self, 800, 89, 1, "left", "top", 1.4, 3, level.sanctuaryglow ); 
+    self.text1 setText("^1[{+attack}]^7: Move down\n^1[{+activate}]^7: Select\n^1>>^7     Vistic Clan     ^1<<");
+
+    self.item1 = addTextHudend( self, 800, 89, 1, "left", "top", 1.4, 3, level.sanctuaryglow );
     self.item1 setText("^1S^7niper\n\n^1K^7nife\n\n^1B^7ounce\n\n^1M^7ystic");
-    
-    self.selector = addTextHudend( self, 780, 90, 0.7, "left", "top", 0, 1, (0,0,0) );  
+
+    self.selector = addTextHudend( self, 780, 90, 0.7, "left", "top", 0, 1, (0,0,0) );
     self.selector setShader("white", 180, 20);
     self.selector.color=(0.8,0,0);
 
@@ -674,11 +674,11 @@ endroom_choice()
     move(self.text1, 560, 1);
     move(self.item1, 600, 1);
     move(self.selector, 580, 1);
-    
+
     selectorrow = 1;
-    
+
     wait 1;
-    
+
     while(self.ischoosing)
     {
         if(self attackButtonPressed())
@@ -724,7 +724,7 @@ endroom_choice()
             self destroymenu();
         }
         wait 0.05;
-    }     
+    }
 }
 move(hud, xpos, time)
 {
@@ -740,7 +740,7 @@ destroymenu()
     move(self.bar2, 750, 0.5);
     move(self.text1, 760, 0.5);
     move(self.item1, 800, 0.5);
-    move(self.selector, 780, 0.5);      
+    move(self.selector, 780, 0.5);
     wait 1;
     self.menu.alpha=0; self.bar1.alpha=0; self.item1.alpha=0; self.selector.alpha=0; self.bar2.alpha=0; self.text1.alpha=0; self.header1.alpha=0;
 }
@@ -1001,7 +1001,7 @@ mystic_r()
         if(!isdefined(level.mystic))
             return;
         level.mystic sethintstring("Wait your ^1Turn");
-        thread maps\mp\sanctuary\_others::mysticJumper(); 
+        thread maps\mp\sanctuary\_others::mysticJumper();
         thread maps\mp\sanctuary\_others::mysticActivator();
         thread maps\mp\sanctuary\_mystic::magicweapon();
         if(level.roomsong==true)
@@ -1052,7 +1052,7 @@ mystic_fail()
     for(;;)
     {
         fail waittill("trigger",player);
-    
+
         if(player.pers["team"]!="spectator")
         {
             if(player.pers["team"]=="allies")
@@ -1077,7 +1077,7 @@ bounce_fail()
     for(;;)
     {
         fail waittill("trigger",player);
-    
+
         if(player.pers["team"]!="spectator")
         {
             if(player.pers["team"]=="allies")
@@ -1164,19 +1164,19 @@ snipway_fx()
     t3=getentarray("sniper_t3","targetname");
     for(i=0;i<t1.size;i++)
     {
-        t1[i]=spawnfx(level.torches,t1[i].origin); 
+        t1[i]=spawnfx(level.torches,t1[i].origin);
         triggerfx(t1[i]);
     }
     wait 1;
     for(i=0;i<t2.size;i++)
     {
-        t2[i]=spawnfx(level.torches,t2[i].origin); 
+        t2[i]=spawnfx(level.torches,t2[i].origin);
         triggerfx(t2[i]);
     }
     wait 1;
     for(i=0;i<t3.size;i++)
     {
-        t3[i]=spawnfx(level.torches,t3[i].origin); 
+        t3[i]=spawnfx(level.torches,t3[i].origin);
         triggerfx(t3[i]);
     }
 }
@@ -1188,19 +1188,19 @@ bounceway_fx()
     t3=getentarray("bounce_t3","targetname");
     for(i=0;i<t1.size;i++)
     {
-        t1[i]=spawnfx(level.torches,t1[i].origin); 
+        t1[i]=spawnfx(level.torches,t1[i].origin);
         triggerfx(t1[i]);
     }
     wait 1;
     for(i=0;i<t2.size;i++)
     {
-        t2[i]=spawnfx(level.torches,t2[i].origin); 
+        t2[i]=spawnfx(level.torches,t2[i].origin);
         triggerfx(t2[i]);
     }
     wait 1;
     for(i=0;i<t3.size;i++)
     {
-        t3[i]=spawnfx(level.torches,t3[i].origin); 
+        t3[i]=spawnfx(level.torches,t3[i].origin);
         triggerfx(t3[i]);
     }
 }
@@ -1212,19 +1212,19 @@ knifeway_fx()
     t3=getentarray("knife_t3","targetname");
     for(i=0;i<t1.size;i++)
     {
-        t1[i]=spawnfx(level.torches,t1[i].origin); 
+        t1[i]=spawnfx(level.torches,t1[i].origin);
         triggerfx(t1[i]);
     }
     wait 1;
     for(i=0;i<t2.size;i++)
     {
-        t2[i]=spawnfx(level.torches,t2[i].origin); 
+        t2[i]=spawnfx(level.torches,t2[i].origin);
         triggerfx(t2[i]);
     }
     wait 1;
     for(i=0;i<t3.size;i++)
     {
-        t3[i]=spawnfx(level.torches,t3[i].origin); 
+        t3[i]=spawnfx(level.torches,t3[i].origin);
         triggerfx(t3[i]);
     }
 }
@@ -1236,19 +1236,19 @@ mysticway_fx()
     t3=getentarray("myst_t3","targetname");
     for(i=0;i<t1.size;i++)
     {
-        t1[i]=spawnfx(level.torches,t1[i].origin); 
+        t1[i]=spawnfx(level.torches,t1[i].origin);
         triggerfx(t1[i]);
     }
     wait 1;
     for(i=0;i<t2.size;i++)
     {
-        t2[i]=spawnfx(level.torches,t2[i].origin); 
+        t2[i]=spawnfx(level.torches,t2[i].origin);
         triggerfx(t2[i]);
     }
     wait 1;
     for(i=0;i<t3.size;i++)
     {
-        t3[i]=spawnfx(level.torches,t3[i].origin); 
+        t3[i]=spawnfx(level.torches,t3[i].origin);
         triggerfx(t3[i]);
     }
 }

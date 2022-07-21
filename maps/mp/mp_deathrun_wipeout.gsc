@@ -1,14 +1,14 @@
 main()
 {
-thread sr\api\_map::createSpawn((531.442, -511.610, 56.125), 180);
+thread sr\api\_map::createSpawnOrigin((531.442, -511.610, 56.125), 180);
 trigger = spawn( "trigger_radius", (2687, 2503, 92), 0, 300, 300 );
 trigger.targetname = "endmap_trig";
-trigger.radius = 300;	
-	maps\mp\_load::main();	
-	
-	
+trigger.radius = 300;
+	maps\mp\_load::main();
+
+
 	// ambientPlay("ambient100");
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "russian";
 	game["attackers"] = "allies";
@@ -24,7 +24,7 @@ trigger.radius = 300;
 	setdvar("compassmaxrange","1800");
 
 	//arrays
-	//kick , arm	
+	//kick , arm
 	sweeperarm=getentarray("Sweper_Trap","targetname");
 	if(isdefined(sweeperarm))
 	{
@@ -33,7 +33,7 @@ trigger.radius = 300;
 	sweeperarm[i] thread trap_sweeperarm();
 	}
 	}
-	
+
 	kicker=getentarray("kicker","targetname");
 	if(isdefined(kicker))
 	{
@@ -42,9 +42,9 @@ trigger.radius = 300;
 	kicker[i] thread trap_kicker();
 	}
 	}
-	
-	
-	
+
+
+
 	finalsweeperarm=getentarray("Final_Sweper","targetname");
 	if(isdefined(finalsweeperarm))
 	{
@@ -53,7 +53,7 @@ trigger.radius = 300;
 	finalsweeperarm[i] delete();
 	}
 	}
-	
+
 	thread way_connect();
 	//startthreads
 	// thread credit();
@@ -64,7 +64,7 @@ trigger.radius = 300;
 	// thread WatchEndTrigger();
 	// thread wipezone();
 	// thread addtriggers();
-	
+
 	//trapthreads
 	// thread trap_sweeperfloor();
 	// thread trap_rotating_platform();
@@ -76,8 +76,8 @@ trigger.radius = 300;
 	// thread trap_jumppads();
 	// thread trap_rotateingshit();
 	// thread trap_roller();
-	
-	
+
+
 
 }
 
@@ -85,10 +85,10 @@ trigger.radius = 300;
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
 
@@ -335,8 +335,8 @@ while(true)
 
 
 trap_rotating_platform()
-{	
-platform1 = getEnt("Rotating_Platform1", "targetname");	
+{
+platform1 = getEnt("Rotating_Platform1", "targetname");
 triggerd = getEnt("Trap_Rotating_Platforms", "targetname");
 if (!isdefined(platform1.speed))
  platform1.speed = 3;
@@ -358,7 +358,7 @@ while(true)
 
 trap_rotating_platform2()
 {
-platform2 = getEnt("Rotating_Platform2", "targetname");	
+platform2 = getEnt("Rotating_Platform2", "targetname");
 if (!isdefined(platform2.speed))
  platform2.speed = 3;
 if (!isdefined(platform2.script_noteworthy))
@@ -474,7 +474,7 @@ player SetOrigin( secretorigin.origin );
 player setplayerangles(secretorigin.angles );
 }
 
-		
+
 sweeperunlock()
 {
 	trigger = getEnt( "door", "targetname" );
@@ -573,7 +573,7 @@ trigger = getEnt("Trap_Platform", "targetname");
 trigger waittill("trigger", player);
 thread platform2();
 if(isdefined(platform1))
-{	
+{
 for(i=0;i<platform1.size;i++)
 {
 if (!isdefined(platform1[i].speed))
@@ -595,7 +595,7 @@ platform2()
 {
 platform1 = getentarray ("Platform2","targetname");
 if(isdefined(platform1))
-{	
+{
 for(i=0;i<platform1.size;i++)
 {
 if (!isdefined(platform1[i].speed))
@@ -645,7 +645,7 @@ rot1 = getEntarray("final_rotator1", "targetname");
 trigger waittill("trigger", player);
 thread rotater2();
 if(isdefined(rot1))
-{	
+{
 for(i=0;i<rot1.size;i++)
 {
 if (!isdefined(rot1[i].speed))
@@ -671,7 +671,7 @@ rotater2()
 {
 rot1 = getEntarray("final_rotator2", "targetname");
 if(isdefined(rot1))
-{	
+{
 for(i=0;i<rot1.size;i++)
 {
 if (!isdefined(rot1[i].speed))
@@ -712,7 +712,7 @@ if (tube.script_noteworthy == "z")
  }
 
  ////endroom
- 
+
 /*  finishmap()
 {
 triggertele = getEnt("finish_trig", "targetname");
@@ -729,9 +729,9 @@ level.activ setplayerangles(level.actspawnorigin.angles );
 level.actspawnorigin delete();
 }
 } */
- 
+
  WatchEndTrigger()
-{	
+{
 	triggertele = getEnt("finish_trig", "targetname");
 	level.acti_enemy = undefined;
 	level.turn = 1;
@@ -744,7 +744,7 @@ level.actspawnorigin delete();
 			player iprintlnbold("^1You can't fight alone.");
 			return;
 		}
-		
+
 		if( isDefined( level.acti_enemy ) && level.acti_enemy != player )
 		{
 			self.control = 0;
@@ -754,7 +754,7 @@ level.actspawnorigin delete();
 				{	self.control = 1;
 				}
 			}
-			
+
 			if( self.control != 1)
 			{
 				level.turn = level.turn + 1;
@@ -767,8 +767,8 @@ level.actspawnorigin delete();
 				player iprintlnbold("Wait your turn.");
 				wait 3;
 			}
-			
-				
+
+
 		}
 		if( !isDefined(level.acti_enemy))
 		{
@@ -777,16 +777,16 @@ level.actspawnorigin delete();
 			iprintlnbold( player.name + " finished first!");
 			iprintlnbold("^11 VS 1 Fight!");
 			thread StartFinalFight();
-			thread controljumper();	
+			thread controljumper();
 		}
 	}
 }
 controljumper()
 {
-	
+
 	while(1)
 	{
-		
+
 		if(isAlive(level.acti_enemy))
 		{
 			for(turn=1;turn<level.turn;turn++)
@@ -794,18 +794,18 @@ controljumper()
 				iprintln( turn + "^2 >" + level.jumper_turn[turn]);
 				wait 2;
 	   		}
-			
+
 		}
 		else
 		{
 			for(turn=1;turn<level.turn;turn++)
-			{	
+			{
 				if( isAlive(level.jumper_turn[turn]))
 				{
 					level.acti_enemy = level.jumper_turn[turn];
 					thread StartFinalFight();
 				}
-			}	
+			}
 		     }
 	wait 3;
 	}
@@ -813,7 +813,7 @@ controljumper()
 
 StartFinalFight()
 {
-	
+
 
 	acti = undefined;
 	jumper = level.acti_enemy;
@@ -827,13 +827,13 @@ StartFinalFight()
 			break;
 		}
 	}
-	
+
 
 
 
 	spawnorigin = getEnt("finish", "targetname");
 	level.actspawnorigin = getEnt("actendroom", "targetname");
-	
+
 	acti SetPlayerAngles( level.actspawnorigin.angles );
 	acti SetOrigin( level.actspawnorigin.origin );
 	jumper SetPlayerAngles( spawnorigin.angles );
@@ -842,7 +842,7 @@ StartFinalFight()
 
 	acti FreezeControls(1);
 	jumper FreezeControls(1);
-	
+
 
 	wait 2;
 
@@ -854,9 +854,9 @@ StartFinalFight()
 	players = getentarray("player", "classname");
 	for(i=0;i<players.size;i++)
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-	
+
 	wait 2;
-	
+
 	noti = SpawnStruct();
 	noti.titleText = acti.name + " ^3VS ^7" + jumper.name;
 	noti.notifyText = "GET READY!";
@@ -865,12 +865,12 @@ StartFinalFight()
 	players = getentarray("player", "classname");
 	for(i=0;i<players.size;i++)
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-	
+
 	wait 2;
-	
+
 	VisionSetNaked( "finalfight_mp", 2 );
 	jumper FreezeControls(0);
 	acti FreezeControls(0);
-	
+
 	iprintlnbold("^3F  I  G  H  T !");
 }

@@ -1,8 +1,8 @@
 main()
 {
-thread sr\api\_map::createSpawn((-1513, -1690, -640), 179);
+thread sr\api\_map::createSpawnOrigin((-1513, -1690, -640), 179);
 maps\mp\_load::main();
- 
+
 	game["allies"] = "marines";
     game["axis"] = "opfor";
     game["attackers"] = "axis";
@@ -31,7 +31,7 @@ thread secretp5();
 thread secretp6();
 thread secretp7();
 thread secretexit();
-	
+
 }
 
 secretdoorinsta()
@@ -47,7 +47,7 @@ door = getEnt("startdoor", "targetname");
 
 door delete();
 
-}	
+}
 
 secretenter()
 {
@@ -56,7 +56,7 @@ secretenter()
 	while(1)
     	{
         trig waittill ("trigger", player);
-        player thread sr\api\_speedrun::changeWay("secret_0");          
+        player thread sr\api\_speedrun::changeWay("secret_0");
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 		secret_stop = "secret_stop";
@@ -70,7 +70,7 @@ secretp1()
 	out = getEnt("o_secretp1", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 	}
@@ -82,7 +82,7 @@ secretp2()
 	out = getEnt("o_secretp2", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 	}
@@ -94,7 +94,7 @@ secretp3()
 	out = getEnt("o_secretp3", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 	}
@@ -124,7 +124,7 @@ secretp5()
 	out = getEnt("o_secretp5", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 	}
@@ -136,7 +136,7 @@ secretp6()
 	out = getEnt("o_secretp6", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 	}
@@ -148,7 +148,7 @@ secretp7()
 	out = getEnt("o_secretp7", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 	}
@@ -161,7 +161,7 @@ secretexit()
 	while(1)
     	{
         trig waittill ("trigger", player);
-        player thread sr\api\_speedrun::finishWay("secret_0");          
+        player thread sr\api\_speedrun::finishWay("secret_0");
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);
 		player notify("secret_stop");
@@ -176,7 +176,7 @@ playerGone(noty)
     self playerOnSpectators(noty);
     wait 0.5;
 }
- 
+
 playerOnDeath(noty)
 {
     self waittill("death");
@@ -187,7 +187,7 @@ playerOnDeath(noty)
     wait 0.5;
 	}
 }
- 
+
 playerOnDisconnect(noty)
 {
     self waittill("disconnect");
@@ -198,7 +198,7 @@ playerOnDisconnect(noty)
     wait 0.5;
 	}
 }
- 
+
 playerOnSpawned(noty)
 {
     self waittill("spawned");
@@ -209,7 +209,7 @@ playerOnSpawned(noty)
     wait 0.5;
 	}
 }
- 
+
 playerOnSpectators(noty)
 {
     self waittill("joined_spectators");

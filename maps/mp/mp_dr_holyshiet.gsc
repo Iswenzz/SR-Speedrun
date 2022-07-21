@@ -1,18 +1,18 @@
-// __/\\\________/\\\_______________________________________________________________________/\\\\\\\\\__/\\\\\\_________________________________        
-//  _\/\\\_______\/\\\____________________________________________________________________/\\\////////__\////\\\_________________________________       
-//   _\//\\\______/\\\___/\\\__________________/\\\_______/\\\___________________________/\\\/______________\/\\\_________________________________      
-//   __\//\\\____/\\\___\///___/\\\\\\\\\\__/\\\\\\\\\\\_\///______/\\\\\\\\____________/\\\________________\/\\\_____/\\\\\\\\\_____/\\/\\\\\\___     
-//    ___\//\\\__/\\\_____/\\\_\/\\\//////__\////\\\////___/\\\___/\\\//////____________\/\\\________________\/\\\____\////////\\\___\/\\\////\\\__    
-//     ____\//\\\/\\\_____\/\\\_\/\\\\\\\\\\____\/\\\______\/\\\__/\\\___________________\//\\\_______________\/\\\______/\\\\\\\\\\__\/\\\__\//\\\_   
-//      _____\//\\\\\______\/\\\_\////////\\\____\/\\\_/\\__\/\\\_\//\\\___________________\///\\\_____________\/\\\_____/\\\/////\\\__\/\\\___\/\\\_  
-//       ______\//\\\_______\/\\\__/\\\\\\\\\\____\//\\\\\___\/\\\__\///\\\\\\\\______________\////\\\\\\\\\__/\\\\\\\\\_\//\\\\\\\\/\\_\/\\\___\/\\\_ 
+// __/\\\________/\\\_______________________________________________________________________/\\\\\\\\\__/\\\\\\_________________________________
+//  _\/\\\_______\/\\\____________________________________________________________________/\\\////////__\////\\\_________________________________
+//   _\//\\\______/\\\___/\\\__________________/\\\_______/\\\___________________________/\\\/______________\/\\\_________________________________
+//   __\//\\\____/\\\___\///___/\\\\\\\\\\__/\\\\\\\\\\\_\///______/\\\\\\\\____________/\\\________________\/\\\_____/\\\\\\\\\_____/\\/\\\\\\___
+//    ___\//\\\__/\\\_____/\\\_\/\\\//////__\////\\\////___/\\\___/\\\//////____________\/\\\________________\/\\\____\////////\\\___\/\\\////\\\__
+//     ____\//\\\/\\\_____\/\\\_\/\\\\\\\\\\____\/\\\______\/\\\__/\\\___________________\//\\\_______________\/\\\______/\\\\\\\\\\__\/\\\__\//\\\_
+//      _____\//\\\\\______\/\\\_\////////\\\____\/\\\_/\\__\/\\\_\//\\\___________________\///\\\_____________\/\\\_____/\\\/////\\\__\/\\\___\/\\\_
+//       ______\//\\\_______\/\\\__/\\\\\\\\\\____\//\\\\\___\/\\\__\///\\\\\\\\______________\////\\\\\\\\\__/\\\\\\\\\_\//\\\\\\\\/\\_\/\\\___\/\\\_
 //        _______\///________\///__\//////////______\/////____\///_____\////////__________________\/////////__\/////////___\////////\//__\///____\///__
 
 /*
-  _   ________   ___  __        __   
- | | / / ___( ) / _ )/ /__ ____/ /__ 
+  _   ________   ___  __        __
+ | | / / ___( ) / _ )/ /__ ____/ /__
  | |/ / /__ |/ / _  / / _ `/ _  / -_)
- |___/\___/   /____/_/\_,_/\_,_/\__/ 
+ |___/\___/   /____/_/\_,_/\_,_/\__/
 
  © VC' Blade
 
@@ -20,9 +20,9 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((624.125, -64, -303.875), 180);
+thread sr\api\_map::createSpawnOrigin((624.125, -64, -303.875), 180);
   maps\mp\_load::main();
-	
+
 	// ambientPlay("holyshiet");
   // precacheitem("ak47_mp");
   // precacheitem("ak74u_mp");
@@ -40,7 +40,7 @@ thread sr\api\_map::createSpawn((624.125, -64, -303.875), 180);
   setdvar("r_glowskybleedintensity0",".3");
 
   thread way_connect();
-  
+
 	//startdoor
   thread startdoor();
 
@@ -54,7 +54,7 @@ thread sr\api\_map::createSpawn((624.125, -64, -303.875), 180);
 	// thread trap7();
 	// thread trap8();
 	// thread trap9();
-	
+
 	//Secret
 	thread secret_open();
   thread secret_port();
@@ -66,13 +66,13 @@ thread sr\api\_map::createSpawn((624.125, -64, -303.875), 180);
 
   //Actidoit
   // thread doit();
-	
+
   //rooms
   // thread r_sniper();
   // thread r_weapon();
   // thread r_knife();
   // thread r_port();
-	
+
 	//triggerinfreerun
   // addTriggerToList( "trap1_trig" );
 	// addTriggerToList( "trap2_trig" );
@@ -90,10 +90,10 @@ thread sr\api\_map::createSpawn((624.125, -64, -303.875), 180);
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -116,29 +116,29 @@ startdoor()
 {
    trigger = getEnt("startdoor_trig", "targetname");
    door = getEnt("startdoor", "targetname");
-   
+
    // trigger setHintString("^1Press ^7F ^1!");
    // trigger waittill("trigger");
-   
+
    // iPrintLnBold("^1Startdoor ^7will open in ^15 ^7Seconds");
    trigger delete();
    wait 0.1;
-   
+
    door movez(-120,0.2);
    wait 0.2;
    door delete();
   }
-  
+
 //Traps
 trap1()
 {
   trigger = getEnt("trap1_trig", "targetname");
   trap = getEnt("trap1", "targetname");
-  
+
   trigger setHintString("^1Activate:^7 Trap1");
   trigger waittill("trigger");
   trigger delete();
-  
+
   while(1)
   {
     trap rotatePitch(360, 11);
@@ -151,11 +151,11 @@ trap2()
   trigger = getEnt("trap2_trig", "targetname");
   atrap = getEnt("trap2a", "targetname");
   btrap = getEnt("trap2b", "targetname");
-  
+
   trigger setHintString("^1Activate:^7 Trap2");
   trigger waittill("trigger");
   trigger delete();
-  
+
   while(1)
   {
     atrap rotateRoll(360,1.5);
@@ -166,15 +166,15 @@ trap2()
 }
 
 trap3()
-{ 
+{
   trigger = getEnt("trap3_trig", "targetname");
   atrap = getEnt("trap3a", "targetname");
   btrap = getEnt("trap3b", "targetname");
-  
+
   trigger setHintString("^1Activate:^7 Trap3");
   trigger waittill("trigger");
   trigger delete();
-  
+
   wait 0.1;
   while(1)
   {
@@ -189,11 +189,11 @@ trap4()
   trigger = getEnt("trap4_trig", "targetname");
   atrap = getEnt("trap4a", "targetname");
   btrap = getEnt("trap4b", "targetname");
-  
+
   trigger setHintString("^1Activate:^7 Trap4");
   trigger waittill("trigger");
   trigger delete();
-  
+
   while(1)
   {
     atrap rotateYaw(360, 2);
@@ -203,9 +203,9 @@ trap4()
 }
 
 trap5()
-{ 
-  trigger = getEnt("trap5_trig", "targetname"); 
-  atrap = getEnt("trap5a", "targetname"); 
+{
+  trigger = getEnt("trap5_trig", "targetname");
+  atrap = getEnt("trap5a", "targetname");
   btrap = getEnt("trap5b", "targetname");
   ctrap = getEnt("trap5c", "targetname");
   dtrap = getEnt("trap5d", "targetname");
@@ -241,8 +241,8 @@ trap5()
 }
 
 trap6()
-{ 
-  trigger = getEnt("trap6_trig", "targetname"); 
+{
+  trigger = getEnt("trap6_trig", "targetname");
   atrap = getEnt("trap6a", "targetname");
   btrap = getEnt("trap6b", "targetname");
   ctrap = getEnt("trap6c", "targetname");
@@ -267,11 +267,11 @@ trap7()
   trigger = getEnt("trap7_trig", "targetname");
   atrap = getEnt("trap7a", "targetname");
   btrap = getEnt("trap7b", "targetname");
-  
+
   trigger setHintString("^1Activate:^7 Trap7");
   trigger waittill("trigger");
   trigger delete();
-  
+
   vc = randomint(2);
   if(vc==0)
   {
@@ -287,11 +287,11 @@ trap8()
 {
   trigger = getEnt("trap8_trig", "targetname");
   trap = getEnt("trap8", "targetname");
-  
+
   trigger setHintString("^1Activate:^7 Trap8");
   trigger waittill("trigger");
   trigger delete();
-  
+
   while(1)
   {
     trap rotateYaw(360, 6);
@@ -303,7 +303,7 @@ trap9()
 {
   trigger = getEnt("trap9_trig", "targetname");
   trap = getEnt("trap9", "targetname");
-  
+
   trigger setHintString("^1Activate:^7 Trap9");
   trigger waittill("trigger");
   trigger delete();
@@ -320,18 +320,18 @@ trap9()
 //Secret
 
 secret_open()
-{    
+{
   trigger = getent("secret_entertrig", "targetname");
   level.strig = getent("secret_1", "targetname");
   level.s2trig = getent("secret_2", "targetname");
   level.s3trig = getent("secret_3", "targetname");
   brush = getent("secret_enterbrush", "targetname");
-       
+
 	   wait 1;
-       
-  trigger enablelinkto(); 
-	trigger linkto (brush); 
-	
+
+  trigger enablelinkto();
+	trigger linkto (brush);
+
 	brush moveY (-200, 2);
   playloopedfx(level.rainbow,0.5,(-2120, 1064, 1064));
 }
@@ -340,11 +340,11 @@ secret_port()
 {
   trigger = getent("secret_entertrig", "targetname");
   target = getent("secret_target", "targetname");
-  
+
   while(1)
   {
     trigger waittill ("trigger", player);
-    
+
       player SetOrigin(target.origin);
       player SetPlayerAngles( target.angles );
 	  player sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste
@@ -358,7 +358,7 @@ secret_quit()
   while(1)
   {
     trigger waittill ("trigger", player);
-    
+
       player SetOrigin(target.origin);
       player SetPlayerAngles( target.angles );
 	  player thread braxi\_mod::endTimer();
@@ -373,7 +373,7 @@ r_port()
   {
     trig waittill ("trigger",user);
     if (user istouching(trig))
-      {   
+      {
         tp = spawn ("script_model",(0,0,0));
         tp.origin = user.origin;
         tp.angles = user.angles;
@@ -402,7 +402,7 @@ r_sniper()
     {
         level.sniper waittill( "trigger", player );
         if( !isDefined( level.sniper ) )
-            return; 
+            return;
 
         if(level.roomsong==true)
     {
@@ -416,7 +416,7 @@ r_sniper()
        level.sniper setHintString("^1Press ^7F ^1to Port");
     }
 
-    
+
     player FreezeControls(1);
     level.activ FreezeControls(1);
 
@@ -427,7 +427,7 @@ r_sniper()
 
      player takeallweapons();
      level.activ takeallweapons();
-      
+
       player setroomgun("m40a3_mp");
         level.activ setroomgun("remington700_mp");
 
@@ -457,7 +457,7 @@ r_knife()
     {
          level.knife waittill( "trigger", player );
         if( !isDefined(  level.knife ) )
-            return; 
+            return;
 
         if(level.roomsong==true)
     {
@@ -471,7 +471,7 @@ r_knife()
        level.knife setHintString("^1Press ^7F ^1to Port");
     }
 
-    
+
     player FreezeControls(1);
     level.activ FreezeControls(1);
 
@@ -482,7 +482,7 @@ r_knife()
 
      player takeallweapons();
      level.activ takeallweapons();
-      
+
       player setroomgun("knife_mp");
         level.activ setroomgun("knife_mp");
 
@@ -512,7 +512,7 @@ r_weapon()
     {
          level.weapon waittill( "trigger", player );
         if( !isDefined(  level.weapon ) )
-            return; 
+            return;
 
         if(level.roomsong==true)
     {
@@ -526,7 +526,7 @@ r_weapon()
        level.weapon setHintString("^1Press ^7F ^1to Port");
     }
 
-    
+
     player FreezeControls(1);
     level.activ FreezeControls(1);
 
@@ -537,7 +537,7 @@ r_weapon()
 
      player takeallweapons();
      level.activ takeallweapons();
-      
+
       player setroomgun("ak74u_mp");
         level.activ setroomgun("ak47_mp");
 

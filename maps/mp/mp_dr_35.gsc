@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-732, 823, 304), 270);
+thread sr\api\_map::createSpawnOrigin((-732, 823, 304), 270);
 maps\mp\_load::main();
 
 game["allies"] = "sas";
@@ -9,7 +9,7 @@ game["attackers"] = "axis";
 game["defenders"] = "allies";
 game["allies_soldiertype"] = "woodland";
 game["axis_soldiertype"] = "woodland";
-       
+
 setdvar("r_specularcolorscale", "1");
 setdvar("r_glowbloomintensity0",".1");
 setdvar("r_glowbloomintensity1",".1");
@@ -37,7 +37,7 @@ normaltp()
    tele1 = getent ("gohere", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
 	player setOrigin(tele1.origin);
     player setPlayerAngles(tele1.angles);
@@ -45,7 +45,7 @@ normaltp()
 	wait 0.1;
 	player freezeControls (0);
     }
-    
+
 }
 
 kkk35_mozgoja()
@@ -67,5 +67,5 @@ wait 2;
 kkk35_jaroka moveX (-150,2);
 wait 2;
 kkk35_jaroka moveY (80,2);
- 
+
 }

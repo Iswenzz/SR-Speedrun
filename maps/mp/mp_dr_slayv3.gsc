@@ -1,19 +1,19 @@
-main() 
+main()
 {
-thread sr\api\_map::createSpawn((464, 390, 0), 360);
+thread sr\api\_map::createSpawnOrigin((464, 390, 0), 360);
  game["allies"] = "sas";
  game["axis"] = "russian";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "woodland";
  game["axis_soldiertype"] = "woodland";
-             
+
 	setdvar( "r_specularcolorscale", "1" );
     setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
 	setdvar("r_glowskybleedintensity0",".1");
 	setDvar("bg_falldamagemaxheight", 99999);
-    setDvar("bg_falldamageminheight", 99998);	
+    setDvar("bg_falldamageminheight", 99998);
 
     	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Easy Secret;Hard Secret;");
@@ -22,7 +22,7 @@ thread sr\api\_map::createSpawn((464, 390, 0), 360);
 	thread sr\api\_speedrun::createTeleporter((652.581, 180.528, 0.125), 55, 10, (-1085, 3296, -1987), 180, "freeze", "red", "secret_1");
 	thread sr\api\_speedrun::createEndMap((9313.27, 1253.84, 16.125), 75, 10, "secret_0");
 	thread sr\api\_speedrun::createEndMap((5072.48, 4767.26, -4990.88), 155, 10, "secret_1");
-    
+
 	thread startdoor();
 	thread trap4();
 	thread trap5();

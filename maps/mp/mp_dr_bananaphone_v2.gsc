@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((230, 1535, 16), 1);
+thread sr\api\_map::createSpawnOrigin((230, 1535, 16), 1);
 trigger = spawn( "trigger_radius", (2445.84, -424.875, 176.125), 0, 96, 48 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 96;
@@ -29,7 +29,7 @@ maps\mp\_load::main();
 	thread movingplat();
 }
 
-start() 
+start()
 {
 door = getEnt ("begindoor","targetname");
 block1 = getEnt ("begin1","targetname");

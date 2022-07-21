@@ -29,38 +29,38 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((17.125, -64, 17.125), 0);
+thread sr\api\_map::createSpawnOrigin((17.125, -64, 17.125), 0);
 	maps\mp\_load::main();
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	precacheShader("loadscreen_mp_dr_sunset4");
 	precacheMenu("sunsetmusic");
-	
+
 	setDvar( "r_specularcolorscale", "1" );
-	
+
 	setDvar("r_glowbloomintensity0",".25");
 	setDvar("r_glowbloomintensity1",".25");
 	setDvar("r_glowskybleedintensity0",".3");
 	setDvar("compassmaxrange","2500");
 	setDvar("bg_fallDamageMinHeight","1000000");
 	setDvar("bg_fallDamageMaxHeight","10000000");
-	
+
 	level.room = true;
 	level.trig_old = getEnt("trig_old", "targetname");
 	level.cambiato = false;
-	
+
 	level.trap6hurt = getEnt("trap6hurt", "targetname");
-	level.trap6hurt thread maps\mp\_utility::triggerOff(); 
+	level.trap6hurt thread maps\mp\_utility::triggerOff();
 	level.oldx = getEnt("oldx", "targetname");
 	level.oldx hide();
 	level.oldx notSolid();
-	
+
 	level.music=[];
     level.music[0]["song"]    ="Krewella - Lights And Thunder";
     level.music[0]["alias"]    ="song1";
@@ -76,9 +76,9 @@ thread sr\api\_map::createSpawn((17.125, -64, 17.125), 0);
     level.music[5]["alias"]    ="song6";
 	level.music[6]["song"]    ="Krewella - Alibi";
     level.music[6]["alias"]    ="song7";
-	
+
 	level.boom_fx = loadFX("explosions/default_explosion");
-	
+
 	//thread addTestClients();
 	//thread joinsetter();
 	//thread musicbox();
@@ -90,7 +90,7 @@ thread sr\api\_map::createSpawn((17.125, -64, 17.125), 0);
 	//thread knife();
 	//thread sniper();
 	//thread stp();
-	
+
 	//thread trap1();
 	//thread trap2();
 	//thread trap3();
@@ -98,11 +98,11 @@ thread sr\api\_map::createSpawn((17.125, -64, 17.125), 0);
 	//thread trap5();
 	//thread trap6();
 	//thread trap7();
-	
+
 	//thread hardenter();
 	thread hardtp1();
 	thread hardend();
-	
+
 	thread b210();
 	thread c210();
 	thread d210();
@@ -113,7 +113,7 @@ thread sr\api\_map::createSpawn((17.125, -64, 17.125), 0);
     thread sr\api\_speedrun::createNormalWays("Normal Way;");
     thread sr\api\_speedrun::createSecretWays("Secret Way;");
     thread sr\api\_speedrun::createTeleporter((435.431, 182.389, 16.125), 105, 125, (-4489, 13254, 2371), 355, "freeze", "red", "secret_0");
-	
+
 	addTriggerToList( "trig_trap1" );
 	addTriggerToList( "trig_trap2" );
 	addTriggerToList( "trig_trap3" );
@@ -163,7 +163,7 @@ TestClient(team)
 
     while(!isdefined(self.pers["team"]))
         wait .05;
-        
+
     self notify("menuresponse", game["menu_team"], team);
     wait 0.5;
 }
@@ -179,7 +179,7 @@ joinsetter()
 			player.hc = 0;
 	}
 
-}	
+}
 
 musicbox()
 {
@@ -198,35 +198,35 @@ musicMenu()
 	self endon( "death" );
 	self endon( "disconnect" );
 	self endon( "song_picked" );
- 
+
 	self openMenu("sunsetmusic");
-	
+
 	self thread cleanUpOnPick();
 	self thread cleanUpOnDeath();
- 
+
 	i = 0;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 160, 200, 0.6, "left", "top", 2 );
 	self.hud_music[i].sort = 880;
 	self.hud_music[i] setShader( "loadscreen_mp_dr_sunset4", 360, 200 );
- 
+
 	i++;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 288, 358, 1, "center", "top", 1.4 );
 	self.hud_music[i].sort = 885;
 	self.hud_music[i].font = "objective";
 	self.hud_music[i] setText( "\n                 Press ^1[^71^1/^72^1/^73^1/^74^1/^75^1/^76^1/^77]^7 to choose a song" );
-	
+
 	j = 0;
 	self.hud_music_s[j] = braxi\_mod::addTextHud( self, 172, 230+(0*16), 0.93, "left", "top", 1.4 );
 	self.hud_music_s[j].sort = 900;
 	self.hud_music_s[j].font = "objective";
 	self.hud_music_s[j] setText("\n^11 ^3Krewella - Lights And Thunder\n^12 ^3Illenium - Take You Down\n^13 ^3Blasterjaxx - Narco\n^14 ^3KSHMR & Sonu Nigam - Underwater\n^15 ^3KSHMR x Sak Noel - Bruk It Downn\n^16 ^3Dope Arcade - Ascension\n^17 ^3Krewella - Alibi");
- 
+
 	for(;;)
 	{
 		self waittill("menuresponse", menu, response);
-		
+
 		if( menu == "sunsetmusic")
-		{			
+		{
 			if(response == "song1")
 			{
 				ambientPlay("song1");
@@ -235,7 +235,7 @@ musicMenu()
 				self notify("song_picked");
 				break;
 			}
-			
+
 			if(response == "song2")
 			{
 				ambientPlay("song2");
@@ -244,7 +244,7 @@ musicMenu()
 				self notify("song_picked");
 				break;
 			}
-			
+
 			if(response == "song3")
 			{
 				ambientPlay("song3");
@@ -253,7 +253,7 @@ musicMenu()
 				self notify("song_picked");
 				break;
 			}
-			
+
 			if(response == "song4")
 			{
 				ambientPlay("song4");
@@ -262,7 +262,7 @@ musicMenu()
 				self notify("song_picked");
 				break;
 			}
-			
+
 			if(response == "song5")
 			{
 				ambientPlay("song5");
@@ -271,7 +271,7 @@ musicMenu()
 				self notify("song_picked");
 				break;
 			}
-			
+
 			if(response == "song6")
 			{
 				ambientPlay("song6");
@@ -280,7 +280,7 @@ musicMenu()
 				self notify("song_picked");
 				break;
 			}
-			
+
 			if(response == "song7")
 			{
 				ambientPlay("song7");
@@ -351,17 +351,17 @@ saveSongs(songs)
 cleanUpOnDeath()
 {
 	self waittill("death");
-	
+
 	if(isDefined(self.hud_music))
 	{
-		for(i=0; i<self.hud_music.size; i++)	
+		for(i=0; i<self.hud_music.size; i++)
 			if(isDefined(self.hud_music[i]))
 				self.hud_music[i] Destroy();
 	}
-	
+
 	if(isDefined(self.hud_music_s))
 	{
-		for(i=0; i<self.hud_music_s.size; i++)	
+		for(i=0; i<self.hud_music_s.size; i++)
 			if(isDefined(self.hud_music_s[i]))
 				self.hud_music_s[i] Destroy();
 	}
@@ -370,17 +370,17 @@ cleanUpOnDeath()
 cleanUpOnPick()
 {
 	self waittill("song_picked");
-	
+
 	if(isDefined(self.hud_music))
 	{
-		for(i=0; i<self.hud_music.size; i++)	
+		for(i=0; i<self.hud_music.size; i++)
 			if(isDefined(self.hud_music[i]))
 				self.hud_music[i] Destroy();
 	}
-	
+
 	if(isDefined(self.hud_music_s))
 	{
-		for(i=0; i<self.hud_music_s.size; i++)	
+		for(i=0; i<self.hud_music_s.size; i++)
 			if(isDefined(self.hud_music_s[i]))
 				self.hud_music_s[i] Destroy();
 	}
@@ -419,14 +419,14 @@ wait 2;
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
 }
 
-antiglitcher() 
+antiglitcher()
 {
 self common_scripts\utility::waittill_any("death","disconnect");
 wait 0.05;
-if (level.room == true) 
+if (level.room == true)
 {
 		iPrintlnBold("^3"+self.name+" ^1died");
-		wait 0.2; 
+		wait 0.2;
 		iPrintlnBold("^3Room selection open!");
 }
 }
@@ -454,15 +454,15 @@ knife thread maps\mp\_utility::triggerOn();
 GetActivator()
 {
 	players = getentarray( "player", "classname" );
-	
+
 	for(i = 0;i < players.size;i++)
 	{
 		player = players[i];
-		
+
 		if( isdefined( player ) && isplayer( player ) && isalive( player ) && player.pers["team"] == "axis"	)
 			return player;
 	}
-	
+
 	return "Noactivator";
 }
 
@@ -505,7 +505,7 @@ for(;;)
 	activator = GetActivator();
 	player.hasWeapon = 0;
 	activator.hasWeapon = 0;
-	
+
 	player takeallweapons();
 	activator takeallweapons();
 	player freezeControls(true);
@@ -577,11 +577,11 @@ old()
 	old = getent("trig_old","targetname");
 	oldoor = getent("oldoor","targetname");
 		old setHintString("OLD");
-		
+
 		old waittill("trigger", player);
 	/*	player giveWeapon(level.firstgun);
 		player giveMaxAmmo(level.firstgun);
-		player switchToWeapon(level.firstgun);  	*/	
+		player switchToWeapon(level.firstgun);  	*/
 		bounce thread maps\mp\_utility::triggerOff();
 		sniper thread maps\mp\_utility::triggerOff();
 		knife thread maps\mp\_utility::triggerOff();
@@ -614,7 +614,7 @@ knife setHintString("^3Knife");
 for(;;)
 {
 	knife waittill("trigger", player);
-	
+
 	level.trig_old setHintString("^1OUT OF SERVICE");
 	level.trig_old thread maps\mp\_utility::triggerOff();
 	player thread waitdead();
@@ -729,7 +729,7 @@ trap2()
 	am = getEntArray("trap2am","targetname");
 	bm = getEntArray("trap2bm","targetname");
 	cm = getEntArray("trap2cm","targetname");
-	for(i = 0; i < am.size; i++) 
+	for(i = 0; i < am.size; i++)
 	{
 		am[i] linkTo(a);
 		bm[i] linkTo(b);
@@ -762,15 +762,15 @@ trap3()
 	am = getEntArray("trap3am", "targetname");
 	bm = getEntArray("trap3bm", "targetname");
 	trig = getEnt("trig_trap3", "targetname");
-	
-	for(i = 0; i < am.size; i++) 
+
+	for(i = 0; i < am.size; i++)
 	{
 		am[i] linkTo(brush);
 		bm[i] linkTo(brush2);
 	}
-	
+
 	trig setHintString("^3Press ^1F ^3to activate!");
-	
+
 	trig waittill("trigger", player);
 	trig delete();
 	for(;;)
@@ -791,7 +791,7 @@ trap4()
 	a = getEnt("trap4", "targetname");
 	trig = getEnt("trig_trap4", "targetname");
 	trig setHintString("^3Press ^1F ^3to activate!");
-	
+
 	trig waittill("trigger", player);
 	trig delete();
 	a moveZ(-500, 1);
@@ -803,7 +803,7 @@ trap5()
 	a = getEnt("trap5", "targetname");
 	trig = getEnt("trig_trap5", "targetname");
 	trig setHintString("^3Press ^1F ^3to activate!");
-	
+
 	trig waittill("trigger", player);
 	trig delete();
 	for(;;)
@@ -823,7 +823,7 @@ trap6()
 	a moveZ(-208, 1);
 	wait 1;
 	trig setHintString("^3Press ^1F ^3to activate!");
-	
+
 	trig waittill("trigger", player);
 	trig delete();
 	a moveZ(208, 1);
@@ -844,29 +844,29 @@ trap7()
 	ar = getEntArray("trap7ar", "targetname");
 	br = getEntArray("trap7br", "targetname");
 	trig = getEnt("trig_trap7", "targetname");
-	
-	
+
+
 	trig setHintString("^3Press ^1F ^3to activate!");
-	
+
 	trig waittill("trigger", player);
 	trig delete();
-	
-		/*for(i = 0; i < ar.size; i++) 
+
+		/*for(i = 0; i < ar.size; i++)
 	{
 		ar[i] linkTo(a);
 		br[i] linkTo(b);
 	}*/
-	for(i = 0; i < ar.size; i++) 
+	for(i = 0; i < ar.size; i++)
 	{
 		ar[i] thread modelRotator();
 		br[i] thread modelRotator2();
 	}
-	
+
 	//a linkTo(ar);
 	//b linkTo(br);
 	a moveZ(-64, .75);
 	b moveZ(64, .75);
-	for(i = 0; i < ar.size; i++) 
+	for(i = 0; i < ar.size; i++)
 	{
 	ar[i] moveZ(-64, .75);
 	br[i] moveZ(64, .75);
@@ -876,7 +876,7 @@ trap7()
 	{
 		a moveZ(128, 1.5);
 		b moveZ(-128, 1.5);
-		for(i = 0; i < ar.size; i++) 
+		for(i = 0; i < ar.size; i++)
 		{
 		ar[i] moveZ(128, 1.5);
 		br[i] moveZ(-128, 1.5);
@@ -884,7 +884,7 @@ trap7()
 		wait 1.5;
 		a moveZ(-128, 1.5);
 		b moveZ(128, 1.5);
-		for(i = 0; i < ar.size; i++) 
+		for(i = 0; i < ar.size; i++)
 		{
 		ar[i] moveZ(-128, 1.5);
 		br[i] moveZ(128, 1.5);
@@ -939,7 +939,7 @@ hardtp1()
 	hc4 = getEnt("o_hc4", "targetname");
 	hc5 = getEnt("o_hc5", "targetname");
 	hc6 = getEnt("o_hc6", "targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger", player);
@@ -1053,11 +1053,11 @@ hardend()
 {
 	trig = getEnt("secretend", "targetname");
 	target = getEnt("o_secretexit", "targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger", player);
-		
+
 		{
 			player setOrigin( target.origin );
 			player setPlayerAngles( target.angles );

@@ -3,7 +3,7 @@
 //   /$$__  $$                        | $$  /$$/| $$          |__/| $$$ | $$                          |__/                                                  | $$  //
 //  | $$  \__/  /$$$$$$               | $$ /$$/ | $$  /$$$$$$  /$$| $$$$| $$        /$$$$$$   /$$$$$$  /$$  /$$$$$$$       /$$$$$$/$$$$   /$$$$$$   /$$$$$$ | $$  //
 //  |  $$$$$$  /$$__  $$ /$$$$$$      | $$$$$/  | $$ /$$__  $$| $$| $$ $$ $$       /$$__  $$ /$$__  $$| $$ /$$_____/      | $$_  $$_  $$ |____  $$ /$$__  $$| $$  //
-//  \____  $$| $$  \__/|______/      | $$  $$  | $$| $$$$$$$$| $$| $$  $$$$      | $$$$$$$$| $$  \ $$| $$| $$            | $$ \ $$ \ $$  /$$$$$$$| $$  \ $$|__/   // 
+//  \____  $$| $$  \__/|______/      | $$  $$  | $$| $$$$$$$$| $$| $$  $$$$      | $$$$$$$$| $$  \ $$| $$| $$            | $$ \ $$ \ $$  /$$$$$$$| $$  \ $$|__/   //
 //   /$$  \ $$| $$                    | $$\  $$ | $$| $$_____/| $$| $$\  $$$      | $$_____/| $$  | $$| $$| $$            | $$ | $$ | $$ /$$__  $$| $$  | $$      //
 //  |  $$$$$$/| $$                    | $$ \  $$| $$|  $$$$$$$| $$| $$ \  $$      |  $$$$$$$| $$$$$$$/| $$|  $$$$$$$      | $$ | $$ | $$|  $$$$$$$| $$$$$$$/ /$$  //
 //   \______/ |__/                    |__/  \__/|__/ \_______/|__/|__/  \__/       \_______/| $$____/ |__/ \_______/      |__/ |__/ |__/ \_______/| $$____/ |__/  //
@@ -15,7 +15,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((944.125, -96, 96.125), 180);
+thread sr\api\_map::createSpawnOrigin((944.125, -96, 96.125), 180);
     maps\mp\_load::main();
 
 
@@ -36,11 +36,11 @@ thread sr\api\_map::createSpawn((944.125, -96, 96.125), 180);
 	setDvar("bg_falldamageminheight", 15000000 );
 
 	preCacheItem("rpg_mp");
-    
+
 	visionSetNaked("mp_sr_pure_distance");
 
 	ambientPlay("ambient");
-    
+
     thread rpgtrigger();
 	thread fail();
 	thread secrettp();
@@ -48,7 +48,7 @@ thread sr\api\_map::createSpawn((944.125, -96, 96.125), 180);
 	//thread sr\api\_speedrun::createNormalWays("Normal Way");
 	//thread sr\api\_speedrun::createSecretWays("Secret Way");
 
-	
+
 }
 
 rpgtrigger()
@@ -207,7 +207,7 @@ fail()
 		else if (player.cp == 6 )
 		{
 			player setPlayerAngles( target6.angles );
-			player setOrigin( target6.origin );	
+			player setOrigin( target6.origin );
 			player freezeControls( 1 );
 			wait 0.05;
 			player freezeControls( 0 );
@@ -275,7 +275,7 @@ fail()
 			player freezeControls( 1 );
 			wait 0.05;
 			player freezeControls( 0 );
-			
+
 		}
 		else if (player.cp == 15 )
 		{
@@ -325,7 +325,7 @@ fail()
 			wait 0.05;
 			player freezeControls( 0 );
 		}
-	
+
 	 }
 
  }

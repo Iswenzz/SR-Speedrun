@@ -1,7 +1,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((16.125, 0, 16.125), 90);
+thread sr\api\_map::createSpawnOrigin((16.125, 0, 16.125), 90);
     maps\mp\_load::main();
 
     game["allies"] = "marines";
@@ -10,7 +10,7 @@ thread sr\api\_map::createSpawn((16.125, 0, 16.125), 90);
     game["defenders"] = "allies";
     game["allies_soldiertype"] = "desert";
     game["axis_soldiertype"] = "desert";
-    
+
     setDvar("r_gamma","1");
     setDvar("r_specularcolorscale", "1");
     setDvar("r_glowbloomintensity0","1");
@@ -26,8 +26,8 @@ thread sr\api\_map::createSpawn((16.125, 0, 16.125), 90);
 	thread secret();
 	thread secretend();
     thread onconnect();
-	
-}	
+
+}
 
 
 secret()
@@ -40,7 +40,7 @@ secret()
 		player thread sr\api\_speedrun::changeWay("secret_0");
 		player setOrigin(o.origin);
 		player setPlayerAngles(o.angles);
-	
+
 	}
 }
 
@@ -49,7 +49,7 @@ secretend()
 {
 	trig = getEnt("secret_endtrig", "targetname");
     for(;;)
-    {    
+    {
 	trig waittill("trigger", player);
     player thread sr\api\_speedrun::finishWay("secret_0");
     }

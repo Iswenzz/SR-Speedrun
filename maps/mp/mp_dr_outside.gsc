@@ -1,8 +1,8 @@
 main()
 {
-thread sr\api\_map::createSpawn((27, 124, 16), 90);
+thread sr\api\_map::createSpawnOrigin((27, 124, 16), 90);
 maps\mp\_load::main();
-	
+
     thread sr\api\_speedrun::createNormalWays("Normal Way;");
     thread sr\api\_speedrun::createSecretWays("Secret Way;");
         thread sr\api\_speedrun::createTeleporter((303.32, 215.723, 16.125), 65, 80, (-539, 9578, 833), 270, "freeze", "blue", "secret_0");
@@ -17,12 +17,12 @@ maps\mp\_load::main();
     game["attackers"] = "axis";
     game["defenders"] = "allies";
     game["allies_soldiertype"] = "desert";
-    game["axis_soldiertype"] = "desert"; 
+    game["axis_soldiertype"] = "desert";
 
     setdvar( "r_specularcolorscale", "1" );
     setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
-	setdvar("r_glowskybleedintensity0",".1");  
+	setdvar("r_glowskybleedintensity0",".1");
 
 	thread startdoor();
 	thread startdoor2();

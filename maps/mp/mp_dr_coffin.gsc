@@ -4,7 +4,7 @@
 #include common_scripts\utility;
 main()
 {
-thread sr\api\_map::createSpawn((-100, -183, 0), 270);
+thread sr\api\_map::createSpawnOrigin((-100, -183, 0), 270);
  maps\mp\_load::main();
 
 
@@ -14,8 +14,8 @@ thread sr\api\_map::createSpawn((-100, -183, 0), 270);
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "woodland";
  game["axis_soldiertype"] = "woodland";
-       
-///DVARS       
+
+///DVARS
 	setdvar( "r_specularcolorscale", "1" );
     setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
@@ -30,13 +30,13 @@ thread sr\api\_speedrun::createSecretWays("Jumper Secret;Acti Secret;");
 ///DOORS AND MOVING PLATFORM
    thread startdoor();
    thread doorexplode();
-///STUCKFIX   
+///STUCKFIX
    thread glitchfix();
-///JUMPER SECRET   
+///JUMPER SECRET
    thread secret_step();
    thread sectp();
    thread save_load_logic();
-///ACTIVATOR SECRET   
+///ACTIVATOR SECRET
    thread actisecfinish();
 ///TRAPS
    thread trap6();
@@ -71,7 +71,7 @@ glitchfix()
    tele = getent ("orig_fixglitch", "targetname");
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
 	 player setOrigin(tele.origin);
      player setPlayerAngles(tele.angles);
@@ -88,7 +88,7 @@ brush2 = getEnt("secopenb","targetname");
 wait 0.1;
 brush delete();
 brush2 delete();
-  
+
 }
 
 sectp()
@@ -97,7 +97,7 @@ sectp()
    tele1 = getent ("orig_sectp", "targetname");
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
      player thread sr\api\_speedrun::changeWay("secret_0");
 	 player setOrigin(tele1.origin);
@@ -114,12 +114,12 @@ secfinish()
     self endon( "spawned_player" );
     self endon( "joined_spectators" );
     self endon( "death" );
-    
+
    trig = getent("trig_secfinish", "targetname");
    tele1 = getent ("orig_secfinish", "targetname");
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
 
      if(player != self)
@@ -133,14 +133,14 @@ secfinish()
 
     break;
     }
-    
+
 }
 
 save_load_logic()
 {
     fail_trigger = getent("trig_fail","targetname");
     save_triggers = GetEntArray("save_triggers","targetname");
-    
+
     for(i=0;i<save_triggers.size;i++)
         thread save_pos(save_triggers[i],i);
 
@@ -156,7 +156,7 @@ save_pos(trig,pos)
     while(1)
     {
         trig waittill("trigger",player);
-        
+
         if(!IsDefined(player.sc_pos))
             player.sc_pos = pos;
 
@@ -175,13 +175,13 @@ actisecfinish()
 trig = getent("trig_actisecfinish", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
 
     player thread sr\api\_speedrun::finishWay("secret_1");
 
     }
-    
+
 }
 
 trap6()
@@ -205,6 +205,6 @@ wait 0.1;
 
 plata delete();
 platb delete();
-  
+
 }
 

@@ -3,7 +3,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((707.125, 333.048, 64.125), 90);
+thread sr\api\_map::createSpawnOrigin((707.125, 333.048, 64.125), 90);
 trig=getent("activator_door_trig","targetname");
 level.mapHasTimeTrigger = true;
 while(1)
@@ -12,9 +12,9 @@ trig waittill("trigger", player);
 player thread braxi\_mod::endTimer();
 }
 	//maps\mp\_load::main();
-	
-	// setExpFog(800, 2500, 255/255, 250/255, 250/255, 0.0); //dit is voor enviroment fog 
-	
+
+	// setExpFog(800, 2500, 255/255, 250/255, 250/255, 0.0); //dit is voor enviroment fog
+
 	//ambientPlay("ambient");
 	game["allies"] = "sas";
 	game["axis"] = "russian";
@@ -23,20 +23,20 @@ player thread braxi\_mod::endTimer();
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
 
-	
+
 	//////////dvars/////////////////////////////alle dvars hierin pleuren
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
-	
+
 	///////////variable////////////////////alle variable van scripts hierin
 
-	
-	
-	//////////////caches////////////////	
+
+
+	//////////////caches////////////////
 	level.fx = loadFx( "framey/aura2" );
-	
+
 	//////////////threads////////////////alle thread hierin pleuren , die je wil starten
 	thread way_connect();
 	thread startdoor();
@@ -46,7 +46,7 @@ player thread braxi\_mod::endTimer();
 	thread secret();
 	// thread activatordoor();
 	// thread addtriggers();
-	
+
 ////////////////traps//////////////////all trap scripts hier
 	// thread trap1();
 	// thread trap2();
@@ -58,9 +58,9 @@ player thread braxi\_mod::endTimer();
 	// thread trap8();
 	// thread trap9();
 	// thread trap10();
-	
+
 	PlayLoopedFX( level.fx,1, (-1476,544,366));
-	PlayLoopedFX( level.fx,1, (-4316,8632,188));		
+	PlayLoopedFX( level.fx,1, (-4316,8632,188));
 
 }
 
@@ -68,10 +68,10 @@ player thread braxi\_mod::endTimer();
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -94,7 +94,7 @@ shortcut1()
 	platform=getent("shortcut1","targetname");
 	trigger=getent("shortcut1_trigger","targetname");
 	trigger delete();
-	
+
 	while(1)
 	{
 	platform movez(288,1);
@@ -122,7 +122,7 @@ mover()
 		trig waittill("trigger",player);
 		player thread safe_tp1(ori);
 	}
-	
+
 }
 
 safe_tp1(ori)
@@ -167,7 +167,7 @@ secret()
 	spawn=getent("secretspawn","targetname");
 	trig1=getent("secrethit1","targetname");
 	trig2=getent("secrethit2","targetname");
-	
+
 	for(;;)
 	{
 	trig2 waittill("trigger",player);
@@ -222,14 +222,14 @@ trap2()
 	hurt=getent("pin_trap_hurt","targetname");
 	hurt enablelinkto();
 	hurt linkto(pins);
-	
+
 	trigger=getent("trigger_trap2","targetname");
 
 	trigger waittill("trigger");
 	pins movez  (288,0.5);
 	pins waittill("movedone");
 	pins movez  (-288,5);
-}	
+}
 
 trap3()
 {
@@ -264,7 +264,7 @@ if (!isdefined(brush.speed))
  brush.speed = 3;
 if (!isdefined(brush.script_noteworthy))
  brush.script_noteworthy = "y";
- 
+
  trigger=getent("trigger_trap4","targetname");
 trigger waittill("trigger");
 
@@ -319,12 +319,12 @@ trap6()
 {
 	brush=getent("trap6_brush","targetname");
 	trigger=getent("trigger_trap6","targetname");
-	
+
 	if (!isdefined(brush.speed))
 	brush.speed = 4;
 	if (!isdefined(brush.script_noteworthy))
 	brush.script_noteworthy = "x";
-	
+
 	trigger waittill("trigger");
 	while(true)
 	{
@@ -336,24 +336,24 @@ trap6()
 	else if (brush.script_noteworthy == "y")
 	brush rotatePitch(360,brush.speed);
 	wait ((brush.speed)-0.1);
-	
+
 	wait 5;
 	}
 
 }
 
 trap7()
-{	
+{
 	brush=getent("3xp_logo_trap","targetname");
 	brush_origin=getent("3xp_logo_origin","targetname");
 	brush_dmg=getent("logo_falldmg","targetname");
-	
+
 	trigger=getent("trigger_trap7","targetname");
-	
+
 	brush_dmg enablelinkto();
 	brush_dmg linkto(brush_origin);
 	brush linkto(brush_origin);
-	
+
 	trigger waittill("trigger");
 	Earthquake( 0.5, 5, brush_origin.origin, 1500 );
 	brush_origin movex(-80,0.5);
@@ -365,7 +365,7 @@ trap7()
 	brush_origin movez(-450,1.3);
 	brush_origin waittill("movedone");
 	brush_origin delete();
-	
+
 }
 
 trap8()
@@ -390,7 +390,7 @@ if (!isdefined(brush.script_noteworthy))
  trigger waittill("trigger");
 	while(true)
 	{
-	
+
 	if (brush.script_noteworthy == "z")
 	brush rotateYaw(-360,brush.speed);
 	else if (brush.script_noteworthy == "x")
@@ -407,5 +407,5 @@ trap10()
 	trigger=getent("trigger_trap10","targetname");
 	trigger waittill("trigger");
 	platform movex(-224,4,1,3);
-	
+
 }

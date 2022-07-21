@@ -7,15 +7,15 @@
 //      \ \_\ \ \_\ \_\ \____\\ \____/ \ \_\/\_/\_\\ \_\\ \____\   //
 //       \/_/  \/_/\/_/\/____/ \/___/   \/_/\//\/_/ \/_/ \/____/  //
 //                                                               //
-//////////////////////////////////////////////////////////////////                                                        
+//////////////////////////////////////////////////////////////////
 
 main()
 {
-thread sr\api\_map::createSpawn((320, -2544, 1216.125), 90);
+thread sr\api\_map::createSpawnOrigin((320, -2544, 1216.125), 90);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
-	maps\mp\_load::main();	
+	maps\mp\_load::main();
 
 
 	game["allies"] = "marines";
@@ -63,9 +63,9 @@ if (!level.spawn["allies"].size)
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -80,7 +80,7 @@ tele1()
 	end = getEnt ("tele1_go", "targetname");
 	while(1)
     	{
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 	player SetOrigin(end.origin);
         player SetPlayerAngles( end.angles );
 	//player iPrintlnBold( "^1Go FASTER!" );
@@ -93,7 +93,7 @@ tele2()
 	end = getEnt ("old_acti", "targetname");
 	while(1)
     {
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(end.origin);
         player SetPlayerAngles( end.angles );
 		player iPrintlnBold( "Welcome to the unofficial activators hangout" );
@@ -106,7 +106,7 @@ tele3()
 	end = getEnt ("stairs_tele_go", "targetname");
 	while(1)
     {
-        trig waittill ("trigger", player);          
+        trig waittill ("trigger", player);
 		player SetOrigin(end.origin);
         player SetPlayerAngles( end.angles );
 		//player iPrintlnBold( "^1Why aren't you going faster??" );
@@ -325,7 +325,7 @@ line1_bus()
 	while(1)
 	{
 		trig waittill ( "trigger", player );
-		//player playSound("booing");  
+		//player playSound("booing");
 		player thread bounce2();
 	}
 }

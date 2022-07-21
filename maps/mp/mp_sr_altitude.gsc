@@ -1,7 +1,7 @@
- 
+
  main()
 {
-thread sr\api\_map::createSpawn((52.125, 2064, 20.125), 270);
+thread sr\api\_map::createSpawnOrigin((52.125, 2064, 20.125), 270);
 
  maps\mp\_load::main();
 
@@ -31,7 +31,7 @@ thread sr\api\_map::createSpawn((52.125, 2064, 20.125), 270);
    thread secret1fail();
    thread secret1end();
    thread secret2end();
-   
+
 }
 
 
@@ -58,7 +58,7 @@ secret2entrance()
 	trig = getEnt("210entrancetrig", "targetname");
 	ori = getEnt("210entrance", "targetname");
 	trig setHintString("Press ^1&&1 ^7to enter the 210 secret!");
-    
+
 	for(;;)
 	{
 	trig waittill("trigger", player);

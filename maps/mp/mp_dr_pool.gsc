@@ -1,6 +1,6 @@
  main()
 {
-thread sr\api\_map::createSpawn((-932.500, 174, 184.125), 0);
+thread sr\api\_map::createSpawnOrigin((-932.500, 174, 184.125), 0);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
@@ -15,7 +15,7 @@ trigger.radius = 96;
 	game["defenders"] = "axis";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
+
   thread way_connect();
   thread start_door();
   thread move1();
@@ -42,9 +42,9 @@ trigger.radius = 96;
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -56,11 +56,11 @@ way_connect()
 start_door()
 {
    trig = getEnt ("start_door_aktiv" , "targetname");
-   brush = getEnt ("start_door" ,"targetname" );  
-   trig delete ();  
+   brush = getEnt ("start_door" ,"targetname" );
+   trig delete ();
    brush delete();
 }
-  
+
 move1()
 {
 	brush = getEnt( "move1", "targetname" );
@@ -76,7 +76,7 @@ move1()
 		brush moveX( -300, 3);
 		wait 2;
 	}
-	
+
 }
 
 move2()
@@ -94,7 +94,7 @@ move2()
 		brush moveX( 300, 3);
 		wait 2;
 	}
-	
+
 }
 
 move3()
@@ -108,7 +108,7 @@ move3()
 		brush moveX( -400, 3 );
 		wait 2;
 	}
-	
+
 }
 
 move4()
@@ -122,7 +122,7 @@ move4()
 		brush moveY( -650, 7 );
 		wait 3;
 	}
-	
+
 }
 
 move5()
@@ -140,7 +140,7 @@ move5()
 		brush moveY( 512, 3);
 		wait 2;
 	}
-	
+
 }
 
 move6()
@@ -158,16 +158,16 @@ move6()
 		brush moveY( -512, 3);
 		wait 2;
 	}
-	
+
 }
 
 rotate1()
 {
    trig = getEnt ("rotate1_aktiv" , "targetname");
    brush = getEnt ("rotate1" ,"targetname" );
-   trig waittill ("trigger",player);  
-   trig delete ();  
-  
+   trig waittill ("trigger",player);
+   trig delete ();
+
    for( i = 0; i < 10; i++ )
 	{
 		brush rotateYaw( 360, 1 );
@@ -179,9 +179,9 @@ trap1()
 {
    trig = getEnt ("trap1_aktiv" , "targetname");
    brush = getEnt ("trap1" ,"targetname" );
-   trig waittill ("trigger",player);  
-   trig delete ();  
-  
+   trig waittill ("trigger",player);
+   trig delete ();
+
    for( i = 0; i < 7; i++ )
 	{
 		brush rotateYaw( 360, 1 );
@@ -193,9 +193,9 @@ trap2 ()
 {
    trig = getEnt ("trap2_aktiv" , "targetname");
    brush = getEnt ("trap2" ,"targetname" );
-   trig waittill ("trigger",player);  
-   trig delete ();  
-   
+   trig waittill ("trigger",player);
+   trig delete ();
+
    brush moveY ( 500 , 4);
    wait 5;
    brush moveY ( -500, 4 );
@@ -213,9 +213,9 @@ trap3 ()
    brush3 = getEnt ("trap3_3" ,"targetname" );
    hurt5 = getEnt ("hurt3_1" , "targetname");
    hurt6 = getEnt ("hurt3_2" , "targetname");
-   trig waittill ("trigger",player);  
-   trig delete ();  
-   
+   trig waittill ("trigger",player);
+   trig delete ();
+
    hurt1 enablelinkto();
    hurt1 linkto (brush1);
    hurt2 enablelinkto();
@@ -228,7 +228,7 @@ trap3 ()
    hurt5 linkto (brush3);
    hurt6 enablelinkto();
    hurt6 linkto (brush3);
-   
+
    for( i = 0; i < 999; i++ )
 	{
 		brush1 rotateRoll( 360, 3 );
@@ -236,17 +236,17 @@ trap3 ()
 		brush3 rotateRoll( 360, 3 );
 		wait 1;
 	}
-   
-   
+
+
 }
 
 trap4 ()
 {
    trig = getEnt ("trap4_aktiv" , "targetname");
    brush = getEnt ("trap4" ,"targetname" );
-   trig waittill ("trigger",player);  
-   trig delete ();  
-   
+   trig waittill ("trigger",player);
+   trig delete ();
+
    brush notSolid();
 }
 
@@ -254,13 +254,13 @@ trap5 ()
 {
    trig = getEnt ("trap5_aktiv" , "targetname");
    brush = getEnt ("trap5" ,"targetname" );
-   trig waittill ("trigger",player);  
-   trig delete ();  
-   
+   trig waittill ("trigger",player);
+   trig delete ();
+
    brush moveZ ( -200 , 1);
    wait 5;
    brush moveZ ( 200 , 2 );
-   
+
 }
 
 trap6()
@@ -282,15 +282,15 @@ trap7()
 {
    trig = getEnt ("trap7_aktiv" , "targetname");
    brush = getEnt ("trap7", "targetname" );
-   trig waittill ("trigger",player);  
-   trig delete ();  
-   
+   trig waittill ("trigger",player);
+   trig delete ();
+
    for( i = 0; i < 10; i++ )
 	{
 		brush rotateRoll( 360, 3 );
 		wait 1;
 	}
-   
+
 }
 
 trap8()
@@ -298,10 +298,10 @@ trap8()
    trig = getEnt ("trap8_aktiv" , "targetname");
    brushGroup1 = getEntArray ("trap8_1" ,"targetname" );
    brushGroup2 = getEntArray ("trap8_2" ,"targetname" );
-   
-   trig waittill ("trigger",player);  
-   trig delete ();  
-  
+
+   trig waittill ("trigger",player);
+   trig delete ();
+
    brushGroup1[randomInt(brushGroup1.size)] delete();
 	 brushGroup2[randomInt(brushGroup2.size)] delete();
 }
@@ -314,7 +314,7 @@ trap9()
 
 	trig waittill( "trigger", player );
 	trig delete();
-	
+
 	brushGroup1[randomInt(brushGroup1.size)] notSolid();
 	brushGroup2[randomInt(brushGroup2.size)] notSolid();
 }
@@ -323,9 +323,9 @@ trap10 ()
 {
    trig = getEnt ("trap10_aktiv" , "targetname");
    brush = getEnt ("trap10" ,"targetname" );
-   trig waittill ("trigger",player);  
-   trig delete ();  
-   
+   trig waittill ("trigger",player);
+   trig delete ();
+
    brush moveZ ( 600 , 1);
    wait 5;
    brush moveZ ( -600, 4 );
@@ -335,6 +335,6 @@ final_door()
 {
    trig = getEnt ("final_door_open" , "targetname");
    brush = getEnt ("final_door" ,"targetname" );
-   trig waittill ("trigger",player);  
+   trig waittill ("trigger",player);
    trig delete ();
 }

@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-89.475, -24, 16.125), 0);
+thread sr\api\_map::createSpawnOrigin((-89.475, -24, 16.125), 0);
 trigger = spawn( "trigger_radius", (328, 1018, -211), 0, 300, 300 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 300;
@@ -59,7 +59,7 @@ setdvar("compassmaxrange","1800");
 	// thread weapon_room_gun();
 	// thread jump_tele();
 	// thread jump_wep();
-	
+
 	// addTriggerToList( "trap1_trig" );
     // addTriggerToList( "trap2_trig" );
     // addTriggerToList( "trap3_trig" );
@@ -72,10 +72,10 @@ setdvar("compassmaxrange","1800");
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -143,7 +143,7 @@ TestClient(team)
 
     while(!isdefined(self.pers["team"]))
         wait .05;
-        
+
     self notify("menuresponse", game["menu_team"], team);
     wait 0.5;
 }
@@ -157,7 +157,7 @@ teleport()
 		for( i = 0; i < entTransporter.size; i++ )
 			entTransporter[i] thread transporter();
 }
- 
+
 transporter()
 {
 	for(;;)
@@ -355,7 +355,7 @@ sniperjumpertele = getent ("sniper_jumper_tele", "targetname");
 jumptrig = getent ("jump_trigger", "targetname");
 
 	self endon("death");
-	self endon( "disconnect" );	
+	self endon( "disconnect" );
 	self endon( "joined_team" );
 	self endon( "joined_spectators" );
 
@@ -367,8 +367,8 @@ wait(0.05);
 player SetOrigin (sniperjumpertele.origin);
 player setplayerangles (sniperjumpertele.angles);
 player TakeAllWeapons();
-player GiveWeapon ("m40a3_mp"); 
-player GiveWeapon ("remington700_mp"); 
+player GiveWeapon ("m40a3_mp");
+player GiveWeapon ("remington700_mp");
 wait(0.05);
 
 level.activ SetOrigin (sniperactitele.origin);
@@ -376,8 +376,8 @@ level.activ setplayerangles (sniperactitele.angles);
 level.activ TakeAllWeapons();
 level.activ GiveWeapon ("m40a3_mp");
 level.activ GiveWeapon ("remington700_mp");
-player GiveWeapon ("m40a3_mp"); 
-player GiveWeapon ("remington700_mp"); 
+player GiveWeapon ("m40a3_mp");
+player GiveWeapon ("remington700_mp");
 wait(0.05);
 
 player switchToWeapon ("m40a3_mp");
@@ -387,22 +387,22 @@ wait 0.4;
 
 player thread onDeath_sniper();
 wait 0.1;
-	
+
     for(;;)
     {
-		wait .1;		
+		wait .1;
 		while(isAlive(player))
 		{
 			wait 1;
 		}
-		
+
     }
 }
 
 onDeath_sniper()
 {
 	self endon("disconnect");
-	
+
 	self waittill("death");
 	thread sniper_tele();
 }
@@ -416,7 +416,7 @@ weaponjumpertele = getent ("weapon_jumper_tele", "targetname");
 jumptrig = getent ("jump_trigger", "targetname");
 
 	self endon("death");
-	self endon( "disconnect" );	
+	self endon( "disconnect" );
 	self endon( "joined_team" );
 	self endon( "joined_spectators" );
 
@@ -436,12 +436,12 @@ wait 0.1;
 
     for(;;)
     {
-		wait .1;		
+		wait .1;
 		while(isAlive(player))
 		{
 			wait 1;
 		}
-		
+
     }
 }
 
@@ -453,7 +453,7 @@ weaponactitele = getent ("weapon_acti_tele", "targetname");
 weaponjumpertele = getent ("weapon_jumper_tele", "targetname");
 
 self endon("death");
-self endon( "disconnect" );	
+self endon( "disconnect" );
 self endon( "joined_team" );
 self endon( "joined_spectators" );
 
@@ -505,7 +505,7 @@ GetRandomWeapon( num )
 onDeath_weapon()
 {
 	self endon("disconnect");
-	
+
 	self waittill("death");
 	thread weapon_tele();
 	thread weapon_room_gun();
@@ -521,7 +521,7 @@ jumpactitele = getent ("jump_acti_tele", "targetname");
 jumpjumpertele = getent ("jump_jumper_tele", "targetname");
 
 self endon("death");
-self endon( "disconnect" );	
+self endon( "disconnect" );
 self endon( "joined_team" );
 self endon( "joined_spectators" );
 
@@ -532,7 +532,7 @@ wait(0.05);
 player SetOrigin (jumpjumpertele.origin);
 player setplayerangles (jumpjumpertele.angles);
 player TakeAllWeapons();
-player GiveWeapon ("knife_mp"); 
+player GiveWeapon ("knife_mp");
 wait(0.05);
 level.activ SetOrigin (jumpactitele.origin);
 level.activ setplayerangles (jumpactitele.angles);
@@ -548,24 +548,24 @@ wait 0.1;
 
     for(;;)
     {
-		wait .1;		
+		wait .1;
 		while(isAlive(player))
 		{
 			wait 1;
 		}
-		
+
     }
 }
 
 onDeath_jump()
 {
 	self endon("disconnect");
-	
+
 	self waittill("death");
 	thread jump_tele();
 }
 
-	
+
 jump_wep()
 {
 trigger = getent ("give_wep_trig", "targetname");

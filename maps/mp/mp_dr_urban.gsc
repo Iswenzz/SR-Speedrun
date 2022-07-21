@@ -1,8 +1,8 @@
 /*
-___________.__           .____    .__          _____          ____    __________.__           .__  .__        
+___________.__           .____    .__          _____          ____    __________.__           .__  .__
 \__    ___/|  |__   ____ |    |   |__|__  ____/ ____\____    /  _ \   \______   \  |__   ____ |  | |__|__  ___
   |    |   |  |  \_/ __ \|    |   |  \  \/  /\   __\/ __ \   >  _ </\  |     ___/  |  \_/ __ \|  | |  \  \/  /
-  |    |   |   Y  \  ___/|    |___|  |>    <  |  | \  ___/  /  <_\ \/  |    |   |   Y  \  ___/|  |_|  |>    < 
+  |    |   |   Y  \  ___/|    |___|  |>    <  |  | \  ___/  /  <_\ \/  |    |   |   Y  \  ___/|  |_|  |>    <
   |____|   |___|  /\___  >_______ \__/__/\_ \ |__|  \___  > \_____\ \  |____|   |___|  /\___  >____/__/__/\_ \
                 \/     \/        \/        \/           \/         \/                \/     \/              \/
 .:: Map name: mp_dr_urban ::.
@@ -11,11 +11,11 @@ ___________.__           .____    .__          _____          ____    __________
 
 main()
 {
-thread sr\api\_map::createSpawn((45, -611, 440.700), 7);
+thread sr\api\_map::createSpawnOrigin((45, -611, 440.700), 7);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
-	maps\mp\_load::main();	
+	maps\mp\_load::main();
 
 	// Map dvars
 	setdvar( "r_specularcolorscale", "1" );
@@ -102,9 +102,9 @@ if (!level.spawn["allies"].size)
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -317,7 +317,7 @@ endroomTemplate(trigger, jumperOrigin, actiOrigin, weapon, weapon2, roomName)
 
 		for(i = 3; i >= 0; i--)
 		{
-			if(!i) 
+			if(!i)
 			{
 				player iPrintlnBold("^1FIGHT^7!");
 				player freezeControls(false);
@@ -326,8 +326,8 @@ endroomTemplate(trigger, jumperOrigin, actiOrigin, weapon, weapon2, roomName)
 					level.activ iPrintlnBold("^1FIGHT^7!");
 					level.activ freezeControls(false);
 				}
-			} 
-			else 
+			}
+			else
 			{
 				player iPrintlnBold("^1" + i);
 				if(isDefined(level.activ)) level.activ iPrintlnBold("^1" + i);
@@ -350,7 +350,7 @@ trapDrift()
 	car linkTo(clip);
 	kill maps\mp\_utility::triggerOff();
 
-	
+
 }
 
 trapRotate()
@@ -358,7 +358,7 @@ trapRotate()
 	platform = getEnt("trap_rotate", "targetname");
 	trigger = getEnt("trig_rotate", "targetname");
 
-	
+
 }
 
 trapFloor()
@@ -370,7 +370,7 @@ trapFloor()
 
 	cracks hide();
 
-	
+
 }
 
 trapFaller()
@@ -386,7 +386,7 @@ trapFaller()
 	kill enableLinkTo();
 	kill linkTo(platform);
 
-	
+
 }
 
 trapRoller()
@@ -399,7 +399,7 @@ trapRoller()
 	kill enableLinkTo();
 	kill linkTo(platform);
 
-	
+
 }
 
 rollerDown()
@@ -425,7 +425,7 @@ trapPlatformFall()
 	kill enableLinkTo();
 	kill linkTo(platform);
 
-	
+
 }
 
 trapLadders()
@@ -433,7 +433,7 @@ trapLadders()
 	ladders = getEnt("trap_ladders", "targetname");
 	trigger = getEnt("trig_ladders", "targetname");
 
-	
+
 }
 
 trapBarrel()
@@ -446,7 +446,7 @@ trapBarrel()
 
 	kill maps\mp\_utility::triggerOff();
 
-	
+
 }
 
 trapDropPlatform()
@@ -454,5 +454,5 @@ trapDropPlatform()
 	platform = getEnt("trap_platdrop", "targetname");
 	trigger = getEnt("trig_platdrop", "targetname");
 
-	
+
 }

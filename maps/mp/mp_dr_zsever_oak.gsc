@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-39, 109, 16), 90);
+thread sr\api\_map::createSpawnOrigin((-39, 109, 16), 90);
  maps\mp\_load::main();
 
  game["allies"] = "sas";
@@ -9,8 +9,8 @@ thread sr\api\_map::createSpawn((-39, 109, 16), 90);
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "woodland";
  game["axis_soldiertype"] = "woodland";
-       
-///DVARS       
+
+///DVARS
 	setdvar( "r_specularcolorscale", "1" );
     setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
@@ -32,7 +32,7 @@ thread secfinish();
 startdoor()
 {
 	startdoor = getent("startdoor","targetname");
-	
+
     wait 0.1;
 	startdoor Delete();
 
@@ -44,11 +44,11 @@ secfail()
    tele1 = getent ("origin_secret1", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
 	player setOrigin(tele1.origin);
     player setPlayerAngles(tele1.angles);
-    
+
     }
 }
 
@@ -57,7 +57,7 @@ secfinish()
    trig = getent("trig_secret2", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
     player thread sr\api\_speedrun::finishWay("secret_0");
     }

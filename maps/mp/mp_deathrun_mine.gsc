@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-368.400, 341.600, 144.125), 87);
+thread sr\api\_map::createSpawnOrigin((-368.400, 341.600, 144.125), 87);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
@@ -17,8 +17,8 @@ PrecacheItem( "rpg_mp" );
 
 level.fx_explosion = LoadFX( "deathrun/explosion" );
 
-ambientplay( "minecraft" );	
-	
+ambientplay( "minecraft" );
+
 game["allies"] = "marines";
 game["axis"] = "opfor";
 game["attackers"] = "axis";
@@ -48,7 +48,7 @@ elevatorparts = getentarray("trap2","targetname");
 	elevatorparts[i] thread trap2();
 	}
 	}
-	
+
 	elevatorparts = getentarray("trap3","targetname");
 	if(isdefined(elevatorparts))
 	{
@@ -109,9 +109,9 @@ thread lol();
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -128,7 +128,7 @@ onPlayerSpawn()
 		player detachAll();
 		player setModel( "mc_char" );
 		player setViewModel( "viewmodel_hands_zombie" );
-		
+
 	}
 }
 
@@ -146,7 +146,7 @@ org2 = getent("click", "targetname");
 		bridge delete();
 		}
 		}
-		
+
 		rainbow()
 {
 rainbow = getent("rainbow1", "targetname");
@@ -161,7 +161,7 @@ org = getent("stone", "targetname");
 		player braxi\_rank::giveRankXP("", 20);
 		}
 		}
-		
+
 		rainbow2()
 {
 rainbow2 = getent("rainbow2", "targetname");
@@ -177,7 +177,7 @@ org1 = getent("stone1", "targetname");
 		player braxi\_rank::giveRankXP("", 20);
 		}
 		}
-		
+
 		rainbow3()
 {
 rainbow3 = getent("rainbow3", "targetname");
@@ -191,7 +191,7 @@ org10 = getent("stone2", "targetname");
 		wait 0.5 ;
 		}
 		}
-		
+
 		rainbow4()
 {
 rainbow4 = getent("rainbow4", "targetname");
@@ -205,7 +205,7 @@ org16 = getent("stone3", "targetname");
 		wait 0.5 ;
 		}
 		}
-		
+
 		rainbow5()
 {
 rainbow5 = getent("rainbow5", "targetname");
@@ -235,7 +235,7 @@ org20 = getent("stone5", "targetname");
 		wait 0.5 ;
 		}
 		}
-		
+
 		rainbow7()
 {
 rainbow7 = getent("rainbow7", "targetname");
@@ -249,7 +249,7 @@ org21 = getent("stone6", "targetname");
 		wait 0.5 ;
 		}
 		}
-		
+
 		rainbow8()
 {
 rainbow8 = getent("rainbow8", "targetname");
@@ -265,7 +265,7 @@ org22 = getent("stone7", "targetname");
 		player braxi\_rank::giveRankXP("", 20);
 		}
 		}
-		
+
 rainbow9()
 {
 rainbow9 = getent("rainbow9", "targetname");
@@ -276,7 +276,7 @@ rainbow9 delete();
 
 
 }
-		
+
 		rainbow10()
 {
 rainbow10 = getent("secretunlock", "targetname");
@@ -286,35 +286,35 @@ trigger delete();
 rainbow10 delete();
 
 }
-		
-		
+
+
 		tnt()
 {
 
 		}
-		
+
 		tntnew()
 {
 
 		}
-		
+
 		tntthree()
 {
 
 		}
-		
+
 		tntfour()
 {
 
 		}
-		
+
 		tntfive()
 {
 
 		}
-		
-	
-		
+
+
+
 		trap2()
 {
 trigger = getEnt("trigger_trap2", "targetname");
@@ -331,7 +331,7 @@ wait(0.5);
 self movez(40, 2, 0.5, 1);
 self waittill("movedone");
 wait(4);
-} 
+}
 }
 
 trap3()
@@ -350,24 +350,24 @@ wait(0.5);
 self movez(-40, 2, 0.5, 1);
 self waittill("movedone");
 wait(4);
-} 
+}
 }
 
 floor()
 {
 
 }
-		
+
 floor2()
 {
 
 }
-		
+
 		walk1()
 {
 
 		}
-		
+
 		walk2()
 {
 
@@ -377,7 +377,7 @@ floor2()
 {
 
 		}
-		
+
 		fall()
 {
 
@@ -397,9 +397,9 @@ wait(0.5);
 object movez(80, 3, 1, 2);
 object waittill("movedone");
 wait(0.5);
-} 
 }
-		
+}
+
 block2()
 {
 trigger = getEnt("trigger_block2", "targetname");
@@ -414,9 +414,9 @@ wait(0.5);
 object movez(80, 3, 1, 2);
 object waittill("movedone");
 wait(0.5);
-} 
-}		
-	
+}
+}
+
 block3()
 {
 trigger = getEnt("trigger_block3", "targetname");
@@ -431,7 +431,7 @@ wait(0.5);
 object movez(80, 3, 1, 2);
 object waittill("movedone");
 wait(0.5);
-} 
+}
 }
 
 block4()
@@ -448,7 +448,7 @@ wait(0.5);
 object movez(80, 3, 1, 2);
 object waittill("movedone");
 wait(0.5);
-} 
+}
 }
 
 block5()
@@ -465,7 +465,7 @@ wait(0.5);
 object movez(80, 3, 1, 2);
 object waittill("movedone");
 wait(0.5);
-} 
+}
 }
 
 block6()
@@ -482,19 +482,19 @@ wait(0.5);
 object movez(80, 3, 1, 2);
 object waittill("movedone");
 wait(0.5);
-} 
+}
 }
 
 lava()
 	  {
-	  
+
 	  }
-	  
+
 squish()
 	  {
-	  
+
 	  }
-	  
+
 	  give_rpg()
 {
 trigger = getent ("give_rpg_trig","targetname");
@@ -502,7 +502,7 @@ trigger = getent ("give_rpg_trig","targetname");
 trigger waittill ("trigger",user);
 wait(0.2);
 user iprintlnbold("You Have Taken [^4rpg^7]");
-wait(0.1);	
+wait(0.1);
 user giveWeapon( "rpg_mp");
 user giveMaxammo("rpg_mp");
 user SetActionSlot( 3, "weapon", "rpg_mp" );
@@ -553,7 +553,7 @@ lol()
 	killtrigger8 linkto (model[1]);
 	for(i=0;i<model.size;i++)
 		model[i] MoveZ(-1000,.05);
-		
+
 	trigger waittill ("trigger" , player );
 	level.jumpertrigger delete();
     level.bouncetrigger delete();
@@ -573,7 +573,7 @@ lol()
 		ambientplay( "13" );
 }
 
-   
+
 
 printCredits()
 {
@@ -623,18 +623,18 @@ printCredits()
 		wait 1;
 	}
 }
-	  
-	
+
+
 jukebox()
 {
 
-		}	
-		
+		}
+
 		jukebox2()
 {
 
-		}	
-		
+		}
+
 		addTriggerToList( name )
 {
     if( !isDefined( level.trapTriggers ) )
@@ -642,7 +642,7 @@ jukebox()
     level.trapTriggers[level.trapTriggers.size] = getEnt( name, "targetname" );
 }
 
-	
+
 		addTestClients()
 {
     setDvar("scr_testclients", "");
@@ -658,7 +658,7 @@ jukebox()
     for(i=0;i<testclients;i++)
     {
         ent[i] = addtestclient();
- 
+
         if (!isdefined(ent[i]))
         {
             println("Could not add test client");
@@ -670,14 +670,14 @@ jukebox()
     }
     thread addTestClients();
 }
- 
+
 TestClient(team)
 {
     self endon( "disconnect" );
- 
+
     while(!isdefined(self.pers["team"]))
         wait .05;
-       
+
     self notify("menuresponse", game["menu_team"], team);
     wait 0.5;
 }
@@ -708,4 +708,4 @@ teleportjump()
 
 }
 
-	  
+

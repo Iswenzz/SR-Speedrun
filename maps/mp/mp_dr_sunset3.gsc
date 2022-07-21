@@ -1,9 +1,9 @@
 main()
 {
-thread sr\api\_map::createSpawn((94, -1334, 16), 360);
+thread sr\api\_map::createSpawnOrigin((94, -1334, 16), 360);
 	///External scripts///
 	maps\mp\_load::main();
-	
+
 	///Team Setup///
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
@@ -11,7 +11,7 @@ thread sr\api\_map::createSpawn((94, -1334, 16), 360);
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_gamma", "1" );
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("r_glowbloomintensity0","1");
@@ -35,12 +35,12 @@ startdoor()
 {
 	start_door = getent("startdoor","targetname");
 	start_door_trig = getent("startdoor_open","targetname");
-	
+
     wait 0.1;
 	start_door Delete();
  	start_door_trig Delete();
 
- 	
+
 }
 
 secret_enter()
@@ -50,7 +50,7 @@ secret_enter()
 
 	while(true)
 	{
-		secret_enter_trig waittill ("trigger", player);	
+		secret_enter_trig waittill ("trigger", player);
 		player thread sr\api\_speedrun::changeWay("secret_0");
 		player.checkpoint = 0;
 		player SetPlayerAngles(secret_enter_orig.angles);
@@ -67,7 +67,7 @@ secret_exit()
 	while(true)
 	{
 		secret_exit_trig waittill ("trigger", player);
-		player thread sr\api\_speedrun::finishWay("secret_0");	
+		player thread sr\api\_speedrun::finishWay("secret_0");
 		player.checkpoint = 0;
 		player SetPlayerAngles(secret_exit_orig.angles);
 		player SetOrigin(secret_exit_orig.origin + (-100,0,0));
@@ -97,7 +97,7 @@ secret_respawn()
 
 	while(true)
 	{
-		secret_respawn_trig waittill ("trigger", player);	
+		secret_respawn_trig waittill ("trigger", player);
 		if(player.checkpoint == 0)
 		{
 			player SetPlayerAngles(secret_enter_orig.angles);
@@ -130,7 +130,7 @@ checkpoint1_check()
 	while(true)
 	{
 		self waittill ("trigger", player);
-		player.checkpoint = 1;	
+		player.checkpoint = 1;
 		wait 0.2;
 	}
 }
@@ -140,7 +140,7 @@ checkpoint2_check()
 	while(true)
 	{
 		self waittill ("trigger", player);
-		player.checkpoint = 2;	
+		player.checkpoint = 2;
 		wait 0.2;
 	}
 }
@@ -150,7 +150,7 @@ checkpoint3_check()
 	while(true)
 	{
 		self waittill ("trigger", player);
-		player.checkpoint = 3;	
+		player.checkpoint = 3;
 		wait 0.2;
 	}
 }

@@ -6,7 +6,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((-1500, -670, 0), 91);
+thread sr\api\_map::createSpawnOrigin((-1500, -670, 0), 91);
         maps\mp\_load::main();
       //  ambientPlay ("water");
 

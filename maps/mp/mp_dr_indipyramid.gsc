@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-3046, 155, -366.229), 0);
+thread sr\api\_map::createSpawnOrigin((-3046, 155, -366.229), 0);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
@@ -9,12 +9,12 @@ trigger.targetname = "endmap_trig";
 trigger.radius = 196;
 //////////////////////////////thready////////////
   		// ambientPlay("indipyramid");
-	
+
 	  thread way_connect();
       thread door_a();
 	  thread door_b();
       // thread jump_teleport();
-      thread secret_teleport();	
+      thread secret_teleport();
 	  thread onConnect();
 
 precacheItem( "remington700_mp" );
@@ -32,14 +32,14 @@ precacheItem( "rpd_mp" );
 // thread snip();  //304
 thread secret2();
 thread jump_room_gun();
-	  
+
         maps\mp\_load::main();
-	
+
 	maps\mp\mp_dr_indipyramid_script1::main();
 	maps\mp\mp_dr_indipyramid_script2::main();
 	maps\mp\mp_dr_indipyramid_obrazy::main();
-	
-	
+
+
 //////////////////////////////////global////////////////////////////
 
 	game["allies"] = "sas";
@@ -48,16 +48,16 @@ thread jump_room_gun();
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
-	
+
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
 
 //////////////////////////////////////////deathrun/////////////////////
-		
+
 }
 
 onConnect()
@@ -73,10 +73,10 @@ onConnect()
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );

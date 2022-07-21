@@ -9,7 +9,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((-4, -197, 0), 90);
+thread sr\api\_map::createSpawnOrigin((-4, -197, 0), 90);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
@@ -63,10 +63,10 @@ trigger.radius = 96;
 way_connect()
 {
     wait 0.05;
-    
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-    
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
 
@@ -85,24 +85,24 @@ openDoor()
 goSecondMover()
 {
 	level.pusher2_trig waittill( "trigger" );
-	
+
 }
 
 fallTrap()
 {
 	level.ft_trig waittill( "trigger" );
-}	
+}
 
 firstTrap()
 {
 	level.trap1_trig waittill( "trigger" );
-	
+
 }
 
 goPusher()
 {
 	level.pusher_trig waittill( "trigger" );
-	
+
 }
 
 goMover()
@@ -124,16 +124,16 @@ goMover()
 rotateCylinder1()
 {
 	level.c1_trig waittill( "trigger" );
-	
+
 }
 rotateCylinder2()
 {
 	level.c2_trig waittill( "trigger" );
-	
+
 }
 
 rotateCylinder3()
 {
 	level.c3_trig waittill( "trigger" );
-	
+
 }

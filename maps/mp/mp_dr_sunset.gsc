@@ -1,8 +1,8 @@
-/*   __        _____  __  __ ______ _____  _____  
-    / _| /\   |  __ \|  \/  |  ____|  __ \|  __ \ 
+/*   __        _____  __  __ ______ _____  _____
+    / _| /\   |  __ \|  \/  |  ____|  __ \|  __ \
    | |_ /  \  | |__) | \  / | |__  | |__) | |__) |
-   |  _/ /\ \ |  _  /| |\/| |  __| |  _  /|  _  / 
-   | |/ ____ \| | \ \| |  | | |____| | \ \| | \ \ 
+   |  _/ /\ \ |  _  /| |\/| |  __| |  _  /|  _  /
+   | |/ ____ \| | \ \| |  | | |____| | \ \| | \ \
    |_/_/    \_\_|  \_\_|  |_|______|_|  \_\_|  \_\
 
   Mapped and Scripted: fARMERR and Speedex
@@ -21,7 +21,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((12, -10, 8), 89);
+thread sr\api\_map::createSpawnOrigin((12, -10, 8), 89);
 	maps\mp\_load::main();
 
 	game["allies"] = "marines";
@@ -36,9 +36,9 @@ thread sr\api\_map::createSpawn((12, -10, 8), 89);
 	// AmbientPlay( "ambient" );
 
 	PreCacheItem( "remington700_mp" );
-	
+
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	    thread sr\api\_speedrun::createEndMap((1640.16, 811.769, 343.825), 165, 170); 
+	    thread sr\api\_speedrun::createEndMap((1640.16, 811.769, 343.825), 165, 170);
 	thread Traps();
 	thread secret();
 	thread Old();

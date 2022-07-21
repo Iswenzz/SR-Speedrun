@@ -6,7 +6,7 @@
 */
 main() //Main Map Script
 {
-thread sr\api\_map::createSpawn((-21, 45, 16), 1);
+thread sr\api\_map::createSpawnOrigin((-21, 45, 16), 1);
 game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
@@ -25,12 +25,12 @@ game["allies"] = "marines";
 
   thread sr\api\_speedrun::createNormalWays("Normal Way;");
   thread sr\api\_speedrun::createSecretWays("Secret Way;");
-    thread sr\api\_speedrun::createTeleporter((4583.6, -9.91388, 2112.13), 135, 65, (8, 3616, 4476), 0, "freeze");  
+    thread sr\api\_speedrun::createTeleporter((4583.6, -9.91388, 2112.13), 135, 65, (8, 3616, 4476), 0, "freeze");
   thread sr\api\_speedrun::createTeleporter((268.113, 295.171, 16.125), 70, 10, (-2567, -4871, 188), 270, "freeze", "blue", "secret_0");
   thread sr\api\_speedrun::createTeleporter((6139.73, -1237.58, 16.125), 70, 10, (50, -8, 2124), 360, "freeze");
   thread sr\api\_speedrun::createTeleporter((702.889, 5352.01, 4608.13), 120, 45, (-4372, 8978, 3136), 90, "freeze");
   thread sr\api\_speedrun::createEndMap((5812.93, -18072.6, -9759.88), 420, 385, "secret_0");
-  
+
   // thread introtext();
   // thread bottomtext();
   thread startdoor();
@@ -111,7 +111,7 @@ laser() //Laser Trap
 {
 	laser = getEnt("laser","targetname");
 	 trig = getEnt("laser_trig","targetname");
-		
+
 			trig SetHintString("Press [^5USE^7] to Activate the Laser!");
 	  	trig waittill("trigger", player );
 
@@ -121,7 +121,7 @@ laser() //Laser Trap
 	  	{
 	  			laser moveY(-980, 1);
 	  		 	 laser waittill("movedone");
-			
+
 			  laser moveY(980, 1);
 			 laser waittill("movedone");
 
@@ -191,7 +191,7 @@ spinningplatforms() //Rolls the Platforms
 	 plat2 = getEnt("spin_plat2","targetname");
 	  plat3 = getEnt("spin_plat3","targetname");
 	  trig = getEnt("spin_plat_trig","targetname");
-	
+
 	 trig SetHintString("Press [^5USE^7] to Spin the Platforms!");
 	trig waittill("trigger", player );
 
@@ -308,7 +308,7 @@ teleport() //Map Teleports
 
 				entTransporter = getentarray( "secret_finish", "targetname" );
 		if(isdefined(entTransporter))
-			for( i = 0; i < entTransporter.size; i++ )	
+			for( i = 0; i < entTransporter.size; i++ )
 		       entTransporter[i] thread transporter();
 
 				entTransporter = getentarray( "secret_roof", "targetname" );
@@ -423,7 +423,7 @@ teleport() //Map Teleports
 	for(;;)
 	{
 		self waittill( "trigger", player );
-	
+
 	}
 }
 
@@ -488,7 +488,7 @@ trig = getEnt( "secret_finish", "targetname" );
 
  while(true)
  {
-  
+
   trig waittill ("trigger",player );
 
   	iPrintLnBold( "^1" + player.name + " ^7has Finished the ^1Secret ^7!");
@@ -509,11 +509,11 @@ roof()
 
  while(true)
  {
-  
+
   trig waittill ("trigger",player );
 
   	iPrintLnBold( "^1" + player.name + " ^7has Landed on the ^1Secret Roof ^7!");
-  	
+
   {
 
   		wait 0.25;
@@ -727,14 +727,14 @@ kniferoom()
     acti = getEnt( "knife_acti", "targetname" );
 
     	level.knife_trig SetHintString("Press [^5USE^7] to Enter the ^1Knife Room!");
-   
- 
+
+
      while(1)
     {
         level.knife_trig waittill( "trigger", player );
         if( !isDefined( level.knife_trig ) )
             return;
-       
+
         level.sniper_trig delete();
         level.jump_trig delete();
 
@@ -743,11 +743,11 @@ kniferoom()
         player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
-        player GiveWeapon( "knife_mp" );        
+        player GiveWeapon( "knife_mp" );
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "knife_mp" );        
+        level.activ GiveWeapon( "knife_mp" );
         wait 0.05;
         player switchToWeapon( "knife_mp" );
         level.activ SwitchToWeapon( "knife_mp" );
@@ -766,9 +766,9 @@ kniferoom()
                 level.activ FreezeControls(0);
         while( isAlive( player ) && isDefined( player ) )
             wait 1;
-           
+
     }
- 
+
 }
 
 sniperroom()
@@ -778,14 +778,14 @@ sniperroom()
     acti = getEnt( "sniper_acti", "targetname" );
 
     	level.sniper_trig SetHintString("Press [^5USE^7] to Enter the ^1Sniper Room!");
-   
- 
+
+
      while(1)
     {
         level.sniper_trig waittill( "trigger", player );
         if( !isDefined( level.sniper_trig ) )
             return;
-       
+
         level.knife_trig delete();
         level.jump_trig delete();
 
@@ -795,12 +795,12 @@ sniperroom()
         player setOrigin( jump.origin );
         player TakeAllWeapons();
         player GiveWeapon( "remington700_mp" );
-        player GiveWeapon("m40a3_mp");        
+        player GiveWeapon("m40a3_mp");
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "remington700_mp" ); 
-        level.activ GiveWeapon("m40a3_mp");       
+        level.activ GiveWeapon( "remington700_mp" );
+        level.activ GiveWeapon("m40a3_mp");
         wait 0.05;
         player switchToWeapon( "remington700_mp" );
         level.activ SwitchToWeapon( "remington700_mp" );
@@ -819,9 +819,9 @@ sniperroom()
                 level.activ FreezeControls(0);
         while( isAlive( player ) && isDefined( player ) )
             wait 1;
-           
+
     }
- 
+
 }
 
 jumproom()
@@ -831,14 +831,14 @@ jumproom()
     acti = getEnt( "jump_acti", "targetname" );
 
     	level.jump_trig SetHintString("Press [^5USE^7] to Enter the ^1Jump Room!");
-   
- 
+
+
      while(1)
     {
         level.jump_trig waittill( "trigger", player );
         if( !isDefined( level.jump_trig ) )
             return;
-       
+
         level.knife_trig delete();
         level.sniper_trig delete();
 
@@ -847,11 +847,11 @@ jumproom()
         player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
-        player GiveWeapon( "knife_mp" );        
+        player GiveWeapon( "knife_mp" );
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "knife_mp" );        
+        level.activ GiveWeapon( "knife_mp" );
         wait 0.05;
         player switchToWeapon( "knife_mp" );
         level.activ SwitchToWeapon( "knife_mp" );
@@ -870,9 +870,9 @@ jumproom()
                 level.activ FreezeControls(0);
         while( isAlive( player ) && isDefined( player ) )
             wait 1;
-           
+
     }
- 
+
 }
 
 knife_move()

@@ -1,19 +1,19 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((-161, 1547, 95), 360);
+thread sr\api\_map::createSpawnOrigin((-161, 1547, 95), 360);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
 	maps\mp\_load::main();
-	
-	
+
+
 	level.water = loadFX("custom/sentrex-gushingwater");
 	level.fog = loadFX("custom/prisonrunfog");
 	level.trap6fx = loadFX("custom/trap3fx");
-	
-	
-	
+
+
+
 	game["allies"] = "sas";
 	game["axis"] = "russian";
 	game["attackers"] = "axis";
@@ -25,7 +25,7 @@ if (!level.spawn["allies"].size)
 	PrecacheItem( "ak74u_mp" );
 	PrecacheItem( "remington700_mp" );
 	PrecacheItem( "m40a3_mp" );
-	
+
 	setdvar( "r_specularcolorscale", "1" );
 
 	setdvar("r_glowbloomintensity0",".1");
@@ -51,7 +51,7 @@ if (!level.spawn["allies"].size)
 		 setdvar("visionstore_glowTweakBloomIntensity1", "");
 		 setdvar("visionstore_glowTweakSkyBleedIntensity0", "");
 		 setdvar("visionstore_glowTweakSkyBleedIntensity1", "");
-		 
+
 		 playLoopedFX(level.water, 0.05, (20376, -88, 88));
 		 playLoopedFX(level.water, 0.05, (18304, -64, 80));
 
@@ -59,10 +59,10 @@ if (!level.spawn["allies"].size)
 trigger.targetname = "endmap_trig";
 trigger.radius = 120;
 
-thread way_connect();	 
+thread way_connect();
 
-thread caveteleport();	
-//thread creds();	
+thread caveteleport();
+//thread creds();
 thread trap1();
 thread trap2();
 thread trap3();
@@ -97,19 +97,19 @@ thread snipe_respawn_acti();
 	// addTriggerToList( "trig4" );
 	 //addTriggerToList( "trig5" );
 	 //addTriggerToList( "trap6trig" );
- 
+
 }
 
 way_connect()
 {
     wait 0.05;
-    
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
     sr\api\_speedrun::createSecretWays("Secret Way;");
 
     thread secret_1();
-    
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
 
@@ -148,10 +148,10 @@ caveteleport()
 	while(1)
         {
 	teleport1 waittill("trigger", player);
-	
+
 			player SetPlayerAngles( origin1.angles );
 	        player setOrigin( origin1.origin );
-}	
+}
 }
 
 music()
@@ -172,10 +172,10 @@ actitele1()
 	while(1)
         {
 	teleport1 waittill("trigger", player);
-	
+
 			player SetPlayerAngles( origin1.angles );
 	        player setOrigin( origin1.origin );
-}	
+}
 }
 
 actitele2()
@@ -185,34 +185,34 @@ actitele2()
 	while(1)
         {
 	teleport2 waittill("trigger", player);
-	
+
 			player SetPlayerAngles( origin2.angles );
 	        player setOrigin( origin2.origin );
-}	
+}
 }
 
 creds()
 {
-     level.xxx = newHudElem(); 
-         level.xxx.x = 0;      
-         level.xxx.y = -200;   
-         level.xxx.horzAlign = "left"; 
+     level.xxx = newHudElem();
+         level.xxx.x = 0;
+         level.xxx.y = -200;
+         level.xxx.horzAlign = "left";
          level.xxx.vertAlign = "middle";
          level.xxx.alignX = "left";
          level.xxx.alignY = "middle";
-         level.xxx.sort = 102; 
-         level.xxx.foreground = 1;     
-         level.xxx.archived = true;    
-         level.xxx.alpha = 1;  
+         level.xxx.sort = 102;
+         level.xxx.foreground = 1;
+         level.xxx.archived = true;
+         level.xxx.alpha = 1;
          level.xxx.fontScale = 1.4;
-         level.xxx.hidewheninmenu = false;     
+         level.xxx.hidewheninmenu = false;
          level.xxx.color = (255,128,0);
          level.xxx.glowColor = (0.3, 0.6, 0.3);
          level.xxx.glowAlpha = 1;
 while(1)
          {
          level.xxx.color = (0,50,258);
-         level.xxx.label = &"Map By Synd";    
+         level.xxx.label = &"Map By Synd";
          wait 3;
          level.xxx.color = (0,50,258);
          level.xxx.label = &"Thanks to asus89";
@@ -231,7 +231,7 @@ trap1()
         trap1 = getEnt("trap1","targetname");
         trig1 = getEnt("trig1","targetname");
         trig1 waittill ("trigger");
-        
+
 }
 
 trap2()
@@ -240,22 +240,22 @@ trap2()
 	kill = getEnt ("trap2kill","targetname");
 	trig2 = getEnt ("trig2","targetname");
 	trig2 waittill ("trigger", player);
-	
+
 	}
-	
+
 trap2a()
 	{
 		kill = getEnt ("trap2kill","targetname");
 		kill waittill("trigger", player);
-		
+
 	}
-	
+
 trap3()
 {
         trap3 = getEnt("trap3","targetname");
         trig3 = getEnt("trig3","targetname");
         trig3 waittill ("trigger");
-        
+
 }
 
 
@@ -264,7 +264,7 @@ trap4()
         trap4 = getEnt("trap4","targetname");
         trig4 = getEnt("trig4","targetname");
         trig4 waittill ("trigger");
-        
+
 }
 
 trap5()
@@ -272,7 +272,7 @@ trap5()
         trap5 = getEnt("trap5","targetname");
         trig5 = getEnt("trig5","targetname");
         trig5 waittill ("trigger");
-      
+
 }
 
 
@@ -280,19 +280,19 @@ snipersecret()
 {
 
 	sniper = getEnt ("giverpg","targetname");
-	
+
 	while(1)
 	{
-	
+
 	sniper waittill ("trigger", player);
-	
-		
+
+
     player giveWeapon( "m40a3_mp" );
     player giveMaxAmmo( "m40a3_mp" );
     wait 0.5;
     player switchToWeapon( "m40a3_mp" );
     wait 0.6;
-    player iPrintLnBold( "^5You got an M40a3" ); 
+    player iPrintLnBold( "^5You got an M40a3" );
 
 	}
 }
@@ -301,19 +301,19 @@ bounceweapon()
 {
 
 	weaptrig = getEnt ("bounceweapon","targetname");
-	
+
 	while(1)
 	{
-	
+
 	weaptrig waittill ("trigger", player);
-	
-		
+
+
     player giveWeapon( "m40a3_mp" );
     player giveMaxAmmo( "m40a3_mp" );
     wait 0.5;
     player switchToWeapon( "m40a3_mp" );
     wait 0.6;
-    player iPrintLnBold( "^5You grabbed a weapon!" ); 
+    player iPrintLnBold( "^5You grabbed a weapon!" );
 
 	}
 }
@@ -350,7 +350,7 @@ sniper()
 			level.activ GiveWeapon( "m40a3_mp" );
 	        level.activ GiveMaxAmmo( "m40a3_mp" );
 	        wait .05;
-	        player switchToWeapon( "remington700_mp" ); 
+	        player switchToWeapon( "remington700_mp" );
 	        level.activ SwitchToWeapon( "remington700_mp" );
 	        player FreezeControls(1);
 			level.activ FreezeControls(1);
@@ -404,7 +404,7 @@ weapon()
 			level.activ GiveWeapon( "deserteagle_mp" );
 	        level.activ GiveMaxAmmo( "deserteagle_mp" );
 	        wait .05;
-	        player switchToWeapon( "ak74u_mp" ); 
+	        player switchToWeapon( "ak74u_mp" );
 	        level.activ SwitchToWeapon( "ak74u_mp" );
 	        player FreezeControls(1);
 			level.activ FreezeControls(1);
@@ -452,7 +452,7 @@ bounce()
 	        level.activ TakeAllWeapons();
 	        level.activ GiveWeapon( "tomahawk_mp" );
 	        wait .05;
-	        player switchToWeapon( "tomahawk_mp" ); 
+	        player switchToWeapon( "tomahawk_mp" );
 	        level.activ SwitchToWeapon( "tomahawk_mp" );
 	        player FreezeControls(1);
 			level.activ FreezeControls(1);
@@ -480,10 +480,10 @@ jump_respawn_jumper()
 	while(1)
         {
 	teleport waittill("trigger", player);
-	
+
 			player SetPlayerAngles( origin.angles );
 	        player setOrigin( origin.origin );
-}	
+}
 }
 
 jump_respawn_acti()
@@ -493,10 +493,10 @@ jump_respawn_acti()
 	while(1)
         {
 	teleport waittill("trigger", player);
-	
+
 			player SetPlayerAngles( origin.angles );
 	        player setOrigin( origin.origin );
-}	
+}
 }
 
 snipe_respawn_jumper()
@@ -506,10 +506,10 @@ snipe_respawn_jumper()
 	while(1)
         {
 	teleport waittill("trigger", player);
-	
+
 			player SetPlayerAngles( origin.angles );
 	        player setOrigin( origin.origin );
-}	
+}
 }
 
 snipe_respawn_acti()
@@ -519,28 +519,28 @@ snipe_respawn_acti()
 	while(1)
         {
 	teleport waittill("trigger", player);
-	
+
 			player SetPlayerAngles( origin.angles );
 	        player setOrigin( origin.origin );
-}	
+}
 }
 syndcarnagesecret()
 {
 
 	trig = getEnt ("syndcarnagesecret","targetname");
-	
+
 	while(1)
 	{
-	
+
 	trig waittill ("trigger", player);
-	
-		
+
+
     player giveWeapon( "syndcarnage_mp" );
     player giveMaxAmmo( "syndcarnage_mp" );
     wait 0.5;
     player switchToWeapon( "syndcarnage_mp" );
     wait 0.6;
-    player iPrintLnBold( "^3You found a secret!" ); 
+    player iPrintLnBold( "^3You found a secret!" );
 
 	}
 }
@@ -575,7 +575,7 @@ secret()
 	player sr\api\_speedrun::changeWay("secret_0");
 			player SetPlayerAngles( origin.angles );
 	        player setOrigin( origin.origin );
-}	
+}
 }
 
 secretback1()
@@ -585,10 +585,10 @@ secretback1()
 	while(1)
         {
 	secret waittill("trigger", player);
-	
+
 			player SetPlayerAngles( origin.angles );
 	        player setOrigin( origin.origin );
-}	
+}
 }
 secretback2()
 {
@@ -597,10 +597,10 @@ secretback2()
 	while(1)
         {
 	secret waittill("trigger", player);
-	
+
 			player SetPlayerAngles( origin.angles );
 	        player setOrigin( origin.origin );
-}	
+}
 }
 secretback3()
 {
@@ -609,10 +609,10 @@ secretback3()
 	while(1)
         {
 	secret waittill("trigger", player);
-	
+
 			player SetPlayerAngles( origin.angles );
 	        player setOrigin( origin.origin );
-}	
+}
 }
 secretback4()
 {
@@ -621,10 +621,10 @@ secretback4()
 	while(1)
         {
 	secret waittill("trigger", player);
-	
+
 			player SetPlayerAngles( origin.angles );
 	        player setOrigin( origin.origin );
-}	
+}
 }
 secretback5()
 {
@@ -633,10 +633,10 @@ secretback5()
 	while(1)
         {
 	secret waittill("trigger", player);
-	
+
 			player SetPlayerAngles( origin.angles );
 	        player setOrigin( origin.origin );
-}	
+}
 }
 secretback6()
 {
@@ -645,10 +645,10 @@ secretback6()
 	while(1)
         {
 	secret waittill("trigger", player);
-	
+
 			player SetPlayerAngles( origin.angles );
 	        player setOrigin( origin.origin );
-}	
+}
 }
 secretend()
 {
@@ -658,11 +658,11 @@ secretend()
         {
 	secretend waittill("trigger", player);
 player thread sr\api\_speedrun::finishWay("secret_0");
-	
+
 			// player SetPlayerAngles( origin.angles );
 	  //       player setOrigin( origin.origin );
 			// iPrintlnBold( " ^5" + player.name + " ^3 has finished the secret!" );
-}	
+}
 }
 
 synd()

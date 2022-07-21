@@ -3,7 +3,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((35, -213, 15), 90);
+thread sr\api\_map::createSpawnOrigin((35, -213, 15), 90);
 
 /*
 
@@ -41,7 +41,7 @@ oOOOOOO OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO OOOOOOo
 
     thread sr\api\_speedrun::createNormalWays("Normal Way");
     thread sr\api\_speedrun::createSecretWays("Secret Way");
-    
+
 
     game["allies"] = "marines";
 	game["axis"] = "opfor";

@@ -5,7 +5,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((20, 0, 16), 1);
+thread sr\api\_map::createSpawnOrigin((20, 0, 16), 1);
  maps\mp\_load::main();
 
  game["allies"] = "sas";
@@ -14,15 +14,15 @@ thread sr\api\_map::createSpawn((20, 0, 16), 1);
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "woodland";
  game["axis_soldiertype"] = "woodland";
-       
-///DVARS       
+
+///DVARS
 	setdvar("r_specularcolorscale", "1");
     setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
 	setdvar("r_glowskybleedintensity0",".1");
 	setDvar("bg_falldamagemaxheight", 99999);
     setDvar("bg_falldamageminheight", 99998);
-     
+
         thread sr\api\_speedrun::createNormalWays("Normal Way;");
     thread sr\api\_speedrun::createSecretWays("Secret Way;");
     thread sr\api\_speedrun::createTeleporter((3322.63, -509.911, 256.125), 65, 20, (3335, 676, 28), 90, "freeze", "blue", "normal_0");
@@ -42,9 +42,9 @@ thread sr\api\_map::createSpawn((20, 0, 16), 1);
 }
 
 fan()
-{   
+{
     hurt = getEntArray("trig_hurt_fan1", "targetname");
-   
+
     hurt[0] delete();
     hurt[1] delete();
     hurt[2] delete();
@@ -53,10 +53,10 @@ fan()
 }
 
 fire()
-{   
+{
     hurta = getent("trig_hurt_fire1", "targetname");
     hurtb = getent("trig_hurt_fire2", "targetname");
-   
+
     hurta delete();
 	hurtb delete();
 
@@ -66,21 +66,21 @@ laser1()
 {
    laser1 = getent("laser1", "targetname");
    hurta = getent("trig_hurt_laser1", "targetname");
-   
+
    hurta delete();
    laser1 delete();
-   
-}   
+
+}
 
 laser2()
 {
    laser2 = getent("laser2", "targetname");
    hurtb = getent("trig_hurt_laser2", "targetname");
-   
+
    hurtb delete();
    laser2 delete();
-  
-}   
+
+}
 
 stage2door()
 {
@@ -98,7 +98,7 @@ stage2tp()
    tele = getent ("orig_stage2tp", "targetname");
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
 	 player setOrigin(tele.origin);
      player setPlayerAngles(tele.angles);
@@ -110,7 +110,7 @@ end_wall()
    plat = getent("end_wall", "targetname");
 
    plat delete();
-  
+
 }
 
 sectp()
@@ -119,7 +119,7 @@ sectp()
    tele = getent ("orig_sectp", "targetname");
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
 
      player thread sr\api\_speedrun::changeWay("secret_0");
@@ -143,13 +143,13 @@ secend()
    tele = getent ("orig_secend", "targetname");
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
 
       if(player != self)
         continue;
 
-     player thread sr\api\_speedrun::finishWay("secret_0"); 
+     player thread sr\api\_speedrun::finishWay("secret_0");
      player notify("secret_done");
 	 player setOrigin(tele.origin);
      player setPlayerAngles(tele.angles);
@@ -164,7 +164,7 @@ save_load_logic()
 {
     fail_trigger = getent("trig_fail","targetname");
     save_triggers = GetEntArray("save_triggers","targetname");
-    
+
     for(i=0;i<save_triggers.size;i++)
         thread save_pos(save_triggers[i],i);
 
@@ -180,7 +180,7 @@ save_pos(trig,pos)
     while(1)
     {
         trig waittill("trigger",player);
-        
+
         if(!IsDefined(player.sc_pos))
             player.sc_pos = pos;
 
@@ -222,5 +222,5 @@ coins()
    coinrc delete();
    coinba delete();
    coinbb delete();
-  
-}   
+
+}

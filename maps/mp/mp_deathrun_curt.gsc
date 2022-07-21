@@ -10,16 +10,16 @@
 #include braxi\_rank;
 main()
 {
-thread sr\api\_map::createSpawn((25, -11, 17), 180);
+thread sr\api\_map::createSpawnOrigin((25, -11, 17), 180);
  maps\mp\_load::main();
- 
+
  game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"]= "desert";
- 
+
 	setdvar( "r_specularcolorscale", "0" );
     setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
@@ -28,7 +28,7 @@ thread sr\api\_map::createSpawn((25, -11, 17), 180);
     setDvar("bg_falldamageminheight", 99998);
 
         thread sr\api\_speedrun::createNormalWays("Normal Way;");
-     
+
 	thread startdoor1();
 	thread startdoor2();
     thread finishdoor();
@@ -47,14 +47,14 @@ thread sr\api\_map::createSpawn((25, -11, 17), 180);
 	//thread secretladder();
     //thread secretfailload();
 
-	
+
 }
 
 startdoor1()
 {
    door = getent("startdoor1","targetname");
 
-   
+
    wait 0.1;
    door delete();
 }
@@ -63,7 +63,7 @@ startdoor2()
 {
    door = getent("startdoor2","targetname");
 
-  
+
    wait 0.1;
    door delete();
 }
@@ -72,52 +72,52 @@ movingplatform()
 {
 
   movingplatform = getent("movingplatform", "targetname");
- 
-   
+
+
    movingplatform moveX (120,0.1);
-   
-}   
+
+}
 
 movingplatformb()
 {
 
    movingplatformb = getent("movingplatformb", "targetname");
-   
+
    movingplatformb moveY (-520,0.1);
    wait 0.1;
    movingplatformb moveX (530,0.1);
-  
-}   
+
+}
 
 finishdoor()
 {
    finishdoor = getent("finishdoor", "targetname");
-  
+
    wait 0.1;
-   finishdoor delete();   
+   finishdoor delete();
 }
-   
+
 teleport1()
 {
    trig = getent("trigger_teleport1", "targetname");
    tele1 = getent ("origin_teleport1", "targetname");
 
    for(;;)
-    {   
+    {
       trig waittill("trigger", player);
 	  player setOrigin(tele1.origin);
       player setPlayerAngles(tele1.angles);
 	  iPrintLnBold ("^5" + player.name + " ^7has entered in ^5Secret Room!");
     }
 }
-	
+
 teleport2()
 {
    trig = getent("trigger_teleport2", "targetname");
    tele2 = getent ("origin_teleport2", "targetname");
 
    for(;;)
-    {   
+    {
       trig waittill("trigger", player);
 	  player setOrigin(tele2.origin);
       player setPlayerAngles(tele2.angles);
@@ -132,7 +132,7 @@ teleport3()
    tele3 = getent ("origin_teleport3", "targetname");
 
    for(;;)
-    {   
+    {
       trig waittill("trigger", player);
 	  player setOrigin(tele3.origin);
       player setPlayerAngles(tele3.angles);
@@ -145,7 +145,7 @@ teleport4()
    tele4 = getent ("origin_teleport4", "targetname");
 
    for(;;)
-    {   
+    {
       trig waittill("trigger", player);
 	  player setOrigin(tele4.origin);
       player setPlayerAngles(tele4.angles);
@@ -158,7 +158,7 @@ easysecret1()
    tele6 = getent ("origin_easysecret", "targetname");
 
    for(;;)
-    {   
+    {
       trig waittill("trigger", player);
 	  player setOrigin(tele6.origin);
       player setPlayerAngles(tele6.angles);
@@ -172,7 +172,7 @@ easysecrettp()
    tele7 = getent ("origin_eztp", "targetname");
 
    for(;;)
-    {   
+    {
       trig waittill("trigger", player);
 	  player setOrigin(tele7.origin);
       player setPlayerAngles(tele7.angles);
@@ -187,7 +187,7 @@ secretgapfailload()
    tele1 = getent ("origin_gapsecfail", "targetname");
 
    for(;;)
-    {   
+    {
       trig waittill("trigger", player);
 	  player setOrigin(tele1.origin);
       player setPlayerAngles(tele1.angles);
@@ -216,7 +216,7 @@ secretfailload()
    tele1 = getent ("origin_secretfail", "targetname");
 
    for(;;)
-    {   
+    {
       trig waittill("trigger", player);
 	  player setOrigin(tele1.origin);
       player setPlayerAngles(tele1.angles);

@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-3721, 1758, 510), -90);
+thread sr\api\_map::createSpawnOrigin((-3721, 1758, 510), -90);
 	maps\mp\_load::main();
 
 	thread sr\api\_speedrun::createNormalWays("Trap Way;Trance Way;");
@@ -94,7 +94,7 @@ trap_trap2()
 	trig waittill("trigger");
 	trig delete();
 
-	trapa movez(70, 1.5);	
+	trapa movez(70, 1.5);
 	trapb movez(-70,1.5);
 
 	wait 1.5;
@@ -143,7 +143,7 @@ trap_trap4()
   	trig = getEnt("trap_trap4_trig", "targetname");
   	trapa = getEnt("trap_trap4a", "targetname");
  	trapb = getEnt("trap_trap4b", "targetname");
-  
+
   	trig setHintString("Press [^5&&1^7] to activate ^5Trap 4");
 	trig waittill("trigger");
 	trig delete();
@@ -420,7 +420,7 @@ sniper_room()
         level.sniper waittill("trigger",player);
 
         if(!isdefined(level.sniper))
-            return; 
+            return;
 
         if(isdefined(level.activ))
         {
@@ -435,7 +435,7 @@ sniper_room()
             players = getEntArray("player", "classname");
             for(i=0;i<players.size;i++)
             	players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
- 
+
             wait 5;
 
             player iPrintLnBold("^1>> ^7Fight! ^1<<");
@@ -443,7 +443,7 @@ sniper_room()
             player freezecontrols(0);
             level.activ freezecontrols(0);
         }
-        else 
+        else
         {
             player room_setup(jump,"m40a3_mp","remington700_mp","yes",1);
             wait 5;
@@ -468,7 +468,7 @@ deagle_room()
         level.deagle waittill("trigger",player);
 
         if(!isdefined(level.deagle))
-            return; 
+            return;
 
         if(isdefined(level.activ))
         {
@@ -483,7 +483,7 @@ deagle_room()
             players = getEntArray("player", "classname");
             for(i=0;i<players.size;i++)
             	players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
- 
+
             wait 5;
 
             player iPrintLnBold("^1>> ^7Fight! ^1<<");
@@ -491,7 +491,7 @@ deagle_room()
             player freezecontrols(0);
             level.activ freezecontrols(0);
         }
-        else 
+        else
         {
             player room_setup(jump,"deserteagle_mp",undefined,"yes",1);
             wait 5;
@@ -516,7 +516,7 @@ shotgun_room()
         level.shotgun waittill("trigger",player);
 
         if(!isdefined(level.shotgun))
-            return; 
+            return;
 
         if(isdefined(level.activ))
         {
@@ -531,7 +531,7 @@ shotgun_room()
             players = getEntArray("player", "classname");
             for(i=0;i<players.size;i++)
             	players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
- 
+
             wait 5;
 
             player iPrintLnBold("^1>> ^7Fight! ^1<<");
@@ -539,7 +539,7 @@ shotgun_room()
             player freezecontrols(0);
             level.activ freezecontrols(0);
         }
-        else 
+        else
         {
             player room_setup(jump,"winchester1200_mp",undefined,"yes",1);
             wait 5;
@@ -564,7 +564,7 @@ knife_room()
         level.knife waittill("trigger",player);
 
         if(!isdefined(level.knife))
-            return; 
+            return;
 
         if(isdefined(level.activ))
         {
@@ -579,7 +579,7 @@ knife_room()
             players = getEntArray("player", "classname");
             for(i=0;i<players.size;i++)
             	players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
- 
+
             wait 5;
 
             player iPrintLnBold("^1>> ^7Fight! ^1<<");
@@ -587,7 +587,7 @@ knife_room()
             player freezecontrols(0);
             level.activ freezecontrols(0);
         }
-        else 
+        else
         {
             player room_setup(jump,"knife_mp",undefined,"yes",1);
             wait 5;
@@ -612,7 +612,7 @@ bounce_room()
         level.bounce waittill("trigger",player);
 
         if(!isdefined(level.bounce))
-            return; 
+            return;
 
         if(isdefined(level.activ))
         {
@@ -627,7 +627,7 @@ bounce_room()
             players = getEntArray("player", "classname");
             for(i=0;i<players.size;i++)
             	players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
- 
+
             wait 5;
 
             player iPrintLnBold("^1>> ^7Fight! ^1<<");
@@ -635,7 +635,7 @@ bounce_room()
             player freezecontrols(0);
             level.activ freezecontrols(0);
         }
-        else 
+        else
         {
             player room_setup(jump,"knife_mp",undefined,"yes",1);
             wait 5;
@@ -662,7 +662,7 @@ sniper_fail()
                 who setorigin(jump.origin);
                 who setplayerangles(jump.angles);
             }
-            else 
+            else
             {
                 who setorigin(acti.origin);
                 who setplayerangles(acti.angles);
@@ -686,7 +686,7 @@ bounce_fail()
                 who setorigin(jump.origin);
                 who setplayerangles(jump.angles);
             }
-            else 
+            else
             {
                 who setorigin(acti.origin);
                 who setplayerangles(acti.angles);

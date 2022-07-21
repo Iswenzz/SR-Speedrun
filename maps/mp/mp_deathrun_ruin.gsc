@@ -17,7 +17,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((48, 2768, -111.875), 270);
+thread sr\api\_map::createSpawnOrigin((48, 2768, -111.875), 270);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
@@ -39,7 +39,7 @@ trigger.radius = 300;
 	setdvar("r_glowbloomintensity1",".1");
 	setdvar("r_glowskybleedintensity0",".1");
 	setdvar("compassmaxrange","1400");
-	
+
 	level.big_light = LoadFX("deathrun_ruin/big_light");
 	level.big_light_end = LoadFX("deathrun_ruin/big_light_end");
 	level._effect["ambient_fire_med"] = LoadFX("fire/firelp_med_pm");
@@ -54,7 +54,7 @@ trigger.radius = 300;
 	PrecacheModel("projectile_sa6_missile_desert");
 	PrecacheShellShock("frag_grenade_mp");
 	PrecacheShellShock("burn_mp");
-	
+
 	thread way_connect();
 	thread CreateFXs();
 	thread MakeTriggers();
@@ -67,9 +67,9 @@ trigger.radius = 300;
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-		
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -102,7 +102,7 @@ CreateFXs()
 		brazier_fire[i].v[ "delay" ] = -15;
 		brazier_fire[i].v[ "soundalias" ] = "fire_metal_large";
 	}
-	
+
 	big_light = getentarray("ambient_big_light", "targetname");
 	for(i=0;i<big_light.size;i++)
 		thread DoBigLightLoop( big_light[i].origin );
@@ -138,7 +138,7 @@ MakeTriggers()
 	level.trapTriggers[3] = getent("trigger_fire", "targetname");
 	level.trapTriggers[4] = getent("trigger_traps", "targetname");
 	level.trapTriggers[5] = getent("trigger_disabling_spot", "targetname");
-	
+
 	// level.trapTriggers[0] thread WatchStairs();
 	// level.trapTriggers[1] thread WatchBridgeBroken();
 	// level.trapTriggers[2] thread WatchBridgeBlades();
@@ -150,7 +150,7 @@ MakeTriggers()
 	thread WatchSliding();
 	thread PlaceTeleporters();
 	// thread DoWallBlades();
-	
+
 	endtrig = getEnt("endtrigger", "targetname");
 	// endtrig thread WatchEndTrigger();
 }
@@ -165,7 +165,7 @@ PlaceTeleporters()
 WatchTeleporter()
 {
 	target = getent( self.target, "targetname");
-	
+
 	while(1)
 	{
 		self waittill("trigger", who );
@@ -286,7 +286,7 @@ DoTraps()
 {
 	trap1 = getent("trap1", "targetname");
 	trap2 = getent("trap2", "targetname");
-	
+
 	x = RandomInt(2);
 	if( x == 0 )
 	{
@@ -315,13 +315,13 @@ DoBridgeBroken()
 {
 	broken = getent("bridge_broken", "targetname");
 	target = broken.origin-(0,0,1500);
-	
+
 	flyTime = Distance( broken.origin, target ) / 800;
 	broken MoveTo( target, flyTime, flyTime, 0 );
 	wait 1.5;
 	broken RotateTo( (broken.angles[0]+RandomIntRange(-40,40),broken.angles[1]+RandomIntRange(-40,40),broken.angles[2]+RandomIntRange(-40,40)), flyTime-1.5, flyTime-1.5, 0 );
 	wait flyTime-1.5;
-	
+
 	while(1)
 	{
 		broken RotatePitch( 90, 5 );
@@ -335,9 +335,9 @@ PlaceFireThrower()
 	fire_thrower = getentarray("fire_thrower", "targetname");
 	for(i=0;i<fire_thrower.size;i++)
 		thread DoFireThrower( fire_thrower[i].origin, fire_thrower[i].angles );
-	
+
 	wait 3;
-	
+
 	fire_thrower = getentarray("fire_thrower2", "targetname");
 	for(i=0;i<fire_thrower.size;i++)
 		thread DoFireThrower( fire_thrower[i].origin, fire_thrower[i].angles );
@@ -350,7 +350,7 @@ DoFireThrower( pos, ang )
 	thrower = undefined;
 
 	while(1)
-	{	
+	{
 		if(!isDefined(thrower))
 		{
 			thrower = Spawn("script_model", pos );
@@ -380,7 +380,7 @@ DoWallBlades()
 {
 	wall_blade_horz = getEnt("turning_blade_wall_horz", "targetname");
 	wall_blade_vert = getentarray("turning_blade_wall_vert", "targetname");
-	
+
 	while(1)
 	{
 		wall_blade_horz RotateYaw( 360, 2 );
@@ -396,7 +396,7 @@ DoBridgeBlades()
 	endEnt = getEnt("turning_blade_bridge_end", "targetname");
 	start = startEnt.origin;
 	end = endEnt.origin;
-	
+
 	bridge_blade = getEnt("turning_blade_bridge", "targetname");
 	wait 0.1;
 	while(1)
@@ -426,7 +426,7 @@ DoArtillery()
 	wall = getent("start_wall", "targetname");
 	wall MoveY( 208, 1.5, 1.5, 0 );
 	wait 3;
-	
+
 	for(i=0;i<15;i++)
 	{
 		thread DoMissile( randomi[RandomInt(randomi.size)].origin );
@@ -441,19 +441,19 @@ DoMissile( pos )
 	trace = BulletTrace( pos, pos-(0,0,600), false, undefined );
 	target = trace["position"];
 	start = target+(0,0,800+RandomInt(400));
-	
+
 	missile = Spawn("script_model", start );
 	missile SetModel("projectile_sa6_missile_desert");
 	missile.angles = (90,0,0);
 	missile PlaySound("fast_artillery_round");
 	wait 0.5;
 	PlayFXOnTag( level.missile["trail"], missile, "tag_fx" );
-	
+
 	flyTime = Distance( start, target ) / 1600;
 	missile MoveTo( target, flytime, flytime, 0 );
-	
+
 	wait flyTime;
-	
+
 	PlayFX( level.missile["explosion"], target );
 	EarthQuake( 1.5, 1, target, 700 );
 	missile PlaySound("artillery_impact");
@@ -473,7 +473,7 @@ DoMissile( pos )
 WatchStartTrigger()
 {
 	trig = getent("starttrigger", "targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger", who );
@@ -491,7 +491,7 @@ WatchSliding()
 	endent = getent("sliding_end", "targetname");
 	start = startent.origin;
 	end = endent.origin;
-	
+
 	while(1)
 	{
 		players = getentarray("player", "classname");
@@ -513,7 +513,7 @@ DoSlide( start, end )
 {
 	if( !isDefined( self.linker ) )
 		self.linker = Spawn("script_origin", self GetEye()+(0,0,20) );
-	
+
 	self.isSliding = true;
 	self DisableWeapons();
 	self LinkTo( self.linker );
@@ -532,7 +532,7 @@ DoSlide( start, end )
 DoStairs()
 {
 	stairs = getentarray("stair1", "targetname");
-	
+
 	while(1)
 	{
 		for(i=0;i<stairs.size;i++)
@@ -547,7 +547,7 @@ DoStairs()
 WatchGame()
 {
 	level.finalfight = false;
-	
+
 	while(1)
 	{
 		level waittill("activator", who );
@@ -561,7 +561,7 @@ AntiFreeTraps()
 {
 	if( getDvarInt("scr_activator_freerun") != 1 )
 		return;
-	
+
 	self FreezeControls(1);
 	wait getDvarInt("scr_activator_freerun_wait");
 	self FreezeControls(0);
@@ -611,7 +611,7 @@ BurnPlayer()
 	PlayFXOnTag( level.burn_fx, self, "j_shoulder_le" );
 	PlayFXOnTag( level.burn_fx, self, "j_spinelower" );
 	PlayFXOnTag( level.burn_fx, self, "j_knee_ri" );
-	
+
 	for(i=0;i<5;i++)
 	{
 		self ShellShock("burn_mp", 2.5 );
@@ -632,7 +632,7 @@ DoAmbient()
 	thread WatchIfAllDead();
 	if( allies == 1 )		//when only 1 jumper left at start then dont play last jumper music
 		return;
-	
+
 	while(1)
 	{
 		if( getTeamPlayersAlive("allies") == 1 && !level.finalfight)
@@ -734,10 +734,10 @@ StartFinalFight()
 			break;
 		}
 	}
-	
+
 	startj = getent("finalfight_jumper", "targetname");
 	starta = getent("finalfight_activator", "targetname");
-	
+
 	jumper SetPlayerAngles( startj.angles );
 	jumper SetOrigin( startj.origin );
 	jumper TakeAllWeapons();
@@ -750,10 +750,10 @@ StartFinalFight()
 	acti GiveWeapon("knife_mp");
 	acti SetSpawnWeapon("knife_mp");
 	acti FreezeControls(1);
-	
+
 	VisionSetNaked( "finalfight_intro_mp", 2 );
 	wait 2;
-	
+
 	fire = getentarray("finalfight_fire", "targetname");
 	for(i=0;i<fire.size;i++)
 	{
@@ -769,9 +769,9 @@ StartFinalFight()
 	for(i=0;i<distortion.size;i++)
 		PlayFXOnTag( level.finalfight_distortion, distortion[i], "tag_origin" );
 	wait 0.2;
-	
+
 	AmbientPlay("finalfight"+(1+RandomInt(2)));
-	
+
 	noti = SpawnStruct();
 	noti.titleText = "=|FINAL FIGHT|=";
 	noti.notifyText = "1 VS 1 Knife!";
@@ -780,9 +780,9 @@ StartFinalFight()
 	players = getentarray("player", "classname");
 	for(i=0;i<players.size;i++)
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-	
+
 	wait 5;
-	
+
 	noti = SpawnStruct();
 	noti.titleText = acti.name + " ^1VS ^7" + jumper.name;
 	noti.notifyText = "GET READY!";
@@ -791,13 +791,13 @@ StartFinalFight()
 	players = getentarray("player", "classname");
 	for(i=0;i<players.size;i++)
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-	
+
 	wait 5;
-	
+
 	VisionSetNaked( "finalfight_mp", 2 );
 	jumper FreezeControls(0);
 	acti FreezeControls(0);
-	
+
 	iprintlnbold("^1F  I  G  H  T !");
 }
 
@@ -835,7 +835,7 @@ TestClient(team)
 
 	while(!isdefined(self.pers["team"]))
 		wait .05;
-		
+
 	self notify("menuresponse", game["menu_team"], team);
 	wait 0.5;
 }

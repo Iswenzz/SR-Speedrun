@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((386, -164, 0), 90);
+thread sr\api\_map::createSpawnOrigin((386, -164, 0), 90);
 
     maps\mp\_load::main();
 
@@ -10,7 +10,7 @@ thread sr\api\_map::createSpawn((386, -164, 0), 90);
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
     setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
@@ -21,14 +21,14 @@ thread sr\api\_speedrun::createEndMap((-1843.51, 775.788, 0.124999), 85, 10, "no
 
 thread startdoor();
 thread exp();
-	
+
 }
 
 startdoor()
 {
 door = getEnt ("pac_door", "targetname");
 trig = getEnt ("pac_door_trig", "targetname");
-	
+
 wait 0.1;
 door delete();
 trig delete();
@@ -48,7 +48,7 @@ exp7 = getEnt( "xp4_brush", "targetname");
 exp8 = getEnt( "xp5_brush", "targetname");
 exp9 = getEnt( "big_coin", "targetname");
 exp10 = getEnt( "big_coin2", "targetname");
-	
+
 wait 0.1;
 exp delete();
 exp1 delete();

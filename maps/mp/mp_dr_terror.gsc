@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((1721, 2832, 120), 270);
+thread sr\api\_map::createSpawnOrigin((1721, 2832, 120), 270);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
@@ -40,9 +40,9 @@ trigger.radius = 96;
 	// thread RegisterTrapTrigger( "t21_" );
 	// thread RegisterTrapTrigger( "t22_" );
 	setdvar("compassmaxrange","1750");
-	
+
 	// AmbientPlay( "coldplay" );
-	
+
 	//***************************//
 
         game["allies"] = "sas";
@@ -53,7 +53,7 @@ trigger.radius = 96;
         game["axis_soldiertype"] = "woodland";
 
 	//setdvar( "r_specularcolorscale", "1" );
-	
+
 	//setdvar("r_glowbloomintensity0",".25");
 	//setdvar("r_glowbloomintensity1",".25");
 	//setdvar("r_glowskybleedintensity0",".3");
@@ -64,10 +64,10 @@ trigger.radius = 96;
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
 

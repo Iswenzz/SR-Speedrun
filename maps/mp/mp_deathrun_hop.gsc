@@ -15,24 +15,24 @@
 	Map created by: Raichu
 	Xfire: hellovin
 	Tested by: Raichu, Atggost, Nagyii
-	Youtube channel: MetubeGames 
+	Youtube channel: MetubeGames
 	Version: v1.1
-	
+
 	Coming soon: - Hard mode
 				 - Jump room (like epicfail)
-	
+
 	If you find any bug please report it on xfire, thanks.
 */
 
 #include maps\mp\_utility; /* necessary for simple trigger settings */
 main()
 {
-thread sr\api\_map::createSpawn((-7, 45, 0), 0);
+thread sr\api\_map::createSpawnOrigin((-7, 45, 0), 0);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
 	maps\mp\_load::main();
-	
+
 	/*Weapons*/
 	precacheItem("ak47_mp");
 	precacheItem("ak74u_mp");
@@ -79,10 +79,10 @@ if (!level.spawn["allies"].size)
 		//thread sniper_freeze_trig();
 		thread end_trig();
 		//thread end_move();
-		
-		
-		
-		
+
+
+
+
 		/*Final rooms*/
 		//thread old();
 		//thread weapons();
@@ -92,7 +92,7 @@ if (!level.spawn["allies"].size)
 		//thread knife();
 		//thread paper_scissors_rock();
 		//thread speedrun();
-		
+
 		/*Secret*/
 		//thread secret();
 		//thread secret_end();
@@ -101,8 +101,8 @@ if (!level.spawn["allies"].size)
 		//thread secret_lift_a();
 		//thread secret_lift_b();
 		//thread secret_fail();
-		
-		
+
+
 		level waittill ("round_ended");
 		AmbientStop();
 	}
@@ -110,38 +110,38 @@ if (!level.spawn["allies"].size)
 	way_connect()
 {
     wait 0.05;
-    
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-    for(;;) 
+    for(;;)
     {
         level waittill( "connected", player );
 
     }
 }
-	
-	
-	
-	
-	
+
+
+
+
+
 	begin_door()
 	{
 		trig = getEnt ("begin_door_trig","targetname");
 		door = getEnt ("begin_door","targetname");
 		door_activator = getEnt ("begin_door_activator","targetname");
-		
+
 		trig waittill ("trigger");
 		trig delete();
-		
-		
+
+
 		thread doormove( door_activator , 4 );
 		thread doormove( door , 5 );
-		
+
 		wait 1;
 		iPrintLnBold("^4Map created by: ^3Raichu");
 		wait 1;
 		iPrintLnBold("^4Have fun!");
 	}
-	
+
 	doormove( door , time )
 	{
 		door moveZ (-244,time);
@@ -154,7 +154,7 @@ if (!level.spawn["allies"].size)
 		thread floor3();
 		thread floor4();
 	}
-	
+
 	floor1()
 	{
 		floor_a = getEnt ("floor_lift_a","targetname");
@@ -166,7 +166,7 @@ if (!level.spawn["allies"].size)
 			floor_a moveY (256,2); floor_a waittill("movedone");
 		}
 	}
-	
+
 	floor2()
 	{
 		floor_b = getEnt ("floor_lift_b","targetname");
@@ -178,7 +178,7 @@ if (!level.spawn["allies"].size)
 			floor_b moveX (256,2); floor_b waittill("movedone");
 		}
 	}
-	
+
 	floor3()
 	{
 		floor_c = getEnt ("floor_lift_c","targetname");
@@ -190,8 +190,8 @@ if (!level.spawn["allies"].size)
 			floor_c moveY (-256,2); floor_c waittill("movedone");
 		}
 	}
-	
-	
+
+
 	floor4()
 	{
 		floor_d = getEnt ("floor_lift_d","targetname");
@@ -203,7 +203,7 @@ if (!level.spawn["allies"].size)
 			floor_d moveX (-256,2); floor_d waittill("movedone");
 		}
 	}
-	
+
 	GetActivator()
 	{
 		players = getentarray( "player", "classname" );
@@ -215,7 +215,7 @@ if (!level.spawn["allies"].size)
 		}
 		return "Noactivator";
 	}
-	
+
 	waitdead()
 	{
 		speedrun = getEnt("speedrun","targetname");
@@ -237,7 +237,7 @@ if (!level.spawn["allies"].size)
 		trap09 = getEnt("trap9_trig","targetname");
 		trap10 = getEnt("trap10_trig","targetname");
 		trap11 = getEnt("trap11_trig","targetname");
-		
+
 		speedrun triggerOff();
 		knife triggerOff();
 		bounce triggerOff();
@@ -257,11 +257,11 @@ if (!level.spawn["allies"].size)
 		trap09 triggerOff();
 		trap10 triggerOff();
 		trap11 triggerOff();
-		
+
 		self common_scripts\utility::waittill_any("death","disconnect");
 		activator = GetActivator();
 		activator freezeControls(false);
-		
+
 		speedrun triggerOn();
 		bounce triggerOn();
 		sniper triggerOn();
@@ -282,17 +282,17 @@ if (!level.spawn["allies"].size)
 		trap10 triggerOn();
 		trap11 triggerOn();
 	}
-	
+
 	waitdead_end()
 	{
-		trig = getEnt ("end_tele","targetname");		
+		trig = getEnt ("end_tele","targetname");
 		trig triggerOff();
 		self common_scripts\utility::waittill_any("death","disconnect");
 		activator = GetActivator();
 		activator freezeControls(false);
 		trig triggerOn();
 	}
-	
+
 	old()
 	{
 		old = getent("old_trig","targetname");
@@ -310,13 +310,13 @@ if (!level.spawn["allies"].size)
 			activator setPlayerAngles(acti.angles);
 		}
 	}
-	
+
 	speedrun()
 	{
 		speedrun = getEnt("speedrun","targetname");
 		jumper = getEnt(speedrun.target,"targetname");
 		acti = getEnt(jumper.target,"targetname");
-		
+
 		while( 1 )
 		{
 			speedrun waittill ("trigger",player);
@@ -325,7 +325,7 @@ if (!level.spawn["allies"].size)
 			activator = GetActivator();
 			player freezeControls(true);
 			player setorigin(jumper.origin);
-			player setPlayerAngles(jumper.angles);	
+			player setPlayerAngles(jumper.angles);
 			activator freezeControls(true);
 			activator setorigin(acti.origin);
 			activator setPlayerAngles(acti.angles);
@@ -340,7 +340,7 @@ if (!level.spawn["allies"].size)
 			activator switchtoweapon("tomahawk_mp");
 		}
 	}
-	
+
 	speedrun_weapon_trig()
 	{
 		weapon = getEnt("speedrun_weapon","targetname");
@@ -353,7 +353,7 @@ if (!level.spawn["allies"].size)
 			iPrintLnBold(faster.name + " ^3Got a weapon!");
 		}
 	}
-	
+
 	rand_weapons()
 	{
 		weapons = getEnt("rand_weap","targetname");
@@ -366,11 +366,11 @@ if (!level.spawn["allies"].size)
 			player thread waitdead();
 			iPrintLnBold(player.name + " ^1 selected Random-Weapons!");
 			activator = GetActivator();
-			
+
 			r = randomintrange(1, 13);
 			weap = strTok("tomahawk_mp;ak47_mp;ak74u_mp;m4_mp;mp44_mp;winchester1200_mp;m1014_grip_mp;rpd_mp;p90_silencer_mp;deserteaglegold_mp;skorpion_mp;uzi_silencer_mp;rpg_mp",";");
 			weapon = weap[r];
-		
+
 			player freezeControls(true);
 			player setorigin(jumper.origin);
 			player setPlayerAngles(jumper.angles);
@@ -391,7 +391,7 @@ if (!level.spawn["allies"].size)
 			activator freezeControls(false);
 		}
 	}
-	
+
 	weapons()
 	{
 		weapons = getent("weapons","targetname");
@@ -400,17 +400,17 @@ if (!level.spawn["allies"].size)
 
 		weapon = "tomahawk_mp";
 		level.weapon_pointer = 0;
-		
+
 		while( 1 )
 		{
 			weapons waittill("trigger",player);
 			player thread waitdead();
 			iPrintLnBold(player.name + " ^1 selected Weapons!");
 			activator = GetActivator();
-			
+
 			if (level.weapon_pointer != 1)
 				weapon = player select(weapons,player,activator);
-			
+
 			player freezeControls(true);
 			player setorigin(jumper.origin);
 			player setPlayerAngles(jumper.angles);
@@ -431,21 +431,21 @@ if (!level.spawn["allies"].size)
 			activator freezeControls(false);
 		}
 	}
-	
+
 	select(weapons,player,activator)
 	{
 		self endon("round_ended");
 		self endon("death");
 		self endon("disconected");
-		
+
 		weapons triggerOn();
 		weapons SetHintString("Press ^1F^7 -> Choose Buttons: ^1Granade^7, ^1Shoot^7 -> Select: ^1Knife");
-		
+
 		weap = strTok("tomahawk_mp;ak47_mp;ak74u_mp;m4_mp;mp44_mp;winchester1200_mp;m1014_grip_mp;rpd_mp;p90_silencer_mp;deserteaglegold_mp;skorpion_mp;uzi_silencer_mp;rpg_mp;tomahawk_mp",";");
 		weapname = strTok("TomaHawk;AK-47;AK74-U;M4;MP44;Winchester1200;M1014(grip);RPD;P90(silencer);DesertEagleGold;Skorpion;UZI(silencer);RPG;TomaHawk",";");
-		
+
 		w = 1;
-		
+
 		while ( level.weapon_pointer != 1 )
 		{
 			if ( player AttackButtonPressed() && player istouching( weapons ) )
@@ -473,7 +473,7 @@ if (!level.spawn["allies"].size)
 		weapons SetHintString("Weapons room: ^1" + weapname[w]);
 		return weap[w];
 	}
-	
+
 	bounce()
 	{
 		bounce = getent("bounce","targetname");
@@ -485,37 +485,37 @@ if (!level.spawn["allies"].size)
 			player thread waitdead();
 			iPrintLnBold(player.name + " ^1 selected Bounce!");
 			activator = GetActivator();
-			
+
 			player freezeControls(true);
 			player setorigin(jumper.origin);
 			player setPlayerAngles(jumper.angles);
-			
+
 			activator freezeControls(true);
 			activator setorigin(acti.origin);
 			activator setPlayerAngles(acti.angles);
-			
+
 			player takeallweapons();
 			activator takeallweapons();
-			
+
 			start_num_down(player,activator);
-			
+
 			activator giveweapon("tomahawk_mp");
 			player giveweapon("tomahawk_mp");
-			
+
 			player freezeControls(false);
 			activator freezeControls(false);
-			
+
 			player switchtoweapon("tomahawk_mp");
 			activator switchtoweapon("tomahawk_mp");
-			
+
 			level.bounce_jumper = 1;
 			level.bounce_activator = 1;
 			thread bounce_fail(player,activator);
 		}
 	}
-	
+
 	bounce_weapon_trig()
-	{	
+	{
 		get_weapon_trigger = getEnt("bounce_weapon","targetname");
 		while(1)
 		{
@@ -526,23 +526,23 @@ if (!level.spawn["allies"].size)
 			iPrintLnBold(pro_jumper.name + " ^3Got a sniper!");
 		}
 	}
-	
+
 	bounce_fail(jumper,activator)
 	{
 		self endon("round_ended");
 		self endon("death");
 		self endon("disconected");
-		
+
 		fail = getEnt ("bounce_fail_trig","targetname");
 		jumper_to = getEnt (fail.target,"targetname");
 		activator_to = getEnt (jumper_to.target,"targetname");
 		jumper_low = getEnt (activator_to.target,"targetname");
 		activator_low = getEnt (jumper_low.target,"targetname");
-		
+
 		once_knife = 0;
 		once_acti_low = 0;
 		once_jumper_low = 0;
-		
+
 		while ( 1 )
 		{
 			fail waittill ("trigger",player);
@@ -600,19 +600,19 @@ if (!level.spawn["allies"].size)
 				player freezeControls(true);
 				player setorigin(jumper_knife.origin);
 				player setPlayerAngles(jumper_knife.angles);
-					
+
 				activator freezeControls(true);
 				activator setorigin(acti_knife.origin);
 				activator setPlayerAngles(acti_knife.angles);
-				
+
 				player takeallweapons();
 				activator takeallweapons();
-				
+
 				start_num_down(player,activator);
-				
+
 				activator giveweapon("tomahawk_mp");
 				player giveweapon("tomahawk_mp");
-				
+
 				player freezeControls(false);
 				activator freezeControls(false);
 				player switchtoweapon("tomahawk_mp");
@@ -621,7 +621,7 @@ if (!level.spawn["allies"].size)
 			wait .1;
 		}
 	}
-	
+
 	start_num_down(player,activator)
 	{
 		player iPrintLnBold("^13");
@@ -636,7 +636,7 @@ if (!level.spawn["allies"].size)
 		player iPrintLnBold("^2Fight!!!.");
 		activator iPrintLnBold("^2Fight!!!.");
 	}
-	
+
 	sniper()
 	{
 		sniper = getent("sniper","targetname");
@@ -648,25 +648,25 @@ if (!level.spawn["allies"].size)
 			player thread waitdead();
 			iPrintLnBold(player.name + " ^1 selected Sniper!");
 			activator = GetActivator();
-			
+
 			player freezeControls(true);
 			player setorigin(jumper.origin);
 			player setPlayerAngles(jumper.angles);
-				
+
 			activator freezeControls(true);
 			activator setorigin(acti.origin);
 			activator setPlayerAngles(acti.angles);
-			
+
 			player takeallweapons();
 			activator takeallweapons();
-			
+
 			start_num_down(player,activator);
 
 			player giveweapon("m40a3_mp");
 			activator giveweapon("m40a3_mp");
 			player giveweapon("remington700_mp");
-			activator giveweapon("remington700_mp");	
-			
+			activator giveweapon("remington700_mp");
+
 			activator givemaxammo("m40a3_mp");
 			player givemaxammo("m40a3_mp");
 			activator givemaxammo("remington700_mp");
@@ -674,18 +674,18 @@ if (!level.spawn["allies"].size)
 			wait .1;
 			player switchtoweapon("m40a3_mp");
 			activator switchtoweapon("m40a3_mp");
-			
+
 			player freezeControls(false);
 			activator freezeControls(false);
 		}
 	}
-	
+
 	sniper_freeze_trig()
 	{
 		fail = getEnt("sniper_fail","targetname");
 		fail_on = getEnt(fail.target,"targetname");
 		fail_off = getEnt(fail_on.target,"targetname");
-		
+
 		while ( 1 )
 		{
 			fail waittill ("trigger", low);
@@ -700,7 +700,7 @@ if (!level.spawn["allies"].size)
 			low freezeControls(false);
 		}
 	}
-	
+
 	knife()
 	{
 		knife = getent("knife","targetname");
@@ -714,7 +714,7 @@ if (!level.spawn["allies"].size)
 			activator = GetActivator();
 			player freezeControls(true);
 			player setorigin(jumper.origin);
-			player setPlayerAngles(jumper.angles);	
+			player setPlayerAngles(jumper.angles);
 			activator freezeControls(true);
 			activator setorigin(acti.origin);
 			activator setPlayerAngles(acti.angles);
@@ -729,7 +729,7 @@ if (!level.spawn["allies"].size)
 			activator switchtoweapon("tomahawk_mp");
 		}
 	}
-	
+
 	paper_scissors_rock()
 	{
 		p_s_r = getent("paper_scissors_rock","targetname");
@@ -743,7 +743,7 @@ if (!level.spawn["allies"].size)
 			activator = GetActivator();
 			player freezeControls(true);
 			player setorigin(jumper.origin);
-			player setPlayerAngles(jumper.angles);	
+			player setPlayerAngles(jumper.angles);
 			activator freezeControls(true);
 			activator setorigin(acti.origin);
 			activator setPlayerAngles(acti.angles);
@@ -756,7 +756,7 @@ if (!level.spawn["allies"].size)
 			activator freezeControls(false);
 			player switchtoweapon("tomahawk_mp");
 			activator switchtoweapon("tomahawk_mp");
-			
+
 			thread p_s_r_minigame(player,activator,jumper,acti);
 		}
 	}
@@ -766,21 +766,21 @@ if (!level.spawn["allies"].size)
 		player endon("round_ended");
 		player endon("death");
 		player endon("disconected");
-		
+
 		activator endon("round_ended");
 		activator endon("death");
 		activator endon("disconected");
-		
+
 		/*
 		1 - Paper
 		2 - Scissors
 		3 - Rock
 		*/
-		
+
 		once_p_s_r = 0;
 		get_weapon_acti = 0;
 		get_weapon_jumper = 0;
-		
+
 		while( get_weapon_acti != 1 && get_weapon_jumper != 1 )
 		{
 			if ( once_p_s_r == 0 )
@@ -788,7 +788,7 @@ if (!level.spawn["allies"].size)
 				once_p_s_r = 1;
 				level.p_s_r_p = 0;
 				level.p_s_r_a = 0;
-	
+
 				player thread player_answer();
 				activator thread activator_answer();
 			}
@@ -796,12 +796,12 @@ if (!level.spawn["allies"].size)
 			{
 				player iPrintlnBold("^2It's Draw! Try again");
 				activator iPrintlnBold("^2It's Draw! Try again");
-				
+
 				level.p_s_r_p = 0;
 				level.p_s_r_a = 0;
 				get_weapon_acti = 0;
 				get_weapon_jumper = 0;
-				
+
 				player thread player_answer();
 				activator thread activator_answer();
 			}
@@ -813,7 +813,7 @@ if (!level.spawn["allies"].size)
 				player takeallweapons();
 				player giveweapon("ak74u_mp");
 				player switchtoweapon("ak74u_mp");
-				
+
 				activator freezeControls(true);
 				activator setorigin(jumper.origin);
 				activator setPlayerAngles(jumper.angles);
@@ -826,7 +826,7 @@ if (!level.spawn["allies"].size)
 				activator takeallweapons();
 				activator giveweapon("ak74u_mp");
 				activator switchtoweapon("ak74u_mp");
-				
+
 				player freezeControls(true);
 				player setorigin(acti.origin);
 				player setPlayerAngles(acti.angles);
@@ -835,17 +835,17 @@ if (!level.spawn["allies"].size)
 		wait .1;
 		}
 	}
-	
+
 	player_answer()
 	{
 		self endon("round_ended");
 		self endon("death");
 		self endon("disconected");
-		
+
 		p = getEnt("paper_jumper","targetname");
 		s = getEnt("scissors_jumper","targetname");
 		r = getEnt("rock_jumper","targetname");
-		
+
 		while(1)
 		{
 			if ( self IsTouching(p) && self UseButtonPressed() )
@@ -869,17 +869,17 @@ if (!level.spawn["allies"].size)
 			wait .1;
 		}
 	}
-	
+
 	activator_answer()
 	{
 		self endon("round_ended");
 		self endon("death");
 		self endon("disconected");
-		
+
 		p = getEnt("paper_activator","targetname");
 		s = getEnt("scissors_activator","targetname");
 		r = getEnt("rock_activator","targetname");
-		
+
 		while (1)
 		{
 			if ( self IsTouching(p) && self UseButtonPressed() )
@@ -903,7 +903,7 @@ if (!level.spawn["allies"].size)
 			wait .1;
 		}
 	}
-	
+
 	end_move()
 	{
 		trig = getEnt ("end_tele","targetname");
@@ -915,24 +915,24 @@ if (!level.spawn["allies"].size)
 			player setorigin(jumper.origin);
 		}
 	}
-	
+
 	trap1()
 	{
 		level endon("traps_disabled");
 		trig = getEnt ("trap1_trig","targetname");
 		trap = getEnt ("trap1","targetname");
 		trig waittill ("trigger");
-		
+
 	}
 
 	trap2()
 	{
 		level endon("traps_disabled");
 		trig = getEnt ("trap2_trig","targetname");
-		trap1 = getEnt ("trap2_a","targetname");	
+		trap1 = getEnt ("trap2_a","targetname");
 		trap2 = getEnt ("trap2_b","targetname");
 		trig waittill ("trigger");
-		
+
 	}
 
 	trap3()
@@ -940,9 +940,9 @@ if (!level.spawn["allies"].size)
 		level endon("traps_disabled");
 		trig = getEnt ("trap3_trig","targetname");
 		trig waittill ("trigger");
-		
+
 	}
-	
+
 	trap3_b()
 	{
 		trap = getEnt ("bounce_trap3","targetname");
@@ -952,9 +952,9 @@ if (!level.spawn["allies"].size)
 		{
 			trap moveX(-230,2);
 			trap waittill("movedone");
-			
+
 			trap waittill("movedone");
-			
+
 	}
 }
 
@@ -964,7 +964,7 @@ end_trig()
 		while(1)
 		{
 			trig waittill("trigger",player);
-			if( !player.end == 1) 
+			if( !player.end == 1)
 			{
 				player.end = 1;
 				iPrintLn(player.name + " ^4reached the final door! ^3Congrat!");
@@ -974,7 +974,6 @@ end_trig()
 	}
 
 
-	
-	
-	
-	
+
+
+

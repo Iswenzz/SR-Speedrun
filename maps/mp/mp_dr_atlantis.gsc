@@ -29,7 +29,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((-531, 11186, 1576), 180);
+thread sr\api\_map::createSpawnOrigin((-531, 11186, 1576), 180);
 	maps\mp\_load::main();
 
 		thread sr\api\_speedrun::createNormalWays("Normal Way;");
@@ -40,7 +40,7 @@ thread sr\api\_map::createSpawn((-531, 11186, 1576), 180);
 	thread sr\api\_speedrun::createEndMap((2774.49, 9859.01, -6214.88),175,75,"secret_1");
 	thread sr\api\_speedrun::createEndMap((-5693.92, 617.378, -2606.4),105,75,"normal_0");
 
- 
+
 	game["allies"] = "marines";
     game["axis"] = "opfor";
     game["attackers"] = "axis";
@@ -53,7 +53,7 @@ thread sr\api\_map::createSpawn((-531, 11186, 1576), 180);
     setDvar("r_glowskybleedintensity0",".3");
 	setDvar("bg_falldamagemaxheight", 200000 );
 	setDvar("bg_falldamageminheight", 100000 );
-	
+
     thread startdoor();
 	thread riseup();
 	thread gone();
@@ -91,7 +91,7 @@ thread sr\api\_map::createSpawn((-531, 11186, 1576), 180);
 	thread k210();
 	thread setresp();
 
-	
+
 	addTriggerToList("trig_trap1");
 	addTriggerToList("trig_trap2");
 	addTriggerToList("trig_trap3");
@@ -99,9 +99,9 @@ thread sr\api\_map::createSpawn((-531, 11186, 1576), 180);
 	addTriggerToList("trig_trap5");
 	addTriggerToList("trig_trap6");
 	addTriggerToList("trig_trap7");
-	
+
 }
-setresp() 
+setresp()
 {
     trig1 = spawn( "trigger_radius", (-660.748, 11196.3, 1576.13), 0, 135, 65 );
 
@@ -118,7 +118,7 @@ setting()
 
 
     }
-   
+
 }
 main210()
 {
@@ -744,71 +744,71 @@ trap5()
 	o_b = getEnt("trap5b", "targetname");
 	o_c = getEnt("trap5c", "targetname");
 	trig = getEnt("trig_trap5", "targetname");
-	
+
 	ah maps\mp\_utility::triggerOff();
 	bh maps\mp\_utility::triggerOff();
 	ch maps\mp\_utility::triggerOff();
-	
+
 	la hide();
 	la notSolid();
 	lb hide();
 	lb notSolid();
 	lc hide();
 	lc notSolid();
-	
+
 	o_as = spawn( "script_model", (o_a.origin - (0,0,180)) );
 	o_as.angles = o_a.angles;
 	o_as setModel( "tag_origin" );
-	
+
 	o_bs = spawn( "script_model", (o_b.origin - (0,0,180)) );
 	o_bs.angles = o_b.angles;
 	o_bs setModel( "tag_origin" );
-	
+
 	o_cs = spawn( "script_model", (o_c.origin - (0,0,180)) );
 	o_cs.angles = o_c.angles;
 	o_cs setModel( "tag_origin" );
-	
+
 	o_as rotateRoll(180,.1);
 	o_bs rotateRoll(180,.1);
 	o_cs rotateRoll(180,.1);
 	wait .1;
-	
+
 	o_as linkTo(a);
 	o_bs linkTo(b);
 	o_cs linkTo(c);
-	
+
 	la linkTo(o_as);
 	lb linkTo(o_bs);
 	lc linkTo(o_cs);
-	
 
-	
+
+
 	trig waittill("triggere", player);
 	trig delete();
-	
-	
+
+
 	ah maps\mp\_utility::triggerOn();
 	bh maps\mp\_utility::triggerOn();
 	ch maps\mp\_utility::triggerOn();
-	
+
 	ah enableLinkTo();
 	bh enableLinkTo();
 	ch enableLinkTo();
-	
+
 	ah linkTo(la);
 	bh linkTo(lb);
 	ch linkTo(lc);
-	
+
 	la show();
 	lb show();
 	lc show();
 
-	
+
 	a moveY(88, .75);
 	b moveY(-88, .75);
 	c moveY(88, .75);
 	wait .8;
-	
+
 	for(;;)
 	{
 		a moveY(-176, 1.5);
@@ -862,8 +862,8 @@ trap7()
 	brush = getEnt("trap7a", "targetname");
 	brush2 = getEnt("trap7b", "targetname");
 	trig = getEnt("trig_trap7", "targetname");
-	
-	
+
+
 	trig waittill("triggeradazfzda", player);
 	trig delete();
 	for(;;)

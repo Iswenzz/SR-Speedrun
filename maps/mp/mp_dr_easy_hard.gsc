@@ -4,10 +4,10 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((-13, -71, 16), 90);
+thread sr\api\_map::createSpawnOrigin((-13, -71, 16), 90);
 
 maps\mp\_load::main();
- 
+
 	game["allies"] = "marines";
     game["axis"] = "opfor";
     game["attackers"] = "axis";
@@ -26,11 +26,11 @@ maps\mp\_load::main();
 	visionSetNaked("mp_dr_easy_hard",0);
 
 	SetExpFog( 768, 1500, 123/255, 155/255, 175/255, 3 );
-	
+
         thread sr\api\_speedrun::createNormalWays("Normal Way;");
     thread sr\api\_speedrun::createSecretWays("Secret Way;");
     thread sr\api\_speedrun::createTeleporter((-199.927, 133.188, 16.125), 55, 25, (15248, 11888, 16.125), 180, "freeze", "blue", "secret_0");
-    
+
     thread startdoor();
     thread secretexit();
     thread tp1();
@@ -38,7 +38,7 @@ maps\mp\_load::main();
     thread tp3();
     thread tp4();
 
-	
+
 }
 
 startdoor()
@@ -61,8 +61,8 @@ tele1 = getEnt("o_secretexit", "targetname");
 
         player thread sr\api\_speedrun::finishWay("secret_0");
 		player setOrigin(tele1.origin);
-		player setPlayerAngles(tele1.angles);		
-        
+		player setPlayerAngles(tele1.angles);
+
 		}
 }
 
@@ -72,7 +72,7 @@ tp1()
    tele = getent ("o_tp1", "targetname");
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
 	 player setOrigin(tele.origin);
      player setPlayerAngles(tele.angles);
@@ -85,7 +85,7 @@ tp2()
    tele = getent ("origin_area3", "targetname");
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
 	 player setOrigin(tele.origin);
      player setPlayerAngles(tele.angles);
@@ -98,7 +98,7 @@ tp3()
    tele = getent ("o_saver", "targetname");
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
 	 player setOrigin(tele.origin);
      player setPlayerAngles(tele.angles);
@@ -111,7 +111,7 @@ tp4()
    tele = getent ("o_cut", "targetname");
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
 	 player setOrigin(tele.origin);
      player setPlayerAngles(tele.angles);

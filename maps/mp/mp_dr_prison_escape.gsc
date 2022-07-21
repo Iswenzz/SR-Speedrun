@@ -25,9 +25,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 main(){
-thread sr\api\_map::createSpawn((21.216, 124, 4.125), 180);
+thread sr\api\_map::createSpawnOrigin((21.216, 124, 4.125), 180);
 
-	maps\mp\_load::main();	 
+	maps\mp\_load::main();
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
@@ -87,10 +87,10 @@ thread sr\api\_map::createSpawn((21.216, 124, 4.125), 180);
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -106,7 +106,7 @@ addTriggerToList(name){
 }
 
 //Timer by Lixfe/VC' Blade
-secret_timer(time){   
+secret_timer(time){
 	self endon("secret_done");
     if(isdefined(self.secretTimer))
         self.secretTimer destroy();
@@ -124,9 +124,9 @@ secret_timer(time){
     self.secretTimer.glowAlpha = 1;
     self.secretTimer.hidewheninmenu = true;
        self.secretTimer.label = &"Time left in secret: &&1";
-        
 
-    self.secretTimer.glowColor=(0.25,0.87,0.82);   
+
+    self.secretTimer.glowColor=(0.25,0.87,0.82);
     for(i=0;i<time;i++)
     {
         self.secretTimer setvalue(time-i);
@@ -170,10 +170,10 @@ begin(){
 
 	doors = getEntArray("start_door","targetname");
 	for(i = 0; i < doors.size; i++){
-		doors[i] moveZ(512,1);	
+		doors[i] moveZ(512,1);
 	}
 	// iPrintLnBold("^3Doors Opened! ^1RUN!");
-	// wait(2);	
+	// wait(2);
 }
 
 contact(){
@@ -184,7 +184,7 @@ contact(){
 		iprintlnbold("^3BNet: ^1Gabb#2215");
 		wait 2;
 		iprintlnbold("Or send me a pm on ^1FNRP-Forums");
-		wait 20;		
+		wait 20;
 	}
 }
 
@@ -192,7 +192,7 @@ contact(){
 music(){
 	randomInt = randomIntRange(0,10);
 	if(randomInt == 0){
-		ambientPlay("gangsta");	
+		ambientPlay("gangsta");
 		while(level.isFinished == false){
 			iprintlnbold("^2Now playing: ^62Pac - Gangsta Party feat. Snoop Dogg");
 			wait 25;
@@ -200,7 +200,7 @@ music(){
 	}
 
 	if(randomInt == 1){
-		ambientPlay("hailmary");	
+		ambientPlay("hailmary");
 		while(level.isFinished == false){
 			iprintlnbold("^2Now playing: ^62Pac - Hail Mary");
 			wait 25;
@@ -208,7 +208,7 @@ music(){
 	}
 
 	if(randomInt == 2){
-		ambientPlay("64cruise");	
+		ambientPlay("64cruise");
 		while(level.isFinished == false){
 			iprintlnbold("^2Now playing: ^6Eazy-E - Boyz N' Tha Hood");
 			wait 25;
@@ -216,7 +216,7 @@ music(){
 	}
 
 	if(randomInt == 3){
-		ambientPlay("california");	
+		ambientPlay("california");
 		while(level.isFinished == false){
 			iprintlnbold("^2Now playing: ^62Pac - California Love feat. Dr.Dre");
 			wait 25;
@@ -224,7 +224,7 @@ music(){
 	}
 
 	if(randomInt == 4){
-		ambientPlay("gthang");	
+		ambientPlay("gthang");
 		while(level.isFinished == false){
 			iprintlnbold("^2Now playing: ^6Dr.Dre - Nuthin' but a G Thang feat. Snoop Dogg");
 			wait 25;
@@ -232,7 +232,7 @@ music(){
 	}
 
 	if(randomInt == 5){
-		ambientPlay("hypnotize");	
+		ambientPlay("hypnotize");
 		while(level.isFinished == false){
 			iprintlnbold("^2Now playing: ^6The Notorious B.I.G. - Hypnotize");
 			wait 25;
@@ -240,7 +240,7 @@ music(){
 	}
 
 	if(randomInt == 6){
-		ambientPlay("nwa");	
+		ambientPlay("nwa");
 		while(level.isFinished == false){
 			iprintlnbold("^2Now playing: ^6N.W.A. - Fuk da Police");
 			wait 25;
@@ -248,7 +248,7 @@ music(){
 	}
 
 	if(randomInt == 7){
-		ambientPlay("realgs");	
+		ambientPlay("realgs");
 		while(level.isFinished == false){
 			iprintlnbold("^2Now playing: ^6Eazy-E - Real Muthafuckin G's");
 			wait 25;
@@ -256,7 +256,7 @@ music(){
 	}
 
 	if(randomInt == 8){
-		ambientPlay("stilldre");	
+		ambientPlay("stilldre");
 		while(level.isFinished == false){
 			iprintlnbold("^2Now playing: ^6Dr.Dre - Still D.R.E. feat. Snoop Dogg");
 			wait 25;
@@ -264,7 +264,7 @@ music(){
 	}
 
 	if(randomInt == 9){
-		ambientPlay("hood");	
+		ambientPlay("hood");
 		while(level.isFinished == false){
 			iprintlnbold("^2Now playing: ^6DMX - Where the hood at?");
 			wait 25;
@@ -296,15 +296,15 @@ trap2(){
 
 	trap2_1 = getEntArray("trap2_1","targetname");
 	trap2_2 = getEntArray("trap2_2","targetname");
-	
+
 
 	while(1){
 		for(i = 0; i < trap2_1.size; i++){
 			trap2_1[i] rotateRoll(100,0.5);
-			trap2_2[i] rotateRoll(-100,0.5);			
+			trap2_2[i] rotateRoll(-100,0.5);
 			wait 1;
 			trap2_1[i] rotateRoll(-100,0.5);
-			trap2_2[i] rotateRoll(100,0.5);			
+			trap2_2[i] rotateRoll(100,0.5);
 			wait 1;
 		}
 	}
@@ -360,11 +360,11 @@ trap4(){
 			z1 = cz + radius * (sin(i));
 			x2 = cx + radius * (cos(i+180));
 			z2 = cz + radius * (sin(i+180));
-			
+
 			trap4_1 moveto((x1,0,z1),0.1);
 			trap4_2 moveto((x2,0,z2),0.1);
-			
-			
+
+
 			wait 0.1;
 		}
 	}
@@ -403,13 +403,13 @@ trap6(){
 		trap6_1 = getEntArray("trap6_1","targetname");
 		for(i = 0; i < trap6_1.size; i++){
 			trap6_1[i] delete();
-		}		
+		}
 	} else {
 		trap6_2 = getEntArray("trap6_2","targetname");
 		for(i = 0; i < trap6_2.size; i++){
 			trap6_2[i] delete();
-		}	
-	}	
+		}
+	}
 }
 
 trap7(){
@@ -485,7 +485,7 @@ bounce_fail_jumper(){
 	trig = getEnt("bounce_fail_jump","targetname");
 	tp = getEnt("bounce_fail_jump_or","targetname");
 	while(1){
-		trig waittill("trigger",player);		
+		trig waittill("trigger",player);
 		player setOrigin(tp.origin);
 		player setPlayerAngles(tp.angles);
 	}
@@ -519,15 +519,15 @@ bounce_sniper(){
 		bs waittill("trigger",player);
 		player giveWeapon("remington700_mp");
 		player giveMaxAmmo("remington700_mp");
-		player switchToWeapon("remington700_mp");	
+		player switchToWeapon("remington700_mp");
 		wait 0.2;
-	}	
+	}
 }
 
 final_trigger(){
 	ft = getEnt("final_trigger","targetname");
 	ft waittill("trigger",player);
-	
+
 	afr = getEnt("acti_final_room","targetname");
 	level.activ setOrigin(afr.origin);
 	level.activ setPlayerAngles(afr.angles);
@@ -579,26 +579,26 @@ endroom_template(trigger, jumper_origin, acti_origin, weapon, weapon2, weapon_ro
 	trigger SetHintString("^1"+weapon_room);
     jumper = getEnt(jumper_origin, "targetname");
     acti = getEnt(acti_origin, "targetname");
-	
-	
-	
- 
+
+
+
+
     while(1){
         trigger waittill("trigger", player);
         level.isFinished = true;
 		old_trig = getent("old_trig","targetname");
 		if(isdefined(old_trig)){
 			old_trig delete();
-		}		
-		
+		}
+
         if(level.inEndRoom)
             return;
-       
+
         if (!isDefined(trigger))
             return;
- 
+
         level.inEndRoom = true;
- 
+
         player setPlayerAngles(jumper.angles);
         player setOrigin(jumper.origin);
         player TakeAllWeapons();
@@ -607,10 +607,10 @@ endroom_template(trigger, jumper_origin, acti_origin, weapon, weapon2, weapon_ro
 			player giveWeapon(weapon2);
 			player giveMaxAmmo(weapon2);
 		}
-        player giveMaxAmmo(weapon);        
+        player giveMaxAmmo(weapon);
         player switchToWeapon(weapon);
 		player.health = 100;
- 		
+
  		if(isdefined(level.activ)){
 	 		level.activ setPlayerAngles(acti.angles);
 	        level.activ setOrigin(acti.origin);
@@ -620,16 +620,16 @@ endroom_template(trigger, jumper_origin, acti_origin, weapon, weapon2, weapon_ro
 				level.activ giveWeapon(weapon2);
 				level.activ giveMaxAmmo(weapon2);
 			}
-	        
-	        level.activ giveMaxAmmo(weapon);        
+
+	        level.activ giveMaxAmmo(weapon);
 	        level.activ switchToWeapon(weapon);
 			level.activ.health = 100;
  		}
 
- 
+
         ambientstop();
         ambientplay(song_name);
-		
+
 		if(song_name == "demboyz"){
 			iprintlnbold("^6Now Playing: ^5Wiz Khalifa - We Dem Boyz (Subtronikz Remix)");
 		}
@@ -641,7 +641,7 @@ endroom_template(trigger, jumper_origin, acti_origin, weapon, weapon2, weapon_ro
 		}
 
 		if(song_name == "panda"){
-			iprintlnbold("^6Now Playing: ^5Desiigner - Panda");			
+			iprintlnbold("^6Now Playing: ^5Desiigner - Panda");
 		}
 
 		if(song_name == "howwedo"){
@@ -651,9 +651,9 @@ endroom_template(trigger, jumper_origin, acti_origin, weapon, weapon2, weapon_ro
 		if(song_name == "trapqueen"){
 			iprintlnbold("^6Now Playing: ^5Fetty Wap - Trap Queen (Crankdat Remix)");
 		}
-		
 
- 
+
+
         iPrintlnBold( " ^8" + player.name + " ^6Entered" + " ^9" + weapon_room + " ^6room." );
         wait 0.05;
         player freezecontrols(true);
@@ -672,18 +672,18 @@ endroom_template(trigger, jumper_origin, acti_origin, weapon, weapon2, weapon_ro
         level.activ iPrintlnBold("^8FIGHT^9!");
         player freezecontrols(false);
         level.activ freezecontrols(false);
- 
+
         while(isAlive(player) && isDefined(player)){
             wait 0.1;
 		}
-		
+
 		level.inEndRoom = false;
     }
 }
 
 giveRPGAmmo(){
 	while(1){
-		self givemaxammo("rpg_mp");		
+		self givemaxammo("rpg_mp");
 		wait 4;
-	}	
+	}
 }

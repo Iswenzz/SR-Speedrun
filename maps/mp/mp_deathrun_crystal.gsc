@@ -1,10 +1,10 @@
 /*
 
-   ♀♀♀♀♀♀♀      ♀♀♀♀♀♀♀♀      ♀♀♀♀♀♀♀                    
-   ♀♀♀♀♀♀♀♀     ♀♀♀♀♀♀♀♀      ♀♀♀♀♀♀♀♀                  
-   ♀♀♀♀         ♀♀    ♀♀      ♀♀                   
+   ♀♀♀♀♀♀♀      ♀♀♀♀♀♀♀♀      ♀♀♀♀♀♀♀
+   ♀♀♀♀♀♀♀♀     ♀♀♀♀♀♀♀♀      ♀♀♀♀♀♀♀♀
+   ♀♀♀♀         ♀♀    ♀♀      ♀♀
    ♀♀♀♀♀♀♀♀     ♀♀    ♀♀      ♀♀
-   ♀♀♀♀♀♀♀♀     ♀♀♀♀♀♀♀♀♀♀    ♀♀  
+   ♀♀♀♀♀♀♀♀     ♀♀♀♀♀♀♀♀♀♀    ♀♀
    ♀♀♀♀         ♀♀      ♀♀    ♀♀
    ♀♀♀♀♀♀♀♀     ♀♀♀♀♀♀♀♀♀♀    ♀♀♀♀♀♀♀♀
    ♀♀♀♀♀♀♀      ♀♀♀♀♀♀♀♀♀♀    ♀♀♀♀♀♀♀
@@ -17,17 +17,17 @@
    ♀♀♀♀      ♀♀♀♀       ♀♀♀♀    ♀♀♀♀   ♀♀♀♀        ♀♀♀    ♀♀♀   ♀♀♀   ♀♀
    ♀♀♀♀♀♀♀♀  ♀♀♀♀♀♀♀♀   ♀♀♀♀♀♀♀♀♀♀♀♀   ♀♀♀♀♀♀♀♀♀   ♀♀♀    ♀♀♀   ♀♀♀♀♀♀♀♀
    ♀♀♀♀♀♀♀   ♀♀♀♀♀♀♀     ♀♀♀♀♀♀♀♀♀♀♀   ♀♀♀♀♀♀♀♀    ♀♀♀    ♀♀    ♀♀♀♀♀♀
-   
-   
+
+
    ▼ ▼ Mind telling me what you do here? ▼ ▼
    ▼ ▼ Learn to script bastard!! ▼ ▼
    ▼ ▼ Credits: No one, dont need help. ▼ ▼
-   
-*/   
+
+*/
 
 main()
 {
-thread sr\api\_map::createSpawn((-313.356, 0, 16.125), 0);
+thread sr\api\_map::createSpawnOrigin((-313.356, 0, 16.125), 0);
 trigger = spawn( "trigger_radius", (5852.35, -3361.35, 96.125), 0, 315, 55 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 315;
@@ -48,9 +48,9 @@ trigger.radius = 315;
     // addTriggerToList( "trig_trap14" );
     // addTriggerToList( "trig_trap15" );
     // addTriggerToList( "trig_trap16" );
-	
+
 	// precacheItem("winchester1200_mp");
- 
+
 
 	// maps\mp\mp_deathrun_crystal_fx::main();
 	// maps\createfx\mp_deathrun_crystal_fx::main();
@@ -61,21 +61,21 @@ trigger.radius = 315;
 	maps\mp\mp_deathrun_crystal\_teleport4::main();
 	maps\mp\mp_deathrun_crystal\_teleport5::main();
 	maps\mp\mp_deathrun_crystal\_teleport6::main();
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
-	
+
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
-	
+
 	thread way_connect();
 	// thread messages();
 	// thread credit();
@@ -119,11 +119,11 @@ trigger.radius = 315;
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
 
@@ -371,7 +371,7 @@ trap7()
 	d = getent("t7d","targetname");
 	e = getent("t7e","targetname");
 	f = getent("t7f","targetname");
-	
+
 	while(1)
 	{
 		a moveX(80,0.1);
@@ -456,7 +456,7 @@ trap11()
 	part2 = getentarray ("trap11_2" ,"targetname");
 	trig = getent ("trig_trap11" , "targetname");
 
- 	trig waittill( "trigger", user ); 
+ 	trig waittill( "trigger", user );
 	trig delete ();
 	random = randomint(2);
 
@@ -465,10 +465,10 @@ trap11()
 		case 0:
 				part1[randomInt(part1.size)] delete();
 				break;
-				
-		case 1:	
-				part2[randomInt(part2.size)] delete();		
-				
+
+		case 1:
+				part2[randomInt(part2.size)] delete();
+
 		default: return;
 	}
 }
@@ -481,7 +481,7 @@ trap12()
 	part4 = getentarray ("trap12_4" ,"targetname");
 	trig = getent ("trig_trap12" , "targetname");
 
- 	trig waittill( "trigger", user ); 
+ 	trig waittill( "trigger", user );
 	trig delete ();
 	random = randomint(4);
 
@@ -491,22 +491,22 @@ trap12()
 				part1[randomInt(part1.size)] delete();
 				part3[randomInt(part3.size)] delete();
 				break;
-				
-		case 1:	
+
+		case 1:
 				part2[randomInt(part2.size)] delete();
                 part4[randomInt(part4.size)] delete();
 				break;
 
-		case 2:	
+		case 2:
 				part1[randomInt(part2.size)] delete();
-                part4[randomInt(part4.size)] delete();	
+                part4[randomInt(part4.size)] delete();
 				break;
 
-		case 3:	
+		case 3:
 				part2[randomInt(part2.size)] delete();
-                part3[randomInt(part3.size)] delete();				
-				
-				
+                part3[randomInt(part3.size)] delete();
+
+
 		default: return;
 	}
 }
@@ -595,13 +595,13 @@ sniperoom()
     jump = getEnt( "jump_sniper", "targetname" );
     acti = getEnt( "acti_sniper", "targetname" );
 
-    
+
     while(1)
     {
         level.snipe_trig waittill( "trigger", player );
         if( !isDefined( level.snipe_trig ) )
             return;
-			
+
 		if(level.firstenter==true)
 		{
         level.old_trig delete();
@@ -657,13 +657,13 @@ shotgunroom()
     jump = getEnt( "jump_shotgun", "targetname" );
     acti = getEnt( "acti_shotgun", "targetname" );
 
-    
+
     while(1)
     {
         level.shotgun_trig waittill( "trigger", player );
         if( !isDefined( level.shotgun_trig ) )
             return;
-			
+
 		if(level.firstenter==true)
 		{
 		level.snipe_trig delete();
@@ -711,7 +711,7 @@ kniferoom()
     level.knife_trig = getEnt( "knife", "targetname");
     jump = getEnt( "jumper_knife", "targetname" );
     acti = getEnt( "acti_knife", "targetname" );
-    
+
     while(1)
     {
         level.knife_trig waittill( "trigger", player );
@@ -738,9 +738,9 @@ kniferoom()
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "deserteagle_mp" ); 
+        level.activ GiveWeapon( "deserteagle_mp" );
         level.activ setWeaponAmmoClip("deserteagle_mp", 0 );
-        level.activ setWeaponAmmoStock( "deserteagle_mp", 0 );		
+        level.activ setWeaponAmmoStock( "deserteagle_mp", 0 );
         wait 0.05;
         player switchToWeapon( "deserteagle_mp" );
         level.activ SwitchToWeapon( "deserteagle_mp" );
@@ -765,9 +765,9 @@ oldroom()
     level.old_trig = getEnt( "old", "targetname");
 	old_door = getent ("old_door","targetname");
     jump = getEnt( "jumper_old", "targetname" );
-    
+
     while(1)
-    {   
+    {
         level.old_trig waittill( "trigger", player );
         if( !isDefined( level.old_trig ) )
             return;
@@ -780,9 +780,9 @@ oldroom()
 		level.firstenter=false;
 		}
         player SetPlayerAngles( jump.angles );
-        player setOrigin( jump.origin );      
+        player setOrigin( jump.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "knife_mp" );        
+        level.activ GiveWeapon( "knife_mp" );
         wait 0.05;
         level.activ SwitchToWeapon( "knife_mp" );
 		level.activ iprintln("^5You'r Weapons Are Removed");
@@ -803,7 +803,7 @@ jumproom()
     {
         level.jump_trig waittill( "trigger", player );
         if(level.firstenter==true)
-		{     
+		{
 	    level.snipe_trig delete();
 		level.knife_trig delete();
 		level.old_trig delete();
@@ -817,15 +817,15 @@ jumproom()
         player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
-        player GiveWeapon( "deserteagle_mp" ); 
+        player GiveWeapon( "deserteagle_mp" );
 		player setWeaponAmmoClip("deserteagle_mp", 0 );
-		player setWeaponAmmoStock( "deserteagle_mp", 0 );		
+		player setWeaponAmmoStock( "deserteagle_mp", 0 );
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "deserteagle_mp" );  
+        level.activ GiveWeapon( "deserteagle_mp" );
 		level.activ setWeaponAmmoClip("deserteagle_mp", 0 );
-		level.activ setWeaponAmmoStock( "deserteagle_mp", 0 );			
+		level.activ setWeaponAmmoStock( "deserteagle_mp", 0 );
         wait 0.05;
         player switchToWeapon( "deserteagle_mp" );
         level.activ SwitchToWeapon( "deserteagle_mp" );
@@ -865,7 +865,7 @@ trigger = getent ("jump_wep","targetname");
 trigger waittill ("trigger",user);
 wait(0.2);
 user iprintlnbold("You Have Taken [^4R700^7]");
-wait(0.1);    
+wait(0.1);
 user giveWeapon( "remington700_mp");
 user giveMaxammo("remington700_mp");
 level.wep hide();

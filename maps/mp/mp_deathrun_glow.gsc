@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((4, 276, 16), 269);
+thread sr\api\_map::createSpawnOrigin((4, 276, 16), 269);
 	maps\mp\_load::main();
 
 	precacheItem("rpg_mp");

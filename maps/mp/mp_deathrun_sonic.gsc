@@ -1,17 +1,17 @@
 main()
 {
-thread sr\api\_map::createSpawn((24.125, -162.667, 16.125), 270);
+thread sr\api\_map::createSpawnOrigin((24.125, -162.667, 16.125), 270);
 
 	thread way_connect();
 
 	maps\mp\_load::main();
 	maps\mp\sonic\_teleport::main();
 	// ambientPlay("song");
-	
+
 	// precacheModel("sonic");
 
-	
-	
+
+
 	game["allies"] = "sas";
 	game["axis"] = "russian";
 	game["attackers"] = "allies";
@@ -54,13 +54,13 @@ thread sr\api\_map::createSpawn((24.125, -162.667, 16.125), 270);
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
+
 	thread secret_1();
-	
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
 
@@ -81,15 +81,15 @@ onPlayerSpawned()
 secret_1()
 {
 	trigger = spawn( "trigger_radius", (-277.089, -485.057, 20.125), 0, 20, 105 );
-	
+
 	wait 1;
 	trigger.radius = 20;
 	thread sr\api\_map::createTriggerFx(trigger, "secret");
-	
+
 	for(;;)
 	{
 		trigger waittill("trigger",player);
-		
+
 		if(!isDefined(player.secret_1))
 		{
 			player.secret_1 = true;
@@ -104,7 +104,7 @@ message()
 	trig = getEnt("message","targetname");
 	trig waittill("trigger");
 	trig delete();
-	
+
 		hud_clock = NewHudElem();
 		hud_clock.alignX = "center";
 		hud_clock.alignY = "bottom";
@@ -217,14 +217,14 @@ onPlayerSpawn()
 		level waittill( "player_spawn", player );
 		player detachAll();
 		player setModel( "sonic" );
-		
+
 	}
 }
 
 platform()
 {
 	platform = getEnt("trap4","targetname");
-	
+
 	{
 		platform moveX(240,1);
 	}
@@ -236,11 +236,11 @@ first_door()
 	brush = getEnt("first_door","targetname");
 	button = getEnt("button_door","targetname");
 	roof = getEnt("rooftop","targetname");
-	
+
 	wait 1;
 	// trig waittill("trigger", user);
 	trig delete();
-	
+
 	button moveX(-8,1);
 	wait 1;
 	brush moveZ(-240,1);
@@ -259,14 +259,14 @@ trap1()
 
 		while( 1 )
 	{
-		brush rotateroll(360,9); 
-		wait 5; 
+		brush rotateroll(360,9);
+		wait 5;
 	}
 }
 trap2()
 {
-trig = getEnt ("trap2_trig", "targetname");	
-spikes = getEnt ("trap2", "targetname"); 
+trig = getEnt ("trap2_trig", "targetname");
+spikes = getEnt ("trap2", "targetname");
 
 
 trig waittill ("trigger");
@@ -274,9 +274,9 @@ trig delete ();
 
 
 {
-spikes moveZ (-210,2); 
+spikes moveZ (-210,2);
 wait 5;
-spikes moveZ (210,2); 
+spikes moveZ (210,2);
 wait 5;
 }
 }
@@ -312,21 +312,21 @@ text()
 }
 trap4()
 {
-trig = getEnt ("trap4_trig", "targetname");	
-hurt = getEnt ("trap4_spikeshurt", "targetname");	
-spikes = getEnt ("trap4_spike", "targetname"); 
+trig = getEnt ("trap4_trig", "targetname");
+hurt = getEnt ("trap4_spikeshurt", "targetname");
+spikes = getEnt ("trap4_spike", "targetname");
 
-hurt enablelinkto(); 
-hurt linkto (spikes); 
+hurt enablelinkto();
+hurt linkto (spikes);
 
 trig waittill ("trigger");
 trig delete ();
 
 
 {
-spikes moveZ (-196,1); 
+spikes moveZ (-196,1);
 wait 5;
-spikes moveZ (196,1); 
+spikes moveZ (196,1);
 wait 5;
 }
 }
@@ -338,8 +338,8 @@ trap5()
 
 	trig waittill("trigger", user);
 	trig delete();
-	
-	
+
+
 	platform moveY(416,3);
 	wait 3;
 	platform moveY(-416,3);
@@ -349,7 +349,7 @@ trap6()
 {
 	trig = getEnt("trap6_trig","targetname");
 	roll1 = getEnt("trap6","targetname");
-	
+
 	trig waittill("trigger");
 	trig delete();
 	while(true)
@@ -365,18 +365,18 @@ trap7()
    trigger = getEnt ("trap7_trig" , "targetname");
    spikes = getEnt ("trap7" ,"targetname" );
    hurt = getEnt ("trap7_spikehurt", "targetname");
-   
-   hurt enablelinkto(); 
-   hurt linkto (spikes); 
 
-   trigger waittill ("trigger",player);  
+   hurt enablelinkto();
+   hurt linkto (spikes);
+
+   trigger waittill ("trigger",player);
    trigger delete ();
-   
+
    for( i = 0; i < 999; i++ )
     {
-        spikes moveY (700,4); 
+        spikes moveY (700,4);
         wait 3;
-        spikes moveY (-700,4); 
+        spikes moveY (-700,4);
         wait 3;
     }
 }
@@ -404,9 +404,9 @@ trap9()
 {
    spikes = getEnt ("trap9" ,"targetname" );
 
-   
+
 	{
-        spikes moveZ (96,2); 
+        spikes moveZ (96,2);
         wait 2;
 	}
 }
@@ -417,7 +417,7 @@ final_doors()
 	bounce_trig = getent("final_bounce","targetname");
 	weapons_trig = getent("final_weapons","targetname");
 	knife_trig = getent("final_knife","targetname");
-	
+
 	old_trig thread old(snip_trig,bounce_trig,weapons_trig,knife_trig);
 	snip_trig thread snip(old_trig,bounce_trig,weapons_trig,knife_trig);
 	bounce_trig thread bounce(snip_trig,old_trig,weapons_trig,knife_trig);
@@ -428,18 +428,18 @@ final_doors()
 old(final1,final2,final3,final4)
 {
 	self waittill("trigger", player);
-	
+
 	self delete();
 	final1 delete();
 	final2 delete();
 	final3 delete();
 	final4 delete();
-	
-	
+
+
 	iprintlnbold("Player ^1"+player.name+" ^7open old room!");
-	
+
 	doors = getentarray("final_door","targetname");
-	
+
 	r = randomint(doors.size);
 	doors[r] movez(110,2);
 }
@@ -447,35 +447,35 @@ old(final1,final2,final3,final4)
 snip(final1,final2,final3,final4)
 {
 	self waittill("trigger", player);
-	
+
 	//self delete();
 	final1 delete();
 	final2 delete();
 	final3 delete();
 	final4 delete();
-	
-	
-	
+
+
+
 	iprintlnbold("Player ^1"+player.name+" ^7entered snipe room!");
 
 	porty_allies = getentarray("snip_allies","targetname");
 	porty_axis = getentarray("snip_axis","targetname");
 	raxis = randomint(porty_axis.size);
-	
+
 	players = getentarray("player","classname");
-	
+
 	for(i = 0;i < players.size;i++)
 	{
 		if(isdefined(players[i]) && isplayer(players[i]) && isalive(players[i]) && players[i].pers["team"] == "axis")
 		{
 			players[i] setorigin(porty_axis[raxis].origin);
 			players[i] SetPlayerAngles(porty_axis[raxis].angles);
-			
+
 			if(randomint(2))
 				weap = "m40a3_mp";
 			else
 				weap = "remington700_mp";
-			
+
 			players[i] TakeAllWeapons();
 			players[i] GiveWeapon(weap);
 			players[i] GiveMaxAmmo(weap);
@@ -483,37 +483,37 @@ snip(final1,final2,final3,final4)
 			players[i] SwitchToWeapon(weap);
 		}
 	}
-	
+
 	while(true)
 	{
 		if(randomint(2))
 			weap = "m40a3_mp";
 		else
 			weap = "remington700_mp";
-	
+
 		self jumper_port(player,porty_allies,weap);
-		
+
 		self on_player_death(player);
-		
+
 		self waittill("trigger",player);
 	}
-	
+
 }
 
 on_player_death(player)
-{	
+{
 	player endon("disconnect");
-	
+
 	player waittill("death");
 }
 
 jumper_port(player,porty_allies,weapon)
 {
 	rallies = randomint(porty_allies.size);
-	
+
 	player setorigin(porty_allies[rallies].origin);
 	player SetPlayerAngles(porty_allies[rallies].angles);
-	
+
 	player TakeAllWeapons();
 	player GiveWeapon(weapon);
 	wait 0.01;
@@ -523,25 +523,25 @@ jumper_port(player,porty_allies,weapon)
 bounce(final1,final2,final3,final4)
 {
 	self waittill("trigger", player);
-	
+
 	//self delete();
 	final1 delete();
 	final2 delete();
 	final3 delete();
 	final4 delete();
-	
-	
-	
+
+
+
 	iprintlnbold("Player ^1"+player.name+" ^7entered bounce room!");
-	
+
 	porty_allies = getentarray("bounce_allies","targetname");
 	porty_axis = getentarray("bounce_axis","targetname");
 	raxis = randomint(porty_axis.size);
-	
+
 	thread bounce_teleport(porty_allies,porty_axis);
-	
+
 	players = getentarray("player","classname");
-	
+
 	for(i = 0;i < players.size;i++)
 	{
 		if(isdefined(players[i]) && isplayer(players[i]) && isalive(players[i]) && players[i].pers["team"] == "axis")
@@ -550,34 +550,34 @@ bounce(final1,final2,final3,final4)
 			players[i] SetPlayerAngles(porty_axis[raxis].angles);
 		}
 	}
-	
+
 	while(true)
 	{
 		if(level.custom_knife)
 			weap = "tomahawk_mp";
 		else
 			weap = "ak47_mp";
-			
+
 		self jumper_port(player,porty_allies,weap);
-		
+
 		//self on_player_death(player);
-		
+
 		self waittill("trigger",player);
 	}
-	
+
 }
 
 bounce_teleport(port_allies,port_axis)
 {
 	trig = getent("bounce_tele","targetname");
-	
+
 	while(true)
 	{
 		trig waittill("trigger",player);
-		
+
 		raxis = randomint(port_axis.size);
 		rallies = randomint(port_allies.size);
-		
+
 		if(isplayer(player)&&isalive(player))
 		{
 			if(player.pers["team"] == "axis")
@@ -590,7 +590,7 @@ bounce_teleport(port_allies,port_axis)
 			{
 				player setorigin(port_allies[rallies].origin);
 				player SetPlayerAngles(port_allies[rallies].angles);
-			}			
+			}
 		}
 	}
 }
@@ -616,12 +616,12 @@ bounce_weapon()
 	if(!level.pre_weapon)
 	{
 		level.pre_weapon = true;
-		
+
 		for(i = 0;i < level.jura_weapons.size;i++)
 		{
 			PreCacheItem(level.jura_weapons[i]);
 		}
-		
+
 		return;
 	}
 	else
@@ -629,10 +629,10 @@ bounce_weapon()
 		trig = getent("bounce_weapon","targetname");
 		trig waittill("trigger",player);
 		trig delete();
-		
+
 		rz = randomint(level.jura_weapons.size);
 		rk = randomint(2);
-		
+
 		if(rk)
 		{
 			player TakeAllWeapons();
@@ -641,62 +641,62 @@ bounce_weapon()
 			player SwitchToWeapon(level.jura_weapons[rz]);
 			//player iprintlnbold("Toll, sehr schon Gewehr fur dich.");
 		}
-	}	
+	}
 }
 weapons(final1,final2,final3,final4)
 {
 	self waittill("trigger", player);
-	
+
 	//self delete();
 	final1 delete();
 	final2 delete();
 	final3 delete();
 	final4 delete();
-	
-	
-	
+
+
+
 	iprintlnbold("Player ^1"+player.name+" ^7entered weapons room!");
 
 	rz = randomint(level.jura_weapons.size);
 	weap = level.jura_weapons[rz];
-	
+
 	porty_axis = getentarray("weapons_axis","targetname");
 	raxis = randomint(porty_axis.size);
-	
+
 	players = getentarray("player","classname");
-	
+
 	for(i = 0;i < players.size;i++)
 	{
 		if(isdefined(players[i]) && isplayer(players[i]) && isalive(players[i]) && players[i].pers["team"] == "axis")
 		{
 			players[i] setorigin(porty_axis[raxis].origin);
 			players[i] SetPlayerAngles(porty_axis[raxis].angles);
-			
+
 			if(randomint(2))
 				weap = "ak47_mp";
 			else
 				weap = "m60e4_reflex_mp";
-			
+
 			players[i] TakeAllWeapons();
 			players[i] GiveWeapon(weap);
 			wait 0.01;
 			players[i] SwitchToWeapon(weap);
 		}
 	}
-	
+
 	porty_allies = getentarray("weapons_allies","targetname");
-	
+
 	while(true)
 	{
 		if(randomint(2))
 			weap = "ak47_mp";
 		else
 			weap = "m60e4_reflex_mp";
-		
+
 		self jumper_port(player,porty_allies,weap);
-		
+
 		self on_player_death(player);
-		
+
 		self waittill("trigger",player);
 	}
 }
@@ -704,31 +704,31 @@ weapons(final1,final2,final3,final4)
 knife(final1,final2,final3,final4)
 {
 	self waittill("trigger", player);
-	
+
 	//self delete();
 	final1 delete();
 	final2 delete();
 	final3 delete();
 	final4 delete();
-	
-	
-	
+
+
+
 	iprintlnbold("Player ^1"+player.name+" ^7entered knife room!");
-	
+
 	if(level.custom_knife)
 		weap = "tomahawk_mp";
 	else
 		weap = "ak47_mp";
-	
+
 	while(1)
 	{
 		porty_axis = getentarray("knife_axis","targetname");
 		raxis = randomint(porty_axis.size);
 		porty_allies = getentarray("knife_allies","targetname");
 		rallies = randomint(porty_allies.size);
-	
+
 		players = getentarray("player","classname");
-		
+
 		for(i = 0;i < players.size;i++)
 		{
 			if(isdefined(players[i]) && isplayer(players[i]) && isalive(players[i]) && players[i].pers["team"] == "axis")
@@ -739,16 +739,16 @@ knife(final1,final2,final3,final4)
 		}
 
 		self jumper_port(player,porty_allies,weap);
-		
+
 		self on_player_death(player);
-		
-		self waittill("trigger",player);	
+
+		self waittill("trigger",player);
 	}
 }
 exp2()
 {
 	trig = getEnt( "xp2", "targetname");
-	
+
 	trig waittill( "trigger", other );
 	other braxi\_rank::giveRankXp( "kill", 10 );
 	other iprintln ("^3You got 10xp!");
@@ -758,7 +758,7 @@ exp2()
 exp4()
 {
 	trig = getEnt( "xp4", "targetname");
-	
+
 	trig waittill( "trigger", other );
 	other braxi\_rank::giveRankXp( "kill", 10 );
 	other iprintln ("^3You got 10xp!");
@@ -768,7 +768,7 @@ exp4()
 exp6()
 {
 	trig = getEnt( "xp6", "targetname");
-	
+
 	trig waittill( "trigger", other );
 	other braxi\_rank::giveRankXp( "kill", 10 );
 	other iprintln ("^3You got 10xp!");
@@ -778,7 +778,7 @@ exp6()
 exp8()
 {
 	trig = getEnt( "xp8", "targetname");
-	
+
 	trig waittill( "trigger", other );
 	other braxi\_rank::giveRankXp( "kill", 10 );
 	other iprintln ("^3You got 10xp!");

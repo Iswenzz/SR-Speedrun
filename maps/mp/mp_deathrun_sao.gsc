@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-246, 512, 0), 270);
+thread sr\api\_map::createSpawnOrigin((-246, 512, 0), 270);
 maps\mp\_load::main();
 maps\mp\mp_deathrun_sao\legendchallange::main();
 
@@ -16,16 +16,16 @@ maps\mp\mp_deathrun_sao\legendchallange::main();
 	preCacheModel("body_mp_usmc_cqb");
 	preCacheModel("sao_sword");
 	preCacheModel("viewmodel_sword");
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "2" );
-	
+
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
@@ -59,15 +59,15 @@ hurt delete();
 }
 
 secfinish()
-{  
+{
    trig = getent("secretendtrig", "targetname");
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
     player thread sr\api\_speedrun::finishWay("secret_0");
     }
-    
+
 }
 
 door_on_edge()
@@ -86,13 +86,13 @@ randomroompick()
 		level thread dungen();
 		level thread arrow1();
 		thread removeglass();
-	
+
 		level thread rubypalace();
 		level thread arrow2();
-	
+
 		level thread city();
 		level thread arrow3();
-}	
+}
 
 removeglass()
 {

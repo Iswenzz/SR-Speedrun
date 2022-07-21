@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-632, -9, 3824), 180);
+thread sr\api\_map::createSpawnOrigin((-632, -9, 3824), 180);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
@@ -10,10 +10,10 @@ if (!level.spawn["allies"].size)
 		thread sr\api\_speedrun::createTeleporter((-1026.65, -379.717, 3823.63), 55, 20, (6892, -2975, 2697), 360, "freeze", "blue", "secret_0");
 	thread sr\api\_speedrun::createTeleporter((5694.28, -1310.13, 493.125), 1600, 100, (6892, -2975, 2697), 360, "freeze", "blue", "secret_0");
 	thread sr\api\_speedrun::createEndMap((1662, -274, 3772), 100, 150, "normal_0");
-	thread sr\api\_speedrun::createEndMap((4988.19, 1197.95, 2209.13),75,20, "secret_0"); 
+	thread sr\api\_speedrun::createEndMap((4988.19, 1197.95, 2209.13),75,20, "secret_0");
 
 	maps\mp\_load::main();
-	
+
 	setExpFog(100, 1000, 0.2, 0.225, 0.24, 0.0);
 
 	game["allies"] = "sas";
@@ -23,7 +23,7 @@ if (!level.spawn["allies"].size)
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
 
-	
+
 	//////////dvars/////////////////////////////
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("r_glowbloomintensity0",".25");
@@ -34,7 +34,7 @@ if (!level.spawn["allies"].size)
 	SetDvar( "env_fog_half_distance", "480" );
 	setDvar("bg_falldamagemaxheight", 99999);
     setDvar("bg_falldamageminheight", 99998);
-	
+
 
 
 	level.blur = 1;
@@ -50,8 +50,8 @@ if (!level.spawn["allies"].size)
 	thread ropedown_chop1();
 	thread ropedown_chop2();
 	thread ropedown_chop3();
-	
-	
+
+
 	////////////////traps//////////////////
 	thread trap1_removeblocks();
 	thread trap2_electro_rings();
@@ -63,12 +63,12 @@ if (!level.spawn["allies"].size)
 	thread hardtrap();
 	thread suxtrap();
 	thread triggersux_trap();
-	
+
 	thread createRandomOrigin();
 	thread createRandomOriginMoveTo();
 	//thread soulSpawn();
 	thread demonotify();
-	
+
 	////////endgames/////////////
 	/* thread aiminit();
 	thread aimgamedoors();
@@ -76,7 +76,7 @@ if (!level.spawn["allies"].size)
 	thread aimingtargets();
 	thread unlockpart1(); */
 	// thread scopegame();
-	
+
 }
 
 
@@ -269,7 +269,7 @@ ropedown_chop1()
 	endent = getent("sliding_end", "targetname");
 	start = startent.origin;
 	end = endent.origin;
-	
+
 	while(1)
 	{
 		players = getentarray("player", "classname");
@@ -294,12 +294,12 @@ rope_chop1( start, end )
 {
 	if( !isDefined( self.linker ) )
 		self.linker = Spawn("script_origin", self GetEye()+(0,0,20) );
-	
+
 	spot1= (1636,-4420,784);
 	spot2= (1636,-4140,600);
 	spot3= (1636,-3772,404);
 	spot4= (1636,-2876,32);
-	
+
 	self.isSliding = true;
 	self DisableWeapons();
 	self LinkTo( self.linker );
@@ -328,7 +328,7 @@ ropedown_chop2()
 	endent = getent("sliding_end2", "targetname");
 	start = startent.origin;
 	end = endent.origin;
-	
+
 	while(1)
 	{
 		players = getentarray("player", "classname");
@@ -353,12 +353,12 @@ rope_chop2( start, end )
 {
 	if( !isDefined( self.linker ) )
 		self.linker = Spawn("script_origin", self GetEye()+(0,0,20) );
-	
+
 	spot1= (4104.22,-2799.69,593);
 	spot2= (3546.45,-2515.49,263);
 	spot3= (2973.54,-2223.57,16);
 	spot4= (2513.78,-1989.31,-159);
-	
+
 	self.isSliding2 = true;
 	self DisableWeapons();
 	self LinkTo( self.linker );
@@ -387,7 +387,7 @@ ropedown_chop3()
 	endent = getent("sliding_end3", "targetname");
 	start = startent.origin;
 	end = endent.origin;
-	
+
 	while(1)
 	{
 		players = getentarray("player", "classname");
@@ -412,12 +412,12 @@ rope_chop3( start, end )
 {
 	if( !isDefined( self.linker ) )
 		self.linker = Spawn("script_origin", self GetEye()+(0,0,20) );
-	
+
 	spot1= (3920.73,1420.03,859);
 	spot2= (3392.77,1083.69,529);
 	spot3= (2850.46,738.211,282);
 	spot4= (2415.27,460.97,107);
-	
+
 	self.isSliding3 = true;
 	self DisableWeapons();
 	self LinkTo( self.linker );
@@ -444,11 +444,11 @@ rope_chop3( start, end )
 introbase()
 {
 		level waittill("round_started");
-		
+
 		players = getentarray("player", "classname");
 		for(i=0;i<players.size;i++)
 		{
-					players[i] FreezeControls( true );			
+					players[i] FreezeControls( true );
 		}
 		/* [AUTO DELETE] AmbientPlay("zor"); */
 		thread creatorcredit();
@@ -456,22 +456,22 @@ introbase()
 		wait(15);
 			if( level.freeRun )
 			{
-	
+
 			}
 			else
 			{
 				for(i=0;i<players.size;i++)
 				{
 							// if(players[i]==level.acti)
-							// 	 [AUTO DELETE] players[i] iPrintlnbold( "^1Enemy troops inbound !" ); 	
+							// 	 [AUTO DELETE] players[i] iPrintlnbold( "^1Enemy troops inbound !" );
 							// else
 							// 	/* [AUTO DELETE] players[i] iPrintlnbold( "Move in !" ); */
-							
+
 				}
 			}
 		for(i=0;i<players.size;i++)
 		{
-					players[i] FreezeControls( false );			
+					players[i] FreezeControls( false );
 		}
 }
 
@@ -483,17 +483,17 @@ watchtime()
 	level waittill("round_started");
 	if( level.freeRun )
 	{
-	
+
 	}
 	else
 	{
-	
+
 		if(level.dvar["time_limit"]<4.5)
 		level.dvar["time_limit"]=5;
-		
+
 		if(level.dvar["time_limit"]>4.5)
 		level.dvar["time_limit"]=5;
-		
+
 			/* [AUTO DELETE] iPrintln("^1timer ok"); */
 			for(i=level.dvar["time_limit"];i>0.1;i--)
 			{
@@ -511,7 +511,7 @@ watchtime()
 			ent PlaySound( "1mins" );
 			}
 			else
-			{	
+			{
 			wait 30;
 			/* [AUTO DELETE] iPrintln("^1" + (i - 1) + ":30 ^7remaining"); */
 			ent PlaySound( "30secs" );
@@ -547,7 +547,7 @@ createRandomOrigin()
 {
 	level.spot = [];
 	for(i=0;i<79;i++)
-	level.spot[i] =  spawn( "script_model",(RandomIntRange( -8000, 8000 ), RandomIntRange( -8000, 8000 ), RandomIntRange( -2000, 8000 )) ); 	
+	level.spot[i] =  spawn( "script_model",(RandomIntRange( -8000, 8000 ), RandomIntRange( -8000, 8000 ), RandomIntRange( -2000, 8000 )) );
 }
 
 
@@ -560,10 +560,10 @@ createRandomOriginMoveTo()
 
 
 soulSpawn()
-{		
+{
 	for(i=0;i<79;i++)
-	{	
-		
+	{
+
 		PlayLoopedFX( level.soulFX , 10, level.spot[i].origin);
 		level.spot[i] MoveTo(level.endspot[i].origin ,20);//wont work :S
 	}
@@ -577,82 +577,82 @@ shiplights()
 {
 x = (-4567);
 for(i=0;i<71;i++)
-	{	
+	{
 		spot =(x,-2192,1720);
 		PlayLoopedFX( level.shiplight , 10, spot);
 		x+=100;
 	}
-	
-x = (-4567);	
+
+x = (-4567);
 for(i=0;i<71;i++)
-	{	
+	{
 		spot =(x,4272,1720);
 		PlayLoopedFX( level.shiplight , 10, spot);
 		x+=100;
 	}
 
-x = (-4567);	
+x = (-4567);
 for(i=0;i<71;i++)
-	{	
+	{
 		spot =(x,1008,2552);
 		PlayLoopedFX( level.shiplightblue , 10, spot);
 		x+=100;
 	}
-	
-x = (-4040);	
+
+x = (-4040);
 for(i=0;i<50;i++)
-	{	
+	{
 		spot =(x,1096,5112);
 		PlayLoopedFX( level.lightzy , 10, spot);
 		x+=100;
 	}
-	
-	x = (-4000);	
+
+	x = (-4000);
 for(i=0;i<57;i++)
-	{	
+	{
 		spot =(x,2696,4492);
 		PlayLoopedFX( level.lightzy , 10, spot);
 		x+=100;
 	}
 
-x = (-4000);	
+x = (-4000);
 for(i=0;i<30;i++)
-	{	
+	{
 		spot =(x,8,4500);
 		PlayLoopedFX( level.lightzy , 10, spot);
 		x+=100;
-	}	
-	
-	
-	x = (456);	
+	}
+
+
+	x = (456);
 for(i=0;i<16;i++)
-	{	
+	{
 		spot =(-6008,x,4492);
 		PlayLoopedFX( level.lightzy , 10, spot);
 		x+=100;
 	}
-	
-		x = (456);	
+
+		x = (456);
 for(i=0;i<16;i++)
-	{	
+	{
 		spot =(-4216,x,4492);
 		PlayLoopedFX( level.lightzy , 10, spot);
 		x+=100;
 	}
-	
-			x = (1096);	
+
+			x = (1096);
 for(i=0;i<16;i++)
-	{	
+	{
 		spot =(1736,x,4492);
 		PlayLoopedFX( level.lightzy , 10, spot);
 		x-=100;
 	}
 
 	//1736 1096 4492
-	
+
 	//-6008 2056 4492
 	//-6008 456 4492
-	
+
 	//-4216 2056 4492
 
 }
@@ -667,19 +667,19 @@ onPlayerConnect()
        }
     }
 
-         
+
 onPlayerSpawned()
     {
        for(;;)
        {
 	  self setclientdvar("r_blur", level.blur);
-		  
+
        }
     }
 
 
 startSpecialintro()
-{	
+{
 	level endon( "game_ended" );
 	//level waittill("round_started");
 	//trigger=getent("visiontrigger","targetname");
@@ -716,7 +716,7 @@ lightningFX()
 		}
 		wait 1 + randomfloat(2);
 	}
-	
+
 }
 
 
@@ -757,7 +757,7 @@ setVision(name, time)
 
 setFog(name, time)
 {
-	
+
 		if (level.dvar["env_fog"])
 		{
 			setExpFog( level.dvar["env_fog_start_distance"], level.dvar["env_fog_half_distance"], level.dvar["env_fog_red"]/255, level.dvar["env_fog_green"]/255, level.dvar["env_fog_blue"]/255, time);
@@ -766,7 +766,7 @@ setFog(name, time)
 		{
 			setExpFog( 999999, 9999999, 0, 0, 0, time);
 		}
-			
+
 }
 
 
@@ -956,7 +956,7 @@ trap3()
 
 	trig3 waittill ("trigger");
 	trig3 delete();
-	
+
 	while(1)
 	{
 		rotate rotateRoll (360,1);
@@ -978,13 +978,13 @@ trap3()
 	level endon("trigger");
 	spikepush_brush =getent("spikepush_brush","targetname");
 	spikepush_brush hide();
-	
+
 	trigger =getent("trigger_spiketrap","targetname");
 
-		
+
 	trigger waittill("trigger");
 	trigger delete();
-		
+
 		spikepush_brush show();
 		spikepush_brush movez (384,2);
 		spikepush_brush waittill ("movedone");
@@ -993,7 +993,7 @@ trap3()
 		spikepush_brush waittill ("movedone");
 		wait 4.5 ;
 		spikepush_brush hide();
-	
+
 }
 
 
@@ -1008,7 +1008,7 @@ level.catchable=false;
 	trigger waittill("trigger", who);
 	thread catchcounter();
 	level.catchable=true;
-	
+
 		while(1)
 		{
 			if ( level.catchable==true )
@@ -1114,7 +1114,7 @@ while(1)
 		player.onwatch = 1;
 		player watchstat();
 		}
-		
+
 		wait(1);
 	}
 }
@@ -1146,11 +1146,11 @@ scorehud()
 	{
 	level.targetcount= ((i*10)-30);
 	}
-	
-	self.aimscore = newHudElem();	
+
+	self.aimscore = newHudElem();
 	self.aimscore.x = -20;	//position on the x-axis
 	self.aimscore.y = 75;	//position on the <-axis
-	self.aimscore.horzAlign = "right";	
+	self.aimscore.horzAlign = "right";
 	self.aimscore.vertAlign = "middle";
 	self.aimscore.alignX = "right";
 	self.aimscore.alignY = "middle";
@@ -1162,11 +1162,11 @@ scorehud()
 	self.aimscore.hidewheninmenu = false;	//will it be visble when a player is in a menu
 	self.aimscore.color = (1,0,0);	//RGB color code
 	self.aimscore.label = &"AlphaTeam score: &&1";	//The text for the hud & is required, &&1 is the value which will be added below
-	
-	self.teamcount = newHudElem();	
+
+	self.teamcount = newHudElem();
 	self.teamcount.x = -20;	//position on the x-axis
 	self.teamcount.y = 55;	//position on the <-axis
-	self.teamcount.horzAlign = "right";	
+	self.teamcount.horzAlign = "right";
 	self.teamcount.vertAlign = "middle";
 	self.teamcount.alignX = "right";
 	self.teamcount.alignY = "middle";
@@ -1178,14 +1178,14 @@ scorehud()
 	self.teamcount.hidewheninmenu = false;	//will it be visble when a player is in a menu
 	self.teamcount.color = (1,0,0);	//RGB color code
 	self.teamcount.label = &"AlphaTeam Players: &&1 / 3";	//The text for the hud & is required, &&1 is the value which will be added below
-	
+
 	while(1)
 	{
 	wait 1;
 		self.alphascore = level.alphascore;
 		self.aimscore setValue(self.alphascore);	//if self.count is a integer
 		self.aimscore setText(self.alphascore +" / " +(level.targetcount));	//if self.count is a string
-		
+
 		self.alphateamcount = level.alpha_team_counter;
 		self.teamcount setValue(self.alphateamcount);	//if self.count is a integer
 		self.teamcount setText(self.alphateamcount);	//if self.count is a string
@@ -1205,23 +1205,23 @@ aimingtargets()
 		level.target_triggers[ i ] = getEnt( "trigger_damage_" + i, "targetname" );
 		i++;
 	}
-	
+
 	i = 0;
 	while( isDefined( getEnt( "target_aim_" + i, "targetname" ) ) )
 	{
 		level.targets[ i ] = getEnt( "target_aim_" + i, "targetname" );
 		i++;
 	}
-	
+
 	 level.targetcount = i;
 	 for(x=0;x<level.targetcount;x++)
 	 {
 	 thread targetmonitor(level.targets[ x ],level.target_triggers[ x ]);
 	 }
-	 
+
 	 thread randomizetargets();
-	 
-	 
+
+
 
 }
 
@@ -1233,7 +1233,7 @@ randomizetargets()
 	rand = RandomIntRange(0, level.targetcount );
 	level.targets[ rand ] delete();
 	level.target_triggers[ rand ] delete();
-	
+
 	}
 }
 
@@ -1245,9 +1245,9 @@ targetmonitor(target,trigger)
 	target delete();
 	if(level.alphascore<200)
 	{
-	level.alphascore += 10;	
+	level.alphascore += 10;
 	}
-	
+
 }
 
 
@@ -1260,19 +1260,19 @@ aimgamedoors()
 		level.endgamedoors[ i ] = getEnt( "door_" + i, "targetname" );
 		i++;
 	}
-	
+
 	i = 0;
 	while( isDefined( getEnt( "trigger_door_" + i, "targetname" ) ) )
 	{
 		level.trigger_endgamedoors[ i ] = getEnt( "trigger_door_" + i, "targetname" );
 		i++;
 	}
-	
+
 	 max = i;
 	 for(x=0;x<max;x++)
 	 {
 	 thread opendoor(level.endgamedoors[ x ],level.trigger_endgamedoors[ x ]);
-	 }	
+	 }
 }
 
 
@@ -1293,24 +1293,24 @@ rand = RandomInt( 5 );
 switch (rand)
 	{
 		case 0:
-			other explosion();	
+			other explosion();
 		break;
 		case 1:
-			other Xpreward();	
+			other Xpreward();
 		break;
 		case 2:
-			other explosion();	
+			other explosion();
 		break;
 		case 3:
-			other Xpreward();	
+			other Xpreward();
 		break;
 		case 4:
-			other explosion();	
+			other explosion();
 		break;
 		case 5:
-			other Xpreward();	
+			other Xpreward();
 		break;
-		
+
 	}
 }
 

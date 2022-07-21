@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((483, -340, 256), 360);
+thread sr\api\_map::createSpawnOrigin((483, -340, 256), 360);
 maps\mp\_load::main();
 maps\mp\_teleport::main();
 
@@ -79,7 +79,7 @@ entdel()
    tele = getent ("gohere101", "targetname");
 
     level waittill("round_started");
-	
+
 	tele delete();
 }
 
@@ -219,7 +219,7 @@ brush5 delete();
 brush6 delete();
 brush7 delete();
 object2 delete();
-	
+
 }
 
 weewee()
@@ -236,7 +236,7 @@ object2 delete();
 killtrigger2 delete();
 killtrigger3 delete();
 
-	
+
 }
 
 bridge()

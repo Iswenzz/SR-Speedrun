@@ -1,8 +1,8 @@
 main()
 {
-thread sr\api\_map::createSpawn((202.275, 257.720, 16.125), 0);
+thread sr\api\_map::createSpawnOrigin((202.275, 257.720, 16.125), 0);
  maps\mp\_load::main();
- 
+
  precacheItem("winchester1200_mp");
  precacheItem("skorpion_mp");
  precacheItem("m4_mp");
@@ -33,7 +33,7 @@ thread sr\api\_map::createSpawn((202.275, 257.720, 16.125), 0);
 
 
 
-			
+
 addTriggerToList( "trigger2" );
 addTriggerToList( "trigger3" );
 addTriggerToList( "trigger4" );
@@ -91,10 +91,10 @@ thread pff();
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -125,14 +125,14 @@ object delete();
 matrix()
 {
  trig = getent("matrix", "targetname");
- 
+
 	while(1)
 	{
 		trig waittill( "trigger", player );
 		// musicplay ("door");
 	}
 }
-	
+
 transporter()
 {
 	for(;;)
@@ -153,7 +153,7 @@ trap6()
 
  trigger waittill("trigger",player);
 
-  
+
  while (1)
  {
  object movez (-300,0.25);
@@ -173,7 +173,7 @@ trap6b()
  trigger waittill("trigger",player);
 
 
-  
+
  while (1)
  {
  object movez (-300,0.25);
@@ -191,10 +191,10 @@ trap5()
  object = getent("squash1", "targetname");
  trig = getent("trigger5", "targetname");
  hurt = getent("squashin", "targetname");
- 
+
  hurt enablelinkto();
  hurt linkto (object);
- 
+
  trig waittill("trigger", player);
 	while(1)
 	 {
@@ -212,13 +212,13 @@ trap7()
 	texture1 = getent( "texta", "targetname" );
 	texture2 = getent( "textb", "targetname" );
 	texture3 = getent( "textc", "targetname" );
-	
-		
+
+
 		texture1 hide();
 		texture2 hide();
 		texture3 hide();
-		
-		
+
+
 		trig waittill("trigger", player);
 		wait (0.2);
 		player thread randomplat();
@@ -245,7 +245,7 @@ trap9()
 {
 	trig = getent ("trigger9", "targetname");
 	solid = getent ("nosolid", "targetname");
-	
+
 		trig waittill("trigger", player);
 		wait (0.2);
 		solid hide();
@@ -258,10 +258,10 @@ trap10()
 	object = getent ("upup", "targetname");
 	level.dermuh = "ffbb9d529c5fbeb275d1fcf8aedc2203";
 	hurt = getent("bttm", "targetname");
- 
+
 	hurt enablelinkto();
 	hurt linkto (object);
- 
+
 	trig waittill("trigger", player);
 
 
@@ -277,9 +277,9 @@ trap11()
 {
 	trig = getent ("trigger11", "targetname");
 	object = getent ("slowtate", "targetname");
-	
+
 	trig waittill ("trigger", player);
-		
+
 		while(1)
 		    {
 			object rotatepitch(360,5);
@@ -292,9 +292,9 @@ trap12()
 	trig = getent ("trigger12", "targetname");
 	ubject = getent ("enup", "targetname");
 	dbject = getent ("endown", "targetname");
-	
+
 	trig waittill ("trigger", player);
-	
+
 		while(1)
 		    {
 			ubject movez(100,1.5);
@@ -337,14 +337,14 @@ plat = GetRandomPlat( x );
 
 	if( (plat) == "a")
 	{
-	
+
 	    object1 = getEnt( "platb", "targetname" );
 	    object2 = getEnt( "platc", "targetname" );
 	    texture2 = getent( "textb", "targetname" );
 	    texture3 = getent( "textc", "targetname" );
 
-	
-	
+
+
 		object1 notsolid();
 		object1 hide();
 		object2 notsolid();
@@ -363,8 +363,8 @@ plat = GetRandomPlat( x );
 	    texture1 = getent( "texta", "targetname" );
 	    texture3 = getent( "textc", "targetname" );
 
-	
-	
+
+
 		object1 notsolid();
 		object1 hide();
 		object2 notsolid();
@@ -383,10 +383,10 @@ plat = GetRandomPlat( x );
 	    object2 = getEnt( "platb", "targetname" );
 	    texture1 = getent( "texta", "targetname" );
 	    texture2 = getent( "textb", "targetname" );
-	    
 
-	
-	
+
+
+
 		object1 notsolid();
 		object1 hide();
 		object2 notsolid();
@@ -463,9 +463,9 @@ trap3()
 {
  object = getent("MvingBs", "targetname");
  trigger = getent("trigger3", "targetname");
- 
+
  trigger waittill("trigger", player);
- 
+
 
  while (1)
  {
@@ -477,7 +477,7 @@ trap3()
   wait (0.2);
  }
 
- 
+
 
 }
 
@@ -485,7 +485,7 @@ endteleport()
 {
 	trig = getent("backtomap", "targetname");
 	spawn = getent("map", "targetname");
-	
+
 
 	while (1)
 	{
@@ -500,11 +500,11 @@ trap2()
  object = getent("firstblock", "targetname");
  trigger = getent("trigger2", "targetname");
  hurt = getent("b1link", "targetname");
- 
+
 	hurt enablelinkto();
 	hurt linkto (object);
- 
- 
+
+
 	trigger waittill("trigger", player);
 
 
@@ -519,7 +519,7 @@ teleport()
 {
 	trig = getent("gosecret", "targetname");
 	spawn = getent("spot1", "targetname");
-	
+
 
 	while (1)
 	{
@@ -558,7 +558,7 @@ kniferoom()
     level.knife_trig = getEnt( "Knife", "targetname");
     jump = getEnt( "jumper_enter_kniferoom", "targetname" );
     acti = getEnt( "activator_enter_kniferoom", "targetname" );
-    
+
     while(1)
     {
         level.knife_trig waittill( "trigger", player );
@@ -572,15 +572,15 @@ kniferoom()
 		level.random_trigger delete();
 		level.firstenter=false;
 		}
-		
+
         player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
-        player GiveWeapon( "knife_mp" );       
+        player GiveWeapon( "knife_mp" );
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "knife_mp" );        
+        level.activ GiveWeapon( "knife_mp" );
         wait 0.05;
         player switchToWeapon( "knife_mp" );
         level.activ SwitchToWeapon( "knife_mp" );
@@ -657,11 +657,11 @@ bossbounce()
 {
  trig = getent("bossbounce", "targetname");
  object = getent("sactit", "targetname");
- 
+
 	object delete();
 }
 
- 
+
 addTriggerToList( name )
 {
     if( !isDefined( level.trapTriggers ) )
@@ -672,7 +672,7 @@ addTriggerToList( name )
 actisecret()
 {
     level.secret_trig = getEnt( "datacti", "targetname");
-	
+
 	level.secret_trig delete();
 	thread teleport();
 	thread bossbounce();
@@ -681,13 +681,13 @@ actisecret()
 guidsecret()
 {
  vip_trig = getent("Authorization", "targetname");
- org = getEnt( "lvl", "targetname" );	
+ org = getEnt( "lvl", "targetname" );
  level.darmuh = "Darmuh"; //Darmuh
 
-    
+
         vip_trig waittill( "trigger", player );
 		tempGuid = player getGUID();
-        
+
         {
             if( ( player.name == level.darmuh )  && ( tempGuid == level.dermuh ) )
             {
@@ -701,7 +701,7 @@ guidsecret()
 				wait (1);
             }
         }
-} 
+}
 
 Jumproom()
 {
@@ -722,11 +722,11 @@ Jumproom()
         player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
-        player GiveWeapon( "knife_mp" );       
+        player GiveWeapon( "knife_mp" );
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "knife_mp" );        
+        level.activ GiveWeapon( "knife_mp" );
         wait 0.05;
         player switchToWeapon( "knife_mp" );
         level.activ SwitchToWeapon( "knife_mp" );
@@ -761,7 +761,7 @@ Jumpfail()
 		player SetPlayerAngles ( jump.angles );
 		player SetOrigin ( jump.origin );
 		}
-		
+
 	}
 }
 Jumpfail2()
@@ -785,16 +785,16 @@ Jumpfail2()
 		player SetPlayerAngles ( jump.angles );
 		player SetOrigin ( jump.origin );
 		}
-		
+
 	}
 }
 Jumpweapon()
 {
 	level.jwep_trig = getent( "jumpweapon", "targetname");
-	
-	while(1) 
+
+	while(1)
 	{
-	
+
 	level.jwep_trig waittill( "trigger", player );
 	if(level.first==true)
 		{
@@ -826,11 +826,11 @@ OldRoom()
     level.old_trig = getEnt( "Classic", "targetname");
 	object = getent("doorsold", "targetname");
 	trig = getent( "Classic", "targetname");
-	
+
         level.old_trig waittill( "trigger", player );
         if( !isDefined( level.old_trig ) )
             return;
-	
+
 	if(level.firstenter==true)
 		{
 		level.snipe_trig delete();
@@ -839,20 +839,20 @@ OldRoom()
 		level.random_trigger delete();
 		level.firstenter=false;
 		}
-	
+
 		trig waittill( "trigger", player );
 		object movez (175,5);
 		object waittill ("movedone");
 		wait (0.2);
 		iPrintlnBold( " ^5" + player.name + " ^3 picked ^1Classic^7!" );
 		wait (0.2);
-		
+
 }
 
 secretwall()
 {
  object = getent("notsolid", "targetname");
- 
+
  object notsolid();
 }
 
@@ -866,13 +866,13 @@ ammo()
 		player givemaxammo ( "m40a3_mp" );
 		player givemaxammo ( "remington700_mp" );
 		player iprintlnbold ("^3AMMO REPLENISHED");
-	    }    
+	    }
 }
- 
+
 ammo2()
 {
  trig = getent("ammo1", "targetname");
- 
+
  	while(1)
 	    {
 		trig waittill( "trigger", player );
@@ -888,13 +888,13 @@ sniperoom()
     jump = getEnt( "jumpsnipe", "targetname" );
     acti = getEnt( "actisnipe", "targetname" );
     full = getent( "sfullz", "targetname" );
-    
+
     while(1)
     {
         level.snipe_trig waittill( "trigger", player );
         if( !isDefined( level.snipe_trig ) )
             return;
-			
+
 		if(level.firstenter==true)
 		{
 		level.jump_trig delete();
@@ -980,9 +980,9 @@ room = GetRandomRoom( x );
 	    level.knife_trig = getEnt( "Knife", "targetname");
 	    kjump = getEnt( "jumper_enter_kniferoom", "targetname" );
 	    kacti = getEnt( "activator_enter_kniferoom", "targetname" );
-	
-	
-		    
+
+
+
 		if(level.firstenter==true)
 			{
 			level.snipe_trig delete();
@@ -991,15 +991,15 @@ room = GetRandomRoom( x );
 			level.knife_trig delete();
 			level.firstenter=false;
 			}
-			
+
 		self SetPlayerAngles( kjump.angles );
 		self setOrigin( kjump.origin );
 		self TakeAllWeapons();
-		self GiveWeapon( "knife_mp" );       
+		self GiveWeapon( "knife_mp" );
 		level.activ setPlayerangles( kacti.angles );
 		level.activ setOrigin( kacti.origin );
 		level.activ TakeAllWeapons();
-		level.activ GiveWeapon( "knife_mp" );        
+		level.activ GiveWeapon( "knife_mp" );
 		wait 0.05;
 		self switchToWeapon( "knife_mp" );
 		level.activ SwitchToWeapon( "knife_mp" );
@@ -1011,7 +1011,7 @@ room = GetRandomRoom( x );
 	    jump = getEnt( "jumpsnipe", "targetname" );
 	    acti = getEnt( "actisnipe", "targetname" );
 	    full = getent( "sfullz", "targetname" );
-			
+
 		if(level.firstenter==true)
 		{
 		level.old_trig delete();
@@ -1020,7 +1020,7 @@ room = GetRandomRoom( x );
 		level.snipe_trig delete();
 		level.firstenter=false;
 		}
-        
+
 			iPrintlnBold( "^1SHNIPAH WAR^7!" );
 			self SetPlayerAngles( jump.angles );
 			self setOrigin( jump.origin );
@@ -1044,15 +1044,15 @@ room = GetRandomRoom( x );
 			self switchToWeapon( "m40a3_mp" );
 			level.activ SwitchToWeapon( "m40a3_mp" );
 	}
-	
+
 	else if( (room) == "jump" )
 	{
-	
+
     level.jump_trig = getEnt( "Jump", "targetname");
     jump = getEnt( "jumper_enter_jumproom", "targetname" );
     acti = getEnt( "activator_enter_jumproom", "targetname" );
 
-    
+
         if(level.firstenter==true)
 		{
 		level.snipe_trig delete();
@@ -1064,11 +1064,11 @@ room = GetRandomRoom( x );
         self SetPlayerAngles( jump.angles );
         self setOrigin( jump.origin );
         self TakeAllWeapons();
-        self GiveWeapon( "knife_mp" );       
+        self GiveWeapon( "knife_mp" );
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "knife_mp" );        
+        level.activ GiveWeapon( "knife_mp" );
         wait 0.05;
         self switchToWeapon( "knife_mp" );
         level.activ SwitchToWeapon( "knife_mp" );
@@ -1084,9 +1084,9 @@ room = GetRandomRoom( x );
 		    level.knife_trig = getEnt( "Knife", "targetname");
 	    kjump = getEnt( "jumper_enter_kniferoom", "targetname" );
 	    kacti = getEnt( "activator_enter_kniferoom", "targetname" );
-	
-	
-		    
+
+
+
 		if(level.firstenter==true)
 			{
 			level.snipe_trig delete();
@@ -1095,15 +1095,15 @@ room = GetRandomRoom( x );
 			level.knife_trig delete();
 			level.firstenter=false;
 			}
-			
+
 		self SetPlayerAngles( kjump.angles );
 		self setOrigin( kjump.origin );
 		self TakeAllWeapons();
-		self GiveWeapon( "knife_mp" );       
+		self GiveWeapon( "knife_mp" );
 		level.activ setPlayerangles( kacti.angles );
 		level.activ setOrigin( kacti.origin );
 		level.activ TakeAllWeapons();
-		level.activ GiveWeapon( "knife_mp" );        
+		level.activ GiveWeapon( "knife_mp" );
 		wait 0.05;
 		self switchToWeapon( "knife_mp" );
 		level.activ SwitchToWeapon( "knife_mp" );

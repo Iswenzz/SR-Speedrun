@@ -21,7 +21,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((-11760, 2603, 18), 270);
+thread sr\api\_map::createSpawnOrigin((-11760, 2603, 18), 270);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("^2Easy Secret;^1Hard Secret;");
 	maps\mp\_load::main();
@@ -31,24 +31,24 @@ eztp = getEnt("secret1easy_tp","targetname");
 htp = getEnt("secret1hard_tp","targetname");
 
 
-thread sr\api\_speedrun::createTeleporter((-11539, 2404, 76), 100, 150, 
+thread sr\api\_speedrun::createTeleporter((-11539, 2404, 76), 100, 150,
 	eztp.origin, eztp.angles[1], "freeze", "green", "secret_0");
-thread sr\api\_speedrun::createTeleporter((-11986, 2404, 76), 100, 150, 
+thread sr\api\_speedrun::createTeleporter((-11986, 2404, 76), 100, 150,
 	htp.origin, htp.angles[1], "freeze", "darkred", "secret_1");
 
  level.knockback = getDvarInt("g_knockback");
- 
+
  game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"] = "desert";
- 
+
 	// /* [AUTO DELETE] bounce   = getEntArray("bounce", "targetname"); */
 	// for(i = 0;i <  [AUTO DELETE] bounce.size; i++)
 	// /* [AUTO DELETE] bounce[i] thread bounce(); */
-	
+
 	//SETDVAR**
 	setdvar( "r_specularcolorscale", "1" );
 
@@ -67,7 +67,7 @@ thread sr\api\_speedrun::createTeleporter((-11986, 2404, 76), 100, 150,
 	// thread mapzor();
 	thread startdoor();
 	// thread messages();
-	// thread  [AUTO DELETE] initMusic(); 
+	// thread  [AUTO DELETE] initMusic();
 	/* [AUTO DELETE] thread musictrig(); */
 	// thread end();
 	// thread games();
@@ -105,14 +105,14 @@ thread sr\api\_speedrun::createTeleporter((-11986, 2404, 76), 100, 150,
 	/* [AUTO DELETE] thread bounceroom(); */
 	/* [AUTO DELETE] thread bounceactifail(); */
 	/* [AUTO DELETE] thread bouncejumperfail(); */
-	// thread  [AUTO DELETE] givesniper(); 
+	// thread  [AUTO DELETE] givesniper();
 	// thread run();
 	// thread runwaysetup();
 	/* [AUTO DELETE] thread knife(); */
 	/* [AUTO DELETE] thread old(); */
 	/* [AUTO DELETE] thread oldfakewall(); */
 	thread turnstuff();
- thread secretsetup(); 
+ thread secretsetup();
 	thread traphardmodeoff();
 	thread traphardmodeon();
 	//THREAD*
@@ -173,7 +173,7 @@ cleanUp()
 {
 	if( !isDefined( self ) )
 		return;
- 
+
 	if( isDefined( self.hud_music ) )
 	{
 		for( i = 0; i < self.hud_music.size; i++ )
@@ -203,7 +203,7 @@ self suicide();
 }
 }
 
- 
+
 timehud()
 {
 self endon ("death");
@@ -229,7 +229,7 @@ wait 90;
 self thread destroytimehud();
 }
 
- 
+
 destroyondeath()
 {
         self waittill_any("death", "disconnect", "finished");
@@ -247,7 +247,7 @@ wait 0.1;
 }
 }
 
- 
+
 destroytimehud()
 {
         if( isDefined( self.time_hud) )
@@ -527,11 +527,11 @@ random = randomint(2);
 		case 0:
 				part1[randomInt(part1.size)] notsolid();
 				break;
-				
-		case 1:	
+
+		case 1:
 				part2[randomInt(part2.size)] notsolid();
                 break;
-				
+
 		default: return;
 	}
 }
@@ -627,7 +627,7 @@ trap4a()
 trap = getEnt("trap4a","targetname");
 wait 0.2;
 trap PlaySound("grenade_explode_metal");
-players = getEntArray("player","classname");	
+players = getEntArray("player","classname");
 for(k=0;k<players.size;k++)
 {
 	dist = Distance2D(players[k].origin, trap.origin);
@@ -652,7 +652,7 @@ trap4b()
 trap1 = getEnt("trap4b","targetname");
 wait 0.2;
 trap1 PlaySound("grenade_explode_metal");
-players = getEntArray("player","classname");	
+players = getEntArray("player","classname");
 for(k=0;k<players.size;k++)
 {
 	dist = Distance2D(players[k].origin, trap1.origin);
@@ -730,7 +730,7 @@ else
 trig delete();
 /* [AUTO DELETE] user braxi\_rank::giveRankXP("", 90); */
 trig SetHintString("^2Activated");
-	
+
 	for(;;)
 	{
 	trap6a rotateroll(360, 2);
@@ -889,12 +889,12 @@ random = randomint(2);
 				part1[randomInt(part1.size)] notsolid();
 				part4[randomInt(part4.size)] notsolid();
 				break;
-				
-		case 1:	
+
+		case 1:
 				part2[randomInt(part2.size)] notsolid();
 				part3[randomInt(part3.size)] notsolid();
                 break;
-				
+
 		default: return;
 	}
 }
@@ -927,11 +927,11 @@ random = randomint(2);
 				part1[randomInt(part1.size)] notsolid();
 				part3[randomInt(part3.size)] notsolid();
 				break;
-				
-		case 1:	
+
+		case 1:
 				part2[randomInt(part2.size)] notsolid();
                 break;
-				
+
 		default: return;
 	}
 }
@@ -954,7 +954,7 @@ actitp1() // tp1acti
 {
 	trigacti1 = getEnt("trig_tpacti_1", "targetname");
 	tpacti1 = getEnt("origin_tpacti_1", "targetname");
-	
+
 	for (;;)
 	{
 		trigacti1 waittill("trigger", player);
@@ -970,7 +970,7 @@ actitp2() // tp2acti
 {
 	trigacti2 = getEnt("trig_tpacti_2", "targetname");
 	tpacti2 = getEnt("origin_tpacti_2", "targetname");
-	
+
 	for (;;)
 	{
 		trigacti2 waittill("trigger", player);
@@ -986,7 +986,7 @@ actitp3() // tp2acti
 {
 	trigacti3 = getEnt("trig_tpacti_3", "targetname");
 	tpacti3 = getEnt("origin_tpacti_3", "targetname");
-	
+
 	for (;;)
 	{
 		trigacti3 waittill("trigger", player);
@@ -1002,7 +1002,7 @@ actitpback1() // tp1actiback
 {
 	trigactiback1 = getEnt("trig_tpacti_1_back", "targetname");
 	tpactiback1 = getEnt("origin_tpacti_1_back", "targetname");
-	
+
 	for (;;)
 	{
 		trigactiback1 waittill("trigger", player);
@@ -1018,7 +1018,7 @@ actitpback2() // tp2actiback
 {
 	trigactiback2 = getEnt("trig_tpacti_2_back", "targetname");
 	tpactiback2 = getEnt("origin_tpacti_2_back", "targetname");
-	
+
 	for (;;)
 	{
 		trigactiback2 waittill("trigger", player);
@@ -1034,7 +1034,7 @@ actitpback3() // tp2actiback
 {
 	trigactiback3 = getEnt("trig_tpacti_3_back", "targetname");
 	tpactiback3 = getEnt("origin_tpacti_3_back", "targetname");
-	
+
 	for (;;)
 	{
 		trigactiback3 waittill("trigger", player);
@@ -1076,7 +1076,7 @@ wait 2;
 
 while(1)
 	{
-	
+
 		/* [AUTO DELETE] iPrintLn("^1Report any bugs"); */
 		wait 4;
 		/* [AUTO DELETE] iPrintLn("^1 xFire: ^7alex1528"); */
@@ -1089,7 +1089,7 @@ while(1)
 		wait 4;
 		/* [AUTO DELETE] iPrintLn("^3Map Made By: ^5SuX ^7Lolz :]"); */
 		wait 8;
-	
+
 	}
 }
 
@@ -1116,7 +1116,7 @@ for(;;)
 			wait 3;
 		}
 
-	
+
 }
 }
 
@@ -1146,7 +1146,7 @@ for(;;)
 			wait 3;
 		}
 
-	
+
 }
 }
 
@@ -1206,21 +1206,21 @@ new_ending_hud( align, fade_in_time, x_off, y_off )
 credits()
 {
         self endon( "disconnect" );
- 
+
         if( isDefined( self.credits_text ) )
                 self.credits_text Destroy();
- 
+
         self.credits_text = newHudElem();
         self.credits_text.y = 10;
         self.credits_text.alignX = "center";
         self.credits_text.alignY = "middle";
         self.credits_text.horzAlign = "center";
- 
+
         self.credits_text.alpha = 0;
         self.credits_text.sort = -3;
         self.credits_text.fontScale = 1.6;
         self.credits_text.archieved = true;
- 
+
         {
                 self credit_roll( "^7Mapped ^5& ^7scripted by ^5SuX ^7Lolz :]", 5 );
 				self credit_roll( "xFire:  alex1528  -  Steam: iswenzz1528 / SuX Lolz :]", 5);
@@ -1232,7 +1232,7 @@ credits()
 credit_roll( msg, time )
 {
         self endon( "disconnect" );
- 
+
         self.credits_text fadeOverTime(1);
         self.credits_text.alpha = 1;
         self.credits_text setText( msg );
@@ -1246,27 +1246,27 @@ credit_roll( msg, time )
 initMusic()
 {
 		level.music = [];
- 
+
         i = 0;
 		level.music[i]["artist"] = "Kindred";
 		level.music[i]["title"] = "Glimmer";
 		level.music[i]["alias"] = "music1";
-		
+
 		i++;
 		level.music[i]["artist"] = "SizzleBird";
 		level.music[i]["title"] = "In Love";
 		level.music[i]["alias"] = "music2";
-		
+
 		i++;
 		level.music[i]["artist"] = "Kindred";
 		level.music[i]["title"] = "Tape Glow";
 		level.music[i]["alias"] = "music3";
-		
+
 		i++;
 		level.music[i]["artist"] = "Krewella";
 		level.music[i]["title"] = "One Minute (Culture Code Remix)";
 		level.music[i]["alias"] = "music4";
-		
+
 		i++;
 		level.music[i]["artist"] = "Don Diablo";
 		level.music[i]["title"] = "Silent Shadows (Mind Vortex Remix)";
@@ -1279,30 +1279,30 @@ initMusic()
 
 musicMenu() //Music Menu by Blades's. :]
 {
-	
+
 	self endon( "death" );
- 
+
 	self thread onDeath();
 	self thread onDisconnect();
- 
+
 	self.hud_music = [];
 	self.selection = 0;
- 
+
 	i = 0;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 160, 200, 0.35, "left", "top", 2 );
 	self.hud_music[i].sort = 880;
 	self.hud_music[i] setShader( "black", 320, 160 );
-	
+
 	i++;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 270, 180, 1, "left", "top", 1.8 );
 	self.hud_music[i].sort = 883;
 	self.hud_music[i] setText( ">^5>^7> Music ^5Menu ^7<^5<^7<" );
-	
+
 	i++;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 270, 204, 0.93, "left", "top", 1.8 );
 	self.hud_music[i].sort = 884;
 	self.hud_music[i] setText( ">^5>^7> ^7Select ^7a ^7Song ^5<^7<^5<" );
- 
+
 	i++;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 288, 360, 1, "center", "top", 1.4 );
 	self.hud_music[i].sort = 885;
@@ -1312,36 +1312,36 @@ musicMenu() //Music Menu by Blades's. :]
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 235, 360, 1, "center", "bottom", 1.4 );
 	self.hud_music[i].sort = 886;
 	self.hud_music[i] setText( "^5SuX ^7Lolz :]" );
- 
+
 	for( j = 0; j < level.music.size; j++ )
 	{
 		i++;
 		self.hud_music[i] = braxi\_mod::addTextHud( self, 172, 230+(j*16), 0.93, "left", "top", 1.4 );
 		self.hud_music[i].sort = 882;
 		self.hud_music[i].font = "objective";
- 
+
 		entry = level.music[j];
 		self.hud_music[i] setText( entry["artist"] + " ^2-^7 " + entry["title"] );
 	}
- 
+
 	i++;
 	self.hud_music[self.hud_music.size] = braxi\_mod::addTextHud( self, 167, 230, 0.4, "left", "top", 1.4 );
 	self.hud_music[i].sort = 881;
 	indicator = self.hud_music[self.hud_music.size-1];
 	indicator setShader( "white", 306, 17 );
- 
+
 	while( self.sessionstate == "playing" )
 	{
 		wait 0.1;
- 
+
 		if( self attackButtonPressed() )
 		{
 			self.hud_music[5+self.selection].alpha = 0.93;
- 
+
 			self.selection++;
 			if( self.selection >= level.music.size )
 				self.selection = 0;
- 
+
 			item = self.hud_music[5+self.selection];
 			item.alpha = 1;
 			indicator.y = item.y;
@@ -1349,7 +1349,7 @@ musicMenu() //Music Menu by Blades's. :]
 		else if( self useButtonPressed() )
 		{
 			/* [AUTO DELETE] iPrintln( "^5Now playing: ^7" + level.music[self.selection]["artist"]+" - ^2" +level.music[self.selection]["title"] ); */
- 
+
 			/* [AUTO DELETE] ambientPlay( level.music[self.selection]["alias"], 3 ); */
 			self freezeControls(0);
 			level notify ( "song_picked" );
@@ -1362,7 +1362,7 @@ musicMenu() //Music Menu by Blades's. :]
 			break;
 		}
 	}
- 
+
 	self cleanUp();
 }
 
@@ -1371,7 +1371,7 @@ musictrig() //DJ
 {
 	trigger = getEnt ( "musicmenu", "targetname" );
 	trigger setHintString( "Press ^5[^7USE^5]^7to ^5Choose ^7Music" );
- 
+
 	trigger waittill( "trigger", player );
 	trigger delete();
 	level endon ( "song_picked" );
@@ -1441,15 +1441,15 @@ trig SetHintString("^1Press &&1 !..");
 GetActivator()
 {
 	players = getentarray( "player", "classname" );
-	
+
 	for(i = 0;i < players.size;i++)
 	{
 		player = players[i];
-		
+
 		if( isdefined( player ) && isplayer( player ) && isalive( player ) && player.pers["team"] == "axis"	)
 			return player;
 	}
-	
+
 	return "Noactivator";
 }
 
@@ -1473,7 +1473,7 @@ thread lolzlogo4();
 lolzlogo1()
 {
     lolz1 = getent("lolz_turn_1","targetname");
-	
+
     while(1)
     {
         lolz1 rotateYaw(360, 5);
@@ -1485,7 +1485,7 @@ lolzlogo1()
 lolzlogo2()
 {
     lolz2 = getent("lolz_turn_2","targetname");
-	
+
     while(1)
     {
         lolz2 rotateYaw(360, 5);
@@ -1497,7 +1497,7 @@ lolzlogo2()
 lolzlogo3()
 {
     lolz3 = getent("lolz_turn_3","targetname");
-	
+
     while(1)
     {
         lolz3 rotateYaw(360, 5);
@@ -1509,7 +1509,7 @@ lolzlogo3()
 lolzlogo4()
 {
     lolz4 = getent("lolz_turn_4","targetname");
-	
+
     while(1)
     {
         lolz4 rotateYaw(360, 5);
@@ -1521,7 +1521,7 @@ lolzlogo4()
 arrow1()
 {
     arrow1 = getent("arrow1","targetname");
-	
+
     while(1)
     {
         arrow1 moveY(-60, 3, 0.5, 0.5);
@@ -1535,7 +1535,7 @@ arrow1()
 arrow2()
 {
     arrow2 = getent("arrow2","targetname");
-	
+
     while(1)
     {
         arrow2 moveY(-60, 3, 0.5, 0.5);
@@ -1549,7 +1549,7 @@ arrow2()
 arrow3()
 {
     arrow3 = getent("arrow3","targetname");
-	
+
     while(1)
     {
         arrow3 moveY(-60, 3, 0.5, 0.5);
@@ -1851,13 +1851,13 @@ secret1trig = getEnt("secretsenter1","targetname");
 giverpg1()
 {
 	giverpg1 = getEnt("give_rpg1", "targetname");
-	
+
 	for(;;)
 	{
 		giverpg1 waittill("trigger", player);
 		player giveweapon("rpg_mp");
-		player switchtoweapon("rpg_mp"); 
-		player givemaxammo("rpg_mp"); 
+		player switchtoweapon("rpg_mp");
+		player givemaxammo("rpg_mp");
 		player iprintlnbold("^5EPIC RPG *fortnite dance* !!");
 	}
 }
@@ -1866,13 +1866,13 @@ giverpg1()
 giverpg2()
 {
 	giverpg2 = getEnt("give_rpg2", "targetname");
-	
+
 	for(;;)
 	{
 		giverpg2 waittill("trigger", player);
 		player giveweapon("rpg_mp");
-		player switchtoweapon("rpg_mp"); 
-		player givemaxammo("rpg_mp"); 
+		player switchtoweapon("rpg_mp");
+		player givemaxammo("rpg_mp");
 		player iprintlnbold("^5EPIC RPG *fortnite dance* !!");
 	}
 }
@@ -1881,13 +1881,13 @@ giverpg2()
 giverpg3()
 {
 	giverpg3 = getEnt("give_rpg3", "targetname");
-	
+
 	for(;;)
 	{
 		giverpg3 waittill("trigger", player);
 		player giveweapon("rpg_mp");
-		player switchtoweapon("rpg_mp"); 
-		player givemaxammo("rpg_mp"); 
+		player switchtoweapon("rpg_mp");
+		player givemaxammo("rpg_mp");
 		player iprintlnbold("^5EPIC RPG *fortnite dance* !!");
 	}
 }
@@ -1896,13 +1896,13 @@ giverpg3()
 giverpg4()
 {
 	giverpg4 = getEnt("give_rpg4", "targetname");
-	
+
 	for(;;)
 	{
 		giverpg4 waittill("trigger", player);
 		player giveweapon("rpg_mp");
-		player switchtoweapon("rpg_mp"); 
-		player givemaxammo("rpg_mp"); 
+		player switchtoweapon("rpg_mp");
+		player givemaxammo("rpg_mp");
 		player iprintlnbold("^5EPIC RPG *fortnite dance* !!");
 	}
 }
@@ -1911,13 +1911,13 @@ giverpg4()
 giverpg5()
 {
 	giverpg5 = getEnt("give_rpg5", "targetname");
-	
+
 	for(;;)
 	{
 		giverpg5 waittill("trigger", player);
 		player giveweapon("rpg_mp");
-		player switchtoweapon("rpg_mp"); 
-		player givemaxammo("rpg_mp"); 
+		player switchtoweapon("rpg_mp");
+		player givemaxammo("rpg_mp");
 		player iprintlnbold("^5EPIC RPG *fortnite dance* !!");
 	}
 }
@@ -1951,7 +1951,7 @@ games() //Select Rooms
 
 // player SetPlayerAngles( games.angles );
 // player setOrigin( games.origin );
-//  [AUTO DELETE] iPrintlnBold( " ^5" + player.name + " ^7has ^5entered ^7the ^5game ^7selection !^5!^7!" ); 
+//  [AUTO DELETE] iPrintlnBold( " ^5" + player.name + " ^7has ^5entered ^7the ^5game ^7selection !^5!^7!" );
 // /* [AUTO DELETE] player TakeAllWeapons(); */
 // player antiglitch();
 
@@ -1963,10 +1963,10 @@ games() //Select Rooms
 }
 
 antiglitch() //ng1
-{ 
+{
 self common_scripts\utility::waittill_any("death","disconnect");
-/* [AUTO DELETE] iPrintlnBold("^5"+self.name+" ^7is ^5dead"); */ 
-/* [AUTO DELETE] iPrintlnBold("^5Selection ^7Room ^5is ^5now ^7open^5!!"); */ 
+/* [AUTO DELETE] iPrintlnBold("^5"+self.name+" ^7is ^5dead"); */
+/* [AUTO DELETE] iPrintlnBold("^5Selection ^7Room ^5is ^5now ^7open^5!!"); */
 }
 
 
@@ -2035,7 +2035,7 @@ sniperfail()
 {
 	sniperfail = getEnt("trigger_room1_fail", "targetname");
 	swagtp = getEnt("origin_acti_snip", "targetname");
-	
+
 	for(;;)
 	{
 		sniperfail waittill("trigger", player);
@@ -2173,7 +2173,7 @@ bouncejumperfail() // when jumper fail in jump room
 {
 	bouncejumperfail = getEnt("trigger_respawnjumper_bounce", "targetname");
 	tpbouncejumperfail = getEnt("origin_jumper_bounce", "targetname");
-	
+
 	for (;;)
 	{
 		bouncejumperfail waittill("trigger", player);
@@ -2187,7 +2187,7 @@ bounceactifail() // when acti fail in jump room
 {
 	bounceactifail = getEnt("trigger_respawnacti_bounce", "targetname");
 	tpbounceactifail = getEnt("origin_acti_bounce", "targetname");
-	
+
 	for (;;)
 	{
 		bounceactifail waittill("trigger", player);
@@ -2256,7 +2256,7 @@ respawnactirun1() // when acti fall lvl 1
 {
 	trigrespawnactirun1 = getEnt("trigger_acti_run_lvl1","targetname");
 	tpactirun1 = getEnt("origin_acti_run", "targetname");
-	
+
 	for (;;)
 	{
 		trigrespawnactirun1 waittill("trigger", player);
@@ -2270,7 +2270,7 @@ respawnactirun2() // when acti fall lvl 2
 {
 	trigrespawnactirun2 = getEnt("trigger_acti_run_lvl2","targetname");
 	tpactirun2 = getEnt("origin_acti_end_lvl2", "targetname");
-	
+
 	for (;;)
 	{
 		trigrespawnactirun2 waittill("trigger", player);
@@ -2284,7 +2284,7 @@ respawnactirun3() // when acti fall lvl 3
 {
 	trigrespawnactirun3 = getEnt("trigger_acti_run_lvl3","targetname");
 	tpactirun3 = getEnt("origin_acti_end_lvl3", "targetname");
-	
+
 	for (;;)
 	{
 		trigrespawnactirun3 waittill("trigger", player);
@@ -2298,7 +2298,7 @@ respawnjumperrun1() // when jumper fall lvl 1
 {
 	trigrespawnjumperrun1 = getEnt("trigger_jumper_run_lvl1","targetname");
 	tpjumperrun1 = getEnt("origin_jumper_run", "targetname");
-	
+
 	for (;;)
 	{
 		trigrespawnjumperrun1 waittill("trigger", player);
@@ -2312,7 +2312,7 @@ respawnjumperrun2() // when jumper fall lvl 2
 {
 	trigrespawnjumperrun2 = getEnt("trigger_jumper_run_lvl2","targetname");
 	tpjumperrun2 = getEnt("origin_jumper_end_lvl2", "targetname");
-	
+
 	for (;;)
 	{
 		trigrespawnjumperrun2 waittill("trigger", player);
@@ -2326,7 +2326,7 @@ respawnjumperrun3() // when jumper fall lvl 3
 {
 	trigrespawnjumperrun3 = getEnt("trigger_jumper_run_lvl3","targetname");
 	tpjumperrun3 = getEnt("origin_jumper_end_lvl3", "targetname");
-	
+
 	for (;;)
 	{
 		trigrespawnjumperrun3 waittill("trigger", player);
@@ -2340,7 +2340,7 @@ tpactirun1() // tp acti to the lvl 2
 {
 	trigactirun1 = getEnt("trigger_acti_end_lvl1", "targetname");
 	tpactirun2 = getEnt("origin_acti_end_lvl2", "targetname");
-	
+
 	for (;;)
 	{
 		trigactirun1 waittill("trigger", player);
@@ -2354,7 +2354,7 @@ tpactirun2() // tp acti to the lvl 3
 {
 	trigactirun2 = getEnt("trigger_acti_end_lvl2", "targetname");
 	tpactirun3 = getEnt("origin_acti_end_lvl3", "targetname");
-	
+
 	for (;;)
 	{
 		trigactirun2 waittill("trigger", player);
@@ -2368,7 +2368,7 @@ tpjumperrun1() // tp jumper to the lvl 2
 {
 	trigjumperrun1 = getEnt("trigger_jumper_end_lvl1", "targetname");
 	tpjumperrun2 = getEnt("origin_jumper_end_lvl2", "targetname");
-	
+
 	for (;;)
 	{
 		trigjumperrun1 waittill("trigger", player);
@@ -2382,7 +2382,7 @@ tpjumperrun2() // tp jumper to the lvl 3
 {
 	trigjumperrun2 = getEnt("trigger_jumper_end_lvl2", "targetname");
 	tpjumperrun3 = getEnt("origin_jumper_end_lvl3", "targetname");
-	
+
 	for (;;)
 	{
 		trigjumperrun2 waittill("trigger", player);

@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-619, -440, 16), 360);
+thread sr\api\_map::createSpawnOrigin((-619, -440, 16), 360);
     addTriggerToList("trig_trap1");
 	addTriggerToList("trig_trap2");
 	addTriggerToList("trig_trap3");
@@ -28,9 +28,9 @@ thread sr\api\_map::createSpawn((-619, -440, 16), 360);
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
-	
+
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
@@ -40,9 +40,9 @@ thread sr\api\_map::createSpawn((-619, -440, 16), 360);
 	trigger.targetname = "endmap_trig";
 	trigger.radius = 170;
 
-	
+
 	thread way_connect();
-	
+
 	//thread credit();
 	thread startdoor();
 	//thread startmessages();
@@ -71,13 +71,13 @@ thread sr\api\_map::createSpawn((-619, -440, 16), 360);
 
 }
 
-way_connect()                                                
+way_connect()
 {
     wait 0.05;
-    
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-    
-    for(;;) 
+
+    for(;;)
     {
         level waittill( "connected", player );
 
@@ -292,32 +292,32 @@ trap14()
 	switch(random)
 	{
 		case 0:
-		        trig1 waittill( "trigger", user ); 
-				part1[randomInt(part1.size)] moveZ(-544, 2);
-				trig2 waittill( "trigger", user ); 
-				part2[randomInt(part2.size)] moveZ(-544, 2);
-				break;
-				
-		case 1:	
 		        trig1 waittill( "trigger", user );
 				part1[randomInt(part1.size)] moveZ(-544, 2);
-				trig3 waittill( "trigger", user ); 
+				trig2 waittill( "trigger", user );
+				part2[randomInt(part2.size)] moveZ(-544, 2);
+				break;
+
+		case 1:
+		        trig1 waittill( "trigger", user );
+				part1[randomInt(part1.size)] moveZ(-544, 2);
+				trig3 waittill( "trigger", user );
 				part3[randomInt(part3.size)] moveZ(-544, 2);
 				break;
 
-		case 2:	
-		        trig2 waittill( "trigger", user ); 
+		case 2:
+		        trig2 waittill( "trigger", user );
 				part2[randomInt(part2.size)] moveZ(-544, 2);
-				trig4 waittill( "trigger", user ); 
+				trig4 waittill( "trigger", user );
 				part4[randomInt(part4.size)] moveZ(-544, 2);
-                break;				
+                break;
 
-		case 3:	
+		case 3:
 		        trig3 waittill( "trigger", user );
 				part3[randomInt(part3.size)] moveZ(-544, 2);
-				trig4 waittill( "trigger", user ); 
-				part4[randomInt(part4.size)] moveZ(-544, 2);				
-				
+				trig4 waittill( "trigger", user );
+				part4[randomInt(part4.size)] moveZ(-544, 2);
+
 		default: return;
 	}
 }
@@ -327,7 +327,7 @@ kniferoom()
     level.knife_trig = getEnt( "knife", "targetname");
     jump = getEnt( "jumper_knife", "targetname" );
     acti = getEnt( "acti_knife", "targetname" );
-    
+
     while(1)
     {
         level.knife_trig waittill( "trigger", player );
@@ -341,7 +341,7 @@ kniferoom()
  		level.jump_trig delete();
 		level.firstenter=false;
 		}
-		
+
 		player freezeControls(true);
 		level.activ freezeControls(true);
         player SetPlayerAngles( jump.angles );
@@ -351,7 +351,7 @@ kniferoom()
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "knife_mp" );     
+        level.activ GiveWeapon( "knife_mp" );
         wait 0.05;
         player switchToWeapon( "knife_mp" );
         level.activ SwitchToWeapon( "knife_mp" );
@@ -380,7 +380,7 @@ jumproom()
     {
         level.jump_trig waittill( "trigger", player );
         if(level.firstenter==true)
-		{     
+		{
 		level.old_trig delete();
 		level.weapon_trig delete();
 	    level.snipe_trig delete();
@@ -392,11 +392,11 @@ jumproom()
         player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
-        player GiveWeapon( "knife_mp" );       
+        player GiveWeapon( "knife_mp" );
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "knife_mp" );        
+        level.activ GiveWeapon( "knife_mp" );
         wait 0.05;
         player switchToWeapon( "knife_mp" );
         level.activ SwitchToWeapon( "knife_mp" );
@@ -423,7 +423,7 @@ trigger = getent ("scope","targetname");
 while(1)
 {
 trigger waittill ("trigger",user);
-wait(0.2);   
+wait(0.2);
 user giveWeapon( "remington700_mp");
 user giveMaxammo("remington700_mp");
 wait 0.1;
@@ -438,13 +438,13 @@ sniperoom()
     jump = getEnt( "jump_snipe", "targetname" );
     acti = getEnt( "acti_snipe", "targetname" );
 
-    
+
     while(1)
     {
         level.snipe_trig waittill( "trigger", player );
         if( !isDefined( level.snipe_trig ) )
             return;
-			
+
 		if(level.firstenter==true)
 		{
 		level.weapon_trig delete();
@@ -509,7 +509,7 @@ weaponroom()
     level.weapon_trig = getEnt( "weapon", "targetname");
     jump = getEnt( "jumper_weapon", "targetname" );
     acti = getEnt( "acti_weapon", "targetname" );
-    
+
     while(1)
     {
         level.weapon_trig waittill( "trigger", player );
@@ -523,7 +523,7 @@ weaponroom()
  		level.jump_trig delete();
 		level.firstenter=false;
 		}
-		
+
 		player freezeControls(true);
 		level.activ freezeControls(true);
         player SetPlayerAngles( jump.angles );
@@ -533,7 +533,7 @@ weaponroom()
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "knife_mp" );     
+        level.activ GiveWeapon( "knife_mp" );
         wait 0.05;
         player switchToWeapon( "knife_mp" );
         level.activ SwitchToWeapon( "knife_mp" );
@@ -568,13 +568,13 @@ wait 0.1;
 
 finish()
 {
-trigger = GetEnt( "finish", "targetname" );	
+trigger = GetEnt( "finish", "targetname" );
 	trigger waittill ("trigger", user);
 	trigger delete();
 		{
 		iprintlnbold( "^7" + user.name + " ^3F^1inished ^3F^1irst^7!");
 		wait 4;
 		}
-	
+
 }
 

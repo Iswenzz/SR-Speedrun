@@ -18,7 +18,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((-920.516, -1412, 8.282), 45);
+thread sr\api\_map::createSpawnOrigin((-920.516, -1412, 8.282), 45);
 trig=getEnt("finaldoor", "targetname");
 level.mapHasTimeTrigger = true;
 while(1)
@@ -30,7 +30,7 @@ player thread braxi\_mod::endTimer();
 	maps\mp\mp_fnrp_monderland_fx::main();
 	maps\createfx\mp_fnrp_monderland_fx::main();
 	maps\mp\_compass::setupMiniMap ("compass_map_mp_fnrp_monderland");
-	
+
 	// ambientPlay("ambient_mp_fnrp_monderland");
 
 	game["allies"] = "sas";
@@ -46,7 +46,7 @@ player thread braxi\_mod::endTimer();
 	setdvar("r_glowbloomintensity1",".1");
 	setdvar("r_glowskybleedintensity0",".1");
 	setdvar("compassmaxrange","1400");
-	
+
 	// thread MakeTriggers();
 	thread onConnected();
 	thread WatchGame();
@@ -54,7 +54,7 @@ player thread braxi\_mod::endTimer();
 	level.roll = 0;
 
 	// iprintln("^1The game starts in ^7");
-	
+
 	// for(i=8;i>=0;i--)
 	// {
 		// iprintln("^1" + i + " ");
@@ -67,10 +67,10 @@ player thread braxi\_mod::endTimer();
 
 	// iprintlnbold("^1Go!");
 
-	
+
 	// endtrig thread WatchEndTrigger();
 	sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
 }
 
 onConnected()
@@ -93,8 +93,8 @@ MakeTriggers()
 	level.trapTriggers[5] = getent("trigger6", "targetname");
 	level.trapTriggers[6] = getent("trigger7", "targetname");
 	level.trapTriggers[7] = getent("trigger8", "targetname");
-	
-	
+
+
 	level.trapTriggers[0] thread trapN1();
 	level.trapTriggers[1] thread trapN2();
 	level.trapTriggers[2] thread trapN3();
@@ -117,7 +117,7 @@ trapN1()
 		self delete();
 		break;
 	}
-	
+
 }
 trapN2()
 {
@@ -128,7 +128,7 @@ trapN2()
 		thread gotrap2();
 		self delete();
 		break;
-	}	
+	}
 }
 trapN3()
 {
@@ -163,7 +163,7 @@ trapN5()
 		thread gotrap5();
 		self delete();
 		break;
-	}	
+	}
 }
 
 trapN6()
@@ -208,9 +208,9 @@ gotrap1()
 	if(isdefined(trabn1_obj))
 	{
 		for(i=0;i<trabn1_obj.size;i++)
- 		{	
-		trabn1_obj[i] thread movetrap1();	
-		}	
+ 		{
+		trabn1_obj[i] thread movetrap1();
+		}
 	}
 
 }
@@ -221,7 +221,7 @@ movetrap1()
 		self rotatePitch(360,0.5);
 		self waittill("rotatedone");
 		wait(RandomInt(4));
-		
+
 	}
 
 }
@@ -232,8 +232,8 @@ gotrap2()
 	while(1)
 	{
 		trabn2_obj rotatePitch(-360,100);
-		trabn2_obj waittill ("rotatedone"); 
-	}	
+		trabn2_obj waittill ("rotatedone");
+	}
 
 }
 
@@ -244,8 +244,8 @@ gotrap3()
 	{
 		trabn3_obj rotateYaw(360,10);
 		trabn3_obj waittill ("rotatedone");
-		wait(RandomInt(4)); 
-	}		
+		wait(RandomInt(4));
+	}
 }
 
 gotrap4()
@@ -254,15 +254,15 @@ gotrap4()
 	if(isdefined(trabn4_obj))
 	{
 		for(i=0;i<trabn4_obj.size;i++)
- 		{	
-		trabn4_obj[i] thread movetrap4();	
-		}	
+ 		{
+		trabn4_obj[i] thread movetrap4();
+		}
 	}
 
 }
 movetrap4()
 {
-		
+
 	self.nun = RandomInt(2);
 	if (self.nun != 1)
 	{
@@ -275,12 +275,12 @@ movetrap4()
 gotrap5()
 {
 	trabn5_obj = getent("trap5","targetname");
-	
+
 		trabn5_obj movez (-500,1,0,0.1);
 		trabn5_obj waittill ("movedone");
-		
+
 		wait (4);
-		
+
 		trabn5_obj movez (500,2,0,0.6);
 		trabn5_obj waittill ("movedone");
 }
@@ -289,12 +289,12 @@ gotrap5()
 gotrap6()
 {
 	trabn6_obj = getent("trap6","targetname");
-	
+
 		trabn6_obj movex (-150,1,0,0.1);
 		trabn6_obj waittill ("movedone");
-		
+
 		wait (4);
-		
+
 		trabn6_obj movex (150,2,0,0.6);
 		trabn6_obj waittill ("movedone");
 }
@@ -311,7 +311,7 @@ gotrap7()
 		trabn7_obj2 rotatePitch(360,6);
 		trabn7_obj2 waittill ("rotatedone");
 		wait(RandomInt(3));
-	}	
+	}
 }
 gotrap8()
 {
@@ -319,15 +319,15 @@ gotrap8()
 	if(isdefined(trabn8_obj))
 	{
 		for(i=0;i<trabn8_obj.size;i++)
- 		{	
-		trabn8_obj[i] thread movetrap8();	
-		}	
+ 		{
+		trabn8_obj[i] thread movetrap8();
+		}
 	}
 
 }
 movetrap8()
 {
-		
+
 	self.nun = RandomInt(2);
 	if (self.nun != 1)
 	{
@@ -342,7 +342,7 @@ movetrap8()
 WatchGame()
 {
 	level.finalfight = false;
-	
+
 	while(1)
 	{
 		level waittill("activator", who );
@@ -355,7 +355,7 @@ AntiFreeTraps()
 {
 	if( getDvarInt("scr_activator_freerun") != 1 )
 		return;
-	
+
 	self FreezeControls(1);
 	wait getDvarInt("scr_activator_freerun_wait");
 	self FreezeControls(0);
@@ -424,7 +424,7 @@ WatchEndTrigger()
 			who iprintlnbold("^1wait! ^2what's Activator??");
 			return;
 		}
-		
+
 		if( isDefined( level.acti_enemy ) && level.acti_enemy != who )
 		{
 			self.control = 0;
@@ -434,7 +434,7 @@ WatchEndTrigger()
 				{	self.control = 1;
 				}
 			}
-			
+
 			if( self.control != 1)
 			{
 				level.turn = level.turn + 1;
@@ -448,8 +448,8 @@ WatchEndTrigger()
 				who iprintlnbold("^4wait your turn :)");
 				wait 3;
 			}
-			
-				
+
+
 		}
 		if( !isDefined(level.acti_enemy))
 		{
@@ -462,16 +462,16 @@ WatchEndTrigger()
 				thread gotrap2();
 				}
 			thread StartFinalFight();
-			thread controljumper();	
+			thread controljumper();
 		}
 	}
 }
 controljumper()
 {
-	
+
 	while(1)
 	{
-		
+
 		if( isAlive(level.acti_enemy))
 		{
 			for(turn=0;turn<level.turn;turn++)
@@ -479,18 +479,18 @@ controljumper()
 				iprintln( turn + "^2 >" + level.jumper_turn[turn]+ " ");
 				wait 2;
 	   		}
-			
+
 		}
 		else
 		{
 			for(turn=0;turn<level.turn;turn++)
-			{	
+			{
 				if( isAlive(level.jumper_turn[turn]))
 				{
 					level.acti_enemy = level.jumper_turn[turn];
 					thread StartFinalFight();
 				}
-			}	
+			}
 		     }
 	wait 3;
 	}
@@ -498,7 +498,7 @@ controljumper()
 
 StartFinalFight()
 {
-	
+
 
 	acti = undefined;
 	jumper = level.acti_enemy;
@@ -513,8 +513,8 @@ StartFinalFight()
 			break;
 		}
 	}
-	
-	if( !level.freeRun ) 
+
+	if( !level.freeRun )
 		{
 			self.armo = "colt45_mp";
 		}
@@ -523,13 +523,13 @@ StartFinalFight()
 
 	start1 = getent("ffight_activator", "targetname");
 	start2 = getent("ffight_jumper", "targetname");
-	
+
 	acti SetPlayerAngles( start1.angles );
 	acti SetOrigin( start1.origin );
 	acti TakeAllWeapons();
 	acti GiveWeapon(self.armo);
 	acti SetSpawnWeapon(self.armo);
-	
+
 	jumper SetPlayerAngles( start2.angles );
 	jumper SetOrigin( start2.origin );
 	jumper TakeAllWeapons();
@@ -539,7 +539,7 @@ StartFinalFight()
 
 	acti FreezeControls(1);
 	jumper FreezeControls(1);
-	
+
 	VisionSetNaked( "finalfight_intro_mp", 2 );
 	wait 2;
 
@@ -551,9 +551,9 @@ StartFinalFight()
 	players = getentarray("player", "classname");
 	for(i=0;i<players.size;i++)
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-	
+
 	wait 2;
-	
+
 	noti = SpawnStruct();
 	noti.titleText = acti.name + " ^1VS ^7" + jumper.name;
 	noti.notifyText = "GET READY!";
@@ -562,13 +562,13 @@ StartFinalFight()
 	players = getentarray("player", "classname");
 	for(i=0;i<players.size;i++)
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-	
+
 	wait 2;
-	
+
 	VisionSetNaked( "finalfight_mp", 2 );
 	jumper FreezeControls(0);
 	acti FreezeControls(0);
-	
+
 	iprintlnbold("^1F  I  G  H  T !");
 }
 
@@ -606,8 +606,7 @@ TestClient(team)
 
 	while(!isdefined(self.pers["team"]))
 		wait .05;
-		
+
 	self notify("menuresponse", game["menu_team"], team);
 	wait 0.5;
 }
- 

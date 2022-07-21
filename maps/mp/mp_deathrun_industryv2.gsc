@@ -1,6 +1,6 @@
 main()
 {
-thread sr\api\_map::createSpawn((-82, 253, 16), 180);
+thread sr\api\_map::createSpawnOrigin((-82, 253, 16), 180);
 maps\mp\_load::main();
 
 game["allies"] = "sas";
@@ -9,7 +9,7 @@ game["attackers"] = "axis";
 game["defenders"] = "allies";
 game["allies_soldiertype"] = "woodland";
 game["axis_soldiertype"] = "woodland";
-	
+
 setdvar( "r_specularcolorscale", "1" );
 setdvar("r_glowbloomintensity0",".25");
 setdvar("r_glowbloomintensity1",".25");
@@ -42,7 +42,7 @@ door2 = getent("stagedoor2","targetname");
 
 while(1)
 {
-wait 0.1;	
+wait 0.1;
 door1 hide();
 door1 notsolid();
 door2 hide();

@@ -26,7 +26,7 @@ loadscreen
 
 main()
 {
-thread sr\api\_map::createSpawn((702, -120, 34), 266);
+thread sr\api\_map::createSpawnOrigin((702, -120, 34), 266);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
 		    maps\mp\_load::main();

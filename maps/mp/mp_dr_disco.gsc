@@ -5,7 +5,7 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((16.125, 64, 16.125), 270);
+thread sr\api\_map::createSpawnOrigin((16.125, 64, 16.125), 270);
 	maps\mp\_load::main();
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	game["allies"] = "sas";

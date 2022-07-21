@@ -2,27 +2,27 @@
 //Discord:Death#7416
 main()
 {
-thread sr\api\_map::createSpawn((288.125, 0, 16.125), 0);
+thread sr\api\_map::createSpawnOrigin((288.125, 0, 16.125), 0);
  maps\mp\_load::main();
- 
+
  game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"]= "desert";
- 
+
    setdvar( "r_specularcolorscale", "1" );
    setdvar("r_glowbloomintensity0",".1");
    setdvar("r_glowbloomintensity1",".1");
    setdvar("r_glowskybleedintensity0",".1");
    setDvar("bg_falldamagemaxheight", 99999);
    setDvar("bg_falldamageminheight", 99998);
- 
+
 
    thread sr\api\_speedrun::createNormalWays("^7Strafe Way;^1Ladder Way;^2Angle Way;^3Bhop Way;^4Bounce Way;^5Fall Way;^6Stairs Way;");
-  
-   thread welcome(); 
+
+   thread welcome();
    thread pure_ladder_s();
    thread pure_ladder_f();
    thread pure_angle_s();
@@ -37,9 +37,9 @@ thread sr\api\_map::createSpawn((288.125, 0, 16.125), 0);
    thread pure_fall_f();
    thread pure_stairs_s();
    thread pure_stairs_f();
-   
 
- }	
+
+ }
 
 addTextHud( who, x, y, alpha, alignX, alignY, fontScale )
 {
@@ -95,7 +95,7 @@ pure_ladder_s()
     trig = getEnt ("sr_ladder_start", "targetname");
     orig = getEnt ("sr_ladder_orig", "targetname");
 
-    
+
     while(1)
     {
         trig waittill ("trigger", player);
@@ -106,7 +106,7 @@ pure_ladder_s()
          player FreezeControls(1);  /////To prevent 10 fps glitches////
          wait 0.5;
          player FreezeControls(0);
-       	
+
 	}
 }
 
@@ -114,13 +114,13 @@ pure_ladder_f()
 {
     trig = getEnt ("sr_ladder_finish", "targetname");
 
-    
+
     while(1)
     {
         trig waittill ("trigger", player);
 
         player thread sr\api\_speedrun::finishWay("normal_1");
-         	
+
 	}
 }
 
@@ -129,18 +129,18 @@ pure_angle_s()
     trig = getEnt ("sr_angle_start", "targetname");
     orig = getEnt ("sr_angle_orig", "targetname");
 
-    
+
     while(1)
     {
         trig waittill ("trigger", player);
-        
+
          player thread sr\api\_speedrun::changeWay("normal_2");
          player SetOrigin(orig.origin);
          player SetPlayerAngles(orig.angles );
          player FreezeControls(1);  /////To prevent 10 fps glitches////
          wait 0.5;
          player FreezeControls(0);
-       	
+
 	}
 }
 
@@ -148,11 +148,11 @@ pure_angle_f()
 {
     trig = getEnt ("sr_angle_finish", "targetname");
 
-    
+
     while(1)
     {
         trig waittill ("trigger", player);
-        player thread sr\api\_speedrun::finishWay("normal_2"); 	
+        player thread sr\api\_speedrun::finishWay("normal_2");
 	}
 }
 
@@ -161,18 +161,18 @@ pure_bhop_s()
     trig = getEnt ("sr_bhop_start", "targetname");
     orig = getEnt ("sr_bhop_orig", "targetname");
 
-    
+
     while(1)
     {
         trig waittill ("trigger", player);
-        
+
          player thread sr\api\_speedrun::changeWay("normal_3");
          player SetOrigin(orig.origin);
          player SetPlayerAngles(orig.angles );
          player FreezeControls(1);  /////To prevent 10 fps glitches////
          wait 0.5;
          player FreezeControls(0);
-       	
+
 	}
 }
 
@@ -180,12 +180,12 @@ pure_bhop_f()
 {
     trig = getEnt ("sr_bhop_finish", "targetname");
 
-    
+
     while(1)
     {
         trig waittill ("trigger", player);
         player thread sr\api\_speedrun::finishWay("normal_3");
-         	
+
 	}
 }
 
@@ -194,18 +194,18 @@ pure_bounce_s()
     trig = getEnt ("sr_bounce_start", "targetname");
     orig = getEnt ("sr_bounce_orig", "targetname");
 
-    
+
     while(1)
     {
         trig waittill ("trigger", player);
-         
+
          player thread sr\api\_speedrun::changeWay("normal_4");
          player SetOrigin(orig.origin);
          player SetPlayerAngles(orig.angles );
          player FreezeControls(1);  /////To prevent 10 fps glitches////
          wait 0.5;
          player FreezeControls(0);
-       	
+
 	}
 }
 
@@ -213,12 +213,12 @@ pure_bounce_f()
 {
     trig = getEnt ("sr_bounce_finish", "targetname");
 
-    
+
     while(1)
     {
         trig waittill ("trigger", player);
-        player thread sr\api\_speedrun::finishWay("normal_4");   	
-	} 
+        player thread sr\api\_speedrun::finishWay("normal_4");
+	}
 }
 
 pure_fall_s()
@@ -226,18 +226,18 @@ pure_fall_s()
     trig = getEnt ("sr_fall_start", "targetname");
     orig = getEnt ("sr_fall_orig", "targetname");
 
-    
+
     while(1)
     {
         trig waittill ("trigger", player);
-         
+
          player thread sr\api\_speedrun::changeWay("normal_5");
          player SetOrigin(orig.origin);
          player SetPlayerAngles(orig.angles );
          player FreezeControls(1);  /////To prevent 10 fps glitches////
          wait 0.5;
          player FreezeControls(0);
-       	
+
 	}
 }
 
@@ -245,12 +245,12 @@ pure_fall_f()
 {
     trig = getEnt ("sr_fall_finish", "targetname");
 
-    
+
     while(1)
     {
         trig waittill ("trigger", player);
         player thread sr\api\_speedrun::finishWay("normal_5");
-         	
+
 	}
 }
 
@@ -259,18 +259,18 @@ pure_stairs_s()
     trig = getEnt ("sr_stairs_start", "targetname");
     orig = getEnt ("sr_stairs_orig", "targetname");
 
-    
+
     while(1)
     {
         trig waittill ("trigger", player);
-         
+
          player thread sr\api\_speedrun::changeWay("normal_6");
          player SetOrigin(orig.origin);
          player SetPlayerAngles(orig.angles );
          player FreezeControls(1);  /////To prevent 10 fps glitches////
          wait 0.5;
          player FreezeControls(0);
-       	
+
 	}
 }
 
@@ -278,11 +278,11 @@ pure_stairs_f()
 {
     trig = getEnt ("sr_stairs_finish", "targetname");
 
-    
+
     while(1)
     {
         trig waittill ("trigger", player);
         player thread sr\api\_speedrun::finishWay("normal_6");
-         	
+
 	}
 }

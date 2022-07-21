@@ -1,8 +1,8 @@
 main()
 {
-thread sr\api\_map::createSpawn((-733, 455, -384), 360);
+thread sr\api\_map::createSpawnOrigin((-733, 455, -384), 360);
 maps\mp\_load::main();
- 
+
 game["allies"] = "sas";
 game["axis"] = "opfor";
 game["attackers"] = "axis";
@@ -24,14 +24,14 @@ thread sr\api\_speedrun::createTeleporter((2112.37, -745.093, -383.875), 70, 10,
 thread hurt();
 thread waterdead();
 }
- 
-hurt() 
+
+hurt()
 {
-hurts = getent("spikeshurt", "targetname"); 
-hurta = getent("trap7_blade1_hurt", "targetname"); 
-hurtb = getent("trap7_blade2_hurt", "targetname"); 
-trap7a = getent("trap7_blade1", "targetname"); 
-trap7b = getent("trap7_blade2", "targetname"); 
+hurts = getent("spikeshurt", "targetname");
+hurta = getent("trap7_blade1_hurt", "targetname");
+hurtb = getent("trap7_blade2_hurt", "targetname");
+trap7a = getent("trap7_blade1", "targetname");
+trap7b = getent("trap7_blade2", "targetname");
 
 wait 0.1;
 hurts delete();
@@ -46,9 +46,9 @@ waterdead()
    trig = getent("water", "targetname");
 
 for(;;)
-    {   
+    {
     trig waittill("trigger", player);
     player suicide();
     }
-    
+
 }

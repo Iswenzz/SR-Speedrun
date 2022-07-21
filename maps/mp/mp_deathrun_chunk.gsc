@@ -4,12 +4,12 @@ Credits for helping: Lossy, Xenon, Darmuh
 */
 main()
 {
-thread sr\api\_map::createSpawn((-1238, -13, 24), 89);
+thread sr\api\_map::createSpawnOrigin((-1238, -13, 24), 89);
 //-----------------load effects-----------------//
-	
+
 	level.wall_explosion = LoadFX("explosions/wall_explosion_grnd");
 	level.fire = LoadFX("fire/firelp_barrel_pm");
-	
+
 //-----------------Dvars-----------------//
 	setDvar("r_distortion", "1");
 	setDvar("r_specular", "1");
@@ -22,19 +22,19 @@ thread sr\api\_map::createSpawn((-1238, -13, 24), 89);
 
 	precacheModel("playermodel_baa_joker");
 	precacheItem("ak74u_mp");
-	
+
 //----------------------------------//
 
-	maps\mp\_load::main(); 
+	maps\mp\_load::main();
 	//ambientPlay("gramatik");
-	
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
+
 	addTriggerToList( "trigger_platform" );
 	addTriggerToList( "trigger_trap2" );
 	addTriggerToList( "trigger_push" );
@@ -91,7 +91,7 @@ startdoor()
 {
 	main_door = getent( "door1", "targetname" );
 	main_door delete();
-	
+
 }
 
 Credits()
@@ -139,18 +139,18 @@ Credits()
 
 Trap1()
 {
-	trigger = getEnt ("trigger_platform", "targetname"); 
+	trigger = getEnt ("trigger_platform", "targetname");
 	earthquakeorigin = getEnt ("earthquake", "targetname");
 	earthquakeorigin1 = getEnt ("earthquakeorigin1", "targetname");
 	platform2 = getEnt ("platform2", "targetname");
 	platform1 = getEnt ("platform1", "targetname");
-	
+
 	trigger setHintString ("^3Press ^9[Use] ^3to Activate");
     trigger waittill ("trigger", player);
 	trigger setHintString ("^3Trap ^9Activated");
-	
+
 	trigger delete();
-	
+
 	if( randomInt(2) == 0 )
     {
 		platform2 moveZ (-130, 1);
@@ -167,20 +167,20 @@ Trap1()
 
 trap2()
 {
-	trigger = getEnt ("trigger_trap2", "targetname"); 
+	trigger = getEnt ("trigger_trap2", "targetname");
 	brush1 = getEnt ("trap2_1", "targetname");
     brush2 = getEnt ("trap2_2", "targetname");
 	brush3 = getEnt ("trap2_3", "targetname");
 	brush4 = getEnt ("trap2_4", "targetname");
     brush5 = getEnt ("trap2_5", "targetname");
 	brush6 = getEnt ("trap2_6", "targetname");
-	
+
 	trigger setHintString ("^3Press ^9[Use] ^3to Activate");
     trigger waittill ("trigger", player);
 	trigger setHintString ("^3Trap ^9Activated");
-	
+
 	trigger delete();
-	
+
 	while(1)
 	{
 		brush1 rotateYaw(360, 1);
@@ -196,19 +196,19 @@ trap2()
 
 trap3()
 {
-	trigger = getEnt ("trigger_push", "targetname"); 
+	trigger = getEnt ("trigger_push", "targetname");
 	brush1 = getEnt ("push_1", "targetname");
     brush2 = getEnt ("push_2", "targetname");
 	brush3 = getEnt ("push_3", "targetname");
 	brush4 = getEnt ("push_4", "targetname");
 	brush5 = getEnt ("push_antibug", "targetname");
-	
+
 	trigger setHintString ("^3Press ^9[Use] ^3to Activate");
     trigger waittill ("trigger", player);
 	trigger setHintString ("^3Trap ^9Activated");
-	
+
 	trigger delete();
-	
+
 	while(1)
 	{
 		brush1 moveY(-170, 1);
@@ -230,13 +230,13 @@ trap5()
 {
 	trigger = getEnt ("trigger_trap5", "targetname");
 	spin = getEnt ("trap5", "targetname");
-	
+
 	trigger setHintString ("^3Press ^9[Use] ^3to Activate");
     trigger waittill ("trigger", player);
 	trigger setHintString ("^3Trap ^9Activated");
-	
+
 	trigger delete();
-	
+
 	for(;;)
 	{
 		spin rotateYaw(360, 4);
@@ -249,13 +249,13 @@ trap6()
 	trigger = getEnt ("trigger_sweeper", "targetname");
 	sweeper = getEnt ("sweeper", "targetname");
 	sweeper1 = getEnt ("sweeper1", "targetname");
-	
+
 	trigger setHintString ("^3Press ^9[Use] ^3to Activate");
     trigger waittill ("trigger", player);
 	trigger setHintString ("^3Trap ^9Activated");
-	
+
 	trigger delete();
-	
+
 	for(;;)
 	{
 		sweeper moveX(688, 4);
@@ -282,13 +282,13 @@ trap7()
 	killtrigger3 = getEnt ("hurt_hammer3", "targetname");
 	killtrigger4 = getEnt ("hurt_hammer4", "targetname");
 	cylinder = getEnt ("cylinder", "targetname");
-	
+
 	trigger setHintString ("^3Press ^9[Use] ^3to Activate");
     trigger waittill ("trigger", player);
 	trigger setHintString ("^3Trap ^9Activated");
-	
+
 	trigger delete();
-	
+
 	cylinder rotatepitch (360, 2);
 	killtrigger1 enablelinkto ();
 	killtrigger1 linkTo (hammer1);
@@ -305,7 +305,7 @@ trap7()
 	killtrigger4 enablelinkto ();
 	killtrigger4 linkTo (hammer4);
 	hammer4 rotatepitch (360, 2);
-	
+
 	for(;;)
 	{
 		cylinder rotatepitch (360, 2);
@@ -322,13 +322,13 @@ blockdrop()
 	trigger = getEnt ("trigger_blockdrop", "targetname");
 	blockdrop = getEnt ("blockdrop", "targetname");
 	killtrigger = getEnt ("hurt_blockdrop", "targetname");
-	
+
 	trigger setHintString ("^3Press ^9[Use] ^3to Activate");
     trigger waittill ("trigger", player);
 	trigger setHintString ("^3Trap ^9Activated");
-	
+
 	trigger delete();
-	
+
 	killtrigger enablelinkTo ();
 	killtrigger linkTo (blockdrop);
 	blockdrop moveZ(-264, 0.2);
@@ -352,7 +352,7 @@ laser()
 	killtrigger_laser5 = getEnt ("killtrigger_laser5", "targetname");
 	killtrigger_laser6 = getEnt ("killtrigger_laser6", "targetname");
 	trigger = getEnt ("trigger_lasers", "targetname");
-	
+
 	laser1 notSolid();
 	laser2 notSolid();
 	laser3 notSolid();
@@ -366,7 +366,7 @@ laser()
 	killtrigger_laser5 delete();
 	killtrigger_laser6 delete();
 	trigger delete();
-	
+
 
 }
 
@@ -376,13 +376,13 @@ floor()
 	floor1 = getEnt ("floor1", "targetname");
 	trigger = getEnt ("trigger_floor", "targetname");
 	explosion_ori = getEnt ("explosion_ori", "targetname");
-	
+
 	trigger setHintString ("^3Press ^9[Use] ^3to Activate");
     trigger waittill ("trigger", player);
 	trigger setHintString ("^3Trap ^9Activated");
-	
+
 	trigger delete();
-	
+
 	wait 0.5;
 	playFx( level.wall_explosion, explosion_ori.origin );
 	explosion_ori PlaySound("exp_suitcase_bomb_stereo");
@@ -399,26 +399,26 @@ wallexplode()
 	wall_ori = getEnt ("wall_ori", "targetname");
 	killtrigger = getEnt ("wall_hurt", "targetname");
 	wall_link = getEnt ("wall_link", "targetname");
-	
+
 	trigger setHintString ("^3Press ^9[Use] ^3to Activate");
     trigger waittill ("trigger", player);
 	trigger setHintString ("^3Trap ^9Activated");
-	
+
 	trigger delete();
-	
+
 	wait 0.5;
 	playFx( level.wall_explosion, wall_ori.origin );
 	wall_ori PlaySound("exp_suitcase_bomb_stereo");
 	earthquake( 0.5, 3, wall_ori.origin, 400 );
 	wait 0.1;
-	
+
 	wall delete();
-	
+
 	killtrigger enablelinkTo ();
 	killtrigger linkTo (wall_link);
 	wall_link moveX(-264, 0.01);
 	wait 2.5;
-	
+
 	wall_link delete();
 	killtrigger delete();
 }
@@ -432,13 +432,13 @@ thin()
 	thin5 = getEnt ("thin5", "targetname");
 	thin6 = getEnt ("thin6", "targetname");
 	trigger = getEnt ("trigger_thin", "targetname");
-	
+
 	trigger setHintString ("^3Press ^9[Use] ^3to Activate");
     trigger waittill ("trigger", player);
 	trigger setHintString ("^3Trap ^9Activated");
-	
+
 	trigger delete();
-	
+
 	thin1 rotateYaw (90, 2);
 	thin2 rotateYaw (90, 2);
 	thin3 rotateYaw (90, 2);
@@ -451,13 +451,13 @@ rotate()
 {
 	rotate = getEnt ("rotate", "targetname");
 	trigger = getEnt ("trigger_rotate", "targetname");
-	
+
 	trigger setHintString ("^3Press ^9[Use] ^3to Activate");
     trigger waittill ("trigger", player);
 	trigger setHintString ("^3Trap ^9Activated");
-	
+
 	trigger delete();
-	
+
 	for(;;)
 	{
 		rotate moveX (96, 3);
@@ -478,18 +478,18 @@ glasstrap()
 {
 	glass = getEnt ("glass", "targetname");
 	trigger = getEnt ("trigger_glass", "targetname");
-	
+
 	trigger setHintString ("^3Press ^9[Use] ^3to Activate");
     trigger delete();
     glass delete();
 }
-	
+
 //-----------------Secrets-----------------//
 
 opensecret1()
 {
 	trigger = getEnt ("openningsecret", "targetname");
-	
+
 	trigger waittill("trigger", player);
 	player thread secret1();
 	player iprintln ("^5Nice ^8Guess!");
@@ -501,35 +501,35 @@ secret1()
 	secret1 = getEnt ("secret_1", "targetname");
 	secret1door = getEnt ("secret1_door", "targetname");
 	target = getEnt ("teleport_target", "targetname");
-	
+
 	secret1door notSolid();
-	
+
 	trigger setHintString ("^6What does this ^8Do?");
-	
+
 	for(;;)
 	{
 		trigger waittill ("trigger", player);
-	
-	
+
+
 		player iPrintLnBold ("I think i unlocked a tiny shortcut :s");
 		wait 0.7;
 		player SetOrigin(target.origin);//this teleports the player :D
 		player SetPlayerAngles( target.angles );
-	
+
 		secret1 moveX(-7, 2);
 		secret1 waittill ("movedone");
 		iPrintLnBold("^2A button was pressed by "+ player.name +"^4:O");
 		thread secret2();
-		
+
 		trigger delete();
-		
+
 	}
 }
 
 secret2()
 {
 	trigger = getEnt ("trigger_dmg1", "targetname");
-	
+
 	trigger waittill ("trigger", player);
 	thread secret2b();
 	trigger delete();
@@ -538,7 +538,7 @@ secret2()
 secret2b()
 {
 	trigger = getEnt ("trigger_dmg3", "targetname");
-	
+
 	trigger waittill ("trigger", player);
 	thread secret2c();
 	trigger delete();
@@ -550,13 +550,13 @@ secret2c()
 	target = getEnt ("target_secret2", "targetname");
 
 		trigger waittill ("trigger", player);
-	
+
 		thread secrrettele();
 		thread teleportfromsecret();
-		
+
 		player SetOrigin(target.origin);
 		player SetPlayerAngles( target.angles );
-		
+
 		player iPrintLnBold("^6Welcome ^7To the ^6Secret!");
 		iPrintLnBold("^8"+ player.name +" ^5has found the secret :o");
 }
@@ -565,11 +565,11 @@ secrrettele()
 {
 	trigger = getEnt ("teleport_secret", "targetname");
 	target = getEnt ("target_secret", "targetname");
-	
+
 	for(;;)
 	{
 		trigger waittill ("trigger", player);
-		
+
 		player iPrintLnBold ("^5You have been ^7respawned");
 		player SetOrigin(target.origin);
 		player SetPlayerAngles( target.angles );
@@ -580,12 +580,12 @@ teleportfromsecret()
 {
 	trigger = getEnt ("trigger_finnishedsecret", "targetname");
 	target = getEnt ("target_finnishedsecret", "targetname");
-	
+
 		trigger waittill ("trigger", player);
-		
+
 		player SetOrigin(target.origin);
 		player SetPlayerAngles( target.angles );
-		
+
 		iPrintLnBold ("^8"+ player.name +" has completed the ^5secret!");
 		player TakeAllWeapons();
 		player GiveWeapon( "ak74u_mp" );
@@ -601,7 +601,7 @@ teleportfromsecret()
 travel()
 {
 	travel = getEnt ("travel", "targetname");
-	
+
 		travel rotateYaw(180, 0.1);
 		travel waittill("movedone");
 		wait 0.1;
@@ -623,7 +623,7 @@ nospawnshoot()
 playerSpawned()
 {
     level waittill( "player_spawn", player );
-		
+
 		if (player.pers["team"] == "allies" && level.freerun == true)
 		{
 			level waittill( "round_started" );
@@ -645,11 +645,11 @@ nextarea()
 {
 	trigger = getEnt ("trigger_nextareajumper", "targetname");
 	target = getEnt ("target_nextareajumper", "targetname");
-	
+
 	for(;;)
 	{
 		trigger waittill ("trigger", player);
-		
+
 		player iPrintLnBold ("^3Next ^5area!");
 		player SetOrigin(target.origin);
 		player SetPlayerAngles( target.angles );
@@ -660,11 +660,11 @@ level1()
 {
 	trigger = getEnt ("teleport_level1", "targetname");
 	target = getEnt ("teleport_level1_target", "targetname");
-	
+
 	for(;;)
 	{
 		trigger waittill ("trigger", player);
-		
+
 		player braxi\_rank::giveRankXp( "", 5 );
 		player iPrintLnBold ("^6Next ^5level!");
 		player SetOrigin(target.origin);
@@ -675,7 +675,7 @@ level1()
 movingplatform1()
 {
 	travel1 = getEnt ("travel1", "targetname");
-	
+
 	for(;;)
 	{
 		travel1 rotateyaw(180, 0.1);
@@ -692,16 +692,16 @@ nextareaacti()
 {
 	trigger = getEnt ("trigger_acti_nextarea", "targetname");
 	target = getEnt ("target_acti_nextarea", "targetname");
-	
+
 	for(;;)
 	{
 		trigger setHintString ("^5Press ^6[Use] ^5 to go to the ^8next area ");
 		trigger waittill ("trigger", player);
-		
+
 		player iPrintLnBold ("^3Next ^5area!");
 		player SetOrigin(target.origin);
 		player SetPlayerAngles( target.angles );
-		
+
 		thread othersideacti();
 	}
 }
@@ -710,12 +710,12 @@ othersideacti()
 {
 	trigger = getEnt ("trigger_otherside", "targetname");
 	target = getEnt ("target_otherside", "targetname");
-	
+
 	for(;;)
 	{
 		trigger setHintString ("^5Press ^6[Use] ^5 to go to the ^8next area ");
 		trigger waittill ("trigger", player);
-		
+
 		player iPrintLnBold ("^3Next ^5area!");
 		player SetOrigin(target.origin);
 		player SetPlayerAngles( target.angles );
@@ -726,12 +726,12 @@ lvl1()
 {
 	trigger = getEnt ("trigger_teleport_lvl1", "targetname");
 	target = getEnt ("target_teleport_lvl1", "targetname");
-		
+
 	for(;;)
 	{
 		trigger setHintString ("^3Press ^8[Use] ^3to go to ^4level 1");
 		trigger waittill ("trigger", player);
-	
+
 		player SetOrigin(target.origin);
 		player SetPlayerAngles( target.angles );
 		player iPrintLnBold("^3Welcome to ^4Level 1");
@@ -742,12 +742,12 @@ level0()
 {
 	trigger = getEnt ("trigger_teleport_lvl0", "targetname");
 	target = getEnt ("target_teleport_lvl0", "targetname");
-		
+
 	for(;;)
 	{
 		trigger setHintString ("^3Press ^8[Use] ^3to go to ^4level 0");
 		trigger waittill ("trigger", player);
-	
+
 		player SetOrigin(target.origin);
 		player SetPlayerAngles( target.angles );
 		player iPrintLnBold("^3Welcome to ^4Level 0");
@@ -794,21 +794,21 @@ Sniper()
 	level.snipe_trigger = getEnt( "trigger_sniper", "targetname");
 	jump = getEnt( "sniper_jumper", "targetname" );
 	acti = getEnt( "sniper_acti", "targetname" );
-	
+
 	while(1)
 	{
 		level.snipe_trigger setHintString ("^5Sniper");
 		level.snipe_trigger waittill( "trigger", player );
 		if( !isDefined( level.snipe_trigger ) )
 			return;
-		
+
 		level.cowboy_trigger delete();
 		level.old_trigger delete();
 		level.bounce_trigger delete();
-		
+
 		player SetPlayerAngles( jump.angles );
 		player setOrigin( jump.origin );
-		player TakeAllWeapons(); 
+		player TakeAllWeapons();
 		player GiveWeapon( "remington700_mp" );
 		player giveMaxAmmo( "remington700_mp" );
 		player GiveWeapon( "m40a3_mp" );
@@ -825,7 +825,7 @@ Sniper()
 		AmbientPlay("skrillex");
 		player switchToWeapon( "remington700_mp" );
 		level.activ switchToWeapon( "remington700_mp" );
-		iPrintLnBold( " ^4" + player.name + " ^7has chosen ^4SNIPER^7 room^4!" );				
+		iPrintLnBold( " ^4" + player.name + " ^7has chosen ^4SNIPER^7 room^4!" );
         while( isAlive( player ) && isDefined( player ) )
 		wait 1;
 	}
@@ -840,7 +840,7 @@ sniperroom()
 	block5 = getEnt ("block5", "targetname");
 	block6 = getEnt ("block6", "targetname");
 	lift = getEnt ("lift", "targetname");
-	
+
 	block1 moveX (-72, 2);
 	block2 moveY (-86, 2);
 	block3 moveX (-72, 2);
@@ -848,7 +848,7 @@ sniperroom()
 	block5 moveY (160, 2);
 	block6 moveX (144, 2);
 	block6 waittill("movedone");
-	
+
 	for(;;)
 	{
 		lift moveZ (-552, 3);
@@ -879,28 +879,28 @@ Cowboy()
 	level.cowboy_trigger = getEnt( "trigger_cowboy", "targetname");
 	jump = getEnt( "cowboy_jumper", "targetname" );
 	acti = getEnt( "cowboy_acti", "targetname" );
-	
+
 	while(1)
 	{
 		level.cowboy_trigger setHintString ("^5Cowboy");
 		level.cowboy_trigger waittill( "trigger", player );
 		if( !isDefined( level.cowboy_trigger ) )
 			return;
-		
+
 		level.snipe_trigger delete();
 		level.old_trigger delete();
 		level.bounce_trigger delete();
-		
+
 		player setPlayerAngles( jump.angles );
 		player setOrigin( jump.origin );
-		player takeAllWeapons(); 
+		player takeAllWeapons();
 		player giveWeapon( "colt44_mp" );
 		player giveMaxAmmo( "colt44_mp" );
 		player setWeaponAmmoClip( "colt44_mp", 2 );
 		player freezeControls( true );
 		level.activ setPlayerAngles( acti.angles );
 		level.activ setOrigin( acti.origin );
-		level.activ takeAllWeapons(); 
+		level.activ takeAllWeapons();
 		level.activ giveWeapon( "colt44_mp" );
 		level.activ giveMaxAmmo( "colt44_mp" );
 		level.activ setWeaponAmmoClip( "colt44_mp", 2 );
@@ -924,7 +924,7 @@ Cowboy()
 		wait 1;
 		iPrintLnBold ("^6SHOOT!");
 		player freezeControls( false );
-		level.activ freezeControls( false );				
+		level.activ freezeControls( false );
         while( isAlive( player ) && isDefined( player ) )
 		wait 1;
 	}
@@ -953,7 +953,7 @@ fire()
 	fire18 = getEnt ("fire18", "targetname");
 	fire19 = getEnt ("fire19", "targetname");
 	fire20 = getEnt ("fire20", "targetname");
-	
+
 	for(;;)
 	{
 		playLoopedFX( level.fire, fire1.origin );
@@ -983,7 +983,7 @@ fire()
 //-----------------VIP-----------------//
 
 joker()
-{	
+{
 	level.accepted1 = "acb016f3"; //Darmuh
 	level.accepted2 = "7fd24f5f"; //Gabriel
 	level.accepted3 = "fb93ac5f"; //Lossy
@@ -1000,11 +1000,11 @@ joker()
 	while (1)
 	{
 		level waittill( "player_spawn", player );
-		
+
 		friend = getSubStr(player getGuid(), 24, 32);
-		
+
 		if((friend == level.accepted1) || (friend == level.accepted2) || (friend == level.accepted3) || (friend == level.accepted4) || (friend == level.accepted5) || (friend == level.accepted6) || (friend == level.accepted7) || (friend == level.accepted8) || (friend == level.accepted9) || (friend == level.accepted10) || (friend == level.accepted11) || (friend == level.accepted12))
-		{	
+		{
 			player detachAll();
 			player setModel("playermodel_baa_joker");
 			player iprintln("^8Joker ^6Skin ^8Enabled");
@@ -1019,25 +1019,25 @@ old()
 	level.old_trigger = getEnt( "trigger_old", "targetname");
 	jump = getEnt( "old_jumper", "targetname" );
 	acti = getEnt( "old_acti", "targetname" );
-	
+
 	while(1)
 	{
 		level.old_trigger setHintString ("^5Old");
 		level.old_trigger waittill( "trigger", player );
 		if( !isDefined( level.old_trigger ) )
 			return;
-		
+
 		level.cowboy_trigger delete();
 		level.snipe_trigger delete();
 		level.bounce_trigger delete();
-		
+
 		player SetPlayerAngles( jump.angles );
 		player setOrigin( jump.origin );
 		level.activ setPlayerangles( acti.angles );
 		level.activ setOrigin( acti.origin );
 		AmbientStop();
 		AmbientPlay("skrillex");
-		iPrintLnBold( " ^4" + player.name + " ^7has chosen the ^4Old way ^7!" );				
+		iPrintLnBold( " ^4" + player.name + " ^7has chosen the ^4Old way ^7!" );
         while( isAlive( player ) && isDefined( player ) )
 		wait 1;
 	}
@@ -1050,7 +1050,7 @@ bounce()
 	level.bounce_trigger = getEnt( "trigger_bounce", "targetname");
 	jump = getEnt ("bounce_jumper", "targetname" );
 	acti = getEnt ("bounce_acti", "targetname" );
-	
+
 	while(1)
 	{
 		level.bounce_trigger setHintString ("^5Bounce");
@@ -1058,14 +1058,14 @@ bounce()
 		thread bounceweap();
 		if( !isDefined( level.bounce_trigger ) )
 			return;
-		
+
 		level.cowboy_trigger delete();
 		level.old_trigger delete();
 		level.snipe_trigger delete();
-		
+
 		player SetPlayerAngles( jump.angles );
 		player setOrigin( jump.origin );
-		player TakeAllWeapons(); 
+		player TakeAllWeapons();
 		player GiveWeapon( "knife_mp" );
 		level.activ setPlayerangles( acti.angles );
 		level.activ setOrigin( acti.origin );
@@ -1076,7 +1076,7 @@ bounce()
 		AmbientPlay("skrillex");
 		player switchToWeapon( "knife_mp" );
 		level.activ switchToWeapon( "knife_mp" );
-		iPrintLnBold( " ^4" + player.name + " ^7has chosen ^4Bounce^7 room^4!" );				
+		iPrintLnBold( " ^4" + player.name + " ^7has chosen ^4Bounce^7 room^4!" );
         while( isAlive( player ) && isDefined( player ) )
 		wait 1;
 	}
@@ -1095,10 +1095,10 @@ bouncetele()
 			player SetOrigin(jump.origin);
 			player SetPlayerAngles( jump.angles );
 		}
-		else if(player.pers["team"] == "axis")	
+		else if(player.pers["team"] == "axis")
 		{
 			player SetOrigin(acti.origin);
-			player SetPlayerAngles( acti.angles );			
+			player SetPlayerAngles( acti.angles );
 		}
 	}
 }
@@ -1111,7 +1111,7 @@ bounceweap()
 		pistol waittill ("trigger", player);
 		player GiveWeapon( "colt45_mp" );
 		player switchToWeapon( "colt45_mp" );
-		
+
 		pistol delete();
 }
 

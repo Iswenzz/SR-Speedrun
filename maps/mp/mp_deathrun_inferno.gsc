@@ -1,8 +1,8 @@
 main()
 {
-thread sr\api\_map::createSpawn((4092, -1379, -351), 179);
+thread sr\api\_map::createSpawnOrigin((4092, -1379, -351), 179);
 	maps\mp\_load::main();
-	
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
@@ -52,9 +52,9 @@ Trap1()
  	brush = getEnt("trap1","targetname");
 
 	trig waittill("trigger", player);
-	
+
 	trig delete();
-	
+
 	brush moveZ(8, 2);
 }
 
@@ -74,9 +74,9 @@ Trap2_1()
 	brush10 = getEnt("trap2_10","targetname");
 
 	trig waittill("trigger", player);
-	
+
 	trig delete();
-	
+
 	while(1)
 	{
 		brush1 rotateYaw( 360, 1 );
@@ -100,11 +100,11 @@ Trap2_2()
 	trig = getEnt("trigger_trap2","targetname");
 	trap2_11 = getEnt("trap2_11","targetname");
 	trap2_12 = getEnt("trap2_12","targetname");
-	
+
 	trig waittill("trigger", player);
-       
+
 	trig delete();
-    
+
 	while(1)
 	{
 		wait randomIntRange(1, 3);
@@ -119,7 +119,7 @@ Trap2_2()
 		wait randomIntRange(1, 3);
 		trap2_12 moveX(608, 1.5);
 		trap2_12 waittill("movedone");
-	}	
+	}
 }
 
 Trap3()
@@ -131,12 +131,12 @@ Trap3()
 	brush3 = getEnt("trap3_3","targetname");
 
 	trig waittill("trigger", player);
-	
+
 	trig delete();
-	
+
 	brush1 moveZ (-168, 3);
 	brush2 moveZ (-168, 3);
-	playFx( level.mortar, brush3.origin); 
+	playFx( level.mortar, brush3.origin);
 	earthquake( 1, 1, brush3.origin, 500 );
 	brush3 delete();
 	brush3 notSolid();
@@ -152,11 +152,11 @@ Trap4()
 	level endon("trigger");
 	trig = getEnt("trigger_trap4","targetname");
  	brush = getEnt("trap4","targetname");
-	
+
 	trig waittill("trigger", player);
-	
+
 	trig delete();
-	
+
 	while(1)
 	{
 		brush moveX (200, 3);
@@ -171,11 +171,11 @@ Trap5()
 	level endon("trigger");
 	trig = getEnt("trigger_trap5","targetname");
  	brush = getEnt("trap5","targetname");
-	
+
 	trig waittill("trigger", player);
-	
+
 	trig delete();
-	
+
 	while(1)
 	{
 		wait 0.01;
@@ -203,11 +203,11 @@ Trap7()
 {
 	level endon("trigger");
 	trig = getEnt ("trigger_trap7", "targetname");
-	
+
 	trig waittill ("trigger", player);
-	
+
 	trig delete();
-	
+
 	thread minefunc( "trap7_mine1trig", "trap7_mine1");
 	thread minefunc( "trap7_mine2trig", "trap7_mine2");
 	thread minefunc( "trap7_mine3trig", "trap7_mine3");
@@ -222,10 +222,10 @@ minefunc( trigger, mine )
 {
 	trig = getEnt ( trigger, "targetname");
 	mine = getEnt ( mine, "targetname");
-	
+
 	trig waittill ("trigger", player);
 	trig delete();
-	playFx( level.mortar, mine.origin); 
+	playFx( level.mortar, mine.origin);
 	earthquake( 1, 1, mine.origin, 500 );
 	mine playSound("exp_suitcase_bomb_stereo");
 	mine delete();
@@ -258,9 +258,9 @@ Trap8()
 	brush_trigger5 linkTo(brush5); //Now you must link the trigger to the base
 
 	trig waittill("trigger", player);
-	
+
 	trig delete();
-	
+
 	brush1 moveZ(-288, 1);
 	brush2 moveZ(-288, 1);
 	brush3 moveZ(-288, 1);
@@ -278,11 +278,11 @@ Trap9()
 {
 	level endon("trigger");
     trig = getEnt ("trigger_trap9", "targetname");
-    
+
     trig waittill ("trigger", player);
-	
+
     trig delete();
-    
+
     if (randomInt(2) == 0)
         thread Trap9_1();
     else
@@ -296,13 +296,13 @@ Trap9_1()
     brush1 = getEnt ("trap9_1", "targetname");
 	trig enableLinkTo(); // This is the most important part of the script. this allows you to move the trigger.
 	trig linkTo(brush1); //Now you must link the trigger to the base
-	
+
     for(;;)
     {
 		brush1 moveZ(-320, 1);
-		
+
         trig waittill ("trigger", player);
-		
+
         player suicide();
         wait 0.5;
     }
@@ -315,13 +315,13 @@ Trap9_2()
 	brush2 = getEnt ("trap9_2", "targetname");
 	trig enableLinkTo(); // This is the most important part of the script. this allows you to move the trigger.
 	trig linkTo(brush2); //Now you must link the trigger to the base
-   
+
     for(;;)
     {
 		brush2 moveZ(-320, 1);
-		
+
         trig waittill ("trigger", player);
-		
+
         player suicide();
         wait 0.5;
     }
@@ -330,7 +330,7 @@ Trap9_2()
 Trap10()
 {
 	level endon("trigger");
-    trig = getEnt ("trigger_trap10", "targetname"); 
+    trig = getEnt ("trigger_trap10", "targetname");
     brush1 = getEnt ("trap10_1", "targetname");
 	brush2 = getEnt ("trap10_2", "targetname");
 	brush_trigger1 = getEnt("trap10_trigkill1","targetname"); //Name of your hurt_trigger
@@ -339,11 +339,11 @@ Trap10()
 	brush_trigger2 = getEnt("trap10_trigkill2","targetname"); //Name of your hurt_trigger
 	brush_trigger2 enableLinkTo(); // This is the most important part of the script. this allows you to move the trigger.
 	brush_trigger2 linkTo(brush2); //Now you must link the trigger to the base
-	
+
     trig waittill ("trigger", player);
-	
+
 	trig delete();
-	
+
 	brush1 moveZ(-272, 1);
 	brush2 moveZ(152, 1);
 	wait 2;
@@ -354,13 +354,13 @@ Trap10()
 Trap11()
 {
 	level endon("trigger");
-	trig = getEnt ("trigger_trap11", "targetname"); 
+	trig = getEnt ("trigger_trap11", "targetname");
 	brush = getEnt ("trap11", "targetname");
-    
+
     trig waittill ("trigger", player);
-	
+
 	trig delete();
-	
+
 	while(1)
 	{
 		brush moveZ (-168, 3);
@@ -373,28 +373,28 @@ Trap11()
 Trap12()
 {
 	level endon("trigger");
-	trig = getEnt ("trigger_trap12", "targetname"); 
+	trig = getEnt ("trigger_trap12", "targetname");
 	brush = getEnt ("trap12", "targetname");
-    
+
     trig waittill ("trigger", player);
 
 	trig delete();
-	
+
 	brush notSolid();
-	brush hide(); 
+	brush hide();
 }
 
 Trap13()
 {
 	level endon("trigger");
-	trig = getEnt ("trigger_trap13", "targetname"); 
+	trig = getEnt ("trigger_trap13", "targetname");
 	brush1 = getEnt ("trap13_1", "targetname");
 	brush2 = getEnt ("trap13_2", "targetname");
-	
+
     trig waittill ("trigger", player);
-	
+
 	trig delete();
-	
+
 	brush1 moveY (320, 2);
 	brush2 moveY (-320, 2);
 	wait 4;
@@ -405,14 +405,14 @@ Trap13()
 Trap14()
 {
 	level endon("trigger");
-	trig = getEnt ("trigger_trap14", "targetname"); 
+	trig = getEnt ("trigger_trap14", "targetname");
 	brush1 = getEnt ("trap14_1", "targetname");
 	brush2 = getEnt ("trap14_2", "targetname");
 
     trig waittill ("trigger", player);
-	
+
 	trig delete();
-	
+
 	x = randomInt(2);
     if(x == 0)
     {
@@ -432,11 +432,11 @@ Trap15()
 	spikes_trigger = getEnt("trap15_trigkill","targetname"); //Name of your hurt_trigger
 	spikes_trigger enableLinkTo(); // This is the most important part of the script. this allows you to move the trigger.
 	spikes_trigger linkTo(spikes); //Now you must link the trigger to the base
-	
+
 	trig waittill("trigger", player);
-	
+
 	trig delete();
-	
+
 	spikes moveZ(40, 3);
 	wait 4;
 	spikes moveZ(-40, 4);
@@ -487,7 +487,7 @@ OtherShit()
 DeagleSecret()
 {
 	trig = getEnt("trigger_deaglesecret","targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger", player);
@@ -506,7 +506,7 @@ DeagleBack()
 	for(;;)
 	{
 		trig waittill ("trigger", player);
-		
+
 		player setOrigin(deagleback.origin);
 		player setPlayerAngles(deagleback.angles );
 	}
@@ -545,7 +545,7 @@ SniperAmmo2()
 ActiMover()
 {
 	brush = getEnt("acti_mover","targetname");
-	
+
 	while(1)
 	{
 		wait 1;
@@ -578,7 +578,7 @@ HardEnd()
 	for(;;)
 	{
 		trig waittill ("trigger", player);
-		
+
 		player setOrigin(hardend.origin);
 		player setPlayerAngles(hardend.angles );
 		player thread sr\api\_speedrun::finishWay("secret_1");
@@ -594,7 +594,7 @@ SecretFail1()
 	for(;;)
 	{
 		trig waittill ("trigger", player);
-		
+
 		player setOrigin(fail1.origin);
 		player setPlayerAngles(fail1.angles );
 	}
@@ -604,11 +604,11 @@ SecretFail2()
 {
 	trig = getEnt ("secret_fail2", "targetname");
 	fail2 = getEnt ("secretfail2_origin", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill ("trigger", player);
-		
+
 		player setOrigin(fail2.origin);
 		player setPlayerAngles(fail2.angles );
 	}
@@ -618,11 +618,11 @@ SecretFail3()
 {
 	trig = getEnt ("secret_fail3", "targetname");
 	fail3 = getEnt ("secretfail3_origin", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill ("trigger", player);
-		
+
 		player setOrigin(fail3.origin);
 		player setPlayerAngles(fail3.angles );
 	}
@@ -632,7 +632,7 @@ SecretFail4()
 {
 	trig = getEnt ("secret_fail4", "targetname");
 	fail4 = getEnt ("secretfail4_origin", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill ("trigger", player);
@@ -646,11 +646,11 @@ SecretFail5()
 {
 	trig = getEnt ("secret_fail5", "targetname");
 	fail5 = getEnt ("secretfail5_origin", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill ("trigger", player);
-		
+
 		player setOrigin(fail5.origin);
 		player setPlayerAngles(fail5.angles );
 	}
@@ -660,11 +660,11 @@ SecretFail6()
 {
 	trig = getEnt ("secret_fail6", "targetname");
 	fail6 = getEnt ("secretfail6_origin", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill ("trigger", player);
-		
+
 		player setOrigin(fail6.origin);
 		player setPlayerAngles(fail6.angles );
 	}
@@ -674,7 +674,7 @@ SecretFail7()
 {
 	trig = getEnt ("secret_fail7", "targetname");
 	fail7 = getEnt ("secretfail7_origin", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill ("trigger", player);
@@ -688,11 +688,11 @@ SecretFail8()
 {
 	trig = getEnt ("secret_fail8", "targetname");
 	fail8 = getEnt ("secretfail8_origin", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill ("trigger", player);
-		
+
 		player setOrigin(fail8.origin);
 		player setPlayerAngles(fail8.angles );
 	}
@@ -702,11 +702,11 @@ SecretFail11()
 {
 	trig = getEnt ("secret_fail11", "targetname");
 	fail11 = getEnt ("secretfail11_origin", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill ("trigger", player);
-		
+
 		player setOrigin(fail11.origin);
 		player setPlayerAngles(fail11.angles );
 	}
@@ -727,11 +727,11 @@ SecretFail12()
 StartMenu()
 {
 	trig = getEnt("trigger_musicmenu", "targetname");
-       
+
 	while(1)
 	{
 		trig waittill ( "trigger", player );
-		
+
 		player thread MusicMenu();
 	}
 }
@@ -739,20 +739,20 @@ StartMenu()
 MusicMenu()
 {
 	trig = getEnt("trigger_musicmenu", "targetname");
-	
+
 		self endon( "disconnect" );
 		self endon( "death" );
 		self endon( "spectator" );
-	
+
         /* [AUTO DELETE] self openMenu( "inferno" ); */
-       
+
         while(1)
         {
                 self waittill( "menuresponse", menu, response );
                 if( menu != "inferno" )
                         continue;
                 switch( response )
-                {		
+                {
 						case "song1":
 								self iPrintlnBold("Now Playing: FFDP - Coming Down");
 								/* [AUTO DELETE] self playLocalSound("down"); */
@@ -785,16 +785,16 @@ MusicMenu()
 						default:
 								break;
                 }
-                       
+
         }
 }
 
 FirstPlace()
 {
 	trig = getEnt("trigger_firstplace", "targetname");
-	
+
 	trig waittill("trigger", player);
-	
+
 	/* [AUTO DELETE] iPrintlnBold(player.name+ " ^3 has finished the map in First Place!"); */
 }
 
@@ -833,7 +833,7 @@ TestClient(team)
 
     while(!isdefined(self.pers["team"]))
         wait .05;
-        
+
     self notify("menuresponse", game["menu_team"], team);
     wait 0.5;
 }
@@ -855,13 +855,13 @@ DemKings()
 SecretRpg1()
 {
 	trig = getEnt ("trigger_secretrpg1" , "targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger", player);
-	
-		 player giveWeapon( "rpg_mp" ); 
-		 player giveMaxAmmo( "rpg_mp" ); 
+
+		 player giveWeapon( "rpg_mp" );
+		 player giveMaxAmmo( "rpg_mp" );
 		 player switchToWeapon( "rpg_mp" );
 	}
 }
@@ -869,13 +869,13 @@ SecretRpg1()
 SecretRpg2()
 {
 	trig = getEnt ("trigger_secretrpg2" , "targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger", player);
-		
-		 player giveWeapon( "rpg_mp" ); 
-		 player giveMaxAmmo( "rpg_mp" ); 
+
+		 player giveWeapon( "rpg_mp" );
+		 player giveMaxAmmo( "rpg_mp" );
 		 player switchToWeapon( "rpg_mp" );
 	}
 }
@@ -883,13 +883,13 @@ SecretRpg2()
 SecretRpg3()
 {
 	trig = getEnt ("trigger_secretrpg3" , "targetname");
-	
+
 	while(1)
 	{
 		trig waittill("trigger", player);
-		
-		 player giveWeapon( "rpg_mp" ); 
-		 player giveMaxAmmo( "rpg_mp" ); 
+
+		 player giveWeapon( "rpg_mp" );
+		 player giveMaxAmmo( "rpg_mp" );
 		 player switchToWeapon( "rpg_mp" );
 	}
 }
@@ -897,11 +897,11 @@ SecretRpg3()
 MysteryBox1()
 {
 	trig = getEnt ("trigger_mysterybox1" , "targetname");
-		
+
 	for(;;)
 	{
 		trig waittill("trigger", player);
-		
+
 		/* [AUTO DELETE] player iPrintlnBold("Retrieving Weapon...."); */
 		wait 2;
 		/* [AUTO DELETE] player giveWeapon("p90_mp"); */
@@ -913,11 +913,11 @@ MysteryBox1()
 MysteryBox2()
 {
 	trig = getEnt ("trigger_mysterybox2" , "targetname");
-		
+
 	for(;;)
 	{
 		trig waittill("trigger", player);
-		
+
 		/* [AUTO DELETE] player iPrintlnBold("Retrieving Weapon...."); */
 		wait 2;
 		/* [AUTO DELETE] player giveWeapon("p90_mp"); */
@@ -961,7 +961,7 @@ BounceReset()
 	trig = getEnt ("bounce_reset", "targetname");
 	jumper = getEnt ("jumper_reset", "targetname");
 	acti = getEnt ("acti_reset", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill ("trigger", player);
@@ -970,10 +970,10 @@ BounceReset()
 			player SetOrigin(jumper.origin);
 			player SetPlayerAngles( jumper.angles );
 		}
-		else if(player.pers["team"] == "axis")	
+		else if(player.pers["team"] == "axis")
 		{
 			player SetOrigin(acti.origin);
-			player SetPlayerAngles( acti.angles );			
+			player SetPlayerAngles( acti.angles );
 		}
 	}
 }
@@ -1029,7 +1029,7 @@ Credits()
 Arrow()
 {
 	brush = getEnt("arrow_move","targetname");
-	
+
 	while(1)
 	{
 		wait .001;
@@ -1068,7 +1068,7 @@ ActiJump1()
 	air2 = getEnt ("acti_air2","targetname");
 	air3 = getEnt ("acti_air3","targetname");
 	air4 = getEnt ("acti_air4","targetname");
-	
+
 	level._effect[ "beacon_glow" ] = loadfx( "misc/ui_pickup_available" );
 	maps\mp\_fx::loopfx("beacon_glow", (glow.origin), 3, (glow.origin) + (0, 0, 90));
 
@@ -1100,13 +1100,13 @@ ActiJump1()
 Mover1()
 {
     brush = getEnt("mover","targetname");
-	
+
 }
 
 Mover2()
 {
     brush = getEnt("mover2","targetname");
-	
+
 }
 
 Enddoors()
@@ -1128,19 +1128,19 @@ SecretRoom()
 	for(;;)
 	{
 		trig waittill ("trigger", player);
-	
 
-		/* [AUTO DELETE] player iPrintlnBold("^3You Found the ^1Secret Room!^6:3"); */	
-		
+
+		/* [AUTO DELETE] player iPrintlnBold("^3You Found the ^1Secret Room!^6:3"); */
+
 		if(player.pers["team"] == "allies")
 		{
 			player setOrigin(secret.origin);
 			player setPlayerAngles(secret.angles );
 		}
-		else if(player.pers["team"] == "axis")	
+		else if(player.pers["team"] == "axis")
 		{
 			player setOrigin(secret.origin);
-			player setPlayerAngles(secret.angles );			
+			player setPlayerAngles(secret.angles );
 		}
 	}
 }
@@ -1156,15 +1156,15 @@ startsteps()
 {
 	start = getEnt("elevator_start", "targetname");
 	end = getEnt("elevator_end", "targetname");
-	
+
 	step = [];
 	for( i = 1; i < 18; i++ )
 	{
 		step[i] = getEnt( "step_"+(i+1), "targetname" );
 	}
-	
+
 	//wait 0.1;
-	
+
 	while( 1 )
 	{
 		for( i = 0; i < step.size; i++ )

@@ -3,26 +3,26 @@
 
 main()
 {
-thread sr\api\_map::createSpawn((-213, 981, 160), 270);
+thread sr\api\_map::createSpawnOrigin((-213, 981, 160), 270);
  maps\mp\_load::main();
- 
+
  game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"] = "desert";
- 
 
-	
+
+
 	setdvar( "r_specularcolorscale", "1" );
 
 	setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
 	setdvar("r_glowskybleedintensity0",".1");
-	
+
 	level.boom_fx = LoadFx("explosions/default_explosion");
-	
+
 	visionSetNaked("mp_dr_periglo");
 	setDvar("r_filmUseTweaks", "1");
 	setDvar("r_lightMap", "2");
@@ -30,7 +30,7 @@ thread sr\api\_map::createSpawn((-213, 981, 160), 270);
 	setDvar("bg_falldamageminheight", 100000 );
 	precacheMenu("songs");
 	precacheShader("loadscreen_mp_dr_periglo");
-	
+
 	//thread trap1();
 	//thread trap2();
 	//thread trap3();
@@ -47,7 +47,7 @@ thread sr\api\_map::createSpawn((-213, 981, 160), 270);
 	// thread musics();
 	thread startdoor();
 
-	
+
 	addTriggerToList( "trig_trap1" );
 	addTriggerToList( "trig_trap2" );
 	addTriggerToList( "trig_trap4" );
@@ -58,9 +58,9 @@ thread sr\api\_map::createSpawn((-213, 981, 160), 270);
 
 		thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	// thread sr\api\_speedrun::createEndMap((-1287, 1923, 480), 120, 100);
-	
+
 }
-	
+
 	addTriggerToList( name )
 {
   if( !isDefined( level.trapTriggers ) )
@@ -90,41 +90,41 @@ musics()
 
 songMenu()
 {
-	
+
 	self endon( "death" );
 	self endon( "disconnect" );
 	self endon( "song_picked" );
- 
+
 	self openMenu("songs");
-	
+
 	self thread cleanUpOnPick();
 	self thread cleanUpOnDeath();
- 
+
 	i = 0;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 160, 200, 0.6, "left", "top", 2 );
 	self.hud_music[i].sort = 880;
 	self.hud_music[i] setShader( "loadscreen_mp_dr_periglo", 360, 200 );
- 
+
 	i++;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 288, 358, 1, "center", "top", 1.4 );
 	self.hud_music[i].sort = 885;
 	self.hud_music[i].font = "objective";
 	self.hud_music[i] setText( "\n                 Press ^2[^71^2/^72^2/^73^2/^74^2/^75^^2]^7 To Play The Song." );
-	
+
 	j = 0;
 	self.hud_music_s[j] = braxi\_mod::addTextHud( self, 172, 230+(0*16), 0.93, "left", "top", 1.4 );
 	self.hud_music_s[j].sort = 900;
 	self.hud_music_s[j].font = "objective";
 	self.hud_music_s[j] setText("^21.^2Bbno$ & Y2k - Lalala (Renzyx Remix)\n^22.^2Panjabi MC - Mundian To Bach Ke\n^23.^2DJ Blyatman - Tsar Bomb\n^24.^2N3UR0 - ERROR-[404]\n^25.^2Noisestorm - Breakout [Monstercat Official Music Video]");
- 
+
 	for(;;)
 	{
 		self waittill("menuresponse", menu, response);
-		
+
 		if( menu == "songs")
 		{
 			songs = getDvar(response);
-			
+
 			if(response == "song1")
 			{
 				ambientPlay("song1");
@@ -134,7 +134,7 @@ songMenu()
 				self notify("song_picked");
 				break;
 			}
-			
+
 			if(response == "song2")
 			{
 				ambientPlay("song2");
@@ -144,7 +144,7 @@ songMenu()
 				self notify("song_picked");
 				break;
 			}
-			
+
 			if(response == "song3")
 			{
 				ambientPlay("song3");
@@ -154,7 +154,7 @@ songMenu()
 				self notify("song_picked");
 				break;
 			}
-			
+
 			if(response == "song4")
 			{
 				ambientPlay("song4");
@@ -164,7 +164,7 @@ songMenu()
 				self notify("song_picked");
 				break;
 			}
-			
+
 			if(response == "song5")
 			{
 				ambientPlay("song5");
@@ -174,7 +174,7 @@ songMenu()
 				self notify("song_picked");
 				break;
 			}
-			
+
 			else
 			{
 				ambientPlay("song1");
@@ -191,17 +191,17 @@ songMenu()
 cleanUpOnDeath()
 {
 	self waittill("death");
-	
+
 	if(isDefined(self.hud_music))
 	{
-		for(i=0; i<self.hud_music.size; i++)	
+		for(i=0; i<self.hud_music.size; i++)
 			if(isDefined(self.hud_music[i]))
 				self.hud_music[i] Destroy();
 	}
-	
+
 	if(isDefined(self.hud_music_s))
 	{
-		for(i=0; i<self.hud_music_s.size; i++)	
+		for(i=0; i<self.hud_music_s.size; i++)
 			if(isDefined(self.hud_music_s[i]))
 				self.hud_music_s[i] Destroy();
 	}
@@ -210,17 +210,17 @@ cleanUpOnDeath()
 cleanUpOnPick()
 {
 	self waittill("song_picked");
-	
+
 	if(isDefined(self.hud_music))
 	{
-		for(i=0; i<self.hud_music.size; i++)	
+		for(i=0; i<self.hud_music.size; i++)
 			if(isDefined(self.hud_music[i]))
 				self.hud_music[i] Destroy();
 	}
-	
+
 	if(isDefined(self.hud_music_s))
 	{
-		for(i=0; i<self.hud_music_s.size; i++)	
+		for(i=0; i<self.hud_music_s.size; i++)
 			if(isDefined(self.hud_music_s[i]))
 				self.hud_music_s[i] Destroy();
 	}
@@ -289,7 +289,7 @@ w = "Obamini";
    	self.hud_web.font = "objective";
    	self.hud_web.glowColor = (.1, .0, 1);
    	self.hud_web.glowAlpha = 1;
-   	self.hud_web.hideWhenInMenu = true;	
+   	self.hud_web.hideWhenInMenu = true;
 	while(1)
 	{
 	self.hud_web setText("^2" + v + "^4 " + x + "^3 " + w + " ");
@@ -488,7 +488,7 @@ trig = getent ( "name_trig", "targetname" );
 	while(true)
 	{
 		trig waittill ("trigger", player);
-		
+
 		if ((player.name == "Obamini"))
 		{
 			wall notsolid();
