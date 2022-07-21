@@ -1,17 +1,11 @@
 main()
 {
-spawnCollision( (112,3440,24), 70, 16 );
-spawnCollision( (16,3696,28), 70, 16 );
-spawnCollision( (-112,3440,28), 70, 16 );
-spawnCollision( (-112,3440,28), 70, 16 );
-spawnCollision( (1136,3936,28), 110, 16 );
-spawnCollision( (304,-352,20), 110, 48 );
 	maps\createart\mp_deathrun_long_art::main();
 	maps\mp\mp_deathrun_long_fx::main();
 	maps\mp\_load::main();
-	
+
 //	maps\mp\_compass::setupMiniMap( "compass_map_mp_deathrun_long" );
-	
+
 	/* [AUTO DELETE] ambientPlay( "ambient_crash" ); */
 
 	game["allies"] = "marines";
@@ -20,7 +14,7 @@ spawnCollision( (304,-352,20), 110, 48 );
 	game["defenders"] = "axis";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
+
 	setDvar( "compassmaxrange", "1024" );
 
 	// total traps: 15
@@ -241,7 +235,7 @@ trap_11()
 
 	trig waittill( "trigger", who );
 	trig delete();
-	
+
 	brushGroup1[randomInt(brushGroup1.size)] notSolid();
 	brushGroup2[randomInt(brushGroup2.size)] notSolid();
 }
@@ -255,7 +249,7 @@ trap_12()
 
 	trig waittill( "trigger", who );
 	trig delete();
-	
+
 	for( i = 0; i < 2; i++ )
 	{
 		brush rotateYaw( 512, 3 );

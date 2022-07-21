@@ -16,17 +16,4 @@ main()
 
 thread sr\api\_map::createSpawn((-156,-0,76),270);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
-
-thread door();
-}
-
-door()
-{
-door = getent("door","targetname");
-trig = getent("drown_water","targetname");
-
-wait 0.1;
-door delete();
-trig delete();
-
 }

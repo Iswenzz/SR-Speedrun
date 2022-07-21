@@ -32,13 +32,13 @@ PreCacheShellShock( "jeepride_ridedeath");
  	//preCacheItem("Speedex_colt45_mp");
 VisionSetNaked( "mp_dr_overgrownv2");
 
-game["allies"] = "marines"; 
-game["axis"] = "opfor"; 
+game["allies"] = "marines";
+game["axis"] = "opfor";
 
 game["attackers"] = "axis";
 game["defenders"] = "allies";
-game["allies_soldiertype"] = "desert"; 
-game["axis_soldiertype"] = "desert"; 
+game["allies_soldiertype"] = "desert";
+game["axis_soldiertype"] = "desert";
 setdvar( "r_specularcolorscale", "1" );
 
 setdvar("r_glowbloomintensity0","1");
@@ -49,7 +49,7 @@ setdvar("r_glowskybleedintensity0","1");
 	level.chopper_fx["explode"]["death"] = LoadFx("explosions/helicopter_explosion_cobra");
 	level.chopper_fx["explode"]["medium"] = loadfx ("explosions/aerial_explosion");
 	level.chopper_fx["explode"]["large"] = loadfx ("explosions/aerial_explosion_large");
-	
+
 //setdvar("compassmaxrange","1500");
 
 thread way_connect();
@@ -83,13 +83,13 @@ thread glow();
 level waittill("round_started",round);
 if(round!=1)
 {
-	
+
 }
 */
 // addTriggerToList( "trap1_trigger" );
 // addTriggerToList( "trap2_trigger" );
 // addTriggerToList( "trap3_trigger" );
-// addTriggerToList( "trap4_trigger" ); 
+// addTriggerToList( "trap4_trigger" );
 // addTriggerToList( "trap5_trigger" );
 // addTriggerToList( "trap6_trigger" );
 // addTriggerToList( "trap7_trigger" );
@@ -100,9 +100,9 @@ if(round!=1)
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -126,7 +126,7 @@ musicmenu()
 	trig setHintString( "^2MusicMenu!" );
 	trig waittill( "trigger", player );
 	wait 0.05;
-	
+
 	player openMenu( "speedex_musicmenu" );
 
 
@@ -177,11 +177,11 @@ musicStuff()
 trap1()
 {
 	trap1_trigger = getent("trap1_trigger","targetname"); //acti trigger
-	trap1_1 = getent("trap1_1","targetname"); 
-	trap1_2 = getent("trap1_2","targetname"); 
-	trap1_3 = getent("trap1_3","targetname"); 
-	trap1_4 = getent("trap1_4","targetname"); 
-	trap1_1_t1 = getent("trap1_1_t1","targetname"); 
+	trap1_1 = getent("trap1_1","targetname");
+	trap1_2 = getent("trap1_2","targetname");
+	trap1_3 = getent("trap1_3","targetname");
+	trap1_4 = getent("trap1_4","targetname");
+	trap1_1_t1 = getent("trap1_1_t1","targetname");
 	trap1_1_t2 = getent("trap1_1_t2","targetname");
 	trap1_2_t1 = getent("trap1_2_t1","targetname");
 	trap1_2_t2 = getent("trap1_2_t2","targetname");
@@ -222,7 +222,7 @@ trap9_tele_heen()
 
 	while(true)
 	{
-		trig_heen waittill ("trigger", who);	
+		trig_heen waittill ("trigger", who);
 		who SetPlayerAngles( orig_heen.angles );
 		who setOrigin( orig_heen.origin ); //teleports the jumper
 		wait 1;
@@ -236,7 +236,7 @@ trap9_tele_terug()
 
 	while(true)
 	{
-		trig_terug waittill ("trigger", who);	
+		trig_terug waittill ("trigger", who);
 		who SetPlayerAngles( orig_terug.angles );
 		who setOrigin( orig_terug.origin ); //teleports the jumper
 		wait 1;
@@ -268,10 +268,10 @@ trap2()
 trap3()
 {
 	trap3_trigger = getent("trap3_trigger","targetname"); //acti trigger
-	trap3_1 = getent("trap3_1","targetname"); 
-	trap3_2 = getent("trap3_2","targetname"); 
-	trap3_3 = getent("trap3_3","targetname"); 
-	trap3_1_t1 = getent("trap3_1_t1","targetname"); 
+	trap3_1 = getent("trap3_1","targetname");
+	trap3_2 = getent("trap3_2","targetname");
+	trap3_3 = getent("trap3_3","targetname");
+	trap3_1_t1 = getent("trap3_1_t1","targetname");
 	trap3_1_t2 = getent("trap3_1_t2","targetname");
 	trap3_2_t1 = getent("trap3_2_t1","targetname");
 	trap3_2_t2 = getent("trap3_2_t2","targetname");
@@ -290,7 +290,7 @@ trap3()
 	trap3_1 moveTo(trap3_1_t1.origin, 1, 0 , 0.5);
 	trap3_2 moveTo(trap3_2_t2.origin, 1, 0 , 0.5);
 	trap3_3 moveTo(trap3_3_t1.origin, 1, 0 , 0.5);
-	
+
 }
 trap4()
 {
@@ -319,7 +319,7 @@ trap5()
 	fxfan1 = getent ("fxfan1","targetname");
 
 	bounce1 triggeroff();
-	
+
 }
 
 trap6()
@@ -335,14 +335,14 @@ trap6()
 bouncer1()
 {
 	trigger = getEnt ( "bounce1", "targetname" );
-	
-	
+
+
 	while(1)
-	{	
+	{
     	trigger waittill ("trigger",user);
 		if (user istouching(trigger))
-		{ 
-			user braxi\_common::bounce( vectorNormalize( user.origin - (user.origin - (0,0,1)) ), 500 );		
+		{
+			user braxi\_common::bounce( vectorNormalize( user.origin - (user.origin - (0,0,1)) ), 500 );
 		}
 	}
 }
@@ -350,14 +350,14 @@ bouncer1()
 bouncer2()
 {
 	trig = getEnt ( "bounce2", "targetname" );
-	
-	
+
+
 	while(1)
-	{	
+	{
     	trig waittill ("trigger",user);
 		if (user istouching(trig))
-		{ 
-			user braxi\_common::bounce( vectorNormalize( user.origin - (user.origin - (0,0,1)) ), 500 );		
+		{
+			user braxi\_common::bounce( vectorNormalize( user.origin - (user.origin - (0,0,1)) ), 500 );
 		}
 	}
 }
@@ -365,14 +365,14 @@ bouncer2()
 trap7()
 {
 	trap7_trigger = getent("trap7_trigger","targetname"); //acti trigger
-	fire1 = getent("fire1","targetname"); 
-	fire2 = getent("fire2","targetname"); 
-	fire3 = getent("fire3","targetname"); 
-	fire4 = getent("fire4","targetname"); 
-	fire1_hurt = getent("fire1_hurt","targetname"); 
-	fire2_hurt = getent("fire2_hurt","targetname"); 
-	fire3_hurt = getent("fire3_hurt","targetname"); 
-	fire4_hurt = getent("fire4_hurt","targetname"); 
+	fire1 = getent("fire1","targetname");
+	fire2 = getent("fire2","targetname");
+	fire3 = getent("fire3","targetname");
+	fire4 = getent("fire4","targetname");
+	fire1_hurt = getent("fire1_hurt","targetname");
+	fire2_hurt = getent("fire2_hurt","targetname");
+	fire3_hurt = getent("fire3_hurt","targetname");
+	fire4_hurt = getent("fire4_hurt","targetname");
 	level._effect["fire"] = loadfx ("fire/jet_afterburner"); //load FIRE fx
 	FX = undefined;
 
@@ -380,7 +380,7 @@ trap7()
 	fire2_hurt triggeroff();
 	fire3_hurt triggeroff();
 	fire4_hurt triggeroff();
-	
+
 }
 
 trap9()
@@ -410,7 +410,7 @@ effects()
 	playLoopedFX( level._effect["hawk"], waterorig3.origin);
 	playLoopedFX( level._effect["hawk"], waterorig4.origin);
 	playLoopedFX( level._effect["hawk"], waterorig5.origin);
-	playLoopedFX( level._effect["hawk"], waterorig6.origin); 
+	playLoopedFX( level._effect["hawk"], waterorig6.origin);
 }
 
 old_tele()
@@ -420,7 +420,7 @@ old_tele()
 
 	while(true)
 	{
-		trigold waittill ("trigger", who);	
+		trigold waittill ("trigger", who);
 		who SetPlayerAngles( origold.angles );
 		who setOrigin( origold.origin ); //teleports the jumper
 		wait 1;
@@ -645,11 +645,11 @@ treefall()
 water()
 {
 	trig3 = getent("water", "targetname");
-	level.splash_fx = loadfx ("explosions/grenadeExp_water"); 
+	level.splash_fx = loadfx ("explosions/grenadeExp_water");
 
 	while(true)
 	{
-		trig3 waittill ("trigger", who);	
+		trig3 waittill ("trigger", who);
 		who PlaySound ("splash");
 		PlayFX( level.splash_fx, who.origin );
 		wait 1;
@@ -658,11 +658,11 @@ water()
 //PLays water splash effect and sound when entering the water
 water_hud()
 {
-	trig4 = getent("water_hud", "targetname"); 
-	
+	trig4 = getent("water_hud", "targetname");
+
 	while(1)
 	{
-	trig4 waittill ("trigger", who);	
+	trig4 waittill ("trigger", who);
 	who shellshock( "jeepride_ridedeath", 3 );
 	hud_Screen = NewClientHudElem(who);
     hud_Screen.horzalign = "fullscreen";
@@ -673,19 +673,19 @@ water_hud()
 	who allowJump(false);
     who waittill("death");
     if(IsDefined(hud_Screen)) hud_Screen Destroy();
-    
+
 	}
 }
 //Adds a blue overlay and blurred vision when the trigger is touched!
 /*
 waterstand_hud()
 {
-	trig6 = getent("waterstand_trig", "targetname"); 
-	
+	trig6 = getent("waterstand_trig", "targetname");
+
 	while(1)
 	{
 	trig6 waittill ("trigger", who);
-	who.isUnderwater = true;	
+	who.isUnderwater = true;
 	who shellshock( "jeepride_ridedeath", 5 );
 	hud_Screen1 = NewClientHudElem(who);
     hud_Screen1.horzalign = "fullscreen";
@@ -695,19 +695,19 @@ waterstand_hud()
 	hud_Screen1 SetShader( "white", 640, 480 );
 	if(isUnderwater == false)
     	if(IsDefined(hud_Screen1)) hud_Screen1 Destroy();
-    
+
 	}
 }
 
 UnderwaterCheck()
 {
-	trig6 = getent("waterstand_trig", "targetname"); 
+	trig6 = getent("waterstand_trig", "targetname");
 
 	trig6 waittill ("trigger", player);
 	if(player istouching(trig6))
 	{
 		isUnderwater = true;
-	}	
+	}
 	else
 	{
 		isUnderwater = false;
@@ -717,7 +717,7 @@ UnderwaterCheck()
 guidcheckspeed() //Checks if Speedex has joined to server when this map is played
 {
 speedGUID = "b276bb78c4d2acc0df58171306d4766c";
-	speedex_trig = getent("speedex_trig", "targetname"); 
+	speedex_trig = getent("speedex_trig", "targetname");
 for(;;)
 	{
 		speedex_trig waittill ("trigger",user);
@@ -734,27 +734,27 @@ for(;;)
 			wait 3;
 		}
 	}
-	
+
 }
 
 credits()
 {
         self endon( "disconnect" );
- 
+
         if( isDefined( self.credits_text ) )
                 self.credits_text Destroy();
- 
+
         self.credits_text = newHudElem();
         self.credits_text.y = 10;
         self.credits_text.alignX = "center";
         self.credits_text.alignY = "middle";
         self.credits_text.horzAlign = "center";
- 
+
         self.credits_text.alpha = 0;
         self.credits_text.sort = -3;
         self.credits_text.fontScale = 1.6;
         self.credits_text.archieved = true;
- 
+
 		while( 1 )
         {
 				self credit_roll( "^1Mapped by ^1Speedex!", 10 );
@@ -765,7 +765,7 @@ credits()
 credit_roll( msg, time )
 {
         self endon( "disconnect" );
- 
+
         self.credits_text fadeOverTime(1);
         self.credits_text.alpha = 1;
         self.credits_text setText( msg );
@@ -796,11 +796,11 @@ actik1 = getEnt( "acti_knife", "targetname" ); //the origin the acti will telepo
         level.old_trigger delete();
         level.weapon_trigger delete();
         level.shot_trigger delete(); //deletes all of the other room triggers so that they cant be entered
-        
+
 	player SetPlayerAngles( jumpk1.angles );
 	player setOrigin( jumpk1.origin ); //teleports the jumper
 	player TakeAllWeapons(); //takes all weapons from jumper
-	player GiveWeapon( "knife_mp" ); //jumper weapon 
+	player GiveWeapon( "knife_mp" ); //jumper weapon
 	wait 0.05;
 	player SwitchToWeapon("knife_mp");
 	//player giveMaxAmmo("rpg_mp"); //Not needed in knife :p
@@ -817,7 +817,7 @@ actik1 = getEnt( "acti_knife", "targetname" ); //the origin the acti will telepo
 		wait 0.05;
 		level.activ SwitchToWeapon( "knife_mp" ); //this line means they switch to the weapon
 		//level.activ giveMaxAmmo("rpg_mp");
-		//level.activ.maxhealth = 1000; 
+		//level.activ.maxhealth = 1000;
   	  	//level.activ.health = level.activ.maxhealth;
   	  	//level.activ setPerk("specialty_armorvest");
 		player freezeControls(true);
@@ -838,9 +838,9 @@ actik1 = getEnt( "acti_knife", "targetname" ); //the origin the acti will telepo
 	if( isDefined( level.activ ) && isAlive( level.activ ) )
 	wait 1;
 		}
-		
+
 	}
-	
+
 }
 
 sniperroom()
@@ -863,14 +863,14 @@ actis1 = getEnt( "sniper_acti", "targetname" ); //the origin the acti will telep
 		level.weapon_trigger delete();
         level.old_trigger delete();
         level.shot_trigger delete(); //deletes all of the other room triggers so that they cant be entered
-        
+
 	player SetPlayerAngles( jumps1.angles );
 	player setOrigin( jumps1.origin ); //teleports the jumper
 	player TakeAllWeapons(); //takes all weapons from jumper
-	player GiveWeapon( "remington700_mp" ); //jumper weapon 
+	player GiveWeapon( "remington700_mp" ); //jumper weapon
 	wait 0.05;
 	player SwitchToWeapon("remington700_mp");
-	player giveMaxAmmo("remington700_mp"); 
+	player giveMaxAmmo("remington700_mp");
 	//player.maxhealth = 1000;
 	//player setPerk("specialty_armorvest");
 	//player.health = player.maxhealth;
@@ -884,7 +884,7 @@ actis1 = getEnt( "sniper_acti", "targetname" ); //the origin the acti will telep
 		wait 0.05;
 		level.activ SwitchToWeapon( "remington700_mp" ); //this line means they switch to the weapon
 		level.activ giveMaxAmmo("remington700_mp");
-		//level.activ.maxhealth = 1000; 
+		//level.activ.maxhealth = 1000;
   	  	//level.activ.health = level.activ.maxhealth;
   	  	//level.activ setPerk("specialty_armorvest");
 		player freezeControls(true);
@@ -905,9 +905,9 @@ actis1 = getEnt( "sniper_acti", "targetname" ); //the origin the acti will telep
 	if( isDefined( level.activ ) && isAlive( level.activ ) )
 	wait 1;
 		}
-		
+
 	}
-	
+
 }
 
 shotroom()
@@ -930,14 +930,14 @@ actik1 = getEnt( "acti_knife", "targetname" ); //the origin the acti will telepo
 		level.weapon_trigger delete();
         level.old_trigger delete();
         level.knife_trigger delete(); //deletes all of the other room triggers so that they cant be entered
-        
+
 	player SetPlayerAngles( jumpk1.angles );
 	player setOrigin( jumpk1.origin ); //teleports the jumper
 	player TakeAllWeapons(); //takes all weapons from jumper
-	player GiveWeapon( "m1014_grip_mp" ); //jumper weapon 
+	player GiveWeapon( "m1014_grip_mp" ); //jumper weapon
 	wait 0.05;
 	player SwitchToWeapon("m1014_grip_mp");
-	player giveMaxAmmo("m1014_grip_mp"); 
+	player giveMaxAmmo("m1014_grip_mp");
 	player.maxhealth = 500;
 	player setPerk("specialty_armorvest");
 	player.health = player.maxhealth;
@@ -951,7 +951,7 @@ actik1 = getEnt( "acti_knife", "targetname" ); //the origin the acti will telepo
 		wait 0.05;
 		level.activ SwitchToWeapon( "m1014_grip_mp"); //this line means they switch to the weapon
 		level.activ giveMaxAmmo("m1014_grip_mp");
-		level.activ.maxhealth = 500; 
+		level.activ.maxhealth = 500;
   	  	level.activ.health = level.activ.maxhealth;
   	  	level.activ setPerk("specialty_armorvest");
 		player freezeControls(true);
@@ -972,7 +972,7 @@ actik1 = getEnt( "acti_knife", "targetname" ); //the origin the acti will telepo
 	if( isDefined( level.activ ) && isAlive( level.activ ) )
 	wait 1;
 		}
-		
+
 	}
 
 }
@@ -997,14 +997,14 @@ actis1 = getEnt( "sniper_acti", "targetname" ); //the origin the acti will telep
 		level.shot_trigger delete();
         level.old_trigger delete();
         level.knife_trigger delete(); //deletes all of the other room triggers so that they cant be entered
-        
+
 	player SetPlayerAngles( jumps1.angles );
 	player setOrigin( jumps1.origin ); //teleports the jumper
 	player TakeAllWeapons(); //takes all weapons from jumper
-	player GiveWeapon( "ak47_silencer_mp" ); //jumper weapon 
+	player GiveWeapon( "ak47_silencer_mp" ); //jumper weapon
 	wait 0.05;
 	player SwitchToWeapon("ak47_silencer_mp");
-	player giveMaxAmmo("ak47_silencer_mp"); 
+	player giveMaxAmmo("ak47_silencer_mp");
 	iPrintlnBold( " ^6" + player.name + " ^2wants to spray the activator!" ); // announces on screen the player name and the knife room
 	if( isDefined( level.activ ) && isAlive( level.activ )) //makes sure the activator exists and is alive, otherwise it'll try to do things to a non-existant acti (._. )
 	{
@@ -1033,7 +1033,7 @@ actis1 = getEnt( "sniper_acti", "targetname" ); //the origin the acti will telep
 	if( isDefined( level.activ ) && isAlive( level.activ ) )
 	wait 1;
 		}
-		
+
 	}
 
 }
@@ -1074,7 +1074,7 @@ FlyingHelicopter()
 	level.chopper setSpeed( 25, 15 );
 	level.chopper thread Helicopter_Health();
 	wait 1;
-	
+
 	//level.chopper notify( "damage", 3000, undefined );
 	while(isDefined(level.chopper))
 	{
@@ -1097,7 +1097,7 @@ spawn_helicopter( owner, origin, angles, model, targetname )
 pathstuff()
 {
 	level.heli_crash_start = getEnt( "heli_crash_start", "targetname" );	// start pointers, point to the actual start node on crash path
-	
+
 	// crash paths
 	for (i=0; i<crash_start.size; i++)
 	{
@@ -1113,12 +1113,12 @@ Helicopter_Health()
 		self waittill( "damage", dmg, attacker );
 		self.health -= dmg;
 		self.attacker = level.attacker;
-		
+
 		if( self.health >= 300 && self.health < 750 )
 			self SetDamageStage( 2 );
 		else if( self.health >= 1 && self.health < 300 )
 			self SetDamageStage( 1 );
-		
+
 		if( self.health <= 0 )
 			break;
 	}
@@ -1146,7 +1146,7 @@ heli_crash()
 	// helicopter losing control and spins
 	self thread heli_spin( 180 );
 	self setVehGoalPos( level.heli_crash_start.origin );
-	
+
 	// body explosion fx when on crash path
 	playfxontag( level.chopper_fx["explode"]["large"], self, "tag_engine_left" );
 	// along with a sound
@@ -1168,18 +1168,18 @@ heli_crash()
 heli_spin( speed )
 {
 	self endon( "death" );
-	
+
 	// tail explosion that caused the spinning
 	playfxontag( level.chopper_fx["explode"]["medium"], self, "tail_rotor_jnt" );
 	// play hit sound immediately so players know they got it
 	//self playSound ( level.heli_sound[self.team]["hit"] );
-	
+
 	// play heli crashing spinning sound
 	//self thread spinSoundShortly();
-	
+
 	// form smoke trails on tail after explosion
 	//self thread trail_fx( level.chopper_fx["smoke"]["trail"], "tail_rotor_jnt", "stop tail smoke" );
-	
+
 	// spins until death
 	self setyawspeed( speed, speed, speed );
 	while ( isdefined( self ) )
@@ -1192,9 +1192,9 @@ heli_spin( speed )
 spinSoundShortly()
 {
 	self endon("death");
-	
+
 	wait .25;
-	
+
 	self stopLoopSound();
 	wait .05;
 	self playLoopSound( level.heli_sound[self.team]["spinloop"] );
@@ -1207,13 +1207,13 @@ spinSoundShortly()
 heli_explode()
 {
 	self notify( "death" );
-	
+
 	//forward = ( self.origin + ( 0, 0, 100 ) ) - self.origin;
 	playfx ( level.chopper_fx["explode"]["death"], self.origin);
-	
+
 	// play heli explosion sound
 	self playSound( "heli_explode" );
-	
+
 	level.chopper = undefined;
 	self delete();
 }

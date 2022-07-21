@@ -5,16 +5,16 @@ main()
 {
 
 /*
-   
-   _____                 _    _          _ _   _ 
+
+   _____                 _    _          _ _   _
   / ____|               | |  | |        (_) \ | |  Map Made And Scripted by Sr kLeiN, I would like to thank NitroFire for always being helpful when I had problems.
  | (___  _ __   ______  | | _| |     ___ _|  \| |  I would also like to thank DarkSTEP for making the tutorial on how to add a music box to a map. This map took me around 3 days to make, it is my first deathrun map so I know it's not the best.
   \___ \| '__| |______| | |/ / |    / _ \ | . ` |
   ____) | |             |   <| |___|  __/ | |\  |
  |_____/|_|             |_|\_\______\___|_|_| \_|
 
-                   __ooooooooo__                                          
-              oOOOOOOOOOOOOOOOOOOOOOo 
+                   __ooooooooo__
+              oOOOOOOOOOOOOOOOOOOOOOo
           oOOOOOOOOOOOOOOOOOOOOOOOOOOOOOo
        oOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOo
      oOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOo
@@ -30,11 +30,11 @@ oOOOOOO OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO OOOOOOo
   *OOOOOO  *OOOOOOOOOOOOOOOOOOOOOOOOOOO*  OOOOOO*
    *OOOOOOo  *OOOOOOOOOOOOOOOOOOOOOOO*  oOOOOOO*
      *OOOOOOOo  *OOOOOOOOOOOOOOOOO*  oOOOOOOO*
-       *OOOOOOOOo  *OOOOOOOOOOO*  oOOOOOOOO*      
-          *OOOOOOOOo           oOOOOOOOO*      
-              *OOOOOOOOOOOOOOOOOOOOO*          
+       *OOOOOOOOo  *OOOOOOOOOOO*  oOOOOOOOO*
+          *OOOOOOOOo           oOOOOOOOO*
+              *OOOOOOOOOOOOOOOOOOOOO*
                    ""ooooooooo""
-*/        
+*/
 
     maps\mp\_load::main();
 
@@ -61,11 +61,11 @@ oOOOOOO OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO OOOOOOo
 
     visionSetNaked("mp_dr_minimal");
 
-    preCacheItem("725_mp");
-    preCacheItem("customknife_mp");
-    preCacheItem("l96_mp");
-    preCacheItem("msr_mp");
-    preCacheModel("plr_mrheyley_venom");
+    // preCacheItem("725_mp");
+    // preCacheItem("customknife_mp");
+    // preCacheItem("l96_mp");
+    // preCacheItem("msr_mp");
+    // preCacheModel("plr_mrheyley_venom");
 
     thread startdoor();
    // thread sniper();
@@ -140,7 +140,7 @@ oOOOOOO OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO OOOOOOo
     thread bigspin18();
     thread bigspin19();
     thread bigspin20();
- 
+
 
 
 
@@ -172,7 +172,7 @@ musicbox()
     player freezeControls(1);
     player musicmenu();
 }
- 
+
 musicmenu()
 {
     self endon( "disconnect" );
@@ -180,20 +180,20 @@ musicmenu()
     self endon( "spawned" );
     self endon( "joined_spectators" );
     self endon( "music thread terminated" );
- 
+
     self.hud_music = [];
     self.selection = 0;
- 
+
     i = 0;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 160, 200, 0.6, "left", "top", 2 );
     self.hud_music[i].sort = 879;
-    self.hud_music[i] setShader( "black", 300, 160 ); 
+    self.hud_music[i] setShader( "black", 300, 160 );
     i++;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 167, 204, 0.6, "left", "top", 1.4 );
     self.hud_music[i].sort = 880;
-    self.hud_music[i] setShader( "black", 300, 20 ); 
+    self.hud_music[i] setShader( "black", 300, 20 );
     self.hud_music[i].color=(0,0,0);
-    
+
     i++;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 210, 204, 0.93, "left", "top", 2 );
     self.hud_music[i].sort = 884;
@@ -201,8 +201,8 @@ musicmenu()
     self.hud_music[i].glowalpha=1;
     if(isdefined(level.randomcolor))
         self.hud_music[i].glowcolor=level.randomcolor;
-    else 
-        self.hud_music[i].glowcolor=(0,0,0); 
+    else
+        self.hud_music[i].glowcolor=(0,0,0);
     i++;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 250, 360, 1, "center", "bottom", 1.4 );
     self.hud_music[i].sort = 900;
@@ -216,32 +216,32 @@ musicmenu()
         self.hud_music[i].glowalpha=1;
         if(isdefined(level.randomcolor))
             self.hud_music[i].glowcolor=level.randomcolor;
-        else 
+        else
             self.hud_music[i].glowcolor=(0,0,0);
- 
+
         entry = level.music[j];
         self.hud_music[i] setText(entry["song"]);
     }
- 
+
     i++;
     self.hud_music[self.hud_music.size] = braxi\_mod::addTextHud( self, 167, 230, 0.4, "left", "top", 1.4 );
     self.hud_music[i].sort = 881;
     indicator = self.hud_music[self.hud_music.size-1];
     indicator setShader( "black", 306, 17 );
     indicator.color=(0,0,0);
- 
+
     while(self.sessionstate == "playing")
     {
         wait 0.1;
- 
+
         if(self attackButtonPressed())
         {
             self.hud_music[4+self.selection].alpha = 0.93;
- 
+
             self.selection++;
             if( self.selection >= level.music.size )
                 self.selection = 0;
- 
+
             item = self.hud_music[4+self.selection];
             item.alpha = 1;
             indicator.y = item.y;
@@ -249,7 +249,7 @@ musicmenu()
         else if(self useButtonPressed())
         {
              thread createhud2("^4>>Now playing: ^7"+level.music[self.selection]["song"]+"^4<<");
-             
+
             ambientPlay(level.music[self.selection]["alias"]);
             self freezeControls(0);
             break;
@@ -260,7 +260,7 @@ musicmenu()
            break;
         }
     }
-    
+
     if(!isdefined(self))
         return;
     if(isdefined(self.hud_music))
@@ -284,9 +284,9 @@ secret_song()
     trig = getEnt("secret_song", "targetname");
     trig waittill("trigger", player);
     ambientPlay("secret");
-    thread createhud2("^4>>Now playing: ^7Nas - N.Y. State of Mind^4<<");  
+    thread createhud2("^4>>Now playing: ^7Nas - N.Y. State of Mind^4<<");
     trig delete();
-    
+
 }
 
 
@@ -326,7 +326,7 @@ spin2()
 spin3()
 {
     spin3 = getEntArray("spin3", "targetname");
-    
+
     for(;;)
     {
         spin3[0] rotateYaw(720, 4);
@@ -448,7 +448,7 @@ spin13()
 spin14()
 {
     spin15 = getEntArray("spin15", "targetname");
-    
+
     for(;;)
     {
         spin15[0] rotateYaw(720, 4);
@@ -523,7 +523,7 @@ shotgun()
             level.firstenter=false;
         }
         wait(0.05);
-        
+
         player setOrigin( telejumporigin.origin );
         player setplayerAngles( telejumporigin.angles );
         player TakeAllWeapons();
@@ -538,13 +538,13 @@ shotgun()
         level.activ GiveWeapon( "725_mp" );
         level.activ GiveMaxAmmo( "725_mp" );
         wait .05;
-        level.activ SwitchToWeapon("725_mp"); 
-        thread createhud( " ^7" + player.name + " ^4 has entered the Shotgun room!" );   
+        level.activ SwitchToWeapon("725_mp");
+        thread createhud( " ^7" + player.name + " ^4 has entered the Shotgun room!" );
         wait(0.05);
         player switchToWeapon( "725_mp" );
         level.activ SwitchToWeapon( "725_mp" );
-  
-  
+
+
         player waittill( "death" );
         level.PlayerInRoom = false;
         iPrintLnBold("^7"+ player.name + "^4 has died!");
@@ -554,7 +554,7 @@ shotgun()
 }
 
 
-sniper() 
+sniper()
 {
 level.sniper_trigger = getEnt("sniper_trig","targetname");
 level.old_trigger = getEnt("old_trig","targetname");
@@ -564,7 +564,7 @@ level.shotgun_trigger = getEnt("shotgun_trig", "targetname");
 level.teleactorigin = getEnt("sniper_activator", "targetname");
 telejumporigin = getEnt("sniper_jumper", "targetname");
 level.sniper_trigger setHintString("Press ^4&&1 ^7to enter the sniper room!");
-  
+
 while(1)
 {
 level.sniper_trigger waittill( "trigger", player );
@@ -576,14 +576,14 @@ if(level.firstenter==true)
 level.firstenter=false;
 }
 wait(0.05);
-  
+
 player SetOrigin( telejumporigin.origin );
 player setplayerangles( telejumporigin.angles );
 player TakeAllWeapons();
 player GiveWeapon("msr_mp");
 player GiveMaxAmmo("msr_mp");
 wait .05;
-player SwitchToWeapon("msr_mp");  
+player SwitchToWeapon("msr_mp");
 wait(0.05);
 level.activ SetOrigin (level.teleactorigin.origin);
 level.activ setplayerangles (level.teleactorigin.angles);
@@ -591,13 +591,13 @@ level.activ TakeAllWeapons();
 level.activ GiveWeapon( "msr_mp" );
 level.activ GiveMaxAmmo("msr_mp");
 wait .05;
-level.activ SwitchToWeapon("msr_mp"); 
-thread createhud( " ^7" + player.name + " ^4 has entered the Sniper room^8!" );   
+level.activ SwitchToWeapon("msr_mp");
+thread createhud( " ^7" + player.name + " ^4 has entered the Sniper room^8!" );
 wait(0.05);
 player switchToWeapon( "msr_mpor_mp" );
 level.activ SwitchToWeapon( "msr_mp" );
-  
-  
+
+
 player waittill( "death" );
 level.PlayerInRoom = false;
 iPrintLnBold("^7"+ player.name + "^4 has died!");
@@ -627,11 +627,11 @@ old()
         level.sniper_trigger delete();
         level.knife_trigger delete();
         level.shotgun_trigger delete();
-        
+
         door moveZ(160, 2);
         wait 2;
         door delete();
-        
+
     }
 }
 
@@ -656,22 +656,22 @@ return;
 if(level.firstenter==true)
 {
 level.firstenter=false;
-} 
+}
 wait(0.05);
-  
+
 player SetOrigin( telejumporigin.origin );
-player setplayerangles( telejumporigin.angles ); 
+player setplayerangles( telejumporigin.angles );
 player takeAllweapons( 1 );
 player giveWeapon("customknife_mp");
-player switchToWeapon("customknife_mp"); 
+player switchToWeapon("customknife_mp");
 wait(0.05);
 level.activ SetOrigin (level.acti_origin.origin);
 level.activ setplayerangles (level.acti_origin.angles);
 level.activ takeAllweapons( 1 );
 level.activ giveWeapon("customknife_mp");
 level.activ switchToweapon("customknife_mp");
-wait .05; 
-thread createhud( " ^7" + player.name + " ^4 has entered the Bounce Room!" );   
+wait .05;
+thread createhud( " ^7" + player.name + " ^4 has entered the Bounce Room!" );
 wait(0.05);
 
 player waittill( "death" );
@@ -708,7 +708,7 @@ knife()
     level.acti_origin = getEnt("knife_activator", "targetname");
     level.old_trigger = getEnt("old_trig", "targetname");
     level.knife_trigger setHintstring("Press ^4&&1 ^7to enter the knife room!");
-    
+
 
 while(1)
 {
@@ -719,22 +719,22 @@ return;
 if(level.firstenter==true)
 {
 level.firstenter=false;
-} 
+}
 wait(0.05);
-  
+
 player SetOrigin( telejumporigin.origin );
 player setplayerangles( telejumporigin.angles );
 player takeAllWeapons( 1 );
 player giveWeapon("customknife_mp");
-player switchToWeapon("customknife_mp");  
+player switchToWeapon("customknife_mp");
 wait(0.05);
 level.activ SetOrigin (level.acti_origin.origin);
 level.activ setplayerangles (level.acti_origin.angles);
 level.activ takeAllWeapons( 1 );
 level.activ giveWeapon("customknife_mp");
 level.activ switchToWeapon("customknife_mp");
-wait .05; 
-thread createhud( " ^8" + player.name + " ^4 has entered the knife Room!" );   
+wait .05;
+thread createhud( " ^8" + player.name + " ^4 has entered the knife Room!" );
 wait(0.05);
 
 player waittill( "death" );
@@ -750,19 +750,19 @@ bounce_fail()
     trig = getEnt("bounce_fail", "targetname");
     respawn_jumper = getEnt("bounce_jumper", "targetname");
     respawn_activator = getEnt("bounce_activator", "targetname");
-    
+
     while( 1 )
     {
          trig waittill( "trigger", player );
 
-        if( player.pers["team"] == "allies" ) 
+        if( player.pers["team"] == "allies" )
         {
             player SetPlayerAngles( respawn_jumper.angles );
             player SetOrigin( respawn_jumper.origin );
             player freezeControls( 1 );
             player freezeControls( 0 );
         }
-        else if( player.pers["team"] == "axis" ) 
+        else if( player.pers["team"] == "axis" )
         {
             level.activ setPlayerAngles ( respawn_activator.angles );
             level.activ setOrigin( respawn_activator.origin );
@@ -804,7 +804,7 @@ secret_finish()
         player thread sr\api\_speedrun::finishWay("secret_0");
         //player braxi\_rank::giveRankXP( "", 500 );
     }
-    
+
 
 }
 
@@ -849,13 +849,13 @@ trap2()
         trig waittill("trigger", player);
         trig delete();
         pusher[0] moveZ(-256, 2);
-        wait 2; 
+        wait 2;
         pusher[0] moveZ(256, 2);
         wait 2;
         pusher[0] delete();
         //player braxi\_rank::giveRankXP( "", 100 );
-        
-        
+
+
     }
 }
 
@@ -912,7 +912,7 @@ trap5()
     for(;;)
     {
         trig delete();
-        
+
         plat1 rotateYaw(720, 1);
         wait 2;
         plat2 rotateYaw(720, 1);
@@ -934,7 +934,7 @@ trap6()
     trig setHintString("Press ^4&&1 ^7to activate the trap!");
 
     pusher LinkTo(pusher2);
-    
+
     {
         trig waittill("trigger", player);
         trig delete();
@@ -1060,7 +1060,7 @@ trap11()
     {
         plat2 notSolid();
         plat1 notSolid();
-        
+
     }
 }
 
@@ -1280,7 +1280,7 @@ checkpoint3()
             player.secret = 3;
             player iPrintLn("checkpoint ^43/6");
             wait 0.05;
-               
+
         }
     }
 }
@@ -1337,7 +1337,7 @@ secret_steps()
     trig3 = getEnt("secret_trig3", "targetname");
     trig4 = getEnt("secret_trig4", "targetname");
     wall = getEnt("secret_wall", "targetname");
-    
+
     trig1 waittill("trigger", player);
     trig1 delete();
     iPrintLn("step complete.");

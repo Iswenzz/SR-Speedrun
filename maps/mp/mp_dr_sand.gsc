@@ -5,7 +5,7 @@ main()
 	maps\mp\mp_dr_sand\moving::main();
 	maps\mp\mp_dr_sand\effects::main();
 	maps\mp\mp_dr_sand\traps::main();
-	
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
@@ -23,7 +23,7 @@ main()
 	setDvar("bg_falldamageminheight", 9999999 );
 
 	thread sr\api\_speedrun::createEndMap((-10009,-8192,-2116), 250, 400);
-	
+
 	thread way_connect();
 	// thread message();
 	// thread message2();
@@ -33,7 +33,7 @@ main()
 	// thread deagle();
 	// thread knife();
 	// thread sniper();
-	
+
 	// thread music();
 }
 
@@ -41,12 +41,12 @@ main()
 way_connect()
 {
     wait 0.05;
-	
+
     sr\api\_speedrun::createNormalWays("Normal Way;");
 	sr\api\_speedrun::createSecretWays("Secret Way;");
 
 	thread secret_1();
-	
+
     for(;;)
     {
         level waittill( "connected", player );
@@ -74,7 +74,7 @@ secret_trig()
 
 	while(isDefined(self) && !self isTouching(trig))
 		wait .05;
-	
+
 	self sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste
 }
 
@@ -83,16 +83,16 @@ secret_1()
 	target = spawn("script_origin",(65,-11968,-964));
 	target.angles = (0,270,360);
 	trigger = spawn( "trigger_radius", (314,-408,76), 0, 70, 90 );
-	
+
 	wait 1;
 	// trigger.inAir = true;
 	trigger.radius = 70;
 	thread sr\api\_map::createTriggerFx(trigger, "secret");
-	
+
 	while(1)
 	{
 		trigger waittill ("trigger", player);
-	
+
 	    player SetPlayerAngles( target.angles );
         player setOrigin( target.origin );
 		player sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste
@@ -106,7 +106,7 @@ secret_1()
 	self waittill( "disconnect" );
 	self cleanUp();
 }
- 
+
 	onDeath()
 {
 	self endon( "disconnect" );
@@ -122,19 +122,19 @@ musicMenu()
 	self endon( "spawned" );
 	self endon( "joined_spectators" );
 	self endon( "music thread terminated" );
- 
+
 	self thread onDeath();
 	self thread onDisconnect();
-	
+
 	self.hud_music = [];
 	self.selection = 0;
- 
+
 	// create huds
 	i = 0;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 160, 200, 0.6, "left", "top", 2 );
 	self.hud_music[i].sort = 880;
 	self.hud_music[i] setShader( "black", 320, 160 );
-	
+
 	i++;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 210, 204, 0.93, "left", "top", 1.8 );
 	self.hud_music[i].sort = 884;
@@ -142,14 +142,14 @@ musicMenu()
 	self.hud_music[i].glowalpha=1;
 	if(isdefined(level.randomcolor))
 		self.hud_music[i].glowcolor=level.randomcolor;
-	else 
+	else
 		self.hud_music[i].glowcolor=(1,0,0);
 
 	i++;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 250, 360, 1, "center", "bottom", 1.4 );
 	self.hud_music[i].sort = 886;
 	self.hud_music[i] setText("Scroll: ^3[{+attack}] ^7| Select: ^3[{+activate}] ^7| Close: ^3[{+frag}]");
- 
+
 	for( j = 0; j < level.music.size; j++ )
 	{
 		i++;
@@ -159,31 +159,31 @@ musicMenu()
 		self.hud_music[i].glowalpha=1;
 		if(isdefined(level.randomcolor))
 			self.hud_music[i].glowcolor=level.randomcolor;
-		else 
+		else
 			self.hud_music[i].glowcolor=(1,0,0);
- 
+
 		entry = level.music[j];
 		self.hud_music[i] setText(entry["song"]);
 	}
- 
+
 	i++;
 	self.hud_music[self.hud_music.size] = braxi\_mod::addTextHud( self, 167, 230, 0.4, "left", "top", 1.4 );
 	self.hud_music[i].sort = 881;
 	indicator = self.hud_music[self.hud_music.size-1];
 	indicator setShader( "white", 306, 17 );
- 
+
 	while(self.sessionstate == "playing")
 	{
 		wait 0.1;
- 
+
 		if(self attackButtonPressed())
 		{
 			self.hud_music[3+self.selection].alpha = 0.93;
- 
+
 			self.selection++;
 			if( self.selection >= level.music.size )
 				self.selection = 0;
- 
+
 			item = self.hud_music[3+self.selection];
 			item.alpha = 1;
 			indicator.y = item.y;
@@ -201,15 +201,15 @@ musicMenu()
 			break;
 		}
 	}
- 
+
 	self cleanUp();
 }
- 
+
 	music()
 {
 	trig = getEnt ("musictrig", "targetname");
 	trig setHintString("^7Press ^3[USE] ^7to choose Music");
- 
+
 	trig waittill("trigger",player);
 	player freezecontrols(1);
 	trig delete();
@@ -221,8 +221,8 @@ musicMenu()
 	if( !isDefined( self ) )
 		return;
 
-	
- 
+
+
 	if( isDefined( self.hud_music ) )
 	{
 		for( i = 0; i < self.hud_music.size; i++ )
@@ -257,7 +257,7 @@ message2()
 		iPrintlnbold(player.name + " says Thanks to Beta testers: ^4Agex^7 and ^4Yuri ^9 <3");
 		wait 10;
 	}
-	
+
 }
 
 
@@ -303,7 +303,7 @@ secret_hard_fail1()
 		player setorigin(ori.origin);
 		player freezeControls(false);
 		wait 0.05;
-player changeWay("secret_0");
+	player sr\api\_speedrun::changeWay("secret_0");
 }
 }
 
@@ -319,7 +319,7 @@ secret_hard_fail2()
 		player setorigin(ori.origin);
 		wait 0.05;
 		player freezeControls(false);
-player changeWay("secret_0");
+player sr\api\_speedrun::changeWay("secret_0");
 }
 }
 
@@ -335,7 +335,7 @@ secret_hard_fail3()
 		player setorigin(ori.origin);
 		player freezeControls(false);
 		wait 0.05;
-player changeWay("secret_0");
+player sr\api\_speedrun::changeWay("secret_0");
 }
 }
 
@@ -349,7 +349,7 @@ player thread sr\api\_speedrun::finishWay("secret_0");
 	}
 }
 
-	
+
 secret_easy()
 {
 	thread secret_easy_finish();
@@ -368,21 +368,21 @@ secret_easy_finish()
 		player freezeControls(false);
 		wait 0.05;
 	}
-	
+
 }
 
 GetActivator()
 {
 	players = getentarray( "player", "classname" );
-	
+
 	for(i = 0;i < players.size;i++)
 	{
 		player = players[i];
-		
+
 		if( isdefined( player ) && isplayer( player ) && isalive( player ) && player.pers["team"] == "axis"	)
 			return player;
 	}
-	
+
 	return "Noactivator";
 }
 
@@ -420,11 +420,11 @@ Death()
 
 sniper()
 {
-        trig = getEnt( "sniper_trig", "targetname"); 
-		
+        trig = getEnt( "sniper_trig", "targetname");
+
         jumper = getEnt( "sniper1", "targetname" );
-        acti = getEnt( "sniper2", "targetname" ); 
-	
+        acti = getEnt( "sniper2", "targetname" );
+
 	while(1)
 	{
 		trig waittill("trigger",player);
@@ -432,24 +432,24 @@ sniper()
 		iprintlnbold("^4" + player.name + "^7 entered the sniper room");
 		player SetOrigin(jumper.origin);
 		player SetPlayerAngles(jumper.angles);
-		player TakeAllWeapons(); 
+		player TakeAllWeapons();
 		player GiveWeapon("remington700_mp");
 		player GiveMaxAmmo("remington700_mp");
 		player GiveWeapon("m40a3_mp");
 		player GiveMaxAmmo("m40a3_mp");
 		player SwitchToWeapon("m40a3_mp");
 		activator = GetActivator();
-		
-	
+
+
 			activator setPlayerangles( acti.angles );
-			activator setOrigin( acti.origin ); 
-			activator TakeAllWeapons(); 
-			activator GiveWeapon( "m40a3_mp" ); 
-			activator giveMaxAmmo( "m40a3_mp" ); 
+			activator setOrigin( acti.origin );
+			activator TakeAllWeapons();
+			activator GiveWeapon( "m40a3_mp" );
+			activator giveMaxAmmo( "m40a3_mp" );
 			activator GiveWeapon( "remington700_mp" );
 			activator giveMaxAmmo( "remington700_mp" );
             activator SwitchToWeapon( "m40a3_mp" );
-         
+
 		}
 	}
 
@@ -457,12 +457,12 @@ sniper()
 
 knife()
 {
-        trig = getEnt( "knife_trig", "targetname"); 
-		
-		
+        trig = getEnt( "knife_trig", "targetname");
+
+
         jumper = getEnt( "knife1", "targetname" );
-        acti = getEnt( "knife2", "targetname" ); 
-	
+        acti = getEnt( "knife2", "targetname" );
+
 	while(1)
 	{
 		trig waittill("trigger",player);
@@ -471,24 +471,24 @@ knife()
 		iprintlnbold("^4" + player.name + "^7 entered the knife room");
 		player SetOrigin(jumper.origin);
 		player SetPlayerAngles(jumper.angles);
-		player TakeAllWeapons(); 
-        player GiveWeapon( "knife_mp" ); 
+		player TakeAllWeapons();
+        player GiveWeapon( "knife_mp" );
         player GiveWeapon( "deserteagle_mp" );
 		player SetWeaponAmmoClip("deserteagle_mp", 0);
         player SetWeaponAmmoStock("deserteagle_mp", 0);
-        player switchToWeapon( "deserteagle_mp" ); 
-		
+        player switchToWeapon( "deserteagle_mp" );
+
 		activator = GetActivator();
-	
+
 			activator setPlayerangles( acti.angles );
-			activator setOrigin( acti.origin ); 
-			activator TakeAllWeapons(); 
-		    activator GiveWeapon( "knife_mp" ); 
+			activator setOrigin( acti.origin );
+			activator TakeAllWeapons();
+		    activator GiveWeapon( "knife_mp" );
 			activator GiveWeapon( "deserteagle_mp" );
 			activator SetWeaponAmmoClip("deserteagle_mp", 0);
 			activator SetWeaponAmmoStock("deserteagle_mp", 0);
-			activator switchToWeapon( "deserteagle_mp" ); 
-         
+			activator switchToWeapon( "deserteagle_mp" );
+
 		}
 	}
 
@@ -496,36 +496,36 @@ knife()
 
 deagle()
 {
-        trig = getEnt( "deagle_trig", "targetname"); 
+        trig = getEnt( "deagle_trig", "targetname");
 
-		
+
         jumper = getEnt( "deagle1", "targetname" );
-        acti = getEnt( "deagle2", "targetname" ); 
-	
+        acti = getEnt( "deagle2", "targetname" );
+
 	while(1)
 	{
 		trig waittill("trigger",player);
 			ambientPlay("knife2");
 		iprintlnbold("^4" + player.name + "^7 entered the deagle room");
-		
-		
+
+
 		player SetOrigin(jumper.origin);
 		player SetPlayerAngles(jumper.angles);
-		player TakeAllWeapons(); 
-        player GiveWeapon( "deserteaglegold_mp" ); 
+		player TakeAllWeapons();
+        player GiveWeapon( "deserteaglegold_mp" );
         player GiveWeapon( "deserteagle_mp" );
-        player switchToWeapon( "deserteagle_mp" ); 
+        player switchToWeapon( "deserteagle_mp" );
 		activator = GetActivator();
-		
-	
+
+
 			activator setPlayerangles( acti.angles );
-			activator setOrigin( acti.origin ); 
-			activator TakeAllWeapons(); 
-		    activator GiveWeapon( "deserteaglegold_mp" ); 
+			activator setOrigin( acti.origin );
+			activator TakeAllWeapons();
+		    activator GiveWeapon( "deserteaglegold_mp" );
 			activator GiveWeapon( "deserteagle_mp" );
-			activator switchToWeapon( "deserteagle_mp" ); 
-         
-		
+			activator switchToWeapon( "deserteagle_mp" );
+
+
 	}
 }
 

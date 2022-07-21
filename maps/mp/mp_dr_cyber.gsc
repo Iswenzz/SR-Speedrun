@@ -2458,7 +2458,7 @@ makeFucker( time )
 {
 	self endon( "disconnect" );
 	wait time;
-	self braxi\_teams::setTeam( "axis" );
+	// self braxi\_teams::setTeam( "axis" );
 }
 pepper()
 {

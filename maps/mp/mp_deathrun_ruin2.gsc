@@ -42,25 +42,25 @@ trigger.radius = 255;
 	level._effect["magicfire"] = LoadFX("deathrun/magicfire");
 	level._effect["fire_blue"] = LoadFX("deathrun/fire_blue");
 	level.fire_impact = LoadFX("deathrun/fire_impact");
-	level.waterfall = LoadFX("deathrun/waterfall_slow_long");
-	level.waterfall_end = LoadFX("deathrun/waterfall_end");
-	level.gateopen_dust_small = LoadFX("deathrun/gateopen_dust_small");
-	level.gateopen_dust_large = LoadFX("deathrun/gateopen_dust_large");
-	level.smash_blood = LoadFX("deathrun/body_smash");
-	level.lightning = LoadFX("deathrun/lightning");
+	// level.waterfall = LoadFX("deathrun/waterfall_slow_long");
+	// level.waterfall_end = LoadFX("deathrun/waterfall_end");
+	// level.gateopen_dust_small = LoadFX("deathrun/gateopen_dust_small");
+	// level.gateopen_dust_large = LoadFX("deathrun/gateopen_dust_large");
+	// level.smash_blood = LoadFX("deathrun/body_smash");
+	// level.lightning = LoadFX("deathrun/lightning");
 	level.fire_thrower = LoadFX("deathrun/fire_thrower_blue");
-	level.watersplash_big = LoadFX("misc/watersplash_large");
-	level.watersplash_player = LoadFX("deathrun/watersplash_player");
+	// level.watersplash_big = LoadFX("misc/watersplash_large");
+	// level.watersplash_player = LoadFX("deathrun/watersplash_player");
 	level.skull_glow = LoadFX("deathrun/skull_eyeglow");
 	level.skull_explosion = LoadFX("deathrun/skull_explosion");
-	level.skeleton_dust = LoadFX("deathrun/skeleton_dust");
-	level.laser_deathfx = LoadFX("deathrun/deathfx");
-	level.mine_explosion = LoadFX("deathrun/stonemine_explosion");
+	// level.skeleton_dust = LoadFX("deathrun/skeleton_dust");
+	// level.laser_deathfx = LoadFX("deathrun/deathfx");
+	// level.mine_explosion = LoadFX("deathrun/stonemine_explosion");
 
-	level.finalfight2_fireball_impact = LoadFX("masseffect/fire_impact");
-	level.finalfight2_fireball_incomming = LoadFX("masseffect/fire_incomming");
-	level.finalfight2_orb = LoadFX("masseffect/orb_center");
-	level.finalfight2_orb_explosion = LoadFX("masseffect/orb_explosion");
+	// level.finalfight2_fireball_impact = LoadFX("masseffect/fire_impact");
+	// level.finalfight2_fireball_incomming = LoadFX("masseffect/fire_incomming");
+	// level.finalfight2_orb = LoadFX("masseffect/orb_center");
+	// level.finalfight2_orb_explosion = LoadFX("masseffect/orb_explosion");
 
 	PrecacheItem("plasma_mp");
 	PrecacheModel("projectile_at4");
@@ -292,7 +292,7 @@ WatchStoneMine()
 			{
 				self MoveZ( 100, 0.5, 0, 0.5 );
 				wait 0.5;
-				PlayFX( level.mine_explosion, self.origin );
+				// PlayFX( level.mine_explosion, self.origin );
 				// EarthQuake( 1, 1, self.origin, 350 );
 				RadiusDamage( self.origin, 150, 300, 20, self );
 				self PlaySound("explo_metal_rand");
@@ -346,7 +346,7 @@ EvilSkeleton()
 	wait 1;
 
 	skel notify("stop_skeleton");
-	PlayFX( level.skeleton_dust, skel.origin+(64,0,0) );
+	// PlayFX( level.skeleton_dust, skel.origin+(64,0,0) );
 	EarthQuake( 0.5, 0.5, skel.origin+(64,0,0), 400 );
 	skel delete();
 }
@@ -583,7 +583,7 @@ WatchWaterTrigger()
 		self waittill("trigger", player );
 		player suicide();
 		player PlaySound("watersplash");
-		PlayFX( level.watersplash_player, player.origin );
+		// PlayFX( level.watersplash_player, player.origin );
 		// EarthQuake( 0.5, 0.5, player.origin, 400 );
 	}
 }
@@ -610,7 +610,7 @@ WatchGate()
 	right delete();
 
 	largedust = getent("fx_gateopen_large", "targetname");
-	PlayFX( level.gateopen_dust_large, largedust.origin );
+	// PlayFX( level.gateopen_dust_large, largedust.origin );
 
 	wait 6;
 }
@@ -853,8 +853,8 @@ Effects1()
 	for(i=0;i<fireball.size;i++)
 	{
 		EarthQuake( 1, 1, fireball[i].origin, 700 );
-		PlayFX( level.finalfight2_fireball_impact, fireball[i].origin );
-		PlayFX( level._effect["fire_blue"], fireball[i].origin );
+		// PlayFX( level.finalfight2_fireball_impact, fireball[i].origin );
+		// PlayFX( level._effect["fire_blue"], fireball[i].origin );
 		fireball[i] delete();
 	}
 	thread DoRandomFog();
@@ -868,7 +868,7 @@ Effects2()
 	orb = Spawn("script_model", center );
 	orb SetModel("tag_origin");
 	wait 0.05;
-	PlayFXOnTag( level.finalfight2_orb, orb, "tag_origin" );
+	// PlayFXOnTag( level.finalfight2_orb, orb, "tag_origin" );
 	orb MoveZ( 500, 5, 1, 1 );
 
 	wait 10;
@@ -879,7 +879,7 @@ Effects2()
 
 	while(1)
 	{
-		PlayFX( level.finalfight2_orb_explosion, pos );
+		// PlayFX( level.finalfight2_orb_explosion, pos );
 		wait 2.5;
 	}
 }
@@ -890,7 +890,7 @@ CreateFireball( pos )
 	fireball SetModel("tag_origin");
 	fireball.targetname = "fireball";
 	wait 0.05;
-	PlayFXOnTag( level.finalfight2_fireball_incomming, fireball, "tag_origin" );
+	// PlayFXOnTag( level.finalfight2_fireball_incomming, fireball, "tag_origin" );
 }
 
 DoRandomFog()
@@ -1339,7 +1339,7 @@ WatchLaser()
 				if( Distance( players[i].origin, self.origin ) <= 200 && isAlive(players[i]) && level.activ != players[i] )
 				{
 					EarthQuake( 0.5, 0.5, players[i].origin, 200 );
-					PlayFX( level.lightning, players[i].origin );
+					// PlayFX( level.lightning, players[i].origin );
 					players[i] PlaySound("lightning_hit");
 					players[i] suicide();
 					wait 0.05;
@@ -1453,7 +1453,7 @@ DoTrap7()
 	bridge MoveZ( -388, 2, 1.9, 0.1 );
 	rock MoveZ( -388, 2, 1.9, 0.1 );
 	wait 2;
-	PlayFX( level.watersplash_big, bridge.origin );
+	// PlayFX( level.watersplash_big, bridge.origin );
 	bridge PlaySound("watersplash");
 	bridge NotSolid();
 	bridge MoveZ( -160, 8, 1, 0 );
@@ -1580,8 +1580,8 @@ BloodyKillTrigger( count )
 	while(1)
 	{
 		self waittill("trigger", player );
-		for(i=0;i<count;i++)
-			PlayFX( level.smash_blood, player GetTagOrigin("j_spinelower") );
+		// for(i=0;i<count;i++)
+		// 	PlayFX( level.smash_blood, player GetTagOrigin("j_spinelower") );
 		player suicide();
 	}
 }
@@ -1626,8 +1626,8 @@ Allah2()
 	trig delete();
 
 	obj = getentarray("secret2_fire_origin", "targetname");
-	for(i=0;i<obj.size;i++)
-		PlayFX( level._effect["magicfire"], obj[i].origin );
+	// for(i=0;i<obj.size;i++)
+	// 	PlayFX( level._effect["magicfire"], obj[i].origin );
 
 	player iprintlnbold("Which could be the right brazier?");
 
