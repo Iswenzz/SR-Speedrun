@@ -22,8 +22,7 @@ main()
 	// raise up planes to avoid them flying through buildings
 	level.airstrikeHeightScale = 1.8;
 
-	thread sr\api\_map::createSpawn((-2016, -4342, 112), 360);
-	thread sr\api\_speedrun::createNormalWays("Normal Way");
+		thread sr\api\_speedrun::createNormalWays("Normal Way");
 	thread sr\api\_speedrun::createEndMap((4043.6, -6580.41, 0.125), 100, 40);
 
 }

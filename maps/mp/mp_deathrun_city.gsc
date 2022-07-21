@@ -4,27 +4,24 @@ trigger = spawn( "trigger_radius", (1271.56, -847.444, 0.124998), 0, 96, 48 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 96;
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
-	if(auto_spawn.size > 0)
-		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
-	
+
         thread teleport();
 
         maps\mp\_load::main();
-        maps\mp\mp_deathrun_city_script::main();	
+        maps\mp\mp_deathrun_city_script::main();
         maps\mp\mp_deathrun_city_door::main();
 
     /* [AUTO DELETE] ambientPlay("city_music"); */
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
-	
+
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
@@ -47,7 +44,7 @@ trigger.radius = 96;
 teleport()
 {
 	entTransporter = getentarray( "enter", "targetname" );
- 
+
 	if(isdefined(entTransporter))
 	{
 		for( i = 0; i < entTransporter.size; i++ )
@@ -55,7 +52,7 @@ teleport()
 	}
 }
 
- 
+
 transporter()
 {
 	while(true)

@@ -3,8 +3,6 @@ main()
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
-level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin);
-level.masterSpawn.angles = level.spawn["allies"][0].angles;
 maps\mp\_load::main(); 
 
 game["allies"] = "marines";
@@ -23,7 +21,6 @@ setDvar("bg_falldamagemaxheight", 99999);
 setDvar("bg_falldamageminheight", 99998);
 
 
-thread sr\api\_map::createSpawn((221,-149,1233),234);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createSecretWays("Secret Way;");
 thread sr\api\_speedrun::createTeleporter((-408.351, -2541.96, 88.125), 60, 10, (1007, -2537, 150), 50, "freeze", "blue", "normal_0");

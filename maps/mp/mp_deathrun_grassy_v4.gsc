@@ -32,8 +32,7 @@ main()
 	//maps\mp\_dynamic_foliage2::initdfs();
 	
 	
-	thread sr\api\_map::createSpawn((520, -1773, 124),87);
-
+	
 	
 	game["allies"] = "sas";
 	game["axis"] = "russian";

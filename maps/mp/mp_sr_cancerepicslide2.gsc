@@ -20,8 +20,7 @@ main()
 	setdvar("bg_fallDamageMaxHeight", "99999");
     setdvar("bg_FallDamageMinHeight","99998");
 
-	thread sr\api\_map::createSpawn((-208,-40,60),90);
-	thread sr\api\_speedrun::createNormalWays("Normal Way");
+		thread sr\api\_speedrun::createNormalWays("Normal Way");
     thread sr\api\_speedrun::createSecretWays("Bounce Way;Stairs Way;");
     thread sr\api\_speedrun::createEndMap((10568.8, -23523.9, -2295.88), 220, 40, "secret_0");
 	thread sr\api\_speedrun::createEndMap((-7901.41, 8498.06, -5223.88), 300, 30, "secret_1");

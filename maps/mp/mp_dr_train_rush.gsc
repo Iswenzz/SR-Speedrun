@@ -23,8 +23,6 @@ main()
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
-level.masterSpawn = spawn("script_origin",(0, -19544, 192));
-level.masterSpawn.angles = (0,90,0);
 	maps\mp\_load::main();
 	maps\mp\_compass::setupMiniMap("compass_map_mp_dr_train_rush");
 

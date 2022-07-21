@@ -4,8 +4,7 @@ main()
 
 	thread sr\api\_speedrun::createNormalWays("Trap Way;Trance Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
-	thread sr\api\_map::createSpawn((-3721, 1758, 570), -90);
-	thread sr\api\_speedrun::createTeleporter((-1414.99, -6929.17, 496.125), 80, 10, (-1419, -7578, 556), 270, "freeze", "blue", "normal_0");
+		thread sr\api\_speedrun::createTeleporter((-1414.99, -6929.17, 496.125), 80, 10, (-1419, -7578, 556), 270, "freeze", "blue", "normal_0");
 	thread sr\api\_speedrun::createTeleporter((-3712.56, -155.318, 496.125), 80, 10, (-3722, -1835, 556), 270, "freeze", "blue", "normal_1");
     thread sr\api\_speedrun::createEndMap((-2288.99, -8639.36, 496.125),70,40, "normal_0");
 	thread sr\api\_speedrun::createEndMap((-3712.56, -155.318, 496.125),70,40, "normal_1");

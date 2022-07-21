@@ -16,7 +16,6 @@ main()
 	setDvar("bg_falldamagemaxheight", 99999);
     setDvar("bg_falldamageminheight", 99998);
 
-thread sr\api\_map::createSpawn((6,0,68),90);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createSecretWays("Secret Way;");
 thread sr\api\_speedrun::createTeleporter((-255.715, 537.858, 8.125), 65, 20, (-7494, 288, 60), 90, "freeze", "yellow", "secret_0");

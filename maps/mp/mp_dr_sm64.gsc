@@ -34,8 +34,7 @@ main()
 	setDvar("bg_falldamagemaxheight", 2000000 );
 	setDvar("bg_falldamageminheight", 1500000 );
 
-	thread sr\api\_map::createSpawn((-5963, -7623, 1452), 357);
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+		thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("^5Slide Secret;^1Hard Secret;");
 
 	eztp = getEnt("secret_slide_tp","targetname");

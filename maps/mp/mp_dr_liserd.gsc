@@ -6,8 +6,7 @@ main() {
 
 	maps\mp\_load::main();
 
-	thread sr\api\_map::createSpawn((-536, 2602, 257), 90);
-
+	
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";

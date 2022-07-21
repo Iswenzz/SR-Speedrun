@@ -1,0 +1,1005 @@
+case mp_backlot
+thread sr\api\_map::createSpawn((-650, 1939, 64), 314);
+break;
+case mp_bloc
+thread sr\api\_map::createSpawn((-2016, -4342, 52), 360);
+break;
+case mp_crash
+thread sr\api\_map::createSpawn((-440, 2230, 240), 280);
+break;
+case mp_creek
+thread sr\api\_map::createSpawn((-3825, 5989, 184), 337);
+break;
+case mp_deathrun_abandoned
+thread sr\api\_map::createSpawn((4, 466, 16), 270);
+break;
+case mp_deathrun_airstruck
+thread sr\api\_map::createSpawn((-40, 12, 8), 360);
+break;
+case mp_deathrun_amazon
+thread sr\api\_map::createSpawn((-301, -127, -539), 359);
+break;
+case mp_deathrun_backlot
+thread sr\api\_map::createSpawn((-450, 1515, 64.125), 0);
+break;
+case mp_deathrun_bland
+thread sr\api\_map::createSpawn((0, -61, 8), 270);
+break;
+case mp_deathrun_boss
+thread sr\api\_map::createSpawn((112, 128, -1472), 90);
+break;
+case mp_deathrun_bounce_v3
+thread sr\api\_map::createSpawn((-224, 464, 16), 0);
+break;
+case mp_deathrun_bricky
+thread sr\api\_map::createSpawn((-304, 0, 16.125), 0);
+break;
+case mp_deathrun_cage
+thread sr\api\_map::createSpawn((13, -1, -20), 360);
+break;
+case mp_deathrun_castle
+thread sr\api\_map::createSpawn((-2822, 3241, -1008), 270);
+break;
+case mp_deathrun_cherry
+thread sr\api\_map::createSpawn((-443.875, 556, 64.125), 270);
+break;
+case mp_deathrun_chunk
+thread sr\api\_map::createSpawn((-1238, -13, 24), 89);
+break;
+case mp_deathrun_city
+thread sr\api\_map::createSpawn((-404.097, -2958, 0.125), 90);
+break;
+case mp_deathrun_clockwork
+thread sr\api\_map::createSpawn((16, 192, 16), 0);
+break;
+case mp_deathrun_colourful
+thread sr\api\_map::createSpawn((431, -1157, -16), 91);
+break;
+case mp_deathrun_control
+thread sr\api\_map::createSpawn((218, 106, 16), 89);
+break;
+case mp_deathrun_cookie
+thread sr\api\_map::createSpawn((-384, -320, 136), 90);
+break;
+case mp_deathrun_cookie_v3
+thread sr\api\_map::createSpawn((-190, 939, 160), 270);
+break;
+case mp_deathrun_cosmic
+thread sr\api\_map::createSpawn((-1009, 536, 544), 359);
+break;
+case mp_deathrun_coyote
+thread sr\api\_map::createSpawn((133.772, 508.667, 11.368), 318);
+break;
+case mp_deathrun_coyote_v2
+thread sr\api\_map::createSpawn((-163, 507, 31.500), 0);
+break;
+case mp_deathrun_crystal
+thread sr\api\_map::createSpawn((-313.356, 0, 16.125), 0);
+break;
+case mp_deathrun_crystal_v2
+thread sr\api\_map::createSpawn((645, -2, 96), 360);
+break;
+case mp_deathrun_curt
+thread sr\api\_map::createSpawn((25, -11, 17), 180);
+break;
+case mp_deathrun_darkness
+thread sr\api\_map::createSpawn((-4, -197, 0), 90);
+break;
+case mp_deathrun_diehard
+thread sr\api\_map::createSpawn((-785.908, -487.271, -111.875), 0);
+break;
+case mp_deathrun_dirt
+thread sr\api\_map::createSpawn((-498, -394, 16), 90);
+break;
+case mp_deathrun_dragonball
+thread sr\api\_map::createSpawn((1572, 99, -64), 180);
+break;
+case mp_deathrun_dungeon
+thread sr\api\_map::createSpawn((95, 353, 8), 270);
+break;
+case mp_deathrun_electory
+thread sr\api\_map::createSpawn((-731, 534, -136), 360);
+break;
+case mp_deathrun_empire
+thread sr\api\_map::createSpawn((-44, -14, 0), 360);
+break;
+case mp_deathrun_epicfail
+thread sr\api\_map::createSpawn((-832, -232, 20), 90);
+break;
+case mp_deathrun_familyguy
+thread sr\api\_map::createSpawn((-29, 77, 8), 271);
+break;
+case mp_deathrun_fearful
+thread sr\api\_map::createSpawn((-35, 127, 0), 270);
+break;
+case mp_deathrun_flow
+thread sr\api\_map::createSpawn((-787, -127, 16), 89);
+break;
+case mp_deathrun_fluxx
+thread sr\api\_map::createSpawn((-140, -96, -240), 90);
+break;
+case mp_deathrun_forest
+thread sr\api\_map::createSpawn((3320, 2076, 128), 269);
+break;
+case mp_deathrun_framey_v2
+thread sr\api\_map::createSpawn((-5.325, -441.322, 0.125), 90);
+break;
+case mp_deathrun_framey_v3
+thread sr\api\_map::createSpawn((707.125, 333.048, 64.125), 90);
+break;
+case mp_deathrun_fuse
+thread sr\api\_map::createSpawn((-6, -560, 32), 90);
+break;
+case mp_deathrun_fusion
+thread sr\api\_map::createSpawn((-632, -9, 3824), 180);
+break;
+case mp_deathrun_glass
+thread sr\api\_map::createSpawn((-159, 200, 8), 359);
+break;
+case mp_deathrun_glow
+thread sr\api\_map::createSpawn((4, 276, 16), 269);
+break;
+case mp_deathrun_godfather
+thread sr\api\_map::createSpawn((-245.982, -69.125, 0.118), 0);
+break;
+case mp_deathrun_godfather2
+thread sr\api\_map::createSpawn((1963, 652, 8), 270);
+break;
+case mp_deathrun_gold
+thread sr\api\_map::createSpawn((0, 144, 0.125), 270);
+break;
+case mp_deathrun_graffiti
+thread sr\api\_map::createSpawn((-244, 44, 16), 360);
+break;
+case mp_deathrun_grassy_v4
+thread sr\api\_map::createSpawn((520, -1773, 64), 87);
+break;
+case mp_deathrun_haunted
+thread sr\api\_map::createSpawn((-240, -768, 320.125), 90);
+break;
+case mp_deathrun_hop
+thread sr\api\_map::createSpawn((-7, 45, 0), 0);
+break;
+case mp_deathrun_horror
+thread sr\api\_map::createSpawn((-316, 541, 16), 360);
+break;
+case mp_deathrun_iceops
+thread sr\api\_map::createSpawn((2, -2020, -348), 270);
+break;
+case mp_deathrun_illusion
+thread sr\api\_map::createSpawn((1533, 735, 64), 90);
+break;
+case mp_deathrun_industry
+thread sr\api\_map::createSpawn((25, 100, 16), 360);
+break;
+case mp_deathrun_industryv2
+thread sr\api\_map::createSpawn((-82, 253, 16), 180);
+break;
+case mp_deathrun_inferno
+thread sr\api\_map::createSpawn((4092, -1379, -351), 179);
+break;
+case mp_deathrun_islands
+thread sr\api\_map::createSpawn((-493.764, 253.429, 21.188), 235);
+break;
+case mp_deathrun_jailhouse
+thread sr\api\_map::createSpawn((976, 895, 64), 180);
+break;
+case mp_deathrun_liferun
+thread sr\api\_map::createSpawn((-23.875, 32, 8.125), 0);
+break;
+case mp_deathrun_long
+thread sr\api\_map::createSpawn((-13, -217, 16), 90);
+break;
+case mp_deathrun_mall
+thread sr\api\_map::createSpawn((3, 22, 16), 270);
+break;
+case mp_deathrun_mecha
+thread sr\api\_map::createSpawn((181, 1, 16), 360);
+break;
+case mp_deathrun_metal2
+thread sr\api\_map::createSpawn((-80, 19, 16), 180);
+break;
+case mp_deathrun_mine
+thread sr\api\_map::createSpawn((-368.400, 341.600, 144.125), 87);
+break;
+case mp_deathrun_minecraft
+thread sr\api\_map::createSpawn((-304, -144, 0), 0);
+break;
+case mp_deathrun_mirroredge
+thread sr\api\_map::createSpawn((-6600, -1064, -1580), 0);
+break;
+case mp_deathrun_nightrun
+thread sr\api\_map::createSpawn((-3643, 2202, -164), 180);
+break;
+case mp_deathrun_oreo
+thread sr\api\_map::createSpawn((492.125, 510, 16.125), 0);
+break;
+case mp_deathrun_palm
+thread sr\api\_map::createSpawn((-491, -302, 384), 90);
+break;
+case mp_deathrun_poolv2
+thread sr\api\_map::createSpawn((68, 21, 16), 91);
+break;
+case mp_deathrun_portal_v3
+thread sr\api\_map::createSpawn((112.125, -282, 0.125), 0);
+break;
+case mp_deathrun_qube
+thread sr\api\_map::createSpawn((-29.900, 781.300, 288), 1);
+break;
+case mp_deathrun_ruin
+thread sr\api\_map::createSpawn((48, 2768, -111.875), 270);
+break;
+case mp_deathrun_ruin2
+thread sr\api\_map::createSpawn((96.125, 80, -15.875), 0);
+break;
+case mp_deathrun_rvs
+thread sr\api\_map::createSpawn((2, -84, 32), 270);
+break;
+case mp_deathrun_sanctuary
+thread sr\api\_map::createSpawn((-703, 1120, 32), 270);
+break;
+case mp_deathrun_sao
+thread sr\api\_map::createSpawn((-246, 512, 0), 270);
+break;
+case mp_deathrun_saw
+thread sr\api\_map::createSpawn((-523, 171, 20), 320);
+break;
+case mp_deathrun_scoria
+thread sr\api\_map::createSpawn((1602, -1408, 128.125), 0);
+break;
+case mp_deathrun_semtex
+thread sr\api\_map::createSpawn((176.125, -227.368, 16.125), 0);
+break;
+case mp_deathrun_shadow
+thread sr\api\_map::createSpawn((39, 13, -171), 90);
+break;
+case mp_deathrun_simplist
+thread sr\api\_map::createSpawn((120, 108, 16), 270);
+break;
+case mp_deathrun_skypillar
+thread sr\api\_map::createSpawn((208.500, -2547, -5343.875), 90);
+break;
+case mp_deathrun_slow
+thread sr\api\_map::createSpawn((-702, -1082, 192), 89);
+break;
+case mp_deathrun_snowic
+thread sr\api\_map::createSpawn((221, -149, 1173), 234);
+break;
+case mp_deathrun_sonic
+thread sr\api\_map::createSpawn((24.125, -162.667, 16.125), 270);
+break;
+case mp_deathrun_spaceball
+thread sr\api\_map::createSpawn((-1244, -59, 4005), 0);
+break;
+case mp_deathrun_stagesv2
+thread sr\api\_map::createSpawn((1061, 12, 224), 360);
+break;
+case mp_deathrun_supermario
+thread sr\api\_map::createSpawn((-227.567, 194.154, 8.125), 0);
+break;
+case mp_deathrun_tribute
+thread sr\api\_map::createSpawn((623, 4, -318.875), 180);
+break;
+case mp_deathrun_tropic
+thread sr\api\_map::createSpawn((-132, 2924, -120), 270);
+break;
+case mp_deathrun_uncharted
+thread sr\api\_map::createSpawn((-161, 1547, 95), 360);
+break;
+case mp_deathrun_underworld
+thread sr\api\_map::createSpawn((1539.817, -9.846, -63.875), 180);
+break;
+case mp_deathrun_waterwork
+thread sr\api\_map::createSpawn((-1500, -670, 0), 91);
+break;
+case mp_deathrun_waterworld
+thread sr\api\_map::createSpawn((-698.952, -512, 0.125), 315);
+break;
+case mp_deathrun_wicked2
+thread sr\api\_map::createSpawn((-239, 9, -320), 359);
+break;
+case mp_deathrun_winter
+thread sr\api\_map::createSpawn((3878, 3044.500, -36), 270);
+break;
+case mp_deathrun_wipeout
+thread sr\api\_map::createSpawn((531.442, -511.610, 56.125), 180);
+break;
+case mp_deathrun_wipeout_v2
+thread sr\api\_map::createSpawn((-304, -672, 384), 0);
+break;
+case mp_deathrun_wood
+thread sr\api\_map::createSpawn((2685, 5087, 976), 270);
+break;
+case mp_dr_1
+thread sr\api\_map::createSpawn((-232, -15, 16), 360);
+break;
+case mp_dr_35
+thread sr\api\_map::createSpawn((-732, 823, 304), 270);
+break;
+case mp_dr_420
+thread sr\api\_map::createSpawn((216, 1368, 16), 0);
+break;
+case mp_dr_alley
+thread sr\api\_map::createSpawn((-53, -244, 0), 88);
+break;
+case mp_dr_anotherworld
+thread sr\api\_map::createSpawn((-66.063, 538.287, 14.125), 307);
+break;
+case mp_dr_anubis
+thread sr\api\_map::createSpawn((-842, -1, -337), 181);
+break;
+case mp_dr_aperture
+thread sr\api\_map::createSpawn((-535.875, 504, 0.125), 0);
+break;
+case mp_dr_asu
+thread sr\api\_map::createSpawn((-176, 48, -111.875), 0);
+break;
+case mp_dr_atlantis
+thread sr\api\_map::createSpawn((-531, 11186, 1576), 180);
+break;
+case mp_dr_away
+thread sr\api\_map::createSpawn((-1616, -1408, 1120), 90);
+break;
+case mp_dr_bananaphone_v2
+thread sr\api\_map::createSpawn((230, 1535, 16), 1);
+break;
+case mp_dr_beach
+thread sr\api\_map::createSpawn((-5280, -5183, 1196), 90);
+break;
+case mp_dr_beat
+thread sr\api\_map::createSpawn((-240, -32, 32.090), 0);
+break;
+case mp_dr_bhop
+thread sr\api\_map::createSpawn((-431, 127, -592), 360);
+break;
+case mp_dr_bigfall
+thread sr\api\_map::createSpawn((2177, -145, -4080), 90);
+break;
+case mp_dr_biohazard
+thread sr\api\_map::createSpawn((-272, -288, -272), 0);
+break;
+case mp_dr_blackandwhite
+thread sr\api\_map::createSpawn((-11, 24, -24), 360);
+break;
+case mp_dr_blackandwhite2
+thread sr\api\_map::createSpawn((-3289, -1565, 16), 90);
+break;
+case mp_dr_blacknight
+thread sr\api\_map::createSpawn((-222, 2467, -70), 270);
+break;
+case mp_dr_blue
+thread sr\api\_map::createSpawn((336, -48.100, -119.875), 180);
+break;
+case mp_dr_bounce
+thread sr\api\_map::createSpawn((-688, -2480, -319.875), 90);
+break;
+case mp_dr_bouncev2
+thread sr\api\_map::createSpawn((-496, -14, 6), 0);
+break;
+case mp_dr_brainfuck
+thread sr\api\_map::createSpawn((-262, 259, 16), 360);
+break;
+case mp_dr_caelum
+thread sr\api\_map::createSpawn((-3024, -528, 1672), 0);
+break;
+case mp_dr_catherine
+thread sr\api\_map::createSpawn((-6, -92, 0), 90);
+break;
+case mp_dr_caution
+thread sr\api\_map::createSpawn((-28, -4, 16), 180);
+break;
+case mp_dr_circuit
+thread sr\api\_map::createSpawn((-639.875, 96, 0.125), 0);
+break;
+case mp_dr_clifside
+thread sr\api\_map::createSpawn((42.125, -64, 16.125), 0);
+break;
+case mp_dr_climb
+thread sr\api\_map::createSpawn((-29, -3, 16), 180);
+break;
+case mp_dr_cm
+thread sr\api\_map::createSpawn((94, -71, 18), 269);
+break;
+case mp_dr_coffin
+thread sr\api\_map::createSpawn((-100, -183, 0), 270);
+break;
+case mp_dr_communism
+thread sr\api\_map::createSpawn((93, -762, -853), 90);
+break;
+case mp_dr_creepy2
+thread sr\api\_map::createSpawn((-1513, -1690, -640), 179);
+break;
+case mp_dr_crosscode
+thread sr\api\_map::createSpawn((3584, -917, 32), 90);
+break;
+case mp_dr_cyber
+thread sr\api\_map::createSpawn((417, 3420, 432), 270);
+break;
+case mp_dr_dangerous
+thread sr\api\_map::createSpawn((2, -24, -2), 90);
+break;
+case mp_dr_darmuhv2
+thread sr\api\_map::createSpawn((202.275, 257.720, 16.125), 0);
+break;
+case mp_dr_dawn
+thread sr\api\_map::createSpawn((-288, 160, 16), 0);
+break;
+case mp_dr_deadzone
+thread sr\api\_map::createSpawn((0.125, 0, 0.125), 180);
+break;
+case mp_dr_deathstyle
+thread sr\api\_map::createSpawn((6661, 5774, 4880), 270);
+break;
+case mp_dr_destiny
+thread sr\api\_map::createSpawn((825, 368, 200), 270);
+break;
+case mp_dr_digital
+thread sr\api\_map::createSpawn((63.839, -398.762, 36.125), 90);
+break;
+case mp_dr_disco
+thread sr\api\_map::createSpawn((16.125, 64, 16.125), 270);
+break;
+case mp_dr_discovery
+thread sr\api\_map::createSpawn((-828, 23, 16), 358);
+break;
+case mp_dr_dova
+thread sr\api\_map::createSpawn((-1182, 15, 16), 359);
+break;
+case mp_dr_dragoon11frx8
+thread sr\api\_map::createSpawn((59, 92, 16), 270);
+break;
+case mp_dr_easy_hard
+thread sr\api\_map::createSpawn((-13, -71, 16), 90);
+break;
+case mp_dr_easy_v2
+thread sr\api\_map::createSpawn((-287.875, 26.667, 0.125), 0);
+break;
+case mp_dr_edgeville
+thread sr\api\_map::createSpawn((-1047, 57, 15), 0);
+break;
+case mp_dr_ephemeral
+thread sr\api\_map::createSpawn((-74, -9, 0), 360);
+break;
+case mp_dr_fallrun
+thread sr\api\_map::createSpawn((-1922, 518, 16), 360);
+break;
+case mp_dr_famous
+thread sr\api\_map::createSpawn((-100, -183, 0), 270);
+break;
+case mp_dr_fnrp_ab_v4
+thread sr\api\_map::createSpawn((-3019, -3243, -32), 180);
+break;
+case mp_dr_foggy
+thread sr\api\_map::createSpawn((-733, 455, -384), 360);
+break;
+case mp_dr_free
+thread sr\api\_map::createSpawn((4160, -192, -1551.875), 90);
+break;
+case mp_dr_geno
+thread sr\api\_map::createSpawn((-232, -15, 16), 360);
+break;
+case mp_dr_getspooky
+thread sr\api\_map::createSpawn((-495, 62, 48), 359);
+break;
+case mp_dr_glass2
+thread sr\api\_map::createSpawn((471.554, 246.286, 16.125), 90);
+break;
+case mp_dr_glass3
+thread sr\api\_map::createSpawn((1228, 786, -160), 90);
+break;
+case mp_dr_gooby
+thread sr\api\_map::createSpawn((-89.475, -24, 16.125), 0);
+break;
+case mp_dr_guest_list
+thread sr\api\_map::createSpawn((-30, 642, 130), 270);
+break;
+case mp_dr_h2o
+thread sr\api\_map::createSpawn((-241.846, -380.986, 16.125), 0);
+break;
+case mp_dr_hardstyle
+thread sr\api\_map::createSpawn((193, -1, 16), 360);
+break;
+case mp_dr_harrypotter
+thread sr\api\_map::createSpawn((282, 1, 320), 360);
+break;
+case mp_dr_heaven
+thread sr\api\_map::createSpawn((240, -470, 28), 180);
+break;
+case mp_dr_holyshiet
+thread sr\api\_map::createSpawn((624.125, -64, -303.875), 180);
+break;
+case mp_dr_imaginary
+thread sr\api\_map::createSpawn((352, 144, -63.875), 180);
+break;
+case mp_dr_indipyramid
+thread sr\api\_map::createSpawn((-3046, 155, -366.229), 0);
+break;
+case mp_dr_iwillrockyou
+thread sr\api\_map::createSpawn((2, -3121, 992), 270);
+break;
+case mp_dr_jump_hard
+thread sr\api\_map::createSpawn((-727, 309, 0), 269);
+break;
+case mp_dr_jumpv2
+thread sr\api\_map::createSpawn((-40, -30, 16), 90);
+break;
+case mp_dr_jungletemple
+thread sr\api\_map::createSpawn((64.125, -56, 16.125), 0);
+break;
+case mp_dr_jurapark
+thread sr\api\_map::createSpawn((-321, 295, -87), 90);
+break;
+case mp_dr_laboratory
+thread sr\api\_map::createSpawn((-369.875, 50, 16.125), 0);
+break;
+case mp_dr_lava_world
+thread sr\api\_map::createSpawn((180, 156, 16), 90);
+break;
+case mp_dr_lazycave
+thread sr\api\_map::createSpawn((123, -154, 16), 2);
+break;
+case mp_dr_lazyriver
+thread sr\api\_map::createSpawn((128, -984, 589.016), 90);
+break;
+case mp_dr_levels
+thread sr\api\_map::createSpawn((-22, 370, 0), 89);
+break;
+case mp_dr_liserd
+thread sr\api\_map::createSpawn((-536, 2602, 197), 90);
+break;
+case mp_dr_lit_map
+thread sr\api\_map::createSpawn((681, -466, 16), 180);
+break;
+case mp_dr_lithium
+thread sr\api\_map::createSpawn((-128.942, 140.800, 16.125), 180);
+break;
+case mp_dr_littlemap
+thread sr\api\_map::createSpawn((1292, -310, 70), 270);
+break;
+case mp_dr_lolz
+thread sr\api\_map::createSpawn((480, -234, 18), 180);
+break;
+case mp_dr_lovelyplanet
+thread sr\api\_map::createSpawn((702, -120, 34), 266);
+break;
+case mp_dr_lucidskyv2
+thread sr\api\_map::createSpawn((-74, -9, 0), 360);
+break;
+case mp_dr_meatboy
+thread sr\api\_map::createSpawn((-208, -208, 20), 0);
+break;
+case mp_dr_merry_xmas
+thread sr\api\_map::createSpawn((49, -1873, 20), 89);
+break;
+case mp_dr_mew
+thread sr\api\_map::createSpawn((-1069, -1034, 61), 90);
+break;
+case mp_dr_minimal
+thread sr\api\_map::createSpawn((35, -213, 15), 90);
+break;
+case mp_dr_mirrors_edge
+thread sr\api\_map::createSpawn((-84, -43, -51), 90);
+break;
+case mp_dr_moonsday_r
+thread sr\api\_map::createSpawn((-46, 1208, 48), 270);
+break;
+case mp_dr_mountain_escape
+thread sr\api\_map::createSpawn((37, -3616, 6), 90);
+break;
+case mp_dr_muddled
+thread sr\api\_map::createSpawn((-223.875, 32, -95.875), 0);
+break;
+case mp_dr_mycastle
+thread sr\api\_map::createSpawn((6650, -10176, 65), 90);
+break;
+case mp_dr_mystic
+thread sr\api\_map::createSpawn((-48, -464, 16), 90);
+break;
+case mp_dr_name
+thread sr\api\_map::createSpawn((-156, 0, 16), 270);
+break;
+case mp_dr_neuschwanstein
+thread sr\api\_map::createSpawn((-33, -184, 0), 90);
+break;
+case mp_dr_nighty
+thread sr\api\_map::createSpawn((-11760, 2603, 18), 270);
+break;
+case mp_dr_nighty_v2
+thread sr\api\_map::createSpawn((-6512, 824, 1144), 270);
+break;
+case mp_dr_nitro
+thread sr\api\_map::createSpawn((-21, 45, 16), 1);
+break;
+case mp_dr_noob
+thread sr\api\_map::createSpawn((76.125, 120, 32.125), 270);
+break;
+case mp_dr_nuka2
+thread sr\api\_map::createSpawn((17, 102, 16), 270);
+break;
+case mp_dr_old_factory
+thread sr\api\_map::createSpawn((-76, -4852, -152), 360);
+break;
+case mp_dr_omar2
+thread sr\api\_map::createSpawn((-3021, -120, 16), 360);
+break;
+case mp_dr_omar3
+thread sr\api\_map::createSpawn((-13, -210, 16), 89);
+break;
+case mp_dr_outside
+thread sr\api\_map::createSpawn((27, 124, 16), 90);
+break;
+case mp_dr_overgrown
+thread sr\api\_map::createSpawn((64.125, -56, 16.125), 0);
+break;
+case mp_dr_overgrownv2
+thread sr\api\_map::createSpawn((160, -224, 140.125), 0);
+break;
+case mp_dr_pacrun
+thread sr\api\_map::createSpawn((386, -164, 0), 90);
+break;
+case mp_dr_periglo
+thread sr\api\_map::createSpawn((-213, 981, 160), 270);
+break;
+case mp_dr_phantasy
+thread sr\api\_map::createSpawn((6, -1336, 16), 2);
+break;
+case mp_dr_pool
+thread sr\api\_map::createSpawn((-932.500, 174, 184.125), 0);
+break;
+case mp_dr_poseidon
+thread sr\api\_map::createSpawn((-199, -34, 32), 90);
+break;
+case mp_dr_prison_escape
+thread sr\api\_map::createSpawn((21.216, 124, 4.125), 180);
+break;
+case mp_dr_pro
+thread sr\api\_map::createSpawn((-6, -137, 134), 270);
+break;
+case mp_dr_pro_v2
+thread sr\api\_map::createSpawn((310.100, 15, 415.900), 270);
+break;
+case mp_dr_pure_strafe_v2
+thread sr\api\_map::createSpawn((-70, -1922, -960), 90);
+break;
+case mp_dr_purple_worldv2
+thread sr\api\_map::createSpawn((1243, 321, 16), 180);
+break;
+case mp_dr_pyramid
+thread sr\api\_map::createSpawn((-562.100, -1277.800, 16), 90);
+break;
+case mp_dr_qube_evolved
+thread sr\api\_map::createSpawn((483, -340, 256), 360);
+break;
+case mp_dr_quick
+thread sr\api\_map::createSpawn((-2, 15, 16), 90);
+break;
+case mp_dr_race
+thread sr\api\_map::createSpawn((-5318, -679, 312), 0);
+break;
+case mp_dr_rage
+thread sr\api\_map::createSpawn((145, 0, 0), 360);
+break;
+case mp_dr_rainbow
+thread sr\api\_map::createSpawn((-1019.875, -7168, 4.125), 0);
+break;
+case mp_dr_raky
+thread sr\api\_map::createSpawn((-106, 139, 21), 270);
+break;
+case mp_dr_rakyfaggot
+thread sr\api\_map::createSpawn((152.125, 196, 16.125), 90);
+break;
+case mp_dr_ravine
+thread sr\api\_map::createSpawn((-774, -3072, 272.125), 90);
+break;
+case mp_dr_rock
+thread sr\api\_map::createSpawn((1414, 495, 48), 108);
+break;
+case mp_dr_rubyshore
+thread sr\api\_map::createSpawn((214, -468, -512), 90);
+break;
+case mp_dr_run
+thread sr\api\_map::createSpawn((572, 930, -1130), 360);
+break;
+case mp_dr_running_v2
+thread sr\api\_map::createSpawn((-511, 846, 16), 270);
+break;
+case mp_dr_rushoween
+thread sr\api\_map::createSpawn((-21, -263, 17), 89);
+break;
+case mp_dr_ryno
+thread sr\api\_map::createSpawn((-2335, -2954, 16), 89);
+break;
+case mp_dr_samsara
+thread sr\api\_map::createSpawn((4411, 1, -2094), 360);
+break;
+case mp_dr_sand
+thread sr\api\_map::createSpawn((24.125, 88, 16.125), 270);
+break;
+case mp_dr_sean
+thread sr\api\_map::createSpawn((-21, -640, 8), 90);
+break;
+case mp_dr_sewers
+thread sr\api\_map::createSpawn((498, -568, 14), 92);
+break;
+case mp_dr_shipment
+thread sr\api\_map::createSpawn((2428.697, 1641.714, 0.125), 180);
+break;
+case mp_dr_simple
+thread sr\api\_map::createSpawn((-247.839, 68.750, -21.875), 0);
+break;
+case mp_dr_skii
+thread sr\api\_map::createSpawn((-753, 3, -208), 360);
+break;
+case mp_dr_skypower
+thread sr\api\_map::createSpawn((153.772, 78.118, -3.875), 270);
+break;
+case mp_dr_slag
+thread sr\api\_map::createSpawn((16.125, 0, 16.125), 90);
+break;
+case mp_dr_slay
+thread sr\api\_map::createSpawn((192.125, 0, 0.125), 45);
+break;
+case mp_dr_slayv2
+thread sr\api\_map::createSpawn((352.125, 384, 0.125), 0);
+break;
+case mp_dr_slayv3
+thread sr\api\_map::createSpawn((464, 390, 0), 360);
+break;
+case mp_dr_sm64
+thread sr\api\_map::createSpawn((-5963, -7623, 1392), 357);
+break;
+case mp_dr_sm_world
+thread sr\api\_map::createSpawn((3088.125, -3628, 16.125), 90);
+break;
+case mp_dr_smart
+thread sr\api\_map::createSpawn((-40, 52, 15), 90);
+break;
+case mp_dr_something
+thread sr\api\_map::createSpawn((672, -384, -491.757), 270);
+break;
+case mp_dr_spaceball_v2
+thread sr\api\_map::createSpawn((511, 299, 1792), 270);
+break;
+case mp_dr_spacelab
+thread sr\api\_map::createSpawn((21, -10, 8), 89);
+break;
+case mp_dr_spacetunnel
+thread sr\api\_map::createSpawn((-194, -3244, -1014), 90);
+break;
+case mp_dr_stonerun
+thread sr\api\_map::createSpawn((-112, -32, 18), 0);
+break;
+case mp_dr_stormyascent
+thread sr\api\_map::createSpawn((-1600, -1406, 1), 360);
+break;
+case mp_dr_sucatraps
+thread sr\api\_map::createSpawn((-262, 9, 16), 358);
+break;
+case mp_dr_sunset
+thread sr\api\_map::createSpawn((12, -10, 8), 89);
+break;
+case mp_dr_sunset2
+thread sr\api\_map::createSpawn((-605, -1175, 416), 90);
+break;
+case mp_dr_sunset3
+thread sr\api\_map::createSpawn((94, -1334, 16), 360);
+break;
+case mp_dr_sunset4
+thread sr\api\_map::createSpawn((17.125, -64, 17.125), 0);
+break;
+case mp_dr_templerun
+thread sr\api\_map::createSpawn((20, 0, 16), 1);
+break;
+case mp_dr_terror
+thread sr\api\_map::createSpawn((1721, 2832, 120), 270);
+break;
+case mp_dr_test1
+thread sr\api\_map::createSpawn((-17753, -7288, 3569), 180);
+break;
+case mp_dr_theship
+thread sr\api\_map::createSpawn((-1832.602, 502.545, 0.125), 0);
+break;
+case mp_dr_train_rush
+thread sr\api\_map::createSpawn((0, -19544, 192), 90);
+break;
+case mp_dr_trapntrance_v2
+thread sr\api\_map::createSpawn((-3721, 1758, 510), -90);
+break;
+case mp_dr_un_named
+thread sr\api\_map::createSpawn((-15.875, 1424, 16.125), 270);
+break;
+case mp_dr_undertale
+thread sr\api\_map::createSpawn((124, -12, 1), 89);
+break;
+case mp_dr_underwater
+thread sr\api\_map::createSpawn((0, -321, -496), 90);
+break;
+case mp_dr_urban
+thread sr\api\_map::createSpawn((45, -611, 440.700), 7);
+break;
+case mp_dr_vistic_castle
+thread sr\api\_map::createSpawn((19.482, 126.786, 4.125), 74);
+break;
+case mp_dr_vistic_castle_w
+thread sr\api\_map::createSpawn((42, 268, 4), 90);
+break;
+case mp_dr_volpe
+thread sr\api\_map::createSpawn((-496, -1040, 72), 90);
+break;
+case mp_dr_volpe2
+thread sr\api\_map::createSpawn((-722, 529, 16), 359);
+break;
+case mp_dr_volpe3
+thread sr\api\_map::createSpawn((-521, 390, 8), 89);
+break;
+case mp_dr_watercity
+thread sr\api\_map::createSpawn((1861, -567, 64.125), 180);
+break;
+case mp_dr_windwaker
+thread sr\api\_map::createSpawn((667, 581, 8), 0);
+break;
+case mp_dr_winter_wipeout
+thread sr\api\_map::createSpawn((-647, 2557, -256), 1);
+break;
+case mp_dr_wip
+thread sr\api\_map::createSpawn((-128, -2, -32), 1);
+break;
+case mp_dr_worldofmetal
+thread sr\api\_map::createSpawn((-619, -440, 16), 360);
+break;
+case mp_dr_wtf
+thread sr\api\_map::createSpawn((-322.542, -642.667, 16.125), 90);
+break;
+case mp_dr_xm
+thread sr\api\_map::createSpawn((-223.875, 256, -1015.875), 180);
+break;
+case mp_dr_xmfun_v3
+thread sr\api\_map::createSpawn((-602, -459, 16), 269);
+break;
+case mp_dr_xmnephy_v2
+thread sr\api\_map::createSpawn((-1456, 8960, 2080), 0);
+break;
+case mp_dr_zsever_abstract
+thread sr\api\_map::createSpawn((-9, 227, 16), 90);
+break;
+case mp_dr_zsever_oak
+thread sr\api\_map::createSpawn((-39, 109, 16), 90);
+break;
+case mp_dr_zsever_oak2_w
+thread sr\api\_map::createSpawn((6, 0, 8), 90);
+break;
+case mp_dr_zvr_dimensions
+thread sr\api\_map::createSpawn((7420, -8721, 264), 180);
+break;
+case mp_eden
+thread sr\api\_map::createSpawn((400, 5311, -248), 90);
+break;
+case mp_edge_v2
+thread sr\api\_map::createSpawn((6936, -6480, 2100), 90);
+break;
+case mp_fnrp_iceland_v2
+thread sr\api\_map::createSpawn((-1242.363, -4859.194, 108.747), 135);
+break;
+case mp_fnrp_monderland
+thread sr\api\_map::createSpawn((-920.516, -1412, 8.282), 45);
+break;
+case mp_golf_test
+thread sr\api\_map::createSpawn((7284, 9572, -704), 60);
+break;
+case mp_nevada
+thread sr\api\_map::createSpawn((-2789, -1452, -368), 0);
+break;
+case mp_palm
+thread sr\api\_map::createSpawn((-5203, -334, 8123), 359);
+break;
+case mp_peds_propel
+thread sr\api\_map::createSpawn((2316, 71, 0), 0);
+break;
+case mp_pipeline
+thread sr\api\_map::createSpawn((365, 3445, 16), 270);
+break;
+case mp_pizzahut_v2
+thread sr\api\_map::createSpawn((26754, 2631, 2512), 360);
+break;
+case mp_pxg_capacity
+thread sr\api\_map::createSpawn((15.467, -17.973, 0.125), 0);
+break;
+case mp_q3_slide_awumpus
+thread sr\api\_map::createSpawn((4608, -7776, 0), 360);
+break;
+case mp_q3_slide_dfwc2017_2
+thread sr\api\_map::createSpawn((2384, -8031, 344), 180);
+break;
+case mp_q3_slide_dfwc2017_6
+thread sr\api\_map::createSpawn((-5632, 3427, 224), 159);
+break;
+case mp_q3_slide_nood_adr
+thread sr\api\_map::createSpawn((-713, -7372.600, 384), 360);
+break;
+case mp_q3_slide_torque
+thread sr\api\_map::createSpawn((-1928, 903, 0), 270);
+break;
+case mp_q3_slide_wsrc09_03
+thread sr\api\_map::createSpawn((-56, 2592, -320), 180);
+break;
+case mp_race
+thread sr\api\_map::createSpawn((-23318, -50, 40080), 0);
+break;
+case mp_slide_n64_bowser_c
+thread sr\api\_map::createSpawn((2954, 1626, 1312), 270);
+break;
+case mp_sr_1k_training
+thread sr\api\_map::createSpawn((6394.125, 9372, -773.875), 180);
+break;
+case mp_sr_a55
+thread sr\api\_map::createSpawn((-3008, -656, 2552), 0);
+break;
+case mp_sr_altitude
+thread sr\api\_map::createSpawn((52.125, 2064, 20.125), 270);
+break;
+case mp_sr_cancerepicslide2
+thread sr\api\_map::createSpawn((-208, -40, 0), 90);
+break;
+case mp_sr_choice
+thread sr\api\_map::createSpawn((-1408, 507, 2832), 179);
+break;
+case mp_sr_compact
+thread sr\api\_map::createSpawn((0, 0, 0), 0);
+break;
+case mp_sr_delay_cope
+thread sr\api\_map::createSpawn((-416, -128, 2390), 180);
+break;
+case mp_sr_fl4pmy4ss
+thread sr\api\_map::createSpawn((-3072, 448, -671), 0);
+break;
+case mp_sr_hop
+thread sr\api\_map::createSpawn((-12, 356, 0), 266);
+break;
+case mp_sr_nighty
+thread sr\api\_map::createSpawn((-10682, -6165, -20936), 270);
+break;
+case mp_sr_parkour
+thread sr\api\_map::createSpawn((320, -2544, 1216.125), 90);
+break;
+case mp_sr_practise
+thread sr\api\_map::createSpawn((288.125, 0, 16.125), 0);
+break;
+case mp_sr_pure_cancer
+thread sr\api\_map::createSpawn((7072, 9440, -776), 180);
+break;
+case mp_sr_pure_slide_v2
+thread sr\api\_map::createSpawn((126656, -126048, 768), 90);
+break;
+case mp_sr_pure_strafe
+thread sr\api\_map::createSpawn((6394.125, 9372, -773.875), 180);
+break;
+case mp_sr_pure_strafe_v2
+thread sr\api\_map::createSpawn((6394.125, 9372, -773.875), 180);
+break;
+case mp_sr_pure_strafe_v3
+thread sr\api\_map::createSpawn((6844, 8172, -774), 150);
+break;
+case mp_sr_pure_strafe_v4
+thread sr\api\_map::createSpawn((-198.375, -526.900, 16.125), 300);
+break;
+case mp_sr_race
+thread sr\api\_map::createSpawn((16.125, 32, 16.125), 0);
+break;
+case mp_sr_rakyfaggotv2
+thread sr\api\_map::createSpawn((-288, 576, 880), 0);
+break;
+case mp_sr_volcano_escape
+thread sr\api\_map::createSpawn((944.125, -96, 96.125), 180);
+break;
+case mp_sr_wallglitch
+thread sr\api\_map::createSpawn((-375.875, 32, -87.875), 0);
+break;
+case mp_vc_obscure
+thread sr\api\_map::createSpawn((511, 230, 0), 90);
+break;
+case mp_vc_tunnels
+thread sr\api\_map::createSpawn((124, -3, 16), 180);
+break;
+case mp_xm_nephy
+thread sr\api\_map::createSpawn((-2175, -1991, 526), 90);
+break;

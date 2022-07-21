@@ -49,8 +49,7 @@ main()
 	addTriggerToList( "trigger_glass" );
 //-----------------Threads-----------------//
     thread sr\api\_speedrun::createNormalWays("Normal Way");
-    thread sr\api\_map::createSpawn((-1238,-13,84),89);
-    thread sr\api\_speedrun::createTeleporter((-412.483, 1849.74, 664.125), 90, 105, (67, 1927, 725), 268, "freeze");
+        thread sr\api\_speedrun::createTeleporter((-412.483, 1849.74, 664.125), 90, 105, (67, 1927, 725), 268, "freeze");
 	//thread nospawnshoot();
 	thread startdoor();
 	//thread trap1();

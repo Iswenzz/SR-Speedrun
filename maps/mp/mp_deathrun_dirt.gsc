@@ -5,8 +5,7 @@ trigger.targetname = "endmap_trig";
 trigger.radius = 96;
 	    
         thread sr\api\_speedrun::createNormalWays("Normal Way");
-        thread sr\api\_map::createSpawn((-498,-394,76),90);
-        thread sr\api\_speedrun::createTeleporter((-757.779, 4766.55, 0.124998), 95, 115, (-511, 4861, 790), 270, "freeze");
+                thread sr\api\_speedrun::createTeleporter((-757.779, 4766.55, 0.124998), 95, 115, (-511, 4861, 790), 270, "freeze");
         thread smrt ();
         //thread teleport();
 		thread door_a();

@@ -10,10 +10,6 @@ main()
 {
 maps\mp\_load::main();
 
-	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
-	if(auto_spawn.size > 0)
-		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin,
-			auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 
 thread sr\api\_speedrun::createEndMap((33733, -2495, 2300), 300, 150);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");

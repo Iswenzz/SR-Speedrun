@@ -2,27 +2,24 @@ main()
 {
 	thread sr\api\_speedrun::createEndMap((3988, 3257, 156), 100, 150);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
-	if(auto_spawn.size > 0)
-		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
-	maps\mp\_load::main();
-	
+			maps\mp\_load::main();
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attacker"] = "allies";
 	game["defender"] = "axis";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
+
 	windfx = loadFx("props/car_glass_large");
 	windtrigs = getEntArray("windtrig","targetname");
 	for(k = 0; k < windtrigs.size; k++)
 		windtrigs[k] thread doWindow(k,windfx);
-		
+
 	//Welcom Text
 	thread welcomStage("welcome_stage2","Stage Two!","Good Luck, Its Alot Harder");
 	thread welcomStage("welcome_stage3","Stage Three!","Almost There, Dont Die Now");
-	
+
 	//Other Shit
 	thread jukeBox();
 	thread startDelay();
@@ -104,7 +101,7 @@ createJuke()
 	{
 		level.juke["options"][k] = createText("default",1.6,"LEFT","",10,((k*22)-100),1,100,level.options[k]);
 		level.juke["options"][k].glowColor = (1,0,0);
-		
+
 		level.juke["artists"][k] = createText("default",1.6,"RIGHT","",-10,((k*22)-100),1,100,level.artists[k]);
 		level.juke["artists"][k].glowAlpha = 1;
 		level.juke["artists"][k].glowColor = (0,1,0);
@@ -126,16 +123,16 @@ runJuke()
 			level.juke["curs"] += self attackButtonPressed();
 			if(level.juke["curs"] >= level.options.size)
 				level.juke["curs"] = 0;
-				
+
 			if(level.juke["curs"] < 0)
 				level.juke["curs"] = level.options.size-1;
-				
+
 			for(k = 0; k < level.juke["options"].size; k++)
 				if(k != level.juke["curs"])
 					level.juke["options"][k].glowAlpha = 0;
 				else
 					level.juke["options"][k].glowAlpha = 1;
-					
+
 			wait .15;
 		}
 		if(self useButtonPressed())
@@ -148,7 +145,7 @@ runJuke()
 		}
 		if(self meleeButtonPressed())
 			break;
-			
+
 		wait .05;
 	}
 	self notify("left_menu");
@@ -162,7 +159,7 @@ runJuke()
 	}
 	for(k = 0; k < level.juke["top_option"].size; k++)
 		level.juke["top_option"][k] destroy();
-		
+
 	self freezeControls(false);
 }
 
@@ -210,7 +207,7 @@ doWindow(windnumber,windfx)
 	playFx(windfx,self.origin);
 	for(k = 0; k < broken.size; k++)
 		broken[k] show();
-		
+
 	window delete();
 	self delete();
 }
@@ -219,7 +216,7 @@ addTriggerToList(name)
 {
 	if(!isDefined(level.trapTriggers))
 		level.trapTriggers = [];
-		
+
 	level.trapTriggers[level.trapTriggers.size] = getEnt(name,"targetname");
 }
 
@@ -279,7 +276,7 @@ randomStagePoint(in,out,num)
 	while(1)
 	{
 		trig waittill("trigger",player);
-			
+
 		player setOrigin(out[0].origin);
 		player setPlayerAngles(out[0].angles);
 		/* [AUTO DELETE] wait .05; */
@@ -294,11 +291,11 @@ stageArrows()
 	{
 		for(k = 0; k < arrow.size; k++)
 			arrow[k] moveZ(60,1.5,.2,.2);
-			
+
 		wait 1.5;
 		for(k = 0; k < arrow.size; k++)
 			arrow[k] moveZ(-60,1.5,.2,.2);
-			
+
 		wait 1.5;
 	}
 }
@@ -399,7 +396,7 @@ bounceStage()
 			spawn = jumperSpawn;
 		else
 			spawn = activatorSpawn;
-			
+
 		player setOrigin(spawn.origin);
 		player setPlayerAngles(spawn.angles);
 		wait .05;
@@ -420,10 +417,10 @@ roomSettings(trigger,out,hintString,activator,weapon,otherTriger1,otherTriger2)
 	activatorSpawn = getEnt(activator,"targetname");
 	if(isDefined(otherTriger1))
 		otherTriger1 = getEnt(otherTriger1,"targetname");
-		
+
 	if(isDefined(otherTriger2))
 		otherTriger2 = getEnt(otherTriger2,"targetname");
-		
+
 	while(1)
 	{
 		jumperTrigger waittill("trigger",player);
@@ -434,7 +431,7 @@ roomSettings(trigger,out,hintString,activator,weapon,otherTriger1,otherTriger2)
 			level.activ setPlayerAngles(activatorSpawn.angles);
 			if(!level.activ.inRoom)
 				level.activ thread resetActivator();
-				
+
 			level.activ.inRoom = true;
 			level.activ thread giveRoomWeapon(weapon);
 			level.activatorReSpawn = activatorSpawn;
@@ -443,10 +440,10 @@ roomSettings(trigger,out,hintString,activator,weapon,otherTriger1,otherTriger2)
 			jumperTrigger setHintString("^1Please Wait!");
 			if(isDefined(otherTriger1))
 				otherTriger1.origin -= (0,0,10000);
-				
+
 			if(isDefined(otherTriger2))
 				otherTriger2.origin -= (0,0,10000);
-				
+
 			player setOrigin(jumperOut.origin);
 			player setPlayerAngles(jumperOut.angles);
 			player thread resetJumper(jumperTrigger,hintString);
@@ -504,7 +501,7 @@ trap1()
 	level endon("trigger");
 	trig = getEnt("trap1_trigger","targetname");
 	brush = getEnt("trap1_brush","targetname");
-	
+
 	trig waittill("trigger");
 	trig setHintString("^1Trap Activated!");
 	oldBrush = brush.origin;
@@ -590,7 +587,7 @@ trap4()
 	trig = getEnt("trap4_trigger","targetname");
 	trig waittill("trigger");
 	trig setHintString("^1Trap Activated!");
-	
+
 	thread randomPole("trap4_row1","trap4_row1_trigger");
 	thread randomPole("trap4_row2","trap4_row2_trigger");
 }
@@ -620,7 +617,7 @@ trap5()
 	spikes = getEnt("trap5_spikes","targetname");
 	spikes notSolid();
 	thread lazerDeath(spikes);
-	
+
 	trig waittill("trigger");
 	trig setHintString("^1Trap Activated!");
 	oldBrush = brush.origin;
@@ -655,15 +652,15 @@ trap6()
 	drop1 = getEnt("trap6_drop1","targetname");
 	drop2 = getEnt("trap6_drop2","targetname");
 	trig = getEnt("trap6_trigger","targetname");
-	
+
 	flap1 = getEnt("trap6_brush1","targetname");
 	flap2 = getEnt("trap6_brush2","targetname");
 	flap1 linkTo(drop1);
 	flap2 linkTo(drop2);
-	
+
 	trig waittill("trigger");
 	trig setHintString("^1Trap Activated!");
-	
+
 	drop1 rotatePitch(-90,.9);
 	drop2 rotatePitch(90,.9);
 	wait 5;
@@ -679,7 +676,7 @@ trap7()
 	spin2 = getEnt("trap7_brush2","targetname");
 	getEnt("trap7_pole1","targetname") linkTo(spin1);
 	getEnt("trap7_pole2","targetname") linkTo(spin2);
-	
+
 	trigger = getEnt("trap7_trigger","targetname");
 	trigger waittill("trigger");
 	trigger setHintString("^1Trap Activated!");
@@ -716,7 +713,7 @@ trap9()
 	hammer3 = getEnt("trap9_hammer3","targetname");
 	hammer4 = getEnt("trap9_hammer4","targetname");
 	hammer5 = getEnt("trap9_hammer5","targetname");
-	
+
 	trigger = getEnt("trap9_trigger","targetname");
 	trigger waittill("trigger");
 	trigger setHintString("^1Trap Activated!");
@@ -789,11 +786,11 @@ trap10Spin1()
 	{
 		for(k = 0; k < brush.size; k++)
 			brush[k] rotateYaw(-360,1.5);
-			
+
 		wait 1.8+randomFloat(1.5);
 		for(k = 0; k < brush.size; k++)
 			brush[k] rotateYaw(360,1.5);
-			
+
 		wait 1.8+randomFloat(1.5);
 	}
 }
@@ -806,11 +803,11 @@ trap10Spin2()
 	{
 		for(k = 0; k < brush.size; k++)
 			brush[k] rotateYaw(360,1.5);
-			
+
 		wait 1.8+randomFloat(1.5);
 		for(k = 0; k < brush.size; k++)
 			brush[k] rotateYaw(-360,1.5);
-			
+
 		wait 1.8+randomFloat(1.5);
 	}
 }
@@ -835,7 +832,7 @@ pickRandomBrush(entity,trigger,number)
 	trigger = getEntArray(trigger,"targetname");
 	for(k = 0; k < brush.size; k++)
 		brush[k].isPicked = false;
-		
+
 	for(k = 0; k < number; k++)
 	{
 		for(;;)
@@ -932,7 +929,7 @@ spinningBlades()
 	{
 		for(k = 0; k < brush.size; k++)
 			brush[k] rotateYaw(-360,2.5);
-			
+
 		wait 1;
 	}
 }
@@ -948,11 +945,11 @@ lazerTrap1()
 	{
 		for(k = 0; k < lazer1.size; k++)
 			lazer1[k] moveZ(180,.7,.2,.2);
-			
+
 		wait .7+randomFloat(.5);
 		for(k = 0; k < lazer1.size; k++)
 			lazer1[k] moveZ(-180,.7,.2,.2);
-			
+
 		wait .7+randomFloat(.5);
 	}
 }
@@ -963,18 +960,18 @@ lazerTrap2()
 	lazer1[0] notSolid();
 	lazer1[1] = getEnt("lazer_2_right","targetname");
 	lazer1[2] = getEnt("lazer_2_left","targetname");
-	
+
 	thread lazerDeath(lazer1[0]);
 	thread lazerTrap2Move();
 	while(1)
 	{
 		for(k = 0; k < lazer1.size; k++)
 			lazer1[k] moveZ(180,.8,.2,.2);
-			
+
 		wait .8+randomFloat(.5);
 		for(k = 0; k < lazer1.size; k++)
 			lazer1[k] moveZ(-180,.8,.2,.2);
-			
+
 		wait .8+randomFloat(.5);
 	}
 }
@@ -989,11 +986,11 @@ lazerTrap2Move()
 	{
 		for(k = 0; k < lazer2.size; k++)
 			lazer2[k] moveY(-455,.7,.2,.2);
-			
+
 		wait .7+randomFloat(1.5);
 		for(k = 0; k < lazer2.size; k++)
 			lazer2[k] moveY(455,.7,.2,.2);
-			
+
 		wait .7+randomFloat(1.5);
 	}
 }
@@ -1003,7 +1000,7 @@ lazerDeath(entity)
 	level endon("game_ended");
 	while(1)
 	{
-		players = getEntArray("player","classname");	
+		players = getEntArray("player","classname");
 		for(k = 0; k < players.size; k++)
 		{
 			if(players[k] isTouching(entity))
@@ -1019,7 +1016,7 @@ trap13Pushers()
 	brush2 = getEnt("trap13_pusher2","targetname");
 	brush1 notSolid();
 	brush2 notSolid();
-	
+
 	brush1_origin = brush1.origin;
 	brush2_origin = brush2.origin;
 	thread lazerDeath(brush1);

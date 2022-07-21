@@ -29,8 +29,7 @@ maps\mp\_load::main();
     level.music[4]["alias"]    ="song5";
 
 	thread sr\api\_speedrun::createNormalWays("Normal Way");
-	thread sr\api\_map::createSpawn((-13,-210,76),89);
-    thread startdoor();
+	    thread startdoor();
 	//thread messages();
 	//thread musicbox();
     //thread onPlayerConnect();

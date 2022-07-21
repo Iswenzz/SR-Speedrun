@@ -2,8 +2,7 @@ main()
 {
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
-	thread sr\api\_map::createSpawn((25, 100, 76),360);
-
+	
  level._effect["fire_trap"] = loadfx( "custome/fire_trap" );
 	
     thread end();

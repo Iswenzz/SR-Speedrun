@@ -2,7 +2,6 @@ main()
 {
 maps\mp\_teleport2::main();
 
-thread sr\api\_map::createSpawn((0,-321,-436),90);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createSecretWays("Secret Way;");
 thread sr\api\_speedrun::createTeleporter((258.271, -124.821, -495.875), 50, 20, (464, 3208, -580), 90, "freeze", "yellow", "secret_0");

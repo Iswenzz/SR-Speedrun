@@ -16,7 +16,6 @@ maps\mp\_load::main();
 	setDvar("bg_falldamagemaxheight", 99999);
     setDvar("bg_falldamageminheight", 99998);
 	
-thread sr\api\_map::createSpawn((93,-762,-793),90);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createSecretWays("Secret Way;");
 thread sr\api\_speedrun::createEndMap((-4249.65, 1669.53, -269.375), 135, 10, "normal_0");

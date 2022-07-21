@@ -1,4 +1,4 @@
-//<-- Scripted By Fox for my map mp_dr_Vople 
+//<-- Scripted By Fox for my map mp_dr_Vople
 //MY GUID: 5dcce639cbef05e4f9b739a0ab61c6e4
 //Prood:   67bf38f1c4011b6baad14263fa011572
 //VC Glen: 00000000834a8a24535c3c56e3905ad9
@@ -9,20 +9,17 @@ main()
 {
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("^2Easy Secret;^1Hard Secret");
-	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
-	if(auto_spawn.size > 0)
-		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
-	maps\mp\_load::main(); 
+
+			maps\mp\_load::main();
 
 	//<-- End Rooms -->
 
-	thread sr\api\_map::createSpawn((-517, -930, 124), 90);
 
 	tele1 = getEnt("e_r_1", "targetname");
-	thread sr\api\_speedrun::createTeleporter((-737, -836, 124), 100, 150, 
+	thread sr\api\_speedrun::createTeleporter((-737, -836, 124), 100, 150,
 		tele1.origin, tele1.angles[1], "freeze", "green", "secret_0");
 	tele2 = getEnt("h_r_1", "targetname");
-	thread sr\api\_speedrun::createTeleporter((-318, -836, 124), 100, 150, 
+	thread sr\api\_speedrun::createTeleporter((-318, -836, 124), 100, 150,
 		tele2.origin, tele2.angles[1], "freeze", "darkred", "secret_1");
 
 	game["allies"] = "sas";
@@ -31,15 +28,15 @@ main()
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
-	
+
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
-	
-	
+
+
 	//<- Threads -->
 	// thread messages();
 	thread startdoor();
@@ -77,14 +74,14 @@ main()
 	/* [AUTO DELETE] thread bounce_room_fail_1_2(); */
 	/* [AUTO DELETE] thread bounce_room_fail_2(); */
 	/* [AUTO DELETE] thread bounce_room_fail_2_2(); */
-	// thread  [AUTO DELETE] bounce_room_sniper(); 
+	// thread  [AUTO DELETE] bounce_room_sniper();
 	// thread acti_sec();
 	// thread acti_sec_enter();
 	// thread acti_sec_fails();
 	// thread acti_sec_xp();
 	// thread logo_shoot();
 	/* [AUTO DELETE] thread secret_enter(); */
-	// thread  [AUTO DELETE] open_secret(); 
+	// thread  [AUTO DELETE] open_secret();
 	/* [AUTO DELETE] thread vip_fox(); */
 	/* [AUTO DELETE] thread vip_glen(); */
 	/* [AUTO DELETE] thread vip_prood(); */
@@ -113,20 +110,20 @@ main()
 	/* [AUTO DELETE] thread bounce_room(); */
 	// thread rpg_room();
 	//thread addTriggerToList(); <-- There an error here :>
-	
+
 	//<-- PreCache -->
 	//Models
 	//<-- Elysium -->
-	precacheShader("ely_bra"); 
+	precacheShader("ely_bra");
 	precacheShader("ely_choker");
-	precacheShader("ely_edging"); 
+	precacheShader("ely_edging");
 	precacheShader("ely_eyes");
-	precacheShader("ely_face"); 
+	precacheShader("ely_face");
 	precacheShader("ely_feet");
 	precacheShader("ely_hair3");
-	precacheShader("ely_hands"); 
+	precacheShader("ely_hands");
 	precacheShader("ely_head_scarf");
-	precacheShader("ely_jewel"); 
+	precacheShader("ely_jewel");
 	precacheShader("ely_leg_sock_clasp");
 	precacheShader("ely_legs");
 	precacheShader("ely_mask");
@@ -145,35 +142,35 @@ main()
 	precacheShader("elysium_sleeve_fabric");
 	precacheModel("Elysium_SC5");
 	//<-- Metal Sonic -->
-	precacheShader("sonic_metal_body"); 
+	precacheShader("sonic_metal_body");
 	precacheShader("sonic_metal_head");
 	precacheModel("sonic_metal_model");
 	//<-- Yuusha -->
-	precacheShader("de_m_kami_01"); 
+	precacheShader("de_m_kami_01");
 	precacheShader("de_m_kami_02");
-	precacheShader("de_m_kami_03"); 
+	precacheShader("de_m_kami_03");
 	precacheShader("de_m_kami_04");
-	precacheShader("de_m_kao_01"); 
+	precacheShader("de_m_kao_01");
 	precacheShader("de_m_me_01");
 	precacheShader("de_m_sukato01");
-	precacheShader("de_m_sukato10"); 
+	precacheShader("de_m_sukato10");
 	precacheShader("de_m_sukato19");
-	precacheShader("de_m_sukato20"); 
+	precacheShader("de_m_sukato20");
 	precacheShader("de_m_sukato25");
 	precacheShader("de_m_sukato27");
 	precacheModel("Yuusha");
 	/* [AUTO DELETE] //Weapons
-	precacheItem("remington700_mp"); */ 
-	precacheItem("m40a3_mp"); 
-	precacheItem("rpg_mp"); 
+	precacheItem("remington700_mp"); */
+	precacheItem("m40a3_mp");
+	precacheItem("rpg_mp");
 	precacheItem("knife_mp");
 	precacheItem("shockwave_mp");
-	
-	
-	
-	// //<-- /* [AUTO DELETE] Music --> 
+
+
+
+	// //<-- /* [AUTO DELETE] Music -->
 	// //Music//
-	// if(!isdefined(level.music))		
+	// if(!isdefined(level.music))
  //    level.music=[]; */
  //    level.music[0]["song"]    ="Brennan Heart - Be Here Now";	//name to show in game
  //    /* [AUTO DELETE] level.music[0]["alias"]    ="song1"; */						//name in iwd
@@ -183,13 +180,13 @@ main()
  //    /* [AUTO DELETE] level.music[2]["alias"]    ="song3"; */
  //    /* [AUTO DELETE] level.music[3]["song"]    ="Era Istrefi - Bonbon"; */
  //    /* [AUTO DELETE] level.music[3]["alias"]    ="song4"; */
-	//  [AUTO DELETE] level.music[4]["song"]    ="Muzzy - Break Away"; 
+	//  [AUTO DELETE] level.music[4]["song"]    ="Muzzy - Break Away";
  //    /* [AUTO DELETE] level.music[4]["alias"]    ="song5"; */
 	// /* [AUTO DELETE] level.music[5]["song"]    ="Mr FijiWiji & Direct - Hysteria"; */
  //    /* [AUTO DELETE] level.music[5]["alias"]    ="song6"; */
  //   	/* [AUTO DELETE] level.music[6]["song"]    ="Eyeris - All In Good Time"; */
  //    /* [AUTO DELETE] level.music[6]["alias"]    ="song7"; */
-	
+
 	// //<--Trigger List-->
 	// addTriggerToList("acti_trap_1"); //use your trap triggers instead of trig_trap10, do this for all traps
 	// addTriggerToList("trig2");
@@ -200,7 +197,7 @@ main()
 	// addTriggerToList("trig7");
 	// addTriggerToList("trig8");
 	// addTriggerToList("trig9");
-	
+
 }
 
 
@@ -225,10 +222,10 @@ messages()
 	wait 0.1;
 	/* [AUTO DELETE] iprintln("^2>> ^7Map Made By: ^2Fox"); */
 	wait 30;
-	/* [AUTO DELETE] iprintln("^2>> ^7Thanks to ^1VC' Glen ^7For Fixing Errors"); */ 
+	/* [AUTO DELETE] iprintln("^2>> ^7Thanks to ^1VC' Glen ^7For Fixing Errors"); */
 	wait 30;
-}	
-	
+}
+
 }
 
 //<-- Thread Startdoor -->
@@ -252,7 +249,7 @@ trap1()
 	trig = getent("acti_trap_1", "targetname"); //is this the trigger that the acti presses? yes
 
 	trig waittill("trigger", player);
-	
+
 	/* [AUTO DELETE] player braxi\_rank::giveRankXP( "", 60 ); */
 	//
 	trig delete();
@@ -270,14 +267,14 @@ trap2()
 	delete4 = getent("trap2_4", "targetname");
 	trig2 = getent("trig2", "targetname");
 	trig2 waittill("trigger", player);
-	
+
 	/* [AUTO DELETE] player braxi\_rank::giveRankXP( "", 60 ); */
 	trig2 delete();
 	delete1 delete();
 	delete2 delete();
 	delete3 delete();
 	delete4 delete();
-	
+
 }
 
 
@@ -288,11 +285,11 @@ trap3()
 	trap3 = getent("trap3", "targetname");
 	trig3 = getent("trig3", "targetname");
 	trig3 waittill("trigger", player);
-	
+
 	/* [AUTO DELETE] player braxi\_rank::giveRankXP( "", 60 ); */
 	trig3 delete();
 	trap3 delete();
-	
+
 }
 
 //<-- Thread Trap 4 -->
@@ -305,11 +302,11 @@ trap4()
 	delete5 = getent("trap4_4", "targetname");
 	trig4 = getent("trig4", "targetname");
 	trig4 waittill("trigger", player);
-	
+
 	/* [AUTO DELETE] player braxi\_rank::giveRankXP( "", 60 ); */
 	delete4 delete();
 	delete5 delete();
-	
+
 	for(;;)
 	{
 	wait 0.1;
@@ -332,14 +329,14 @@ trap5()
 	bounce1 = getent("trap5", "targetname");
 	trig5 = getent("trig5", "targetname");
 	trig5 waittill("trigger", player);
-	
+
 	/* [AUTO DELETE] player braxi\_rank::giveRankXP( "", 60 ); */
 	trig5 delete();
 	wait 0.1;
 	bounce1 moveX(-192, 1);
 	wait 6;
 	bounce1 moveX(192, 1);
-	
+
 }
 
 //<-- Thread Trap 6 -->
@@ -349,11 +346,11 @@ trap6()
 	bounce2 = getent("trap6", "targetname");
 	trig6 = getent("trig6", "targetname");
 	trig6 waittill("trigger", player);
-	
+
 	/* [AUTO DELETE] player braxi\_rank::giveRankXP( "", 60 ); */
 	trig6 delete();
 	bounce2 delete();
-	
+
 }
 
 //<-- Thread Trap 7 -->
@@ -363,11 +360,11 @@ trap7()
 	square = getent("trap7", "targetname");
 	trig7 = getent("trig7", "targetname");
 	trig7 waittill("trigger", player);
-	
+
 	/* [AUTO DELETE] player braxi\_rank::giveRankXP( "", 60 ); */
 	trig7 delete();
 	square delete();
-	
+
 }
 
 
@@ -375,7 +372,7 @@ trap7()
 elev()
 {
 	elev = getent("elevator", "targetname");
-	
+
 	for(;;)
 	{
 	wait 0.1;
@@ -383,7 +380,7 @@ elev()
 	wait 4;
 	elev moveY (-896, 1);
 	wait 4;
-	}	
+	}
 }
 
 
@@ -395,12 +392,12 @@ trap8()
 	bounce4 = getent("trap8_2", "targetname");
 	trig8 = getent("trig8", "targetname");
 	trig8 waittill("trigger", player);
-	
+
 	/* [AUTO DELETE] player braxi\_rank::giveRankXP( "", 60 ); */
 	trig8 delete();
 	bounce3 delete();
 	bounce4 delete();
-	
+
 }
 
 
@@ -418,7 +415,7 @@ trap9()
 	pillars8 = getent("trap9_8", "targetname");
 	trig9 = getent("trig9", "targetname");
 	trig9 waittill("trigger", player);
-	
+
 	/* [AUTO DELETE] player braxi\_rank::giveRankXP( "", 60 ); */
 	trig9 delete();
 	pillars1 delete();
@@ -429,7 +426,7 @@ trap9()
 	pillars6 delete();
 	pillars7 delete();
 	pillars8 delete();
-	
+
 }
 
 
@@ -641,42 +638,42 @@ ActiTele7()
 
 
 
-first_trig() 
-{ 
-	trig10 = getEnt( "first_trig", "targetname" ); 
- 
-	while(true) 
-	{ 
+first_trig()
+{
+	trig10 = getEnt( "first_trig", "targetname" );
+
+	while(true)
+	{
 		trig10 waittill ("trigger",player );
 		trig10 delete ();
-		/* [AUTO DELETE] iPrintLnBold("^2"+ player.name + " ^7Has Reached the ^2Second ^7Area^2!"); */	
+		/* [AUTO DELETE] iPrintLnBold("^2"+ player.name + " ^7Has Reached the ^2Second ^7Area^2!"); */
 		/* [AUTO DELETE] player braxi\_rank::giveRankXP( "", 50 ); */
-	} 
+	}
 }
 
-first_place() 
-{ 
-	trig11 = getEnt( "first_place", "targetname" ); 
- 
-	while(true) 
-	{ 
+first_place()
+{
+	trig11 = getEnt( "first_place", "targetname" );
+
+	while(true)
+	{
 		trig11 waittill ("trigger",player );
 		trig11 delete ();
-		/* [AUTO DELETE] iPrintLnBold("^2"+ player.name + " ^7Has Finished ^2First^7!"); */	
-	} 
+		/* [AUTO DELETE] iPrintLnBold("^2"+ player.name + " ^7Has Finished ^2First^7!"); */
+	}
 }
 
 
-strafe_trig() 
-{ 
-	trig12 = getEnt( "strafe", "targetname" ); 
- 
-	while(true) 
-	{ 
+strafe_trig()
+{
+	trig12 = getEnt( "strafe", "targetname" );
+
+	while(true)
+	{
 		trig12 waittill ("trigger",player );
 		trig12 delete ();
 		/* [AUTO DELETE] player braxi\_rank::giveRankXP( "", 50 ); */
-	} 
+	}
 }
 
 
@@ -757,7 +754,7 @@ bounce_room_fail_1()
 			wait 0.01;
 		}
 }
-	
+
 
 
 bounce_room_fail_1_2()
@@ -773,7 +770,7 @@ bounce_room_fail_1_2()
 			wait 0.01;
 		}
 }
-	
+
 
 
 bounce_room_fail_2()
@@ -789,7 +786,7 @@ bounce_room_fail_2()
 			wait 0.01;
 		}
 }
-	
+
 
 bounce_room_fail_2_2()
 {
@@ -804,13 +801,13 @@ bounce_room_fail_2_2()
 			wait 0.01;
 		}
 }
-	
+
 
 
 bounce_room_sniper()
 {
 	trig = getEnt("br_sniper", "targetname");
-	
+
 		for(;;)
 		{
 			trig waittill("trigger", player);
@@ -827,23 +824,23 @@ acti_sec()
 	sec_door = getent("acti_sec_door", "targetname");
 	trig = getent("trig_scti_sec", "targetname");
 	trig waittill("trigger", player);
-	
+
 	/* [AUTO DELETE] player iprintln("^2[^7Activator Secret Opened^2]"); */
 	sec_door delete();
 	trig delete();
 }
 
 
-acti_sec_enter() 
-{ 
-	trig = getEnt( "acti_sec_enter", "targetname" ); 
- 
-	while(true) 
-	{ 
+acti_sec_enter()
+{
+	trig = getEnt( "acti_sec_enter", "targetname" );
+
+	while(true)
+	{
 		trig waittill ("trigger",player );
 		/* [AUTO DELETE] player iPrintLnBold("Welcome to the ^2Activator ^7Secret^2!"); */
 		trig delete ();
-	} 
+	}
 }
 
 
@@ -905,12 +902,12 @@ secret_enter()
 }
 
 
-open_secret() 
+open_secret()
 {
 	sec_block = getent("secret_block", "targetname");
 	trig = getent("open_secret", "targetname");
 	trig waittill("trigger", player);
-	
+
 	/* [AUTO DELETE] iprintln("^2[^7Secret Opened^2]"); */
 	sec_block delete();
 	trig delete();
@@ -923,7 +920,7 @@ vip_fox()
 {
 	trig = getent("vip_fox", "targetname");
 	trig waittill("trigger", player);
-	if(player getGuid() == "5dcce639cbef05e4f9b739a0ab61c6e4") //Fox 
+	if(player getGuid() == "5dcce639cbef05e4f9b739a0ab61c6e4") //Fox
 {
 	player.vip = true;
 	/* [AUTO DELETE] iprintlnBold("^3>> ^7Welcome Map Creator: ^2Fox ^3<<"); */
@@ -1084,14 +1081,14 @@ easy_enter()
 
 easy_finish()
 {
-	trig = getEnt("easy_finish", "targetname"); 
-	tele1 = getEnt("3rdroom", "targetname"); 
+	trig = getEnt("easy_finish", "targetname");
+	tele1 = getEnt("3rdroom", "targetname");
 
 	for(;;)
 		{
 			trig waittill("trigger", player);
 			/* [AUTO DELETE] player braxi\_rank::giveRankXP( "", 200 ); */
-			/* [AUTO DELETE] iPrintLnBold("^2"+ player.name + " ^7Has Finished the ^5Easy ^7Secret^5!"); */	
+			/* [AUTO DELETE] iPrintLnBold("^2"+ player.name + " ^7Has Finished the ^5Easy ^7Secret^5!"); */
 			// player notify("secret1_done");
 			// player.secretTimer destroy();
 			// player setOrigin(tele1.origin);
@@ -1105,7 +1102,7 @@ easy_finish()
 secret_timer_easy() //blades timer
 {
 	self endon("secret1_done");
-	
+
 
 	if(isdefined(self.secretTimer))
 	self.secretTimer destroy();
@@ -1126,7 +1123,7 @@ secret_timer_easy() //blades timer
         self.secretTimer.label = &"Time in Secret: &&1";
         if(isdefined(level.randomcolor))
 	self.secretTimer.glowColor=level.randomcolor;
-	else 
+	else
 	self.secretTimer.glowColor=(1,0,0);
 
 	time=60;
@@ -1242,36 +1239,36 @@ knife_room()
 	while(1)
 	{
 	level.trigknife = getEnt("trig_knife", "targetname");
-	
+
 	jumporigin = getEnt("origin_jknife", "targetname");
 	actiorigin = getEnt("origin_aknife", "targetname");
-	
+
 	level.trigknife waittill("trigger", player);
-	
+
 	level.trigsniper delete();
 	level.trigrpg delete();
 	level.trigbounce delete();
-	
 
-	
+
+
 	/* [AUTO DELETE] iPrintLnBold("^2 " + player.name + " ^7Entered The ^2Knife ^7Room^7!"); */
 	wait 2;
-	
+
 	/* [AUTO DELETE] player takeAllWeapons(); */
 	/* [AUTO DELETE] level.activ takeAllWeapons(); */
-	
+
 	/* [AUTO DELETE] player giveWeapon("knife_mp"); */
 	/* [AUTO DELETE] level.activ giveWeapon("knife_mp"); */
-	
+
 	player freezeControls(1);
 	level.activ freezeControls(1);
-	
+
 	player setOrigin (jumporigin.origin);
 	player setPlayerAngles (jumporigin.angles);
 
 	level.activ setOrigin (actiorigin.origin);
 	level.activ setPlayerAngles (actiorigin.angles);
-	
+
 	/* [AUTO DELETE] player iPrintLnBold("^63"); */
 	/* [AUTO DELETE] level.activ iPrintLnBold("^63"); */
 	wait 1;
@@ -1283,10 +1280,10 @@ knife_room()
 	wait 1;
 	/* [AUTO DELETE] player iPrintLnBold("^1FIGHT!"); */
 	/* [AUTO DELETE] level.activ iPrintLnBold("^1FIGHT!"); */
-	
+
 	player freezeControls(0);
 	level.activ freezeControls(0);
-	
+
 	/* [AUTO DELETE] player switchToWeapon("knife_mp"); */
 	/* [AUTO DELETE] level.activ switchToWeapon("knife_mp"); */
 	}
@@ -1301,7 +1298,7 @@ musicBox()
     trig waittill("trigger",p);
 	//braxi\_rank::/* [AUTO DELETE] giveRankXP("", 50); */
     trig delete();
-    
+
     p freezeControls(1);
     p musicMenu();
 }
@@ -1318,10 +1315,10 @@ musicMenu()
     self endon( "spawned" );
     self endon( "joined_spectators" );
     self endon( "music thread terminated" );
- 
+
     self.hud_music = [];
     self.selection = 0;
- 
+
     // create huds
     i = 0;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 160, 200, 0.6, "left", "top", 2 );
@@ -1332,7 +1329,7 @@ musicMenu()
     self.hud_music[i].sort = 880;
     self.hud_music[i] setShader( "white", 306, 20 );
     self.hud_music[i].color=(1,0,0);
-    
+
     i++;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 210, 204, 0.93, "left", "top", 1.8 );
     self.hud_music[i].sort = 884;
@@ -1340,13 +1337,13 @@ musicMenu()
     self.hud_music[i].glowalpha=1;
     if(isdefined(level.randomcolor))
         self.hud_music[i].glowcolor=level.randomcolor;
-    else 
+    else
         self.hud_music[i].glowcolor=(1,0,0);
     i++;
     self.hud_music[i] = braxi\_mod::addTextHud( self, 250, 360, 1, "center", "bottom", 1.4 );
     self.hud_music[i].sort = 886;
     self.hud_music[i] setText("Scroll: ^3[{+attack}] ^7| Select: ^3[{+activate}] ^7| Close: ^3[{+frag}]");
- 
+
     for( j = 0; j < level.music.size; j++ )
     {
         i++;
@@ -1356,32 +1353,32 @@ musicMenu()
         self.hud_music[i].glowalpha=1;
         if(isdefined(level.randomcolor))
             self.hud_music[i].glowcolor=level.randomcolor;
-        else 
+        else
             self.hud_music[i].glowcolor=(1,0,0);
- 
+
         entry = level.music[j];
         self.hud_music[i] setText(entry["song"]);
     }
- 
+
     i++;
     self.hud_music[self.hud_music.size] = braxi\_mod::addTextHud( self, 167, 230, 0.4, "left", "top", 1.4 );
     self.hud_music[i].sort = 881;
     indicator = self.hud_music[self.hud_music.size-1];
     indicator setShader( "white", 306, 17 );
     indicator.color=(1,0,0);
- 
+
     while(self.sessionstate == "playing")
     {
         wait 0.1;
- 
+
         if(self attackButtonPressed())
         {
             self.hud_music[4+self.selection].alpha = 0.93;
- 
+
             self.selection++;
             if( self.selection >= level.music.size )
                 self.selection = 0;
- 
+
             item = self.hud_music[4+self.selection];
             item.alpha = 1;
             indicator.y = item.y;
@@ -1389,7 +1386,7 @@ musicMenu()
         else if(self useButtonPressed())
         {
              /* [AUTO DELETE] iPrintLn("^2>> ^7Now playing: ^2"+level.music[self.selection]["song"]); */
-			 
+
             /* [AUTO DELETE] ambientPlay(level.music[self.selection]["alias"]); */
             self freezeControls(0);
             break;
@@ -1400,7 +1397,7 @@ musicMenu()
            break;
         }
     }
-    
+
     if(!isdefined(self))
         return;
     if(isdefined(self.hud_music))
@@ -1533,7 +1530,7 @@ hard_finish()
 		{
 			trig waittill("trigger", player);
 			/* [AUTO DELETE] player braxi\_rank::giveRankXP( "", 500 ); */
-			/* [AUTO DELETE] iPrintLnBold("^2"+ player.name + " ^7Has Finished the ^1Hard ^7Secret^1!"); */	
+			/* [AUTO DELETE] iPrintLnBold("^2"+ player.name + " ^7Has Finished the ^1Hard ^7Secret^1!"); */
 			// player notify("secret2_done");
 			// player.secretTimer destroy();
 			// player setOrigin(tele1.origin);
@@ -1580,7 +1577,7 @@ TestClient(team)
 
      while(!isdefined(self.pers["team"]))
          wait .05;
-         
+
      self notify("menuresponse", game["menu_team"], team);
      wait 0.5;
 }
@@ -1591,7 +1588,7 @@ TestClient(team)
 secret_timer_hard() //blades timer
 {
 	self endon("secret2_done");
-	
+
 
 	if(isdefined(self.secretTimer))
 	self.secretTimer destroy();
@@ -1612,7 +1609,7 @@ secret_timer_hard() //blades timer
         self.secretTimer.label = &"Time in Secret: &&1";
         if(isdefined(level.randomcolor))
 	self.secretTimer.glowColor=level.randomcolor;
-	else 
+	else
 	self.secretTimer.glowColor=(1,0,0);
 
 	time=120;
@@ -1635,22 +1632,22 @@ sniper_room()
 	while(1)
 	{
 	level.trigsniper = getEnt("sniper_room", "targetname");
-	
+
 	jumporigin = getEnt("sf_1", "targetname");
 	actiorigin = getEnt("sf_2", "targetname");
-	
+
 	level.trigsniper waittill("trigger", player);
-	
+
 	level.trigknife delete();
 	level.trigrpg delete();
 	level.trigbounce delete();
-	
+
 	/* [AUTO DELETE] iPrintLnBold("^2 " + player.name + " ^7Entered The ^2Sniper ^7Room^7!"); */
-	
-	
+
+
 	/* [AUTO DELETE] player takeAllWeapons(); */
 	/* [AUTO DELETE] level.activ takeAllWeapons(); */
-	
+
 	/* [AUTO DELETE] player giveWeapon("m40a3_mp"); */
 	/* [AUTO DELETE] player giveWeapon("remington700_mp"); */
 	/* [AUTO DELETE] player giveMaxAmmo("remington700_mp"); */
@@ -1659,23 +1656,23 @@ sniper_room()
 	/* [AUTO DELETE] level.activ giveWeapon("remington700_mp"); */
 	/* [AUTO DELETE] level.activ giveMaxAmmo("remington700_mp"); */
 	/* [AUTO DELETE] level.activ giveMaxAmmo("m40a3_mp"); */
-	
-	
+
+
 	/* [AUTO DELETE] player switchToWeapon("m40a3_mp"); */
 	/* [AUTO DELETE] player switchToWeapon("remington700_mp"); */
 	/* [AUTO DELETE] level.activ switchToWeapon("m40a3_mp"); */
 	/* [AUTO DELETE] player switchToWeapon("remington700_mp"); */
-	
+
 	player freezeControls(1);
 	level.activ freezeControls(1);
-	
+
 	player setOrigin (jumporigin.origin);
 	player setPlayerAngles (jumporigin.angles);
 
 	level.activ setOrigin (actiorigin.origin);
 	level.activ setPlayerAngles (actiorigin.angles);
 	wait 2;
-	
+
 	/* [AUTO DELETE] player iPrintLnBold("^23"); */
 	/* [AUTO DELETE] level.activ iPrintLnBold("^23"); */
 	wait 1;
@@ -1687,10 +1684,10 @@ sniper_room()
 	wait 1;
 	/* [AUTO DELETE] player iPrintLnBold("^7FIGHT^2!"); */
 	/* [AUTO DELETE] level.activ iPrintLnBold("^7FIGHT^2!"); */
-	
+
 	player freezeControls(0);
 	level.activ freezeControls(0);
-	
+
 
 	}
 }
@@ -1701,38 +1698,38 @@ bounce_room()
 	while(1)
 	{
 	level.trigbounce = getEnt("bounce_room", "targetname");
-	
+
 	jumporigin = getEnt("bf_1", "targetname");
 	actiorigin = getEnt("bf_2", "targetname");
-	
+
 	level.trigbounce waittill("trigger", player);
 	level.trigknife delete();
 	level.trigrpg delete();
 	level.trigsniper delete();
 
-	
+
 	/* [AUTO DELETE] iPrintLnBold("^2 " + player.name + " ^7Entered The ^2Bounce ^7Room^7!"); */
-	
-	
+
+
 	/* [AUTO DELETE] player takeAllWeapons(); */
 	/* [AUTO DELETE] level.activ takeAllWeapons(); */
-	
+
 	/* [AUTO DELETE] player giveWeapon("knife_mp"); */
 	/* [AUTO DELETE] level.activ giveWeapon("knife_mp"); */
-	
+
 	/* [AUTO DELETE] player switchToWeapon("knife_mp"); */
 	/* [AUTO DELETE] level.activ switchToWeapon("knife_mp"); */
-	
+
 	player freezeControls(1);
 	level.activ freezeControls(1);
-	
+
 	player setOrigin (jumporigin.origin);
 	player setPlayerAngles (jumporigin.angles);
 
 	level.activ setOrigin (actiorigin.origin);
 	level.activ setPlayerAngles (actiorigin.angles);
 	wait 2;
-	
+
 	/* [AUTO DELETE] player iPrintLnBold("^23"); */
 	/* [AUTO DELETE] level.activ iPrintLnBold("^23"); */
 	wait 1;
@@ -1744,10 +1741,10 @@ bounce_room()
 	wait 1;
 	/* [AUTO DELETE] player iPrintLnBold("^7FIGHT^2!"); */
 	/* [AUTO DELETE] level.activ iPrintLnBold("^7FIGHT^2!"); */
-	
+
 	player freezeControls(0);
 	level.activ freezeControls(0);
-	
+
 
 	}
 }
@@ -1759,38 +1756,38 @@ rpg_room()
 	while(1)
 	{
 	level.trigrpg = getEnt("rpg_room", "targetname");
-	
+
 	jumporigin = getEnt("rpgf_1", "targetname");
 	actiorigin = getEnt("rpgf_2", "targetname");
-	
+
 	level.trigrpg waittill("trigger", player);
-	
+
 	level.trigknife delete();
 	level.trigsniper delete();
 	level.trigbounce delete();
-	
+
 	/* [AUTO DELETE] iPrintLnBold("^2 " + player.name + " ^7Entered The ^2RPG ^7Room^7!"); */
-	
-	
+
+
 	/* [AUTO DELETE] player takeAllWeapons(); */
 	/* [AUTO DELETE] level.activ takeAllWeapons(); */
-	
+
 	/* [AUTO DELETE] player giveWeapon("rpg_mp"); */
 	/* [AUTO DELETE] level.activ giveWeapon("rpg_mp"); */
 	/* [AUTO DELETE] player switchToWeapon("rpg_mp"); */
 	/* [AUTO DELETE] level.activ switchToWeapon("rpg_mp"); */
 
-	
+
 	player freezeControls(1);
 	level.activ freezeControls(1);
-	
+
 	player setOrigin (jumporigin.origin);
 	player setPlayerAngles (jumporigin.angles);
 
 	level.activ setOrigin (actiorigin.origin);
 	level.activ setPlayerAngles (actiorigin.angles);
 	/* [AUTO DELETE] wait 2; */
-	
+
 	/* [AUTO DELETE] player iPrintLnBold("^23"); */
 	/* [AUTO DELETE] level.activ iPrintLnBold("^23"); */
 	/* [AUTO DELETE] wait 1; */
@@ -1802,12 +1799,12 @@ rpg_room()
 	/* [AUTO DELETE] wait 1; */
 	/* [AUTO DELETE] player iPrintLnBold("^7FIGHT^2!"); */
 	/* [AUTO DELETE] level.activ iPrintLnBold("^7FIGHT^2!"); */
-	
+
 	player freezeControls(0);
 	level.activ freezeControls(0);
-	
+
 		for(;;)
-		{	
+		{
 			/* [AUTO DELETE] player giveMaxAmmo("rpg_mp"); */
 			/* [AUTO DELETE] level.activ giveMaxAmmo("rpg_mp"); */
 			/* [AUTO DELETE] wait 0.1; */

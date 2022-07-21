@@ -3,8 +3,7 @@ main()
 	maps\mp\mp_dr_quick_fx::main();
 	maps\mp\_load::main();
     
-	thread sr\api\_map::createSpawn((-2,15,76),90);
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+		thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";

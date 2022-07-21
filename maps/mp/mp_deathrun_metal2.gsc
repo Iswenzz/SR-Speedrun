@@ -20,8 +20,7 @@ trigger.radius = 96;
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
       	
-    thread sr\api\_map::createSpawn((-80,19,76),180);
-    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+        thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
 	thread start();
 	thread trap2();

@@ -25,8 +25,6 @@ main()
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
-level.masterSpawn = spawn("script_origin",(4608,-7776,0));
-level.masterSpawn.angles = (0,360,0);
 	maps\mp\_load::main();
 	maps\mp\_compass::setupMiniMap("compass_mp_q3_slide_awumpus");
  

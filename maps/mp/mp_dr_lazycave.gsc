@@ -41,8 +41,7 @@ main()
 	
 	//GENERAL THREADS
     thread sr\api\_speedrun::createNormalWays("Normal Way;");
-    thread sr\api\_map::createSpawn((123,-154,76), 2);
-	// thread musicBox();
+    	// thread musicBox();
 	thread opening();
 	// thread endingplatform();
 	// thread initialize();

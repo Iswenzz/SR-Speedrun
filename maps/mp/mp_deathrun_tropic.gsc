@@ -1,19 +1,19 @@
-//__/\\\\\\\\\\\\\\\______________________________/\\\_______________        
-// _\/\\\///////////___________________________/\\\\\\\_______________       
-//  _\/\\\_____________________________________\/////\\\_______________      
-//  _\/\\\\\\\\\\\____/\\\\\\\\___/\\/\\\\\\_______\/\\\__/\\\____/\\\_     
-//    _\/\\\///////___/\\\/////\\\_\/\\\////\\\______\/\\\_\///\\\/\\\/__    
-//     _\/\\\_________/\\\\\\\\\\\__\/\\\__\//\\\_____\/\\\___\///\\\/____   
-//      _\/\\\________\//\\///////___\/\\\___\/\\\_____\/\\\____/\\\/\\\___  
-//       _\/\\\_________\//\\\\\\\\\\_\/\\\___\/\\\_____\/\\\__/\\\/\///\\\_ 
+//__/\\\\\\\\\\\\\\\______________________________/\\\_______________
+// _\/\\\///////////___________________________/\\\\\\\_______________
+//  _\/\\\_____________________________________\/////\\\_______________
+//  _\/\\\\\\\\\\\____/\\\\\\\\___/\\/\\\\\\_______\/\\\__/\\\____/\\\_
+//    _\/\\\///////___/\\\/////\\\_\/\\\////\\\______\/\\\_\///\\\/\\\/__
+//     _\/\\\_________/\\\\\\\\\\\__\/\\\__\//\\\_____\/\\\___\///\\\/____
+//      _\/\\\________\//\\///////___\/\\\___\/\\\_____\/\\\____/\\\/\\\___
+//       _\/\\\_________\//\\\\\\\\\\_\/\\\___\/\\\_____\/\\\__/\\\/\///\\\_
 //        _\///___________\//////////__\///____\///______\///__\///____\///__
 //
 
 /*
-  	 _   ________   ___  __        __   
- 	| | / / ___( ) / _ )/ /__ ____/ /__ 
+  	 _   ________   ___  __        __
+ 	| | / / ___( ) / _ )/ /__ ____/ /__
  	| |/ / /__ |/ / _  / / _ `/ _  / -_)
- 	|___/\___/   /____/_/\_,_/\_,_/\__/ 
+ 	|___/\___/   /____/_/\_,_/\_,_/\__/
 
  	© VC' Blade
 
@@ -24,33 +24,27 @@ main()
 {
 
 
-	// spawn auto placement
-	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
-	if(auto_spawn.size > 0)
-		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin,
-			auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 
-	
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
  maps\mp\_load::main();
- 
+
  level.chosen=false;
- 
+
  level._effect[ "prach" ] = loadfx( "treadfx/heli_dust_jeepride" );
  level.bubbles = loadFX("fenix/water_bubbles");
  level.exp_fx = LoadFx("explosions/vehicle_explosion_bmp");
  level.heli_fx = LoadFx("explosions/helicopter_explosion");
-  
+
  game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"] = "desert";
- 
+
  /* [AUTO DELETE] ambientPlay("song1"); */
- 
+
   setdvar( "r_specularcolorscale", "1" );
   setdvar( "r_glowbloomintensity0", ".25" );
   setdvar( "r_glowbloomintensity1", ".25" );
@@ -58,13 +52,13 @@ thread sr\api\_speedrun::createNormalWays("Normal Way;");
   setdvar( "compassmaxrange", "1800" );
   setDvar("bg_falldamagemaxheight", 20000 );
   setDvar("bg_falldamageminheight", 15000 );
-  
-  
+
+
   precacheItem( "ak74u_mp" );
-  
-   
-	
-	
+
+
+
+
   thread logo();
   thread logo1();
   thread logo2();
@@ -127,16 +121,16 @@ thread sr\api\_speedrun::createNormalWays("Normal Way;");
   // thread Messages();
   // thread endrooms();
   // thread jump_sniper();
-  
+
   addTriggerToList( "trap1_trig" );
  addTriggerToList( "trap2_trig" );
  addTriggerToList( "trap3_trig" );
  addTriggerToList( "trap4_trig" );
- addTriggerToList( "trap5_trig" ); 
- addTriggerToList( "trap6_trig" ); 
- addTriggerToList( "trap7_trig" ); 
- 
-	
+ addTriggerToList( "trap5_trig" );
+ addTriggerToList( "trap6_trig" );
+ addTriggerToList( "trap7_trig" );
+
+
 
 }
 
@@ -188,7 +182,7 @@ knife()
 			player freezecontrols(0);
 			level.activ freezecontrols(0);
 		}
-		else 
+		else
 		{
 			player endroomsetup(jump,"knife_mp",undefined,100,1);
 			wait 5;
@@ -234,7 +228,7 @@ sniper()
 			player freezecontrols(0);
 			level.activ freezecontrols(0);
 		}
-		else 
+		else
 		{
 			player endroomsetup(jump,"m40a3_mp","remington700_mp",100,1);
 			wait 5;
@@ -283,7 +277,7 @@ jump()
 			/* [AUTO DELETE] player iprintlnbold("^1Spinner ^7will start in ^13^7 Seconds"); */
 			/* [AUTO DELETE] level.activ iprintlnbold("^1Spinner ^7will start in ^13^7 Seconds"); */
 		}
-		else 
+		else
 		{
 			player endroomsetup(jump,"knife_mp",undefined,100,1);
 			wait 5;
@@ -327,7 +321,7 @@ endroomannounce(room,message)
     noti.duration = 6;
     if(isdefined(level.randomcolor))
     	noti.glowcolor=level.randomcolor;
-    else 
+    else
     	noti.glowcolor=(0,1,1);
     players = getEntArray("player", "classname");
     for(i=0;i<players.size;i++)
@@ -341,18 +335,18 @@ startdoor()
 {
    trigger = getEnt("startdoor_trig", "targetname");
    door = getEnt("startdoor", "targetname");
-   
+
    trigger setHintString("^1Press ^7F ^1!");
    trigger waittill("trigger");
-   
+
    /* [AUTO DELETE] iPrintLnBold("^1Startdoor ^7will open in ^15 ^7Seconds"); */
    trigger delete();
    wait (5);
-   
+
    door movez(-484,1);
    wait 1;
    door delete();
-   
+
   hud_clock = NewHudElem();
 	hud_clock.alignX = "center";
 	hud_clock.alignY = "middle";
@@ -370,12 +364,12 @@ startdoor()
                    wait 3;
   }
 
-  
+
 Messages()
 {
     wait 10;
 	/* [AUTO DELETE] iPrintLnBold("Welcome to ^1"+getDvar("mapname")+"^7!"); */
-	
+
     while(1)
     {
 		/* [AUTO DELETE] iPrintLn("^1>>^7 Map created by ^1Fen1x!"); */
@@ -386,7 +380,7 @@ Messages()
         wait 5;
         /* [AUTO DELETE] iPrintLn("^1>>^7 Visit: ^1vistic-clan.net"); */
         wait 5;
-       
+
     }
 }
 
@@ -401,7 +395,7 @@ trap1()
 	hurt linkto(heli);
 	trig sethintstring("Press ^1F^7 To activate heli.");
 	trig SetCursorHint("HINT_ACTIVATE");
-	trig waittill( "trigger", who ); 
+	trig waittill( "trigger", who );
 	trig delete();
 	heli movey(2600,3);
 	wait 3;
@@ -429,7 +423,7 @@ trap2()
 	hurt linkto(trap);
 	trig sethintstring("Press ^1F^7 To raise the spikes.");
 	trig SetCursorHint("HINT_ACTIVATE");
-	trig waittill( "trigger", who ); 
+	trig waittill( "trigger", who );
 	wait 0.1;
 	trig delete();
 	while(1)
@@ -453,7 +447,7 @@ trap3()
 	hurt linkto(trap);
 	trig sethintstring("Press ^1F^7 To activate the spikes.");
 	trig SetCursorHint("HINT_ACTIVATE");
-	trig waittill( "trigger", who ); 
+	trig waittill( "trigger", who );
 	wait 0.1;
 	trig delete();
 	{
@@ -496,19 +490,19 @@ trig = getEnt( "trap5_trig", "targetname" );
 trap5 = getEnt( "trap5", "targetname" );
 trig sethintstring("Press ^1F^7 to Activate those lasers.");
 trig SetCursorHint("HINT_ACTIVATE");
-hurt = getEnt ("trap5_hurt", "targetname"); 
-hurt1 = getEnt ("trap5_hurt1", "targetname"); 
-hurt2 = getEnt ("trap5_hurt2", "targetname"); 
+hurt = getEnt ("trap5_hurt", "targetname");
+hurt1 = getEnt ("trap5_hurt1", "targetname");
+hurt2 = getEnt ("trap5_hurt2", "targetname");
 trap5 hide();
 trap5 notsolid();
 hurt maps\mp\_utility::triggerOff();
 hurt1 maps\mp\_utility::triggerOff();
 hurt2 maps\mp\_utility::triggerOff();
 
- 
+
 trig waittill ("trigger");
 trig delete();
- 
+
 {
 
     trap5 show();
@@ -528,7 +522,7 @@ trap6()
 	trap = getent("trap6", "targetname");
 	trig sethintstring("Press ^1F^7 To activate trap.");
 	trig SetCursorHint("HINT_ACTIVATE");
-	trig waittill( "trigger", who ); 
+	trig waittill( "trigger", who );
 	wait 0.1;
 	trig delete();
 	{
@@ -548,11 +542,11 @@ trap7()
 	trap = getent("trap7", "targetname");
 	trig sethintstring("Press ^1F^7 To delete part of the bridge.");
 	trig SetCursorHint("HINT_ACTIVATE");
-	trig waittill( "trigger", who ); 
+	trig waittill( "trigger", who );
 	wait 0.1;
 	trig delete();
 	{
-		trap delete(); 
+		trap delete();
 	}
 
 }
@@ -565,11 +559,11 @@ teleport1()
 
 	target = getEnt( "teleport1_target", "targetname" );
 	trig = getent("teleport1_trigger", "targetname");
-	
+
 	while(1)
 {
 	trig waittill ("trigger", player);
-	
+
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 }
@@ -581,11 +575,11 @@ teleport2()
 
 	target = getEnt( "teleport2_target", "targetname" );
 	trig = getent("teleport2_trigger", "targetname");
-	
+
 	while(1)
 {
 	trig waittill ("trigger", player);
-	
+
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 }
@@ -597,11 +591,11 @@ teleport3()
 
 	target = getEnt( "teleport3_target", "targetname" );
 	trig = getent("teleport3_trigger", "targetname");
-	
+
 	while(1)
 {
 	trig waittill ("trigger", player);
-	
+
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 }
@@ -613,11 +607,11 @@ teleport4()
 
 	target = getEnt( "teleport4_target", "targetname" );
 	trig = getent("teleport4_trigger", "targetname");
-	
+
 	while(1)
 {
 	trig waittill ("trigger", player);
-	
+
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 }
@@ -629,11 +623,11 @@ teleport5()
 
 	target = getEnt( "teleport5_target", "targetname" );
 	trig = getent("teleport5_trigger", "targetname");
-	
+
 	while(1)
 {
 	trig waittill ("trigger", player);
-	
+
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 }
@@ -645,11 +639,11 @@ teleport6()
 
 	target = getEnt( "teleport6_target", "targetname" );
 	trig = getent("teleport6_trigger", "targetname");
-	
+
 	while(1)
 {
 	trig waittill ("trigger", player);
-	
+
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 }
@@ -662,11 +656,11 @@ teleport7()
 
 	target = getEnt( "teleport7_target", "targetname" );
 	trig = getent("teleport7_trigger", "targetname");
-	
+
 	while(1)
 {
 	trig waittill ("trigger", player);
-	
+
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 }
@@ -678,11 +672,11 @@ teleport8()
 
 	target = getEnt( "teleport8_target", "targetname" );
 	trig = getent("teleport8_trigger", "targetname");
-	
+
 	while(1)
 {
 	trig waittill ("trigger", player);
-	
+
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 }
@@ -694,11 +688,11 @@ teleport9()
 
 	target = getEnt( "teleport9_target", "targetname" );
 	trig = getent("teleport9_trigger", "targetname");
-	
+
 	while(1)
 {
 	trig waittill ("trigger", player);
-	
+
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 }
@@ -710,11 +704,11 @@ teleport10()
 
 	target = getEnt( "teleport10_target", "targetname" );
 	trig = getent("teleport10_trigger", "targetname");
-	
+
 	while(1)
 {
 	trig waittill ("trigger", player);
-	
+
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 }
@@ -728,10 +722,10 @@ jump_sniper()
     while(1)
     {
 	trig waittill( "trigger", player );
-	
+
 	/* [AUTO DELETE] player GiveWeapon( "remington700_mp" ); */
 	/* [AUTO DELETE] player switchToWeapon( "remington700_mp" ); */
-	/* [AUTO DELETE] player givemaxammo("remington700_mp"); */	
+	/* [AUTO DELETE] player givemaxammo("remington700_mp"); */
 	wait 1;
 }
 }
@@ -850,7 +844,7 @@ bubble_fx6()
 }
 
 
-bubble_fx7() 
+bubble_fx7()
 {
 	bubbles=spawnfx(level.bubbles,(-2976, 6560, 112));
 
@@ -858,7 +852,7 @@ bubble_fx7()
 }
 
 
-bubble_fx8() 
+bubble_fx8()
 {
 	bubbles=spawnfx(level.bubbles,(4192, -2272, -120));
 

@@ -9,7 +9,6 @@ game["defenders"] = "allies";
 game["allies_soldiertype"] = "desert";
 game["axis_soldiertype"] = "desert";
 	
-thread sr\api\_map::createSpawn((-731,534,-76),360);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createSecretWays("Secret Way;");
 thread sr\api\_speedrun::createTeleporter((962.114, 512.29, -58.875), 55, 10, (-682, -168, -612), 1, "freeze", "blue", "normal_0");

@@ -5,8 +5,7 @@ main()
 	
 
     thread sr\api\_speedrun::createNormalWays("Normal Way");
-    thread sr\api\_map::createSpawn((0,-61,68),270);
-	//thread trap1();
+    	//thread trap1();
 	//thread trap2();
 	//thread trap3();
 	//thread trap4();

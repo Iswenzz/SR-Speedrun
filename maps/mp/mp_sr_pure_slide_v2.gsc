@@ -21,8 +21,7 @@ main()
 	thread song1();
     thread song2();
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	thread sr\api\_map::createSpawn((126656.0, -126048.0, 828.0), 90);
-}
+	}
 
 slide()
 {

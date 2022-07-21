@@ -18,8 +18,7 @@ maps\mp\_load::main();
 	setdvar("r_glowbloomintensity1",".1");
 	setdvar("r_glowskybleedintensity0",".1");
 
-	thread sr\api\_map::createSpawn((230,1535,76),1);
-    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	    thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Banana Way;");
 	thread sr\api\_speedrun::createTeleporter((2066.02, 1550.5, 34.125), 50, 25, (1952, 1540, 252), 180, "freeze", "blue");
 	thread sr\api\_speedrun::createTeleporter((502.587, 1802.51, 16.125), 60, 35, (1979, 1035, 496), 180, "freeze", "yellow", "secret_0");

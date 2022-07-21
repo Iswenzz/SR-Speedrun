@@ -1,10 +1,7 @@
 main()
 {
 	thread sr\api\_speedrun::createNormalWays("^2Easy Way;^1Hard Way;");
-	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
-	if(auto_spawn.size > 0)
-		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
-maps\mp\_load::main();
+		maps\mp\_load::main();
 setdvar( "r_specularcolorscale", "1" );
 
 thread sr\api\_speedrun::createEndMap((1580, 1059, -364), 100, 150);
@@ -70,10 +67,10 @@ trig = getEnt ("dafaq" , "targetname");
 trig waittill ("trigger", player);
 trig delete();
 
-     /* [AUTO DELETE] iPrintlnBold( "^1OoOOooO ^2ASomeone ^3Just found a jackpot!" ); */   
+     /* [AUTO DELETE] iPrintlnBold( "^1OoOOooO ^2ASomeone ^3Just found a jackpot!" ); */
 	 }
 
-	 
+
 trap1()
 {
 	level endon("trigger");
@@ -134,19 +131,19 @@ wait 3;
    spikes = getEnt ("b4" ,"targetname" );
    hurt = getEnt ("hurtspike" , "targetname");
    hurt2= getEnt ("hurtspike2" , "targetname");
-   trig waittill ("trigger", player);  
-   trig delete();  
-   
+   trig waittill ("trigger", player);
+   trig delete();
+
    hurt enablelinkto();
    hurt linkto (spikes);
    hurt2 enablelinkto();
    hurt2 linkto (spikes);
-   
-        spikes moveZ (20,1); 
+
+        spikes moveZ (20,1);
         wait 5;
-         spikes moveZ (-20,1); 
+         spikes moveZ (-20,1);
         wait 5;
-    
+
 }
 
 
@@ -239,17 +236,17 @@ wait 5;
    trig = getEnt ("t10" , "targetname");
    spikes = getEnt ("b10" ,"targetname" );
    hurt = getEnt ("hurtlast" , "targetname");
-   trig waittill ("trigger", player);  
-   trig delete();  
-   
+   trig waittill ("trigger", player);
+   trig delete();
+
    hurt enablelinkto();
    hurt linkto (spikes);
-   
-        spikes moveZ (240,1); 
+
+        spikes moveZ (240,1);
         wait 10;
-         spikes moveZ (-240,1); 
+         spikes moveZ (-240,1);
         wait 10;
-    
+
 }
 
 
@@ -262,7 +259,7 @@ tele1()
                         entTransporter[i] thread transporter1();
 }
 
- 
+
 transporter1()
 {
         for(;;)
@@ -287,7 +284,7 @@ tele2()
                         entTransporter[i] thread transporter2();
 }
 
- 
+
 transporter2()
 {
         for(;;)
@@ -310,7 +307,7 @@ tele3()
                         entTransporter[i] thread transporter3();
 }
 
- 
+
 transporter3()
 {
         for(;;)
@@ -334,7 +331,7 @@ tele4()
                         entTransporter[i] thread transporter4();
 }
 
- 
+
 transporter4()
 {
         for(;;)
@@ -343,7 +340,7 @@ transporter4()
                 entTarget = getEnt( self.target, "targetname" );
                 /* [AUTO DELETE] wait 0.1; */
                 player setOrigin( entTarget.origin );
-				/* [AUTO DELETE] iPrintlnBold( "^10ooo0 my ^0God" + player.name + " ^3Completed the ^1Hard" ); */ 
+				/* [AUTO DELETE] iPrintlnBold( "^10ooo0 my ^0God" + player.name + " ^3Completed the ^1Hard" ); */
                 player setplayerangles( entTarget.angles );
                 /* [AUTO DELETE] wait 0.1; */
         }
@@ -358,7 +355,7 @@ tele5()
                         entTransporter[i] thread transporter5();
 }
 
- 
+
 transporter5()
 {
         for(;;)
@@ -381,7 +378,7 @@ tele6()
                         entTransporter[i] thread transporter6();
 }
 
- 
+
 transporter6()
 {
         for(;;)
@@ -404,7 +401,7 @@ tele7()
                         entTransporter[i] thread transporter7();
 }
 
- 
+
 transporter7()
 {
         for(;;)
@@ -442,16 +439,16 @@ first_door()
 	trig = getEnt("opendoor","targetname");
 	brush = getEnt("openbrush","targetname");
 	button = getEnt("button_door","targetname");
-	
+
 	// trig waittill("trigger", user);
 	trig delete();
-	
+
 	button moveY(8,2);
 	wait 2;
 	brush moveZ(-340,2);
 	brush waittill("movedone");
 	brush delete();
-	
+
 }
 
 
@@ -460,25 +457,25 @@ sniper_room()
     level.sniper_trig = getEnt( "sniper_room", "targetname");
         jump = getEnt( "sniper_jump", "targetname" );
         acti = getEnt( "sniper_acti", "targetname");
-   
+
         while(1)
         {
                 level.sniper_trig waittill( "trigger", player );
                 if( !isDefined( level.sniper_trig ) )
                         return;
-               
+
                 level.jump_trig delete();
                 level.knife_trig delete();
-                                 
-                                     
+
+
                 player SetPlayerAngles( jump.angles );
                 player setOrigin( jump.origin );
                 /* [AUTO DELETE] player TakeAllWeapons(); */
-                /* [AUTO DELETE] player GiveWeapon( "remington700_mp" ); */        
+                /* [AUTO DELETE] player GiveWeapon( "remington700_mp" ); */
                 level.activ setPlayerangles( acti.angles );
                 level.activ setOrigin( acti.origin );
                 /* [AUTO DELETE] level.activ TakeAllWeapons(); */
-                /* [AUTO DELETE] level.activ GiveWeapon( "remington700_mp" ); */          
+                /* [AUTO DELETE] level.activ GiveWeapon( "remington700_mp" ); */
                 wait 0.05;
                 /* [AUTO DELETE] player switchToWeapon( "remington700_mp" ); */
                 /* [AUTO DELETE] level.activ SwitchToWeapon( "remington700_mp" ); */
@@ -487,32 +484,32 @@ sniper_room()
                         wait 1;
         }
 }
-              
+
 
 knife_room()
 {
     level.knife_trig = getEnt( "knife_room", "targetname");
         jump = getEnt( "knife_jump", "targetname");
         acti = getEnt( "knife_acti", "targetname");
-   
+
         while(1)
         {
                 level.knife_trig waittill( "trigger", player );
                 if( !isDefined( level.knife_trig ) )
                         return;
-               
+
                 level.sniper_trig delete();
                 level.jump_trig delete();
-                                 
-                                     
+
+
                 player SetPlayerAngles( jump.angles );
                 player setOrigin( jump.origin );
                 /* [AUTO DELETE] player TakeAllWeapons(); */
-                /* [AUTO DELETE] player GiveWeapon( "tomahawk_mp" ); */            
+                /* [AUTO DELETE] player GiveWeapon( "tomahawk_mp" ); */
                 level.activ setPlayerangles( acti.angles );
                 level.activ setOrigin( acti.origin );
                 /* [AUTO DELETE] level.activ TakeAllWeapons(); */
-                /* [AUTO DELETE] level.activ GiveWeapon( "tomahawk_mp" ); */              
+                /* [AUTO DELETE] level.activ GiveWeapon( "tomahawk_mp" ); */
                 wait 0.05;
                 /* [AUTO DELETE] player switchToWeapon( "tomahawk_mp" ); */
                 /* [AUTO DELETE] level.activ SwitchToWeapon( "tomahawk_mp" ); */
@@ -528,25 +525,25 @@ jump_room()
     // level.jump_trig = getEnt( "jump_room", "targetname");
     //     jump = getEnt( "jump_jump", "targetname");
     //     acti = getEnt( "jump_acti", "targetname");
-   
+
     //     while(1)
     //     {
     //             level.jump_trig waittill( "trigger", player );
     //             if( !isDefined( level.jump_trig ) )
     //                     return;
-               
+
     //             level.sniper_trig delete();
     //             level.knife_trig delete();
-                                 
-                                     
+
+
     //             player SetPlayerAngles( jump.angles );
     //             player setOrigin( jump.origin );
     //             /* [AUTO DELETE] player TakeAllWeapons(); */
-    //             /* [AUTO DELETE] player GiveWeapon( "tomahawk_mp" ); */            
+    //             /* [AUTO DELETE] player GiveWeapon( "tomahawk_mp" ); */
     //             level.activ setPlayerangles( acti.angles );
     //             level.activ setOrigin( acti.origin );
     //             /* [AUTO DELETE] level.activ TakeAllWeapons(); */
-    //             /* [AUTO DELETE] level.activ GiveWeapon( "tomahawk_mp" ); */              
+    //             /* [AUTO DELETE] level.activ GiveWeapon( "tomahawk_mp" ); */
     //             /* [AUTO DELETE] wait 0.05; */
     //             /* [AUTO DELETE] player switchToWeapon( "tomahawk_mp" ); */
     //             /* [AUTO DELETE] level.activ SwitchToWeapon( "tomahawk_mp" ); */
@@ -560,7 +557,7 @@ jump_room()
 givexp()
 {
 	trig = getent("givexp", "targetname");
-	
+
 	while(1)
 	{
 		trig waittill ( "trigger", player );

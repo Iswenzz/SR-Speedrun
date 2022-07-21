@@ -25,8 +25,7 @@ main()
    precacheItem("deserteagle_mp");
    precacheItem("beretta_mp");
 
-   thread sr\api\_map::createSpawn((-431,127,-532),360);
-   thread sr\api\_speedrun::createNormalWays("Normal Way;Hidden Way;");
+      thread sr\api\_speedrun::createNormalWays("Normal Way;Hidden Way;");
    thread sr\api\_speedrun::createSecretWays("Jumper Secret;Acti Secret;");
    thread sr\api\_speedrun::createTeleporter((7216.45, 83.4312, -546.355), 65, 45, (9221, -897, -252), 180, "freeze", "yellow", "normal_1");
    thread sr\api\_speedrun::createTeleporter((-441.43, 654.139, -591.875), 60, 35, (-1046, -2417, 572), 360, "freeze", "darkred", "secret_0");

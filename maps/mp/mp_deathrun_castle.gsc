@@ -33,8 +33,7 @@ main()
 	setdvar("compassmaxrange","1800");
 	
 	thread sr\api\_speedrun::createNormalWays("Normal Way");
-    thread sr\api\_map::createSpawn((-2822,3241,-948),270);
-    thread sr\api\_speedrun::createEndMap((47.7244, -623.468, 224.125), 355, 150);
+        thread sr\api\_speedrun::createEndMap((47.7244, -623.468, 224.125), 355, 150);
 	//thread creator();
 	thread startdoor();
 	//thread trap1();

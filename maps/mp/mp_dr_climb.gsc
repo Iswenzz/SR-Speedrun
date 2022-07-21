@@ -9,8 +9,7 @@ main()
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
 
-    thread sr\api\_map::createSpawn((-29,-3,76),180);
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createTeleporter((75.2477, 2.52273, 1088.13), 65, 30, (-79, -6, 1668), 180, "freeze", "blue");
 
 	setDvar("bg_FallDamageMaxHeight","99999");

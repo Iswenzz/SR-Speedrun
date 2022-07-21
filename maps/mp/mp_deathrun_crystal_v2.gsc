@@ -16,7 +16,6 @@ setdvar("r_glowskybleedintensity0",".3");
 setDvar("bg_falldamagemaxheight", 99999);
 setDvar("bg_falldamageminheight", 99998);
 
-thread sr\api\_map::createSpawn((645,-2,156),360);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createTeleporter((2555.31, 0.981149, 96.125), 60, 10, (3555, 12, 156), 270, "freeze", "blue", "normal_0");
 thread sr\api\_speedrun::createTeleporter((2200.05, -1985.79, 32.125), 65, 10, (-3202, -2595, -1294), 180, "freeze", "blue", "normal_0");

@@ -48,8 +48,7 @@ main() {
 
     thread sr\api\_speedrun::createNormalWays("Normal Way");
     thread sr\api\_speedrun::createSecretWays("Secret Way");
-    thread sr\api\_map::createSpawn((-1047,57,75), 0);
-    thread startdoor();
+        thread startdoor();
 	thread secretdoor();
     thread secretkey();
     thread secret();

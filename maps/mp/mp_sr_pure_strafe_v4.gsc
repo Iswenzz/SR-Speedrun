@@ -22,8 +22,7 @@ main()
 	thread sr\api\_speedrun::createNormalWays("Normal Way");
     thread sr\api\_speedrun::createSecretWays("Secret Way");
 
-    //thread sr\api\_map::createSpawn((-215,527,76),300);
-
+    //
 	//DISABLING FALLDAMAGE
 	setDvar("bg_falldamagemaxheight", 9999999 );
     setDvar("bg_falldamageminheight", 999999 );

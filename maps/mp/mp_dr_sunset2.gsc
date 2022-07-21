@@ -42,8 +42,7 @@ main()
 
 	thread sr\api\_speedrun::createNormalWays("Normal Way");
 	thread sr\api\_speedrun::createSecretWays("Secret Way");
-	thread sr\api\_map::createSpawn((-605,-1175,476),90);
-	thread sr\api\_speedrun::createTeleporter((-318.49, -1076.84, 416.125), 60, 15, (-6184, -895, 16104), 360, "freeze", "blue", "secret_0");
+		thread sr\api\_speedrun::createTeleporter((-318.49, -1076.84, 416.125), 60, 15, (-6184, -895, 16104), 360, "freeze", "blue", "secret_0");
 	thread startdoor();
 	//thread messages();
 	//thread musicbox();

@@ -20,8 +20,7 @@ trigger.radius = 325;
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	maps\mp\_load::main();
-	thread sr\api\_map::createSpawn((1572, 99, -4),180);
-	thread sr\api\_speedrun::createTeleporter((-16829, 13474, -355), 100, 150,
+		thread sr\api\_speedrun::createTeleporter((-16829, 13474, -355), 100, 150,
 		(-16800, 13170, 124), 270, "freeze");
 
 	spot=getent("secretspot","targetname");

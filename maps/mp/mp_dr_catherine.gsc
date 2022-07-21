@@ -104,8 +104,7 @@ main()
 	//thread gap();
 	//thread pure_strafe();
 	//thread blocks();
-	thread sr\api\_map::createSpawn((-6,-92,60),90);
-	thread sr\api\_speedrun::createNormalWays("Normal Way");
+		thread sr\api\_speedrun::createNormalWays("Normal Way");
 	thread sr\api\_speedrun::createSecretWays("Secret_Way");
 	thread sr\api\_speedrun::createTeleporter((180.874, -30.3021, 0.125001), 50, 95, (7797, 1317, 414), 359, "freeze", "blue", "secret_0");
 	

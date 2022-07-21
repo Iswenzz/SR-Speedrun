@@ -8,8 +8,7 @@ PreCacheItem("deserteaglegold_mp");
         PreCacheItem("skorpion_mp");
         PreCacheItem("remington700_mp");
 	
-	thread sr\api\_map::createSpawn((685,-65,252),180);
-
+	
 	
 	addTriggerToList( "t1" );
 		addTriggerToList( "t2" );

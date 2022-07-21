@@ -23,7 +23,6 @@ game["axis_soldiertype"] = "woodland";
 	precacheItem( "m14_acog_mp" );
 	precacheItem( "deserteagle_mp" );
 
-thread sr\api\_map::createSpawn((-232,-15,76),360);
 thread sr\api\_speedrun::createNormalWays("Easy Way;Hard Way;");
 thread sr\api\_speedrun::createSecretWays("Acti Secret;Jumper Secret;");
 thread sr\api\_speedrun::createEndMap((22833.9, 300.328, -8606.88), 245, 10, "normal_0");

@@ -14,7 +14,6 @@ setdvar("r_glowbloomintensity0",".1");
 setdvar("r_glowbloomintensity1",".1");
 setdvar("r_glowskybleedintensity0",".1");
 
-thread sr\api\_map::createSpawn((-33,-184,60),90);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createSecretWays("Secret Way;");
 thread sr\api\_speedrun::createEndMap((482.431, 5575.54, 912.125), 60, 15, "normal_0");

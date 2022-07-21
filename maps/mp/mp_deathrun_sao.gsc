@@ -32,7 +32,6 @@ maps\mp\mp_deathrun_sao\legendchallange::main();
 	setdvar("bg_fallDamageMaxHeight","400");
 	setdvar("bg_fallDamageMinHeight","200");
 
-thread sr\api\_map::createSpawn((-246,512,60),270);
 thread sr\api\_speedrun::createNormalWays("Dungen Way;City Way;Ruby Way;");
 thread sr\api\_speedrun::createSecretWays("Secret Way;");
 secretorigin = getent("secretspot","targetname");

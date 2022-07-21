@@ -3,8 +3,7 @@ main()
 	maps\mp\_load::main();
 
 	thread sr\api\_speedrun::createNormalWays("Normal Way");
-	thread sr\api\_map::createSpawn((-40,12,68),360);
-	thread sr\api\_speedrun::createTeleporter((2287.25, -1088.39, 32.125), 65, 100, (1453, -1087, 92), 180, "freeze");
+		thread sr\api\_speedrun::createTeleporter((2287.25, -1088.39, 32.125), 65, 100, (1453, -1087, 92), 180, "freeze");
 	//thread trap1();
 	//thread trap3();
 	//thread trap4();

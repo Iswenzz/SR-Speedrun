@@ -20,8 +20,7 @@ main()
 	setdvar("bg_fallDamageMaxHeight", "99999"); 
     setdvar("bg_FallDamageMinHeight","99998");
 	
-      thread sr\api\_map::createSpawn((-12,356,60),266);
-	  thread sr\api\_speedrun::createNormalWays("Normal Way;Pure Strafe");
+      	  thread sr\api\_speedrun::createNormalWays("Normal Way;Pure Strafe");
 	  thread sr\api\_speedrun::createSecretWays("Inter Secret;Hard Secret;");
 	  thread sr\api\_speedrun::createEndMap((4351.44, -16337.2, -4095.88),105,10,"normal_0");
 	  thread sr\api\_speedrun::createEndMap((-2.44038, 5282.71, -439.123),180,10,"normal_1");

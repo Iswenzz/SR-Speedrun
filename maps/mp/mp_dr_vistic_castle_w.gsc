@@ -46,8 +46,7 @@ main()
 	level.music[5]["song"]	="L1mit - Vistic Antheme";
 	level.music[5]["alias"]	="vistic_antheme";
 
-    thread sr\api\_map::createSpawn((42,268,64),90);
-    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+        thread sr\api\_speedrun::createNormalWays("Normal Way;");
     thread sr\api\_speedrun::createSecretWays("^2Easy Secret;1Hard Secret;");
 
 	thread startdoor();

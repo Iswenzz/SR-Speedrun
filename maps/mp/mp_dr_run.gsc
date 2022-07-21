@@ -19,7 +19,6 @@ game["axis_soldiertype"]= "desert";
 	setDvar("bg_falldamagemaxheight", 99999);
     setDvar("bg_falldamageminheight", 99998);
 
-thread sr\api\_map::createSpawn((572,930,-1070),360);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createTeleporter((16985.2, 206.052, -5782.38), 55, 10, (16923, 960, -4550), 360, "freeze", "red", "normal_0");
 thread sr\api\_speedrun::createTeleporter((16994.9, 1680.86, -5782.38), 55, 10, (16923, 960, -4550), 360, "freeze", "red", "normal_0");

@@ -40,8 +40,7 @@ main()
 	setDvar("r_glowskybleedintensity0",".3");
 	setDvar("compassmaxrange","1800");
 	
-	thread sr\api\_map::createSpawn((-722,529,76),359);
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+		thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createTeleporter((-558, 774, 76), 60, 80, (-871, -14052, -708), 359 , "freeze", "red", "secret_0");
 	thread sr\api\_speedrun::createTeleporter((-543, 265, 76), 60, 80, (-11136, -8145, -708), 359 , "freeze", "blue", "secret_1");
 	thread sr\api\_speedrun::createSecretWays("Hard Secret;Easy Secret;");

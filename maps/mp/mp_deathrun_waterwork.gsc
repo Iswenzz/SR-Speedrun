@@ -17,8 +17,7 @@ main()
 
 
         thread sr\api\_speedrun::createNormalWays("Normal Way;");
-        thread sr\api\_map::createSpawn((-1500,-670,60),91);
-        thread sr\api\_speedrun::createEndMap((-660.919, 1538.91, -31.875), 0, 75, 85);
+                thread sr\api\_speedrun::createEndMap((-660.919, 1538.91, -31.875), 0, 75, 85);
         thread trap1();
         thread trap2();
         thread trap3();

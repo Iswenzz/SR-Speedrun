@@ -40,8 +40,7 @@ oOOOOOO OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO OOOOOOo
 
     thread sr\api\_speedrun::createNormalWays("Normal Way");
     thread sr\api\_speedrun::createSecretWays("Secret Way");
-    thread sr\api\_map::createSpawn((35,-213,75),90);
-
+    
 
     game["allies"] = "marines";
 	game["axis"] = "opfor";

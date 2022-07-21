@@ -3,8 +3,7 @@ main()
 maps\mp\_load::main();
 maps\mp\_teleport::main();
 
-	thread sr\api\_map::createSpawn((483, -340, 316), 360);
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+		thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	thread sr\api\_speedrun::createTeleporter((794.87, -66.6879, 256.125), 60, 10, (-3006, -60, 2604), 360, "freeze", "blue", "secret_0");
 

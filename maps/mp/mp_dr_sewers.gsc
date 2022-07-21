@@ -50,8 +50,7 @@ main()
 	
 	//////////////threads////////////////
 	thread sr\api\_speedrun::createNormalWays("Normal Way");
-	thread sr\api\_map::createSpawn((498,-568,74), 92);
-	thread onConnected();
+		thread onConnected();
 	thread tourch_fire();
 	thread laser();
 	thread addorb();

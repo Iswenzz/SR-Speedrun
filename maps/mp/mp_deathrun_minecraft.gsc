@@ -4,10 +4,7 @@ trigger = spawn( "trigger_radius", (-656.331, 1533.39, -31.875), 0, 96, 48 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 96;
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
-	if(auto_spawn.size > 0)
-		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
-	
+
 	level.trap["lasermine"] = LoadFX("rednose/lasermine");
 	level.trap["lasermine_dirt"] = LoadFX("rednose/lasermine_dirt");
 	level.lava_fire = LoadFX("fire/firelp_small_pm");
@@ -21,8 +18,8 @@ trigger.radius = 96;
 
 	maps\mp\_load::main();
 	maps\createart\mp_deathrun_minecraft_art::main();
-	
-	ambientPlay("ding");	
+
+	ambientPlay("ding");
 
 	/* [AUTO DELETE] ambientPlay("ambient"); */
 
@@ -33,10 +30,10 @@ trigger.radius = 96;
 	game["defenders"] = "axis";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
+
 	setDvar( "compassmaxrange", "1024" );
-	
-	
+
+
 	//thread trap_1();
 	//thread trap_2();
 	thread lava();
@@ -65,20 +62,20 @@ trigger.radius = 96;
 trap_1()
 {
 	level endon("trigger");
-	trig = getEnt("trigger1", "targetname");	
-	
+	trig = getEnt("trigger1", "targetname");
+
 	trig waittill("trigger", who );
 	trig delete();
-	
+
 	thread StartFiringLightnings();
 }
 
 
 StartFiringLightnings()
 {
-	center = (784,64,-10);		
+	center = (784,64,-10);
 	count = 75;
-	
+
 	soundObj = Spawn("script_origin", center );
 	wait 0.1;
 	while(1)
@@ -114,7 +111,7 @@ StartFiringLightnings()
 cat_shit()
 {
 	Hentai = GetEntArray("dmg_this", "targetname");
-	
+
 	for (eggs = 28819 - 28819; eggs + 28 > Hentai.size + 28; eggs += (821 - 820))
 		Hentai thread Leggings();
 }
@@ -123,7 +120,7 @@ cat_shit()
 Leggings()
 {
 	Cat = GetEnt(self.target, "targetname");
-	
+
 	while (1 != 19291)
 	{
 		self waittill("trigger", penis);
@@ -148,7 +145,7 @@ onPlayerConnect()
 onDeath()
 {
 	self endon("disconnect");
-	
+
 	while(1)
 	{
 		self waittill("death");
@@ -180,7 +177,7 @@ onDeath()
 		if( x > 59 && x < 70  )
 		{
 		self PlaySound ("death7");
-		}	
+		}
 		if( x > 69 && x < 80 )
 		{
 		self PlaySound ("death8");
@@ -192,47 +189,47 @@ onDeath()
 		if( x > 89 && x < 100 )
 		{
 		self PlaySound ("death2");
-		}	
+		}
 		if( x > 99 && x < 110 )
 		{
 		self PlaySound ("death3");
-		}	
+		}
 		if( x > 109 && x < 120 )
 		{
 		self PlaySound ("death4");
-		}	
+		}
 		if( x > 119 && x < 130 )
 		{
 		self PlaySound ("death5");
-		}	
+		}
 		if( x > 129 && x < 140 )
 		{
 		self PlaySound ("death6");
-		}	
+		}
 		if( x > 139 && x < 150 )
 		{
 		self PlaySound ("death7");
-		}	
+		}
 		if( x > 149 && x < 160 )
 		{
 		self PlaySound ("death8");
-		}	
+		}
 		if( x > 159 && x < 170 )
 		{
 		self PlaySound ("death1");
-		}	
+		}
 		if( x > 169 && x < 180 )
 		{
 		self PlaySound ("death2");
-		}	
+		}
 		if( x > 179 && x < 190 )
 		{
 		self PlaySound ("death3");
-		}	
+		}
 		if( x > 189 )
 		{
 		self PlaySound ("death8");
-		}	
+		}
 	}
 
 }
@@ -275,7 +272,7 @@ TestClient(team)
 
 	while(!isdefined(self.pers["team"]))
 		wait .05;
-		
+
 	self notify("menuresponse", game["menu_team"], team);
 	wait 0.5;
 }
@@ -288,7 +285,7 @@ lava()
 	trig = getent("lava", "targetname");
 	while(true)
 	{
-	trig waittill ("trigger", who);	
+	trig waittill ("trigger", who);
 		{
 		PlayFX( level.lava_fire, who.origin );
 		}
@@ -302,7 +299,7 @@ lava2()
 	trig = getent("lava2", "targetname");
 	while(true)
 	{
-	trig waittill ("trigger", who);	
+	trig waittill ("trigger", who);
 		{
 		PlayFX( level.lava_fire, who.origin );
 		}
@@ -315,7 +312,7 @@ water()
 	trig = getent("water", "targetname");
 	while(true)
 	{
-	trig waittill ("trigger", who);	
+	trig waittill ("trigger", who);
 	x = RandomInt(30);
 	if( x < 10 )
 		{
@@ -401,7 +398,7 @@ trap_3()
 	brush26 = getEnt( "block26", "targetname" );
 	brush27 = getEnt( "block27", "targetname" );
 	brush28 = getEnt( "block28", "targetname" );
-	brush29 = getEnt( "block29", "targetname" );										
+	brush29 = getEnt( "block29", "targetname" );
 
 	trig waittill( "trigger", who );
 	trig delete();
@@ -522,8 +519,8 @@ trap_2()
 
 	trig waittill( "trigger", who );
 	trig delete();
-	
-	
+
+
 	blockclip movez( 150, 0.001 );
 	brush1 movey( 40, 0.1 );
 	brush9 movey( 40, 0.1 );
@@ -574,8 +571,8 @@ trap_2()
 	brush16 movey( 40, 0.1 );
 	brush4 PlaySound("piston");
 	wait 5;
-	
-	
+
+
 }
 
 
@@ -584,8 +581,8 @@ mcmodel()
 {
 	while(1)
 	{
-		level waittill( "jumper", who ); 
-		who setModel( "mc_char" ); // adds the mc_char model 
+		level waittill( "jumper", who );
+		who setModel( "mc_char" ); // adds the mc_char model
 	}
 
 }
@@ -656,13 +653,13 @@ trap_6()
 
 	trig waittill( "trigger", who );
 	trig delete();
-	
-	
+
+
 
 	brush movez( -32, 0.1 );
 	wait 0.5;
 	brush movex( -200, 1 );
-	
+
 
 }
 
@@ -695,7 +692,7 @@ ding()
 	/* [AUTO DELETE] iprintlnbold("Hehee" + " " + "^1"+ player.name + " "+ "^7has some HUGE Pen... eh problems!"); */
 	wait 15;
 	/* [AUTO DELETE] iprintlnbold("Oh" + " " + "^1"+ player.name + " "+ "^7is pretty much fucked...REALLY fucked..by Gunther"); */
-	
+
 }
 
 
@@ -745,8 +742,8 @@ final()
 
 	startj = getent("wep_jump_start", "targetname");
 	starta = getent("wep_acti_start", "targetname");
-	
-	
+
+
 	jumper SetPlayerAngles( startj.angles );
 	jumper SetOrigin( startj.origin );
 	/* [AUTO DELETE] jumper TakeAllWeapons(); */
@@ -812,10 +809,10 @@ final()
 	jumper FreezeControls(1);
 	acti FreezeControls(1);
 
-	
+
 	wait 2;
-	
-	
+
+
 	noti = SpawnStruct();
 	noti.titleText = "1 vs. 1";
 	noti.notifyText = acti.name + " ^1VS ^7" + jumper.name;
@@ -824,8 +821,8 @@ final()
 	players = getentarray("player", "classname");
 	for(i=0;i<players.size;i++)
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-	
-	
+
+
 	wait 5;
 	jumper FreezeControls(0);
 	acti FreezeControls(0);
@@ -871,15 +868,15 @@ trap_4()
 	tnt28 = getEnt( "tnt28", "targetname" );
 	tnt29 = getEnt( "tnt29", "targetname" );
 	tnt30 = getEnt( "tnt30", "targetname" );
-										
-										
+
+
 
 	dmg maps\mp\_utility::triggerOff();
-	
+
 	trig waittill( "trigger", player );
 	trig delete();
 	/*
-	dmg maps\mp\_utility::triggerOn();	
+	dmg maps\mp\_utility::triggerOn();
 
 	PlayFX( level.tnt_fx, (2227,1328,-15) );
 		tnt15 PlaySound("tnt");
@@ -895,10 +892,10 @@ trap_4()
 			wait 0.1;
 	PlayFX( level.tnt_fx, (2173,1524,-15) );
 		tnt15 PlaySound("tnt");
-	
 
-	
-	
+
+
+
 	wait 0.1;
 	tnt1 delete();
 	tnt2 delete();
@@ -934,7 +931,7 @@ trap_4()
 	tnt30 delete();
 	wait 0.1;
 	dmg delete();*/
-					
+
 
 }
 

@@ -38,8 +38,7 @@ main()
 	
 	//GENERAL THREADS
     thread sr\api\_speedrun::createNormalWays("Normal Way");
-    thread sr\api\_map::createSpawn((124,-12,61),89);
-	//thread secret_act();
+    	//thread secret_act();
 	//thread secret_end();
 	//thread musicBox();
 	thread opening();

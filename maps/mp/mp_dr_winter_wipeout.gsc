@@ -14,8 +14,7 @@ main()
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
 
-    thread sr\api\_map::createSpawn((-647,2557,-196),1);
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createTeleporter((7523.04, 2030.49, -47.875), 50, 20, (7561, 553, -164), 180, "freeze", "red", "normal_0");
 
 	//thread trap1();

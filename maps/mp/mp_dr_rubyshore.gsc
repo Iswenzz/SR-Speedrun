@@ -34,8 +34,7 @@ maps\mp\_load::main();
    thread secret_brick();
    thread endrotate();
 
-   thread sr\api\_map::createSpawn((214,-468,-452),90);
-   thread sr\api\_speedrun::createNormalWays("Normal Way;");
+      thread sr\api\_speedrun::createNormalWays("Normal Way;");
    thread sr\api\_speedrun::createSecretWays("Secret Way;");
    thread sr\api\_speedrun::createTeleporter((3175.11, 2667.03, -447.875), 70, 40, (3263, 2035, 284), 270, "freeze", "blue", "normal_0");
    thread sr\api\_speedrun::createTeleporter((-34.6931, -129.408, -511.875), 60, 40, (207,-426,-964), 180, "freeze", "yellow", "secret_0");

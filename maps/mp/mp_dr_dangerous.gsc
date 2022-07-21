@@ -15,7 +15,6 @@ maps\mp\_load::main();
 	setdvar("r_glowskybleedintensity0", ".3");
 	setdvar("compassmaxrange","1800");
 
-thread sr\api\_map::createSpawn((2,-24,58),90);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
 } 

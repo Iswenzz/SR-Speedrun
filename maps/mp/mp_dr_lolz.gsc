@@ -29,8 +29,7 @@ main()
 {
 	thread sr\api\_speedrun::createNormalWays("^2Easy Way;^1Hard Way");
 	thread sr\api\_speedrun::createSecretWays("^2Easy Secret;^1Hard Secret");
-	thread sr\api\_map::createSpawn((480, -234, 78), 180);
- maps\mp\_compass::setupMiniMap("compass_map_mp_dr_lolz");
+	 maps\mp\_compass::setupMiniMap("compass_map_mp_dr_lolz");
 
 thread sr\api\_speedrun::createTeleporter((3135, 1674, -992), 100, 150, (8206, 1480, -992), 360, "freeze");
 thread sr\api\_speedrun::createTeleporter((410, -3385, 76), 100, 150, (409, -3562, 444), 270, "freeze");

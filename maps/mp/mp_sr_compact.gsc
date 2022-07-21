@@ -2,10 +2,6 @@ main() {
 
 	maps\mp\_load::main();
 
-	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
-    if(auto_spawn.size > 0)
-        thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin,
-            auto_spawn[int(auto_spawn.size / 2)].angles[1]);
 
 	setdvar( "r_specularcolorscale", "1"  );
 	setdvar( "r_glowbloomintensity0",".1" );
@@ -36,7 +32,7 @@ teleport() {
         trig waittill("trigger", player);
         player SetPlayerAngles( dest.angles );
         player setOrigin( dest.origin );
-    }    
+    }
 }
 
 secret_enter() {
@@ -48,7 +44,7 @@ secret_enter() {
         player thread sr\api\_speedrun::changeWay("secret_0");
         player SetPlayerAngles( dest.angles );
         player setOrigin( dest.origin );
-    }    
+    }
 }
 
 secret_fail() {
@@ -59,7 +55,7 @@ secret_fail() {
         trig waittill("trigger", player);
         player SetPlayerAngles( dest.angles );
         player setOrigin( dest.origin );
-    }    
+    }
 }
 
 secret_finish() {
@@ -71,7 +67,7 @@ secret_finish() {
         player thread sr\api\_speedrun::finishWay("secret_0");
         player SetPlayerAngles( dest.angles );
         player setOrigin( dest.origin );
-    }    
+    }
 }
 
 credits() {

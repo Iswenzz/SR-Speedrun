@@ -106,9 +106,7 @@ way_connect()
     level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
-level.masterSpawn = spawn("script_origin",(37,-3616,66-60));
-	level.masterSpawn.angles = (0,90,0);
-
+	
     sr\api\_speedrun::createNormalWays("Normal Way;");
     
     for(;;) 

@@ -11,7 +11,6 @@ main()
 
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createSecretWays("Short Way;Secret Way;");
-thread sr\api\_map::createSpawn((-35,127,60),270);
 thread sr\api\_speedrun::createTeleporter((113.205, 43.3896, 0.124999), 50, 35, (580, 7968, -852), 270, "freeze", "yellow", "secret_0");
 thread sr\api\_speedrun::createTeleporter((-189.235, 45.48, 0.125), 50, 35, (1042, 325, -514), 270, "freeze", "darkred", "secret_1");
 thread sr\api\_speedrun::createEndMap((-3169.31, 11666.3, -411.875), 100, 25, "normal_0");

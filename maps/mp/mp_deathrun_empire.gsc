@@ -18,8 +18,7 @@ trigger.radius = 200;
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
 
-	thread sr\api\_map::createSpawn((-44,-14,60),360);
-    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	    thread sr\api\_speedrun::createNormalWays("Normal Way;");
     thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	thread sr\api\_speedrun::createTeleporter((3837.89, -35.4303, 16.125), 55, 20, (5288, -1, 76), 360, "freeze", "blue");
     

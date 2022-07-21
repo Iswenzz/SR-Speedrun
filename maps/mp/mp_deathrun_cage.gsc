@@ -14,8 +14,7 @@ main()
 
     //ambientPlay("mapsong");
     thread sr\api\_speedrun::createNormalWays("Normal Way");
-    thread sr\api\_map::createSpawn((13,-1,40),360);
-    thread sr\api\_speedrun::createTeleporter((-171.481, -2849.31, 542.125), 35, 105, (-252, -1436, 964), 360, "freeze");  
+        thread sr\api\_speedrun::createTeleporter((-171.481, -2849.31, 542.125), 35, 105, (-252, -1436, 964), 360, "freeze");  
     thread sr\api\_speedrun::createTeleporter((871.995, -727.389, 902.125), 95, 110, (483, -775, 1468), 90, "freeze");    
     //thread trap1();
     //thread trap2();

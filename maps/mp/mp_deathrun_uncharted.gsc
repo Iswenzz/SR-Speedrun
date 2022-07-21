@@ -4,8 +4,6 @@ main()
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
-level.masterSpawn = spawn("script_origin",(-161, 1547, 95));
-level.masterSpawn.angles = (0,360,0);
 	maps\mp\_load::main();
 	
 	

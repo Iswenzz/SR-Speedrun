@@ -54,8 +54,7 @@ main()
 
 
     thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	thread sr\api\_map::createSpawn((49,-1873,80),89);
-	thread start_door();
+		thread start_door();
 	// thread old_room();
 	// thread northpole();
 	// thread santa();

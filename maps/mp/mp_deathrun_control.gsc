@@ -9,8 +9,7 @@ main()
 	PreCacheItem("deserteagle_mp");
 
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-    thread sr\api\_map::createSpawn((218,106,76),89);
-	thread sr\api\_speedrun::createEndMap((1038.3, -1565.46, 16.125), 110, 100);
+    	thread sr\api\_speedrun::createEndMap((1038.3, -1565.46, 16.125), 110, 100);
 	// thread healthpack1();
 	// thread jump_blocks();
 	// thread jump_blocks2();

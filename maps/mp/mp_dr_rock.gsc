@@ -44,8 +44,7 @@ trigger.radius = 300;
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
 	
-	thread sr\api\_map::createSpawn((1414,495,108), 108);
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+		thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createEndMap((-815.254, 4860.54, 305.192), 0, 275, 10);
 	// thread sr\api\_speedrun::createTeleporter((3007, 492, -724), 70, 90, (3982, 491, -740), 359 , "freeze", "red", "normal_0");
 	

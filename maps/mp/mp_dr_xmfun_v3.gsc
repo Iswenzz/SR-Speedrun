@@ -51,8 +51,7 @@ main()
 	msg_trig setHintString(">>Map ripped, rescripted and improved by ^1John^3The^1Ripper^7<<");
     
 	thread sr\api\_speedrun::createNormalWays("Normal Way");
-	thread sr\api\_map::createSpawn((-602,-459,76),269);
-	//thread logo();
+		//thread logo();
 	//thread model();
 	thread door();
 	//thread finaldoor();

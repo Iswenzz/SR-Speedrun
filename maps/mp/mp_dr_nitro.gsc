@@ -24,8 +24,7 @@ game["allies"] = "marines";
 
   thread sr\api\_speedrun::createNormalWays("Normal Way;");
   thread sr\api\_speedrun::createSecretWays("Secret Way;");
-  thread sr\api\_map::createSpawn((-21,45,76),1);
-  thread sr\api\_speedrun::createTeleporter((4583.6, -9.91388, 2112.13), 135, 65, (8, 3616, 4476), 0, "freeze");  
+    thread sr\api\_speedrun::createTeleporter((4583.6, -9.91388, 2112.13), 135, 65, (8, 3616, 4476), 0, "freeze");  
   thread sr\api\_speedrun::createTeleporter((268.113, 295.171, 16.125), 70, 10, (-2567, -4871, 188), 270, "freeze", "blue", "secret_0");
   thread sr\api\_speedrun::createTeleporter((6139.73, -1237.58, 16.125), 70, 10, (50, -8, 2124), 360, "freeze");
   thread sr\api\_speedrun::createTeleporter((702.889, 5352.01, 4608.13), 120, 45, (-4372, 8978, 3136), 90, "freeze");

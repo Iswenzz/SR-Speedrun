@@ -3,14 +3,10 @@ main()
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
-level.masterSpawn = spawn("script_origin", level.spawn["allies"][0].origin);
-level.masterSpawn.angles = level.spawn["allies"][0].angles;
-level.masterSpawn placeSpawnPoint();
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
 
-	thread sr\api\_map::createSpawn((-632, -9, 3884), 180);
-	thread sr\api\_speedrun::createTeleporter((-1026.65, -379.717, 3823.63), 55, 20, (6892, -2975, 2697), 360, "freeze", "blue", "secret_0");
+		thread sr\api\_speedrun::createTeleporter((-1026.65, -379.717, 3823.63), 55, 20, (6892, -2975, 2697), 360, "freeze", "blue", "secret_0");
 	thread sr\api\_speedrun::createTeleporter((5694.28, -1310.13, 493.125), 1600, 100, (6892, -2975, 2697), 360, "freeze", "blue", "secret_0");
 	thread sr\api\_speedrun::createEndMap((1662, -274, 3772), 100, 150, "normal_0");
 	thread sr\api\_speedrun::createEndMap((4988.19, 1197.95, 2209.13),75,20, "secret_0"); 

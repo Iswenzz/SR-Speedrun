@@ -2,17 +2,15 @@ main()
 {
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
-	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
-	if(auto_spawn.size > 0)
-	thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
-	maps\mp\_load::main();
+
+		maps\mp\_load::main();
     thread sr\api\_speedrun::createTeleporter((-336.27, -973.907, 15.9623), 50, 15, (558, 1355, -1300), 270, "freeze", "blue", "secret_0");
-    thread sr\api\_speedrun::createEndMap((1871.13, -285.334, -1502.88),85,30, "secret_0");  
+    thread sr\api\_speedrun::createEndMap((1871.13, -285.334, -1502.88),85,30, "secret_0");
 
 	PreCacheItem("brick_blaster_mp");
 	PreCacheItem("ak47_mp");
 	PreCacheItem("m14_mp");
-	PreCacheItem("m60e4_mp"); 
+	PreCacheItem("m60e4_mp");
 	PreCacheItem("saw_mp");
 	PreCacheItem("m1014_mp");
 	PreCacheItem("mp44_mp");
@@ -93,7 +91,7 @@ touching(ent)
 	level endon("game_ended");
 	while(1)
 	{
-		players = getEntArray("player","classname");	
+		players = getEntArray("player","classname");
 		for(i = 0; i < players.size; i++)
 		{
 			if(players[i] isTouching(ent))
@@ -111,7 +109,7 @@ addTriggerToList( name )
     level.trapTriggers[level.trapTriggers.size] = getEnt( name, "targetname" );
 }
 
-		
+
 SetTimeLimit( time )
 {
     wait 0.05;
@@ -128,7 +126,7 @@ signs()
 
  	for( ;; )
 	{
-	
+
 		sign1 show();
 		sign1 notsolid();
 		sign2 hide();
@@ -150,8 +148,8 @@ signs()
 		sign1 hide();
 		sign1 notsolid();
 		wait 5;
-		
-	}	
+
+	}
 }
 
 
@@ -160,7 +158,7 @@ games()
 {
      	level.games_trig = getEnt( "minigames", "targetname");
      	games = getEnt( "minigames_ori", "targetname" );
-     
+
      	while(1)
      	{
          	level.games_trig waittill( "trigger", player );
@@ -176,8 +174,8 @@ games()
 	 	/* [AUTO DELETE] iPrintlnBold( " ^2" + player.name + " ^5 has entered the  minigames section^1!" ); */
          	/* [AUTO DELETE] player TakeAllWeapons(); */
 	 	player died();
-	
-	             
+
+
   //        	while( isAlive( player ) && isDefined( player ) )
 		// if( isDefined( level.activ ) && isAlive( level.activ ) )
   //            	/* [AUTO DELETE] wait 1; */
@@ -200,14 +198,14 @@ died()
 actimsg()
 {
      	actimsg = getEnt( "acti_msg", "targetname");
-     
+
         actimsg waittill( "trigger" );
 
 	actimsg delete();
 
 	wait 1;
-	
-	/* [AUTO DELETE] level.activ iPrintlnBold( " ^2" + level.activ.name + "^1, ^5kill all  the jumpers with your deadly traps^1!" ); */               
+
+	/* [AUTO DELETE] level.activ iPrintlnBold( " ^2" + level.activ.name + "^1, ^5kill all  the jumpers with your deadly traps^1!" ); */
 }
 
 
@@ -221,7 +219,7 @@ weapons()
 		level.weapons_trig waittill("trigger", player);
 		if( !isDefined( level.weapons_trig ) )
         	return;
-		
+
 		gun = randomintrange(0, 11);
 		weapon = "ak74u_mp";
 		if(gun == 0)
@@ -268,22 +266,22 @@ weapons()
 		{
 			weapon = "rpd_mp";
 		}
-		
+
         	player SetPlayerAngles( jump.angles );
         	player setOrigin( jump.origin );
         	/* [AUTO DELETE] player TakeAllWeapons(); */
-        	/* [AUTO DELETE] player GiveWeapon( weapon ); */	
-		/* [AUTO DELETE] player GiveMaxAmmo( weapon ); */ 
+        	/* [AUTO DELETE] player GiveWeapon( weapon ); */
+		/* [AUTO DELETE] player GiveMaxAmmo( weapon ); */
         	level.activ setPlayerangles( acti.angles );
         	level.activ setOrigin( acti.origin );
         	/* [AUTO DELETE] level.activ TakeAllWeapons(); */
         	/* [AUTO DELETE] level.activ GiveWeapon( weapon ); */
-		/* [AUTO DELETE] level.activ GiveMaxAmmo( weapon ); */ 
-		/* [AUTO DELETE] iPrintlnBold( " ^2" + player.name + " ^5 has entered the  Weapons room^1!" ); */               
+		/* [AUTO DELETE] level.activ GiveMaxAmmo( weapon ); */
+		/* [AUTO DELETE] iPrintlnBold( " ^2" + player.name + " ^5 has entered the  Weapons room^1!" ); */
         	wait 0.05;
-        	/* [AUTO DELETE] player switchToWeapon( weapon ); */ 
-        	/* [AUTO DELETE] level.activ SwitchToWeapon( weapon ); */ 
-		player freezecontrols(true); 
+        	/* [AUTO DELETE] player switchToWeapon( weapon ); */
+        	/* [AUTO DELETE] level.activ SwitchToWeapon( weapon ); */
+		player freezecontrols(true);
 		level.activ freezecontrols(true);
 		wait 1;
 		/* [AUTO DELETE] player iPrintlnBold( "^53" ); */
@@ -297,7 +295,7 @@ weapons()
 		wait 1;
 		/* [AUTO DELETE] player iPrintlnBold( "^5Fight^1!" ); */
 		/* [AUTO DELETE] level.activ iPrintlnBold( "^5Fight^1!" ); */
-		player freezecontrols(false); 
+		player freezecontrols(false);
 		level.activ freezecontrols(false);
 	}
 }
@@ -309,7 +307,7 @@ knife()
      	level.knife_trig = getEnt( "knife", "targetname");
      	jump = getEnt( "knife_jump", "targetname" );
      	acti = getEnt( "knife_acti", "targetname" );
-     
+
      	while(1)
      	{
          	level.knife_trig waittill( "trigger", player );
@@ -319,16 +317,16 @@ knife()
          	player SetPlayerAngles( jump.angles );
          	player setOrigin( jump.origin );
          	/* [AUTO DELETE] player TakeAllWeapons(); */
-         	/* [AUTO DELETE] player GiveWeapon( "tomahawk_mp" ); */      
+         	/* [AUTO DELETE] player GiveWeapon( "tomahawk_mp" ); */
          	level.activ setPlayerangles( acti.angles );
          	level.activ setOrigin( acti.origin );
          	/* [AUTO DELETE] level.activ TakeAllWeapons(); */
-         	/* [AUTO DELETE] level.activ GiveWeapon( "tomahawk_mp" ); */ 
-		/* [AUTO DELETE] iPrintlnBold( " ^2" + player.name + " ^5 has entered the Knife  room^1!" ); */               
+         	/* [AUTO DELETE] level.activ GiveWeapon( "tomahawk_mp" ); */
+		/* [AUTO DELETE] iPrintlnBold( " ^2" + player.name + " ^5 has entered the Knife  room^1!" ); */
          	wait 0.05;
          	/* [AUTO DELETE] player switchToWeapon( "tomahawk_mp" ); */
          	/* [AUTO DELETE] level.activ SwitchToWeapon( "tomahawk_mp" ); */
-		player freezecontrols(true); 
+		player freezecontrols(true);
 		level.activ freezecontrols(true);
 		wait 1;
 		/* [AUTO DELETE] player iPrintlnBold( "^53" ); */
@@ -342,9 +340,9 @@ knife()
 		wait 1;
 		/* [AUTO DELETE] player iPrintlnBold( "^5Fight^1!" ); */
 		/* [AUTO DELETE] level.activ iPrintlnBold( "^5Fight^1!" ); */
-		player freezecontrols(false); 
+		player freezecontrols(false);
 		level.activ freezecontrols(false);
-		     
+
      	}
 }
 
@@ -354,7 +352,7 @@ bounce()
      	level.bounce_trig = getEnt( "assault", "targetname");
      	jump = getEnt( "bounce_tele_jump", "targetname" );
      	acti = getEnt( "bounce_tele_acti", "targetname" );
-     
+
      	while(1)
      	{
          	level.bounce_trig waittill( "trigger", player );
@@ -364,16 +362,16 @@ bounce()
          	player SetPlayerAngles( jump.angles );
          	player setOrigin( jump.origin );
          	/* [AUTO DELETE] player TakeAllWeapons(); */
-		/* [AUTO DELETE] player giveweapon( "tomahawk_mp" ); */     
+		/* [AUTO DELETE] player giveweapon( "tomahawk_mp" ); */
          	level.activ setPlayerangles( acti.angles );
          	level.activ setOrigin( acti.origin );
          	/* [AUTO DELETE] level.activ TakeAllWeapons(); */
-		/* [AUTO DELETE] level.activ giveweapon( "tomahawk_mp" ); */ 
-		/* [AUTO DELETE] iPrintlnBold( " ^2" + player.name + " ^5 has entered the Bounce  room^1!" ); */         
+		/* [AUTO DELETE] level.activ giveweapon( "tomahawk_mp" ); */
+		/* [AUTO DELETE] iPrintlnBold( " ^2" + player.name + " ^5 has entered the Bounce  room^1!" ); */
          	wait 0.05;
 		/* [AUTO DELETE] level.activ switchtoweapon( "tomahawk_mp" ); */
 		/* [AUTO DELETE] player switchtoweapon( "tomahawk_mp" ); */
-		player freezecontrols(true); 
+		player freezecontrols(true);
 		level.activ freezecontrols(true);
 		wait 1;
 		/* [AUTO DELETE] player iPrintlnBold( "^53" ); */
@@ -387,8 +385,8 @@ bounce()
 		wait 1;
 		/* [AUTO DELETE] player iPrintlnBold( "^5Bounce^1!" ); */
 		/* [AUTO DELETE] level.activ iPrintlnBold( "^5Bounce^1!" ); */
-		player freezecontrols(false); 
-		level.activ freezecontrols(false);     
+		player freezecontrols(false);
+		level.activ freezecontrols(false);
      	}
 }
 
@@ -415,18 +413,18 @@ old()
 	level.old_trig delete();
 	level.games_trig delete();
 
-	/* [AUTO DELETE] iPrintlnBold( " ^2" + player.name + " ^5 has entered the Old way^1!" ); */    
-   
+	/* [AUTO DELETE] iPrintlnBold( " ^2" + player.name + " ^5 has entered the Old way^1!" ); */
+
    	brush moveZ ( -600 , 4);
 }
 
-	
+
 snip()
 {
      	level.snip_trig = getEnt( "sniper", "targetname");
      	jump = getEnt( "snip_jump", "targetname" );
      	acti = getEnt( "snip_acti", "targetname" );
-     
+
      	while(1)
      	{
          	level.snip_trig waittill( "trigger", player );
@@ -439,7 +437,7 @@ snip()
          	/* [AUTO DELETE] player GiveWeapon( "m40a3_mp" ); */
 	 	/* [AUTO DELETE] player givemaxammo( "m40a3_mp" ); */
          	/* [AUTO DELETE] player GiveWeapon( "remington700_mp" ); */
-	 	/* [AUTO DELETE] player givemaxammo( "remington700_mp" ); */       
+	 	/* [AUTO DELETE] player givemaxammo( "remington700_mp" ); */
          	level.activ setPlayerangles( acti.angles );
          	level.activ setOrigin( acti.origin );
          	/* [AUTO DELETE] level.activ TakeAllWeapons(); */
@@ -447,11 +445,11 @@ snip()
 	 	/* [AUTO DELETE] level.activ givemaxammo( "m40a3_mp" ); */
          	/* [AUTO DELETE] level.activ GiveWeapon( "remington700_mp" ); */
 	 	/* [AUTO DELETE] level.activ givemaxammo( "remington700_mp" ); */
-		/* [AUTO DELETE] iPrintlnBold( " ^2" + player.name + " ^5 has entered the Sniper  room^1!" ); */         		
+		/* [AUTO DELETE] iPrintlnBold( " ^2" + player.name + " ^5 has entered the Sniper  room^1!" ); */
 		/* [AUTO DELETE] wait .5; */
          	/* [AUTO DELETE] player switchToWeapon( "m40a3_mp" ); */
          	/* [AUTO DELETE] level.activ SwitchToWeapon( "m40a3_mp" ); */
-		player freezecontrols(true); 
+		player freezecontrols(true);
 		level.activ freezecontrols(true);
 		/* [AUTO DELETE] wait 1; */
 		/* [AUTO DELETE] player iPrintlnBold( "^53" ); */
@@ -465,8 +463,8 @@ snip()
 		/* [AUTO DELETE] wait 1; */
 		/* [AUTO DELETE] player iPrintlnBold( "^5Fight^1!" ); */
 		/* [AUTO DELETE] level.activ iPrintlnBold( "^5Fight^1!" ); */
-		player freezecontrols(false); 
-		level.activ freezecontrols(false);        
+		player freezecontrols(false);
+		level.activ freezecontrols(false);
      	}
 }
 
@@ -476,7 +474,7 @@ deagle()
      	level.deagle_trig = getEnt( "deagle", "targetname");
      	jump = getEnt( "deagle_jump", "targetname" );
      	acti = getEnt( "deagle_acti", "targetname" );
-     
+
      	while(1)
      	{
          	level.deagle_trig waittill( "trigger", player );
@@ -487,17 +485,17 @@ deagle()
          	player setOrigin( jump.origin );
          	/* [AUTO DELETE] player TakeAllWeapons(); */
          	/* [AUTO DELETE] player GiveWeapon( "deserteagle_mp" ); */
-	 	/* [AUTO DELETE] player givemaxammo( "deserteagle_mp" ); */      
+	 	/* [AUTO DELETE] player givemaxammo( "deserteagle_mp" ); */
          	level.activ setPlayerangles( acti.angles );
          	level.activ setOrigin( acti.origin );
          	/* [AUTO DELETE] level.activ TakeAllWeapons(); */
          	/* [AUTO DELETE] level.activ GiveWeapon( "deserteagle_mp" ); */
 	 	/* [AUTO DELETE] level.activ givemaxammo( "deserteagle_mp" ); */
-		/* [AUTO DELETE] iPrintlnBold( " ^2" + player.name + " ^5 has entered the Deagle  room^1!" ); */         		
+		/* [AUTO DELETE] iPrintlnBold( " ^2" + player.name + " ^5 has entered the Deagle  room^1!" ); */
 		wait 0.05;
          	/* [AUTO DELETE] player switchToWeapon( "deserteagle_mp" ); */
          	/* [AUTO DELETE] level.activ SwitchToWeapon( "deserteagle_mp" ); */
-		player freezecontrols(true); 
+		player freezecontrols(true);
 		level.activ freezecontrols(true);
 		wait 1;
 		/* [AUTO DELETE] player iPrintlnBold( "^53" ); */
@@ -511,8 +509,8 @@ deagle()
 		wait 1;
 		/* [AUTO DELETE] player iPrintlnBold( "^5Fight^1!" ); */
 		/* [AUTO DELETE] level.activ iPrintlnBold( "^5Fight^1!" ); */
-		player freezecontrols(false); 
-		level.activ freezecontrols(false);        
+		player freezecontrols(false);
+		level.activ freezecontrols(false);
      	}
 }
 
@@ -531,10 +529,10 @@ trap1()
 	{
 		case 0:	brush1 delete();
 				break;
-				
+
 		case 1:	brush2 delete();
 				break;
-				
+
 		default: return;
 	}
 }
@@ -554,28 +552,28 @@ trap2()
 	{
 		case 0:	brush1 delete();
 				break;
-				
+
 		case 1:	brush2 delete();
 				break;
-				
+
 		default: return;
 	}
 }
 
-	
+
 elev()
 {
    	brush = getEnt ("trap_ele" ,"targetname" );
 	wait 5;
- 
-	while(true) 
-	{ 
-		brush moveto ((-4664,-652,296.5),6,2,2); 
-		brush waittill ("movedone"); 
-		wait 5; 
-		brush moveto ((-3624, -680, 11),6,2,2); 
-		brush waittill ("movedone"); 
-		wait 5; 
+
+	while(true)
+	{
+		brush moveto ((-4664,-652,296.5),6,2,2);
+		brush waittill ("movedone");
+		wait 5;
+		brush moveto ((-3624, -680, 11),6,2,2);
+		brush waittill ("movedone");
+		wait 5;
 	}
 }
 
@@ -635,19 +633,19 @@ trap5()
 	}
 }
 
-	
+
 trap6()
 {
 	level endon("trigger");
    	trig = getEnt ("trigger7" , "targetname");
    	brush = getEnt ("trap7" ,"targetname" );
 
-   	trig waittill ("trigger",player);  
+   	trig waittill ("trigger",player);
 	trig SetHintstring ("^1Activated!");
 
    	while( 1 )
    	{
-   
+
    		brush moveZ ( 90 , 1);
    		wait 1;
   	 	brush moveZ ( -90, 1 );
@@ -670,10 +668,10 @@ trap7()
 	{
 		case 0:	brush1 delete();
 				break;
-				
+
 		case 1:	brush2 delete();
 				break;
-				
+
 		default: return;
 	}
 }
@@ -683,7 +681,7 @@ trap8()
 {
 	level endon("trigger");
 	trig = getEnt( "trigger9", "targetname" );
-	brush = getEnt( "trap9_1", "targetname" );	
+	brush = getEnt( "trap9_1", "targetname" );
 	brush1 = getEnt( "trap9_2", "targetname" );
 
 	trig waittill( "trigger", player );
@@ -725,7 +723,7 @@ trap11()
 	trig SetHintstring ("^1Activated!");
 
 	brush moveZ( 600, .5);
-	wait 3.5;	
+	wait 3.5;
 	brush moveZ( -600, 3);
 }
 
@@ -736,10 +734,10 @@ trap12()
 	level endon("trigger");
    	trig = getEnt ("trigger12" , "targetname");
    	brush = getEnt ("trap13" ,"targetname" );
-	
+
    	trig waittill ("trigger");
-	trig SetHintstring ("^1Activated!");  
-  
+	trig SetHintstring ("^1Activated!");
+
    	for( i = 0; i < 7; i++ )
 	{
 		brush rotateYaw( 360, 1 );
@@ -757,7 +755,7 @@ trap13()
 
 	trig waittill ("trigger");
 	trig SetHintstring ("^1Activated!");
-     
+
    	while(1)
         {
 		brush rotateRoll( 360, 1.5 );
@@ -767,7 +765,7 @@ trap13()
 }
 
 
-trap14b() 
+trap14b()
 
 {
 	moveTime = 1;
@@ -786,9 +784,9 @@ trap14b()
 
 	}
 
- 
 
- 
+
+
 
 	while( 1 )
 
@@ -804,10 +802,10 @@ trap14b()
 
 		}
 
- 
+
 		wait moveTime;
 
- 
+
 
 		for( i = 0; i < down.size; i++ )
 
@@ -819,11 +817,11 @@ trap14b()
 
 		}
 
- 
+
 
 		wait moveTime;
 
- 
+
 
 		for( i = 0; i < up.size; i++ )
 
@@ -835,11 +833,11 @@ trap14b()
 
 		}
 
- 
+
 
 		wait moveTime;
 
- 
+
 
 		for( i = 0; i < down.size; i++ )
 
@@ -851,11 +849,11 @@ trap14b()
 
 		}
 
- 
+
 
 		wait moveTime;
 
- 
+
 
 	}
 
@@ -874,10 +872,10 @@ trap14()
 
 	brush notsolid();
 	thread touching(brush);
-   
+
    	while(1)
    	{
-   	
+
 		brush movez( -160 , .4);
 		things movez( -160, .4);
   	 	wait 1;
@@ -922,7 +920,7 @@ trap16()
 
 	trig waittill ("trigger");
 	trig SetHintstring ("^1Activated!");
-   	
+
 	doors movey( -306 , 2);
   	wait 2;
 	wall movey ( 752 , 6);
@@ -936,7 +934,7 @@ trap16()
 lazers1()
 {
 	lazer1 = getEnt ("trap11_1" , "targetname");
-	
+
 	lazer1 notsolid();
 	thread touching(lazer1);
 
@@ -970,7 +968,7 @@ lazers2()
 secret()
 {
    	trig = getEnt ("trigger_secret" , "targetname");
-   	trig waittill ("trigger",player);  
+   	trig waittill ("trigger",player);
    	trig delete();
 
 	/* [AUTO DELETE] player giveweapon ("brick_blaster_mp"); */
@@ -985,11 +983,11 @@ stage2()
 {
 	trigger = getEnt ("stage2", "targetname");
 	target = getEnt ("stage2_ori", "targetname");
-	
+
 	for(;;)
 	{
 		trigger waittill ("trigger", player);
-		
+
 		player SetOrigin(target.origin);
 		player SetPlayerAngles( target.angles );
 	}
@@ -1016,7 +1014,7 @@ Acti_stage1()
 	target3 = getEnt ("stage1_ran3", "targetname");
 	target4 = getEnt ("stage1_ran4", "targetname");
 	target5 = getEnt ("stage1_ran5", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill ("trigger", player);
@@ -1026,7 +1024,7 @@ Acti_stage1()
 			case 0:	player SetOrigin(target1.origin);
 				player SetPlayerAngles( target1.angles );
 					break;
-				
+
 			case 1:	player SetOrigin(target2.origin);
 				player SetPlayerAngles( target2.angles );
 					break;
@@ -1034,7 +1032,7 @@ Acti_stage1()
 			case 2:	player SetOrigin(target3.origin);
 				player SetPlayerAngles( target3.angles );
 					break;
-				
+
 			case 3:	player SetOrigin(target4.origin);
 				player SetPlayerAngles( target4.angles );
 					break;
@@ -1042,7 +1040,7 @@ Acti_stage1()
 			case 4:	player SetOrigin(target5.origin);
 				player SetPlayerAngles( target5.angles );
 					break;
-				
+
 			default: return;
 		}
 	}
@@ -1069,7 +1067,7 @@ bouncegun()
 	while(1)
 	{
 		trig waittill("trigger", player);
-		
+
 		if(player == level.activ)
 		{
 			wait .05;
@@ -1130,7 +1128,7 @@ if(player.pers["team"] == "allies")
 
 
 
-	
+
 ammo1()
 {
 	snipe = getEnt ("sniper_ammo2", "targetname");
@@ -1138,7 +1136,7 @@ ammo1()
 	while(1)
 	{
 		snipe waittill ("trigger", player);
-		
+
 		/* [AUTO DELETE] player Givemaxammo( "m40a3_mp" ); */
 		/* [AUTO DELETE] player Givemaxammo( "remington700_mp" ); */
 	}
@@ -1152,7 +1150,7 @@ ammo2()
 	while(1)
 	{
 		deagle waittill ("trigger", player);
-		
+
 		/* [AUTO DELETE] player Givemaxammo( "deserteagle_mp" ); */
 	}
 }
@@ -1165,7 +1163,7 @@ ammo3()
 	while(1)
 	{
 		deagle waittill ("trigger", player);
-		
+
 		/* [AUTO DELETE] player Givemaxammo( "deserteagle_mp" ); */
 	}
 }
@@ -1175,14 +1173,14 @@ hardstart()
 {
 	level.secret_trig = getEnt ("secret_entertrig", "targetname");
 	target1 = getEnt ("hard_start", "targetname");
-	
+
 	for(;;)
 	{
 		level.secret_trig waittill ("trigger", player);
-		
+
 		level.fail = 0;
-		
-		/* [AUTO DELETE] player iPrintlnBold( "^5Good luck^1! ^5Remember^1, ^5you only  have 15 tries in my secret^1." ); */	
+
+		/* [AUTO DELETE] player iPrintlnBold( "^5Good luck^1! ^5Remember^1, ^5you only  have 15 tries in my secret^1." ); */
 		player SetOrigin(target1.origin);
 		player SetPlayerAngles( target1.angles );
 
@@ -1195,14 +1193,14 @@ ranks()
 {
 	rank_trig = getEnt("first", "targetname");
 
-	level.rank = 0;	
-	
+	level.rank = 0;
+
 	while(1)
 	{
 		rank_trig waittill("trigger", player);
-	
+
 		level.rank += 1;
-		
+
 		if(!isDefined(player.rank))
 		{
 			player.rank = false;
@@ -1266,13 +1264,13 @@ hardfail1()
 {
 	trig = getEnt ("secret_tele1", "targetname");
 	target1 = getEnt ("secret_fail1", "targetname");
-	
+
 	while(1)
 	{
 		trig waittill ("trigger", player);
-	
+
 		level.fail += 1;
-		
+
 		if(level.fail == 14)
 		{
 			/* [AUTO DELETE] player iPrintlnBold( "^1This is your last try!!" ); */
@@ -1282,7 +1280,7 @@ hardfail1()
 		{
 			player suicide();
 		}
-			
+
 		player SetOrigin(target1.origin);
 		player SetPlayerAngles( target1.angles );
 	}
@@ -1294,13 +1292,13 @@ hardfail2()
 {
 	trig = getEnt ("secret_tele2", "targetname");
 	target2 = getEnt ("secret_fail2", "targetname");
-	
+
 	while(1)
 	{
 		trig waittill ("trigger", player);
-	
+
 		level.fail += 1;
-		
+
 		if(level.fail == 14)
 		{
 			/* [AUTO DELETE] player iPrintlnBold( "^1This is your last try!!" ); */
@@ -1310,7 +1308,7 @@ hardfail2()
 		{
 			player suicide();
 		}
-			
+
 		player SetOrigin(target2.origin);
 		player SetPlayerAngles( target2.angles );
 	}
@@ -1322,13 +1320,13 @@ hardfail3()
 {
 	trig = getEnt ("secret_tele3", "targetname");
 	target3 = getEnt ("secret_fail3", "targetname");
-	
+
 	while(1)
 	{
 		trig waittill ("trigger", player);
-	
+
 		level.fail += 1;
-		
+
 		if(level.fail == 14)
 		{
 			/* [AUTO DELETE] player iPrintlnBold( "^1This is your last try!!" ); */
@@ -1338,7 +1336,7 @@ hardfail3()
 		{
 			player suicide();
 		}
-			
+
 		player SetOrigin(target3.origin);
 		player SetPlayerAngles( target3.angles );
 	}
@@ -1386,7 +1384,7 @@ hardend()
 {
 	trig = getEnt ("theend", "targetname");
 	target1 = getEnt ("theend_ori", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill ("trigger", player);
@@ -1407,7 +1405,7 @@ Acti_stage2()
 	target1 = getEnt ("stage2_ran1", "targetname");
 	target2 = getEnt ("stage2_ran2", "targetname");
 	target3 = getEnt ("stage2_ran3", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill ("trigger", user);
@@ -1417,7 +1415,7 @@ Acti_stage2()
 			case 0:	user SetOrigin(target1.origin);
 				user SetPlayerAngles( target1.angles );
 					break;
-				
+
 			case 1:	user SetOrigin(target2.origin);
 				user SetPlayerAngles( target2.angles );
 					break;
@@ -1425,7 +1423,7 @@ Acti_stage2()
 			case 2:	user SetOrigin(target3.origin);
 				user SetPlayerAngles( target3.angles );
 					break;
-				
+
 			default: return;
 		}
 	}

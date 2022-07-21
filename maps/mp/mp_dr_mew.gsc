@@ -3,7 +3,6 @@ main()
 // CoD4x crash on next map
 thread sr\api\_speedrun::createNormalWays("^2Easy Way;^1Hard Way");
 thread sr\api\_speedrun::createSecretWays("^2Easy Secret;^1Hard Secret");
-thread sr\api\_map::createSpawn((-1069, -1034, 121), 90);
 
 	thread sr\api\_speedrun::createTeleporter((-818, -851, 121), 100, 150,
 		(-3550, -4793, 1486), 270, "freeze", "green", "secret_0");

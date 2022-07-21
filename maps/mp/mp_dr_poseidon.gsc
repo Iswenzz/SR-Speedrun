@@ -17,8 +17,7 @@ main()
 
 
 	thread sr\api\_map::deleteUnsupportedWeapons();
-	thread sr\api\_map::createSpawn((-199,-34,92),90);
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+		thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	thread sr\api\_speedrun::createTeleporter((-33.3952, 189.139, 32.125), 50, 30, (-451, -6001, 124), 270, "freeze", "yellow", "secret_0");
 	thread sr\api\_speedrun::createEndMap((-2561.67, -9688.04, 64.125),190,95,"secret_0");

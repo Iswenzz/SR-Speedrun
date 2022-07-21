@@ -25,8 +25,6 @@ main()
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
-level.masterSpawn = spawn("script_origin",(-5632,3427,224));
-level.masterSpawn.angles = (0,159.5,0);
 	maps\mp\_load::main();
 	maps\mp\enter_teleport\_teleport::main();
 	maps\mp\_compass::setupMiniMap("compass_mp_sr_dfwc2017_6");

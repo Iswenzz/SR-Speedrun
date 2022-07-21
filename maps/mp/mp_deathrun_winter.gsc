@@ -2,14 +2,11 @@ main()
 {
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
   thread sr\api\_speedrun::createSecretWays("Secret Way;");
-	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
-	if(auto_spawn.size > 0)
-		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
-level.teleport = loadFX("misc/ui_pickup_available"); 
-level.snow = loadFX("weather/snow_light"); 
- 
+		level.teleport = loadFX("misc/ui_pickup_available");
+level.snow = loadFX("weather/snow_light");
+
   target = getEnt( "scbacktp", "targetname");
-  thread sr\api\_speedrun::createTeleporter((4156, 2941, -4), 100, 150, 
+  thread sr\api\_speedrun::createTeleporter((4156, 2941, -4), 100, 150,
     target.origin, target.angles[1], "freeze", "blue", "secret_0");
 
 maps\mp\_load::main();
@@ -48,12 +45,12 @@ maps\mp\_load::main();
  addTriggerToList( "trigtrap1" );
  addTriggerToList( "trigtrap2" );
  addTriggerToList( "trigtrap3" );
- addTriggerToList( "trigtrap4" ); 
- addTriggerToList( "trigtrap5" ); 
- addTriggerToList( "trigtrap6" ); 
- addTriggerToList( "trigtrap7" ); 
- addTriggerToList( "trigtrap8" ); 
- addTriggerToList( "trigtrapbridge" ); 
+ addTriggerToList( "trigtrap4" );
+ addTriggerToList( "trigtrap5" );
+ addTriggerToList( "trigtrap6" );
+ addTriggerToList( "trigtrap7" );
+ addTriggerToList( "trigtrap8" );
+ addTriggerToList( "trigtrapbridge" );
 
 
 /* [AUTO DELETE] ambientPlay("ambient"); */
@@ -83,24 +80,24 @@ knife()
     level.mus_trig1 = getEnt( "knifetpr", "targetname" );
     tele_activator = getEnt( "actiknifer", "targetname" );
     tele_jumper = getEnt( "jumperknifer", "targetname" );
-                
-    level.finalJumper = undefined; 
+
+    level.finalJumper = undefined;
 
     while( 1 )
     {
         level.mus_trig1 waittill( "trigger", player );
-   
+
         if( isDefined( level.finalJumper ) || player.pers["team"] != "allies" )
         continue;
 
 
         level.finalJumper = player;
         level.finalJumper thread finalMonitor();
-        
+
         level.finalJumper finalroom( tele_jumper, "knife_mp", 100 );
 	level.activ finalroom( tele_activator, "knife_mp", 100 );
-        
-		
+
+
 	noti = SpawnStruct();
 				noti.titleText = "Knife Room";
 				noti.notifyText = level.activ.name + " ^5VS^7 " + player.name;
@@ -128,24 +125,24 @@ snip()
     level.mus_trig1 = getEnt( "sniptp", "targetname" );
     tele_activator = getEnt( "actisnip", "targetname" );
     tele_jumper = getEnt( "jumpersnip", "targetname" );
-                
-    level.finalJumper = undefined; 
+
+    level.finalJumper = undefined;
 
     while( 1 )
     {
         level.mus_trig1 waittill( "trigger", player );
-   
+
         if( isDefined( level.finalJumper ) || player.pers["team"] != "allies" )
         continue;
 
 
         level.finalJumper = player;
         level.finalJumper thread finalMonitor();
-        
+
         level.finalJumper finalroom( tele_jumper, "m40a3_mp", 100 );
 	level.activ finalroom( tele_activator, "m40a3_mp", 100 );
-        
-		
+
+
 	noti = SpawnStruct();
 				noti.titleText = "Sniper Room";
 				noti.notifyText = level.activ.name + " ^5VS^7 " + player.name;
@@ -183,7 +180,7 @@ finalroom( tp, weap, health )
 {
     self SetPlayerAngles( tp.angles );
     self SetOrigin( tp.origin );
-    
+
     self TakeAllWeapons(); //this should be called so it takes away insertion perk in dr 1.2
     /* [AUTO DELETE] self GiveWeapon( weap ); */
     /* [AUTO DELETE] self GiveMaxAmmo( weap ); */
@@ -203,18 +200,18 @@ printcredits()
     {
             if( isDefined( self.logoText ) )
                     self.logoText destroy();
-     
+
             self.logoText = newHudElem();
             self.logoText.y = 10;
             self.logoText.alignX = "center";
             self.logoText.alignY = "middle";
             self.logoText.horzAlign = "center_safearea";
-     
+
             self.logoText.alpha = 0;
             self.logoText.sort = -3;
             self.logoText.fontScale = 1.6;
             self.logoText.archieved = true;
-     
+
             for(;;)
             {
                     self.logoText fadeOverTime(1);
@@ -247,7 +244,7 @@ printcredits()
                     wait 1;
 
 		}
-	
+
 	}
 
 
@@ -255,15 +252,15 @@ printcredits()
 trap1()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trigtrap1", "targetname" );
 ham = getEnt( "ham", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
 
 while( 1 )
- 
+
 {
 ham rotatepitch(360, 4);
 wait 4;
@@ -274,12 +271,12 @@ wait 4;
 trap2()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trigtrap2", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
- 
+
 {
 thread blockdelete2();
 }
@@ -289,7 +286,7 @@ thread blockdelete2();
 blockdelete2()
 {
         x = randomIntRange( 1, 3 );
-       
+
         if( x == 1 )
         {
         thread combination1();
@@ -318,15 +315,15 @@ comb2 delete();
 trap3()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trigtrap3", "targetname" );
 trapm = getEnt( "rotate", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
 
 while( 1 )
- 
+
 {
 trapm rotateyaw(180, 2);
 wait 4;
@@ -337,18 +334,18 @@ wait 4;
 trap4()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trigtrap4", "targetname" );
 traprotate1 = getEnt( "rotatec1", "targetname" );
 traprotate2 = getEnt( "rotatecc2", "targetname" );
 traprotate3 = getEnt( "rotatec3", "targetname" );
 traprotate4 = getEnt( "rotatec4", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
 
 while( 1 )
- 
+
 {
 traprotate1 rotateyaw(720, 6);
 traprotate2 rotateyaw(720, 6);
@@ -368,12 +365,12 @@ wait 6;
 trap5()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trigtrap5", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
- 
+
 {
 thread blocksdelete();
 }
@@ -383,7 +380,7 @@ thread blocksdelete();
 blocksdelete()
 {
         x = randomIntRange( 1, 3 );
-       
+
         if( x == 1 )
         {
         thread blocks1();
@@ -411,12 +408,12 @@ blocks2 delete();
 
 teleport1()
 {
-  trig = getEnt( "teleport", "targetname"); 
+  trig = getEnt( "teleport", "targetname");
   target = getEnt( "teleported", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -425,12 +422,12 @@ teleport1()
 
 teleport2()
 {
-  trig = getEnt( "teleport2", "targetname"); 
+  trig = getEnt( "teleport2", "targetname");
   target = getEnt( "teleported2", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -440,12 +437,12 @@ teleport2()
 
 teleport3()
 {
-  trig = getEnt( "teleport3", "targetname"); 
+  trig = getEnt( "teleport3", "targetname");
   target = getEnt( "teleported3", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -454,12 +451,12 @@ teleport3()
 
 teleport4()
 {
-  trig = getEnt( "teleport4", "targetname"); 
+  trig = getEnt( "teleport4", "targetname");
   target = getEnt( "teleported4", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -470,12 +467,12 @@ teleport4()
 trap6()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trigtrap6", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
- 
+
 {
 thread blockdelete();
 }
@@ -485,7 +482,7 @@ thread blockdelete();
 blockdelete()
 {
         x = randomIntRange( 1, 3 );
-       
+
         if( x == 1 )
         {
         thread lava1();
@@ -525,15 +522,15 @@ block delete();
 trap7()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trigtrap7", "targetname" );
 trap = getEnt( "ttrotate", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
 
 while( 1 )
- 
+
 {
 trap rotateyaw(360, 3);
 wait 3;
@@ -544,15 +541,15 @@ wait 3;
 trap8()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trigtrap8", "targetname" );
 trapr = getEnt( "right", "targetname" );
 trapl = getEnt( "left", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
 
- 
+
 {
 trapr movex(-416, 2);
 trapl movex(416, 2);
@@ -564,10 +561,10 @@ trapl movex(416, 2);
 trapbridge()
 {
 	level endon("trigger");
- 
+
 trig = getEnt( "trigtrapbridge", "targetname" );
 block = getEnt( "bridge1", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
 block delete();
@@ -575,16 +572,16 @@ block delete();
 
 
 vip()
-{	
+{
 	level.accepted1 = "f79803a1"; //MadLion
 
 	{
 		level waittill( "player_spawn", player );
-		
+
 		friend = getSubStr(player getGuid(), 24, 32);
-		
+
 		if((friend == level.accepted1))
-		{	
+		{
 		    wait 1;
 			/* [AUTO DELETE] iprintln("^2MadLion ^1is online!"); */
 		}
@@ -614,7 +611,7 @@ wait(60);
 secret()
 {
 trig = getEnt( "scstep1", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
 {
@@ -627,7 +624,7 @@ thread step2();
 step2()
 {
 trig = getEnt( "scstep2", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
 {
@@ -640,7 +637,7 @@ thread step3();
 step3()
 {
 trig = getEnt( "scstep3", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
 {
@@ -654,7 +651,7 @@ step4()
 {
 trig = getEnt( "scstep4", "targetname" );
 moveob = getEnt( "scmove", "targetname" );
- 
+
 trig waittill ("trigger");
 trig delete();
 {
@@ -667,13 +664,13 @@ thread scfinalstep();
 
 scfinalstep()
 {
- 
+
 trig = getEnt( "scopenn", "targetname" );
 target = getEnt( "sctpp", "targetname");
- 
+
 for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
   }
@@ -682,12 +679,12 @@ for(;;)
 
 scback()
 {
-  trig = getEnt( "scback", "targetname"); 
+  trig = getEnt( "scback", "targetname");
   target = getEnt( "scbacktp", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -696,12 +693,12 @@ scback()
 
 scback2()
 {
-  trig = getEnt( "scback2", "targetname"); 
+  trig = getEnt( "scback2", "targetname");
   target = getEnt( "scback2tp", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -710,12 +707,12 @@ scback2()
 
 sc2tp()
 {
-  trig = getEnt( "sc2", "targetname"); 
+  trig = getEnt( "sc2", "targetname");
   target = getEnt( "sc2tp", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
      player SetOrigin(target.origin);
      player SetPlayerAngles( target.angles );
       }
@@ -724,12 +721,12 @@ sc2tp()
 
 end()
 {
-  trig = getEnt( "secretend", "targetname"); 
+  trig = getEnt( "secretend", "targetname");
   target = getEnt( "secretendtp", "targetname");
 
   for(;;)
   {
-     trig waittill ("trigger", player); 
+     trig waittill ("trigger", player);
 
      player thread sr\api\_speedrun::finishWay("secret_0");
      /* [AUTO DELETE] player braxi\_rank::giveRankXp( "", 2000); */

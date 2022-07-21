@@ -3,8 +3,6 @@ main()
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
-level.masterSpawn = spawn("script_origin", (-321,295,-87));
-level.masterSpawn.angles = level.spawn["allies"][2].angles;
 trigger = spawn( "trigger_radius", (1007, 2044.27, -86.875), 0, 100, 90 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 100;

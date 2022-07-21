@@ -16,7 +16,6 @@ setdvar("r_glowskybleedintensity0",".1");
 setDvar("bg_falldamagemaxheight", 99999);
 setDvar("bg_falldamageminheight", 99998);
 
-thread sr\api\_map::createSpawn((-6,-137,194),270);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createSecretWays("Easy Secret;Hard Secret;");
 thread sr\api\_speedrun::createEndMap((-38725.4, -6125.01, 31968.1), 920, 50, "secret_0");

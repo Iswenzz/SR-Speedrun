@@ -106,8 +106,7 @@ main()
 	//miscs------------------------
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("^1Hard Way;^2Easy Way;");
-	thread sr\api\_map::createSpawn((667,581,68),0);
-	thread sr\api\_speedrun::createTeleporter((591.033, 346.256, 8.125), 70, 40, (-37892, -8888, 1100), 90, "freeze", "blue", "secret_0");
+		thread sr\api\_speedrun::createTeleporter((591.033, 346.256, 8.125), 70, 40, (-37892, -8888, 1100), 90, "freeze", "blue", "secret_0");
 	thread sr\api\_speedrun::createTeleporter((796.85, 336.657, 8.125), 70, 40, (-23551, -6691, 1260), 90, "freeze", "yellow", "secret_1");
 	thread sr\api\_speedrun::createTeleporter((6660.33, 4146.93, 320.125), 60, 60, (6564, 6750, 59), 180, "freeze");
 	// thread whenPlayerConnected();

@@ -30,8 +30,7 @@ maps\mp\_load::main();
 
     thread sr\api\_speedrun::createNormalWays("Normal Way");
     thread sr\api\_speedrun::createSecretWays("Secret Way");
-    thread sr\api\_map::createSpawn((-3021,-120,76),360);
-    thread startdoor();
+        thread startdoor();
 	//thread messages();
 	//thread musicbox();
     //thread onPlayerConnect();

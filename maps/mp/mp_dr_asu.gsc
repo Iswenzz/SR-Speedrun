@@ -6,9 +6,6 @@ main()
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
-level.masterSpawn = spawn("script_origin", (-176,48,-52));
-level.masterSpawn.angles = level.spawn["allies"][0].angles;
-level.masterSpawn placeSpawnPoint();
  	maps\mp\_load::main();
  	maps\mp\mp_dr_asu_sound_fx::main();
 

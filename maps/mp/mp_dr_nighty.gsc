@@ -29,7 +29,6 @@ main()
 eztp = getEnt("secret1easy_tp","targetname");
 htp = getEnt("secret1hard_tp","targetname");
 
-thread sr\api\_map::createSpawn((-11760, 2603, 78), 270);
 
 thread sr\api\_speedrun::createTeleporter((-11539, 2404, 76), 100, 150, 
 	eztp.origin, eztp.angles[1], "freeze", "green", "secret_0");

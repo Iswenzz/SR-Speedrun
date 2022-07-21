@@ -1,10 +1,8 @@
 main()
 {
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
-	if(auto_spawn.size > 0)
-		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
-maps\mp\_load::main();
+
+		maps\mp\_load::main();
 /* [AUTO DELETE] ambientPlay("jump3"); */
 
  game["allies"] = "marines";

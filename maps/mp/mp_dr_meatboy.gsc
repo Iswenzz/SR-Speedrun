@@ -1,19 +1,16 @@
-/*                                      
-MMMMMMM MMMMMM  MMMMMM  MMMMMM   MMMMMM8  MMMMMM  
-  MMI   MMOII7 .MM  MM  MM. MM  MM    MM  MM .MM  
-  MM    MM=     MM MM   MM MM   MM   .MM  MM MM   
-  MM    MMMMMM  MM MMM .MM DMM   MMMMMM   MM :MM 
+/*
+MMMMMMM MMMMMM  MMMMMM  MMMMMM   MMMMMM8  MMMMMM
+  MMI   MMOII7 .MM  MM  MM. MM  MM    MM  MM .MM
+  MM    MM=     MM MM   MM MM   MM   .MM  MM MM
+  MM    MMMMMM  MM MMM .MM DMM   MMMMMM   MM :MM
 */
 
 main()
 {
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
-	if(auto_spawn.size > 0)
-		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin + (0,0,20),
- auto_spawn[int(auto_spawn.size / 2)].angles[1]);
+
 	maps\mp\_load::main();
-	
+
 	addTriggerToList( "trap1_trig" );
     addTriggerToList( "trap2_trig" );
 	addTriggerToList( "trap3_trig" );
@@ -22,7 +19,7 @@ main()
     addTriggerToList( "trap6_trig" );
 	addTriggerToList( "trap7_trig" );
     addTriggerToList( "trap8_trig" );
-	
+
 	precacheModel( "bear_stickman_red" );
 	precacheModel( "viewhands_bear_stickman_red" );
 	PrecacheModel( "vehicle_blackhawk" );
@@ -42,22 +39,22 @@ main()
 	level.fx_redspawn = loadfx("test/brickblast_25");
 	level.epic = loadfx("test/epic2");
 	level.fx_heliexplode = LoadFX( "explosions/tanker_explosion" );
-	
-	
+
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
-	
+
+
 	//////////dvars/////////////////////////////
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
-	
+
 	//////////////threads////////////////
 	// thread fall();
 	thread trap1();
@@ -98,7 +95,7 @@ main()
 	/* [AUTO DELETE] thread addTestClients(); */
 	// thread onspawn();
 	// thread WatchHelicopterTrigger();
-	
+
 	while( 1 )
 	{
 		level waittill( "player_spawn", player );
@@ -124,13 +121,13 @@ addTriggerToList( name )
 fall()
 {
 	death = getEnt ("death", "targetname");
-	
+
 	while(1)
 	{
 		death waittill ("trigger", player);
 		player freezecontrols (1);
 		player PlaySound("wtf");
-		playFx( level.mortar, player.origin); 
+		playFx( level.mortar, player.origin);
 		// Earthquake( 1, 1, player.origin, 500 );
 		player suicide();
 		player freezecontrols (0);
@@ -158,7 +155,7 @@ part1()
 {
 	trap1 = getEnt ("trap1", "targetname");
 	death2 = getEnt ("death", "targetname");
-	
+
 	while (1)
 	{
 		trap1 rotateRoll (360,1);
@@ -189,11 +186,11 @@ trap2()
 	trig waittill ("trigger", player);
 	player PlaySound("box");
 	trig delete();
-	
+
 	trap2_hide movez (-390,5);
 	wait(5);
 	trap2_hide hide();
-	trap2_hide notSolid();	
+	trap2_hide notSolid();
 
 	while (1)
 	{
@@ -213,11 +210,11 @@ trap3()
 	trig = getEnt( "trap3_trig", "targetname" );
 	trap3_easy = getEnt( "trap3_easy", "targetname" );
 	trap3_easy2 = getEnt( "trap3_easy2", "targetname" );
-	
+
 	trig waittill( "trigger", player );
 	player PlaySound("box");
 	trig delete();
-	
+
 	trap3_easy movez(-400,4);
 	trap3_easy2 movez(-400,4);
 	wait 15;
@@ -304,7 +301,7 @@ trap4()
 	trap4_1 = getent( "trap4_1", "targetname" );
 	trap4_2 = getent( "trap4_2", "targetname" );
 	trap4_3 = getent( "trap4_3", "targetname" );
-	
+
 	trig4_a enablelinkto();
 	trig4_a linkto (trap4_1);
 	trig4_b enablelinkto();
@@ -315,7 +312,7 @@ trap4()
 	trig4 waittill("trigger", player);
 	player PlaySound("box");
 	trig4 delete();
-	
+
 	while(1)
 	{
 		trap4_1 rotateroll (2280,1);
@@ -351,10 +348,10 @@ actitele4()
 	block=getent("block","targetname");
 	clip_move=getent("clip_move","targetname");
 	kill=getent("elevator_kill","targetname");
-	
-	
+
+
 	kill enablelinkto();
-	kill linkto (move); 
+	kill linkto (move);
 	clip_move linkto (move);
 	block notSolid();
 	opendoor waittill("trigger", player);
@@ -475,17 +472,17 @@ trap5()
 	trap5_3 = getent("trap5_3","targetname");
 	trap5_4 = getent("trap5_4","targetname");
 	trig5 = getent("trap5_trig", "targetname");
-	
+
 	trig5 waittill("trigger", player);
 	player PlaySound("box");
 	trig5 delete();
-	
+
 	while(1)
 	{
-		trap5_1 rotateyaw (360,10); 
-		trap5_2 rotateyaw (360,10); 
-		trap5_3 rotateyaw (360,10); 
-		trap5_4 rotateyaw (360,10); 
+		trap5_1 rotateyaw (360,10);
+		trap5_2 rotateyaw (360,10);
+		trap5_3 rotateyaw (360,10);
+		trap5_4 rotateyaw (360,10);
 		wait 1 ;
 	}
 }
@@ -500,15 +497,15 @@ trap5_short()
 	level endon("trigger");
 	trap5 = getent("trap5_short","targetname");
 	short_trig = getent("short_trig","targetname");
-	
-	
+
+
 	trap5 hide();
 	trap5 notSolid();
-	
+
 	short_trig waittill("trigger", player);
 	player PlaySound("box");
 	short_trig delete();
-	
+
 	trap5 Solid();
 	trap5 show();
 	wait 1 ;
@@ -557,19 +554,19 @@ trap7()
 	trap7_tele = getent("trap7_tele","targetname");
 	push = getent("push","targetname");
 	room_dmg= getent("room_dmg","targetname");
-	
+
 	trap7_tele enablelinkto();
 	trap7_tele linkto (trap7_owned);
 	room_dmg enablelinkto();
 	room_dmg linkto (push);
-	
+
 	trap7_owned hide();
 	trap7_owned notSolid();
-	
+
 	trigger waittill("trigger", player);
 	player PlaySound("box");
 	trigger delete();
-	
+
 	trap7_owned movez (128,1);
 	wait(1.1);
 	trap7_owned show();
@@ -613,12 +610,12 @@ trap7_teleport2()
 
 	trap7_acmove = getEnt ( "trap7_acmove" , "targetname" );
 	trap7_trig_map = getEnt ( "trap7_trig_map" , "targetname" );
-	
+
 	trap7_trig_map enablelinkto();
 	trap7_trig_map linkto (trap7_acmove);
-	
+
 	while (1)
-	{	
+	{
 	trap7_acmove movex(1000,9);
 	wait 0.5;
 	trap7_acmove movex(-1000,9);
@@ -650,7 +647,7 @@ trap7_teleport3()
 
 
 effect()
-{	
+{
 	self endon( "death" );
 	self endon( "disconnect" );
 
@@ -723,14 +720,14 @@ trap8()
 	trap8_brickdam hide();
 	trap8_bomb2 hide();
 	trap8_bomb2 notsolid();
-	
+
 	trap8_bomb enablelinkto();
 	trap8_bomb linkto (trap8_bomb2);
-	
+
 	trigger waittill("trigger",player);
 	player PlaySound("box");
 	trigger delete();
-	
+
 	trap8_bomb2 movez(64,1);
 	wait 1;
 	monkey_origin playsound("monkey");
@@ -817,15 +814,15 @@ main_door()
 	brick2 =getent( "brick2", "targetname" );
 	floorfire1 =getent( "floorfire1", "targetname" );
 	floorfire2 =getent( "floorfire2", "targetname" );
-	boomsoundori =getent( "boomsoundori", "targetname" ); 
-	flamesound1 =getent( "flamesound1", "targetname" ); 
+	boomsoundori =getent( "boomsoundori", "targetname" );
+	flamesound1 =getent( "flamesound1", "targetname" );
 	flamesound2 =getent( "flamesound2", "targetname" );
-	terror =getent( "terror", "targetname" ); 
-	/* [AUTO DELETE] sniperroom =getent( "sniperroom", "targetname" ); */ 
-	
+	terror =getent( "terror", "targetname" );
+	/* [AUTO DELETE] sniperroom =getent( "sniperroom", "targetname" ); */
+
 	maindoor_remains hide();
 	terror hide();
-	
+
 	meatboy_soundori playsound("meatboy");
 	wait 2;
 	playFx(level.fire, fire1.origin);
@@ -851,8 +848,8 @@ main_door()
 	wait 2;
 }
 
-	
-	
+
+
 //////////////////////////////////////////////////////////////////////////////////
 
 
@@ -861,18 +858,18 @@ Sniperroom()
 	level.trig_sniper = getEnt( "trig_sniper", "targetname");
 	snip_jump = getEnt( "snip_jump", "targetname" );
 	snip_acti = getEnt( "snip_acti", "targetname" );
-	
+
 	while(1)
 	{
 		level.trig_sniper waittill( "trigger", player );
 		if( !isDefined( level.trig_sniper ) )
 			return;
-		
+
 			thread dunkroomdel();
 			thread kniferoomdel();
 			thread weaproomdel();
 			thread heliroomdel();
-			
+
 		/* [AUTO DELETE] //AmbientPlay( "friend" ); */
 		player FreezeControls(1);
 		player setplayerangles( snip_jump.angles );
@@ -911,10 +908,10 @@ blocks()
 	block1 = getEnt( "block1", "targetname" );
 	block2 = getEnt( "block2", "targetname" );
 	block3 = getEnt( "block3", "targetname" );
-	
+
 	trig_actiblock waittill( "trigger", player );
 	trig_actiblock delete();
-	
+
 	wait 2;
 	block1 movey(-432,4);
 	block2 movez(-384,4);
@@ -1030,26 +1027,26 @@ dunkroom()
 	// level.trig_dunk = getEnt( "trig_dunk", "targetname");
 	// dunk_actitele = getEnt( "dunk_actitele", "targetname" );
 	// dunk_jumptele = getEnt( "dunk_jumptele", "targetname" );
-	// dunk_target_block=getent("dunk_target_block","targetname"); 
-	
+	// dunk_target_block=getent("dunk_target_block","targetname");
+
 	// while(1)
 	// {
 	// 	level.trig_dunk waittill( "trigger", player );
 	// 	if( !isDefined( level.trig_dunk ) )
 	// 		return;
-		
+
 	// 	thread sniperroomdel();
 	// 	thread kniferoomdel();
 	// 	thread weaproomdel();
 	// 	thread heliroomdel();
-		
+
 	// 	dunk_target_block notsolid();
 	// 	player FreezeControls(1);
 	// 	player SetPlayerAngles( dunk_jumptele.angles );
 	// 	player setOrigin( dunk_jumptele.origin );
 	// 	/* [AUTO DELETE] player TakeAllWeapons(); */
 	// 	/* [AUTO DELETE] player GiveWeapon( "colt45_mp" ); */
-	// 	 [AUTO DELETE] player giveMaxAmmo( "colt45_mp" ); 
+	// 	 [AUTO DELETE] player giveMaxAmmo( "colt45_mp" );
 	// 	level.activ setPlayerangles( dunk_actitele.angles );
 	// 	level.activ setOrigin( dunk_actitele.origin );
 	// 	/* [AUTO DELETE] level.activ TakeAllWeapons(); */
@@ -1059,7 +1056,7 @@ dunkroom()
 	// 	/* [AUTO DELETE] wait 0.05; */
 	// 	/* [AUTO DELETE] player switchToWeapon( "colt45_mp" ); */
 	// 	/* [AUTO DELETE] level.activ SwitchToWeapon( "colt45_mp" ); */
-	// 	/* [AUTO DELETE] iPrintlnBold( " ^7" + player.name + " ^7has entered ^5D^7unk ^5R^7oom^5!!" ); */	
+	// 	/* [AUTO DELETE] iPrintlnBold( " ^7" + player.name + " ^7has entered ^5D^7unk ^5R^7oom^5!!" ); */
  //                                     while( isAlive( player ) && isDefined( player ) )
 	// 		/* [AUTO DELETE] wait 5; */
 	// }
@@ -1075,39 +1072,39 @@ kniferoom()
 	// level.trig_knife = getEnt( "trig_knife", "targetname");
 	// knife_jump = getEnt( "knife_jumper", "targetname" );
 	// knife_acti = getEnt( "knife_acti", "targetname" );
-	
+
 	// while(1)
 	// {
 	// 	level.trig_knife waittill( "trigger", player );
 	// 	if( !isDefined( level.trig_knife ) )
 	// 		return;
-		
+
 	// 	thread sniperroomdel();
 	// 	thread dunkroomdel();
 	// 	thread weaproomdel();
 	// 	thread heliroomdel();
-		
+
 	// 	/* [AUTO DELETE] //AmbientPlay( "friend" ); */
 	// 	player FreezeControls(1);
 	// 	player SetPlayerAngles( knife_jump.angles );
 	// 	player setOrigin( knife_jump.origin );
 	// 	/* [AUTO DELETE] player TakeAllWeapons(); */
-	// 	/* [AUTO DELETE] player GiveWeapon( "tomahawk_mp" ); */	
-	// 	/* [AUTO DELETE] player GiveWeapon( "deserteagle_mp" ); */	
+	// 	/* [AUTO DELETE] player GiveWeapon( "tomahawk_mp" ); */
+	// 	/* [AUTO DELETE] player GiveWeapon( "deserteagle_mp" ); */
 	// 	player setWeaponAmmoClip( "deserteagle_mp", 0 );
 	// 	player setweaponammostock( "deserteagle_mp", 0 );
 	// 	level.activ FreezeControls(1);
 	// 	level.activ setPlayerangles( knife_acti.angles );
 	// 	level.activ setOrigin( knife_acti.origin );
 	// 	/* [AUTO DELETE] level.activ TakeAllWeapons(); */
-	// 	/* [AUTO DELETE] level.activ GiveWeapon( "tomahawk_mp" ); */	
-	// 	/* [AUTO DELETE] level.activ GiveWeapon( "deserteagle_mp" ); */	
+	// 	/* [AUTO DELETE] level.activ GiveWeapon( "tomahawk_mp" ); */
+	// 	/* [AUTO DELETE] level.activ GiveWeapon( "deserteagle_mp" ); */
 	// 	level.activ setWeaponAmmoClip( "deserteagle_mp", 0 );
-	// 	level.activ setweaponammostock( "deserteagle_mp", 0 );		
+	// 	level.activ setweaponammostock( "deserteagle_mp", 0 );
 	// 	wait 0.05;
 	// 	/* [AUTO DELETE] player switchToWeapon( "deserteagle_mp" ); */
 	// 	/* [AUTO DELETE] level.activ SwitchToWeapon( "deserteagle_mp" ); */
-	// 	/* [AUTO DELETE] iPrintlnBold( " ^7" + player.name + " ^7has entered ^5K^7nife ^5R^7oom^5!!" ); */	
+	// 	/* [AUTO DELETE] iPrintlnBold( " ^7" + player.name + " ^7has entered ^5K^7nife ^5R^7oom^5!!" ); */
 	// 	wait 5;
 	// 	player FreezeControls(0);
 	// 	level.activ FreezeControls(0);
@@ -1127,7 +1124,7 @@ dunk_jump_trig()
 {
 	dunk_trig_jumper=getent("dunk_trig_jumper","targetname");
 	dunk_judoor=getent("dunk_judoor","targetname");
-	
+
 	while(1)
 	{
 		dunk_trig_jumper waittill("trigger", player);
@@ -1149,7 +1146,7 @@ dunk_acti_trig()
 {
 	dunk_trig_acti=getent("dunk_trig_acti","targetname");
 	dunk_acdoor=getent("dunk_acdoor","targetname");
-	
+
 	while(1)
 	{
 		dunk_trig_acti waittill("trigger", player);
@@ -1172,12 +1169,12 @@ dunk_move1()
 
 	dunk_acmove = getEnt ( "dunk_acmove" , "targetname" );
 	trig_acti = getEnt ( "dunk_trig_acti" , "targetname" );
-	
+
 	trig_acti enablelinkto();
 	trig_acti linkto (dunk_acmove);
-	
+
 	while (1)
-	{	
+	{
 	dunk_acmove movey(800,9);
 	wait 0.5;
 	dunk_acmove movey(-800,9);
@@ -1196,12 +1193,12 @@ dunk_move2()
 
 	dunk_acmove2 = getEnt ( "dunk_acmove2" , "targetname" );
 	trig_jumper = getEnt ( "dunk_trig_jumper" , "targetname" );
-	
+
 	trig_jumper enablelinkto();
 	trig_jumper linkto (dunk_acmove2);
-	
+
 	while (1)
-	{	
+	{
 	dunk_acmove2 movey(800,9);
 	wait 0.5;
 	dunk_acmove2 movey(-800,9);
@@ -1220,9 +1217,9 @@ truck()
 
 	truck1 = getent("truck1","targetname");
 	truck_back = getent("truck_back","targetname");
-	
+
 	while (1)
-	{	
+	{
 	truck1 movex(7000,30);
 	wait 31;
 	truck1 rotateyaw (-45,2);
@@ -1256,33 +1253,33 @@ weaproom()
 	// level.trig_weap = getEnt( "trig_weap", "targetname");
 	// weap_jump = getEnt( "weap_jumper", "targetname" );
 	// weap_acti = getEnt( "weap_acti", "targetname" );
-	
+
 	// while(1)
 	// {
 	// 	level.trig_weap waittill( "trigger", player );
 	// 	if( !isDefined( level.trig_weap ) )
 	// 		return;
-		
+
 	// 	thread sniperroomdel();
 	// 	thread dunkroomdel();
 	// 	thread kniferoomdel();
 	// 	thread heliroomdel();
-		
+
 	// 	/* [AUTO DELETE] //AmbientPlay( "friend" ); */
 	// 	player FreezeControls(1);
 	// 	player SetPlayerAngles( weap_jump.angles );
 	// 	player setOrigin( weap_jump.origin );
 	// 	/* [AUTO DELETE] player TakeAllWeapons(); */
-	// 	/* [AUTO DELETE] player GiveWeapon( "ak74u_mp" ); */		
+	// 	/* [AUTO DELETE] player GiveWeapon( "ak74u_mp" ); */
 	// 	level.activ FreezeControls(1);
 	// 	level.activ setPlayerangles( weap_acti.angles );
 	// 	level.activ setOrigin( weap_acti.origin );
 	// 	/* [AUTO DELETE] level.activ TakeAllWeapons(); */
-	// 	/* [AUTO DELETE] level.activ GiveWeapon( "ak74u_mp" ); */		
+	// 	/* [AUTO DELETE] level.activ GiveWeapon( "ak74u_mp" ); */
 	// 	/* [AUTO DELETE] wait 0.05; */
 	// 	/* [AUTO DELETE] player switchToWeapon( "ak74u_mp" ); */
 	// 	/* [AUTO DELETE] level.activ SwitchToWeapon( "ak74u_mp" ); */
-	// 	/* [AUTO DELETE] iPrintlnBold( " ^7" + player.name + " ^7has entered ^5W^7eapon ^5R^7oom^5!!" ); */	
+	// 	/* [AUTO DELETE] iPrintlnBold( " ^7" + player.name + " ^7has entered ^5W^7eapon ^5R^7oom^5!!" ); */
 	// 	/* [AUTO DELETE] wait 5; */
 	// 	player FreezeControls(0);
 	// 	level.activ FreezeControls(0);
@@ -1321,7 +1318,7 @@ roomhide()
 WatchHelicopterTrigger()
 {
 	trig = getEnt( "trigger_helicopter", "targetname" );
-	
+
 	while(1)
 	{
 		trig waittill( "trigger", player );
@@ -1341,10 +1338,10 @@ StartHelicopter()
 {
 	self endon( "disconnect" );
 	self endon( "death" );
-	
+
 	if( !isDefined( self ) || !isAlive( self ) || !isPlayer( self ) )
 		return;
-	
+
 	path = [];
 	orig = getEntArray();
 	if( self.pers["team"] == "allies" )
@@ -1387,9 +1384,9 @@ StartHelicopter()
 	chopper setNearGoalNotifyDist( 96 );
 	chopper thread DamageMonitor();
 	chopper endon( "crashed" );
-	
+
 	pathnum = 0;
-	
+
 	self setOrigin( chopper.linker.origin );
 	self LinkTo( chopper.linker );
 	/* [AUTO DELETE] self TakeAllWeapons(); */
@@ -1398,7 +1395,7 @@ StartHelicopter()
 	self SetSpawnWeapon( "m14_reflex_mp" );
 	self.maxhealth = 200;
 	self.health = self.maxhealth;
-	
+
 	while( isDefined( self ) && isAlive( self ) )
 	{
 		/* [AUTO DELETE] wait 0.1; */
@@ -1422,20 +1419,20 @@ DamageMonitor()
 		self waittill( "damage", dmg, attacker );
 		self.health -= dmg;
 		self.attacker = attacker;
-		
+
 		if( self.health >= 2000 && self.health < 3000 )
 			self SetDamageStage( 2 );
 		else if( self.health >= 1000 && self.health < 2000 )
 			self SetDamageStage( 1 );
 		else if( self.health < 1000 )
 			self SetDamageStage( 0 );
-		
+
 		if( self.health <= 0 )
 			break;
 	}
 	if( isDefined( self.owner ) )
 		self.owner UnLink();
-	
+
 	// EarthQuake( 1.5, 1, self.origin, 1200 );
 	self PlaySound( "exp_suitcase_bomb_main" );
 	PlayFX( level.fx_heliexplode, self.origin-(0,0,60) );
@@ -1489,7 +1486,7 @@ TestClient(team)
 
 	while(!isdefined(self.pers["team"]))
 		wait .05;
-		
+
 	self notify("menuresponse", game["menu_team"], team);
 	wait 0.5;
 }
@@ -1503,15 +1500,15 @@ dunktrigblock1()
 {
 	dunk_target_block=getent("dunk_target_block","targetname");
 	dunk_trig_acti=getent("dunk_trig_acti","targetname");
-	
+
 	dunk_target_block notsolid();
 	dunk_target_block hide();
-	
+
 	while(1)
 	{
 	dunk_trig_acti waittill("trigger", player);
 	dunk_target_block solid();
-	wait 1;	
+	wait 1;
 	}
 }
 
@@ -1524,10 +1521,10 @@ dunktrigblock2()
 {
 	dunk_target_block=getent("dunk_target_block","targetname");
 	dunk_trig_jumper=getent("dunk_trig_jumper","targetname");
-	
+
 	dunk_target_block notsolid();
 	dunk_target_block hide();
-	
+
 	while(1)
 	{
 	dunk_trig_jumper waittill("trigger", player);
@@ -1545,7 +1542,7 @@ terror()
 {
 
 	terror = getEnt ( "terror" , "targetname" );
-	
+
 	wait 35;
 	terror rotateyaw (180,5);
 	wait 6;
@@ -1569,7 +1566,7 @@ onSpawn()
 AfterFrame()
 {
 	self endon( "disconnect" );
-	
+
 	waittillframeend;
 	self detachAll();
 	self setModel( "bear_stickman_red" );

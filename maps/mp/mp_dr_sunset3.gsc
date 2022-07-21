@@ -20,8 +20,7 @@ main()
 	setDvar("bg_fallDamageMinHeight", "9999");
 	setDvar("bg_fallDamageMaxHeight", "99999");
 
-    thread sr\api\_map::createSpawn((94,-1334,76),360);
-    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+        thread sr\api\_speedrun::createNormalWays("Normal Way;");
     thread sr\api\_speedrun::createSecretWays("Secret Way;");
 
 	thread startdoor();

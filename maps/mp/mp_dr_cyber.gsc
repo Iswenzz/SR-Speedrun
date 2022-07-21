@@ -56,8 +56,7 @@ main()
     level.endsong[2]["alias"]    ="end3";
 
 	//if(game["roundsplayed"] == 1) iPrintLn("^5[^0Pizzaman-Bot^5]^3: ^2anti ^6xM^5# ^2script v2.3.1 loaded successfully.");
-	thread sr\api\_map::createSpawn((417,3420,492),270);
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+		thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	thread sr\api\_speedrun::createEndMap((10246.6, -15038, 361.038), 525, 240);
 	thread sr\api\_speedrun::createTeleporter((-4683.31, -5898.16, 352.125), 160, 140, (-4684, -6386, 916), 269, "freeze");

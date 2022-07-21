@@ -2,10 +2,6 @@ main()
 {
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
-	auto_spawn = getEntArray("mp_jumper_spawn", "classname");
-	if(auto_spawn.size > 0)
-		thread sr\api\_map::createSpawnOrigin(auto_spawn[int(auto_spawn.size / 2)].origin, auto_spawn[int(auto_spawn.size / 2)].angles[1]);
-
 	thread sr\api\_speedrun::createEndMap((3187, -2843, -228), 100, 150);
 
 // Secret \\
@@ -41,7 +37,7 @@ main()
 	// thread musictrig();
 // Credits \\
 	thread credits();
-		
+
 	maps\mp\_load::main();
 	maps\mp\_compass::setupMiniMap("compass_map_mp_dr_biohazard");
 	/* [AUTO DELETE] //maps\mp\mp_dr_biohazard\_menu::main(); */
@@ -52,19 +48,19 @@ main()
 	game["defenders"] = "axis";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
-	
+
 	setdvar("compassmaxrange","1600");
-	
-	
+
+
 	addTriggerToList ("trap01_switch");
 	addTriggerToList ("trap02_switch");
 	addTriggerToList ("trap03_switch");
 	addTriggerToList ("trap04_switch");
 	addTriggerToList ("trap05_switch");
 	addTriggerToList ("trap06_switch");
-	
+
 }
 
 addTriggerToList( name )
@@ -79,33 +75,33 @@ addTriggerToList( name )
 initMusic()
 {
 		level.music = [];
- 
+
         i = 0;
 		level.music[i]["artist"] = "Jason Derulo ft Snoop Dogg";
 		level.music[i]["title"] = "Wiggle";
 		level.music[i]["alias"] = "sound1";
-		
+
 		i++;
 		level.music[i]["artist"] = "Eminem";
 		level.music[i]["title"] = "Rap God";
 		level.music[i]["alias"] = "sound2";
-		
+
 		i++;
 		level.music[i]["artist"] = "Lonely Island ft Kendrick Lamar & Adam Levine";
 		level.music[i]["title"] = "Yolo";
 		level.music[i]["alias"] = "sound3";
-		
+
 		i++;
 		level.music[i]["artist"] = "I-YaZ";
 		level.music[i]["title"] = "So Big";
 		level.music[i]["alias"] = "sound4";
-		
+
 		i++;
 		level.music[i]["artist"] = "Jake Miller";
 		level.music[i]["title"] = "Runnin";
 		level.music[i]["alias"] = "sound5";
- 
- 
+
+
         //precacheShader( "bladeuni" ); sind meine eigenen :D
         //precacheShader( "rainbow" );
 
@@ -116,30 +112,30 @@ initMusic()
 
 musicMenu()
 {
-	
+
 	self endon( "death" );
- 
+
 	self thread onDeath();
 	self thread onDisconnect();
- 
+
 	self.hud_music = [];
 	self.selection = 0;
- 
+
 	i = 0;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 160, 200, 0.35, "left", "top", 2 );
 	self.hud_music[i].sort = 880;
 	self.hud_music[i] setShader( "black", 320, 160 );
-	
+
 	i++;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 270, 180, 1, "left", "top", 1.8 );
 	self.hud_music[i].sort = 883;
 	self.hud_music[i] setText( "^7>>> ^2Music Menu ^7<<<" );
-	
+
 	i++;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 270, 204, 0.93, "left", "top", 1.8 );
 	self.hud_music[i].sort = 884;
 	self.hud_music[i] setText( ">>> ^2Select a Song ^7<<<" );
- 
+
 	i++;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 288, 360, 1, "center", "top", 1.4 );
 	self.hud_music[i].sort = 885;
@@ -149,36 +145,36 @@ musicMenu()
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 235, 360, 1, "center", "bottom", 1.4 );
 	self.hud_music[i].sort = 886;
 	self.hud_music[i] setText( "^2RvS ^7Clan" );
- 
+
 	for( j = 0; j < level.music.size; j++ )
 	{
 		i++;
 		self.hud_music[i] = braxi\_mod::addTextHud( self, 172, 230+(j*16), 0.93, "left", "top", 1.4 );
 		self.hud_music[i].sort = 882;
 		self.hud_music[i].font = "objective";
- 
+
 		entry = level.music[j];
 		self.hud_music[i] setText( entry["artist"] + " ^2-^7 " + entry["title"] );
 	}
- 
+
 	i++;
 	self.hud_music[self.hud_music.size] = braxi\_mod::addTextHud( self, 167, 230, 0.4, "left", "top", 1.4 );
 	self.hud_music[i].sort = 881;
 	indicator = self.hud_music[self.hud_music.size-1];
 	indicator setShader( "white", 306, 17 );
- 
+
 	while( self.sessionstate == "playing" )
 	{
 		wait 0.1;
- 
+
 		if( self attackButtonPressed() )
 		{
 			self.hud_music[5+self.selection].alpha = 0.93;
- 
+
 			self.selection++;
 			if( self.selection >= level.music.size )
 				self.selection = 0;
- 
+
 			item = self.hud_music[5+self.selection];
 			item.alpha = 1;
 			indicator.y = item.y;
@@ -186,7 +182,7 @@ musicMenu()
 		else if( self useButtonPressed() )
 		{
 			/* [AUTO DELETE] iPrintln( "^2Now playing: ^7" + level.music[self.selection]["artist"]+" - ^2" +level.music[self.selection]["title"] ); */
- 
+
 			/* [AUTO DELETE] ambientPlay( level.music[self.selection]["alias"], 3 ); */
 			self freezeControls(0);
 			level notify ( "song_picked" );
@@ -199,16 +195,16 @@ musicMenu()
 			break;
 		}
 	}
- 
+
 	self cleanUp();
 }
 
- 
+
 musictrig()
 {
 	trigger = getEnt ( "music_trigger", "targetname" );
 	trigger setHintString( "Press ^2[^7USE^2] ^7to choose Music" );
- 
+
 	trigger waittill( "trigger", player );
 	trigger delete();
 	level endon ( "song_picked" );
@@ -216,7 +212,7 @@ musictrig()
 	player freezeControls(1);
 }
 
- 
+
 onDisconnect()
 {
 	self endon( "music thread terminated" );
@@ -224,7 +220,7 @@ onDisconnect()
 	self cleanUp();
 }
 
- 
+
 onDeath()
 {
 	self endon( "disconnect" );
@@ -233,13 +229,13 @@ onDeath()
 	self cleanUp();
 }
 
- 
- 
+
+
 cleanUp()
 {
 	if( !isDefined( self ) )
 		return;
- 
+
 	if( isDefined( self.hud_music ) )
 	{
 		for( i = 0; i < self.hud_music.size; i++ )
@@ -284,10 +280,10 @@ secret2()
    {
       lockTriggers[i] thread saveInput();
    }
-   
+
    unlockTrigger = getent("trigUnlock","targetname");
    unlockTrigger thread unlock();
-   
+
    level.code = "060514";
    level.input = "";
 }
@@ -324,7 +320,7 @@ unlock()
    {
     /* [AUTO DELETE] user iprintlnbold ("Password ^1INCORRECT"); */
 	user suicide();
-   level.input = "";   
+   level.input = "";
    }
    }
 }
@@ -433,7 +429,7 @@ moves()
 	move1 = getEnt ("moveA", "targetname");
 	move2 = getEnt ("moveB", "targetname");
 	move3 = getEnt ("moveC", "targetname");
-	
+
 	while (1)
 	{
 		move1 moveZ (20, 3);
@@ -456,7 +452,7 @@ moves2()
 	move1 = getEnt ("moveD", "targetname");
 	move2 = getEnt ("moveE", "targetname");
 	move3 = getEnt ("moveF", "targetname");
-	
+
 	while (1)
 	{
 		move1 moveZ (20, 3);
@@ -480,10 +476,10 @@ door01()
 	t = getEnt ("door01_switch", "targetname");
 	t waittill ("trigger");
 	t delete();
-	
+
 	wait 2;
 	/* [AUTO DELETE] iprintln ("^5>>> ^7Start Door Has ^1Opened! ^5<<<"); */
-	
+
 	d hide();
 	d notsolid();
 }
@@ -498,7 +494,7 @@ trap01()
 			trig waittill ("trigger", player);
 				trig delete();
 					/* [AUTO DELETE] player braxi\_rank::giveRankXP("", 100); */
-	
+
 	while(1)
 	{
 		trap1 rotateYaw (360,1);
@@ -538,10 +534,10 @@ trap03()
 		trig waittill ("trigger", player);
 			trig delete();
 				/* [AUTO DELETE] player braxi\_rank::giveRankXP("", 100); */
-			
+
 	hurt enablelinkto();
 	hurt linkto (trap);
-	
+
 	while(1)
 	{
 		playFx(level.smoke, effect.origin);
@@ -586,7 +582,7 @@ trap05()
 
 trap06()
 {
-	rotate_obj = getentarray("rotate","targetname");	
+	rotate_obj = getentarray("rotate","targetname");
 	if(isdefined(rotate_obj))
 		for(i=0;i<rotate_obj.size;i++)
 			rotate_obj[i] thread ra_rotate();
@@ -598,7 +594,7 @@ ra_rotate()
 		self.speed = 10;
 	if (!isdefined(self.script_noteworthy))
 		self.script_noteworthy = "z";
- 
+
 	for(;;)
 	{
 		trig = getEnt ("trap06_switch" , "targetname");
@@ -630,7 +626,7 @@ spawnFx()
 {
 	effect = getEnt ("fire.ori", "targetname");
 	effect1 = getEnt ("fire1.ori", "targetname");
-		
+
 			playFx(level.fire, effect.origin);
 				playFx(level.fire, effect1.origin);
 }
@@ -652,13 +648,13 @@ died()
 
 knife()
 {
-    
+
 }
 
 credits()
 {
 	trig = getEnt ("credits", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill ("trigger", player);
@@ -676,7 +672,7 @@ credits()
 		hud_clock.glowalpha = 1;
 		hud_clock.glowcolor = (1,0,0);
 		hud_clock.label = &"^7>> ^2Mp_Dr_Biohazard, ^7Made By ^2JynX ^7<<";
-		hud_clock SetPulseFX( 40, 5400, 200 );	
+		hud_clock SetPulseFX( 40, 5400, 200 );
 		wait 6;
 		hud_clock = NewHudElem();
 		hud_clock.alignX = "center";

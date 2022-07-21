@@ -14,8 +14,7 @@ main()
 	
 	///////SR Stuff`
 	thread sr\api\_speedrun::createNormalWays("Normal Way;Easy Way;Inter Way;Hard Way");
-	thread sr\api\_map::createSpawn((26754,2631,2572),360);
-	thread sr\api\_speedrun::createTeleporter((26755, 3004, 2572), 60, 80, (26960, -10564, 2330), 359, "freeze", "blue", "normal_1");
+		thread sr\api\_speedrun::createTeleporter((26755, 3004, 2572), 60, 80, (26960, -10564, 2330), 359, "freeze", "blue", "normal_1");
 	thread sr\api\_speedrun::createTeleporter((26663, 2277, 2572), 60, 80, (19795, -1983, -3062), 268, "freeze", "blue", "normal_2");
 	thread sr\api\_speedrun::createTeleporter((9173, -1170, -6659), 60, 80, (11931, -632, -6797), 359, "freeze", "blue", "normal_2");
 	thread sr\api\_speedrun::createTeleporter((26846, 2280, 2572), 60, 80, (22301, 4646, -1002), 270, "freeze", "red", "normal_3");

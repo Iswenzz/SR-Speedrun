@@ -71,8 +71,7 @@ main()
 
 
 	//SR Code
-	thread sr\api\_map::createSpawn((-1408,507,2892),179);
-	thread sr\api\_speedrun::createNormalWays("Easy;Medium;Hard;");
+		thread sr\api\_speedrun::createNormalWays("Easy;Medium;Hard;");
 
 	//Credits n Text
 	thread iPrint();

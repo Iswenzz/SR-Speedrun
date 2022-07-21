@@ -29,8 +29,7 @@ trigger.radius = 65;
 	PreCacheItem("remington700_mp");
 
 	thread sr\api\_speedrun::createNormalWays("Normal Way");
-    thread sr\api\_map::createSpawn((431,-1157,44),91);
-
+    
 	//secrets
 	//thread porntrap();
 	//thread porntrap1();

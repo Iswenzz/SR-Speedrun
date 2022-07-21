@@ -68,8 +68,7 @@ main()
 	addTriggerToList("d_trig");
 	addTriggerToList("vent_trig");	
 	
-    thread sr\api\_map::createSpawn((-262,9,76),358);
-    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+        thread sr\api\_speedrun::createNormalWays("Normal Way;");
     thread sr\api\_speedrun::createSecretWays("Easy Secret;Hard Secret;");
     thread sr\api\_speedrun::createTeleporter((-205.708, -300.847, 16.125), 85, 75, (31, 21893, 1869), 322, "freeze", "blue", "secret_0");
     thread sr\api\_speedrun::createTeleporter((-169.452, 297.767, 16.125), 85, 75, (8645, 22208, 3997), 319, "freeze", "red", "secret_1");
