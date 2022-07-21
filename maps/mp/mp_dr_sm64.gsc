@@ -5,6 +5,7 @@
 
 main()
 {
+thread sr\api\_map::createSpawn((-5963, -7623, 1392), 357);
 	maps\mp\_load::main();
 	maps\mp\_compass::setupMiniMap("compass_map_mp_dr_sm64");
 	 

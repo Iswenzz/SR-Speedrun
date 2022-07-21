@@ -4,6 +4,7 @@
 #include braxi\_rank;
 main()
 {
+thread sr\api\_map::createSpawn((-727, 309, 0), 269);
         maps\mp\_load::main();
         maps\mp\_teleport::main();
 //setExpFog(300, 3500, .5, 0.5, 0.45, 0);

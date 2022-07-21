@@ -5,6 +5,7 @@
 
 main()
 {
+thread sr\api\_map::createSpawn((94, -71, 18), 269);
 maps\mp\_load::main();
 //otherstuff
 thread sr\api\_speedrun::createNormalWays("Normal Way");

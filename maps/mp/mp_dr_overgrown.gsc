@@ -2,6 +2,7 @@
 //#include maps\mp\jr_util;
 main()
 {
+thread sr\api\_map::createSpawn((64.125, -56, 16.125), 0);
 
 maps\mp\_load::main();
 

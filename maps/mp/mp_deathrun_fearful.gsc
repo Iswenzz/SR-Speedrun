@@ -1,5 +1,6 @@
 main()
-{   
+{
+thread sr\api\_map::createSpawn((-35, 127, 0), 270);   
     level.amber = loadFX("deathrun/amber"); 
     level.fire2 = loadFX("deathrun/fire2"); 	
     maps\mp\_load::main();

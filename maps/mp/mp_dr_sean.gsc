@@ -9,6 +9,7 @@ Map by Sean
 */
 
 main(){
+thread sr\api\_map::createSpawn((-21, -640, 8), 90);
 	maps\mp\_load::main();
 
 	game["allies"] = "marines";

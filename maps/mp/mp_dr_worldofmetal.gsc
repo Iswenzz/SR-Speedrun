@@ -1,5 +1,6 @@
 main()
 {
+thread sr\api\_map::createSpawn((-619, -440, 16), 360);
     addTriggerToList("trig_trap1");
 	addTriggerToList("trig_trap2");
 	addTriggerToList("trig_trap3");

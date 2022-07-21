@@ -12,6 +12,7 @@ Welcome to mp_dr_undertale script. Feel free to take any piece of code, no need 
 
 main()
 {
+thread sr\api\_map::createSpawn((124, -12, 1), 89);
 	maps\mp\_load::main();
 
 	game["allies"] = "marines";

@@ -3,6 +3,7 @@
 // Map Scripted by Mist & Rex109
 
 main() {
+thread sr\api\_map::createSpawn((-536, 2602, 197), 90);
 
 	maps\mp\_load::main();
 

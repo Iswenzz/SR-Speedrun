@@ -10,6 +10,7 @@
 #include common_scripts\utility;
 main()
 {
+thread sr\api\_map::createSpawn((-23318, -50, 40080), 0);
 	maps\mp\_load::main();
 	//maps\mp\_teleport::main();
 	

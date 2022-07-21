@@ -1,5 +1,6 @@
 main()
 {
+thread sr\api\_map::createSpawn((-2789, -1452, -368), 0);
 
 	maps\mp\_load::main();
 	maps\mp\mp_nevada\_teleport::main();

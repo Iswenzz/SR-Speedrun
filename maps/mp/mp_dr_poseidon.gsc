@@ -1,5 +1,6 @@
 main()
 {
+thread sr\api\_map::createSpawn((-199, -34, 32), 90);
  game["allies"] = "sas";
  game["axis"] = "russian";
  game["attackers"] = "axis";

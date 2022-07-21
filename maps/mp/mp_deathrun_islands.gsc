@@ -5,6 +5,7 @@ xfire: paap15
 */
 main()
 {
+thread sr\api\_map::createSpawn((-493.764, 253.429, 21.188), 235);
 trigger = spawn( "trigger_radius", (-612.406, -2376.85, -2087.88), 0, 75, 95 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 75;

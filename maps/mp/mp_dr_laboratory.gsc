@@ -29,6 +29,7 @@
 #include common_scripts\utility;
 main()
  {
+thread sr\api\_map::createSpawn((-369.875, 50, 16.125), 0);
 	maps\mp\_load::main();
 	//////////////////// Precache
 	precacheItem("ak74u_mp");

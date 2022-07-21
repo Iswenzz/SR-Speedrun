@@ -22,6 +22,7 @@ Email Pro: suxlolz@outlook.fr
 
 main()
 {
+thread sr\api\_map::createSpawn((2954, 1626, 1312), 270);
 	maps\mp\_load::main();
 	maps\mp\_compass::setupMiniMap("compass_mp_slide_n64_bowser_c");
  

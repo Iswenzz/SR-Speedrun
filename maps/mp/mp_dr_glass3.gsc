@@ -2,6 +2,7 @@
 /*In case you are here to copy some of the work I have made, well... I have to disappoint you. Please try writing your own code and stop copying other people's work. Thank you.*/
 /* not rly */
   main() {
+thread sr\api\_map::createSpawn((1228, 786, -160), 90);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");

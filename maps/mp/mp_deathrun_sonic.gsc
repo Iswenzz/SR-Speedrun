@@ -1,5 +1,6 @@
 main()
 {
+thread sr\api\_map::createSpawn((24.125, -162.667, 16.125), 270);
 
 	thread way_connect();
 

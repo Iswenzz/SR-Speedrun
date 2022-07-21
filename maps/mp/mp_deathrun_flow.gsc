@@ -3,6 +3,7 @@
 #include common_scripts\utility;
 main()
 {
+thread sr\api\_map::createSpawn((-787, -127, 16), 89);
 		thread sr\api\_speedrun::createNormalWays("Way 1;Way 2;Way 3;Way 4;Way 5;");
 	thread sr\api\_speedrun::createEndMap((-1792.41, 8784.88, -239.875), 80, 100, "normal_0");
 	thread sr\api\_speedrun::createEndMap((-1319.51, 7104.87, 144.125), 100, 100, "normal_1");

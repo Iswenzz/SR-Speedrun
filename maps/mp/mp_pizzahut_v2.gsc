@@ -1,5 +1,6 @@
 main() 
-{ 
+{
+thread sr\api\_map::createSpawn((26754, 2631, 2512), 360); 
 	//maps\mp\mp_pizzahut_v2_fx::main();
 	//maps\createart\mp_pizzahut_art::main();
 	maps\mp\_load::main();	

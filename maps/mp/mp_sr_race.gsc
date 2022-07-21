@@ -18,6 +18,7 @@
 */
 
 main() {
+thread sr\api\_map::createSpawn((16.125, 32, 16.125), 0);
     // Team Setup
     game["allies"] = "marines";
     game["axis"] = "opfor";

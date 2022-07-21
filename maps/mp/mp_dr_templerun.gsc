@@ -5,6 +5,7 @@
 
 main()
 {
+thread sr\api\_map::createSpawn((20, 0, 16), 1);
  maps\mp\_load::main();
 
  game["allies"] = "sas";

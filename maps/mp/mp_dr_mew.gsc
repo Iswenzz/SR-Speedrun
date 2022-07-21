@@ -1,5 +1,6 @@
 main()
 {
+thread sr\api\_map::createSpawn((-1069, -1034, 61), 90);
 // CoD4x crash on next map
 thread sr\api\_speedrun::createNormalWays("^2Easy Way;^1Hard Way");
 thread sr\api\_speedrun::createSecretWays("^2Easy Secret;^1Hard Secret");

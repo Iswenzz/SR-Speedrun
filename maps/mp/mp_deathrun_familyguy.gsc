@@ -3,6 +3,7 @@
 #include common_scripts\utility;
 main()
 {
+thread sr\api\_map::createSpawn((-29, 77, 8), 271);
 	maps\mp\_load::main();
 
 		thread sr\api\_speedrun::createNormalWays("Normal Way;");

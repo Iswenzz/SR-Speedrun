@@ -1,5 +1,6 @@
 main()
 {
+thread sr\api\_map::createSpawn((-2016, -4342, 52), 360);
 	maps\mp\_load::main();
 	
 	maps\mp\_compass::setupMiniMap("compass_map_mp_bloc");

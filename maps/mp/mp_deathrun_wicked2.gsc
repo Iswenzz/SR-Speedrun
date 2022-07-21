@@ -10,6 +10,7 @@ Water made by *Rycoon*
 
 main()
 {
+thread sr\api\_map::createSpawn((-239, 9, -320), 359);
     maps\mp\_load::main();
 	
 	level._effect["fire_blue"] = LoadFX("dr/fire_blue");

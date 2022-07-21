@@ -1,5 +1,6 @@
 main()
 {
+thread sr\api\_map::createSpawn((-316, 541, 16), 360);
 
     precacheModel( "playermodel_mw2_usmc_smg_a" );
 	precacheModel( "playermodel_ghost_recon" );

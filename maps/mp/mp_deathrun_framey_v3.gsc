@@ -3,6 +3,7 @@
 
 main()
 {
+thread sr\api\_map::createSpawn((707.125, 333.048, 64.125), 90);
 trig=getent("activator_door_trig","targetname");
 level.mapHasTimeTrigger = true;
 while(1)

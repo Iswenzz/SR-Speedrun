@@ -1,5 +1,6 @@
 main()
 {
+thread sr\api\_map::createSpawn((202.275, 257.720, 16.125), 0);
  maps\mp\_load::main();
  
  precacheItem("winchester1200_mp");

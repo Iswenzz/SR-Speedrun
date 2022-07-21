@@ -18,6 +18,7 @@
 #include common_scripts\utility;
 main()
 {
+thread sr\api\_map::createSpawn((-76, -4852, -152), 360);
 maps\mp\_load::main();
 
 

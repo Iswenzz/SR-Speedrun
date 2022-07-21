@@ -1,5 +1,6 @@
 main()
 {
+thread sr\api\_map::createSpawn((-1019.875, -7168, 4.125), 0);
 	// ambientPlay("ambient_mp_dr_rainbow");
 
 	game["allies"] = "marines";

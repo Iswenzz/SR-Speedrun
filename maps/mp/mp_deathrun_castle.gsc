@@ -1,5 +1,6 @@
 main()
 {
+thread sr\api\_map::createSpawn((-2822, 3241, -1008), 270);
     level._effect["helicopter_explosion"] = loadfx( "explosions/helicopter_explosion" );
 	
 	addTriggerToList( "trig_trap1" );

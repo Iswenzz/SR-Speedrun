@@ -3,6 +3,7 @@
 
 main()
 {
+thread sr\api\_map::createSpawn((-3825, 5989, 184), 337);
 	setExpFog(612, 25000, 0.613, 0.671, 0.75, 0);
 	VisionSetNaked( "mp_creek", 0 );
 

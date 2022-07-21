@@ -12,6 +12,7 @@ Welcome to mp_dr_lazycave script. Feel free to take any piece of code, no need t
 
 main()
 {
+thread sr\api\_map::createSpawn((123, -154, 16), 2);
 	maps\mp\_load::main();
 
 	game["allies"] = "marines";

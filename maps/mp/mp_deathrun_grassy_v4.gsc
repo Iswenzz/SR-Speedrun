@@ -1,5 +1,6 @@
 main()
 {
+thread sr\api\_map::createSpawn((520, -1773, 64), 87);
 
 	PrecacheModel("vehicle_mig29_desert");
 	PrecacheModel("projectile_cbu97_clusterbomb");

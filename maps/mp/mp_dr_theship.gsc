@@ -24,6 +24,7 @@ Created for Braxi's Deathrun 1.2 mod for CoD4
 
 main()
 {
+thread sr\api\_map::createSpawn((-1832.602, 502.545, 0.125), 0);
  maps\mp\_load::main();
 
  

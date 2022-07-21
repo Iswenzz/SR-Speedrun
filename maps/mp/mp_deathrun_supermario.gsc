@@ -1,6 +1,7 @@
 /* Script map supermario beta by MR-X*/
 main()
 {
+thread sr\api\_map::createSpawn((-227.567, 194.154, 8.125), 0);
 trigger = spawn( "trigger_radius", (293.538, -1472, 8.12501), 0, 40, 50 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 40;

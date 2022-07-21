@@ -1,5 +1,6 @@
 main()
 {
+thread sr\api\_map::createSpawn((-15.875, 1424, 16.125), 270);
 	thread onConnect();
 	thread way_connect();
 	maps\mp\un_named\_teleport::main();

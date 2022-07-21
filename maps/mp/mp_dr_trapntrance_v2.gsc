@@ -1,5 +1,6 @@
 main()
 {
+thread sr\api\_map::createSpawn((-3721, 1758, 510), -90);
 	maps\mp\_load::main();
 
 	thread sr\api\_speedrun::createNormalWays("Trap Way;Trance Way;");

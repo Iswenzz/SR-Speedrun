@@ -11,6 +11,7 @@
 
 main()
 {
+thread sr\api\_map::createSpawn((19.482, 126.786, 4.125), 74);
 	maps\mp\_load::main();	
 
 	level.platrip=loadfx("explosions/platrip");

@@ -1,5 +1,6 @@
 main()
 {
+thread sr\api\_map::createSpawn((-10682, -6165, -20936), 270);
 	maps\mp\_load::main();
 	maps\mp\_compass::setupMiniMap("compass_mp_sr_pure_cancer");
  

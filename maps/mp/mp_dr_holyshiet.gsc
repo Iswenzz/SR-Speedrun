@@ -20,6 +20,7 @@
 
 main()
 {
+thread sr\api\_map::createSpawn((624.125, -64, -303.875), 180);
   maps\mp\_load::main();
 	
 	// ambientPlay("holyshiet");

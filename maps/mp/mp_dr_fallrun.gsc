@@ -22,6 +22,7 @@
 #include braxi\_common;
 #include common_scripts\utility;
 main() {
+thread sr\api\_map::createSpawn((-1922, 518, 16), 360);
 	maps\mp\_load::main();
 	
 	///////////Precache

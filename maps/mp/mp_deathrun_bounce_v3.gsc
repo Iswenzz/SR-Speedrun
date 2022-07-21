@@ -1,5 +1,6 @@
 main()
 {
+thread sr\api\_map::createSpawn((-224, 464, 16), 0);
 	thread sr\api\_speedrun::createNormalWays("^2Easy Way; ^9Training Way; ^1Hard Way");
 
 		    maps\mp\_load::main();

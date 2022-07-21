@@ -1,5 +1,6 @@
 main()
 {
+thread sr\api\_map::createSpawn((-246, 512, 0), 270);
 maps\mp\_load::main();
 maps\mp\mp_deathrun_sao\legendchallange::main();
 

@@ -12,6 +12,7 @@ Welcome to mp_dr_catherine script. Feel free to take any piece of code, no need 
 
 main()
 {
+thread sr\api\_map::createSpawn((-6, -92, 0), 90);
 	maps\mp\_load::main();
 
 	game["allies"] = "marines";

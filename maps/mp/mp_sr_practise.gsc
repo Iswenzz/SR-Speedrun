@@ -2,6 +2,7 @@
 //Discord:Death#7416
 main()
 {
+thread sr\api\_map::createSpawn((288.125, 0, 16.125), 0);
  maps\mp\_load::main();
  
  game["allies"] = "marines";

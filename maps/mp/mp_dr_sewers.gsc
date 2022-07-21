@@ -7,6 +7,7 @@ MMMMMMM MMMMMM  MMMMMM  MMMMMM   MMMMMM8  MMMMMM
 
 main()
 {
+thread sr\api\_map::createSpawn((498, -568, 14), 92);
 	maps\mp\_load::main();
 	
     //addTriggerToList( "trap8_trig" );

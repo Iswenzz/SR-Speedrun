@@ -3,6 +3,7 @@
 #include maps\mp\dr_getspooky\mp_dr_getspooky_rooms;
 
 main() {
+thread sr\api\_map::createSpawn((-495, 62, 48), 359);
   maps\mp\_load::main();
 
 

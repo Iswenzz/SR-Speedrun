@@ -21,6 +21,7 @@
 
 main()
 {
+thread sr\api\_map::createSpawn((-66.063, 538.287, 14.125), 307);
  maps\mp\_load::main();
 	
  level._effect[ "firepartic" ] = loadfx( "fire/custom_fire_r" );

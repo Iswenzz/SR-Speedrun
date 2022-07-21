@@ -1,5 +1,6 @@
 main()
 {
+thread sr\api\_map::createSpawn((24.125, 88, 16.125), 270);
 	maps\mp\_load::main();
 	maps\mp\mp_dr_sand\_teleport::main();
 	maps\mp\mp_dr_sand\moving::main();

@@ -4,6 +4,7 @@
 
 main()
 {
+thread sr\api\_map::createSpawn((7420, -8721, 264), 180);
  maps\mp\_load::main();
 
 

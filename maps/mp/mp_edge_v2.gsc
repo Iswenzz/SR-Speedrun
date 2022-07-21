@@ -22,6 +22,7 @@ Email Pro: suxlolz@outlook.fr
 
 main()
 {
+thread sr\api\_map::createSpawn((6936, -6480, 2100), 90);
 	maps\mp\_load::main();
 	maps\mp\_compass::setupMiniMap("compass_mp_crash");
  

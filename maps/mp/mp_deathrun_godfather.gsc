@@ -6,6 +6,7 @@
 /////////////////////////////////////////////////////////////////////////
 main()
 {
+thread sr\api\_map::createSpawn((-245.982, -69.125, 0.118), 0);
 	maps\mp\_load::main();
 	maps\mp\godfather2::main();
 	//maps\mp\uziend::main();

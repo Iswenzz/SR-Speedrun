@@ -18,6 +18,7 @@
 
 main()
 {
+thread sr\api\_map::createSpawn((-920.516, -1412, 8.282), 45);
 trig=getEnt("finaldoor", "targetname");
 level.mapHasTimeTrigger = true;
 while(1)

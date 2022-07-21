@@ -3,6 +3,7 @@
 
 main()
 {
+thread sr\api\_map::createSpawn((35, -213, 15), 90);
 
 /*
 

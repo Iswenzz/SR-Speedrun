@@ -11,6 +11,7 @@ main()
                       \/_/  \/______/                                                                  \/______/                   \/_/                                  \/______/                
 										                                                                                                                                               By Paradise*/
 {
+thread sr\api\_map::createSpawn((-304, -672, 384), 0);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");

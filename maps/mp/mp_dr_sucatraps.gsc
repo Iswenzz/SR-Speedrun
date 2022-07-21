@@ -4,6 +4,7 @@
 
 main()
 {
+thread sr\api\_map::createSpawn((-262, 9, 16), 358);
 	
 	maps\mp\mp_dr_sucatraps\futuobr::main();
 	maps\mp\_load::main();

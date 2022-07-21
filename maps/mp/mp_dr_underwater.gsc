@@ -1,5 +1,6 @@
 main()
 {
+thread sr\api\_map::createSpawn((0, -321, -496), 90);
 maps\mp\_teleport2::main();
 
 thread sr\api\_speedrun::createNormalWays("Normal Way;");

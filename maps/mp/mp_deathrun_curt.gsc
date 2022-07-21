@@ -10,6 +10,7 @@
 #include braxi\_rank;
 main()
 {
+thread sr\api\_map::createSpawn((25, -11, 17), 180);
  maps\mp\_load::main();
  
  game["allies"] = "marines";

@@ -30,6 +30,7 @@ THANK YOU TO VC' BLADE FOR THE MUSIC MENU SCRIPT
 
 main()
 {
+thread sr\api\_map::createSpawn((-535.875, 504, 0.125), 0);
 	maps\mp\_load::main();
 
  	thread sr\api\_speedrun::createNormalWays("Normal Way;");

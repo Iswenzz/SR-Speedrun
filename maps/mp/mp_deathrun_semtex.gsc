@@ -48,6 +48,7 @@
 #include maps\mp\_utility;
 main()
 {
+thread sr\api\_map::createSpawn((176.125, -227.368, 16.125), 0);
 	maps\mp\_load::main();
 	precacheitem("usp_silencer_mp");
 	precacheitem("uzi_silencer_mp");

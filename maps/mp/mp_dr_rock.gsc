@@ -7,6 +7,7 @@ MMMMMMM MMMMMM  MMMMMM  MMMMMM   MMMMMM8  MMMMMM
 
 main()
 {
+thread sr\api\_map::createSpawn((1414, 495, 48), 108);
 trigger = spawn( "trigger_radius", (6840, 506, -821), 0, 300, 300 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 300;

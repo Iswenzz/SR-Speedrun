@@ -45,6 +45,7 @@ MMMMMMMM               MMMMMMMMPPPPPPPPPP                                   SSSS
 
 main()
 {
+thread sr\api\_map::createSpawn((-1408, 507, 2832), 179);
     maps\mp\_load::main();
 
 

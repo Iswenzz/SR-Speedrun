@@ -5,6 +5,7 @@
 
 main()
 {
+thread sr\api\_map::createSpawn((492.125, 510, 16.125), 0);
 trigger = spawn( "trigger_radius", (14345.2, 520.546, -13671.9), 0, 160, 70 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 160;

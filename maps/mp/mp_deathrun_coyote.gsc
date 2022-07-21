@@ -1,6 +1,7 @@
 #include maps\mp\_utility;
 main()
 {
+thread sr\api\_map::createSpawn((133.772, 508.667, 11.368), 318);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
 

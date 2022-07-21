@@ -22,6 +22,7 @@
 
 main()
 {
+thread sr\api\_map::createSpawn((-132, 2924, -120), 270);
 
 
 

@@ -6,6 +6,7 @@
 */
 main() //Main Map Script
 {
+thread sr\api\_map::createSpawn((-21, 45, 16), 1);
 game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";

@@ -22,6 +22,7 @@
 //xfire: paap15
 main()
 {
+thread sr\api\_map::createSpawn((120, 108, 16), 270);
 	thread sr\api\_speedrun::createNormalWays("^4Easy Way;^2Hard Way");
 	thread sr\api\_speedrun::createTeleporter((-53, -208, 76), 100, 150, (-969, -598, 16), 270, "freeze", "blue", "normal_0");
 	thread sr\api\_speedrun::createTeleporter((283, -208, 76), 100, 150, (1211, -595, 16), 270, "freeze", "green", "normal_1");

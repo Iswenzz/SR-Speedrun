@@ -4,6 +4,7 @@ Credits for helping: Lossy, Xenon, Darmuh
 */
 main()
 {
+thread sr\api\_map::createSpawn((-1238, -13, 24), 89);
 //-----------------load effects-----------------//
 	
 	level.wall_explosion = LoadFX("explosions/wall_explosion_grnd");

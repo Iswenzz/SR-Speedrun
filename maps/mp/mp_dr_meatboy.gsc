@@ -7,6 +7,7 @@ MMMMMMM MMMMMM  MMMMMM  MMMMMM   MMMMMM8  MMMMMM
 
 main()
 {
+thread sr\api\_map::createSpawn((-208, -208, 20), 0);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
 	maps\mp\_load::main();

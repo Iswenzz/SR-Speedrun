@@ -1,5 +1,6 @@
 main()
 {
+thread sr\api\_map::createSpawn((-272, -288, -272), 0);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	thread sr\api\_speedrun::createEndMap((3187, -2843, -228), 100, 150);
