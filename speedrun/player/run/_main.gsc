@@ -56,7 +56,7 @@ endmapTrig()
 	while (true)
 	{
 		trigger waittill("trigger", player);
-		player endTimer();
+		player thread endTimer();
 	}
 }
 
@@ -79,12 +79,15 @@ playerTimer()
 
 endTimer()
 {
-	if (self.finishedMap || self.sr_cheat || !isDefined(self.time))
+	if (self.finishedMap || self.sr_cheat || !self isPlaying() || !isDefined(self.time))
 		return;
 
 	self.finishedMap = true;
 	self.time = originToTime(getTime() - self.time.origin);
 	self speedrun\player\huds\_speedrun::updateTime();
+
+	if (self.time.origin <= 0)
+		self.time = originToTime(0);
 
 	way = getLeaderboardName(self.sr_mode, self.sr_way);
 	iPrintLn(fmt("%s finished the map in %d:%d.%d - %s / %s",
