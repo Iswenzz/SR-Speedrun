@@ -86,8 +86,8 @@ endTimer()
 	self.time = originToTime(getTime() - self.time.origin);
 	self speedrun\player\huds\_speedrun::updateTime();
 
-	if (self.time.origin <= 0)
-		self.time = originToTime(0);
+	if (self.time.ms <= 0)
+		self suicide();
 
 	way = getLeaderboardName(self.sr_mode, self.sr_way);
 	iPrintLn(fmt("%s finished the map in %d:%d.%d - %s / %s",

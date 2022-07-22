@@ -16,7 +16,7 @@ main()
 
 endTimer()
 {
-	self speedrun\player\run\_main::endTimer();
+	self thread speedrun\player\run\_main::endTimer();
 }
 
 addTextHud(who, x, y, alpha, alignX, alignY, fontScale)
