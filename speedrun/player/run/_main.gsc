@@ -73,8 +73,10 @@ playerTimer()
 	if (game["state"] != "playing")
 		level waittill("round_started");
 
-	delay = 100; // Spastic delay caused by bad modding, too bad...
-	self.time = originToTime(getTime() + delay);
+	self.time = undefined;
+	wait 0.1; // Spastic delay caused by bad modding, too bad...
+
+	self.time = originToTime(getTime());
 }
 
 endTimer()
@@ -85,9 +87,6 @@ endTimer()
 	self.finishedMap = true;
 	self.time = originToTime(getTime() - self.time.origin);
 	self speedrun\player\huds\_speedrun::updateTime();
-
-	if (self.time.ms <= 0)
-		self suicide();
 
 	way = getLeaderboardName(self.sr_mode, self.sr_way);
 	iPrintLn(fmt("%s finished the map in %d:%d.%d - %s / %s",
