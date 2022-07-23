@@ -1,14 +1,47 @@
 // SR Mod by SuX Lolz
 
+xmodel,axis
 xmodel,bc_militarytent_draped
-//xmodel,ch_dead_cow
 xmodel,ch_roadrock_06
 xmodel,ch_russian_table
-
-material,time_hud
 xanim,chicken_dance
+material,time_hud
+material,sr_banner
+material,sr_race
+material,sr_quit
+material,sr_settings
+material,sr_next
+material,sr_prev
+material,sr_menu_bg_1
+material,sr_menu_bg_2
+material,sr_menu_bg_3
+material,sr_menu_bg_4
+material,sr_menu_bg_5
+material,sr_menu_bg_6
+material,sr_menu_bg_7
+material,vip_status
+material,vip_gold
+material,speedrunner_logo
+material,sr_shop
+material,sr_vip
+material,sr_insert
+material,sr_dice
+material,arrow_w
+material,arrow_a
+material,arrow_s
+material,arrow_d
+material,crosshair
+material,fps_20
+material,fps_30
+material,fps_125
+material,fps_142
+material,fps_166
+material,fps_250
+material,fps_333
+material,fps_500
+material,fps_1000
 
-// portal
+// Portal
 sound,portal,,all_mp
 material,null
 material,reticle_dot
@@ -52,44 +85,7 @@ fx,portal\turret_cookoff
 weapon,mp\portalgun_mp
 weapon,mp\portalgun
 
-// Lolz Stuff
-material,sr_banner
-material,sr_race
-material,sr_quit
-material,sr_settings
-material,sr_next
-material,sr_prev
-material,sr_menu_bg_1
-material,sr_menu_bg_2
-material,sr_menu_bg_3
-material,sr_menu_bg_4
-material,sr_menu_bg_5
-material,sr_menu_bg_6
-material,sr_menu_bg_7
-material,vip_status
-material,vip_gold
-material,speedrunner_logo
-material,sr_shop
-material,sr_vip
-material,sr_insert
-material,sr_dice
-xmodel,collision_sphere
-material,arrow_w
-material,arrow_a
-material,arrow_s
-material,arrow_d
-material,crosshair
-material,fps_20
-material,fps_30
-material,fps_125
-material,fps_142
-material,fps_166
-material,fps_250
-material,fps_333
-material,fps_500
-material,fps_1000
-
-//deathrun
+// Deathrun
 rawfile,soundaliases/deathrun.csv
 sound,deathrun,,all_mp
 sound,user_interface,,all_mp
@@ -110,17 +106,7 @@ fx,deathrun/vip_trail3
 fx,deathrun/vip_trail4
 fx,deathrun/vip_trail5
 fx,deathrun/flare_startnstop
-
 material,mtl_weapon_desert_eagle_silver
-
-rawfile,maps/mp/gametypes/_callbacksetup.gsc
-rawfile,maps/mp/gametypes/_gametypes.txt
-rawfile,maps/mp/gametypes/_persistence.gsc
-rawfile,maps/mp/gametypes/_hud_util.gsc
-rawfile,maps/mp/gametypes/deathrun.gsc
-rawfile,maps/mp/gametypes/deathrun.txt
-rawfile,cleanup.cfg
-rawfile,mp/cod2maps.arena
 
 // Animation scripts
 rawfile,animtrees/multiplayer.atr
@@ -148,25 +134,20 @@ stringtable,mp/playerStatsTable.csv
 stringtable,mp/challengetable.csv
 stringtable,mp/challengetable_tier1.csv
 stringtable,mp/challengetable_tier2.csv
-
 rawfile,info/bullet_penetration_mp
-
 rawfile,vision/jumpers.vision
 rawfile,vision/activators.vision
-
 rawfile,vision/mp_br_blackout.vision
 rawfile,vision/mp_dr_nighty_v2.vision
 rawfile,vision/mp_dr_sm64.vision
 rawfile,vision/mp_dr_train_rush.vision
 rawfile,vision/mp_slide_n64_bowser_c.vision
 rawfile,vision/endmap.vision
-
 material,deathrun
 material,server_logo
 material,killiconsuicide
 material,killiconmelee
 material,killiconheadshot
-
 material,icon_risingstar
 material,55
 material,56
@@ -194,7 +175,6 @@ material,77
 material,78
 material,79
 material,uidr_header
-
 material,scope
 material,weapon_knife
 material,default
@@ -208,7 +188,6 @@ material,faction_128_sas_black
 material,faction_128_arab_gold
 material,surf_menu_header
 material,line
-
 fx,deathrun/spray0
 fx,deathrun/spray1
 fx,deathrun/spray2
@@ -237,7 +216,6 @@ fx,deathrun/spray24
 fx,deathrun/spray25
 fx,muzzleflashes/mist_mk2_flashview
 fx,deathrun/endgame_fx
-
 menufile,ui/options_control_defaults.menu
 menufile,ui/options_driverinfo.menu
 menufile,ui/options_game_pc.menu
@@ -275,30 +253,26 @@ menufile,ui_mp/scriptmenus/sr_welcome.menu
 menufile,ui_mp/scriptmenus/sr_customize.menu
 menufile,ui_mp/scriptmenus/clientcmd.menu
 menufile,ui_mp/controls_multi.menu
-
 rawfile,sound/misc/ee1.wav
 rawfile,sound/misc/sprayer.wav
 rawfile,sound/misc/gib_splat.wav
-
 sound,braxi,,all_mp
 sound,anaconda,,all_mp
 sound,mauser,,all_mp
 sound,mp7,,all_mp
 sound,mr6,,all_mp
-
 weapon,mp/colt44_mp
 weapon,mp/tomahawk_mp
 weapon,mp/knife_mp
 weapon,mp/dog_mp
 weapon,mp/bt_rpg_mp
-
 xmodel,com_crate01
 xmodel,com_crate02
 xmodel,chicken
 xmodel,mil_frame_charge
 xmodel,viewmodel_knife
 
-// SR KNIFES
+// SR Knifes
 xmodel,sr_knife_4_0
 xmodel,sr_knife_3_0
 xmodel,sr_knife_2_0
@@ -985,7 +959,6 @@ xanim,viewmodel_mp443_sprint_in
 xanim,viewmodel_mp443_sprint_loop
 xanim,viewmodel_mp443_sprint_out
 
-
 // GHOST VKS
 xmodel,viewmodel_ghost_vks
 xmodel,weapon_ghost_vks
@@ -1039,7 +1012,7 @@ xanim,viewmodel_p99_sprint_out
 xanim,viewmodel_p99_sprint_out_tactical
 sound,p99,,all_mp
 
-// BO2 OLYMPIA
+// BO2 Olympia
 weapon,mp/olympia_mp
 xmodel,viewmodel_olympia_bo2
 xmodel,worldmodel_olympia_bo2
@@ -1063,7 +1036,7 @@ sound,olympia,,all_mp
 // FON Riotgear
 xmodel,plr_fonv_riotgear_a
 
-// SHOVEL WW2
+// Shovel WW2
 xanim,viewmodel_ww2_shovel_sprint_loop
 xanim,viewmodel_ww2_shovel_swipe
 xanim,viewmodel_ww2_shovel_stab
@@ -1076,7 +1049,7 @@ xanim,viewmodel_ww2_shovel_idle
 xmodel,viewmodel_fox_ww2_shovel
 weapon,mp/shovel_mp
 
-// insert MW2
+// Insertion MW2
 xanim,viewmodel_mw2_insertion_idle
 xanim,viewmodel_mw2_insertion_strike
 xanim,viewmodel_mw2_insertion_raise
@@ -1084,7 +1057,7 @@ xmodel,viewmodel_mw2_insertion
 xmodel,worldmodel_mw2_insertion
 sound,insertion,,all
 
-// quake rocket
+// Q3 Rocket
 weapon,mp/rocket_mp
 fx,q3/rocket_trail
 xmodel,viewmodel_rocket
@@ -1092,7 +1065,7 @@ xmodel,wm_quake_rocket
 xmodel,quake_rocket_projectile
 sound,rocket,,all
 
-// quake plasma
+// Q3 Plasma
 weapon,mp/plasma_mp
 fx,q3/plasma_fire
 fx,q3/plasma_explode
@@ -1207,9 +1180,6 @@ xmodel,plr_adolf_hitler
 
 // Big Smoke
 xmodel,plr_big_smoke
-
-// Purpel Heart (Anime)
-// xmodel,plr_terry_purpleheart
 
 // PPS42
 weapon,mp/pps42_mp
