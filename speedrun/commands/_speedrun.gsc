@@ -2,6 +2,7 @@
 
 main()
 {
+    cmd("player", 	"defrag",   ::cmd_Defrag);
     cmd("player", 	"speed",    ::cmd_Speed);
     cmd("player", 	"portal",   ::cmd_Portal);
 	cmd("player", 	"practise",	::cmd_Practise);
@@ -24,6 +25,17 @@ cmd_Portal(args)
 	self setStat(1700, 3);
 	self.sr_mode = "Portal";
     self pm("Run mode: ^2(BETA) ^5Portal");
+    self suicide();
+}
+
+cmd_Defrag(args)
+{
+	if (self sr\player\modes\_main::isInMode("defrag"))
+		return;
+
+	self setStat(1700, 4);
+	self.sr_mode = "Defrag";
+    self pm("Run mode: ^2(BETA) ^3Defrag");
     self suicide();
 }
 

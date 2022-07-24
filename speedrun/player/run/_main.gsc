@@ -9,6 +9,7 @@ main()
 	addMode("190", speedrun\player\run\_190::start);
 	addMode("210", speedrun\player\run\_210::start);
 	addMode("Portal", speedrun\player\run\_portal::start);
+	addMode("Defrag", speedrun\player\run\_defrag::start);
 
     thread endmapTrig();
 }
@@ -31,6 +32,7 @@ getLastMode()
 		case 1: return "190";
 		case 2: return "210";
 		case 3: return "Portal";
+		case 4: return "Defrag";
 	}
 	return "190";
 }
