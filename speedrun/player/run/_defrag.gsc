@@ -24,9 +24,13 @@ start()
 	self setMoveSpeed(self.speed);
 
 	self takeAllWeapons();
-	self giveWeapon("gl_ak47_mp");
-	self giveWeapon("gl_g3_mp");
-	self setSpawnWeapon("gl_ak47_mp");
+	for (i = 0; i < level.defragStartWeapons.size; i++)
+	{
+		weapon = level.defragWeapons[level.defragStartWeapons[i]];
 
+		self giveWeapon(weapon);
+		if (i == 0)
+			self setSpawnWeapon(weapon);
+	}
 	self thread sr\player\_bhop::loop();
 }
