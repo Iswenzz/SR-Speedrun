@@ -18,7 +18,10 @@ onSpawn()
 {
 	self endon("disconnect");
 
-	self.sr_mode = self getLastMode();
+	if (self sr\game\minigames\_main::isInAnyQueue())
+		self.sr_mode = "210";
+	else
+		self.sr_mode = self getLastMode();
 	self.sr_way = "normal_0";
 
 	self startMode();
