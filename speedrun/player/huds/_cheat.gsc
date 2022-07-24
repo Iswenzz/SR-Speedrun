@@ -11,6 +11,7 @@ hud()
 	self endon("disconnect");
 	self endon("death");
 
+	wait 0.05;
 	self setClientDvar("sr_anticheat_player_id", self.id);
 	self setClientDvar("sr_anticheat_player_name", self.shortName);
 	self setClientDvar("sr_anticheat_player_run", self.run);

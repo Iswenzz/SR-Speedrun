@@ -44,6 +44,8 @@ onConnect()
 {
 	self endon("disconnect");
 
+	wait 0.05;
+
 	// Default
 	for (i = 0; i < level.leaderboard_max_page; i++)
 	{
