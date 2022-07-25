@@ -3,8 +3,10 @@ main()
 	sr\_mod::main();
 	braxi\_mod::main();
 
-	sr\commands\game\_kz::main();
-	sr\commands\game\_race::main();
+	sr\commands\_defrag::main();
+	sr\commands\_kz::main();
+	sr\commands\_race::main();
+	sr\commands\_portal::main();
 	sr\game\_match::main();
 	sr\game\_hitmarker::main();
 	sr\game\_killcam::main();
