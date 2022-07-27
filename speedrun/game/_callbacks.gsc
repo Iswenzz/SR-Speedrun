@@ -47,6 +47,7 @@ playerConnect()
 	self.kills = self.pers["kills"];
 	self.assists = self.pers["assists"];
 	self.deaths = self.pers["deaths"];
+	self.viewKick = true;
 
 	logPrint(fmt("J;%s;%d;%s\n", self.guid, self.number, self.name));
 
@@ -107,6 +108,8 @@ playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vP
 	if (isPlayer(self) && isDefined(self.godmode))
 		return;
 	if (isPlayer(eAttacker) && sMeansOfDeath == "MOD_MELEE" && isWallKnifing(eAttacker, self))
+		return;
+	if (self.sr_mode == "Defrag" && sMeansOfDeath == "MOD_FALLING")
 		return;
 
 	if (!isDefined(vDir))
