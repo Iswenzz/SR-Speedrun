@@ -9,9 +9,9 @@ maps\mp\_load::main();
 //otherstuff
 thread sr\api\_map::createSpawn((94,-71,78), 270);
 thread sr\api\_speedrun::createNormalWays("Normal Way;^5Short Way;");
-thread sr\api\_speedrun::createSecretWays("^1Hard Way;^2Easy Way");
-thread sr\api\_speedrun::createTeleporter((340.535, -496.931, 18.125), 80, 120, (-2638, 3827, 8318), 93, "freeze", "blue", "secret_0")
-thread sr\api\_speedrun::createTeleporter((-177.916, -503.027, 18.125), 60, 80, (9604, -1754, 1774), 1, "freeze", "blue", "secret_1")
+thread sr\api\_speedrun::createSecretWays("^1Hard Way;^2Easy Way;");
+thread sr\api\_speedrun::createTeleporter((340.535, -496.931, 18.125), 80, 120, (-2638, 3827, 8318), 93, "freeze", "blue", "secret_0");
+thread sr\api\_speedrun::createTeleporter((-177.916, -503.027, 18.125), 60, 80, (9604, -1754, 1774), 1, "freeze", "blue", "secret_1");
 thread sr\api\_speedrun::createEndMap((16447.9, 16834.4, -2547.95), 400, 55, "secret_0");
 thread teleport1();
 thread teleport2();
@@ -59,7 +59,7 @@ if(!isdefined(level.music))
 	level.music[2]["alias"]	="frameofmind";
 	level.music[3]["song"]	="Tristam - Till Its Over";
 	level.music[3]["alias"]	="tillitsover";
-	
+
 game["allies"] = "marines";
 game["axis"] = "opfor";
 game["attackers"] = "axis";
@@ -85,19 +85,19 @@ musicMenu()
 	self endon( "spawned" );
 	self endon( "joined_spectators" );
 	self endon( "music thread terminated" );
- 
+
 	self thread onDeath();
 	self thread onDisconnect();
- 
+
 	self.hud_music = [];
 	self.selection = 0;
- 
+
 	// create huds
 	i = 0;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 160, 200, 0.6, "left", "top", 2 );
 	self.hud_music[i].sort = 880;
 	self.hud_music[i] setShader( "musicmenu", 320, 160 );
-	
+
 	i++;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 210, 204, 0.93, "left", "top", 1.8 );
 	self.hud_music[i].sort = 884;
@@ -105,14 +105,14 @@ musicMenu()
 	self.hud_music[i].glowalpha=1;
 	if(isdefined(level.randomcolor))
 		self.hud_music[i].glowcolor=level.randomcolor;
-	else 
+	else
 		self.hud_music[i].glowcolor=(0,1,0);
 
 	i++;
 	self.hud_music[i] = braxi\_mod::addTextHud( self, 250, 360, 1, "center", "bottom", 1.4 );
 	self.hud_music[i].sort = 886;
 	self.hud_music[i] setText("Scroll: ^3[{+attack}] ^7| Select: ^3[{+activate}] ^7| Close: ^3[{+frag}]");
- 
+
 	for( j = 0; j < level.music.size; j++ )
 	{
 		i++;
@@ -122,31 +122,31 @@ musicMenu()
 		self.hud_music[i].glowalpha=1;
 		if(isdefined(level.randomcolor))
 			self.hud_music[i].glowcolor=level.randomcolor;
-		else 
+		else
 			self.hud_music[i].glowcolor=(0,1,0);
- 
+
 		entry = level.music[j];
 		self.hud_music[i] setText(entry["song"]);
 	}
- 
+
 	i++;
 	self.hud_music[self.hud_music.size] = braxi\_mod::addTextHud( self, 167, 230, 0.4, "left", "top", 1.4 );
 	self.hud_music[i].sort = 881;
 	indicator = self.hud_music[self.hud_music.size-1];
 	indicator setShader( "black", 306, 17 );
- 
+
 	while(self.sessionstate == "playing")
 	{
 		wait 0.1;
- 
+
 		if(self attackButtonPressed())
 		{
 			self.hud_music[3+self.selection].alpha = 0.93;
- 
+
 			self.selection++;
 			if( self.selection >= level.music.size )
 				self.selection = 0;
- 
+
 			item = self.hud_music[3+self.selection];
 			item.alpha = 1;
 			indicator.y = item.y;
@@ -164,28 +164,28 @@ musicMenu()
 			break;
 		}
 	}
- 
+
 	self cleanUp();
 }
- 
+
 	musictrig()
 {
 	trig = getEnt ("music_trig", "targetname");
 	trig setHintString("Press [^5&&1^7] to choose Music");
- 
+
 	trig waittill("trigger",player);
 	player freezecontrols(1);
 	trig delete();
 	player musicMenu();
 }
- 
+
 	onDisconnect()
 {
 	self endon( "music thread terminated" );
 	self waittill( "disconnect" );
 	self cleanUp();
 }
- 
+
 	onDeath()
 {
 	self endon( "disconnect" );
@@ -193,14 +193,14 @@ musicMenu()
 	self waittill( "death" );
 	self cleanUp();
 }
- 
+
 	cleanUp()
 {
 	if( !isDefined( self ) )
 		return;
 
-	
- 
+
+
 	if( isDefined( self.hud_music ) )
 	{
 		for( i = 0; i < self.hud_music.size; i++ )
@@ -315,7 +315,7 @@ endmaptrig()
 
 trig=getent("endmap_trig","targetname");
 trig waittill("trigger", player);
-}            
+}
 
 
 //Traps
@@ -345,8 +345,8 @@ origin2=getent("trap1origin2", "targetname");
                trig waittill("trigger", player);
                 player setorigin (origin2.origin);
                 player setplayerangles(origin2.angles);
-				
-				
+
+
 				}
 }
 trap1activ()
@@ -360,8 +360,8 @@ origin2=getent("trap1origin2", "targetname");
                trap1 waittill("trigger", player);
                 player setorigin (origin1.origin);
                 player setplayerangles(origin1.angles);
-				
-				
+
+
 				}
 }
 lazers()
@@ -376,13 +376,13 @@ while(1)
 				 lazer1 waittill("movedone");
 				lazer1 movey(-709, 1.8);
                 lazer1 waittill("movedone");
-}				
+}
 				}
 lazers2()
-{				
-lazer2=getent("trap1lazer2", "targetname");	
+{
+lazer2=getent("trap1lazer2", "targetname");
 trig_lazer2=getent("trap1trig_lazer2", "targetname");
-trig_lazer2 enablelinkto ();	
+trig_lazer2 enablelinkto ();
 trig_lazer2 linkto (lazer2);
 	while(1)
 {
@@ -588,7 +588,7 @@ for(;;)
     trig waittill("trigger", player);
     player setorigin (secrettele.origin);
     player setplayerangles(secrettele.angles);
-							
+
     }
 }
 secrets()
@@ -602,8 +602,8 @@ secretwall notsolid();
                trig waittill("trigger", player);
                 player setorigin (secrettele.origin);
                 player setplayerangles(secrettele.angles);
-				
-				
+
+
 				}
 }
 //hard secret teleports
@@ -625,7 +625,7 @@ hard=getent("origin_hardsecstart", "targetname");
                 player setorigin (hard.origin);
                 player setplayerangles(hard.angles);
 				player thread hardsecret_timer();
-				
+
 				}
 }
 hardsectp1()
@@ -637,8 +637,8 @@ hardtp1=getent("origin_hardsectp1", "targetname");
                trig waittill("trigger", player);
                 player setorigin (hardtp1.origin);
                 player setplayerangles(hardtp1.angles);
-				
-				
+
+
 				}
 }
 hardsectp2()
@@ -650,8 +650,8 @@ hardtp2=getent("origin_hardsectp2", "targetname");
                trig waittill("trigger", player);
                 player setorigin (hardtp2.origin);
                 player setplayerangles(hardtp2.angles);
-				
-				
+
+
 				}
 }
 hardsectp3()
@@ -663,8 +663,8 @@ hardtp3=getent("origin_hardsectp3", "targetname");
                trig waittill("trigger", player);
                 player setorigin (hardtp3.origin);
                 player setplayerangles(hardtp3.angles);
-				
-				
+
+
 				}
 }
 hardsectp4()
@@ -676,8 +676,8 @@ hardtp4=getent("origin_hardsectp4", "targetname");
                trig waittill("trigger", player);
                 player setorigin (hardtp4.origin);
                 player setplayerangles(hardtp4.angles);
-				
-				
+
+
 				}
 }
 
@@ -696,8 +696,8 @@ ezsecfall=getent("origin_ezsecfall", "targetname");
                trig waittill("trigger", player);
                 player setorigin (ezsecfall.origin);
                 player setplayerangles(ezsecfall.angles);
-				
-				
+
+
 				}
 }
 ezsecstart()
@@ -710,7 +710,7 @@ ezsectele=getent("origin_ezsecfall", "targetname");
                 player setorigin (ezsectele.origin);
                 player setplayerangles(ezsectele.angles);
 				player thread ezsecret_timer();
-				
+
 				}
 }
 ezsecend()
@@ -723,7 +723,7 @@ ezsecend=getent("origin_ezsecend", "targetname");
     player setorigin (ezsecend.origin);
     player setplayerangles(ezsecend.angles);
 	player thread sr\api\_speedrun::finishWay("secret_1");
-				
+
 	}
 }
 hardsecret_timer()
@@ -749,7 +749,7 @@ hardsecret_timer()
  	self.secretTimer2.label = &"Time in left: &&1";
  	if(isdefined(level.randomcolor))
 	self.secretTimer2.glowColor=level.randomcolor;
-	else 
+	else
 	self.secretTimer2.glowColor=(1,0,0);
 
 	time=200;
@@ -788,7 +788,7 @@ ezsecret_timer()
         self.secretTimer.label = &"Time in left: &&1";
         if(isdefined(level.randomcolor))
 	self.secretTimer.glowColor=level.randomcolor;
-	else 
+	else
 	self.secretTimer.glowColor=(0,1,0);
 
 	time=70;
@@ -823,7 +823,7 @@ sniper()
 level.bounce_trigger = getEnt( "trig_bounce", "targetname");
 level.sniper_trigger = getEnt( "trig_sniper", "targetname");
 level.knife_trigger = getEnt( "knife_trig", "targetname");
-level.teleactorigin = getEnt( "origin_sniperactifall", "targetname" ); 
+level.teleactorigin = getEnt( "origin_sniperactifall", "targetname" );
 telejumporigin = getEnt( "origin_sniperplayerfall", "targetname" );
 
 while(1)
@@ -833,8 +833,8 @@ level.sniper_trigger waittill( "trigger", splayer );
 level.bounce_trigger delete();
 level.knife_trigger delete();
 thread sniperfall(splayer);
-    
-iprintln("Now Playing<<PIXL - Sugar Rush [Monstercat EP Release]>>");    
+
+iprintln("Now Playing<<PIXL - Sugar Rush [Monstercat EP Release]>>");
 ambientstop();
 ambientPlay( "sugarrush" );
 
@@ -846,18 +846,18 @@ if(level.firstenter==true)
 {
 
 level.firstenter=false;
-} 
+}
 wait(0.05);
 
 splayer SetOrigin( telejumporigin.origin );
 splayer setplayerangles( telejumporigin.angles );
 splayer TakeAllWeapons();
 splayer GiveWeapon("m40a3_mp");
-splayer GiveWeapon( "remington700_mp" ); 
+splayer GiveWeapon( "remington700_mp" );
 splayer GiveMaxAmmo("m40a3_mp");
 splayer GiveMaxAmmo( "remington700_mp" );
 wait .05;
-splayer SwitchToWeapon("m40a3_mp"); 
+splayer SwitchToWeapon("m40a3_mp");
 wait(0.05);
 level.activ SetOrigin (level.teleactorigin.origin);
 level.activ setplayerangles (level.teleactorigin.angles);
@@ -867,8 +867,8 @@ level.activ GiveWeapon( "remington700_mp" );
 level.activ GiveMaxAmmo("m40a3_mp");
 level.activ GiveMaxAmmo( "remington700_mp" );
 wait .05;
-level.activ SwitchToWeapon("m40a3_mp"); 
-iPrintlnBold( " ^8" + splayer.name + " ^4 has entered the Sniper room^8!" ); 
+level.activ SwitchToWeapon("m40a3_mp");
+iPrintlnBold( " ^8" + splayer.name + " ^4 has entered the Sniper room^8!" );
 splayer iPrintlnBold( "^13" );
             splayer freezecontrols(true);
 			level.activ freezecontrols(true);
@@ -899,7 +899,7 @@ level.PlayerInRoom = false;
 knife()
 {
 level.knife_trigger = getEnt( "knife_trig", "targetname");
-level.kteleactorigin = getEnt( "origin_knifeacti", "targetname" ); 
+level.kteleactorigin = getEnt( "origin_knifeacti", "targetname" );
 ktelejumporigin = getEnt( "origin_knifejumper", "targetname" );
 
 while(1)
@@ -907,8 +907,8 @@ while(1)
 level.knife_trigger waittill( "trigger", player );
 level.bounce_trigger delete();
 level.sniper_trigger delete();
-    
-iprintln("Now Playing<<Carbon Airways - Black Sun (Kill Paris Remix)>>");    
+
+iprintln("Now Playing<<Carbon Airways - Black Sun (Kill Paris Remix)>>");
 
 ambientPlay( "notalone" );
 
@@ -920,7 +920,7 @@ if(level.firstenter==true)
 {
 
 level.firstenter=false;
-} 
+}
 wait(0.05);
 
 player SetOrigin( ktelejumporigin.origin );
@@ -928,15 +928,15 @@ player setplayerangles( ktelejumporigin.angles );
 player TakeAllWeapons();
 player GiveWeapon("knife_mp");
 wait .05;
-player SwitchToWeapon("knife_mp"); 
+player SwitchToWeapon("knife_mp");
 wait(0.05);
 level.activ SetOrigin (level.kteleactorigin.origin);
 level.activ setplayerangles (level.kteleactorigin.angles);
 level.activ TakeAllWeapons();
 level.activ GiveWeapon( "knife_mp" );
 wait .05;
-level.activ SwitchToWeapon("knife_mp"); 
-iPrintlnBold( " ^8" + player.name + " ^4 has entered the Knife room^8!" ); 
+level.activ SwitchToWeapon("knife_mp");
+iPrintlnBold( " ^8" + player.name + " ^4 has entered the Knife room^8!" );
 player iPrintlnBold( "^13" );
             player freezecontrols(true);
 			level.activ freezecontrols(true);
@@ -970,7 +970,7 @@ bounce()
 level.sniper_trigger = getEnt( "trig_sniper", "targetname");
 level.bounce_trigger = getEnt( "trig_bounce", "targetname");
 level.knife_trigger = getEnt( "knife_trig", "targetname");
-level.bactiorigin = getEnt( "origin_bactifall", "targetname" ); 
+level.bactiorigin = getEnt( "origin_bactifall", "targetname" );
 btelejumporigin = getEnt( "origin_bjumperfall", "targetname" );
 
 while(1)
@@ -979,8 +979,8 @@ level.bounce_trigger waittill( "trigger", player );
 
 level.knife_trigger delete();
 level.sniper_trigger delete();
-iprintln("Now Playing<<Rootkit - Against the Sun (feat. Anna Yvette)>>");    
-    
+iprintln("Now Playing<<Rootkit - Against the Sun (feat. Anna Yvette)>>");
+
 ambientPlay( "rootkit" );
 
 
@@ -991,7 +991,7 @@ if(level.firstenter==true)
 {
 
 level.firstenter=false;
-} 
+}
 wait(0.05);
 
 player SetOrigin( btelejumporigin.origin );
@@ -999,15 +999,15 @@ player setplayerangles( btelejumporigin.angles );
 player TakeAllWeapons();
 player GiveWeapon("knife_mp");
 wait .05;
-player SwitchToWeapon("knife_mp"); 
+player SwitchToWeapon("knife_mp");
 wait(0.05);
 level.activ SetOrigin (level.bactiorigin.origin);
 level.activ setplayerangles (level.bactiorigin.angles);
 level.activ TakeAllWeapons();
 level.activ GiveWeapon( "knife_mp" );
 wait .05;
-level.activ SwitchToWeapon(""); 
-iPrintlnBold( " ^8" + player.name + " ^4 has entered the bounce room^8!" ); 
+level.activ SwitchToWeapon("");
+iPrintlnBold( " ^8" + player.name + " ^4 has entered the bounce room^8!" );
 player iPrintlnBold( "^13" );
             player freezecontrols(true);
 			level.activ freezecontrols(true);
@@ -1043,8 +1043,8 @@ while(1)
 {
 trig waittill("trigger", player);
 player GiveWeapon( "remington700_mp" );
-player SwitchToWeapon("remington700_mp"); 
-player givemaxammo("remington700_mp"); 
+player SwitchToWeapon("remington700_mp");
+player givemaxammo("remington700_mp");
 }
 }
 bouncejumperfall()
@@ -1093,14 +1093,14 @@ player setplayerangles( sniperactifall.angles );
 GetActivator()
 {
 	players = getentarray( "player", "classname" );
-	
+
 	for(i = 0;i < players.size;i++)
 	{
 		player = players[i];
-		
+
 		if( isdefined( player ) && isplayer( player ) && isalive( player ) && player.pers["team"] == "axis"	)
 			return player;
 	}
-	
+
 	return "Noactivator";
 }
