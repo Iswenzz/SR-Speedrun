@@ -1,29 +1,41 @@
-main()
+main() 
 {
-thread sr\api\_map::createSpawnOrigin((464, 390, 0), 360);
  game["allies"] = "sas";
  game["axis"] = "russian";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "woodland";
  game["axis_soldiertype"] = "woodland";
-
+             
 	setdvar( "r_specularcolorscale", "1" );
     setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
 	setdvar("r_glowskybleedintensity0",".1");
 	setDvar("bg_falldamagemaxheight", 99999);
-    setDvar("bg_falldamageminheight", 99998);
+    setDvar("bg_falldamageminheight", 99998);	
 
-    	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_map::createSpawn((464,390,60),360);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Easy Secret;Hard Secret;");
-    thread sr\api\_speedrun::createTeleporter((4189.82, -704.283, -95.875), 55, 10, (3429, -703, -36), 180, "freeze", "blue", "normal_0");
-	thread sr\api\_speedrun::createTeleporter((648.482, 585.839, 0.125), 55, 10, (5201, 1266, 1085), 1, "freeze", "yellow", "secret_0");
-	thread sr\api\_speedrun::createTeleporter((652.581, 180.528, 0.125), 55, 10, (-1085, 3296, -1987), 180, "freeze", "red", "secret_1");
+    thread sr\api\_speedrun::createTeleporter((4189.82, -704.283, -95.875), 70, 50, (3429, -703, -36), 180, "freeze", "blue", "normal_0");
+	thread sr\api\_speedrun::createTeleporter((648.482, 585.839, 0.125), 55, 50, (5201, 1266, 1085), 1, "freeze", "yellow", "secret_0");
+	thread sr\api\_speedrun::createTeleporter((652.581, 180.528, 0.125), 55, 50, (-1085, 3296, -1987), 180, "freeze", "red", "secret_1");
 	thread sr\api\_speedrun::createEndMap((9313.27, 1253.84, 16.125), 75, 10, "secret_0");
 	thread sr\api\_speedrun::createEndMap((5072.48, 4767.26, -4990.88), 155, 10, "secret_1");
-
+    
 	thread startdoor();
+	thread hurt1();
+	thread hurt2();
+	thread hurt3();
+    thread hurt4();
+	thread hurt5();
+	thread hurt6();
+	thread hurt7();
+	thread hurt8();
+	thread hurt9();
+	thread hurt10();
+	thread hurt11();
+	thread hurt12();
 	thread trap4();
 	thread trap5();
 	thread trap8();
@@ -41,6 +53,138 @@ startdoor()
 	start Delete();
 	tunnel Delete();
 	end Delete();
+}
+
+hurt1()
+{
+   trig = getentArray("trigger_secret_fail", "targetname");
+
+   for(;;)
+    {   
+     trig[0] waittill("trigger", player);
+	 player Suicide();
+    }
+}
+
+hurt2()
+{
+   trig = getentArray("trigger_secret_fail", "targetname");
+
+   for(;;)
+    {   
+     trig[1] waittill("trigger", player);
+	 player Suicide();
+    }
+}
+
+hurt3()
+{
+   trig = getentArray("trigger_secret_fail", "targetname");
+
+   for(;;)
+    {   
+     trig[2] waittill("trigger", player);
+	 player Suicide();
+    }
+}
+
+hurt4()
+{
+   trig = getentArray("trigger_secret_fail", "targetname");
+
+   for(;;)
+    {   
+     trig[3] waittill("trigger", player);
+	 player Suicide();
+    }
+}
+
+hurt5()
+{
+   trig = getentArray("trigger_secret_fail", "targetname");
+
+   for(;;)
+    {   
+     trig[4] waittill("trigger", player);
+	 player Suicide();
+    }
+}
+
+hurt6()
+{
+   trig = getentArray("trigger_secret_fail", "targetname");
+
+   for(;;)
+    {   
+     trig[5] waittill("trigger", player);
+	 player Suicide();
+    }
+}
+
+hurt7()
+{
+   trig = getentArray("trigger_secret_fail", "targetname");
+
+   for(;;)
+    {   
+     trig[6] waittill("trigger", player);
+	 player Suicide();
+    }
+}
+
+hurt8()
+{
+   trig = getentArray("trigger_secret_fail", "targetname");
+
+   for(;;)
+    {   
+     trig[7] waittill("trigger", player);
+	 player Suicide();
+    }
+}
+
+hurt9()
+{
+   trig = getentArray("trigger_secret_fail", "targetname");
+
+   for(;;)
+    {   
+     trig[8] waittill("trigger", player);
+	 player Suicide();
+    }
+}
+
+hurt10()
+{
+   trig = getentArray("trigger_secret_fail", "targetname");
+
+   for(;;)
+    {   
+     trig[9] waittill("trigger", player);
+	 player Suicide();
+    }
+}
+
+hurt11()
+{
+   trig = getentArray("trigger_secret_fail", "targetname");
+
+   for(;;)
+    {   
+     trig[10] waittill("trigger", player);
+	 player Suicide();
+    }
+}
+
+hurt12()
+{
+   trig = getentArray("trigger_secret_fail", "targetname");
+
+   for(;;)
+    {   
+     trig[11] waittill("trigger", player);
+	 player Suicide();
+    }
 }
 
 trap4()

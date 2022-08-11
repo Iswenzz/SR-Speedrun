@@ -1,12 +1,12 @@
 main()
 {
-thread sr\api\_map::createSpawnOrigin((483, -340, 256), 360);
 maps\mp\_load::main();
 maps\mp\_teleport::main();
 
-		thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_map::createSpawn((483, -340, 316), 360);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
-	thread sr\api\_speedrun::createTeleporter((794.87, -66.6879, 256.125), 60, 10, (-3006, -60, 2604), 360, "freeze", "blue", "secret_0");
+	thread sr\api\_speedrun::createTeleporter((794.87, -66.6879, 256.125), 60, 10, (-2947, -62, 2604), 1, "freeze", "blue", "secret_0");
 
 	level.dvar["bunnyhoop"] = false;
 	level.knockback = getDvarInt("g_knockback");
@@ -79,7 +79,7 @@ entdel()
    tele = getent ("gohere101", "targetname");
 
     level waittill("round_started");
-
+	
 	tele delete();
 }
 
@@ -219,7 +219,7 @@ brush5 delete();
 brush6 delete();
 brush7 delete();
 object2 delete();
-
+	
 }
 
 weewee()
@@ -236,7 +236,7 @@ object2 delete();
 killtrigger2 delete();
 killtrigger3 delete();
 
-
+	
 }
 
 bridge()

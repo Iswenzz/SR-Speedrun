@@ -1,20 +1,20 @@
 main()
 {
-thread sr\api\_map::createSpawnOrigin((1243, 321, 16), 180);
 maps\mp\_load::main();
-
+ 
     game["allies"] = "sas";
     game["axis"] = "opfor";
     game["attackers"] = "axis";
     game["defenders"] = "allies";
     game["allies_soldiertype"] = "woodland";
     game["axis_soldiertype"] = "woodland";
-
+	
 	setDvar("bg_falldamagemaxheight", 20000 );
 	setDvar("bg_falldamageminheight", 10000 );
 
-        thread sr\api\_speedrun::createNormalWays("Normal Way;");
-    thread sr\api\_speedrun::createSecretWays("Easy Secret;Hard Secret;");
+    thread sr\api\_map::createSpawn((1243,321,76),180);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("^2Easy Secret;^1Hard Secret;");
 
 	thread StartDoor();
 	thread Collectables();
@@ -26,6 +26,8 @@ maps\mp\_load::main();
 	thread HardSecretTP();
 	thread OpenSecret();
 	thread SecretTeleport();
+	thread ezfinish();
+	thread hardfinish();
 }
 
 Startdoor()
@@ -33,7 +35,7 @@ Startdoor()
 door = getEnt("bm_startdoor", "targetname");
 door2 = getEnt("bm_startdoor2", "targetname");
 
-wait 0.1;
+wait 0.1;	
 door delete();
 door2 delete();
 
@@ -90,8 +92,8 @@ spinners()
 {
 part1 = getEnt("trap12_part1", "targetname");
 part2 = getEnt("trap12_part2", "targetname");
-
-wait 0.1;
+	
+wait 0.1;	
 part1 delete();
 part2 delete();
 
@@ -101,7 +103,7 @@ TeleToStage2()
 {
 	trig = getEnt("trig_level1end", "targetname");
 	og = getEnt("og_level2start", "targetname");
-
+	
 	for(;;)
 	{
 		trig waittill("trigger", player);
@@ -113,7 +115,7 @@ HardSecretTP()
 {
 	trig = getEnt("trig_hardEntrance", "targetname");
 	og = getEnt("og_hardSecret1", "targetname");
-
+	
 	for(;;)
 	{
 		trig waittill("trigger", player);
@@ -127,7 +129,7 @@ EasySecretTP()
 {
 	trig = getEnt("trig_easyEntrance", "targetname");
 	og = getEnt("og_easySecret", "targetname");
-
+	
 	for(;;)
 	{
 		trig waittill("trigger", player);
@@ -140,7 +142,7 @@ EasySecretFall()
 {
 	trig = getEnt("trig_easySecretFall", "targetname");
 	og = getEnt("og_easySecret", "targetname");
-
+	
 	for(;;)
 	{
 		trig waittill("trigger", player);
@@ -152,7 +154,7 @@ Teleport(trig, og)
 {
 	self setPlayerAngles(og.angles);
 	self setOrigin(og.origin);
-
+	
 	self freezeControls(1);
 	wait 0.005;
 	self freezeControls(0);
@@ -173,20 +175,20 @@ SecretTeleport()
 	trig = getEnt("trig_enterSecret", "targetname");
 	trig setHintString("^7Press [^6&&1^7] to Enter ^6Secret^7!");
 	og = getEnt("og_secretSelection", "targetname");
-
+	
 	for(;;)
 	{
 		trig waittill("trigger", player);
 		player Teleport(trig, og);
-	}
+	}		
 }
 
 ezfinish()
-{
+{ 
    trig = getent("trig_secretEnd_easy", "targetname");
 
    for(;;)
-    {
+    {   
     trig waittill("trigger", player);
 
     player thread sr\api\_speedrun::finishWay("secret_0");
@@ -194,13 +196,13 @@ ezfinish()
 }
 
 hardfinish()
-{
+{ 
    trig = getent("trig_secretEnd_hard", "targetname");
 
    for(;;)
-    {
+    {   
     trig waittill("trigger", player);
 
     player thread sr\api\_speedrun::finishWay("secret_1");
     }
-}
+}  

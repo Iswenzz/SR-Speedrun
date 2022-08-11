@@ -4,9 +4,8 @@
 
 main()
 {
-thread sr\api\_map::createSpawnOrigin((-46, 1208, 48), 270);
  maps\mp\_load::main();
-
+ 
 	game["allies"] = "marines";
     game["axis"] = "opfor";
     game["attackers"] = "axis";
@@ -19,14 +18,15 @@ thread sr\api\_map::createSpawnOrigin((-46, 1208, 48), 270);
 	setDvar("r_glowbloomintensity1",".1");
 	setDvar("r_glowskybleedintensity0",".1");
 	setDvar("bg_fallDamageMinHeight","100000000");
-
-		thread sr\api\_speedrun::createNormalWays("^2Easy Way;^3Inter Way;^1Hard Way;");
+    
+	thread sr\api\_map::createSpawn((-46,1208,108),270);
+	thread sr\api\_speedrun::createNormalWays("^2Easy Way;^3Inter Way;^1Hard Way;");
     thread sr\api\_speedrun::createSecretWays("Jumper Secret;Acti Secret;");
 	thread sr\api\_speedrun::createTeleporter((-13581.9, -3594.13, -2307.71), 50, 25, (-13441, -6245, -2164), 270, "freeze", "blue", "normal_2");
 	thread sr\api\_speedrun::createTeleporter((71.7681, 1152.31, 48.125), 50, 15, (-3536, 5263, 2520), 1, "freeze", "yellow", "secret_0");
 	thread sr\api\_speedrun::createTeleporter((-191.242, 1150.82, 48.125), 50, 15, (4690, -9496, -900), 360, "freeze", "cyan", "secret_1");
 	thread sr\api\_speedrun::createEndMap((-13665, -10196.7, -2542.88), 95, 15, "normal_2");
-
+    
 	thread startdoor();
 	thread vaisustart();
 	thread tpe();
@@ -38,6 +38,7 @@ thread sr\api\_map::createSpawnOrigin((-46, 1208, 48), 270);
 	thread endi();
 	thread tph();
 	thread hlasers();
+	thread secend();
 	thread actisecretexit();
 
 }
@@ -67,8 +68,8 @@ tpe()
 {
 	trig = getEnt("trigger_teleporte", "targetname");
 	arrivo = getEnt("origin_teleporte", "targetname");
-  for (;;)
-  {
+  for (;;) 
+  {	
 	trig waittill("trigger", player);
 	player setOrigin(arrivo.origin);
 	player SetPlayerAngles(arrivo.angles);
@@ -82,7 +83,7 @@ plat = getEnt("avante","targetname");
 wait 0.1;
 plat moveY(160, 0.1);
 
-}
+}  
 
 ghiaccio()
 {
@@ -103,19 +104,19 @@ ende()
 {
 	trig = getEnt("endmape", "targetname");
 	stre = getEnt("o_endmap", "targetname");
-  for (;;)
-  {
+  for (;;) 
+  {	
 	trig waittill("trigger", player);
 	player thread sr\api\_speedrun::finishWay("normal_0");
   }
-}
+} 
 
 tpi()
 {
 	trig = getEnt("trigger_teleporti", "targetname");
 	arrivo = getEnt("origin_teleporti", "targetname");
-  for (;;)
-  {
+  for (;;) 
+  {	
 	trig waittill("trigger", player);
 	player thread sr\api\_speedrun::changeWay("normal_1");
 	player setOrigin(arrivo.origin);
@@ -127,7 +128,7 @@ sopra()
 {
 bbb1 = getEnt("ballonzolante", "targetname");
 bbb2 = getEnt("nonballonzolante", "targetname");
-
+ 
 wait 0.1;
 bbb1 moveZ(-130, 0.1);
 bbb2 moveZ(50, 0.1);
@@ -138,24 +139,24 @@ endi()
 {
 	trig = getEnt("endmapi", "targetname");
 	stre = getEnt("o_endmap", "targetname");
-  for (;;)
-  {
+  for (;;) 
+  {	
 	trig waittill("trigger", player);
 	player thread sr\api\_speedrun::finishWay("normal_1");
   }
-}
+} 
 
 tph()
 {
 	trig = getEnt("hardporto", "targetname");
 	arriv = getEnt("o_hardporto", "targetname");
-  for (;;)
-  {
+  for (;;) 
+  {	
 	trig waittill("trigger", player);
 	player thread sr\api\_speedrun::changeWay("normal_2");
 	player setOrigin(arriv.origin);
 	player SetPlayerAngles( arriv.angles );
-
+			
   }
 }
 
@@ -179,21 +180,21 @@ hurt2 delete();
 
 }
 
-send()
+secend()
 {
 	trig = getEnt("secretend", "targetname");
-  for (;;)
-  {
+  for (;;) 
+  {	
 	trig waittill("trigger", player);
 	player thread sr\api\_speedrun::finishWay("secret_0");
   }
-}
+} 
 
 actisecretexit()
 {
 	trig = getEnt("esciactisecret", "targetname");
-  for (;;)
-  {
+  for (;;) 
+  {	
 	trig waittill("trigger", player);
 	player thread sr\api\_speedrun::finishWay("secret_1");
   }

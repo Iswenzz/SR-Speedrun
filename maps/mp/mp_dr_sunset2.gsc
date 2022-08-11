@@ -6,7 +6,6 @@
 
 main()
 {
-thread sr\api\_map::createSpawnOrigin((-605, -1175, 416), 90);
 
 	game["allies"] = "marines";
     game["axis"] = "opfor";
@@ -41,9 +40,10 @@ thread sr\api\_map::createSpawnOrigin((-605, -1175, 416), 90);
     level.music[4]["song"]    ="Vicetone - South Beach";
     level.music[4]["alias"]    ="song5";
 
-	thread sr\api\_speedrun::createNormalWays("Normal Way");
-	thread sr\api\_speedrun::createSecretWays("Secret Way");
-		thread sr\api\_speedrun::createTeleporter((-318.49, -1076.84, 416.125), 60, 15, (-6184, -895, 16104), 360, "freeze", "blue", "secret_0");
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread sr\api\_map::createSpawn((-605,-1175,476),90);
+	thread sr\api\_speedrun::createTeleporter((-318.49, -1076.84, 416.125), 60, 15, (-6184, -895, 16104), 360, "freeze", "blue", "secret_0");
 	thread startdoor();
 	//thread messages();
 	//thread musicbox();
@@ -77,7 +77,7 @@ thread sr\api\_map::createSpawnOrigin((-605, -1175, 416), 90);
 	//thread trap7();
 	//thread trap8();
 	//thread trap9();
-	//thread main210();
+	thread main210();
 	//thread enter210();
 	//thread b210();
 	//thread c210();
@@ -1101,57 +1101,12 @@ enter210()
 main210()
 {
 	trig = getEnt("trig_main210", "targetname");
-	a = getEnt("o_210a", "targetname");
-	b = getEnt("o_210b", "targetname");
-	c = getEnt("o_210c", "targetname");
-	d = getEnt("o_210d", "targetname");
-	e = getEnt("o_210e", "targetname");
-	f = getEnt("o_210f", "targetname");
-	g = getEnt("o_210g", "targetname");
-	h = getEnt("o_210h", "targetname");
+	
 	for(;;)
 	{
 		trig waittill("trigger", player);
-		if (player.fasts == 1)
-		{
-			player setOrigin(a.origin);
-			player setPlayerAngles(a.angles);
-		}
-		else if (player.fasts == 2)
-		{
-			player setOrigin(b.origin);
-			player setPlayerAngles(b.angles);
-		}
-		else if (player.fasts == 3)
-		{
-			player setOrigin(c.origin);
-			player setPlayerAngles(c.angles);
-		}
-		else if (player.fasts == 4)
-		{
-			player setOrigin(d.origin);
-			player setPlayerAngles(d.angles);
-		}
-		else if (player.fasts == 5)
-		{
-			player setOrigin(e.origin);
-			player setPlayerAngles(e.angles);
-		}
-		else if (player.fasts == 6)
-		{
-			player setOrigin(f.origin);
-			player setPlayerAngles(f.angles);
-		}
-		else if (player.fasts == 7)
-		{
-			player setOrigin(g.origin);
-			player setPlayerAngles(g.angles);
-		}
-		else if (player.fasts == 8)
-		{
-			player setOrigin(h.origin);
-			player setPlayerAngles(h.angles);
-		}
+
+		player suicide();
 	}
 }
 
@@ -1236,14 +1191,12 @@ h210()
 secretend()
 {
 	trig = getEnt("trig_210secretend", "targetname");
-	o = getEnt("o_210secretend", "targetname");
+
 	for(;;)
 	{
-		trig waittill("trigger", player);
-        thread sr\api\_speedrun::finishWay("secret_0");
-		player setOrigin(o.origin);
-		player setPlayerAngles(o.angles);
-}
+	trig waittill("trigger", player);
+    player thread sr\api\_speedrun::finishWay("secret_0");
+    }
 }
 
 secret_hud()

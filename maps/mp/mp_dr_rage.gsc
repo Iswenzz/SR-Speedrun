@@ -1,11 +1,11 @@
 main()
 {
-thread sr\api\_map::createSpawnOrigin((145, 0, 0), 360);
-level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
-if (!level.spawn["allies"].size)
-	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
 
 maps\mp\_load::main();
+
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread sr\api\_speedrun::createTeleporter((256.507, 256.351, 0.125), 55, 50, (5250, 1894, 1084), 270, "freeze", "yellow", "secret_0");
 
 game["allies"] = "marines";
 game["axis"] = "opfor";
@@ -27,11 +27,12 @@ precacheItem("remington700_mp");
 ent = getEnt("endmap_trig","targetname");
 ent delete();
 
+level.masterSpawn = spawn("script_origin",(145, 0, 0));
+level.masterSpawn.angles = (0,360,0);
+
 trigger = spawn( "trigger_radius", (-1404.58, 1494.36, -1023.88), 0, 220, 80 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 220;
-
-thread way_connect();
 
 //Events
 thread spawn_door();
@@ -40,14 +41,13 @@ thread end_door();
 //thread music();
 //thread onSpawn();
 
-//Secret
 //thread trollface();
 //thread secret_step2();
 //thread secret_step3();
 //thread secret_enter();
 //thread secret_fail1();
 //thread secret_fail2();
-//thread secret_finish();
+thread secret_finish();
 
 //Rooms
 //thread room_old();
@@ -83,19 +83,6 @@ thread trap10();
 
 level.PlayerInRoom = false;
 
-}
-
-way_connect()
-{
-    wait 0.05;
-
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-
-    for(;;)
-    {
-        level waittill( "connected", player );
-
-    }
 }
 
 // EVENTS //
@@ -159,13 +146,13 @@ onSpawn()
 
 default_vars()
 {
-
+	
 }
 
 player_skins()
 {
 	self endon( "disconnect" );
-
+	
 	waittillframeend;
 	if( self.pers["team"] == "axis" )
 		self setModel( "playermodel_baa_joker" );
@@ -282,17 +269,12 @@ secret_fail_counter(player)
 secret_finish()
 {
 	trig = getEnt("secret_finish_trig","targetname");
-	end = getEnt("secret_finish_end","targetname");
-	while(1)
+	
+	for(;;)
 	{
 		trig waittill("trigger",player);
-		player SetOrigin(end.origin);
-		player SetPlayerAngles( end.angles );
-		player GiveWeapon("ak74u_mp");
-		player GiveMaxAmmo("ak74u_mp");
-		player SwitchToWeapon("ak74u_mp");
-		player setModel( "playermodel_dnf_duke" );
-		iPrintlnBold("^3" + player.name + "^6 has finished the Secret!");
+
+	    player thread sr\api\_speedrun::finishWay("secret_0");
 	}
 }
 
@@ -331,7 +313,7 @@ room_snipe()
 	        player setOrigin( jump.origin );
 	        player TakeAllWeapons();
 	        player GiveWeapon( "remington700_mp" );
-			player GiveWeapon( "m40a3_mp" );
+			player GiveWeapon( "m40a3_mp" );        
 			player GiveMaxAmmo( "remington700_mp" );
 			player GiveMaxAmmo( "m40a3_mp" );
 			player thread default_vars();
@@ -339,12 +321,12 @@ room_snipe()
 	        level.activ setOrigin( acti.origin );
 	        level.activ TakeAllWeapons();
 	        level.activ GiveWeapon( "remington700_mp" );
-	        level.activ GiveWeapon( "m40a3_mp" );
+	        level.activ GiveWeapon( "m40a3_mp" );         
 	        level.activ GiveMaxAmmo( "remington700_mp" );
 	        level.activ GiveMaxAmmo( "m40a3_mp" );
 	        level.activ thread default_vars();
 	        wait 0.05;
-	        player switchToWeapon( "remington700_mp" );
+	        player switchToWeapon( "remington700_mp" ); 
 	        level.activ SwitchToWeapon( "remington700_mp" );
 	        player FreezeControls(1);
 			level.activ FreezeControls(1);
@@ -386,17 +368,17 @@ room_jump()
 			player SetPlayerAngles( jump.angles );
 	        player setOrigin( jump.origin );
 	        player TakeAllWeapons();
-	        player GiveWeapon( "knife_mp" );
+	        player GiveWeapon( "knife_mp" );      
 			player GiveMaxAmmo( "knife_mp" );
 			player thread default_vars();
 	        level.activ setPlayerangles( acti.angles );
 	        level.activ setOrigin( acti.origin );
 	        level.activ TakeAllWeapons();
-	        level.activ GiveWeapon( "knife_mp" );
+	        level.activ GiveWeapon( "knife_mp" );     
 	        level.activ GiveMaxAmmo( "knife_mp" );
 	        level.activ thread default_vars();
 	        wait 0.05;
-	        player switchToWeapon( "knife_mp" );
+	        player switchToWeapon( "knife_mp" ); 
 	        level.activ SwitchToWeapon( "knife_mp" );
 	        player FreezeControls(1);
 			level.activ FreezeControls(1);
@@ -438,15 +420,19 @@ room_knife()
 			player SetPlayerAngles( jump.angles );
 	        player setOrigin( jump.origin );
 	        player TakeAllWeapons();
-	        player GiveWeapon( "knife_mp" );
+	        player GiveWeapon( "knife_mp" );      
 			player GiveMaxAmmo( "knife_mp" );
+			player setClientDvar("jump_height",250);
+			player setClientDvar("g_gravity",500);
 	        level.activ setPlayerangles( acti.angles );
 	        level.activ setOrigin( acti.origin );
 	        level.activ TakeAllWeapons();
-	        level.activ GiveWeapon( "knife_mp" );
+	        level.activ GiveWeapon( "knife_mp" );     
 	        level.activ GiveMaxAmmo( "knife_mp" );
+	        level.activ setClientDvar("jump_height",250);
+	        level.activ setClientDvar("g_gravity",500);
 	        wait 0.05;
-	        player switchToWeapon( "knife_mp" );
+	        player switchToWeapon( "knife_mp" ); 
 	        level.activ SwitchToWeapon( "knife_mp" );
 	        player FreezeControls(1);
 			level.activ FreezeControls(1);
@@ -516,28 +502,28 @@ trap1()
 
 	for(i=0;i<bottom1_hurt.size;i++)
 	{
-		bottom1_hurt[i] enablelinkto();
+		bottom1_hurt[i] enablelinkto(); 
 		bottom1_hurt[i] linkto (bottom1);
 	}
 	for(i=0;i<bottom2_hurt.size;i++)
 	{
-		bottom2_hurt[i] enablelinkto();
+		bottom2_hurt[i] enablelinkto(); 
 		bottom2_hurt[i] linkto (bottom2);
 	}
 	for(i=0;i<top1_hurt.size;i++)
 	{
-		top1_hurt[i] enablelinkto();
+		top1_hurt[i] enablelinkto(); 
 		top1_hurt[i] linkto (top1);
 	}
 	for(i=0;i<top2_hurt.size;i++)
 	{
-		top2_hurt[i] enablelinkto();
+		top2_hurt[i] enablelinkto(); 
 		top2_hurt[i] linkto (top2);
 	}
 
 	trig setHintString("^6Press ^3&&1 ^6to Activate Trap");
 	trig waittill("trigger",player);
-
+	
 }
 
 trap2()
@@ -549,7 +535,7 @@ trap2()
 
 	trig setHintString("^6Press ^3&&1 ^6to Activate Trap");
 	trig waittill("trigger",player);
-
+	
 }
 
 trap3()
@@ -559,7 +545,7 @@ trap3()
 
 	trig setHintString("^6Press ^3&&1 ^6to Activate Trap");
 	trig waittill("trigger",player);
-
+	
 }
 
 trap4()
@@ -569,7 +555,7 @@ trap4()
 
 	trig setHintString("^6Press ^3&&1 ^6to Activate Trap");
 	trig waittill("trigger",player);
-
+	
 }
 
 trap5()
@@ -581,7 +567,7 @@ trap5()
 
 	trig setHintString("^6Press ^3&&1 ^6to Activate Trap");
 	trig waittill("trigger",player);
-
+	
 }
 
 trap6()
@@ -592,7 +578,7 @@ trap6()
 
 	trig setHintString("^6Press ^3&&1 ^6to Activate Trap");
 	trig waittill("trigger",player);
-
+	
 }
 
 trap7()
@@ -603,7 +589,7 @@ trap7()
 
 	trig setHintString("^6Press ^3&&1 ^6to Activate Trap");
 	trig waittill("trigger",player);
-
+	
 }
 
 trap7_deactivate()
@@ -729,7 +715,7 @@ trap8()
 
 	trig setHintString("^6Press ^3&&1 ^6to Activate Trap");
 	trig waittill("trigger",player);
-
+	
 }
 
 trap9()
@@ -740,7 +726,7 @@ trap9()
 
 	trig setHintString("^6Press ^3&&1 ^6to Activate Trap");
 	trig waittill("trigger",player);
-
+	
 }
 
 trap10()
@@ -753,18 +739,18 @@ trap10()
 
 	for(i=0;i<t1_hurt.size;i++)
 	{
-		t1_hurt[i] enablelinkto();
+		t1_hurt[i] enablelinkto(); 
 		t1_hurt[i] linkto (t1);
 	}
 	for(i=0;i<t2_hurt.size;i++)
 	{
-		t2_hurt[i] enablelinkto();
+		t2_hurt[i] enablelinkto(); 
 		t2_hurt[i] linkto (t2);
 	}
 
 	trig setHintString("^6Press ^3&&1 ^6to Activate Trap");
 	trig waittill("trigger",player);
-
+	
 }
 
 trap10_platform()

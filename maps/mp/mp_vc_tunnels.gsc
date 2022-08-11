@@ -1,11 +1,9 @@
 main()
 {
-thread sr\api\_map::createSpawnOrigin((124, -3, 16), 180);
-
-
 	maps\mp\_load::main();
 
-		thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_map::createSpawn((124,-3,76),180);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
 
 	game["allies"] = "sas";
@@ -14,7 +12,7 @@ thread sr\api\_map::createSpawnOrigin((124, -3, 16), 180);
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-
+	
 	setdvar( "r_specularcolorscale", "2" );
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
@@ -26,14 +24,14 @@ thread sr\api\_map::createSpawnOrigin((124, -3, 16), 180);
 	for(i=1;i<9;i++)
 		addTriggerToList("trap"+i+"trig");
 
-	thread trap1();
-	thread trap2();
-	thread trap3();
-	thread trap4();
-	thread trap5();
-	thread trap6();
-	thread trap7();
-	thread trap8();
+	//thread trap1();
+	//thread trap2();
+	//thread trap3();
+	//thread trap4();
+	//thread trap5();
+	//thread trap6();
+	//thread trap7();
+	//thread trap8();
 
 
 	thread start_walls();
@@ -74,7 +72,7 @@ start_walls()
 }
 
 teleporter()
-{
+{       
  	entTransporter = getentarray( "enter", "targetname" );
 	if(isdefined(entTransporter))
 		for( i = 0; i < entTransporter.size; i++ )
@@ -82,7 +80,7 @@ teleporter()
 			entTransporter[i] thread transporter();
 		}
 }
-
+ 
 transporter()
 {
 	for(;;)

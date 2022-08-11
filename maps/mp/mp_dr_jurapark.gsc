@@ -1,29 +1,14 @@
 main()
 {
-thread sr\api\_map::createSpawnOrigin((-321, 295, -87), 90);
-level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
-if (!level.spawn["allies"].size)
-	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
-trigger = spawn( "trigger_radius", (1007, 2044.27, -86.875), 0, 100, 90 );
-trigger.targetname = "endmap_trig";
-trigger.radius = 100;
-
-	//***************************//
-	thread way_connect();
     maps\mp\_load::main();
-
 
 	//***** script ******//
 	maps\mp\mp_dr_jurapark\traps::main();
 	maps\mp\mp_dr_jurapark\visual::main();
 	//maps\mp\mp_dr_jurapark\mp_dr_jurapark::main();
 
-	maps\mp\_compass::setupMiniMap("compass_map_mp_jurapark");
+	maps\mp\_compass::setupMiniMap("compass_map_mp_jurapark");	
 	setdvar("compassmaxrange","1750");
-
-	// AmbientPlay( "song1" );
-
-	//***************************//
 
         game["allies"] = "sas";
         game["axis"] = "opfor";
@@ -33,12 +18,37 @@ trigger.radius = 100;
         game["axis_soldiertype"] = "woodland";
 
 	//setdvar( "r_specularcolorscale", "1" );
-
+	
 	//setdvar("r_glowbloomintensity0",".25");
 	//setdvar("r_glowbloomintensity1",".25");
 	//setdvar("r_glowskybleedintensity0",".3");
 	//setdvar("compassmaxrange","1800");
-        thread bricky_fix();
+
+thread sr\api\_map::createSpawn((-321,295,-27),90);
+thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread sr\api\_speedrun::createSecretWays("Secret Way;");
+thread sr\api\_speedrun::createTeleporter((-128.174, 685.566, -94.875), 65, 30, (76, 2393, -313), 270, "freeze", "blue", "secret_0");
+thread sr\api\_speedrun::createEndMap((1007, 2044.27, -86.875),100,90, "normal_0");
+thread sr\api\_speedrun::createEndMap((-427.084, 1422.46, -356.875),55,30, "secret_0");
+
+thread trigdelete();
+thread bricky_fix();
+}
+
+trigdelete()
+{
+trig = getent("secret2","targetname");
+doora = getent("dra","targetname");
+doorb = getent("drb","targetname");
+doorc = getent("t1","targetname");
+
+level waittill( "round_started");
+
+trig delete();
+doora delete();
+doorb delete();
+doorc delete();
+
 }
 
 bricky_fix()
@@ -61,18 +71,3 @@ del_weapon(name)
 	for (i = 0; i < array.size ;i++)
 		array[i] delete();
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-way_connect()
-{
-    wait 0.05;
-
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-
-    for(;;)
-    {
-        level waittill( "connected", player );
-
-    }
-}
-////////////////////////////////////////////////////////////////////////////////////////////////

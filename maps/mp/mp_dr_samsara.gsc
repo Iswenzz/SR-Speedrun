@@ -1,8 +1,7 @@
 main()
 {
-thread sr\api\_map::createSpawnOrigin((4411, 1, -2094), 360);
-	maps\mp\_load::main();
-
+	maps\mp\_load::main();	
+	
 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
@@ -17,7 +16,8 @@ thread sr\api\_map::createSpawnOrigin((4411, 1, -2094), 360);
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
 
-        thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_map::createSpawn((4411,1,-2034),360);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
     thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	thread sr\api\_speedrun::createTeleporter((16382.5, -3.26039, -4794.3), 65, 10, (17253, 4, -2011), 360, "freeze", "yellow", "normal_0");
 	thread sr\api\_speedrun::createTeleporter((4414.27, 405.18, -2093.88), 65, 10, (-991, -1848, -1545), 90, "freeze", "blue", "secret_0");
@@ -36,7 +36,7 @@ thread sr\api\_map::createSpawnOrigin((4411, 1, -2094), 360);
 	thread high_mover();
 
 	thread banana();
-
+	
 	thread s_fail1();
 	thread s_fail2();
 	thread s_fail3();
@@ -50,11 +50,11 @@ start_button()
 wall = getent("start_wall","targetname");
 object1 = getent("start_flipper1","targetname");
 object2 = getent("start_flipper2","targetname");
-
+  
 wait 0.1;
 wall delete();
 object1 delete();
-object2 delete();
+object2 delete();  
 }
 
 lawnmover1()
@@ -153,7 +153,7 @@ s_fail1()
 	end = getEnt ("s_fail1_go", "targetname");
 	while(1)
     {
-    trig waittill ("trigger", player);
+    trig waittill ("trigger", player);          
 	player SetOrigin(end.origin);
     player SetPlayerAngles( end.angles );
 	}
@@ -165,7 +165,7 @@ s_fail2()
 	end = getEnt ("s_fail2_go", "targetname");
 	while(1)
     {
-    trig waittill ("trigger", player);
+    trig waittill ("trigger", player);          
 	player SetOrigin(end.origin);
     player SetPlayerAngles( end.angles );
 	}
@@ -177,7 +177,7 @@ s_fail3()
 	end = getEnt ("s_fail3_go", "targetname");
 	while(1)
     {
-    trig waittill ("trigger", player);
+    trig waittill ("trigger", player);          
 	player SetOrigin(end.origin);
     player SetPlayerAngles( end.angles );
 	}
@@ -189,7 +189,7 @@ s_fail4()
 	end = getEnt ("s_fail4_go", "targetname");
 	while(1)
     {
-    trig waittill ("trigger", player);
+    trig waittill ("trigger", player);          
 	player SetOrigin(end.origin);
     player SetPlayerAngles( end.angles );
 	}
@@ -201,7 +201,7 @@ s_fail5()
 	end = getEnt ("s_fail5_go", "targetname");
 	while(1)
     {
-    trig waittill ("trigger", player);
+    trig waittill ("trigger", player);          
 	player SetOrigin(end.origin);
     player SetPlayerAngles( end.angles );
 	}
@@ -213,7 +213,7 @@ s_fail6()
 	end = getEnt ("s_fail6_go", "targetname");
 	while(1)
     {
-    trig waittill ("trigger", player);
+    trig waittill ("trigger", player);          
 	player SetOrigin(end.origin);
     player SetPlayerAngles( end.angles );
 	}

@@ -1,6 +1,6 @@
 main()
 {
-maps\mp\_load::main();
+ maps\mp\_load::main();
  
 game["allies"] = "marines";
 game["axis"] = "opfor";
@@ -15,12 +15,12 @@ setDvar("r_glowbloomintensity1",".25");
 setDvar("r_glowskybleedintensity0",".3");
 setDvar("bg_falldamagemaxheight", 20000 );
 setDvar("bg_falldamageminheight", 15000 );
-	
-thread sr\api\_map::createSpawn((201,-29,76),90);
+
+thread sr\api\_map::createSpawn((203,-18,76),90);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createSecretWays("Secret Way;");
-thread sr\api\_speedrun::createTeleporter((12305.7, 2608.98, -1839.88), 50, 10, (12320, 1530, -1780), 270, "freeze", "blue", "normal_0");
-
+thread sr\api\_speedrun::createTeleporter((12303.7, 2619.58, -1839.88), 45, 10, (12319, 1528, -1780), 270, "freeze", "yellow", "normal_0");
+	
 thread startdoor();
 thread secret();
 thread secretstep1();
@@ -47,15 +47,18 @@ wall delete();
 
 secretstep2()
 {
-arab = getEnt("secretostep2arab", "targetname");
+arab = getEnt("tree", "targetname");
+arabclip = getEnt("treeclip", "targetname");
 arablock = getEnt("secretostep2arablock", "targetname");
 door = getEnt("secretosdoor", "targetname");
 
 wait 0.1;
 
 arab rotateYaw(-2160, 0.1);
+arabclip rotateYaw(-2160, 0.1);
 arab moveZ(-1000, 0.1);
 arablock moveZ(-1000, 0.1);
+arabclip moveZ(-1000, 0.1);
 door delete();
 }
 
@@ -122,14 +125,11 @@ secretsexit()
 {
 	trig = getEnt("trig_secretosexit", "targetname");
 	o = getEnt("o_secretosexit", "targetname");
-
 	for (;;)
 	{
-	trig waittill("trigger", player);
-
-	player thread sr\api\_speedrun::finishWay("secret_0");
-	player notify("secret_stop");
-
+		trig waittill("trigger", player);
+		player thread sr\api\_speedrun::finishWay("secret_0");
+		player notify("secret_stop");
 	}
 }
 

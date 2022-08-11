@@ -1,6 +1,5 @@
-main()
+main() 
 {
-// Cod4x map crash
 maps\mp\_load::main();
 
 game["allies"] = "marines";
@@ -17,6 +16,7 @@ setdvar("r_glowskybleedintensity0",".1");
 setDvar("bg_falldamagemaxheight", 99999);
 setDvar("bg_falldamageminheight", 99998);
 
+thread sr\api\_map::createSpawn((383,511,60),360);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
 thread start();
@@ -26,25 +26,25 @@ thread trap1();
 
 }
 
-start()
+start() 
 {
-startdoor = getent("start_door", "targetname");
+startdoor = getent("start_door", "targetname");  
 
 wait 0.1;
 startdoor delete();
 }
 
-start2()
+start2() 
 {
-wall = getent("trap7_wall", "targetname");
+wall = getent("trap7_wall", "targetname"); 
 
 wait 0.1;
 wall moveZ(-200, 0.1);
 }
 
-spikes()
+spikes() 
 {
-spikes = getent("trap2_spikes", "targetname");
+spikes = getent("trap2_spikes", "targetname"); 
 hurt = getent("trap2_hurt", "targetname");
 
 wait 0.1;
@@ -52,9 +52,9 @@ spikes delete();
 hurt delete();
 }
 
-trap1()
+trap1() 
 {
-hurt = getentArray("trap1_hurt", "targetname");
+hurt = getentArray("trap1_hurt", "targetname");  
 
 wait 0.1;
 hurt[0] delete();
