@@ -3,6 +3,9 @@ main()
 maps\mp\_load::main();
 maps\mp\_teleport2::main();
 
+	setdvar("bg_fallDamageMaxHeight","99999");
+	setdvar("bg_fallDamageMinHeight","99998");
+
 thread sr\api\_map::createSpawn((0,-321,-436),90);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createSecretWays("Secret Way;");
@@ -18,15 +21,15 @@ thread trap4();
 
 secretend()
 {
- 
+
     trig = getent("teleport","targetname");
     tele = getent("secret_finish", "targetname");
-       
+
         for(;;)
         {
         trig waittill("trigger", player);
-        player thread sr\api\_speedrun::finishWay("secret_0");						
-		player setorigin(tele.origin);				
+        player thread sr\api\_speedrun::finishWay("secret_0");
+		player setorigin(tele.origin);
         }
 }
 

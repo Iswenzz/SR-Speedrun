@@ -44,6 +44,11 @@ onConnect()
 {
 	self endon("disconnect");
 
+	if (!isDefined(self.sr_way))
+		self.sr_way = "normal_0";
+	if (!isDefined(self.sr_mode))
+		self.sr_mode = "190";
+
 	wait 0.05;
 
 	// Default

@@ -20,7 +20,8 @@ thread sr\api\_map::createSpawnOrigin((288.125, 0, 16.125), 0);
    setDvar("bg_falldamageminheight", 99998);
 
 
-   thread sr\api\_speedrun::createNormalWays("^7Strafe Way;^1Ladder Way;^2Angle Way;^3Bhop Way;^4Bounce Way;^5Fall Way;^6Stairs Way;");
+   thread sr\api\_speedrun::createNormalWays("^7Strafe Way;^1Ladder Way;^2Angle Way;^3Bhop Way;^4Bounce Way;^5Fall Way;");
+   thread sr\api\_speedrun::createSecretWays("^6Stairs Way;");
 
    thread welcome();
    thread pure_ladder_s();
@@ -35,10 +36,6 @@ thread sr\api\_map::createSpawnOrigin((288.125, 0, 16.125), 0);
    thread pure_stairs_f();
    thread pure_fall_s();
    thread pure_fall_f();
-   thread pure_stairs_s();
-   thread pure_stairs_f();
-
-
  }
 
 addTextHud( who, x, y, alpha, alignX, alignY, fontScale )
@@ -264,7 +261,7 @@ pure_stairs_s()
     {
         trig waittill ("trigger", player);
 
-         player thread sr\api\_speedrun::changeWay("normal_6");
+         player thread sr\api\_speedrun::changeWay("secret_0");
          player SetOrigin(orig.origin);
          player SetPlayerAngles(orig.angles );
          player FreezeControls(1);  /////To prevent 10 fps glitches////
@@ -282,7 +279,7 @@ pure_stairs_f()
     while(1)
     {
         trig waittill ("trigger", player);
-        player thread sr\api\_speedrun::finishWay("normal_6");
+        player thread sr\api\_speedrun::finishWay("secret_0");
 
 	}
 }
