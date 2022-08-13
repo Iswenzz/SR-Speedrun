@@ -120,6 +120,7 @@ rawfile,shock/default.shock
 rawfile,shock/flashbang.shock
 rawfile,shock/frag_grenade_mp.shock
 rawfile,shock/radiation_high.shock
+rawfile,maps/mp/gametypes/_gametypes.txt
 rawfile,maps/mp/gametypes/war.txt
 rawfile,maps/mp/gametypes/deathrun.txt
 weapon,mp/bt_rpg_mp
