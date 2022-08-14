@@ -12,7 +12,10 @@ game["axis_soldiertype"] = "desert";
 setdvar( "r_specularcolorscale", "1" );
 setdvar("r_glowbloomintensity0",".1");
 setdvar("r_glowbloomintensity1",".1");
-setdvar("r_glowskybleedintensity0",".1"); 
+setdvar("r_glowskybleedintensity0",".1");
+
+setDvar("bg_falldamagemaxheight", 2000000000 );
+	setDvar("bg_falldamageminheight", 1500000000 );
 
 thread sr\api\_map::createSpawn((17,102,76),270);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
@@ -42,7 +45,7 @@ end()
 trigger = GetEnt( "end", "targetname" );
 
 for(;;)
-    {   
+    {
     trigger waittill("trigger", player);
 
     player thread sr\api\_speedrun::finishWay("normal_0");

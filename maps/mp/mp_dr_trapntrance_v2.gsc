@@ -1,12 +1,11 @@
 main()
 {
-thread sr\api\_map::createSpawnOrigin((-3721, 1758, 510), -90);
 	maps\mp\_load::main();
 
 	thread sr\api\_speedrun::createNormalWays("Trap Way;Trance Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
-		thread sr\api\_speedrun::createTeleporter((-1414.99, -6929.17, 496.125), 80, 10, (-1419, -7578, 556), 270, "freeze", "blue", "normal_0");
-	thread sr\api\_speedrun::createTeleporter((-3712.56, -155.318, 496.125), 80, 10, (-3722, -1835, 556), 270, "freeze", "blue", "normal_1");
+	thread sr\api\_map::createSpawn((-3721, 1758, 570), -90);
+	thread sr\api\_speedrun::createTeleporter((-3712.56, -155.318, 496.125), 80, 50, (-3722, -1835, 556), 270, "freeze", "blue", "normal_1");
     thread sr\api\_speedrun::createEndMap((-2288.99, -8639.36, 496.125),70,40, "normal_0");
 	thread sr\api\_speedrun::createEndMap((-3712.56, -155.318, 496.125),70,40, "normal_1");
 	// ================ Game Settings ================ //
@@ -31,12 +30,23 @@ thread sr\api\_map::createSpawnOrigin((-3721, 1758, 510), -90);
   	precachemodel("vistic_logo");
 
   	// =================== Scripts =================== //
+	thread endmap_trig();
   	thread doors();
   	thread tnt_secret();
+	thread trap_trap5();
+	thread trap_trap7();
 
   	//thread tnt_rooms();
   	//thread trap_traps();
   	//thread trance_traps();
+}
+
+endmap_trig()
+{
+	end = getent("endmap_trig","targetname");
+
+    end delete();
+	
 }
 
 doors()
@@ -55,17 +65,13 @@ trap_traps()
 	thread trap_trap2();
 	thread trap_trap3();
 	thread trap_trap4();
-	thread trap_trap5();
 	thread trap_trap6();
-	thread trap_trap7();
 
 	addTriggerToList( "trap_trap1_trig" );
 	addTriggerToList( "trap_trap2_trig" );
 	addTriggerToList( "trap_trap3_trig" );
 	addTriggerToList( "trap_trap4_trig" );
-	addTriggerToList( "trap_trap5_trig" );
 	addTriggerToList( "trap_trap6_trig" );
-	addTriggerToList( "trap_trap7_trig" );
 }
 
 trap_trap1()
@@ -94,7 +100,7 @@ trap_trap2()
 	trig waittill("trigger");
 	trig delete();
 
-	trapa movez(70, 1.5);
+	trapa movez(70, 1.5);	
 	trapb movez(-70,1.5);
 
 	wait 1.5;
@@ -143,7 +149,7 @@ trap_trap4()
   	trig = getEnt("trap_trap4_trig", "targetname");
   	trapa = getEnt("trap_trap4a", "targetname");
  	trapb = getEnt("trap_trap4b", "targetname");
-
+  
   	trig setHintString("Press [^5&&1^7] to activate ^5Trap 4");
 	trig waittill("trigger");
 	trig delete();
@@ -158,38 +164,11 @@ trap_trap4()
 
 trap_trap5()
 {
-	trig = getEnt("trap_trap5_trig", "targetname");
-	help = getent("trap_trap5_help","targetname");
-	trap = getentarray("trap_trap5","targetname");
 	hurt = getentarray("trap_trap5_hurt","targetname");
 
-	hfx = undefined;
-
-	for(i=0;i<hurt.size;i++)
-		hurt[i] maps\mp\_utility::triggeroff();
-
-	help notsolid();
-
-	trig setHintString("Press [^5&&1^7] to activate ^5Trap 5");
-	trig waittill("trigger");
-	trig delete();
-
-	for(i=0;i<hurt.size;i++)
-		hurt[i] maps\mp\_utility::triggeron();
-
-	for(i=0;i<trap.size;i++)
-	{
-		hfx[i] = spawnfx(level.tnt_purple_fire,trap[i].origin);
-		triggerfx(hfx[i]);
-		wait .05;
-	}
-
-    wait 5+randomint(5);
-    for(i=0;i<hurt.size;i++)
-		hurt[i] maps\mp\_utility::triggeroff();
-
-    for(i=0;i<trap.size;i++)
-        hfx[i] delete();
+    hurt[0] delete();
+	hurt[1] delete();
+	
 }
 
 trap_trap6()
@@ -210,32 +189,12 @@ trap_trap6()
 
 trap_trap7()
 {
-	trig = getEnt("trap_trap7_trig", "targetname");
-	trap = getEnt("trap_trap7", "targetname");
 
-	trap thread move_trap7();
+trap = getEnt("trap_trap7", "targetname");
 
-	trig setHintString("Press [^5&&1^7] to activate ^5Trap 7");
-	trig waittill("trigger");
-	trig delete();
-
-	if(isdefined(trap))
-	{
-		trap notsolid();
-		wait 5;
-		trap solid();
-	}
-}
-
-move_trap7()
-{
-	while(isdefined(self))
-	{
-		self movey(-464,5);
-		wait 5;
-		self movey(464,5);
-		wait 5;
-	}
+trap movey(-232,0.1);
+trap rotateYaw(90,0.1);
+		
 }
 
 
@@ -420,7 +379,7 @@ sniper_room()
         level.sniper waittill("trigger",player);
 
         if(!isdefined(level.sniper))
-            return;
+            return; 
 
         if(isdefined(level.activ))
         {
@@ -435,7 +394,7 @@ sniper_room()
             players = getEntArray("player", "classname");
             for(i=0;i<players.size;i++)
             	players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-
+ 
             wait 5;
 
             player iPrintLnBold("^1>> ^7Fight! ^1<<");
@@ -443,7 +402,7 @@ sniper_room()
             player freezecontrols(0);
             level.activ freezecontrols(0);
         }
-        else
+        else 
         {
             player room_setup(jump,"m40a3_mp","remington700_mp","yes",1);
             wait 5;
@@ -468,7 +427,7 @@ deagle_room()
         level.deagle waittill("trigger",player);
 
         if(!isdefined(level.deagle))
-            return;
+            return; 
 
         if(isdefined(level.activ))
         {
@@ -483,7 +442,7 @@ deagle_room()
             players = getEntArray("player", "classname");
             for(i=0;i<players.size;i++)
             	players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-
+ 
             wait 5;
 
             player iPrintLnBold("^1>> ^7Fight! ^1<<");
@@ -491,7 +450,7 @@ deagle_room()
             player freezecontrols(0);
             level.activ freezecontrols(0);
         }
-        else
+        else 
         {
             player room_setup(jump,"deserteagle_mp",undefined,"yes",1);
             wait 5;
@@ -516,7 +475,7 @@ shotgun_room()
         level.shotgun waittill("trigger",player);
 
         if(!isdefined(level.shotgun))
-            return;
+            return; 
 
         if(isdefined(level.activ))
         {
@@ -531,7 +490,7 @@ shotgun_room()
             players = getEntArray("player", "classname");
             for(i=0;i<players.size;i++)
             	players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-
+ 
             wait 5;
 
             player iPrintLnBold("^1>> ^7Fight! ^1<<");
@@ -539,7 +498,7 @@ shotgun_room()
             player freezecontrols(0);
             level.activ freezecontrols(0);
         }
-        else
+        else 
         {
             player room_setup(jump,"winchester1200_mp",undefined,"yes",1);
             wait 5;
@@ -564,7 +523,7 @@ knife_room()
         level.knife waittill("trigger",player);
 
         if(!isdefined(level.knife))
-            return;
+            return; 
 
         if(isdefined(level.activ))
         {
@@ -579,7 +538,7 @@ knife_room()
             players = getEntArray("player", "classname");
             for(i=0;i<players.size;i++)
             	players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-
+ 
             wait 5;
 
             player iPrintLnBold("^1>> ^7Fight! ^1<<");
@@ -587,7 +546,7 @@ knife_room()
             player freezecontrols(0);
             level.activ freezecontrols(0);
         }
-        else
+        else 
         {
             player room_setup(jump,"knife_mp",undefined,"yes",1);
             wait 5;
@@ -612,7 +571,7 @@ bounce_room()
         level.bounce waittill("trigger",player);
 
         if(!isdefined(level.bounce))
-            return;
+            return; 
 
         if(isdefined(level.activ))
         {
@@ -627,7 +586,7 @@ bounce_room()
             players = getEntArray("player", "classname");
             for(i=0;i<players.size;i++)
             	players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-
+ 
             wait 5;
 
             player iPrintLnBold("^1>> ^7Fight! ^1<<");
@@ -635,7 +594,7 @@ bounce_room()
             player freezecontrols(0);
             level.activ freezecontrols(0);
         }
-        else
+        else 
         {
             player room_setup(jump,"knife_mp",undefined,"yes",1);
             wait 5;
@@ -662,7 +621,7 @@ sniper_fail()
                 who setorigin(jump.origin);
                 who setplayerangles(jump.angles);
             }
-            else
+            else 
             {
                 who setorigin(acti.origin);
                 who setplayerangles(acti.angles);
@@ -686,7 +645,7 @@ bounce_fail()
                 who setorigin(jump.origin);
                 who setplayerangles(jump.angles);
             }
-            else
+            else 
             {
                 who setorigin(acti.origin);
                 who setplayerangles(acti.angles);

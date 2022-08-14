@@ -1,26 +1,15 @@
 main()
 {
-thread sr\api\_map::createSpawnOrigin((4160, -192, -1551.875), 90);
-level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
-if (!level.spawn["allies"].size)
-	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
-trigger = spawn( "trigger_radius", (948.234, 2095.15, -2159.88), 0, 300, 300 );
-trigger.targetname = "endmap_trig";
-trigger.radius = 300;
-	maps\mp\_load::main();
+	maps\mp\_load::main();	
  	// ambientPlay("ambient1");
-
-	level.fire = loadFX("fire/firelp_barrel_pm");
-	level.java = loadFX("explosions/belltower_explosion");
-	level.flare = loadFX("deathrun/flare");
-
+	
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-
+	
 	// level.dvar["time_limit"]=4.5;
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("r_glowbloomintensity0",".25");
@@ -32,8 +21,15 @@ trigger.radius = 300;
 	setdvar("compassmaxrange","1800");
 
 	setExpFog(100, 1000, 0.2, 0.25, 0.5, 0.0);
+	   
+	thread sr\api\_map::createSpawnOrigin((4160, -192, -1551.875), 90);
+trigger = spawn( "trigger_radius", (948.234, 2095.15, -2159.88), 0, 300, 300 );
+trigger.targetname = "endmap_trig";
+trigger.radius = 300;
 
-	thread way_connect();
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("Secret Way;");
+
 	thread secret_door();
 	thread secret_teleport1();
 	thread secret_teleport2();
@@ -52,7 +48,7 @@ trigger.radius = 300;
 	thread teleport9();
 	thread teleport10();
 	thread teleport11();
-
+	
 	// thread trap1();
 	// thread trap3();
 	// thread trap4();
@@ -63,9 +59,9 @@ trigger.radius = 300;
 	// thread trap9();
 	// thread trap10();
 	// thread trap11();
-
+	
 	thread umbrella();
-
+	
 	// thread old();
 	// thread old2();
 	// thread sniper();
@@ -74,45 +70,28 @@ trigger.radius = 300;
 	thread end_fly();
 	// thread jumproom();
 	// thread addTestClients();
-
-
+	
+	
 ////Trigger-List////
 
 	// addTriggerToList( "trap1_trigger" );
-	// addTriggerToList( "trap3_trigger" );
-	// addTriggerToList( "trap4_trigger" );
-	// addTriggerToList( "trap5_trigger" );
+	// addTriggerToList( "trap3_trigger" );	
+	// addTriggerToList( "trap4_trigger" );	
+	// addTriggerToList( "trap5_trigger" );	
 	// addTriggerToList( "trap6_trigger" );
-	// addTriggerToList( "trap7_trigger" );
-	// addTriggerToList( "trap8_trigger" );
-	// addTriggerToList( "trap9_trigger" );
+	// addTriggerToList( "trap7_trigger" );	
+	// addTriggerToList( "trap8_trigger" );	
+	// addTriggerToList( "trap9_trigger" );	
 	// addTriggerToList( "trap10_trigger" );
-	// addTriggerToList( "trap11_trigger" );
+	// addTriggerToList( "trap11_trigger" );	
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-way_connect()
-{
-    wait 0.05;
-
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-	sr\api\_speedrun::createSecretWays("Secret Way;");
-
-    for(;;)
-    {
-        level waittill( "connected", player );
-
-    }
-}
-////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 addTriggerToList( name )
 {
     if( !isDefined( level.trapTriggers ) )
         level.trapTriggers = [];
     level.trapTriggers[level.trapTriggers.size] = getEnt( name, "targetname" );
-}
+} 
 
 
 	secret_door()
@@ -128,14 +107,14 @@ addTriggerToList( name )
 {
 	trig = getEnt ("trigger_secret", "targetname");
 	target = getEnt ("target_secret", "targetname");
-
+	
 	for(;;)
 	{
 	trig waittill ("trigger", player);
-
+	
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
-	player sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste
+	player thread sr\api\_speedrun::changeWay("secret_0");
 }
 }
 
@@ -144,7 +123,7 @@ addTriggerToList( name )
 {
 	trig = getEnt ("trigger_out", "targetname");
 	target = getEnt ("target_out", "targetname");
-
+	
 	for(;;)
 	{
 	trig waittill ("trigger", player);
@@ -158,11 +137,11 @@ addTriggerToList( name )
 	trig = getEnt ("trigger_music1", "targetname");
 {
 	trig waittill ("trigger", player );
-
+	
 	AmbientStop( 2 );
 
 	wait 1 ;
-
+	
 	AmbientPlay( "ambient2" );
 	trig delete();
 }
@@ -173,9 +152,9 @@ addTriggerToList( name )
 	trig = getEnt ("trigger_music2", "targetname");
 {
 	trig waittill ("trigger", player );
-
+	
 	AmbientStop( 2 );
-	player GiveWeapon( "m40a3_mp" );
+	player GiveWeapon( "m40a3_mp" );	
 	wait 1 ;
 	player switchToWeapon( "m40a3_mp" );
 	AmbientPlay( "ambient3" );
@@ -188,11 +167,11 @@ addTriggerToList( name )
 	trig = getEnt ("music3_trigger", "targetname");
 {
 	trig waittill ("trigger", player );
-
+	
 	AmbientStop( 2 );
 
 	wait 1 ;
-
+	
 	AmbientPlay( "ambient5" );
 	trig delete();
 }
@@ -202,11 +181,9 @@ addTriggerToList( name )
 begin()
 {
 	door = getEnt ("begin_door", "targetname");
-	fx = getEnt ("begin_flare", "targetname");
 
 {
 	wait 0.1 ;
-	playFx(level.flare, fx.origin);
 	door moveZ ( -160, 0.1 );
 }
 }
@@ -215,162 +192,162 @@ teleport1()
 {
 	trig = getEnt ("teleport1_trigger", "targetname");
 	target = getEnt ("teleport1_target", "targetname");
-
+	
 	for(;;)
 	{
 	trig waittill ("trigger", player);
-
+	
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 	}
 	}
 
-
+	
 teleport2()
 {
 	trig = getEnt ("teleport2_trigger", "targetname");
 	target = getEnt ("teleport2_target", "targetname");
-
+	
 	for(;;)
 	{
 	trig waittill ("trigger", player);
-
+	
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 }
 }
-
-
+	
+	
 teleport3()
 {
 	trig = getEnt ("teleport3_trigger", "targetname");
 	target = getEnt ("teleport3_target", "targetname");
-
+	
 	for(;;)
 	{
 	trig waittill ("trigger", player);
-
+	
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 	}
 	}
-
+	
 
 teleport4()
 {
 	trig = getEnt ("teleport4_trigger", "targetname");
 	target = getEnt ("teleport1_target", "targetname");
-
+	
 	for(;;)
 	{
 	trig waittill ("trigger", player);
-
+	
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 	}
 	}
-
-
+	
+	
 teleport5()
 {
 	trig = getEnt ("teleport5_trigger", "targetname");
 	target = getEnt ("teleport4_target", "targetname");
-
+	
 	for(;;)
 	{
 	trig waittill ("trigger", player);
-
+	
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 	}
 	}
-
+	
 teleport6()
 {
 	trig = getEnt ("teleport6_trigger", "targetname");
 	target = getEnt ("teleport2_target", "targetname");
-
+	
 	for(;;)
 	{
 	trig waittill ("trigger", player);
-
+	
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 	}
 	}
-
+	
 teleport7()
 {
 	trig = getEnt ("teleport7_trigger", "targetname");
 	target = getEnt ("teleport7_target", "targetname");
-
+	
 	for(;;)
 	{
 	trig waittill ("trigger", player);
-
+	
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 	}
 	}
-
-
+	
+	
 teleport8()
 {
 	trig = getEnt ("teleport8_trigger", "targetname");
 	target = getEnt ("teleport8_target", "targetname");
-
+	
 	for(;;)
 	{
 	trig waittill ("trigger", player);
-
+	
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 	}
 	}
-
+	
 teleport9()
 {
 	trig = getEnt ("teleport9_trigger", "targetname");
 	target = getEnt ("teleport9_target", "targetname");
-
+	
 	for(;;)
 	{
 	trig waittill ("trigger", player);
-
+	
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 	}
 	}
-
+	
 teleport10()
 {
 	trig = getEnt ("teleport10_trigger", "targetname");
 	target = getEnt ("teleport7_target", "targetname");
-
+	
 	for(;;)
 	{
 	trig waittill ("trigger", player);
-
+	
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 	}
 	}
-
+	
 teleport11()
 {
 	trig = getEnt ("teleport11_trigger", "targetname");
 	target = getEnt ("teleport3_target", "targetname");
-
+	
 	for(;;)
 	{
 	trig waittill ("trigger", player);
-
+	
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 	}
 	}
-
-
+	
+	
 umbrella()
 {
 	trig = getEnt ("umbrella_trigger", "targetname");
@@ -379,7 +356,7 @@ umbrella()
 	trig waittill ("trigger", player );
 
 	door moveZ ( 100, 5 );
-
+	
 }
 }
 
@@ -401,11 +378,11 @@ trap3()
 {
     trig = getEnt( "trap3_trigger", "targetname" );
     brush = getEnt( "trap3_brush", "targetname" );
-
+	
 	trig waittill ("trigger", player );
 {
 	trig delete();
-
+	
 	brush rotatepitch (360,2);
 }
 }
@@ -419,15 +396,15 @@ trap4()
 	trig waittill ("trigger", player );
 
 	trig delete();
-
-	brush moveY( 384, 3 );
-
+	
+	brush moveY( 384, 3 );	
+	
 	brush waittill("movedone");
-
-	brush moveZ( -600, 3 );
-
+	
+	brush moveZ( -600, 3 );	
+	
 	brush waittill("movedone");
-
+	
 	brush delete();
 }
 }
@@ -438,17 +415,17 @@ trap5()
     brush = getEnt( "trap5_brush", "targetname" );
 
 	trig waittill( "trigger" );
-
+	
 	while(1)
 {
 	trig delete();
 
 	brush moveZ( 64, 2 );
-
+	
 	wait 2;
 
 	brush moveZ( -64, 2 );
-
+	
 	wait 2;
 }
 }
@@ -460,29 +437,17 @@ trap5()
 	brush2 = getEnt( "tarp6_brush2", "targetname" );
 	brush3 = getEnt( "tarp6_brush3", "targetname" );
 	brush4 = getEnt( "tarp6_brush4", "targetname" );
-
-	fx1 = getEnt( "trap6_origin1", "targetname" );
-	fx2 = getEnt( "trap6_origin2", "targetname" );
-	fx3 = getEnt( "trap6_origin3", "targetname" );
-	fx4 = getEnt( "trap6_origin4", "targetname" );
+	
 {
 	trig waittill ("trigger", player );
 	trig delete();
 	brush1 delete();
-	fx1 playsound("explo");
-	playFx(level.java, fx1.origin);
 	wait 1.5;
 	brush2 delete();
-	fx2 playsound("explo");
-	playFx(level.java, fx2.origin);
 	wait 1.5;
 	brush3 delete();
-	fx3 playsound("explo");
-	playFx(level.java, fx3.origin);
 	wait 1.5;
 	brush4 delete();
-	fx4 playsound("explo");
-	playFx(level.java, fx4.origin);
 	wait 1.5;
 }
 }
@@ -491,9 +456,9 @@ trap7()
 {
     trig = getEnt( "trap7_trigger", "targetname" );
     brush = getEnt( "trap7_brush", "targetname" );
-
+	
 	trig waittill( "trigger" );
-
+	
 	while(1)
 {
 	trig delete();
@@ -511,12 +476,12 @@ trap8()
 	trig waittill ("trigger", player );
 
 	trig delete();
-
+	
 	brush movey( -20, 2 );
-
+	
 	wait 6;
-
-	brush movey( 20, 2 );
+	
+	brush movey( 20, 2 );	
 }
 }
 
@@ -531,7 +496,7 @@ trap9()
 	while(1)
 	{
 	trig delete();
-
+	
 	brush1 rotateyaw (720,4);
 	brush2 rotateyaw (720,4);
 	brush3 rotateyaw (720,4);
@@ -548,7 +513,7 @@ trap10()
 {
 	brush = getent ("trap10_brush1", "targetname");
 	trig = getent ("trap10_trigger", "targetname");
-
+	
 	trig waittill("trigger");
 	while(1)
 {
@@ -562,7 +527,7 @@ trap11()
 {
 	brush = getent ("trap11_brush1", "targetname");
 	trig = getent ("trap11_trigger", "targetname");
-
+	
 	trig waittill("trigger");
 	while(1)
 {
@@ -591,12 +556,12 @@ old2()
 {
     trig = getEnt( "old_jumper_trigger", "targetname" );
 	target = getEnt ("teleport4_target", "targetname");
-
+	
 	del1 = getEnt ("teleport9_trigger", "targetname");
 	del2 = getEnt ("teleport5_trigger", "targetname");
-
+	
 	while(1)
-{
+{	
 	trig waittill ("trigger", player);
 
 	del1 delete();
@@ -605,7 +570,7 @@ old2()
     level.knife delete();
     level.bounce delete();
     level.sniper delete();
-
+	
 	player SetOrigin(target.origin);
 	player SetPlayerAngles( target.angles );
 }
@@ -631,10 +596,10 @@ if(players[i]==level.acti)
     level.knife delete();
     level.bounce delete();
     level.old delete();
-
+	
 	AmbientStop( 4 );
 	AmbientPlay( "ambient4" );
-
+	
 	level.snipe_trig delete();
     players[i] SetPlayerAngles( level.jsnipe.angles );
     players[i] setOrigin( level.jsnipe.origin );
@@ -674,7 +639,7 @@ knife()
         level.sniper delete();
         level.old delete();
         level.bounce delete();
-
+		
 		player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         level.activ setPlayerangles( acti.angles );
@@ -707,9 +672,9 @@ knife()
 
         wait 5;
 
-        iPrintLnBold("^9F^3ight");
+        iPrintLnBold("^9F^3ight"); 
 
-        wait 2;
+        wait 2;       
 
 		player FreezeControls(0);
 		level.activ FreezeControls(0);
@@ -735,7 +700,7 @@ bounce()
         level.sniper delete();
         level.old delete();
         level.knife delete();
-
+        
         player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         level.activ setPlayerangles( acti.angles );
@@ -783,7 +748,7 @@ jumproom()
 {
 	brush1 = getent ("jumproom_brush3", "targetname");
 	brush2 = getent ("jumproom_brush4", "targetname");
-
+	
 	while(1)
 	{
 	brush1 moveZ(80,3);
@@ -814,6 +779,7 @@ fly()
 	air4 = getent ("nub4","targetname");
 	time = 1;
 	//throw = self.origin + (100, 100, 0);
+	player sr\api\_player::antiElevator(false);
 	air = spawn ("script_model",(0,0,0));
 	air.origin = self.origin;
 	air.angles = self.angles;
@@ -826,6 +792,7 @@ fly()
 	wait 0.5;
 	self unlink();
 	wait 1;
+	player sr\api\_player::antiElevator(true);
 }
 
 addTestClients()
@@ -861,7 +828,7 @@ TestClient(team)
 
     while(!isdefined(self.pers["team"]))
         wait .05;
-
+        
     self notify("menuresponse", game["menu_team"], team);
     wait 0.5;
 }

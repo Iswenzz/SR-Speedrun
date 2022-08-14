@@ -16,23 +16,11 @@ setdvar("r_glowskybleedintensity0",".1");
 
 thread sr\api\_map::createSpawn((-732,823,364),270);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread sr\api\_speedrun::createEndMap((-695.297, 732.422, 72.125), 205, 105);
 
-thread end();
 thread normaltp();
 thread kkk35_mozgoja();
 thread kkk35();
-}
-
-end()
-{
-end = getent ("end","targetname");
-end waittill ("trigger",player );
-
-for(;;)
-{ 
-player thread sr\api\_speedrun::finishWay("normal_0");
-}
-
 }
 
 normaltp()

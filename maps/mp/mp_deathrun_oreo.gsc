@@ -1,23 +1,18 @@
-//Map by Sheep Wizard
-//youtube: http://www.youtube.com/user/paap15
-//xfire: paap15
-//Thanks to people on braxi and codjumper forums
-
 main()
 {
-thread sr\api\_map::createSpawnOrigin((492.125, 510, 16.125), 0);
 trigger = spawn( "trigger_radius", (14345.2, 520.546, -13671.9), 0, 160, 70 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 160;
-     maps\mp\_load::main();
 
+maps\mp\_load::main();
+	 	 
 	 game["allies"] = "marines";
      game["axis"] = "opfor";
      game["attackers"] = "axis";
      game["defenders"] = "allies";
      game["allies_soldiertype"] = "desert";
      game["axis_soldiertype"] = "desert";
-
+	 
 	 precacheItem( "ak47_mp" );
 	 precacheItem( "deserteaglegold_mp" );
 	 precacheItem( "dragunov_acog_mp" );
@@ -28,11 +23,13 @@ trigger.radius = 160;
 	 precacheItem("uzi_acog_mp");
 	 precacheItem( "rpg_mp" );
 
-	 thread way_connect();
+	thread sr\api\_map::createSpawnOrigin((492.125, 510, 16.125), 0);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("Secret Way;"); 
+	thread sr\api\_speedrun::createTeleporter((2289.25, 345.06, -12445.9), 55, 50, (1617, 2563, -12384), 134, "freeze", "yellow", "secret_0");
 
-     thread startdoor();
-	 thread update();
-	 thread secret();
+    thread startdoor();
+	 //thread secret();
 	 thread secret2();
 	 thread credits();
 	 thread spicy();
@@ -55,49 +52,6 @@ trigger.radius = 160;
 	 thread deagle();*/
 }
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-way_connect()
-{
-    wait 0.05;
-
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-	sr\api\_speedrun::createSecretWays("Secret Way;");
-
-    for(;;)
-    {
-        level waittill( "connected", player );
-
-    }
-}
-////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-GiveJumpersWeapon( weap )
-{
-	 if( !isDefined( weap ) || weap == "" )
-		return;
-
-	 players = getEntArray( "player", "classname" );
-	 for( i=0; i<players.size; i++ )
-	{
-		 if( !isAlive( players[i] ) || players[i].pers["team"] != "allies" )
-			continue;
-
-         players[i] TakeAllWeapons();
-		 wait 0.01;
-		 players[i] giveWeapon( weap );
-		 players[i] giveMaxAmmo( weap );
-		 players[i] setSpawnWeapon( weap );
-
-	}
-}
-
-update()
-{
-
-}
-
 secret()
 {
     trig = getent ("secrettrig", "targetname");
@@ -105,7 +59,6 @@ secret()
 	for(;;)
 	{
 	    trig waittill("trigger", player);
-	    player sr\api\_speedrun::changeWay("secret_0"); //Speedrun Copy Paste
 		player setOrigin(target.origin);
 	}
 }
@@ -113,11 +66,10 @@ secret()
 secret2()
 {
     trig = getent ("secrettrig2", "targetname");
-	target = getent("secrettarget2", "targetname");
 	for(;;)
 	{
 	    trig waittill("trigger", player);
-		player setOrigin(target.origin);
+		player thread sr\api\_speedrun::finishWay("secret_0");
 	}
 }
 
@@ -158,48 +110,39 @@ for(;;)
 	 wait 18;
 	 }
 }
-
-
+	
+	
 
 startdoor()
 {
-
+    
      door = getEnt("door", "targetname");
 	 door2 = getEnt("door2", "targetname");
-     wait(10);
-	 iPrintLnBold (" ^2Game ^6will ^2start ^6in ^210 ^6second");
-	 wait(1);
-	 iPrintLnBold (" ^2Map by ^6Sheep Wizard");
-	 wait(10);
-	 iPrintLnBold ("Begin");
-     door moveX(385,8);
-	 door2 moveX(-385,8);
-	 door waittill("movedone");
-	 wait 2;
+     
+	 wait 0.1;
 	 door delete();
-	 door2 delete();
+	 door2 delete();	 
 }
 
 spicy()
 {
-
+      
 	  spicy = getEnt("spicy", "targetname");
 	  spicy waittill ("trigger", player);
 	  spicy delete();
-	  iPrintLnBold ("^3S^5picy ^3W^5einer's ^3T^5ingly ^3N^5ips");
-
+  
 }
-
+	
 //Traps:
 trap1()
 {
      trig = getEnt("trap1_trig", "targetname");
 	 move = getEnt("trap1_move", "targetname");
 	 move2 = getEnt("trap1_move2", "targetname");
-
+	 
 	 trig waittill ("trigger", player);
 	 trig delete();
-
+	 
 	 while(1)
 	 {
 	     move moveX(448,1);
@@ -212,15 +155,15 @@ trap1()
 	     move2 waittill ("movedone");
 		}
 }
-
+	
 trap2()
 {
      trig = getEnt("trap2_trig", "targetname");
 	 bounce = getEnt("trap2_bounce", "targetname");
-
+	 
 	 trig waittill ("trigger", player);
 	 trig delete();
-
+	 
 	 while(1)
 	 {
 	     bounce rotatepitch (180,11);
@@ -232,10 +175,10 @@ trap3()
 {
      trig = getEnt("trap3_trig", "targetname");
 	 push = getEnt("trap3_push", "targetname");
-
+	 
 	 trig waittill ("trigger", player);
 	 trig delete();
-
+	 
 	 while(1)
 	 {
 	     push moveY(-448,0.5);
@@ -254,10 +197,10 @@ trap4()
 	 spin2 = getEnt("trap4_spin2", "targetname");
 	 spin3 = getEnt("trap4_spin3", "targetname");
 	 spin4 = getEnt("trap4_spin4", "targetname");
-
+	 
 	 trig waittill ("trigger", player);
 	 trig delete();
-
+	 
 	 while(1)
 	 {
 	     spin rotateyaw (180,2);
@@ -266,9 +209,9 @@ trap4()
 		 spin4 rotateyaw(-180,2);
 		 wait 2;
 		}
-
+	 
 }
-
+	
 trap5()
 {
      trig = getEnt("trap5_trig","targetname");
@@ -276,10 +219,10 @@ trap5()
 	 pole2 = getEnt("trap5_pole2", "targetname");
 	 pole3 = getEnt("trap5_pole3", "targetname");
 	 pole4 = getEnt("trap5_pole4", "targetname");
-
+	 
 	 trig waittill ("trigger", player);
 	 trig delete();
-
+	 
      while(1)
 	{
 	     pole movey(-260, 1);
@@ -302,15 +245,15 @@ trap6()
 	 baa2 = getEnt("trap6_baa2", "targetname");
 	 baa3 = getEnt("trap6_baa3", "targetname");
 	 baa4 = getEnt("trap6_baa4", "targetname");
-
+	 
 	 trig waittill ("trigger", player);
 	 trig delete();
-
+	 
 	 baa movex (272, 1);
 	 baa2 movex (272, 1);
 	 baa3 movex (-272, 1);
 	 baa4 movex (-272, 1);
-
+	 
 	 while (1)
 	 {
 	     wait 5;
@@ -334,10 +277,10 @@ trap7()
 	 strip2 = getEnt("trap7_strip2", "targetname");
 	 strip3 = getEnt("trap7_strip3", "targetname");
 
-
+	 
 	 trig waittill ("trigger", player);
 	 trig delete();
-
+	 
 	 while(1)
 	 {
 	     strip rotateroll (180,0.5);
@@ -345,10 +288,10 @@ trap7()
 		 strip3 rotateroll(180,0.5);
 		 wait 0.5;
 		}
-
+	 
 }
-
-//End room:
+	
+//End room:	
 ak()
 {
      ak = getEnt("ak", "targetname");
@@ -360,7 +303,7 @@ ak()
 	 deagle = getEnt("deagle", "targetname");
 	 door9 = getEnt("door9", "targetname");
 	 finaldoor = getEnt("finaldoor", "targetname");
-	 ak waittill ("trigger", player);
+	 ak waittill ("trigger", player); 
 	 baret delete();
 	 sniper delete();
 	 uzi delete();
@@ -368,14 +311,7 @@ ak()
 	 tomahawk delete();
 	 deagle delete();
 	 door9 delete();
-
-	 GiveJumpersWeapon( "ak47_mp" );
-	 level.activ TakeAllWeapons();
-	 level.activ giveWeapon ("ak47_mp" );
-	 level.activ SwitchToWeapon("ak47_mp");
-	 iprintlnbold("^3"+ player.name + " "+ "entered ^5Ak47 ^3fight!");
-	 wait 4;
-	 finaldoor moveZ (-272, 5);
+	 
 }
 
 baret()
@@ -389,9 +325,9 @@ baret()
 	 deagle = getEnt("deagle", "targetname");
 	 door8 = getEnt("door8", "targetname");
 	 finaldoor = getEnt("finaldoor", "targetname");
-
+	 
 	 baret waittill ("trigger", player);
-
+	 
 	 ak delete();
 	 sniper delete();
 	 uzi delete();
@@ -399,14 +335,7 @@ baret()
 	 tomahawk delete();
 	 deagle delete();
 	 door8 delete();
-
-	 GiveJumpersWeapon( "barrett_mp" );
-	 level.activ TakeAllWeapons();
-	 level.activ giveWeapon ("barrett_mp" );
-	 level.activ SwitchToWeapon("barrett_mp");
-	 iprintlnbold("^3"+ player.name + " "+ "entered ^5Barrett ^3fight!");
-	 wait 4;
-	 finaldoor moveZ (-272, 5);
+	 
 }
 
 sniper()
@@ -420,9 +349,9 @@ sniper()
 	 deagle = getEnt("deagle", "targetname");
 	 door3 = getEnt("door3", "targetname");
 	 finaldoor = getEnt("finaldoor", "targetname");
-
+	 
 	 sniper waittill ("trigger", player);
-
+	 
 	 ak delete();
 	 baret delete();
 	 uzi delete();
@@ -430,14 +359,7 @@ sniper()
 	 tomahawk delete();
 	 deagle delete();
 	 door3 delete();
-
-	 GiveJumpersWeapon("m40a3_mp" );
-	 level.activ TakeAllWeapons();
-	 level.activ giveWeapon ("m40a3_mp" );
-	 level.activ SwitchToWeapon("m40a3_mp");
-	 iprintlnbold("^3"+ player.name + " "+ "entered ^5m40a3 ^3fight!");
-	 wait 4;
-	 finaldoor moveZ (-272, 5);
+	 
 }
 
 uzi()
@@ -451,9 +373,9 @@ uzi()
 	 deagle = getEnt("deagle", "targetname");
 	 door4 = getEnt("door4", "targetname");
 	 finaldoor = getEnt("finaldoor", "targetname");
-
+	 
 	 uzi waittill ("trigger", player);
-
+	 
 	 ak delete();
 	 baret delete();
 	 sniper delete();
@@ -461,14 +383,7 @@ uzi()
 	 tomahawk delete();
 	 deagle delete();
 	 door4 delete();
-
-	 GiveJumpersWeapon("uzi_acog_mp" );
-	 level.activ TakeAllWeapons();
-	 level.activ giveWeapon ("uzi_acog_mp" );
-	 level.activ SwitchToWeapon("uzi_acog_mp");
-	 iprintlnbold("^3"+ player.name + " "+ "entered ^5Uzi ^3fight!");
-	 wait 4;
-	 finaldoor moveZ (-272, 5);
+	 
 }
 
 rpg()
@@ -482,9 +397,9 @@ rpg()
 	 deagle = getEnt("deagle", "targetname");
 	 door5 = getEnt("door5", "targetname");
 	 finaldoor = getEnt("finaldoor", "targetname");
-
+	 
 	 rpg waittill ("trigger", player);
-
+	 
 	 ak delete();
 	 baret delete();
 	 sniper delete();
@@ -492,14 +407,6 @@ rpg()
 	 tomahawk delete();
 	 deagle delete();
 	 door5 delete();
-
-	 GiveJumpersWeapon( "rpg_mp" );
-	 level.activ TakeAllWeapons();
-	 level.activ giveWeapon ("rpg_mp");
-	 level.activ SwitchToWeapon("rpg_mp");
-	 iprintlnbold("^3"+ player.name + " "+ "entered ^5RPG ^3fight!");
-	 wait 4;
-	 finaldoor moveZ (-272, 5);
 }
 
 tomahawk()
@@ -513,9 +420,9 @@ tomahawk()
 	 deagle = getEnt("deagle", "targetname");
 	 door6 = getEnt("door6", "targetname");
 	 finaldoor = getEnt("finaldoor", "targetname");
-
+	 
 	 tomahawk waittill ("trigger", player);
-
+	 
 	 ak delete();
 	 baret delete();
 	 sniper delete();
@@ -524,13 +431,6 @@ tomahawk()
 	 deagle delete();
 	 door6 delete();
 
-	 GiveJumpersWeapon( "tomahawk_mp" );
-	 level.activ TakeAllWeapons();
-	 level.activ giveWeapon ("tomahawk_mp" );
-	 level.activ SwitchToWeapon("tomahawk_mp");
-	 iprintlnbold("^3"+ player.name + " "+ "entered ^5Knife ^3fight!");
-	 wait 4;
-	 finaldoor moveZ (-272, 5);
 }
 
 deagle()
@@ -544,9 +444,9 @@ deagle()
 	 deagle = getEnt("deagle", "targetname");
 	 door7 = getEnt("door7", "targetname");
 	 finaldoor = getEnt("finaldoor", "targetname");
-
+	 
 	 deagle waittill ("trigger", player);
-
+	 
 	  ak delete();
 	 baret delete();
 	 sniper delete();
@@ -554,14 +454,7 @@ deagle()
 	 rpg delete();
 	 tomahawk delete();
 	 door7 delete();
-
-     GiveJumpersWeapon( "deserteagle_mp" );
-	 level.activ TakeAllWeapons();
-	 level.activ giveWeapon ("deserteagle_mp" );
-	 level.activ SwitchToWeapon("deserteagle_mp");
-	 iprintlnbold("^3"+ player.name + " "+ "entered ^5Deagle ^3fight!");
-	 wait 4;
-	 finaldoor moveZ (-272, 5);
+	 
 
 }
 

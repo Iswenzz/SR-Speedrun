@@ -23,7 +23,7 @@ thread sr\api\_map::createSpawn((-116, 22, 76), 270);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
 ///THREADS
-// thread door();
+thread door();
 //thread freexp();
 //thread trap1();
 //thread trap2();
@@ -67,20 +67,20 @@ removeTextActivator()
     {
         self.hud_textacti destroy();
     }
-}
+} 
 
 GetActivator()
 {
 	players = getentarray( "player", "classname" );
-
+	
 	for(i = 0;i < players.size;i++)
 	{
 		player = players[i];
-
+		
 		if( isdefined( player ) && isplayer( player ) && isalive( player ) && player.pers["team"] == "axis"	)
 			return player;
 	}
-
+	
 	return "Noactivator";
 }
 
@@ -147,10 +147,10 @@ door delete();
 
 ///FREE XP FOR ONE PERSON
 freexp()
-{
+{ 
     trig = getent("freexp", "targetname");
     trig setHintString ("^4Surprise here^0!");
-
+	
 for(;;)
 {
  trig waittill("trigger", player);
@@ -182,17 +182,17 @@ trap1()
 	}
 }
 
-trap2()
+trap2() 
 {
     trig = getEnt("trig_trap2", "targetname");
     plat = getEnt("trap2", "targetname");
-
+    
     trig setHintString("^0Press ^4[&&1] ^0to activate a ^4trap^0!");
     trig waittill ("trigger", player);
     trig setHintString("^1Activated!");
 
-    while(1)
-    {
+    while(1) 
+    { 
         plat moveY( -97, 5);
         plat waittill("movedone");
         plat moveY( 97, 5);
@@ -205,12 +205,12 @@ trap3()
    trig = getEnt("trig_trap3", "targetname");
    plata = getEnt("trap3", "targetname");
    platb = getEnt("trap3b", "targetname");
-
+    
     trig setHintString("^0Press ^4[&&1] ^0to activate a ^4trap^0!");
     trig waittill ("trigger", player);
     trig setHintString("^1Activated!");
 
-{
+{  
  x = randomint(2);
 
    if (x==0)
@@ -231,19 +231,19 @@ trap3()
 
 }
 
-}
+}    
 
-trap4()
+trap4() 
 {
     trig = getEnt("trig_trap4", "targetname");
     plat = getEnt("trap4", "targetname");
-
+    
     trig setHintString("^0Press ^4[&&1] ^0to activate a ^4trap^0!");
     trig waittill ("trigger", player);
     trig setHintString("^1Activated!");
 
-    while(1)
-    {
+    while(1) 
+    { 
         plat RotateYaw(360,5);
         plat moveZ( -160, 5);
         plat waittill("movedone");
@@ -260,12 +260,12 @@ trap5()
    trig = getEnt("trig_trap5", "targetname");
    plata = getEnt("trap5a", "targetname");
    platb = getEnt("trap5b", "targetname");
-
+    
     trig setHintString("^0Press ^4[&&1] ^0to activate a ^4trap^0!");
     trig waittill ("trigger", player);
     trig setHintString("^1Activated!");
 
-{
+{  
  x = randomint(2);
 
    if (x==0)
@@ -286,7 +286,7 @@ trap5()
 
 }
 
-}
+}    
 
 ///WATER FX BAR
 Water()
@@ -439,7 +439,7 @@ watterFX()
 	}
 }
 
-roomselection()
+roomselection() 
 {
 level.room_trig = getEnt( "trig_roomselection", "targetname");
 room = getEnt( "orig_roomselection", "targetname" );
@@ -528,7 +528,7 @@ sniper()
         player thread end_countdown("^0Kill each other !", 3, 0);
         activator thread end_countdown("^0Kill each other !", 3, 0);
         player setOrigin (jumpersc.origin);
-        player setPlayerAngles (jumpersc.angles);
+        player setPlayerAngles (jumpersc.angles);    
         activator setOrigin (actisc.origin);
         activator setPlayerAngles (actisc.angles);
         player takeAllWeapons();
@@ -542,14 +542,14 @@ sniper()
         player giveMaxAmmo("m40a3_mp");
         activator giveMaxAmmo("m40a3_mp");
         player switchToWeapon("m40a3_mp");
-        activator switchToWeapon("m40a3_mp");
+        activator switchToWeapon("m40a3_mp");   
         player.maxhealth = 100;
-
+        
 
         while(isDefined(player) && isAlive(player))
             wait .05;
 
-        iPrintLnBold ("^4" + player.name + " ^0has died in ^4Sniper Room^0!");
+        iPrintLnBold ("^4" + player.name + " ^0has died in ^4Sniper Room^0!");    
 
     }
 }

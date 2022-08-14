@@ -1,25 +1,24 @@
 main()
 {
-thread sr\api\_map::createSpawnOrigin((-731, 534, -136), 360);
 maps\mp\_load::main();
-
+ 
 game["allies"] = "marines";
 game["axis"] = "opfor";
 game["attackers"] = "axis";
 game["defenders"] = "allies";
 game["allies_soldiertype"] = "desert";
 game["axis_soldiertype"] = "desert";
-
+	
+thread sr\api\_map::createSpawn((-731,534,76),360);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createSecretWays("Secret Way;");
-thread sr\api\_speedrun::createTeleporter((962.114, 512.29, -58.875), 55, 10, (-682, -168, -612), 1, "freeze", "blue", "normal_0");
-thread sr\api\_speedrun::createTeleporter((952.644, -170.768, -671.875), 65, 10, (1033, -156, -356), 360, "freeze", "blue", "normal_0");
-thread sr\api\_speedrun::createTeleporter((1970.48, -160.444, -415.875), 55, 10, (4576, -167, -282), 1, "freeze", "blue", "normal_0");
-thread sr\api\_speedrun::createTeleporter((6090.38, -163.3, -369.875), 55, 10, (6185, -174, -309), 1, "freeze", "blue", "normal_0");
-thread sr\api\_speedrun::createTeleporter((-284.331, 755.019, 16.125), 60, 10, (15383, 1091, 2496), 270, "freeze", "red", "secret_0");
-thread sr\api\_speedrun::createEndMap((11840, -169.779, -463.875), 100, 10, "normal_0");
-thread sr\api\_speedrun::createEndMap((15369.4, -725.747, 2821.13), 85, 10, "secret_1");
-thread autofunc();
+thread sr\api\_speedrun::createTeleporter((962.114, 512.29, -58.875), 55, 50, (-682, -168, -612), 1, "freeze", "blue", "normal_0");
+thread sr\api\_speedrun::createTeleporter((952.644, -170.768, -671.875), 65, 50, (1033, -156, -356), 360, "freeze", "blue", "normal_0");
+thread sr\api\_speedrun::createTeleporter((1970.48, -160.444, -415.875), 55, 50, (4576, -167, -282), 1, "freeze", "blue", "normal_0");
+thread sr\api\_speedrun::createTeleporter((6090.38, -163.3, -369.875), 55, 50, (6185, -174, -309), 1, "freeze", "blue", "normal_0");
+thread sr\api\_speedrun::createTeleporter((-284.331, 755.019, 16.125), 60, 50, (15383, 1091, 2496), 270, "freeze", "red", "secret_0");
+thread sr\api\_speedrun::createEndMap((15369.4, -725.747, 2821.13), 85, 50, "secret_0");
+thread autofunc();	
 thread autoplatform();
 thread autoplatform2();
 }
@@ -104,5 +103,5 @@ autoplatform2()
 
 	wait 0.1;
 	brush moveX(168,5);
-
+		
 }

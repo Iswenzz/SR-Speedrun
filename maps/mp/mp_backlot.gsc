@@ -1,10 +1,10 @@
 /*
 
-  _|_|_|            _|      _|      _|                  _|
-_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|
-  _|_|    _|    _|      _|          _|        _|    _|  _|      _|
-      _|  _|    _|    _|  _|        _|        _|    _|  _|    _|
-_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|
+  _|_|_|            _|      _|      _|                  _|            
+_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|  
+  _|_|    _|    _|      _|          _|        _|    _|  _|      _|    
+      _|  _|    _|    _|  _|        _|        _|    _|  _|    _|      
+_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|  
 
 Map and GSC Made By SuX Lolz. Car destruction fixed by CM'death.
 
@@ -22,17 +22,16 @@ Email Pro: suxlolz@outlook.fr
 
 main()
 {
-thread sr\api\_map::createSpawnOrigin((-650, 1939, 64), 314);
 	maps\mp\_load::main();
 	maps\mp\_compass::setupMiniMap("compass_mp_backlot");
-
+ 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-
+ 
 	setdvar("r_specularcolorscale","1");
 	setdvar("compassmaxrange","1600");
 	setdvar("r_glowbloomintensity0",".1");
@@ -41,9 +40,11 @@ thread sr\api\_map::createSpawnOrigin((-650, 1939, 64), 314);
 	setDvar("bg_falldamagemaxheight", 20000000 );
 	setDvar("bg_falldamageminheight", 15000000 );
 
-		thread sr\api\_speedrun::createNormalWays("Normal Way;Glitch Way;");
+	thread sr\api\_map::createSpawn((-650, 1939, 124), 314);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createSecretWays("Glitch Way;");
 	thread sr\api\_speedrun::createEndMap((-549, -2428, 126), 120, 100);
-	thread sr\api\_speedrun::createEndMap((143, -1418, 364), 120, 100, "normal_1");
+	thread sr\api\_speedrun::createEndMap((143, -1418, 364), 120, 100, "secret_0");
 
 	thread car();
 }

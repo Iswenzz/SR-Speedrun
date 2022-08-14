@@ -1,7 +1,7 @@
 main()
 {
 maps\mp\_load::main();
-
+ 
 game["allies"] = "marines";
 game["axis"] = "opfor";
 game["attackers"] = "axis";
@@ -15,18 +15,18 @@ setDvar("r_glowbloomintensity1",".25");
 setDvar("r_glowskybleedintensity0",".3");
 setDvar("bg_falldamagemaxheight", 20000 );
 setDvar("bg_falldamageminheight", 15000 );
-
+	
 thread sr\api\_map::createSpawn((201,-29,76),90);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createSecretWays("Secret Way;");
 thread sr\api\_speedrun::createTeleporter((12305.7, 2608.98, -1839.88), 50, 10, (12320, 1530, -1780), 270, "freeze", "blue", "normal_0");
 
 thread startdoor();
-// thread secret();
-// thread secretstep1();
-// thread secretstep2();
+thread secret();
+thread secretstep1();
+thread secretstep2();
 thread trap4();
-}
+}	
 
 startdoor()
 {
@@ -77,7 +77,7 @@ secrets1()
 	{
 		trig waittill("trigger", player);
 		player Suicide();
-
+		
 	}
 }
 
@@ -88,7 +88,7 @@ secrets2()
 	{
 		trig waittill("trigger", player);
 		player Suicide();
-
+		
 	}
 }
 
@@ -141,7 +141,7 @@ playerGone(noty)
     self playerOnSpectators(noty);
     wait 0.5;
 }
-
+ 
 playerOnDeath(noty)
 {
     self waittill("death");
@@ -152,7 +152,7 @@ playerOnDeath(noty)
     wait 0.5;
 	}
 }
-
+ 
 playerOnDisconnect(noty)
 {
     self waittill("disconnect");
@@ -163,7 +163,7 @@ playerOnDisconnect(noty)
     wait 0.5;
 	}
 }
-
+ 
 playerOnSpawned(noty)
 {
     self waittill("spawned");
@@ -174,7 +174,7 @@ playerOnSpawned(noty)
     wait 0.5;
 	}
 }
-
+ 
 playerOnSpectators(noty)
 {
     self waittill("joined_spectators");
@@ -183,7 +183,7 @@ playerOnSpectators(noty)
     wait 0.5;
 }
 
-trap4()
+trap4() 
 {
 killtriggera = getent ("trig_hurt4a", "targetname");
 killtriggerb = getent ("trig_hurt4b", "targetname");
@@ -194,7 +194,7 @@ laser4c = getent("laser4c","targetname");
 base = getent ("base4a", "targetname");
 baseb = getent ("base4b", "targetname");
 basec = getent ("base4c", "targetname");
-
+	
 wait 0.1;
 killtriggera delete();
 killtriggerb delete();

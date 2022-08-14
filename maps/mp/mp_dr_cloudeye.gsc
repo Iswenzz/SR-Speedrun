@@ -31,6 +31,7 @@ maps\mp\_load::main();
 	thread trap8();
     thread rope();
 	thread jump_pad();
+	thread secret_end();
 }
 
 startdoor()

@@ -1,41 +1,22 @@
-/*
-mp_dr_theship
-Map Made by Elpredatore
-Created for Braxi's Deathrun 1.2 mod for CoD4
-
- /$$$$$$$$ /$$                                     /$$             /$$
-| $$_____/| $$                                    | $$            | $$
-| $$      | $$  /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$$  /$$$$$$  /$$$$$$    /$$$$$$   /$$$$$$   /$$$$$$
-| $$$$$   | $$ /$$__  $$ /$$__  $$ /$$__  $$ /$$__  $$ |____  $$|_  $$_/   /$$__  $$ /$$__  $$ /$$__  $$
-| $$__/   | $$| $$  \ $$| $$  \__/| $$$$$$$$| $$  | $$  /$$$$$$$  | $$    | $$  \ $$| $$  \__/| $$$$$$$$
-| $$      | $$| $$  | $$| $$      | $$_____/| $$  | $$ /$$__  $$  | $$ /$$| $$  | $$| $$      | $$_____/
-| $$$$$$$$| $$| $$$$$$$/| $$      |  $$$$$$$|  $$$$$$$|  $$$$$$$  |  $$$$/|  $$$$$$/| $$      |  $$$$$$$
-|________/|__/| $$____/ |__/       \_______/ \_______/ \_______/   \___/   \______/ |__/       \_______/
-              | $$
-              | $$
-              |__/
-
-			 SPECIAL THANKS TO TWIYO <3
-
-	Why are you decompiling my first scripted map ? :D
-*/
 
 #include maps\mp\gametypes\_hud_util;
 
 main()
 {
-thread sr\api\_map::createSpawnOrigin((-1832.602, 502.545, 0.125), 0);
  maps\mp\_load::main();
 
-
+ 
  game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"] = "desert";
-
- 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread sr\api\_map::createSpawn((-1632,496,60),1);
+	thread sr\api\_speedrun::createTeleporter((-1283.23, 707.041, 0.125), 60, 50, (3407, 1097, -68), 180, "freeze", "yellow", "secret_0");
 
 	setExpFog(500, 2200, 0.81, 0.75, 0.63, 0.5);
 	precacheModel("com_computer_rack");
@@ -56,38 +37,38 @@ thread sr\api\_map::createSpawnOrigin((-1832.602, 502.545, 0.125), 0);
 	precacheItem("g36c_silencer_mp");
 	precacheItem("skorpion_silencer_mp");
 	precacheItem("saw_grip_mp");
-
+	
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
-
+	
 /////////////////////MUSIC/////////////////
-thread ambient();
-thread jukebox();
-thread openjukedoor();
+//thread ambient();
+//thread jukebox();
+//thread openjukedoor();
 /////////////////////MISC/////////////////
-thread linked();
-thread actitp();
+//thread linked();
+//thread actitp();
 
 /////////////////////SECRET/////////////////
-thread secret1();
-thread secretweapon();
+//thread secret1();
+thread secretexit();
 
 /////////////////////TRAPS/////////////////
-thread trap1();
-thread trap2();
+//thread trap1();
+//thread trap2();
 thread trap3();
-thread trap4();
+//thread trap4();
 thread trap5();
-thread trap6();
-thread trap7();
+//thread trap6();
+//thread trap7();
 thread trap8();
 thread mover1();
 thread mover2();
 
 /////////////////////INFO/////////////////
-thread mapperinfo();
+//thread mapperinfo();
 
 /////////////////////XP/////////////////
 addTriggerToList( "trap1" );
@@ -99,12 +80,12 @@ addTriggerToList( "trap6" );
 addTriggerToList( "trap7" );
 addTriggerToList( "trap8" );
 /////////////////////ENDROOMS/////////////////
-thread sniperfight();
-thread knifefight();
-thread bouncefight();
-thread oldfight();
-thread bounceweapon();
-thread bouncerespawn();
+//thread sniperfight();
+//thread knifefight();
+//thread bouncefight();
+//thread oldfight();
+//thread bounceweapon();
+//thread bouncerespawn();
 level.firstenter = true;
 }
 
@@ -113,13 +94,13 @@ sniperfight(){
      level.snipe_trig = getEnt( "sniperoom", "targetname");
     jump = getEnt( "jumpsnipe", "targetname" );
     acti = getEnt( "actisnipe", "targetname" );
-
+    
     while(1)
     {
         level.snipe_trig waittill( "trigger", player );
         if( !isDefined( level.snipe_trig ) )
             return;
-
+			
 		if(level.firstenter==true)
 		{
 		level.jump_trig delete();
@@ -137,7 +118,7 @@ sniperfight(){
 		player.maxhealth = 100;
 		player.health = player.maxhealth;
 		level.activ.maxhealth = 100;
-		level.activ.health = level.activ.maxhealth;
+		level.activ.health = level.activ.maxhealth;  
 		iprintlnbold ( "^33" );
 		wait 1;
         player GiveWeapon( "M40A3_mp" );
@@ -154,7 +135,7 @@ sniperfight(){
 		while( isAlive( player ) && isDefined( player ) )
 			wait 0.1;
 		iPrintLnBold("^7Snipe Room is now Open!");
-		player = undefined;
+		player = undefined;	
     }
 }
 
@@ -162,7 +143,7 @@ knifefight(){
     level.knife_trig = getEnt( "Knife", "targetname");
     jump = getEnt( "jumper_enter_kniferoom", "targetname" );
     acti = getEnt( "activator_enter_kniferoom", "targetname" );
-
+    
     while(1)
     {
         level.knife_trig waittill( "trigger", player );
@@ -175,19 +156,19 @@ knifefight(){
 		level.jump_trig delete();
 		level.firstenter=false;
 		}
-
+		
 		player.maxhealth = 100;
 		player.health = player.maxhealth;
 		level.activ.maxhealth = 100;
-		level.activ.health = level.activ.maxhealth;
+		level.activ.health = level.activ.maxhealth;  
         player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
-        player GiveWeapon( "knife_mp" );
+        player GiveWeapon( "knife_mp" );       
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "knife_mp" );
+        level.activ GiveWeapon( "knife_mp" );        
         wait 0.05;
         player switchToWeapon( "knife_mp" );
         level.activ SwitchToWeapon( "knife_mp" );
@@ -195,7 +176,7 @@ knifefight(){
 		while( isAlive( player ) && isDefined( player ) )
 			wait 0.1;
 		iPrintLnBold("^7Knife Room is now Open!");
-		player = undefined;
+		player = undefined;	
     }
 }
 
@@ -205,11 +186,11 @@ oldfight(){
 	{
 	while( 1 )
     {
-
+		
 		level.old_trig waittill( "trigger", player );
         if( !isDefined( level.old_trig ) )
             return;
-		thread OldTeleport();
+		thread OldTeleport();	
 		if(level.firstenter==true)
 		{
 		level.jump_trig delete();
@@ -217,15 +198,15 @@ oldfight(){
 		level.knife_trig delete();
 		level.firstenter=false;
 		}
-
-
+    
+	
 	if( level.freeRun || isDefined( level.finalJumper ) || player.pers["team"] != "allies" )
             continue;
-
+		
 		iPrintlnBold( " ^7" + player.name + " ^3 HAS OPENED THE OLD WAY^7!" );
 		}
-
-	}
+		
+	}	
 }
 OldTeleport(){
 jumperorigin = getent ("old_origin", "targetname");
@@ -261,15 +242,15 @@ bouncefight(){
 		player.maxhealth = 100;
 		player.health = player.maxhealth;
 		level.activ.maxhealth = 100;
-		level.activ.health = level.activ.maxhealth;
+		level.activ.health = level.activ.maxhealth;  
         player SetPlayerAngles( jump.angles );
         player setOrigin( jump.origin );
         player TakeAllWeapons();
-        player GiveWeapon( "knife_mp" );
+        player GiveWeapon( "knife_mp" );       
         level.activ setPlayerangles( acti.angles );
         level.activ setOrigin( acti.origin );
         level.activ TakeAllWeapons();
-        level.activ GiveWeapon( "knife_mp" );
+        level.activ GiveWeapon( "knife_mp" );        
         wait 0.05;
         player switchToWeapon( "knife_mp" );
         level.activ SwitchToWeapon( "knife_mp" );
@@ -284,10 +265,10 @@ bouncefight(){
 
 bounceweapon(){
 		trigger = getent ("bounce_room_weapon", "targetname");
-
+		
 		trigger waittill ("trigger", user);
 		trigger delete();
-
+		
 		{
 			{
 			wait 0.25;
@@ -297,79 +278,79 @@ bounceweapon(){
 			{
 				user giveWeapon("deserteagle_mp", 100, 500 );
 				user switchToWeapon("deserteagle_mp");
-
+			
 			}
 			if(random == 1)
 			{
 				user giveWeapon("uzi_mp", 100, 500 );
 				user switchToWeapon("uzi_mp");
-
+				
 			}
 			if(random == 2)
 			{
 				user giveWeapon("m4_mp", 100, 500 );
 				user switchToWeapon("m4_mp");
-
+				
 			}
 			if(random == 3)
 			{
 				user giveWeapon("ak47_mp", 100, 500 );
 				user switchToWeapon("ak47_mp");
-
+				
 			}
 			if(random == 4)
 			{
 				user giveWeapon("g3_mp", 100, 500 );
 				user switchToWeapon("g3_mp");
-
+				
 			}
 			if(random == 5)
 			{
 				user giveWeapon("m60e4_mp", 100, 500 );
 				user switchToWeapon("m60e4_mp");
-
+				
 			}
 			if(random == 6)
 			{
 				user giveWeapon("p90_mp", 100, 500 );
 				user switchToWeapon("p90_mp");
-
+				
 			}
 			if(random == 7)
 			{
 				user giveWeapon("m40a3_mp", 100, 500 );
 				user switchToWeapon("m40a3_mp");
-
+				
 			}
 			if(random == 8)
 			{
 				user giveWeapon("barrett_mp", 100, 500 );
 				user switchToWeapon("barrett_mp");
-
+				
 			}
 			if(random == 9)
 			{
 				user giveWeapon("g36c_silencer_mp", 100, 0 );
 				user switchToWeapon("g36c_silencer_mp");
-
+				
 			}
 			if(random == 10)
 			{
 				user giveWeapon("skorpion_silencer_mp", 100, 500 );
 				user switchToWeapon("skorpion_silencer_mp");
-
+				
 			}
 			if(random == 11)
 			{
 				user giveWeapon("saw_grip_mp", 100, 500 );
 				user switchToWeapon("saw_grip_mp");
-
+				
 			}
 			if(random == 12)
 			{
 				user giveWeapon("remington700_mp", 100, 500 );
 				user switchToWeapon("remington700_mp");
-
+				
 			}
 			if(random == 13)
 			{
@@ -393,10 +374,10 @@ bouncerespawn(){
 			player SetOrigin(jumper.origin);
 			player SetPlayerAngles( jumper.angles );
 		}
-		else if(player.pers["team"] == "axis")
+		else if(player.pers["team"] == "axis")	
 		{
 			player SetOrigin(activator.origin);
-			player SetPlayerAngles( activator.angles );
+			player SetPlayerAngles( activator.angles );			
 		}
 	}
 }
@@ -420,9 +401,9 @@ openjukedoor(){
 		door_music_trig waittill ( "trigger" );
 		door_music_trig delete();
 		door moveZ (52,2);
-		door rotateto( ( 90, 0, 0 ), 2);
-		door waittill ( "rotatedone" );
-
+		door rotateto( ( 90, 0, 0 ), 2); 
+		door waittill ( "rotatedone" ); 
+	
 }
 
 ambient()
@@ -431,27 +412,27 @@ level waittill( "round_started" );
 AmbientPlay ( "map" );
 wait 2;
 iprintln("^1>>^7Now Playing^3: ^1WHITENO1SE & Ranji Ft. Nina Nesbitt  ^3- ^7The Moments I'm Missing^1<<");
-}
+}	
 
 
 endMusic()
 {
 	AmbientStop(1);
 }
-
+  
 jukebox(){
 	music_trig = getEnt( "jukebox", "targetname");
 	music_trig setHintString ("Random Music Selector");
-
+	
 	music_trig waittill( "trigger",player);
 
 	music_trig setHintString ("Music Changed");
 
-	iPrintLnBold( " ^4" + player.name + " ^7has changed the Music!" );
-
+	iPrintLnBold( " ^4" + player.name + " ^7has changed the Music!" ); 
+	
 	thread endMusic();
 	random = RandomInt(8);
-
+	
 			if(random == 0)
 			{
 				ambientPlay("juke1");
@@ -513,11 +494,11 @@ secret1(){
 	button1 waittill("trigger", player);
 	button1 delete();
 	iPrintLnBold( "^4something happend" );
-
+	
 	button2 waittill("trigger", player);
 	button2 delete();
 	iPrintLnBold( "^4something happend" );
-
+	
 	for(;; )
    {
     button3 waittill("trigger", player);
@@ -528,108 +509,18 @@ secret1(){
    }
 }
 
-secretweapon(){
-	finish = getent("secretweapon","targetname");
-	target = getEnt ("secret_ausgang", "targetname");
-
+secretexit()
+{
+finish = getent("secretweapon","targetname");
+target = getEnt ("secret_ausgang", "targetname");
+	
 	for(;;)
 	{
-		finish waittill ("trigger", user);
-			wait 0.25;
-		{
-			{
-				wait 0.25;
-				random = randomInt(14);
+		finish waittill ("trigger", player);
 
-				if(random == 0)
-				{
-					user giveWeapon("deserteagle_mp", 100, 500 );
-					user switchToWeapon("deserteagle_mp");
-
-				}
-				if(random == 1)
-				{
-					user giveWeapon("uzi_mp", 100, 500 );
-					user switchToWeapon("uzi_mp");
-
-				}
-				if(random == 2)
-				{
-					user giveWeapon("m4_mp", 100, 500 );
-					user switchToWeapon("m4_mp");
-
-				}
-				if(random == 3)
-				{
-					user giveWeapon("ak47_mp", 100, 500 );
-					user switchToWeapon("ak47_mp");
-
-				}
-				if(random == 4)
-				{
-					user giveWeapon("g3_mp", 100, 500 );
-					user switchToWeapon("g3_mp");
-
-				}
-				if(random == 5)
-				{
-					user giveWeapon("m60e4_mp", 100, 500 );
-					user switchToWeapon("m60e4_mp");
-
-				}
-				if(random == 6)
-				{
-					user giveWeapon("p90_mp", 100, 500 );
-					user switchToWeapon("p90_mp");
-
-				}
-				if(random == 7)
-				{
-					user giveWeapon("m40a3_mp", 100, 500 );
-					user switchToWeapon("m40a3_mp");
-
-				}
-				if(random == 8)
-				{
-					user giveWeapon("barrett_mp", 100, 500 );
-					user switchToWeapon("barrett_mp");
-
-				}
-				if(random == 9)
-				{
-					user giveWeapon("g36c_silencer_mp", 100, 0 );
-					user switchToWeapon("g36c_silencer_mp");
-
-				}
-				if(random == 10)
-				{
-					user giveWeapon("skorpion_silencer_mp", 100, 500 );
-					user switchToWeapon("skorpion_silencer_mp");
-
-				}
-				if(random == 11)
-				{
-					user giveWeapon("saw_grip_mp", 100, 500 );
-					user switchToWeapon("saw_grip_mp");
-
-				}
-				if(random == 12)
-				{
-					user giveWeapon("remington700_mp", 100, 500 );
-					user switchToWeapon("remington700_mp");
-
-				}
-				if(random == 13)
-				{
-					user giveWeapon("ak74u_mp", 100, 500 );
-					user switchToWeapon("ak74u_mp");
-				}
-			}
-			wait 1;
-			iPrintlnBold( " ^6" + user.name + " ^5 HAS FINISHED THE SECRET ROOM^1!" );
-			user SetOrigin(target.origin);
-			user SetPlayerAngles(target.angles);
-		}
+		player thread sr\api\_speedrun::finishWay("secret_0");
+		player SetOrigin(target.origin);
+		player SetPlayerAngles(target.angles);			
 	}
 }
 //////////////////////////// TRAPS ////////
@@ -662,7 +553,7 @@ trap1_bounce delete();
    platform2 moveZ (370,2);
    platform3 moveZ (370,2);
    platform4 moveZ (370,2);
-   wait 3;
+   wait 3; 
    platform1 rotateYaw (360,1);
    platform2 rotateYaw (360,1);
    platform3 rotateYaw (360,1);
@@ -672,7 +563,7 @@ trap1_bounce delete();
    platform3 moveZ (-370,2);
    platform4 moveZ (-370,2);
    wait 4;
-
+   
  }
 }
 
@@ -694,19 +585,15 @@ trap2(){
 	}
 }
 
-trap3(){
-	trap3 = getent("trap3","targetname");
-	moving = getent("trap3_mover","targetname");
-	trap3 setHintString ("^3Make it hard to bounce!");
-	trap3 waittill("trigger", player);
-	trap3 delete();
+trap3()
+{
+moving = getent("trap3_mover","targetname");
+	
+wait 0.1;
 
-	while(1){
-	   moving moveY (350,1);
-	   wait 1;
-	   moving moveY (-350,1);
-	   wait 1;
-	}
+moving delete();
+
+
 }
 
 trap4(){
@@ -718,7 +605,7 @@ trap4(){
 	trap4 setHintString ("^3Make the platforms move!");
 	trap4 waittill("trigger", player);
 	trap4 delete();
-
+	
 	while(1){
 	   plat1 rotateYaw (360,1);
 	   plat2 rotateYaw (360,1);
@@ -728,22 +615,16 @@ trap4(){
 	   }
 }
 
-trap5(){
-	trap5 = getent("trap5","targetname");
-	laser = getent("trap5_laser","targetname");
-	hurt = getent("trap5_hurt","targetname");
-	hurt enablelinkto();
-	hurt linkto(laser);
-	trap5 setHintString ("^3Make it even harder with lasers!");
-	trap5 waittill("trigger", player);
-	trap5 delete();
+trap5()
+{
+laser = getent("trap5_laser","targetname");
+hurt = getent("trap5_hurt","targetname");
 
-	while(1){
-	   laser movex (1560,3);
-	   wait 3;
-	   laser movex (-1560,3);
-	   wait 3;
-	   }
+wait 0.1;
+
+laser delete();
+hurt delete();
+	
 }
 
 trap6(){
@@ -779,51 +660,41 @@ trap7(){
 	}
 }
 
-trap8(){
-	trap8_mover = getent("trap8_mover","targetname");
-	trap8 = getent("trap8","targetname");
-	trap8 setHintString ("^3Push them Down!");
-	trap8 waittill("trigger", player);
-	trap8 delete();
-	while(1){
-		trap8_mover moveX(1350,3);
-		wait 5;
-		trap8_mover moveX(-1350,3);
-		wait 5;
-	}
+trap8()
+{
+mover = getent("trap8_mover","targetname");
 
+
+mover moveX(675,0.1);
+wait 0.1;
+mover moveZ(335,0.1);
+wait 0.3;
+mover moveY(1020,0.1);
+wait 0.5;
+mover rotatePitch(270,0.1);
+		
 }
 
-mover1(){
-	level.mover1 = getent("mover1","targetname");
-
-	while(isDefined(level.mover1))
-	{
-		level.mover1 moveX(704,3);
-		wait 3;
-		level.mover1 moveY(-704,3);
-		wait 3;
-		level.mover1 moveX(-704,3);
-		wait 3;
-		level.mover1 moveY(704,3);
-		wait 3;
-	}
+mover1()
+{
+mover1 = getent("mover1","targetname");
+	
+mover1 moveX(704,0.1);
+wait 0.1;
+mover1 moveY(-1100,0.1);
+		
 }
 
-mover2(){
-	mover2 = getent("mover2","targetname");
-
-	while(1)
-	{
-		mover2 moveY(704,3);
-		wait 3;
-		mover2 moveX(704,3);
-		wait 3;
-		mover2 moveY(-704,3);
-		wait 3;
-		mover2 moveX(-704,3);
-		wait 3;
-	}
+mover2()
+{
+mover2 = getent("mover2","targetname");
+	
+mover2 moveY(704,0.1);
+wait 0.1;
+mover2 moveX(704,0.1);
+wait 0.4;
+mover2 moveY(-650,0.1);
+		
 }
 
 //////////////////////////// MISC ////////
@@ -832,11 +703,11 @@ linked(){
 	start = getent ("start_origin","targetname"); //your start origin
 	stop = getent ("stop_origin","targetname"); //your end origin
 	trig setHintString ("^4Press F");
-
+	
 	while(true)
 	{
 		trig waittill ("trigger", player);
-
+		
 			link = spawn ("script_model",player.origin);
 			player linkTo (link);
 			link moveTo (start.origin, 1);
@@ -856,7 +727,7 @@ actitp(){
 	tp_end_trig waittill ("trigger", player);
 
 	for(;; )
-	{
+	{   
 		tp_end_trig waittill("trigger", player);
 		player setOrigin(tp_origin.origin);
 	}
