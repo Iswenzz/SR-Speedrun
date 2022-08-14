@@ -1,7 +1,6 @@
 
  main()
 {
-thread sr\api\_map::createSpawnOrigin((52.125, 2064, 20.125), 270);
 
  maps\mp\_load::main();
 
@@ -23,9 +22,11 @@ thread sr\api\_map::createSpawnOrigin((52.125, 2064, 20.125), 270);
 	setDvar("bg_falldamagemaxheight", 20000000 );
 	setDvar("bg_falldamageminheight", 15000000 );
 
-
+	thread sr\api\_map::createSpawnOrigin((52.125, 2064, 20.125), 270);
    thread sr\api\_speedrun::createNormalWays("Normal Way;");
-    thread sr\api\_speedrun::createSecretWays("190 Secret;210 Secret;");
+   thread sr\api\_speedrun::createSecretWays("190 Secret;210 Secret;");
+   thread sr\api\_speedrun::createEndMap((40.9637, -6.18404, 20.125), 70, 30);
+
    thread secret1entrance();
    thread secret2entrance();
    thread secret1fail();
@@ -66,7 +67,7 @@ secret2entrance()
 	{
         player setPlayerAngles(ori.angles);
     player setOrigin(ori.origin);
-    player thread sr\api\_speedrun::changeWay("secret_1");
+   player thread sr\api\_speedrun::changeWay("secret_1");
     }
 	}
 
@@ -196,7 +197,7 @@ secret2end()
 	for(;;)
 	{
 		trig waittill("trigger", player);
-	    player thread sr\api\_speedrun::finishWay("secret_0");
+	    player thread sr\api\_speedrun::finishWay("secret_1");
 	}
 }
 
