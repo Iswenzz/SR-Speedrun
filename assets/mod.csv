@@ -7,7 +7,15 @@ xmodel,com_crate01
 xmodel,com_crate02
 xmodel,chicken
 xmodel,viewmodel_knife
+xmodel,x_mirror
+xmodel,x_volumetric_clouds
 xanim,chicken_dance
+material,sr_translate
+material,sr_shake
+material,sr_zoom
+material,sr_vhs
+material,sr_blur
+material,sr_edge
 material,time_hud
 material,sr_banner
 material,sr_race
