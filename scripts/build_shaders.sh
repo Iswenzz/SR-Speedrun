@@ -24,7 +24,7 @@ cp -v techsets/* "$GAME/raw/techsets/sm2"
 
 # Shaders
 cd "$GAME/raw/shader_bin"
-./shader_tool sr_shake sr_zoom sr_edge sr_vhs sr_mirror sr_translate sr_blur sr_volumetric_clouds
+./shader_tool sr_edge sr_blur sr_vhs sr_shake sr_zoom sr_translate sr_mirror sr_psy_glass sr_glitch
 
 # Compile
 cd "$GAME/bin"

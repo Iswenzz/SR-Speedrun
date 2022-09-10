@@ -67,7 +67,7 @@ cp -rv xmodelsurfs "$GAME/raw"
 
 # Shaders
 cd "$GAME/raw/shader_bin"
-./shader_tool sr_edge sr_grain sr_mirror sr_motion_blur sr_rotation sr_shake sr_vhs sr_zoom
+./shader_tool sr_edge sr_blur sr_vhs sr_shake sr_zoom sr_translate sr_mirror sr_psy_glass sr_glitch
 
 # Compile
 cd "$GAME/bin"
