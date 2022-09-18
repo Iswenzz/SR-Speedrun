@@ -80,7 +80,7 @@ load()
 	waitMapLoad();
 
 	if (!mapHasLeaderboards())
-		return;
+		addWay("normal_0", "Normal Way");
 
 	level.leaderboards = [];
 	modes = getArrayKeys(level.leaderboard_modes);
