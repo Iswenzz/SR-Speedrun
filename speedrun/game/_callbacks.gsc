@@ -71,6 +71,8 @@ playerConnect()
 	self setClientDvar("player_sprintTime", 4);
 	self setClientDvar("ui_uav_client", 0);
 	self setClientDvar("g_scriptMainMenu", "team_select");
+	wait 0.05;
+	self setClientDvar("cg_drawSpectatorMessages", 0);
 }
 
 playerDisconnect()

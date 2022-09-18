@@ -9,8 +9,10 @@ xmodel,chicken
 xmodel,viewmodel_knife
 xanim,chicken_dance
 xmodel,x_mirror
-//xmodel,x_volumetric_clouds
-//xmodel,x_aurora
+xmodel,x_volumetric_clouds
+xmodel,x_space_curvature
+xmodel,x_hexagon
+xmodel,x_aurora
 material,sr_glitch
 material,sr_translate
 material,sr_shake
@@ -18,7 +20,7 @@ material,sr_zoom
 material,sr_vhs
 material,sr_blur
 material,sr_edge
-//material,sr_psy_edge
+material,sr_psy_edge
 material,sr_psy_glass
 material,time_hud
 material,sr_banner
@@ -98,8 +100,10 @@ material,score_icon
 material,faction_128_sas_black
 material,faction_128_arab_gold
 material,line
+fx,weather/snow_light_mp_bloc
 fx,weather/lightning_mp_farm
 fx,weather/rain_mp_farm
+fx,deathrun/blue_particles
 fx,deathrun/lasershow
 fx,deathrun/wr_fx
 fx,deathrun/endtrig_fx
