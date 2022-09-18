@@ -86,10 +86,16 @@ playerTimer()
 
 endTimer()
 {
-	if (self.finishedMap || self.sr_cheat || !self isPlaying() || !isDefined(self.time))
+	if (self.finishedMap || !self isPlaying() || !isDefined(self.time))
 		return;
-
 	self.finishedMap = true;
+
+	if (self.sr_cheat)
+	{
+		iPrintLnBold("^1Your time was not saved!");
+		return;
+	}
+
 	self.time = originToTime(getTime() - self.time.origin);
 	self speedrun\player\huds\_speedrun::updateTime();
 
