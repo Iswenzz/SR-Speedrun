@@ -9,7 +9,7 @@ setDvar("bg_falldamageminheight", 99998);
 thread sr\api\_map::createSpawn((0,-321,-436),90);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createSecretWays("Secret Way;");
-thread sr\api\_speedrun::createTeleporter((258.271, -124.821, -495.875), 50, 20, (464, 3208, -580), 90, "freeze", "yellow", "secret_0");
+thread sr\api\_speedrun::createTeleporter((258.271, -124.821, -495.875), 50, 20, (464, 3208, -580 - 60), 90, "freeze", "yellow", "secret_0");
 
 thread secretend();
 thread door();
@@ -21,15 +21,15 @@ thread trap4();
 
 secretend()
 {
- 
+
     trig = getent("teleport","targetname");
     tele = getent("secret_finish", "targetname");
-       
+
         for(;;)
         {
         trig waittill("trigger", player);
-        player thread sr\api\_speedrun::finishWay("secret_0");						
-		player setorigin(tele.origin);				
+        player thread sr\api\_speedrun::finishWay("secret_0");
+		player setorigin(tele.origin);
         }
 }
 

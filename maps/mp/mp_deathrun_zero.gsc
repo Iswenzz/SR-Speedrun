@@ -10,14 +10,15 @@ maps\mp\_load::main();
 	game["axis_soldiertype"] = "desert";
 
 	setdvar("compassmaxrange","2000");
-	
+
 thread sr\api\_map::createSpawn((3,653,78),270);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread sr\api\_speedrun::createEndMap((-1860, 82, 76), 100, 100);
 
 thread stuff();
 
 portals = getentarray("teleport", "targetname");
-	
+
 	for(inx = 0; inx < portals.size; inx++)
 	{
 		thread TransporterRandom(portals, inx);
@@ -27,7 +28,7 @@ portals = getentarray("teleport", "targetname");
 TransporterRandom(portals, inx)
 {
 	trigger = spawn( "trigger_radius", portals[inx].origin, 0, 40, 40);
-	
+
 	while(true)
 	{
 		trigger waittill("trigger",player);
@@ -52,10 +53,10 @@ TransporterRandom(portals, inx)
 	}
 }
 
-stuff() 
+stuff()
 {
-block1 = getent("mackac1", "targetname");  
-block2 = getent("tlacic1", "targetname"); 
+block1 = getent("mackac1", "targetname");
+block2 = getent("tlacic1", "targetname");
 
 wait 0.05;
 block1 delete();

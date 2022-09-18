@@ -7,7 +7,7 @@ main()
     game["defenders"] = "allies";
     game["allies_soldiertype"] = "desert";
     game["axis_soldiertype"] = "desert";
- 
+
 thread sr\api\_map::createSpawn((193,-1,76),360);
 thread sr\api\_speedrun::createTeleporter((209.977, 160.844, 16.125), 65, 30, (3509, -2937, 656), 91, "freeze", "red", "secret_0");
 thread sr\api\_speedrun::createEndMap((8336.32, 0.0214804, -431.875), 120, 40, "normal_0");
@@ -19,6 +19,9 @@ thread startdoor();
 thread lift();
 thread trap6();
 thread lasers();
+
+getEnt("hurt1", "targetname") delete();
+getEnt("hurt2", "targetname") delete();
 
 }
 
@@ -55,11 +58,11 @@ trap6b moveX(1400,0.1);
 
 lasers()
 {
-laser1=getent("laser1","targetname");		
+laser1=getent("laser1","targetname");
 laser1_hurt=getent("laser1_hurt","targetname");
-laser2=getent("laser2","targetname");		
+laser2=getent("laser2","targetname");
 laser2_hurt=getent("laser2_hurt","targetname");
-laser3=getent("laser3","targetname");		
+laser3=getent("laser3","targetname");
 laser3_hurt=getent("laser3_hurt","targetname");
 
 wait 0.1;

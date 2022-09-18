@@ -36,7 +36,7 @@ maps\mp\mp_deathrun_sao\legendchallange::main();
 thread sr\api\_speedrun::createNormalWays("Dungen Way;City Way;Ruby Way;");
 thread sr\api\_speedrun::createSecretWays("Secret Way;");
 secretorigin = getent("secretspot","targetname");
-thread sr\api\_speedrun::createTeleporter((-561,562,53),100,150,secretorigin.origin,secretorigin.angles[1],"unfreeze", "secret_0");
+thread sr\api\_speedrun::createTeleporter((-561,562,53),100,150,secretorigin.origin,secretorigin.angles[1],"unfreeze", "blue", "secret_0");
 
 thread secfinish();
 thread door_on_edge();

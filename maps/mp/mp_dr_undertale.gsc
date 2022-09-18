@@ -38,9 +38,12 @@ thread sr\api\_map::createSpawnOrigin((124, -12, 1), 89);
 	level.end_playing = false;
 
 	//GENERAL THREADS
-    thread sr\api\_speedrun::createNormalWays("Normal Way");
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread sr\api\_speedrun::createTeleporter((-181, 38, 60), 50, 50, (-2832, 1163, 60), 90, "freeze", "blue", "secret_0");
+
     	//thread secret_act();
-	//thread secret_end();
+	thread secret_end();
 	//thread musicBox();
 	thread opening();
 	//thread fananim();
@@ -244,10 +247,11 @@ secret_end()
 	for(;;)
 	{
 	secret_finish waittill("trigger", player);
-	player setOrigin( secret_destination.origin );
-	player setplayerangles( secret_destination.angles );
-	level thread playSoundOnAllPlayers("eef");
-	iPrintlnBold( "^3" + player.name + " ^1has finished the secret" );
+	player sr\api\_speedrun::finishWay("secret_0");
+	// player setOrigin( secret_destination.origin );
+	// player setplayerangles( secret_destination.angles );
+	// level thread playSoundOnAllPlayers("eef");
+	// iPrintlnBold( "^3" + player.name + " ^1has finished the secret" );
 	}
 }
 

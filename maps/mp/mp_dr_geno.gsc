@@ -39,6 +39,21 @@ thread hardfinish();
 thread actisecfinish();
 thread jumpersecfinish();
 
+thread teleportTo("trig_easy_endroom", "endtele_too");
+thread teleportTo("trig_hard_endroom", "endtele_too");
+
+}
+
+teleportTo(from, too){
+	trigger = getEnt(from,"targetname");
+	tp = getEnt(too, "targetname");
+
+	while(1) {
+		trigger waittill( "trigger", player );
+
+		player SetOrigin( tp.origin );
+		player setplayerangles( tp.angles );
+	}
 }
 
 startdoors()

@@ -16,8 +16,6 @@ thread sr\api\_map::createSpawnOrigin((-199, -34, 32), 90);
     setDvar("bg_falldamagemaxheight", 99999);
     setDvar("bg_falldamageminheight", 99998);
 
-
-	thread sr\api\_map::deleteUnsupportedWeapons();
 		thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	thread sr\api\_speedrun::createTeleporter((-33.3952, 189.139, 32.125), 50, 30, (-451, -6001, 124), 270, "freeze", "yellow", "secret_0");

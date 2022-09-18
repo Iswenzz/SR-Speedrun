@@ -20,12 +20,11 @@ main()
 {
 thread sr\api\_map::createSpawnOrigin((-920.516, -1412, 8.282), 45);
 trig=getEnt("finaldoor", "targetname");
+trig.targetname = "endmap_trig";
 level.mapHasTimeTrigger = true;
-while(1)
-{
-trig waittill("trigger", player);
-player thread braxi\_mod::endTimer();
-}
+getEnt("bigdoor", "targetname") delete();
+return;
+
   	maps\mp\_load::main();
 	maps\mp\mp_fnrp_monderland_fx::main();
 	maps\createfx\mp_fnrp_monderland_fx::main();
@@ -52,25 +51,6 @@ player thread braxi\_mod::endTimer();
 	thread WatchGame();
 	// thread AddTestClients();
 	level.roll = 0;
-
-	// iprintln("^1The game starts in ^7");
-
-	// for(i=8;i>=0;i--)
-	// {
-		// iprintln("^1" + i + " ");
-		// wait 1;
-	// }
-
-	abrir_puertas = getEnt("bigdoor", "targetname");
-	abrir_puertas movez (-200,1,0,0.6);
-	abrir_puertas waittill ("movedone");
-
-	// iprintlnbold("^1Go!");
-
-
-	// endtrig thread WatchEndTrigger();
-	sr\api\_speedrun::createNormalWays("Normal Way;");
-
 }
 
 onConnected()

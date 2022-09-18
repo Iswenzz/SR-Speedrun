@@ -1,7 +1,7 @@
 main()
 {
-	maps\mp\_load::main(); 
- 
+	maps\mp\_load::main();
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
@@ -9,7 +9,6 @@ main()
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
 
-	thread sr\api\_map::deleteUnsupportedWeapons();
 	thread sr\api\_map::createSpawn((-2175, -1991, 586),90);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
@@ -20,7 +19,7 @@ main()
 	setDvar("r_glowbloomintensity0",".1");
 	setDvar("r_glowbloomintensity1",".1");
 	setDvar("r_glowskybleedintensity0",".1");
-	setDvar("bg_fallDamageMaxHeight", "99999"); 
+	setDvar("bg_fallDamageMaxHeight", "99999");
 	setDvar("bg_fallDamageMinHeight", "99998");
 
 }

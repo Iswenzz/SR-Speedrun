@@ -268,18 +268,18 @@ opening()
 {
     barrier = getEnt("start_barrier","targetname");
 
-	wait 15;
-	iPrintlnBold( "Opening the barrier in..." );
-	iPrintlnBold( "^55" );
-	wait 1;
-	iPrintlnBold( "^54" );
-	wait 1;
-	iPrintlnBold( "^53" );
-	wait 1;
-	iPrintlnBold( "^52" );
-	wait 1;
-	iPrintlnBold( "^51" );
-	wait 1;
+	// wait 15;
+	// iPrintlnBold( "Opening the barrier in..." );
+	// iPrintlnBold( "^55" );
+	// wait 1;
+	// iPrintlnBold( "^54" );
+	// wait 1;
+	// iPrintlnBold( "^53" );
+	// wait 1;
+	// iPrintlnBold( "^52" );
+	// wait 1;
+	// iPrintlnBold( "^51" );
+	// wait 1;
 
     level thread playSoundOnAllPlayers("barrier_down");
 
@@ -310,7 +310,7 @@ endteleporttrigger()
 	while(1)
 	{
 		trigger waittill ( "trigger", player );
-        player thread teleportplayer(origin,dest,false);
+        player sr\api\_speedrun::finishWay("normal_0");
 	}
 }
 

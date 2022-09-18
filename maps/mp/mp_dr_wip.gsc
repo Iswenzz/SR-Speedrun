@@ -43,20 +43,7 @@ onPlayerSpawned()
 	for(;;)
 	{
 		self waittill("spawned_player");
-        self thread clone();
 	}
-}
-
-clone(){
-    self endon("death");
-    self endon("disconnect");
-    while(1){
-        self.clone = self clonePlayer(1);
-        forward = vector_scale(anglesToForward(self.angles), -20);
-        self.clone.origin = self.origin+forward;
-        self.clone.angles = self.angles;
-        wait 0.1;
-    }
 }
 
 watch1(trigger2){

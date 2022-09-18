@@ -26,10 +26,10 @@ loadscreen
 
 main()
 {
-thread sr\api\_map::createSpawnOrigin((702, -120, 34), 266);
+	thread sr\api\_map::createSpawnOrigin((702, -120, 34), 266);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
-		    maps\mp\_load::main();
+	maps\mp\_load::main();
 
 
 	game["allies"] = "sas";
@@ -39,6 +39,8 @@ thread sr\api\_map::createSpawnOrigin((702, -120, 34), 266);
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
 
+	//setdvar("g_speed" ,"190");
+	//setdvar("dr_jumpers_speed" ,"1");
 
 	level.fx_blue_star = loadFx( "lovely/bluestar" );
 	level.fx_heart = loadFx( "lovely/heart" );
@@ -310,6 +312,7 @@ trap_1()
 
 trap_3()
 {
+    gettrigger("trap3_trig", "Trap 2");
     thread trap_3_a();
 	thread trap_3_b();
 	thread trap_3_c();
@@ -318,36 +321,77 @@ trap_3()
 
 trap_3_a()
 {
+	level endon("trigger");
     enemy1 = getEnt("enemy1", "targetname");
 	enemy1_dmg = getEnt("enemydmg1", "targetname");
+	enemy1_origin1 = (2176, -1440, 72);
+	enemy1_origin2 = (2276, -1768, 56);
+	enemy1_dmg enablelinkto();
+    enemy1_dmg linkto (enemy1);
 
-	enemy1 delete();
-	enemy1_dmg delete();
+    while(1)
+	{
+	    enemy1 moveTo(enemy1_origin1, 0.8);
+		enemy1 rotateYaw (80,0.9);
+		enemy1 waittill("movedone");
+		wait 0.5;
+		enemy1 moveTo(enemy1_origin2, 0.8);
+		enemy1 rotateYaw (-80,0.9);
+		enemy1 waittill("movedone");
+		wait 0.5;
+	}
 }
 
 
 trap_3_b()
 {
+	level endon("trigger");
     enemy2 = getEnt("enemy2", "targetname");
 	enemy2_dmg = getEnt("enemydmg2", "targetname");
-
-	enemy2 delete();
-	enemy2_dmg delete();
+	enemy2_origin1 = (2040, -1496, 72);
+	enemy2_origin2 = (2180, -1816, 56);
+	enemy2_dmg enablelinkto();
+    enemy2_dmg linkto (enemy2);
+    while(1)
+	{
+	    enemy2 moveTo(enemy2_origin2, 0.8);
+		enemy2 rotateYaw (-80,0.9);
+		enemy2 waittill("movedone");
+		wait 0.2;
+		enemy2 moveTo(enemy2_origin1, 0.8);
+		enemy2 rotateYaw (80,0.9);
+		enemy2 waittill("movedone");
+		wait 0.2;
+	}
 }
 
 
 trap_3_c()
 {
+	level endon("trigger");
     enemy3 = getEnt("enemy3", "targetname");
 	enemy3_dmg = getEnt("enemydmg3", "targetname");
-
-	enemy3 delete();
-	enemy3_dmg delete();
+	enemy3_origin1 = (1912, -1520, 72);
+	enemy3_origin2 = (2052, -1856, 56);
+	enemy3_dmg enablelinkto();
+    enemy3_dmg linkto (enemy3);
+    while(1)
+	{
+	    enemy3 moveTo(enemy3_origin1, 0.8);
+		enemy3 rotateYaw (80,0.9);
+		enemy3 waittill("movedone");
+		wait 0.5;
+		enemy3 moveTo(enemy3_origin2, 0.8);
+		enemy3 rotateYaw (-80,0.9);
+		enemy3 waittill("movedone");
+		wait 0.5;
+	}
 }
 
 
 trap_4()
 {
+	level endon("trigger");
     redblob = getEnt("redblob", "targetname");
 	redblob_dmg = getEnt("redblob_dmg", "targetname");
 	origin1 = (2676, -492, 44);
@@ -356,7 +400,10 @@ trap_4()
     redblob_dmg linkto (redblob);
     wait 0.05;
     redblob movex(-250, 0.1);
-	redblob_dmg delete();
+	gettrigger("trap4_trig", "Trap 3");
+	redblob moveTo(origin1, 1, 0.2, 0);
+	redblob waittill("movedone");
+	redblob moveTo(origin2, 1, 0, 0.2);
 }
 
 
@@ -450,13 +497,48 @@ trap_7_b()
 	brush show();
 }
 
+
 trap_8()
 {
-    boss = getEnt("boss", "targetname");
-	bullet = getEnt("bullet", "targetname");
+	level endon("trigger");
+    trig = getEnt("bullet_trig", "targetname");
+    level.firing = false;
+    gettrigger("trap8_trig", "Trap 7");
+    while(1)
+    {
+        trig waittill("trigger", player);
+        if( !isPlayer( player ) )
+            continue;
+        if( level.firing == true )
+        	return;
+        shootbullet( player );
+
+    }
+}
+
+
+shootbullet( victim )
+{
+	bulletorigin = (-8672, 3232, 512);
+    bullet = getEnt("bullet", "targetname");
     trig = getEnt("bullet_hurt", "targetname");
 
-    boss delete();
-	bullet delete();
-	trig delete();
+    if(!isDefined(level.linkenabled))
+    {
+    	trig enableLinkTo();
+    	trig linkto(bullet);
+    	level.linkenabled = true;
+	}
+	level.firing = true;
+    bullettarget = victim.origin;
+    dist = distance(bulletorigin, bullettarget);
+    bullet moveTo((bullettarget + (0,0,10)), (dist/1700));
+    bullet waittill("movedone");
+    bullet hide();
+    trig triggerOff();
+    bullet moveTo(bulletorigin, 0.1);
+    bullet waittill("movedone");
+    bullet show();
+    trig triggerOn();
+    level.firing = false;
 }

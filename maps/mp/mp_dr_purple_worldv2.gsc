@@ -15,6 +15,7 @@ maps\mp\_load::main();
     thread sr\api\_map::createSpawn((1243,321,76),180);
     thread sr\api\_speedrun::createNormalWays("Normal Way;");
     thread sr\api\_speedrun::createSecretWays("^2Easy Secret;^1Hard Secret;");
+	thread sr\api\_map::createTeleporter((1289, 53, 76), 80, 80, (4352, 653, 76), 90, "blue", "unfreeze");
 
 	thread StartDoor();
 	thread Collectables();
@@ -25,9 +26,9 @@ maps\mp\_load::main();
 	thread EasySecretFall();
 	thread HardSecretTP();
 	thread OpenSecret();
-	thread SecretTeleport();
-	// thread ezfinish();
-	// thread hardfinish();
+	// thread SecretTeleport();
+	thread ezfinish();
+	thread hardfinish();
 }
 
 Startdoor()

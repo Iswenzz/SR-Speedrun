@@ -399,7 +399,7 @@ getPlayerEntry(entries)
 
 givePlacementXP(entriesCount, placement)
 {
-	if (placement == 0 || !isDefined(level.leaderboard_xps[placement - 1]))
+	if (isDefined(level.leaderboard_xp_disabled) || placement == 0 || !isDefined(level.leaderboard_xps[placement - 1]))
 		return;
 
 	multiplier = (entriesCount / 10) * Ternary(self sr\sys\_admins::isVIP(), 3, 1);
