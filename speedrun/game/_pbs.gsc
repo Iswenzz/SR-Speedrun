@@ -59,7 +59,7 @@ saveEntry(entry)
     SQL_Prepare("UPDATE pbs SET time = ? WHERE map = ? AND player = ? AND mode = ? AND way = ?");
     SQL_BindParam(entry["time"].origin, level.MYSQL_TYPE_LONG);
 	SQL_BindParam(level.map, level.MYSQL_TYPE_STRING);
-    SQL_BindParam(entry["player"], level.MYSQL_TYPE_LONG);
+    SQL_BindParam(entry["player"], level.MYSQL_TYPE_STRING);
     SQL_BindParam(entry["mode"], level.MYSQL_TYPE_STRING);
     SQL_BindParam(entry["way"], level.MYSQL_TYPE_STRING);
     SQL_Execute();

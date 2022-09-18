@@ -198,7 +198,7 @@ saveEntry(entry)
 	level.leaderboards[index].entries = addEntry(entry, entries);
 
 	placement = getEntryPlacement(entry, entries);
-	self givePlacementXP(entries.size, placement);
+	self givePlacementXP(entry, entries, placement);
 
 	if (placement == 1)
 		self thread worldRecord(entry);
@@ -397,13 +397,17 @@ getPlayerEntry(entries)
 	return undefined;
 }
 
-givePlacementXP(entriesCount, placement)
+givePlacementXP(entry, entries, placement)
 {
-	if (isDefined(level.leaderboard_xp_disabled) || placement == 0 || !isDefined(level.leaderboard_xps[placement - 1]))
+	if (isDefined(level.leaderboard_xp_disabled) || placement == 0)
+		return;
+	if (entries.size && entries[0]["time"].origin == entry["time"].origin)
 		return;
 
-	multiplier = (entriesCount / 10) * Ternary(self sr\sys\_admins::isVIP(), 3, 1);
-	self sr\game\_rank::giveRankXP("", level.leaderboard_xps[placement - 1] * multiplier);
+	multiplier = (entries.size / 10) * Ternary(self sr\sys\_admins::isVIP(), 3, 1);
+	xp = level.leaderboard_xps[placement - 1] * multiplier;
+
+	self sr\game\_rank::giveRankXP("", xp);
 }
 
 getWorldRecord(mode, way)
