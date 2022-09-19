@@ -49,7 +49,7 @@ onConnect()
 	if (!isDefined(self.sr_mode))
 		self.sr_mode = "190";
 
-	wait 0.05;
+	wait 0.5;
 
 	// Default
 	for (i = 0; i < level.leaderboard_max_page; i++)

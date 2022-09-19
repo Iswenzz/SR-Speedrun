@@ -30,11 +30,7 @@ trig = spawn( "trigger_radius", (5513.96, -2223.63, 32.125), 0, 105, 100 );
 trig.targetname = "endmap_trig";
 trig.radius = 105;
 level.mapHasTimeTrigger = true;
-while(1)
-{
-trig waittill("trigger", player);
-player thread braxi\_mod::endTimer();
-}
+
 	thread way_connect();
 	maps\mp\_load::main();
     maps\mp\sanctuary\_others::main();

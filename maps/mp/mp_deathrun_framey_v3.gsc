@@ -6,11 +6,8 @@ main()
 thread sr\api\_map::createSpawnOrigin((707.125, 333.048, 64.125), 90);
 trig=getent("activator_door_trig","targetname");
 level.mapHasTimeTrigger = true;
-while(1)
-{
-trig waittill("trigger", player);
-player thread braxi\_mod::endTimer();
-}
+trig.targetname = "endmap_trig";
+
 	//maps\mp\_load::main();
 
 	// setExpFog(800, 2500, 255/255, 250/255, 250/255, 0.0); //dit is voor enviroment fog

@@ -112,9 +112,7 @@ canSpawn()
 
 isReallyAlive()
 {
-	if (self.sessionstate == "playing")
-		return true;
-	return false;
+	return isDefined(self.sessionstate) && self.sessionstate == "playing";
 }
 
 isPlaying()

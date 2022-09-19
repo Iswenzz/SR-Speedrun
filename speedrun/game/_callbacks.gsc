@@ -57,6 +57,8 @@ playerConnect()
 	self eventSpectator();
 	self welcomeMenu();
 
+	wait 3;
+
 	wait 0.05;
 	self setClientDvar("ui_3dwaypointtext", "1");
 	self setClientDvar("ui_deathicontext", "1");
@@ -71,8 +73,6 @@ playerConnect()
 	self setClientDvar("player_sprintTime", 4);
 	self setClientDvar("ui_uav_client", 0);
 	self setClientDvar("g_scriptMainMenu", "team_select");
-	wait 0.05;
-	self setClientDvar("cg_drawSpectatorMessages", 0);
 }
 
 playerDisconnect()
@@ -105,6 +105,8 @@ playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vP
 
 	level notify("player_damage", self, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime);
 
+	if (isPlayer(self) && isPlayer(eAttacker) && self.pers["team"] != eAttacker.pers["team"])
+		return;
 	if (isPlayer(self) && isPlayer(eAttacker) && self.pers["team"] == eAttacker.pers["team"] && !eAttacker.teamKill)
 		return;
 	if (isPlayer(self) && isDefined(self.godmode))

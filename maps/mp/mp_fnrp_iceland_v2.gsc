@@ -21,13 +21,10 @@ main()
 thread sr\api\_map::createSpawnOrigin((-1242.363, -4859.194, 108.747), 135);
 trig = getEnt("finaldoor", "targetname");
 level.mapHasTimeTrigger = true;
+trig.targetname = "endmap_trig";
 wait 1;
 thread sr\api\_map::createTriggerFx(trig, "endtrig");
-while(1)
-{
-trig waittill("trigger", player);
-player thread braxi\_mod::endTimer();
-}
+
   	maps\mp\_load::main();
 	maps\mp\mp_fnrp_iceland_fx::main();
 	maps\createfx\mp_fnrp_iceland_fx::main();
