@@ -92,7 +92,7 @@ endTimer()
 
 	if (self.sr_cheat)
 	{
-		iPrintLnBold("^1Your time was not saved!");
+		self iPrintLnBold("^1Your time was not saved!");
 		return;
 	}
 
