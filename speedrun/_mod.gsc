@@ -4,6 +4,7 @@ main()
 	braxi\_mod::main();
 
 	sr\commands\_defrag::main();
+	sr\commands\_bomberman::main();
 	sr\commands\_kz::main();
 	sr\commands\_race::main();
 	sr\commands\_portal::main();
@@ -12,6 +13,7 @@ main()
 	sr\game\_killcam::main();
 	sr\game\minigames\_kz::initKz();
 	sr\game\minigames\_race::initRace();
+	sr\game\minigames\_bomberman::initBomberman();
 	sr\player\customize\_main::initCustomize();
 	sr\player\modes\_practise::main();
 

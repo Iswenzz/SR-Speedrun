@@ -5,6 +5,7 @@ xmodel,ch_russian_table
 xmodel,axis
 xmodel,com_crate01
 xmodel,com_crate02
+xmodel,ch_crate64x64
 xmodel,chicken
 xmodel,viewmodel_knife
 xanim,chicken_dance

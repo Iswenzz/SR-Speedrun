@@ -24,7 +24,7 @@ cmd_Portal(args)
 
 	self setStat(1700, 3);
 	self.sr_mode = "Portal";
-    self pm("Run mode: ^2(BETA) ^5Portal");
+    self pm("Run mode: ^5Portal");
     self suicide();
 }
 
@@ -35,7 +35,7 @@ cmd_Defrag(args)
 
 	self setStat(1700, 4);
 	self.sr_mode = "Defrag";
-    self pm("Run mode: ^2(BETA) ^3Defrag");
+    self pm("Run mode: ^3Defrag");
     self suicide();
 }
 
