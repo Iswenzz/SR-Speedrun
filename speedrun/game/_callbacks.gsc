@@ -53,8 +53,9 @@ playerConnect()
 	if (game["state"] == "endmap")
 		return;
 
+	self openMenu("team_select");
+	self welcome();
 	self eventSpectator();
-	self welcomeMenu();
 
 	wait 3;
 
@@ -218,18 +219,12 @@ isWallKnifing(attacker, victim)
 	return true;
 }
 
-welcomeMenu()
+welcome()
 {
-	self endon("disconnect");
-	wait 0.05;
+	role = self sr\sys\_admins::getRoleName();
+	geo = self getGeoLocation(2);
 
-	if (!isDefined(self.canplay))
-	{
-		self.canplay = true;
-		self openMenu("sr_welcome");
-	}
-	else
-		self openMenu("team_select");
+	sr\sys\_admins::message(fmt("^2Welcome ^7%s ^7%s ^7from ^1%s", role, self.name, geo));
 }
 
 allies()
