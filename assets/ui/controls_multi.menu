@@ -3,7 +3,7 @@
 #define 	OPTIONS_STYLE			1
 #define 	CHOICE_SEP_1			23
 #define 	CHOICE_SEP_2			27
-#include "ui/includes/menustyle.inc"
+#include "ui/includes/style.inc"
 #include "ui/templates/choices_setup_common.menu"
 
 {
@@ -14,6 +14,7 @@
 		rect			0 0 640 480
 		focusColor		COLOR_FOCUSED
 		soundloop		""
+
 		onOpen
 		{
 			exec "setfromdvar ui_name name";
@@ -34,17 +35,18 @@
 
 			setLocalVarBool ui_hideBack 1;
 		}
+
 		onClose
 		{
 			setLocalVarBool ui_hideBack 0;
 		}
+
 		onEsc
 		{
 			close self;
 		}
 
 		// Frame background
-		blurworld		1
 		itemDef
 		{
 			style			WINDOW_STYLE_SHADER
@@ -85,10 +87,6 @@
 		CHOICE_SEPARATOR(CHOICE_SEP_2)
 		CHOICE_BIND(28, "Toggle 3rd Person Camera", "openscriptmenu quickstuff 3rdperson", ;)
 		CHOICE_BIND(29, "Suicide", "openscriptmenu quickstuff suicide", ;)
-
-		//CHOICE_SEPARATOR(CHOICE_SEP_2)
-		//CHOICE_BIND(28, "@MENU_WEAPON_MENU", "openscriptmenu ingame changeweapon", ;)
-		//CHOICE_BACK("@MENU_BACK", close self)
 
 		CHOICE_KEYBINDHELP
 	}
