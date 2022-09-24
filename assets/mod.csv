@@ -339,43 +339,16 @@ stringtable,mp/challengetable_tier1.csv
 stringtable,mp/challengetable_tier2.csv
 
 // Menus
-menufile,ui/options_control_defaults.menu
-menufile,ui/options_driverinfo.menu
-menufile,ui/options_game_pc.menu
-menufile,ui/options_graphics_defaults.menu
-menufile,ui/options_graphics_pc.menu
-menufile,ui/options_ingame.menu
-menufile,ui/options_look_pc.menu
-menufile,ui/options_main.menu
-menufile,ui/options_misc_pc.menu
-menufile,ui/options_move_pc.menu
-menufile,ui/options_pc.menu
-menufile,ui/options_performance.menu
-menufile,ui/options_shoot_pc.menu
-menufile,ui/options_sound_pc.menu
-menufile,ui/error.menu
-menufile,ui_mp/mods.menu
-menufile,ui_mp/options.menu
-menufile,ui_mp/options_multi.menu
-menufile,ui_mp/options_voice.menu
-menufile,ui/playerprofile.menu
-menufile,ui_mp/pc_joinchoosegamemode.menu
-menufile,ui_mp/joinserver.menu
-menufile,ui_mp/connect.menu
-menufile,ui_mp/scriptmenus/sr_settings.menu
-menufile,ui_mp/hud.menu
-menufile,ui_mp/main.menu
-menufile,ui_mp/wm_quickmessage.menu
+menufile,ui/menus.txt
 menufile,ui_mp/scriptmenus/scoreboard.menu
-menufile,ui_mp/scriptmenus/dr_admin.menu
 menufile,ui_mp/scriptmenus/quickstuff.menu
 menufile,ui_mp/scriptmenus/team_select.menu
 menufile,ui_mp/scriptmenus/sr_votemap.menu
 menufile,ui_mp/scriptmenus/sr_leaderboard.menu
 menufile,ui_mp/scriptmenus/sr_welcome.menu
 menufile,ui_mp/scriptmenus/sr_customize.menu
+menufile,ui_mp/scriptmenus/sr_settings.menu
 menufile,ui_mp/scriptmenus/clientcmd.menu
-menufile,ui_mp/controls_multi.menu
 
 // Knifes
 xmodel,sr_knife_4_0

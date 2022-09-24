@@ -1,139 +1,429 @@
-#include "ui/menudef.h"
-
-#include "ui/includes/menustyle.inc"
-#include "ui/templates/choices_setup_common.menu"
-
+#include "ui/headers/menudef.h"
 #include "ui/includes/sr.inc"
-
-#define DR_TEAM_BUTTON(id, x, y, w, h, itemName, itemAction, visArg) \
-		DR_TEAM_BUTTON_EXT(id, x, y, w, h, itemName, itemAction, ;, ;, visArg)
-
-#define DR_TEAM_BUTTON_EXT(id, x, y, w, h, itemName, itemAction, onItemEnter, onItemExit, visArg) \
-itemDef \
-{ \
-	visible			visArg \
-	name			"button_default"id \
-	rect			x y w h DR_BUTTON_ALIGN \
-	style			WINDOW_STYLE_FILLED \
-	border			1 \
-	bordercolor		DR_BUTTON_BORDERCOLOR_SR \
-	forecolor		DR_BUTTON_FORECOLOR \
-	backcolor		DR_BUTTON_BACKCOLOR \
-} \
-itemDef \
-{ \
-	visible			visArg \
-	name			"button_over"id \
-	rect			x y w h DR_BUTTON_ALIGN \
-	style			WINDOW_STYLE_FILLED \
-	border			1 \
-	bordercolor		DR_BUTTON_BORDERCOLOR_SR \
-	forecolor		DR_BUTTON_FORECOLOR \
-	backcolor		DR_BUTTON_BACKCOLOR_FOCUSED \
-} \
-itemDef \
-{ \
-	style		WINDOW_STYLE_FILLED \
-	rect		x y w h DR_BUTTON_ALIGN \
-	backcolor	0.137 0 0.239 0.5 \
-	forecolor	1 1 1 1 \
-	exp			text(itemName) \
-	border		1 \
-	bordersize	2 \
-	bordercolor 0.137 0 0.239 0.8 \
-	type		ITEM_TYPE_BUTTON \
-	textfont	UI_FONT_OBJECTIVE \
-	textstyle	ITEM_TEXTSTYLE_SHADOWED \
-	textalign	ITEM_ALIGN_CENTER \
-	textscale	0.3 \
-	textaligny	(h-7) \
-	visible		visArg \
-	mouseEnter \
-	{ \
-		play "mouse_over"; \
-		show "button_over"id; \
-		hide "button_default"id; \
-		setdvar sr_button ""id \
-		onItemEnter \
-	} \
-	mouseExit \
-	{ \
-		show "button_default"id; \
-		hide "button_over"id; \
-		setdvar sr_button "0" \
-		onItemExit \
-	} \
-	action \
-	{ \
-		itemAction \
-	} \
-}
 
 {
 	menuDef
 	{
-		name			"team_select"
-		rect			-128 -20 894 515
-		blurworld			0
-		border			1
-		bordersize			10
-		fullscreen		0
-		focuscolor		COLOR_FOCUSED
-		style			WINDOW_STYLE_EMPTY
+		SR_WINDOW("team_select")
 
-		onEsc
+		onESC
 		{
 			close self;
 		}
 
 		itemdef
 		{
-			name			"background"
-			rect			0 142 890 221 0 0
+			name			"message"
+			rect			11 266 360 133 0 0
 			style			1
-			backcolor			0.1 0.1 0.1 0.1
+			backcolor		0 0 0 0.4
 			visible			1
-			border			1
-			bordersize			2
-			bordercolor			0 0 0 1
+			border			5
+			bordersize		1
+			bordercolor		0.5 0.1 1 1
 			decoration
 		}
 
 		itemdef
 		{
-			name			"banner"
-			rect			0 146 890 217 0 0
-			style			3
+			name			"messageHeader"
+			rect			14 268 356 25 0 0
+			style			1
+			backcolor		0 0 0 0.5
 			visible			1
-			background		"sr_banner"
+			type			0
+			text			"About"
+			textscale		0.35
+			textstyle		0
+			textalign		0
+			textalignx		6
+			textaligny		21
 			decoration
 		}
-
-		DR_TEAM_BUTTON("0", -230, -70, 142, 25, "Play", scriptMenuResponse "autoassign";, 1)
-		DR_TEAM_BUTTON("1", -230, -25, 142, 25, "Spectator", scriptMenuResponse "spectator";, 1)
-		DR_TEAM_BUTTON("2", -230, 20, 142, 25, "Customize", open sr_customize;, 1)
-		DR_TEAM_BUTTON("3", -230, 65, 142, 25, "Leaderboard", open sr_leaderboard;, 1)
 
 		itemdef
 		{
-			name			"settings_logo"
-			rect			338 -75 30 30 DR_BUTTON_ALIGN
-			style			3
+			name			"messageText"
+			rect			11 291 360 108 0 0
+			style			1
 			visible			1
-			background		"sr_settings"
+			exp				text("@SR_SPEEDRUN_DESC")
+			type			0
+			textscale		0.2
+			textstyle		0
+			textalign		0
+			textalignx		6
+			textaligny		25
 			decoration
 		}
-		DR_BUTTON("4", 338, -75, 30, 30, "", close self; open sr_settings;, 1)
 
 		itemdef
 		{
-			name			"quit_logo"
-			rect			378 -72 25 25 DR_BUTTON_ALIGN
-			style			3
+			name			"info"
+			rect			375 35 254 364 0 0
+			style			1
+			backcolor		0 0 0 0.4
 			visible			1
-			background		"sr_quit"
+			border			6
+			bordersize		1
+			bordercolor		0.5 0.1 1 1
 			decoration
 		}
-		DR_BUTTON("5", 378, -72, 25, 25, "", open popup_endgame;, 1)
+
+		itemdef
+		{
+			name			"loadscreen"
+			rect			378 38 250 160 0 0
+			style			1
+			backcolor		0 0 0 1
+			visible			1
+			decoration
+		}
+
+		itemdef
+		{
+			name			"infoMap"
+			rect			378 200 250 25 0 0
+			style			1
+			backcolor		0 0 0 0.4
+			visible			1
+			type			0
+			text			"mp_sr_pure_strafe"
+			textscale		0.3
+			textstyle		0
+			textalign		0
+			textalignx		6
+			textaligny		19
+			decoration
+		}
+
+		itemdef
+		{
+			name			"infoRoleLabel"
+			rect			378 227 124 20 0 0
+			style			1
+			backcolor		0 0 0 0.4
+			visible			1
+			type			0
+			text			"Role"
+			textscale		0.3
+			textstyle		0
+			textalign		0
+			textalignx		6
+			textaligny		17
+			decoration
+		}
+
+		itemdef
+		{
+			name			"infoRole"
+			rect			504 227 122 20 0 0
+			style			1
+			backcolor		0 0 0 0.4
+			visible			1
+			type			0
+			text			"Owner"
+			textscale		0.3
+			textstyle		0
+			textalign		1
+			textalignx		0
+			textaligny		17
+			decoration
+		}
+
+		itemdef
+		{
+			name			"infoPlayer"
+			rect			378 299 250 50 0 0
+			style			1
+			backcolor		0 0 0 0.4
+			visible			1
+			decoration
+		}
+
+		itemdef
+		{
+			name			"infoRankIcon"
+			rect			380 308 32 32 0 0
+			style			3
+			visible			1
+			decoration
+		}
+
+		itemdef
+		{
+			name			"infoRank"
+			rect			414 308 85 32 0 0
+			style			0
+			visible			1
+			type			0
+			text			"Rank"
+			textscale		0.3
+			textstyle		0
+			textalign		0
+			textalignx		0
+			textaligny		14
+			decoration
+		}
+
+		itemdef
+		{
+			name			"infoVIP"
+			rect			608 308 16 16 0 0
+			style			3
+			visible			1
+			decoration
+		}
+
+		itemdef
+		{
+			name			"infoSpeedrun"
+			rect			587 308 16 16 0 0
+			style			3
+			visible			1
+			decoration
+		}
+
+		itemdef
+		{
+			name			"stats"
+			rect			11 35 360 225 0 0
+			style			1
+			backcolor		0 0 0 0.4
+			visible			1
+			border			5
+			bordersize		1
+			bordercolor		0.5 0.1 1 1
+			decoration
+		}
+
+		itemdef
+		{
+			name			"statsHeader"
+			rect			14 37 357 25 0 0
+			style			1
+			backcolor		0 0 0 0.5
+			visible			1
+			type			0
+			text			"Statistics"
+			textscale		0.35
+			textstyle		0
+			textalign		0
+			textalignx		6
+			textaligny		21
+			decoration
+		}
+
+		itemdef
+		{
+			name			"statsL1"
+			rect			14 70 280 20 0 0
+			style			1
+			backcolor		0 0 0 0.3
+			visible			1
+			type			0
+			text			"L1"
+			textscale		0.3
+			textstyle		0
+			textalign		0
+			textalignx		6
+			textaligny		17
+			decoration
+		}
+
+		itemdef
+		{
+			name			"statsR1"
+			rect			296 70 75 20 0 0
+			style			1
+			backcolor		0 0 0 0.3
+			visible			1
+			type			0
+			text			"R1"
+			textscale		0.3
+			textstyle		0
+			textalign		1
+			textalignx		0
+			textaligny		17
+			decoration
+		}
+
+		itemdef
+		{
+			name			"statsL2"
+			rect			14 92 280 20 0 0
+			style			1
+			backcolor		0 0 0 0.3
+			visible			1
+			type			0
+			text			"L2"
+			textscale		0.3
+			textstyle		0
+			textalign		0
+			textalignx		6
+			textaligny		17
+			decoration
+		}
+
+		itemdef
+		{
+			name			"statsR2"
+			rect			296 92 75 20 0 0
+			style			1
+			backcolor		0 0 0 0.3
+			visible			1
+			type			0
+			text			"R2"
+			textscale		0.3
+			textstyle		0
+			textalign		1
+			textalignx		0
+			textaligny		17
+			decoration
+		}
+
+		itemdef
+		{
+			name			"statsL3"
+			rect			14 114 280 20 0 0
+			style			1
+			backcolor		0 0 0 0.3
+			visible			1
+			type			0
+			text			"L3"
+			textscale		0.3
+			textstyle		0
+			textalign		0
+			textalignx		6
+			textaligny		17
+			decoration
+		}
+
+		itemdef
+		{
+			name			"statsR3"
+			rect			296 114 75 20 0 0
+			style			1
+			backcolor		0 0 0 0.3
+			visible			1
+			type			0
+			text			"R3"
+			textscale		0.3
+			textstyle		0
+			textalign		1
+			textalignx		0
+			textaligny		17
+			decoration
+		}
+
+		itemdef
+		{
+			name			"statsL4"
+			rect			14 136 280 20 0 0
+			style			1
+			backcolor		0 0 0 0.3
+			visible			1
+			type			0
+			text			"L4"
+			textscale		0.3
+			textstyle		0
+			textalign		0
+			textalignx		6
+			textaligny		17
+			decoration
+		}
+
+		itemdef
+		{
+			name			"statsR4"
+			rect			296 136 75 20 0 0
+			style			1
+			backcolor		0 0 0 0.3
+			visible			1
+			type			0
+			text			"R4"
+			textscale		0.3
+			textstyle		0
+			textalign		1
+			textalignx		0
+			textaligny		17
+			decoration
+		}
+
+		itemdef
+		{
+			name			"statsL5"
+			rect			14 158 280 20 0 0
+			style			1
+			backcolor		0 0 0 0.3
+			visible			1
+			type			0
+			text			"L5"
+			textscale		0.3
+			textstyle		0
+			textalign		0
+			textalignx		6
+			textaligny		17
+			decoration
+		}
+
+		itemdef
+		{
+			name			"statsR5"
+			rect			296 158 75 20 0 0
+			style			1
+			backcolor		0 0 0 0.3
+			visible			1
+			type			0
+			text			"R5"
+			textscale		0.3
+			textstyle		0
+			textalign		1
+			textalignx		0
+			textaligny		17
+			decoration
+		}
+
+		itemdef
+		{
+			name			"buttonPlay"
+			rect			11 0 100 25 0 0
+			style			1
+			visible			1
+			type			1
+			text			"Play"
+			textscale		0.35
+			textstyle		0
+			textalign		1
+			textalignx		0
+			textaligny		21
+
+			action
+			{
+				scriptMenuResponse "autoassign";
+				close team_select;
+			}
+		}
+
+		itemdef
+		{
+			name			"buttonControls"
+			rect			111 0 100 25 0 0
+			style			1
+			visible			1
+			type			1
+			text			"Controls"
+			textscale		0.35
+			textstyle		0
+			textalign		1
+			textalignx		0
+			textaligny		21
+
+			action
+			{
+				open main_controls;
+				close team_select;
+			}
+		}
 	}
 }
