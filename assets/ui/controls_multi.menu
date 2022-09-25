@@ -1,3 +1,4 @@
+#include "ui/includes/sr.inc"
 #include "ui/includes/options.inc"
 
 {
@@ -66,20 +67,20 @@
 			decoration
 		}
 
-		CHOICE_SECTION_TITLE(21, "@MENU_MULTIPLAYER_CONTROLS")
+		SECTION_TITLE(21, "@MENU_MULTIPLAYER_CONTROLS")
 
-		CHOICE_BIND(22, "@MENU_VOTE_YES", "openscriptmenu cjvote cjvoteyes", ;)
-		CHOICE_BIND(23, "@MENU_VOTE_NO", "openscriptmenu cjvote cjvoteno", ;)
-		CHOICE_SEPARATOR(CHOICE_SEP_1)
-		CHOICE_BIND(24, "@MENU_VOICE_CHAT_BUTTON", "+talk", ;)
-		CHOICE_BIND(25, "@MENU_CHAT", "chatmodepublic", ;)
-		CHOICE_BIND(26, "@MENU_TEAM_CHAT", "chatmodeteam", ;)
-		CHOICE_BIND(27, "@MENU_QUICK_CHAT", "mp_QuickMessage", ;)
+		BUTTON_BIND(22, "@MENU_VOTE_YES", "openscriptmenu cjvote cjvoteyes", ;)
+		BUTTON_BIND(23, "@MENU_VOTE_NO", "openscriptmenu cjvote cjvoteno", ;)
+		SEPARATOR(SEPARATOR_1)
+		BUTTON_BIND(24, "@MENU_VOICE_CHAT_BUTTON", "+talk", ;)
+		BUTTON_BIND(25, "@MENU_CHAT", "chatmodepublic", ;)
+		BUTTON_BIND(26, "@MENU_TEAM_CHAT", "chatmodeteam", ;)
+		BUTTON_BIND(27, "@MENU_QUICK_CHAT", "mp_QuickMessage", ;)
 
-		CHOICE_SEPARATOR(CHOICE_SEP_2)
-		CHOICE_BIND(28, "Toggle 3rd Person Camera", "openscriptmenu quickstuff 3rdperson", ;)
-		CHOICE_BIND(29, "Suicide", "openscriptmenu quickstuff suicide", ;)
+		SEPARATOR(SEPARATOR_2)
+		BUTTON_BIND(28, "Toggle 3rd Person Camera", "openscriptmenu quickstuff 3rdperson", ;)
+		BUTTON_BIND(29, "Suicide", "openscriptmenu quickstuff suicide", ;)
 
-		CHOICE_KEYBINDHELP
+		BUTTON_KEYBINDHELP
 	}
 }

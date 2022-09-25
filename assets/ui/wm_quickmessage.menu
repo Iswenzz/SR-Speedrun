@@ -1,18 +1,17 @@
 #include "ui/headers/menudef.h"
 #include "ui/includes/common.inc"
 
-#define CHOICE_GROUP			"quickmessage"
+#define LAYOUT_GROUP			"quickmessage"
 
 #include "ui/includes/style.inc"
-#include "ui/templates/choice.menu"
+#include "ui/includes/components/layout.inc"
+#include "ui/includes/components/popup.inc"
 
-#include "ui/includes/popup.inc"
+#undef LAYOUT_SIZE_X
+#define LAYOUT_SIZE_X			186
 
-#undef CHOICE_SIZE_X
-#define CHOICE_SIZE_X			186
-
-#undef CHOICE_POPUP_BACKCOLOR
-#define CHOICE_POPUP_BACKCOLOR  0 0 0 0.6
+#undef POPUP_BACKCOLOR
+#define POPUP_BACKCOLOR  0 0 0 0.6
 
 #define ORIGIN_QUICKMESSAGEWINDOW		0 16
 
@@ -22,7 +21,7 @@
 		IMPROVED_POPUP_SETUP_ONOPEN(quickmessage, 6, 4, 292, ;, setDvar cl_bypassMouseInput "1";, 0)
 		onClose{ setDvar cl_bypassMouseInput "0" }
 
-		CHOICE_POPMENU_TITLE("@QUICKMESSAGE_QUICK_MESSAGE")
+		POPMENU_TITLE("@QUICKMESSAGE_QUICK_MESSAGE")
 
 		itemDef
 		{
@@ -32,7 +31,7 @@
 			origin			ORIGIN_QUICKMESSAGEWINDOW
 			forecolor		1 1 1 1
 			textfont		UI_FONT_NORMAL
-			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textstyle		ITEM_TEXTSTYLE_NORMAL
 			textscale		TEXTSIZE_SMALL
 			textaligny		8
 			text			"@QUICKMESSAGE_1_COMMANDS"
@@ -48,7 +47,7 @@
 			origin			ORIGIN_QUICKMESSAGEWINDOW
 			forecolor		1 1 1 1
 			textfont		UI_FONT_NORMAL
-			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textstyle		ITEM_TEXTSTYLE_NORMAL
 			textscale		TEXTSIZE_SMALL
 			textaligny		8
 			text			"@QUICKMESSAGE_2_STATEMENTS"
@@ -64,7 +63,7 @@
 			origin			ORIGIN_QUICKMESSAGEWINDOW
 			forecolor		1 1 1 1
 			textfont		UI_FONT_NORMAL
-			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textstyle		ITEM_TEXTSTYLE_NORMAL
 			textscale		TEXTSIZE_SMALL
 			textaligny		8
 			text			"@QUICKMESSAGE_3_RESPONSES"
@@ -80,7 +79,7 @@
 			origin			ORIGIN_QUICKMESSAGEWINDOW
 			forecolor		1 1 1 1
 			textfont		UI_FONT_NORMAL
-			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textstyle		ITEM_TEXTSTYLE_NORMAL
 			textscale		TEXTSIZE_SMALL
 			textaligny		8
 			text			"4. Player Menu"
@@ -96,7 +95,7 @@
 			origin			ORIGIN_QUICKMESSAGEWINDOW
 			forecolor		1 1 1 1
 			textfont		UI_FONT_NORMAL
-			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textstyle		ITEM_TEXTSTYLE_NORMAL
 			textscale		TEXTSIZE_SMALL
 			textaligny		8
 			text			"5. Vote Menu"
