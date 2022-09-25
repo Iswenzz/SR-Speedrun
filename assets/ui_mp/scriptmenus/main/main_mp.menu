@@ -1,10 +1,10 @@
-#include "ui/includes/sr.inc"
-#include "ui/includes/header.inc"
+#include "ui/components/sr.inc"
+#include "ui/menus/options/header.inc"
 
 {
 	menuDef
 	{
-		SR_WINDOW("team_select")
+		SR_WINDOW("main_mp")
 
 		focusColor		COLOR_FOCUSED
 

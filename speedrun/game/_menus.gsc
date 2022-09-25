@@ -7,10 +7,10 @@ main()
 	menu("-1", 			"back", 		::menu_Back);
 	menu("quickstuff", 	"3rdperson", 	::menu_3rdPerson);
 	menu("quickstuff", 	"suicide", 		::menu_Suicide);
-	menu("team_select", "allies", 		::menu_Team);
-	menu("team_select", "axis", 		::menu_Team);
-	menu("team_select", "autoassign", 	::menu_Team);
-	menu("team_select", "spectator", 	::menu_Spectator);
+	menu("main_mp", "allies", 		::menu_Team);
+	menu("main_mp", "axis", 		::menu_Team);
+	menu("main_mp", "autoassign", 	::menu_Team);
+	menu("main_mp", "spectator", 	::menu_Spectator);
 
 	menu_callback("quickcommands",	 	maps\mp\gametypes\_quickmessages::quickcommands);
 	menu_callback("quickstatements", 	maps\mp\gametypes\_quickmessages::quickstatements);

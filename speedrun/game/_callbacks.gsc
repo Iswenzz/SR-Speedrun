@@ -53,7 +53,7 @@ playerConnect()
 	if (game["state"] == "endmap")
 		return;
 
-	self openMenu("team_select");
+	self openMenu("main_mp");
 	self welcome();
 	self eventSpectator();
 
@@ -72,7 +72,7 @@ playerConnect()
 	self setClientDvar("ui_hud_hardcore", 1);
 	self setClientDvar("player_sprintTime", 4);
 	self setClientDvar("ui_uav_client", 0);
-	self setClientDvar("g_scriptMainMenu", "team_select");
+	self setClientDvar("g_scriptMainMenu", "main_mp");
 }
 
 playerDisconnect()

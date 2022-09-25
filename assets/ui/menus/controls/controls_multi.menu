@@ -1,5 +1,5 @@
-#include "ui/includes/sr.inc"
-#include "ui/includes/options.inc"
+#include "ui/components/sr.inc"
+#include "ui/menus/controls/layout.inc"
 
 {
 	menuDef
