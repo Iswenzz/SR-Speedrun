@@ -1,10 +1,4 @@
-#include "ui/menudef.h"
-#include "ui/includes/common.inc"
-#define 	OPTIONS_STYLE			1
-#define 	CHOICE_SEP_1			23
-#define 	CHOICE_SEP_2			27
-#include "ui/includes/style.inc"
-#include "ui/templates/choices_setup_common.menu"
+#include "ui/includes/options.inc"
 
 {
 	menuDef
@@ -71,8 +65,6 @@
 			visible			1
 			decoration
 		}
-
-		#include "ui/includes/controls.inc"
 
 		CHOICE_SECTION_TITLE(21, "@MENU_MULTIPLAYER_CONTROLS")
 

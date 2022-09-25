@@ -340,15 +340,15 @@ stringtable,mp/challengetable_tier2.csv
 
 // Menus
 menufile,ui/menus.txt
-menufile,ui_mp/scriptmenus/scoreboard.menu
-menufile,ui_mp/scriptmenus/quickstuff.menu
-menufile,ui_mp/scriptmenus/team_select.menu
-menufile,ui_mp/scriptmenus/sr_votemap.menu
-menufile,ui_mp/scriptmenus/sr_leaderboard.menu
-menufile,ui_mp/scriptmenus/sr_welcome.menu
-menufile,ui_mp/scriptmenus/sr_customize.menu
-menufile,ui_mp/scriptmenus/sr_settings.menu
+menufile,ui_mp/scoreboard.menu
 menufile,ui_mp/scriptmenus/clientcmd.menu
+menufile,ui_mp/scriptmenus/team_select.menu
+//menufile,ui_mp/scriptmenus/quickstuff.menu
+//menufile,ui_mp/scriptmenus/sr_votemap.menu
+//menufile,ui_mp/scriptmenus/sr_leaderboard.menu
+//menufile,ui_mp/scriptmenus/sr_welcome.menu
+//menufile,ui_mp/scriptmenus/sr_customize.menu
+//menufile,ui_mp/scriptmenus/sr_settings.menu
 
 // Knifes
 xmodel,sr_knife_4_0
