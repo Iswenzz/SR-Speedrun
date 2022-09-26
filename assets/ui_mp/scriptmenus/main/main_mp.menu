@@ -1,12 +1,10 @@
-#include "ui/components/sr.inc"
-#include "ui/menus/options/header.inc"
+#include "ui/components/base.inc"
+#include "ui/shared/frame_header.inc"
 
 {
 	menuDef
 	{
 		SR_WINDOW("main_mp")
-
-		focusColor		COLOR_FOCUSED
 
 		onESC
 		{
@@ -386,9 +384,9 @@
 			decoration
 		}
 
-		HEADER(3, "Play", scriptMenuResponse "autoassign"; close team_select; play "mouse_click";)
-		HEADER(4, "Spectator", scriptMenuResponse "spectator"; close team_select; play "mouse_click";)
-		HEADER(5, "Controls", open main_controls; close team_select; play "mouse_click";)
-		HEADER(6, "Options", open main_options; close team_select; play "mouse_click";)
+		HEADER(3, "Play", scriptMenuResponse "autoassign"; close main_mp; play "mouse_click";)
+		HEADER(4, "Spectator", scriptMenuResponse "spectator"; close main_mp; play "mouse_click";)
+		HEADER(5, "Controls", open main_controls; close main_mp; play "mouse_click";)
+		HEADER(6, "Options", open main_options; close main_mp; play "mouse_click";)
 	}
 }

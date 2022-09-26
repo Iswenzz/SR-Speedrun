@@ -1,19 +1,9 @@
-#include "ui/headers/menudef.h"
-#include "ui/components/common.inc"
+#define LAYOUT_NAME					"quickmessage"
+#define LAYOUT_SIZE_X				186
+#define LAYOUT_BACKCOLOR  			0 0 0 0.6
+#define ORIGIN_QUICKMESSAGEWINDOW	0 16
 
-#define LAYOUT_GROUP			"quickmessage"
-
-#include "ui/components/style.inc"
-#include "ui/components/layout.inc"
-#include "ui/components/popup.inc"
-
-#undef LAYOUT_SIZE_X
-#define LAYOUT_SIZE_X			186
-
-#undef LAYOUT_BACKCOLOR
-#define LAYOUT_BACKCOLOR  0 0 0 0.6
-
-#define ORIGIN_QUICKMESSAGEWINDOW		0 16
+#include "ui/components/base.inc"
 
 {
 	menuDef
