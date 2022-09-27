@@ -53,13 +53,15 @@ playerConnect()
 	if (game["state"] == "endmap")
 		return;
 
+	self setClientDvar("g_scriptMainMenu", "main_mp");
+	wait 0.05;
+
 	self openMenu("main_mp");
 	self welcome();
 	self eventSpectator();
 
 	wait 3;
 
-	wait 0.05;
 	self setClientDvar("ui_3dwaypointtext", "1");
 	self setClientDvar("ui_deathicontext", "1");
 	self setClientDvar("cl_maxpackets", 125);
@@ -72,7 +74,6 @@ playerConnect()
 	self setClientDvar("ui_hud_hardcore", 1);
 	self setClientDvar("player_sprintTime", 4);
 	self setClientDvar("ui_uav_client", 0);
-	self setClientDvar("g_scriptMainMenu", "main_mp");
 }
 
 playerDisconnect()

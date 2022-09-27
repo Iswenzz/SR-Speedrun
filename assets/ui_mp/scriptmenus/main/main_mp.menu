@@ -6,6 +6,8 @@
 	{
 		SR_WINDOW("main_mp")
 
+		focusColor		COLOR_FOCUSED
+
 		onESC
 		{
 			close self;

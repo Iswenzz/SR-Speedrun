@@ -3,6 +3,8 @@
 
 main()
 {
+	precache();
+
 	menu("-1", 			"dog", 			::menu_Dog);
 	menu("-1", 			"back", 		::menu_Back);
 	menu("quickstuff", 	"3rdperson", 	::menu_3rdPerson);
@@ -15,6 +17,12 @@ main()
 	menu_callback("quickcommands",	 	maps\mp\gametypes\_quickmessages::quickcommands);
 	menu_callback("quickstatements", 	maps\mp\gametypes\_quickmessages::quickstatements);
 	menu_callback("quickresponses",  	maps\mp\gametypes\_quickmessages::quickresponses);
+}
+
+precache()
+{
+	precacheMenu("main/main_mp");
+	precacheMenu("misc/clientcmd");
 }
 
 menu_Dog(arg)
