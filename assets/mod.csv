@@ -23,6 +23,7 @@ material,sr_blur
 material,sr_edge
 material,sr_psy_edge
 material,sr_psy_glass
+material,sr_grid
 material,time_hud
 material,sr_banner
 material,sr_race
@@ -30,13 +31,6 @@ material,sr_quit
 material,sr_settings
 material,sr_next
 material,sr_prev
-material,sr_menu_bg_1
-material,sr_menu_bg_2
-material,sr_menu_bg_3
-material,sr_menu_bg_4
-material,sr_menu_bg_5
-material,sr_menu_bg_6
-material,sr_menu_bg_7
 material,vip_status
 material,vip_gold
 material,speedrunner_logo
@@ -327,7 +321,6 @@ stringtable,mp/fxTable.csv
 stringtable,mp/sprayTable.csv
 stringtable,mp/characterTable.csv
 stringtable,mp/itemTable.csv
-stringtable,mp/themeTable.csv
 stringtable,mp/knifeTable.csv
 stringtable,mp/knifeSkinTable.csv
 stringtable,mp/rankTable.csv
