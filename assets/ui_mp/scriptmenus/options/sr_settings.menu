@@ -4,6 +4,9 @@
 #include "ui/components/base.inc"
 #include "ui/shared/frame_layout.inc"
 
+#define SR_SETTING(id, script) \
+	SR_BUTTON_KV_VIS((id + 1), dvarString("sr_setting_" + id), dvarString("sr_setting_value_" + id), scriptMenuResponse script;, when(dvarString("sr_setting_" + id) != ""))
+
 {
 	menuDef
 	{
@@ -31,8 +34,6 @@
 			close main_options;
 		}
 
-		#define SR_SETTING(id, script) SR_BUTTON_KV((id + 1), dvarString("sr_setting_" + id), dvarString("sr_setting_value_" + id), scriptMenuResponse script;)
-
 		SR_SETTING(0, "setting:0")
 		SR_SETTING(1, "setting:1")
 		SR_SETTING(2, "setting:2")
@@ -52,5 +53,17 @@
 		SR_SETTING(16, "setting:16")
 		SR_SETTING(17, "setting:17")
 		SR_SETTING(18, "setting:18")
+		SR_SETTING(19, "setting:19")
+		SR_SETTING(20, "setting:20")
+		SR_SETTING(21, "setting:21")
+		SR_SETTING(22, "setting:22")
+		SR_SETTING(23, "setting:23")
+		SR_SETTING(24, "setting:24")
+		SR_SETTING(25, "setting:25")
+		SR_SETTING(26, "setting:26")
+		SR_SETTING(27, "setting:27")
+		SR_SETTING(28, "setting:28")
+		SR_SETTING(29, "setting:29")
+		SR_SETTING(30, "setting:30")
 	}
 }

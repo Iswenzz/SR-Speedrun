@@ -1,9 +1,12 @@
-#define LAYOUT_X_START 			10
-#define LAYOUT_Y_START 			60
+#define LAYOUT_X_START 			25
+#define LAYOUT_Y_START 			40
 #define SR_HEADER_TEXTALIGN 	ITEM_ALIGN_MIDDLE_CENTER
 #define SR_HEADER_OFFSET_X		0
 
 #include "ui/components/base.inc"
+
+#define ITEM(id, script) \
+	SR_BUTTON_LEFT((id + 1), dvarString("sr_customize_" + id), scriptMenuResponse script;, when(dvarString("sr_customize_" + id) != ""))
 
 {
 	menuDef
@@ -13,7 +16,7 @@
 		focuscolor		COLOR_FOCUSED
 		style			WINDOW_STYLE_FILLED
 		backcolor		0 0 0 0.85
-		border			5
+		border			6
 		bordersize		1
 		bordercolor		0.5 0.1 1 1
 
@@ -31,5 +34,109 @@
 		SR_BUTTON_LEFT(5, "^8Knife Skins", scriptMenuResponse "knife_skin";, 1)
 		SR_BUTTON_LEFT(6, "^8Gloves", scriptMenuResponse "glove";, 1)
 		SR_BUTTON_LEFT(7, "^8Effects", scriptMenuResponse "fx";, 1)
+	}
+
+	menuDef
+	{
+		name			"sr_customize_category"
+		rect			0 0 200 480 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_FILLED
+		backcolor		0 0 0 0.85
+		border			6
+		bordersize		1
+		bordercolor		0.5 0.1 1 1
+
+		onOpen
+		{
+			close sr_customize;
+			scriptMenuResponse "open";
+		}
+
+		onClose
+		{
+			open sr_customize;
+			scriptMenuResponse "close";
+		}
+
+		onEsc
+		{
+			close self;
+		}
+
+		SR_FRAME_HEADER("^8" + dvarString("sr_customize_name"), 0, 0, 199, 25, 0)
+
+		ITEM(0, "pick:0")
+		ITEM(1, "pick:1")
+		ITEM(2, "pick:2")
+		ITEM(3, "pick:3")
+		ITEM(4, "pick:4")
+		ITEM(5, "pick:5")
+		ITEM(6, "pick:6")
+		ITEM(7, "pick:7")
+		ITEM(8, "pick:8")
+		ITEM(9, "pick:9")
+		ITEM(10, "pick:10")
+		ITEM(11, "pick:11")
+		ITEM(12, "pick:12")
+		ITEM(13, "pick:13")
+		ITEM(14, "pick:14")
+		ITEM(15, "pick:15")
+
+		itemdef
+		{
+			name			"prev"
+			rect			35 440 30 30 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
+			style			WINDOW_STYLE_SHADER
+			background		"sr_prev"
+			type			ITEM_TYPE_BUTTON
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			visible			1
+
+			mouseEnter
+			{
+				play "mouse_over";
+			}
+
+			action
+			{
+				play "mouse_click";
+				scriptMenuResponse "prev";
+			}
+		}
+
+		itemdef
+		{
+			name			"next"
+			rect			135 440 30 30 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
+			style			WINDOW_STYLE_SHADER
+			background		"sr_next"
+			type			ITEM_TYPE_BUTTON
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			visible			1
+
+			mouseEnter
+			{
+				play "mouse_over";
+			}
+
+			action
+			{
+				play "mouse_click";
+				scriptMenuResponse "next";
+			}
+		}
+
+		itemdef
+		{
+			name			"page"
+			rect			85 468 30 30 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
+			style			WINDOW_STYLE_EMPTY
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textalign		ITEM_ALIGN_CENTER
+			exp				text("^8" + dvarString("sr_customize_page"))
+			visible			1
+			decoration
+		}
 	}
 }
