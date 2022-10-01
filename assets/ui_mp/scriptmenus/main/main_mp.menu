@@ -1,5 +1,9 @@
+#define HEADER_X_START			10
+#define HEADER_SIZE_X			100
+#define HEADER_X_SPACING		101
+#define LAYOUT_TEXT_OFFSET_X 	6
+
 #include "ui/components/base.inc"
-#include "ui/shared/frame_header.inc"
 
 {
 	menuDef
@@ -13,124 +17,90 @@
 			close self;
 		}
 
-		itemdef
-		{
-			name			"message"
-			rect			11 266 360 133 0 0
-			style			1
-			backcolor		0 0 0 0.4
-			visible			1
-			border			5
-			bordersize		1
-			bordercolor		0.5 0.1 1 1
-			decoration
-		}
+		SR_FRAME(11, 266, 360, 133)
+		SR_FRAME_HEADER("About", 14, 268, 356, 25)
 
 		itemdef
 		{
-			name			"messageHeader"
-			rect			14 268 356 25 0 0
-			style			1
-			backcolor		0 0 0 0.5
-			visible			1
-			type			0
-			text			"About"
-			textscale		0.35
-			textstyle		0
-			textalign		0
-			textalignx		6
-			textaligny		21
-			decoration
-		}
-
-		itemdef
-		{
-			name			"messageText"
+			name			"aboutText"
 			rect			11 291 360 108 0 0
 			style			1
 			visible			1
 			exp				text("@SR_SPEEDRUN_DESC")
 			type			0
-			textscale		0.2
+			textscale		0.23
 			textstyle		0
 			textalign		0
 			textalignx		6
-			textaligny		25
+			textaligny		15
 			decoration
 		}
 
-		itemdef
-		{
-			name			"info"
-			rect			375 35 254 364 0 0
-			style			1
-			backcolor		0 0 0 0.4
-			visible			1
-			border			6
-			bordersize		1
-			bordercolor		0.5 0.1 1 1
-			decoration
-		}
+		SR_FRAME_SECONDARY(375, 35, 254, 364)
 
 		itemdef
 		{
 			name			"loadscreen"
 			rect			378 38 250 160 0 0
-			style			1
-			backcolor		0 0 0 1
+			style			3
+			background		"$levelBriefing"
 			visible			1
 			decoration
 		}
 
-		itemdef
-		{
-			name			"infoMap"
-			rect			378 200 250 25 0 0
-			style			1
-			backcolor		0 0 0 0.4
-			visible			1
-			type			0
-			text			"mp_sr_pure_strafe"
-			textscale		0.3
-			textstyle		0
-			textalign		0
-			textalignx		6
-			textaligny		19
-			decoration
-		}
+		#undef LAYOUT_X_START
+		#define LAYOUT_X_START 		378
+
+		#undef LAYOUT_Y_START
+		#define LAYOUT_Y_START 		200
+
+		#undef LAYOUT_SIZE_X
+		#define LAYOUT_SIZE_X		250
+
+		#undef LAYOUT_SIZE_Y
+		#define LAYOUT_SIZE_Y		25
+
+		#undef LAYOUT_Y_SPACING
+		#define LAYOUT_Y_SPACING	26
+
+		SR_TEXT(1, dvarString("mapname"))
+
+		#undef LAYOUT_SIZE_Y
+		#define LAYOUT_SIZE_Y		20
+
+		#undef SR_KEY_SIZE_X
+		#define SR_KEY_SIZE_X		124
+
+		#undef SR_VALUE_SIZE_X
+		#define SR_VALUE_SIZE_X		124
+
+		SR_TEXT_KV(2, "Role", dvarString("sr_role"))
+
+		#undef LAYOUT_Y_SPACING
+		#define LAYOUT_Y_SPACING	21
 
 		itemdef
 		{
-			name			"infoRoleLabel"
-			rect			378 227 124 20 0 0
-			style			1
+			name			"infoCustomize"
+			rect			378 277 126 20 0 0
 			backcolor		0 0 0 0.4
+			style			1
 			visible			1
-			type			0
-			text			"Role"
+			type			ITEM_TYPE_BUTTON
+			forecolor		HEADER_TEXTCOLOR
+			text			"Customization"
 			textscale		0.3
-			textstyle		0
+			textstyle		HEADER_TEXTSTYLE
 			textalign		0
 			textalignx		6
 			textaligny		17
-			decoration
-		}
 
-		itemdef
-		{
-			name			"infoRole"
-			rect			504 227 122 20 0 0
-			style			1
-			backcolor		0 0 0 0.4
-			visible			1
-			type			0
-			text			"Owner"
-			textscale		0.3
-			textstyle		0
-			textalign		1
-			textalignx		0
-			textaligny		17
-			decoration
+			action
+			{
+				play "mouse_click";
+				open sr_customization;
+				close self;
+			}
 		}
 
 		itemdef
@@ -147,6 +117,7 @@
 		{
 			name			"infoRankIcon"
 			rect			380 308 32 32 0 0
+			exp				material(tablelookup("mp/rankIconTable.csv", 0, stat(2350), stat(2326) + 1))
 			style			3
 			visible			1
 			decoration
@@ -159,7 +130,7 @@
 			style			0
 			visible			1
 			type			0
-			text			"Rank"
+			exp				text(dvarString("name"))
 			textscale		0.3
 			textstyle		0
 			textalign		0
@@ -171,7 +142,8 @@
 		itemdef
 		{
 			name			"infoVIP"
-			rect			608 308 16 16 0 0
+			rect			603 308 16 16 0 0
+			background		"vip_status"
 			style			3
 			visible			1
 			decoration
@@ -180,215 +152,39 @@
 		itemdef
 		{
 			name			"infoSpeedrun"
-			rect			587 308 16 16 0 0
+			rect			583 308 16 16 0 0
+			background		"speedrunner_logo"
 			style			3
 			visible			1
 			decoration
 		}
 
-		itemdef
-		{
-			name			"stats"
-			rect			11 35 360 225 0 0
-			style			1
-			backcolor		0 0 0 0.4
-			visible			1
-			border			5
-			bordersize		1
-			bordercolor		0.5 0.1 1 1
-			decoration
-		}
+		SR_FRAME(11, 35, 360, 225)
+		SR_FRAME_HEADER("Stats", 14, 37, 357, 25)
 
-		itemdef
-		{
-			name			"statsHeader"
-			rect			14 37 357 25 0 0
-			style			1
-			backcolor		0 0 0 0.5
-			visible			1
-			type			0
-			text			"Stats"
-			textscale		0.35
-			textstyle		0
-			textalign		0
-			textalignx		6
-			textaligny		21
-			decoration
-		}
+		#undef LAYOUT_X_START
+		#define LAYOUT_X_START 		14
 
-		itemdef
-		{
-			name			"statsL1"
-			rect			14 70 280 20 0 0
-			style			1
-			backcolor		0 0 0 0.3
-			visible			1
-			type			0
-			text			"L1"
-			textscale		0.3
-			textstyle		0
-			textalign		0
-			textalignx		6
-			textaligny		17
-			decoration
-		}
+		#undef LAYOUT_Y_START
+		#define LAYOUT_Y_START 		70
 
-		itemdef
-		{
-			name			"statsR1"
-			rect			296 70 75 20 0 0
-			style			1
-			backcolor		0 0 0 0.3
-			visible			1
-			type			0
-			text			"R1"
-			textscale		0.3
-			textstyle		0
-			textalign		1
-			textalignx		0
-			textaligny		17
-			decoration
-		}
+		#undef SR_KEY_SIZE_X
+		#define SR_KEY_SIZE_X		280
 
-		itemdef
-		{
-			name			"statsL2"
-			rect			14 92 280 20 0 0
-			style			1
-			backcolor		0 0 0 0.3
-			visible			1
-			type			0
-			text			"L2"
-			textscale		0.3
-			textstyle		0
-			textalign		0
-			textalignx		6
-			textaligny		17
-			decoration
-		}
+		#undef SR_VALUE_SIZE_X
+		#define SR_VALUE_SIZE_X		75
 
-		itemdef
-		{
-			name			"statsR2"
-			rect			296 92 75 20 0 0
-			style			1
-			backcolor		0 0 0 0.3
-			visible			1
-			type			0
-			text			"R2"
-			textscale		0.3
-			textstyle		0
-			textalign		1
-			textalignx		0
-			textaligny		17
-			decoration
-		}
+		SR_TEXT_KV(1, "L1", "R1")
+		SR_TEXT_KV(2, "L2", "R2")
+		SR_TEXT_KV(3, "L3", "R3")
+		SR_TEXT_KV(4, "L4", "R4")
+		SR_TEXT_KV(5, "L5", "R5")
 
-		itemdef
-		{
-			name			"statsL3"
-			rect			14 114 280 20 0 0
-			style			1
-			backcolor		0 0 0 0.3
-			visible			1
-			type			0
-			text			"L3"
-			textscale		0.3
-			textstyle		0
-			textalign		0
-			textalignx		6
-			textaligny		17
-			decoration
-		}
-
-		itemdef
-		{
-			name			"statsR3"
-			rect			296 114 75 20 0 0
-			style			1
-			backcolor		0 0 0 0.3
-			visible			1
-			type			0
-			text			"R3"
-			textscale		0.3
-			textstyle		0
-			textalign		1
-			textalignx		0
-			textaligny		17
-			decoration
-		}
-
-		itemdef
-		{
-			name			"statsL4"
-			rect			14 136 280 20 0 0
-			style			1
-			backcolor		0 0 0 0.3
-			visible			1
-			type			0
-			text			"L4"
-			textscale		0.3
-			textstyle		0
-			textalign		0
-			textalignx		6
-			textaligny		17
-			decoration
-		}
-
-		itemdef
-		{
-			name			"statsR4"
-			rect			296 136 75 20 0 0
-			style			1
-			backcolor		0 0 0 0.3
-			visible			1
-			type			0
-			text			"R4"
-			textscale		0.3
-			textstyle		0
-			textalign		1
-			textalignx		0
-			textaligny		17
-			decoration
-		}
-
-		itemdef
-		{
-			name			"statsL5"
-			rect			14 158 280 20 0 0
-			style			1
-			backcolor		0 0 0 0.3
-			visible			1
-			type			0
-			text			"L5"
-			textscale		0.3
-			textstyle		0
-			textalign		0
-			textalignx		6
-			textaligny		17
-			decoration
-		}
-
-		itemdef
-		{
-			name			"statsR5"
-			rect			296 158 75 20 0 0
-			style			1
-			backcolor		0 0 0 0.3
-			visible			1
-			type			0
-			text			"R5"
-			textscale		0.3
-			textstyle		0
-			textalign		1
-			textalignx		0
-			textaligny		17
-			decoration
-		}
-
-		HEADER(3, "Play", scriptMenuResponse "autoassign"; close main_mp; play "mouse_click";)
-		HEADER(4, "Spectator", scriptMenuResponse "spectator"; close main_mp; play "mouse_click";)
-		HEADER(5, "Controls", open main_controls; close main_mp; play "mouse_click";)
-		HEADER(6, "Options", open main_options; close main_mp; play "mouse_click";)
+		HEADER(2, "Play", scriptMenuResponse "autoassign"; close main_mp;)
+		HEADER(3, "Spectator", scriptMenuResponse "spectator"; close main_mp;)
+		HEADER(4, "Leaderboards", open sr_leaderboards; close main_mp;)
+		HEADER(5, "Controls", open main_controls; close main_mp;)
+		HEADER(6, "Settings", open main_options; open sr_settings; close main_mp;)
+		HEADER(7, "Quit", open exit_popmenu;)
 	}
 }

@@ -22,6 +22,9 @@ main()
 precache()
 {
 	precacheMenu("main/main_mp");
+	precacheMenu("options/sr_settings");
+	precacheMenu("controls/controls_multi");
+	precacheMenu("popups/exit");
 	precacheMenu("misc/clientcmd");
 }
 

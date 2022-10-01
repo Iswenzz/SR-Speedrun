@@ -1,0 +1,48 @@
+#include "ui/components/base.inc"
+#include "ui/shared/frame_layout.inc"
+
+{
+	menuDef
+	{
+		SR_WINDOW_CONTENT("sr_settings");
+
+		fullScreen		0
+		focusColor		COLOR_FOCUSED
+		soundloop		""
+
+		onOpen
+		{
+			setLocalVarBool ui_maincontent_header "1";
+			setLocalVarBool ui_maincontent_update "1";
+		}
+
+		onClose
+		{
+			setLocalVarBool ui_maincontent_header "0";
+			setLocalVarBool ui_maincontent_update "0";
+		}
+
+		onEsc
+		{
+			close self;
+			close main_options;
+		}
+
+		SR_TEXT_KV(1, "L1", "R1")
+		SR_TEXT_KV(2, "L1", "R1")
+		SR_TEXT_KV(3, "L1", "R1")
+		SR_TEXT_KV(4, "L1", "R1")
+		SR_TEXT_KV(5, "L1", "R1")
+		SR_TEXT_KV(6, "L1", "R1")
+		SR_TEXT_KV(7, "L1", "R1")
+		SR_TEXT_KV(8, "L1", "R1")
+		SR_TEXT_KV(9, "L1", "R1")
+		SR_TEXT_KV(10, "L1", "R1")
+
+		SR_TEXT_KV(16, "L1", "R1")
+		SR_TEXT_KV(17, "L1", "R1")
+		SR_TEXT_KV(18, "L1", "R1")
+		SR_TEXT_KV(19, "L1", "R1")
+		SR_TEXT_KV(20, "L1", "R1")
+	}
+}
