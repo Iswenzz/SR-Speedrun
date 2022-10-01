@@ -1,6 +1,12 @@
 #include "ui/components/base.inc"
 #include "ui/shared/frame_layout.inc"
 
+#undef SR_KEY_SIZE_X
+#define SR_KEY_SIZE_X		200
+
+#undef SR_VALUE_SIZE_X
+#define SR_VALUE_SIZE_X		80
+
 {
 	menuDef
 	{
@@ -28,21 +34,26 @@
 			close main_options;
 		}
 
-		SR_TEXT_KV(1, "L1", "R1")
-		SR_TEXT_KV(2, "L1", "R1")
-		SR_TEXT_KV(3, "L1", "R1")
-		SR_TEXT_KV(4, "L1", "R1")
-		SR_TEXT_KV(5, "L1", "R1")
-		SR_TEXT_KV(6, "L1", "R1")
-		SR_TEXT_KV(7, "L1", "R1")
-		SR_TEXT_KV(8, "L1", "R1")
-		SR_TEXT_KV(9, "L1", "R1")
-		SR_TEXT_KV(10, "L1", "R1")
+		#define SR_SETTING(id, script) SR_BUTTON_KV((id + 1), dvarString("sr_setting_" + id), dvarString("sr_setting_value_" + id), scriptMenuResponse script;)
 
-		SR_TEXT_KV(16, "L1", "R1")
-		SR_TEXT_KV(17, "L1", "R1")
-		SR_TEXT_KV(18, "L1", "R1")
-		SR_TEXT_KV(19, "L1", "R1")
-		SR_TEXT_KV(20, "L1", "R1")
+		SR_SETTING(0, "setting:0")
+		SR_SETTING(1, "setting:1")
+		SR_SETTING(2, "setting:2")
+		SR_SETTING(3, "setting:3")
+		SR_SETTING(4, "setting:4")
+		SR_SETTING(5, "setting:5")
+		SR_SETTING(6, "setting:6")
+		SR_SETTING(7, "setting:7")
+		SR_SETTING(8, "setting:8")
+		SR_SETTING(9, "setting:9")
+		SR_SETTING(10, "setting:10")
+		SR_SETTING(11, "setting:11")
+		SR_SETTING(12, "setting:12")
+		SR_SETTING(13, "setting:13")
+		SR_SETTING(14, "setting:14")
+		SR_SETTING(15, "setting:15")
+		SR_SETTING(16, "setting:16")
+		SR_SETTING(17, "setting:17")
+		SR_SETTING(18, "setting:18")
 	}
 }
