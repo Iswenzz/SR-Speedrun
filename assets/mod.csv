@@ -334,6 +334,7 @@ stringtable,mp/challengetable_tier2.csv
 // Menus
 menufile,ui/menus.txt
 menufile,ui_mp/scriptmenus/main/main_mp.menu
+menufile,ui_mp/scriptmenus/main/sr_customize.menu
 menufile,ui_mp/scriptmenus/options/sr_settings.menu
 menufile,ui_mp/scriptmenus/controls/controls_multi.menu
 menufile,ui_mp/scriptmenus/popups/exit.menu

@@ -4,6 +4,7 @@
 #define ORIGIN_QUICKMESSAGEWINDOW	0 16
 
 #include "ui/components/base.inc"
+#include "ui/components/popup.inc"
 
 {
 	menuDef

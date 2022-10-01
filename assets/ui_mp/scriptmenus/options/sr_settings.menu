@@ -1,11 +1,8 @@
+#define SR_KEY_SIZE_X		200
+#define SR_VALUE_SIZE_X		80
+
 #include "ui/components/base.inc"
 #include "ui/shared/frame_layout.inc"
-
-#undef SR_KEY_SIZE_X
-#define SR_KEY_SIZE_X		200
-
-#undef SR_VALUE_SIZE_X
-#define SR_VALUE_SIZE_X		80
 
 {
 	menuDef

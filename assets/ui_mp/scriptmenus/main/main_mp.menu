@@ -18,7 +18,7 @@
 		}
 
 		SR_FRAME(11, 266, 360, 133)
-		SR_FRAME_HEADER("About", 14, 268, 356, 25)
+		SR_FRAME_HEADER("About", 14, 268, 356, 25, 6)
 
 		itemdef
 		{
@@ -79,29 +79,13 @@
 		#undef LAYOUT_Y_SPACING
 		#define LAYOUT_Y_SPACING	21
 
-		itemdef
-		{
-			name			"infoCustomize"
-			rect			378 277 126 20 0 0
-			backcolor		0 0 0 0.4
-			style			1
-			visible			1
-			type			ITEM_TYPE_BUTTON
-			forecolor		HEADER_TEXTCOLOR
-			text			"Customization"
-			textscale		0.3
-			textstyle		HEADER_TEXTSTYLE
-			textalign		0
-			textalignx		6
-			textaligny		17
+		#undef LAYOUT_X_START
+		#define LAYOUT_X_START		378
 
-			action
-			{
-				play "mouse_click";
-				open sr_customization;
-				close self;
-			}
-		}
+		#undef LAYOUT_Y_START
+		#define LAYOUT_Y_START		277
+
+		SR_BUTTON_LEFT(1, "Customize", open sr_customize; close main_mp;, 1)
 
 		itemdef
 		{
@@ -160,7 +144,7 @@
 		}
 
 		SR_FRAME(11, 35, 360, 225)
-		SR_FRAME_HEADER("Stats", 14, 37, 357, 25)
+		SR_FRAME_HEADER("Stats", 14, 37, 357, 25, 6)
 
 		#undef LAYOUT_X_START
 		#define LAYOUT_X_START 		14
