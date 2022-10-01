@@ -4,7 +4,7 @@
 initLeaderboards()
 {
 	level.leaderboard_max_page = 7;
-	level.leaderboard_max_entries = 30;
+	level.leaderboard_max_entries = 40;
 	level.leaderboard_xps = xpTable();
 
 	menu("sr_leaderboard", "open", ::menu_Open);
@@ -54,10 +54,8 @@ onConnect()
 	// Default
 	for (i = 0; i < level.leaderboard_max_page; i++)
 	{
-		self setClientDvar(fmt("normal_%d", i), "0");
-		self setClientDvar(fmt("normal_%d_name", i), "-");
-		self setClientDvar(fmt("secret_%d", i), "0");
-		self setClientDvar(fmt("secret_%d_name", i), "-");
+		self setClientDvar(fmt("normal_%d", i), "");
+		self setClientDvar(fmt("secret_%d", i), "");
 		wait 0.05;
 	}
 	waitMapLoad(1);
@@ -70,8 +68,7 @@ onConnect()
 	for (i = 0; i < names.size; i++)
 	{
 		leaderboard = level.leaderboards[names[i]];
-		self setClientDvar(leaderboard.id, "1");
-		self setClientDvar(fmt("%s_name", leaderboard.id), IfUndef(leaderboard.name, ""));
+		self setClientDvar(leaderboard.id, IfUndef(leaderboard.name, ""));
 	}
 }
 

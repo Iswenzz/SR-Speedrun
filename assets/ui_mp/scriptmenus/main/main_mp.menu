@@ -1,7 +1,8 @@
+#define LAYOUT_NAME				"main"
+#define LAYOUT_TEXT_OFFSET_X 	6
 #define HEADER_X_START			10
 #define HEADER_SIZE_X			100
 #define HEADER_X_SPACING		101
-#define LAYOUT_TEXT_OFFSET_X 	6
 
 #include "ui/components/base.inc"
 
@@ -166,7 +167,7 @@
 
 		HEADER(2, "Play", scriptMenuResponse "autoassign"; close main_mp;)
 		HEADER(3, "Spectator", scriptMenuResponse "spectator"; close main_mp;)
-		HEADER(4, "Leaderboards", open sr_leaderboards; close main_mp;)
+		HEADER(4, "Leaderboards", open sr_leaderboard; close main_mp;)
 		HEADER(5, "Controls", open main_controls; close main_mp;)
 		HEADER(6, "Settings", open main_options; open sr_settings; close main_mp;)
 		HEADER(7, "Quit", open exit_popmenu;)

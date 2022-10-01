@@ -23,6 +23,7 @@ precache()
 {
 	precacheMenu("main/main_mp");
 	precacheMenu("main/sr_customize");
+	precacheMenu("main/sr_leaderboard");
 	precacheMenu("options/sr_settings");
 	precacheMenu("controls/controls_multi");
 	precacheMenu("popups/exit");
