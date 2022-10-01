@@ -336,6 +336,7 @@ menufile,ui/menus.txt
 menufile,ui_mp/scriptmenus/main/main_mp.menu
 menufile,ui_mp/scriptmenus/main/sr_customize.menu
 menufile,ui_mp/scriptmenus/main/sr_leaderboard.menu
+menufile,ui_mp/scriptmenus/main/sr_votemap.menu
 menufile,ui_mp/scriptmenus/commands/wm_quickmessage.menu
 menufile,ui_mp/scriptmenus/commands/quickcommands.menu
 menufile,ui_mp/scriptmenus/commands/quickresponses.menu

@@ -24,6 +24,7 @@ precache()
 	precacheMenu("main/main_mp");
 	precacheMenu("main/sr_customize");
 	precacheMenu("main/sr_leaderboard");
+	precacheMenu("main/sr_votemap");
 	precacheMenu("commands/wm_quickmessage");
 	precacheMenu("commands/quickcommands");
 	precacheMenu("commands/quickresponses");
