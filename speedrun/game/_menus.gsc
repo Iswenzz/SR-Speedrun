@@ -24,6 +24,11 @@ precache()
 	precacheMenu("main/main_mp");
 	precacheMenu("main/sr_customize");
 	precacheMenu("main/sr_leaderboard");
+	precacheMenu("commands/wm_quickmessage");
+	precacheMenu("commands/quickcommands");
+	precacheMenu("commands/quickresponses");
+	precacheMenu("commands/quickstatements");
+	precacheMenu("commands/quickstuff");
 	precacheMenu("options/sr_settings");
 	precacheMenu("controls/controls_multi");
 	precacheMenu("popups/exit");

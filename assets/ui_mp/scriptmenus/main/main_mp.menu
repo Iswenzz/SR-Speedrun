@@ -77,21 +77,10 @@
 
 		SR_TEXT_KV(2, "Role", dvarString("sr_role"))
 
-		#undef LAYOUT_Y_SPACING
-		#define LAYOUT_Y_SPACING	21
-
-		#undef LAYOUT_X_START
-		#define LAYOUT_X_START		378
-
-		#undef LAYOUT_Y_START
-		#define LAYOUT_Y_START		277
-
-		SR_BUTTON_LEFT(1, "Customize", open sr_customize; close main_mp;, 1)
-
 		itemdef
 		{
 			name			"infoPlayer"
-			rect			378 299 250 50 0 0
+			rect			378 289 250 50 0 0
 			style			1
 			backcolor		0 0 0 0.4
 			visible			1
@@ -101,7 +90,7 @@
 		itemdef
 		{
 			name			"infoRankIcon"
-			rect			380 308 32 32 0 0
+			rect			380 298 32 32 0 0
 			exp				material(tablelookup("mp/rankIconTable.csv", 0, stat(2350), stat(2326) + 1))
 			style			3
 			visible			1
@@ -111,7 +100,7 @@
 		itemdef
 		{
 			name			"infoRank"
-			rect			414 308 85 32 0 0
+			rect			414 298 85 32 0 0
 			style			0
 			visible			1
 			type			0
@@ -127,7 +116,7 @@
 		itemdef
 		{
 			name			"infoVIP"
-			rect			603 308 16 16 0 0
+			rect			603 298 16 16 0 0
 			background		"vip_status"
 			style			3
 			visible			1
@@ -137,15 +126,42 @@
 		itemdef
 		{
 			name			"infoSpeedrun"
-			rect			583 308 16 16 0 0
+			rect			583 298 16 16 0 0
 			background		"speedrunner_logo"
 			style			3
 			visible			1
 			decoration
 		}
 
+		#undef LAYOUT_X_SPACING
+		#define LAYOUT_X_SPACING	125
+
+		#undef LAYOUT_Y_SPACING
+		#define LAYOUT_Y_SPACING	21
+
+		#undef LAYOUT_X_START
+		#define LAYOUT_X_START		378
+
+		#undef LAYOUT_Y_START
+		#define LAYOUT_Y_START		340
+
+		#undef LAYOUT_Y_COUNT
+		#define LAYOUT_Y_COUNT		1
+
+		#undef LAYOUT_SIZE_X
+		#define LAYOUT_SIZE_X		124
+
+		#undef BUTTON_SIZE_X
+		#define BUTTON_SIZE_X		124
+
+		SR_BUTTON_LEFT(1, "Customize", open sr_customize; close main_mp;, 1)
+		SR_BUTTON_LEFT(2, "Vote", open sr_votemap; close main_mp;, 1)
+
 		SR_FRAME(11, 35, 360, 225)
 		SR_FRAME_HEADER("Stats", 14, 37, 357, 25, 6)
+
+		#undef LAYOUT_Y_COUNT
+		#define LAYOUT_Y_COUNT		20
 
 		#undef LAYOUT_X_START
 		#define LAYOUT_X_START 		14

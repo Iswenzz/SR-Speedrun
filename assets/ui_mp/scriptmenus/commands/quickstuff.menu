@@ -1,0 +1,85 @@
+#define LAYOUT_NAME					"quickstuff"
+#define LAYOUT_SIZE_X				186
+#define LAYOUT_BORDER_COLOR			0 0 0 0.9
+#define LAYOUT_BACKCOLOR  			0 0 0 0.85
+#define ORIGIN_QUICKSTUFFWINDOW		0 16
+
+#include "ui/components/base.inc"
+#include "ui/components/popup.inc"
+
+#undef LAYOUT_HORIZONTAL_ALIGN
+#define LAYOUT_HORIZONTAL_ALIGN 	HORIZONTAL_ALIGN_LEFT
+
+{
+	menuDef
+	{
+		IMPROVED_POPUP_SETUP_ONOPEN(quickstuff, 4, 0, 325, ;, setDvar cl_bypassMouseInput "1";, 0)
+		onClose{ setDvar cl_bypassMouseInput "0" }
+
+		POPMENU_TITLE("Player Menu")
+
+		itemDef
+		{
+			name			"window"
+			visible			1
+			rect			16 20 0 0
+			origin			ORIGIN_QUICKSTUFFWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"1. Third Person"
+			decoration
+		}
+		execKey "1" { scriptMenuResponse "3rdperson"; close quickstuff }
+
+		itemDef
+		{
+			name			"window"
+			visible			1
+			rect			16 36 0 0
+			origin			ORIGIN_QUICKSTUFFWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"2. Suicide"
+			decoration
+		}
+		execKey "2" { scriptMenuResponse "suicide"; close quickstuff }
+
+		itemDef
+		{
+			name			"window"
+			visible			1
+			rect			16 52 0 0
+			origin			ORIGIN_QUICKSTUFFWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"3. Laser"
+			decoration
+		}
+		execKey "3" { scriptMenuResponse "laser"; close quickstuff }
+
+		itemDef
+		{
+			name			"window"
+			visible			1
+			rect			16 68 0 0
+			origin			ORIGIN_QUICKSTUFFWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"4. Prestige"
+			decoration
+		}
+		execKey "4" { scriptMenuResponse "prestigemode"; close quickstuff }
+	}
+}
