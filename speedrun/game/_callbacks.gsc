@@ -21,10 +21,6 @@ playerConnect()
 	self endon("disconnect");
 	level notify("connected", self);
 
-	self clientCmd("setu sr_xp_bar 0");
-	self clientCmd("setu com_maxfps 125");
-	self clientCmd("setu sr_vote_search _");
-
 	self.enable3DWaypoints = true;
 	self.enableDeathIcons = true;
 	self.classType = undefined;
@@ -53,6 +49,11 @@ playerConnect()
 
 	if (game["state"] == "endmap")
 		return;
+
+	self clientCmd("setu sr_xp_bar 0");
+	self clientCmd("setu com_maxfps 125");
+	wait 0.05;
+	self clientCmd("setu sr_vote_search _");
 
 	self setClientDvar("g_scriptMainMenu", "main_mp");
 	wait 0.05;

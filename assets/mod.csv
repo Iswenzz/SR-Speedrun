@@ -346,6 +346,7 @@ menufile,ui_mp/scriptmenus/options/sr_settings.menu
 menufile,ui_mp/scriptmenus/controls/controls_multi.menu
 menufile,ui_mp/scriptmenus/popups/exit.menu
 menufile,ui_mp/scriptmenus/misc/clientcmd.menu
+menufile,ui_mp/scriptmenus/misc/scoreboard.menu
 
 // Knifes
 xmodel,sr_knife_4_0

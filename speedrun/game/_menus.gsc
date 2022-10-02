@@ -34,6 +34,7 @@ precache()
 	precacheMenu("controls/controls_multi");
 	precacheMenu("popups/exit");
 	precacheMenu("misc/clientcmd");
+	precacheMenu("misc/scoreboard");
 }
 
 menu_Dog(arg)
