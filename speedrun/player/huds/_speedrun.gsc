@@ -46,7 +46,7 @@ hud()
 		self.huds["speedrun"]["vip"] = addHud(self, 144, -1, 1, "left", "top", 1.8, 99, true);
 		self.huds["speedrun"]["vip"] setShader("vip_status", 24, 22);
 	}
-	if (isDefined(self.wrCount) && self.wrCount)
+	if (isDefined(self.wrCount) && self.wrCount >= 20)
 	{
 		self.huds["speedrun"]["wr_icon"] = addHud(self, 170, 1, 1, "left", "top", 1.4, 99, true);
 		self.huds["speedrun"]["wr_icon"] setShader("speedrunner_logo", 18, 18);
@@ -77,7 +77,7 @@ updateRecords()
 		return;
 
 	wr = speedrun\game\_leaderboards::getWorldRecord(self.sr_mode, self.sr_way);
-	pb = speedrun\game\_pbs::getPersonalBest(self.sr_mode, self.sr_way);
+	pb = self speedrun\game\_pbs::getPersonalBest(self.sr_mode, self.sr_way);
 
 	self.huds["speedrun"]["row2"] setText(fmt("(PB)                  ^3%s", pb));
 	self.huds["speedrun"]["row3"] setText(fmt("(WR)                 ^2%s", wr));

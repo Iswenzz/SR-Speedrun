@@ -14,6 +14,7 @@ cmd_Speed(args)
 	self setStat(1700, Ternary(speed == "190", 1, 2));
     self.sr_mode = speed;
     self pm(fmt("Run mode: ^5%s", speed));
+	self thread speedrun\game\_leaderboards::updateMenuInfo();
     self suicide();
 }
 
@@ -25,6 +26,7 @@ cmd_Portal(args)
 	self setStat(1700, 3);
 	self.sr_mode = "Portal";
     self pm("Run mode: ^5Portal");
+	self thread speedrun\game\_leaderboards::updateMenuInfo();
     self suicide();
 }
 
@@ -36,6 +38,7 @@ cmd_Defrag(args)
 	self setStat(1700, 4);
 	self.sr_mode = "Defrag";
     self pm("Run mode: ^3Defrag");
+	self thread speedrun\game\_leaderboards::updateMenuInfo();
     self suicide();
 }
 

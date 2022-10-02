@@ -75,7 +75,7 @@
 		#undef SR_VALUE_SIZE_X
 		#define SR_VALUE_SIZE_X		124
 
-		SR_TEXT_KV(2, "Role", dvarString("sr_role"))
+		SR_TEXT_KV(2, "Role", dvarString("sr_admin_role"))
 
 		itemdef
 		{
@@ -119,7 +119,7 @@
 			rect			603 298 16 16 0 0
 			background		"vip_status"
 			style			3
-			visible			1
+			visible			when((stat(2000)))
 			decoration
 		}
 
@@ -129,7 +129,7 @@
 			rect			583 298 16 16 0 0
 			background		"speedrunner_logo"
 			style			3
-			visible			1
+			visible			when((stat(2001)) >= 20)
 			decoration
 		}
 
@@ -175,11 +175,11 @@
 		#undef SR_VALUE_SIZE_X
 		#define SR_VALUE_SIZE_X		75
 
-		SR_TEXT_KV(1, "L1", "R1")
-		SR_TEXT_KV(2, "L2", "R2")
-		SR_TEXT_KV(3, "L3", "R3")
-		SR_TEXT_KV(4, "L4", "R4")
-		SR_TEXT_KV(5, "L5", "R5")
+		SR_TEXT_KV(1, "Personal Best", dvarString("sr_leaderboard_pb"))
+		SR_TEXT_KV(2, "World Record", dvarString("sr_leaderboard_wr"))
+		SR_TEXT_KV(3, "WR Count", ("" + stat(2001)))
+		SR_TEXT_KV(4, "Leaderboard Entries", ("" + stat(2002)))
+		SR_TEXT_KV(5, "Time Played", dvarString("sr_info_timePlayed"))
 
 		HEADER(2, "Play", scriptMenuResponse "autoassign"; close main_mp;)
 		HEADER(3, "Spectator", scriptMenuResponse "spectator"; close main_mp;)

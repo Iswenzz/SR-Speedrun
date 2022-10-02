@@ -63,6 +63,8 @@ onConnect()
 	if (!mapHasLeaderboards())
 		return;
 
+	self thread updateMenuInfo();
+
 	// Registred
 	names = getArrayKeys(level.leaderboards);
 	for (i = 0; i < names.size; i++)
@@ -70,6 +72,23 @@ onConnect()
 		leaderboard = level.leaderboards[names[i]];
 		self setClientDvar(leaderboard.id, IfUndef(leaderboard.name, ""));
 	}
+
+	// WR Count
+	self.wrCount = 0; // @todo
+	self setStat(2001, self.wrCount);
+
+	// LB Entries
+	self.lbEntries = 0; // @todo
+	self setStat(2002, self.lbEntries);
+}
+
+updateMenuInfo()
+{
+	wr = speedrun\game\_leaderboards::getWorldRecord(self.sr_mode, self.sr_way);
+	pb = self speedrun\game\_pbs::getPersonalBest(self.sr_mode, self.sr_way);
+
+	self setClientDvar("sr_leaderboard_pb", fmt("^3%s", pb));
+	self setClientDvar("sr_leaderboard_wr", fmt("^2%s", wr));
 }
 
 load()
@@ -429,7 +448,10 @@ worldRecord(entry)
 	iPrintLnBold(fmt("^5New ^2WR ^7on ^6%s ^2%s ^7By ^5%s", entry["mode"], way, self.shortName));
 
 	for (i = 0; i < players.size; i++)
+	{
 		players[i] thread effects();
+		players[i] thread speedrun\game\_leaderboards::updateMenuInfo();
+	}
 }
 
 effects()

@@ -54,6 +54,8 @@ saveEntry(entry)
     way = entry["way"];
     self.pbs[mode][way] = entry["time"];
 
+	self thread speedrun\game\_leaderboards::updateMenuInfo();
+
     mutex_acquire("mysql");
 
     SQL_Prepare("UPDATE pbs SET time = ? WHERE map = ? AND player = ? AND mode = ? AND way = ?");
