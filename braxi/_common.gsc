@@ -295,9 +295,9 @@ addBan(guid, reason)
 dropPlayer(player, method, msg1, msg2)
 {
 	if (msg1 != "")
-		self setClientDvar("ui_dr_info", msg1);
+		self setClientDvar("ui_sr_info", msg1);
 	if (msg2 != "")
-		self setClientDvar("ui_dr_info2", msg2);
+		self setClientDvar("ui_sr_info2", msg2);
 
 	num = player getEntityNumber();
 	switch (method)
