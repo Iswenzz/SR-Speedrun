@@ -3,6 +3,7 @@ main()
 maps\mp\_load::main();
 maps\mp\_teleport::main();
 
+	thread sr\api\_map::noFallDamage();
 	thread sr\api\_map::createSpawn((483, -340, 316), 360);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");

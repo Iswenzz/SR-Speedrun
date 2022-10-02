@@ -10,6 +10,7 @@ maps\mp\_load::main();
 thread sr\api\_map::createSpawn((94,-71,78), 270);
 thread sr\api\_speedrun::createNormalWays("Normal Way;^5Short Way;");
 thread sr\api\_speedrun::createSecretWays("^1Hard Way;^2Easy Way;");
+thread sr\api\_speedrun::createWay((-632, -1119, 27), 250, 250, "yellow", "normal_1");
 thread sr\api\_speedrun::createTeleporter((340.535, -496.931, 18.125), 80, 120, (-2638, 3827, 8318), 93, "freeze", "blue", "secret_0");
 thread sr\api\_speedrun::createTeleporter((-177.916, -503.027, 18.125), 60, 80, (9604, -1754, 1774), 1, "freeze", "blue", "secret_1");
 thread sr\api\_speedrun::createEndMap((16447.9, 16834.4, -2547.95), 400, 55, "secret_0");
@@ -45,7 +46,7 @@ thread trap2();
 //thread trap7();
 //thread trap8();
 //thread trap9();
-	
+
 game["allies"] = "marines";
 game["axis"] = "opfor";
 game["attackers"] = "axis";
@@ -158,7 +159,7 @@ endmaptrig()
 
 trig=getent("endmap_trig","targetname");
 trig waittill("trigger", player);
-}            
+}
 
 
 //Traps
@@ -188,8 +189,8 @@ origin2=getent("trap1origin2", "targetname");
                trig waittill("trigger", player);
                 player setorigin (origin2.origin);
                 player setplayerangles(origin2.angles);
-				
-				
+
+
 				}
 }
 trap1activ()
@@ -203,8 +204,8 @@ origin2=getent("trap1origin2", "targetname");
                trap1 waittill("trigger", player);
                 player setorigin (origin1.origin);
                 player setplayerangles(origin1.angles);
-				
-				
+
+
 				}
 }
 lazers()
@@ -219,13 +220,13 @@ while(1)
 				 lazer1 waittill("movedone");
 				lazer1 movey(-709, 1.8);
                 lazer1 waittill("movedone");
-}				
+}
 				}
 lazers2()
-{				
-lazer2=getent("trap1lazer2", "targetname");	
+{
+lazer2=getent("trap1lazer2", "targetname");
 trig_lazer2=getent("trap1trig_lazer2", "targetname");
-trig_lazer2 enablelinkto ();	
+trig_lazer2 enablelinkto ();
 trig_lazer2 linkto (lazer2);
 	while(1)
 {
@@ -431,7 +432,7 @@ for(;;)
     trig waittill("trigger", player);
     player setorigin (secrettele.origin);
     player setplayerangles(secrettele.angles);
-							
+
     }
 }
 secrets()
@@ -445,8 +446,8 @@ secretwall notsolid();
                trig waittill("trigger", player);
                 player setorigin (secrettele.origin);
                 player setplayerangles(secrettele.angles);
-				
-				
+
+
 				}
 }
 //hard secret teleports
@@ -468,7 +469,7 @@ hard=getent("origin_hardsecstart", "targetname");
                 player setorigin (hard.origin);
                 player setplayerangles(hard.angles);
 				player thread hardsecret_timer();
-				
+
 				}
 }
 hardsectp1()
@@ -480,8 +481,8 @@ hardtp1=getent("origin_hardsectp1", "targetname");
                trig waittill("trigger", player);
                 player setorigin (hardtp1.origin);
                 player setplayerangles(hardtp1.angles);
-				
-				
+
+
 				}
 }
 hardsectp2()
@@ -493,8 +494,8 @@ hardtp2=getent("origin_hardsectp2", "targetname");
                trig waittill("trigger", player);
                 player setorigin (hardtp2.origin);
                 player setplayerangles(hardtp2.angles);
-				
-				
+
+
 				}
 }
 hardsectp3()
@@ -506,8 +507,8 @@ hardtp3=getent("origin_hardsectp3", "targetname");
                trig waittill("trigger", player);
                 player setorigin (hardtp3.origin);
                 player setplayerangles(hardtp3.angles);
-				
-				
+
+
 				}
 }
 hardsectp4()
@@ -519,8 +520,8 @@ hardtp4=getent("origin_hardsectp4", "targetname");
                trig waittill("trigger", player);
                 player setorigin (hardtp4.origin);
                 player setplayerangles(hardtp4.angles);
-				
-				
+
+
 				}
 }
 
@@ -539,8 +540,8 @@ ezsecfall=getent("origin_ezsecfall", "targetname");
                trig waittill("trigger", player);
                 player setorigin (ezsecfall.origin);
                 player setplayerangles(ezsecfall.angles);
-				
-				
+
+
 				}
 }
 ezsecstart()
@@ -553,7 +554,7 @@ ezsectele=getent("origin_ezsecfall", "targetname");
                 player setorigin (ezsectele.origin);
                 player setplayerangles(ezsectele.angles);
 				player thread ezsecret_timer();
-				
+
 				}
 }
 ezsecend()
@@ -566,7 +567,7 @@ ezsecend=getent("origin_ezsecend", "targetname");
     player setorigin (ezsecend.origin);
     player setplayerangles(ezsecend.angles);
 	player thread sr\api\_speedrun::finishWay("secret_1");
-				
+
 	}
 }
 hardsecret_timer()
@@ -592,7 +593,7 @@ hardsecret_timer()
  	self.secretTimer2.label = &"Time in left: &&1";
  	if(isdefined(level.randomcolor))
 	self.secretTimer2.glowColor=level.randomcolor;
-	else 
+	else
 	self.secretTimer2.glowColor=(1,0,0);
 
 	time=200;
@@ -631,7 +632,7 @@ ezsecret_timer()
         self.secretTimer.label = &"Time in left: &&1";
         if(isdefined(level.randomcolor))
 	self.secretTimer.glowColor=level.randomcolor;
-	else 
+	else
 	self.secretTimer.glowColor=(0,1,0);
 
 	time=70;
@@ -666,7 +667,7 @@ sniper()
 level.bounce_trigger = getEnt( "trig_bounce", "targetname");
 level.sniper_trigger = getEnt( "trig_sniper", "targetname");
 level.knife_trigger = getEnt( "knife_trig", "targetname");
-level.teleactorigin = getEnt( "origin_sniperactifall", "targetname" ); 
+level.teleactorigin = getEnt( "origin_sniperactifall", "targetname" );
 telejumporigin = getEnt( "origin_sniperplayerfall", "targetname" );
 
 while(1)
@@ -676,8 +677,8 @@ level.sniper_trigger waittill( "trigger", splayer );
 level.bounce_trigger delete();
 level.knife_trigger delete();
 thread sniperfall(splayer);
-    
-iprintln("Now Playing<<PIXL - Sugar Rush [Monstercat EP Release]>>");    
+
+iprintln("Now Playing<<PIXL - Sugar Rush [Monstercat EP Release]>>");
 ambientstop();
 ambientPlay( "sugarrush" );
 
@@ -689,18 +690,18 @@ if(level.firstenter==true)
 {
 
 level.firstenter=false;
-} 
+}
 wait(0.05);
 
 splayer SetOrigin( telejumporigin.origin );
 splayer setplayerangles( telejumporigin.angles );
 splayer TakeAllWeapons();
 splayer GiveWeapon("m40a3_mp");
-splayer GiveWeapon( "remington700_mp" ); 
+splayer GiveWeapon( "remington700_mp" );
 splayer GiveMaxAmmo("m40a3_mp");
 splayer GiveMaxAmmo( "remington700_mp" );
 wait .05;
-splayer SwitchToWeapon("m40a3_mp"); 
+splayer SwitchToWeapon("m40a3_mp");
 wait(0.05);
 level.activ SetOrigin (level.teleactorigin.origin);
 level.activ setplayerangles (level.teleactorigin.angles);
@@ -710,8 +711,8 @@ level.activ GiveWeapon( "remington700_mp" );
 level.activ GiveMaxAmmo("m40a3_mp");
 level.activ GiveMaxAmmo( "remington700_mp" );
 wait .05;
-level.activ SwitchToWeapon("m40a3_mp"); 
-iPrintlnBold( " ^8" + splayer.name + " ^4 has entered the Sniper room^8!" ); 
+level.activ SwitchToWeapon("m40a3_mp");
+iPrintlnBold( " ^8" + splayer.name + " ^4 has entered the Sniper room^8!" );
 splayer iPrintlnBold( "^13" );
             splayer freezecontrols(true);
 			level.activ freezecontrols(true);
@@ -742,7 +743,7 @@ level.PlayerInRoom = false;
 knife()
 {
 level.knife_trigger = getEnt( "knife_trig", "targetname");
-level.kteleactorigin = getEnt( "origin_knifeacti", "targetname" ); 
+level.kteleactorigin = getEnt( "origin_knifeacti", "targetname" );
 ktelejumporigin = getEnt( "origin_knifejumper", "targetname" );
 
 while(1)
@@ -750,8 +751,8 @@ while(1)
 level.knife_trigger waittill( "trigger", player );
 level.bounce_trigger delete();
 level.sniper_trigger delete();
-    
-iprintln("Now Playing<<Carbon Airways - Black Sun (Kill Paris Remix)>>");    
+
+iprintln("Now Playing<<Carbon Airways - Black Sun (Kill Paris Remix)>>");
 
 ambientPlay( "notalone" );
 
@@ -763,7 +764,7 @@ if(level.firstenter==true)
 {
 
 level.firstenter=false;
-} 
+}
 wait(0.05);
 
 player SetOrigin( ktelejumporigin.origin );
@@ -771,15 +772,15 @@ player setplayerangles( ktelejumporigin.angles );
 player TakeAllWeapons();
 player GiveWeapon("knife_mp");
 wait .05;
-player SwitchToWeapon("knife_mp"); 
+player SwitchToWeapon("knife_mp");
 wait(0.05);
 level.activ SetOrigin (level.kteleactorigin.origin);
 level.activ setplayerangles (level.kteleactorigin.angles);
 level.activ TakeAllWeapons();
 level.activ GiveWeapon( "knife_mp" );
 wait .05;
-level.activ SwitchToWeapon("knife_mp"); 
-iPrintlnBold( " ^8" + player.name + " ^4 has entered the Knife room^8!" ); 
+level.activ SwitchToWeapon("knife_mp");
+iPrintlnBold( " ^8" + player.name + " ^4 has entered the Knife room^8!" );
 player iPrintlnBold( "^13" );
             player freezecontrols(true);
 			level.activ freezecontrols(true);
@@ -813,7 +814,7 @@ bounce()
 level.sniper_trigger = getEnt( "trig_sniper", "targetname");
 level.bounce_trigger = getEnt( "trig_bounce", "targetname");
 level.knife_trigger = getEnt( "knife_trig", "targetname");
-level.bactiorigin = getEnt( "origin_bactifall", "targetname" ); 
+level.bactiorigin = getEnt( "origin_bactifall", "targetname" );
 btelejumporigin = getEnt( "origin_bjumperfall", "targetname" );
 
 while(1)
@@ -822,8 +823,8 @@ level.bounce_trigger waittill( "trigger", player );
 
 level.knife_trigger delete();
 level.sniper_trigger delete();
-iprintln("Now Playing<<Rootkit - Against the Sun (feat. Anna Yvette)>>");    
-    
+iprintln("Now Playing<<Rootkit - Against the Sun (feat. Anna Yvette)>>");
+
 ambientPlay( "rootkit" );
 
 
@@ -834,7 +835,7 @@ if(level.firstenter==true)
 {
 
 level.firstenter=false;
-} 
+}
 wait(0.05);
 
 player SetOrigin( btelejumporigin.origin );
@@ -842,15 +843,15 @@ player setplayerangles( btelejumporigin.angles );
 player TakeAllWeapons();
 player GiveWeapon("knife_mp");
 wait .05;
-player SwitchToWeapon("knife_mp"); 
+player SwitchToWeapon("knife_mp");
 wait(0.05);
 level.activ SetOrigin (level.bactiorigin.origin);
 level.activ setplayerangles (level.bactiorigin.angles);
 level.activ TakeAllWeapons();
 level.activ GiveWeapon( "knife_mp" );
 wait .05;
-level.activ SwitchToWeapon(""); 
-iPrintlnBold( " ^8" + player.name + " ^4 has entered the bounce room^8!" ); 
+level.activ SwitchToWeapon("");
+iPrintlnBold( " ^8" + player.name + " ^4 has entered the bounce room^8!" );
 player iPrintlnBold( "^13" );
             player freezecontrols(true);
 			level.activ freezecontrols(true);
@@ -886,8 +887,8 @@ while(1)
 {
 trig waittill("trigger", player);
 player GiveWeapon( "remington700_mp" );
-player SwitchToWeapon("remington700_mp"); 
-player givemaxammo("remington700_mp"); 
+player SwitchToWeapon("remington700_mp");
+player givemaxammo("remington700_mp");
 }
 }
 bouncejumperfall()
@@ -936,14 +937,14 @@ player setplayerangles( sniperactifall.angles );
 GetActivator()
 {
 	players = getentarray( "player", "classname" );
-	
+
 	for(i = 0;i < players.size;i++)
 	{
 		player = players[i];
-		
+
 		if( isdefined( player ) && isplayer( player ) && isalive( player ) && player.pers["team"] == "axis"	)
 			return player;
 	}
-	
+
 	return "Noactivator";
 }

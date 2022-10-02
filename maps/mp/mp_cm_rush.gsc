@@ -8,7 +8,7 @@ main()
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"]= "desert";
- 
+
 	setdvar( "r_specularcolorscale", "1" );
     setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
@@ -25,7 +25,7 @@ thread startdoor ();
 thread secret_hurt ();
 thread secfinish ();
 
-}	
+}
 
 
 startdoor()
@@ -33,8 +33,6 @@ startdoor()
 sdoor = getent("startdoor","targetname");
 
 sdoor delete();
-
-}  
 
 }
 
@@ -54,11 +52,11 @@ secfinish()
    trig = getent("trig_secfinish", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
 
     player thread sr\api\_speedrun::finishWay("secret_0");
-   
+
     }
 }
 
