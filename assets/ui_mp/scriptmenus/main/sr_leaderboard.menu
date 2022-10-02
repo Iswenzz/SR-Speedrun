@@ -21,7 +21,7 @@
 	itemDef \
 	{ \
 		visible			1 \
-		rect 			(LAYOUT_X_START + x) (65 + y) 200 100 SR_ALIGN_TOP_LEFT \
+		rect 			(LAYOUT_X_START + x) (65 + y) 200 100 SR_ALIGN_TOP_SUBLEFT \
 		forecolor		1 1 1 1 \
 		exp             text(dvarString("leaderboard_numbers_" + id)) \
 		textfont		UI_FONT_NORMAL \
@@ -32,7 +32,7 @@
 	itemDef \
 	{ \
 		visible			1 \
-		rect 			((LAYOUT_X_START + x) + 25) (65 + y) 200 100 SR_ALIGN_TOP_LEFT \
+		rect 			((LAYOUT_X_START + x) + 25) (65 + y) 200 100 SR_ALIGN_TOP_SUBLEFT \
 		forecolor		1 1 1 1 \
 		exp             text(dvarString("leaderboard_names_" + id)) \
 		textfont		UI_FONT_NORMAL \
@@ -43,7 +43,7 @@
 	itemDef \
 	{ \
 		visible			1 \
-		rect 			((LAYOUT_X_START + x) + 25 + 90) (65 + y) 200 100 SR_ALIGN_TOP_LEFT \
+		rect 			((LAYOUT_X_START + x) + 25 + 90) (65 + y) 200 100 SR_ALIGN_TOP_SUBLEFT \
 		forecolor		0 1 1 1 \
 		exp             text(dvarString("leaderboard_values_" + id)) \
 		textstyle		ITEM_TEXTSTYLE_SHADOWED \
