@@ -23,7 +23,7 @@ playerConnect()
 
 	self clientCmd("setu sr_xp_bar 0");
 	self clientCmd("setu com_maxfps 125");
-	self clientCmd("setu sr_vote_search  ");
+	self clientCmd("setu sr_vote_search _");
 
 	self.enable3DWaypoints = true;
 	self.enableDeathIcons = true;
