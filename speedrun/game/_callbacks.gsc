@@ -50,10 +50,8 @@ playerConnect()
 	if (game["state"] == "endmap")
 		return;
 
-	self clientCmd("setu sr_xp_bar 0");
-	self clientCmd("setu com_maxfps 125");
-	wait 0.05;
-	self clientCmd("setu sr_vote_search _");
+	self setu("sr_xp_bar", "0");
+	self setu("sr_vote_search", "_");
 
 	self setClientDvar("g_scriptMainMenu", "main_mp");
 	wait 0.05;
