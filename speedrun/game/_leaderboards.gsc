@@ -72,14 +72,6 @@ onConnect()
 		leaderboard = level.leaderboards[names[i]];
 		self setClientDvar(leaderboard.id, IfUndef(leaderboard.name, ""));
 	}
-
-	// WR Count
-	self.wrCount = 0; // @todo
-	self setStat(2001, self.wrCount);
-
-	// LB Entries
-	self.lbEntries = 0; // @todo
-	self setStat(2002, self.lbEntries);
 }
 
 updateMenuInfo()
@@ -89,6 +81,52 @@ updateMenuInfo()
 
 	self setClientDvar("sr_leaderboard_pb", fmt("^3%s", pb));
 	self setClientDvar("sr_leaderboard_wr", fmt("^2%s", wr));
+
+	self getPlayerEntriesCount();
+	self getPlayerWorldRecordCount();
+}
+
+getPlayerWorldRecordCount()
+{
+	mutex_acquire("mysql");
+
+	filter = "SELECT map, mode, way, MIN(time) as minTime FROM leaderboards GROUP BY map, mode, way";
+	query = fmt("SELECT count(a.id) FROM leaderboards a JOIN (%s) b ON a.time = b.minTime where a.player = ?", filter);
+
+	SQL_Prepare(query);
+	SQL_BindParam(self.id, level.MYSQL_TYPE_STRING);
+	SQL_BindResult(level.MYSQL_TYPE_LONG);
+	SQL_Execute();
+
+	count = SQL_FetchRow();
+
+	self.wrCount = 0;
+	if (isDefined(count) && isDefined(count.size))
+		self.wrCount = count[0];
+
+	self setStat(2001, self.wrCount);
+
+	mutex_release("mysql");
+}
+
+getPlayerEntriesCount()
+{
+	mutex_acquire("mysql");
+
+	SQL_Prepare("SELECT COUNT(id) FROM leaderboards WHERE player = ?");
+	SQL_BindParam(self.id, level.MYSQL_TYPE_STRING);
+	SQL_BindResult(level.MYSQL_TYPE_LONG);
+	SQL_Execute();
+
+	count = SQL_FetchRow();
+
+	self.lbEntries = 0;
+	if (isDefined(count) && isDefined(count.size))
+		self.lbEntries = count[0];
+
+	self setStat(2002, self.lbEntries);
+
+	mutex_release("mysql");
 }
 
 load()
