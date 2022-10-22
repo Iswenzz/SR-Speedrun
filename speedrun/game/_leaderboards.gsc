@@ -6,7 +6,6 @@ initLeaderboards()
 	level.leaderboard_max_page = 7;
 	level.leaderboard_max_entries = 40;
 	level.leaderboard_xps = xpTable();
-	level.leaderboard_demos = [];
 
 	menu("sr_leaderboard", "open", ::menu_Open);
 	menu("sr_leaderboard", "demo", ::menu_Demo);
@@ -32,13 +31,7 @@ menu_Demo(arg)
 		return;
 
 	index = getLeaderboardIndex(self.leaderboard_mode, self.leaderboard_way);
-	if (isDefined(level.leaderboard_demos[index]))
-	{
-		self.demo = level.leaderboard_demos[index];
-		self thread sr\game\_demo::play(self.leaderboard_mode, self.leaderboard_way);
-	}
-	else
-		self iPrintLnBold("^1Demo not found.");
+	self thread speedrun\game\_demo::play(index);
 
 	self closeMenu();
 	self closeInGameMenu();
@@ -242,7 +235,7 @@ load()
 				entry = level.leaderboards[index].entries[entryIndex];
 				wait 0.05;
 			}
-			level.leaderboard_demos[index] = entry;
+			level.demos[index] = entry;
 		}
 	}
 }

@@ -20,6 +20,7 @@ main()
 	speedrun\commands\_speedrun::main();
 	speedrun\game\_bot::main();
 	speedrun\game\_callbacks::main();
+	speedrun\game\_demo::main();
 	speedrun\game\_menus::main();
 	speedrun\game\_scoreboard::main();
 	speedrun\game\_leaderboards::initLeaderboards();
