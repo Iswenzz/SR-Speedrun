@@ -133,5 +133,7 @@
 		BUTTON(2, "210", scriptMenuResponse "mode:210";)
 		BUTTON(3, "Defrag", scriptMenuResponse "mode:Defrag";)
 		BUTTON(4, "Portal", scriptMenuResponse "mode:Portal";)
+
+		BUTTON(10, "Demo", scriptMenuResponse "demo";)
 	}
 }

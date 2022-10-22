@@ -28,14 +28,15 @@ menu_Open(arg)
 
 menu_Demo(arg)
 {
-	self.sr_cheat = true;
-
-	self.antiLag = false;
-	self.antiElevator = false;
+	if (!self isReallyAlive())
+		return;
 
 	index = getLeaderboardIndex(self.leaderboard_mode, self.leaderboard_way);
 	if (isDefined(level.leaderboard_demos[index]))
+	{
+		self.demo = level.leaderboard_demos[index];
 		self thread sr\game\_demo::play(self.leaderboard_mode, self.leaderboard_way);
+	}
 	else
 		self iPrintLnBold("^1Demo not found.");
 
