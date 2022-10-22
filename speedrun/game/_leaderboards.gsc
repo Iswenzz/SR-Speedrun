@@ -6,8 +6,10 @@ initLeaderboards()
 	level.leaderboard_max_page = 7;
 	level.leaderboard_max_entries = 40;
 	level.leaderboard_xps = xpTable();
+	level.leaderboard_demos = [];
 
 	menu("sr_leaderboard", "open", ::menu_Open);
+	menu("sr_leaderboard", "demo", ::menu_Demo);
 	menu_multiple("sr_leaderboard", "way", ::menu_Leaderboard);
 	menu_multiple("sr_leaderboard", "mode", ::menu_Mode);
 
@@ -22,6 +24,23 @@ menu_Open(arg)
 	self.leaderboard_mode = self.sr_mode;
 
 	self display();
+}
+
+menu_Demo(arg)
+{
+	self.sr_cheat = true;
+
+	self.antiLag = false;
+	self.antiElevator = false;
+
+	index = getLeaderboardIndex(self.leaderboard_mode, self.leaderboard_way);
+	if (isDefined(level.leaderboard_demos[index]))
+		self thread sr\game\_demo::play(self.leaderboard_mode, self.leaderboard_way);
+	else
+		self iPrintLnBold("^1Demo not found.");
+
+	self closeMenu();
+	self closeInGameMenu();
 }
 
 menu_Leaderboard(args)
@@ -193,7 +212,7 @@ load()
 	}
 	mutex_release("mysql");
 
-	// Sort
+	// Sort and register demos
 	for (i = 0; i < modes.size; i++)
 	{
 		for (j = 0; j < ways.size; j++)
@@ -206,6 +225,23 @@ load()
 				continue;
 
 			level.leaderboards[index].entries = sortEntries(level.leaderboards[index].entries);
+
+			if (!level.leaderboards[index].entries.size)
+				continue;
+
+			entryIndex = 0;
+			entry = level.leaderboards[index].entries[entryIndex];
+
+			while (!RegisterSpeedrunDemo(level.map, entry["player"], entry["run"], entry["mode"], entry["way"]))
+			{
+				entryIndex++;
+				if (entryIndex > 10 || !isDefined(level.leaderboards[index].entries[entryIndex]))
+					break;
+
+				entry = level.leaderboards[index].entries[entryIndex];
+				wait 0.05;
+			}
+			level.leaderboard_demos[index] = entry;
 		}
 	}
 }
