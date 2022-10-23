@@ -14,9 +14,9 @@ play(id)
 		self sr\sys\_admins::pm("^1Demo not found.");
 		return;
 	}
+	self stopDemoPlayer();
 	self.demo = level.demos[id];
 
-	self stopDemoPlayer();
 	wait 0.05;
 	self endon("demo_stop");
 
@@ -55,15 +55,16 @@ play(id)
 
 stopDemoPlayer()
 {
-	if (isDefined(self.demoEnt))
-	{
-		self notify("demo_stop");
-		self.demoEnt delete();
-		self stopDemo();
-		self suicide();
+	if (!isDefined(self.demoEnt))
+		return;
 
-		self.godmode = undefined;
-		self.antiLag = true;
-		self.antiElevator = true;
-	}
+	self notify("demo_stop");
+	self.demoEnt delete();
+	self.demo = undefined;
+	self stopDemo();
+	self suicide();
+
+	self.godmode = undefined;
+	self.antiLag = true;
+	self.antiElevator = true;
 }

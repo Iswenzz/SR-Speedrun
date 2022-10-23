@@ -9,6 +9,8 @@ main()
 
 hud()
 {
+	wait 0.05;
+
 	self endon("death");
 	self endon("disconnect");
 	self endon("joined_spectators");
@@ -23,7 +25,7 @@ hud()
 	{
 		time = originToTime(timer);
 		self.huds["speedrun"]["row1"] setText(fmt("%d:%d.%d", time.min, time.sec, int(time.ms / 100)));
-		timer += 50;
+		timer += Ternary(self backButtonPressed(), -50, 50);
 
 		wait 0.05;
 	}
@@ -36,6 +38,8 @@ huds()
 	wayName = speedrun\game\_leaderboards::getLeaderboardName(self.demo["mode"], self.demo["way"]);
 
 	self.huds["demo"] = [];
+	self.huds["demo"]["rewind"] = addHud(self, 3, -50, 1, "left", "bottom", 1.4);
+	self.huds["demo"]["rewind"] setText("Hold ^5[{+back}]^7 to rewind");
 
 	self.huds["speedrun"]["row2"] setText(self.demo["name"]);
 	self.huds["speedrun"]["row3"] setText("^2" + timeFormat);
