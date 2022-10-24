@@ -26,8 +26,6 @@ setup(id)
 		self.demoEnt = self playDemo(id);
 		if (!isDefined(self.demoEnt))
 			return false;
-
-		self linkTo(self.demoEnt);
 	}
 
 	self.sr_cheat = true;
@@ -48,17 +46,31 @@ play(id)
 
 	self thread speedrun\player\huds\_demo::hud();
 
+	self.prevDemoWeapon = "";
+
 	while (self isDemoPlaying())
 	{
 		if (self meleeButtonPressed())
 			break;
 
+		self linkTo(self.demoEnt);
+		self.demoWeapon = self getDemoWeapon();
+
+		if (self.demoWeapon.size && self.demoWeapon != self.prevDemoWeapon
+			&& self getCurrentWeapon() != self.demoWeapon)
+		{
+			self takeAllWeapons();
+			self giveWeapon(self.demoWeapon);
+			self switchToWeapon(self.demoWeapon);
+		}
 		if (self isOnLadder())
 			self disableWeapons();
 		else
 			self enableWeapons();
 
 		wait 0.05;
+
+		self.prevDemoWeapon = self.demoWeapon;
 	}
 	self thread stopDemoPlayer();
 }

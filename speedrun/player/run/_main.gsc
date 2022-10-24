@@ -92,7 +92,8 @@ endTimer()
 
 	if (self.sr_cheat)
 	{
-		self iPrintLnBold("^1Your time was not saved!");
+		if (!isDefined(self.demo))
+			self iPrintLnBold("^1Your time was not saved!");
 		return;
 	}
 
