@@ -18,6 +18,9 @@ setup(id)
 	self.demo = level.demos[id];
 	self endon("demo_stop");
 
+	if (!isDefined(self.demo))
+		return false;
+
 	// Interpolation
 	if (!isDefined(self.demoEnt))
 	{

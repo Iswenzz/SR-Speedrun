@@ -16,6 +16,9 @@ hud()
 	self endon("joined_spectators");
 	self endon("demo_stop");
 
+	if (!isDefined(self.demo))
+		return;
+
 	self clear();
 	self huds();
 

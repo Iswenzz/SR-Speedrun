@@ -191,7 +191,7 @@ load()
 		entry["mode"] = rows[i]["mode"];
 		entry["way"] = rows[i]["way"];
 		entry["time"] = originToTime(rows[i]["time"]);
-		entry["name"] = rows[i]["name"];
+		entry["name"] = getSubStr(rows[i]["name"], 0, 15);
 		entry["player"] = rows[i]["player"];
 		entry["run"] = rows[i]["run"];
 
