@@ -75,7 +75,7 @@ saveEntry(entry)
 		SQL_BindParam(entry["mode"], level.MYSQL_TYPE_STRING);
 		SQL_BindParam(entry["way"], level.MYSQL_TYPE_STRING);
 		SQL_BindParam(entry["player"], level.MYSQL_TYPE_STRING);
-		SQL_BindParam(entry["run"], level.MYSQL_TYPE_LONG);
+		SQL_BindParam(entry["run"], level.MYSQL_TYPE_STRING);
 		SQL_Execute();
     }
     mutex_release("mysql");

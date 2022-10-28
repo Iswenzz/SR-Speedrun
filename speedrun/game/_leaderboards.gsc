@@ -180,7 +180,7 @@ load()
 	SQL_BindResult(level.MYSQL_TYPE_LONG);
 	SQL_BindResult(level.MYSQL_TYPE_STRING, 36);
 	SQL_BindResult(level.MYSQL_TYPE_STRING, 36);
-	SQL_BindResult(level.MYSQL_TYPE_LONG);
+	SQL_BindResult(level.MYSQL_TYPE_STRING, 36);
 	SQL_Execute();
 
 	// Fetch
@@ -297,7 +297,7 @@ saveEntry(entry)
 	SQL_Prepare("UPDATE leaderboards SET time = ?, name = ?, run = ? WHERE map = ? AND player = ? AND mode = ? AND way = ?");
 	SQL_BindParam(entry["time"].origin, level.MYSQL_TYPE_LONG);
 	SQL_BindParam(entry["name"], level.MYSQL_TYPE_STRING);
-	SQL_BindParam(entry["run"], level.MYSQL_TYPE_LONG);
+	SQL_BindParam(entry["run"], level.MYSQL_TYPE_STRING);
 	SQL_BindParam(level.map, level.MYSQL_TYPE_STRING);
 	SQL_BindParam(entry["player"], level.MYSQL_TYPE_STRING);
 	SQL_BindParam(entry["mode"], level.MYSQL_TYPE_STRING);
@@ -314,7 +314,7 @@ saveEntry(entry)
 		SQL_BindParam(entry["mode"], level.MYSQL_TYPE_STRING);
 		SQL_BindParam(entry["way"], level.MYSQL_TYPE_STRING);
 		SQL_BindParam(entry["player"], level.MYSQL_TYPE_STRING);
-		SQL_BindParam(entry["run"], level.MYSQL_TYPE_LONG);
+		SQL_BindParam(entry["run"], level.MYSQL_TYPE_STRING);
 		SQL_Execute();
 	}
 	mutex_release("mysql");

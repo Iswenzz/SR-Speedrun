@@ -2,6 +2,7 @@ xmodelsurfs/
 images/
 sound/
 mods/
+demos/
 *.log
 *.old
 *.tmp
