@@ -21,6 +21,9 @@ setup(id)
 	if (!isDefined(self.demo))
 		return false;
 
+	self.sr_mode = self.demo["mode"];
+	self setStat(1700, self speedrun\player\run\_main::getLastModeStat());
+
 	// Interpolation
 	if (!isDefined(self.demoEnt))
 	{

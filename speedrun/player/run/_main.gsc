@@ -40,6 +40,18 @@ getLastMode()
 	return "190";
 }
 
+getLastModeStat()
+{
+	switch (self.sr_mode)
+	{
+		case "190": return 1;
+		case "210": return 2;
+		case "Portal": return 3;
+		case "Defrag": return 4;
+	}
+	return 1;
+}
+
 startMode()
 {
     self [[level.leaderboard_modes[self.sr_mode].callback]]();
