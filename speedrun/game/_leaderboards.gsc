@@ -105,8 +105,8 @@ getPlayerWorldRecordCount()
 {
 	mutex_acquire("mysql");
 
-	filter = "SELECT map, mode, way, MIN(time) as minTime FROM leaderboards GROUP BY map, mode, way";
-	query = fmt("SELECT count(a.id) FROM leaderboards a JOIN (%s) b ON a.time = b.minTime where a.player = ?", filter);
+	filter = "SELECT id, map, name, mode, way, player, time, min(time) OVER (PARTITION BY map, mode, way) AS minTime FROM leaderboards";
+	query = fmt("SELECT count(id) FROM (%s) b WHERE time = minTime AND player = ?", filter);
 
 	SQL_Prepare(query);
 	SQL_BindParam(self.id, level.MYSQL_TYPE_STRING);
