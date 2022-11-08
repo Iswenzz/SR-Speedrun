@@ -288,7 +288,7 @@ saveEntry(entry)
 
 	if (placement == 1)
 		self thread worldRecord(entry);
-	if (placement <= 5)
+	if (placement <= 3)
 		self sr\game\_demo::recordSave();
 
 	mutex_acquire("mysql");

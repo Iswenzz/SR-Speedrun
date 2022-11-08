@@ -3,6 +3,7 @@ images/
 sound/
 mods/
 demos/
+wrs/
 *.log
 *.old
 *.tmp
