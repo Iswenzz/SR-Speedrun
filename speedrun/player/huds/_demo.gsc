@@ -22,13 +22,10 @@ hud()
 	self clear();
 	self huds();
 
-	timer = 1000;
-
 	while (true)
 	{
-		time = originToTime(timer);
+		time = originToTime(1000 + self getDemoTimer());
 		self.huds["speedrun"]["row1"] setText(fmt("%d:%d.%d", time.min, time.sec, int(time.ms / 100)));
-		timer += Ternary(self backButtonPressed(), -50, 50);
 
 		wait 0.05;
 	}
