@@ -38,9 +38,11 @@ huds()
 	wayName = speedrun\game\_leaderboards::getLeaderboardName(self.demo["mode"], self.demo["way"]);
 
 	self.huds["demo"] = [];
-	self.huds["demo"]["rewind"] = addHud(self, 3, -50, 1, "left", "bottom", 1.4);
+	self.huds["demo"]["fastforward"] = addHud(self, 3, -50, 1, "left", "bottom", 1.4);
+	self.huds["demo"]["fastforward"] setText("Hold ^5[{+forward}]^7 to fast forward");
+	self.huds["demo"]["rewind"] = addHud(self, 3, -35, 1, "left", "bottom", 1.4);
 	self.huds["demo"]["rewind"] setText("Hold ^5[{+back}]^7 to rewind");
-	self.huds["demo"]["slowmo"] = addHud(self, 3, -35, 1, "left", "bottom", 1.4);
+	self.huds["demo"]["slowmo"] = addHud(self, 3, -20, 1, "left", "bottom", 1.4);
 	self.huds["demo"]["slowmo"] setText("Hold ^5[{+gostand}]^7 to slowmo");
 
 	self.huds["speedrun"]["row2"] setText(self.demo["name"]);
