@@ -6,48 +6,34 @@
 
 main()
 {
-thread sr\api\_map::createSpawnOrigin((-1500, -670, 0), 91);
         maps\mp\_load::main();
-      //  ambientPlay ("water");
 
-
-        PreCacheItem("frag_grenade_mp");
-        PreCacheItem("ak47_mp");
-        PreCacheItem("g3_mp");
-
-
-
+        thread sr\api\_map::createSpawn((-1500,-670,60),91);
         thread sr\api\_speedrun::createNormalWays("Normal Way;");
-                thread sr\api\_speedrun::createEndMap((-660.919, 1538.91, -31.875), 0, 75, 85);
-        thread trap1();
-        thread trap2();
-        thread trap3();
-        thread trap4();
-        thread trap5();
-        thread trap6();
-        thread trap7();
-        thread trap8();
-        thread Sniper();
-        thread Knife();
-        thread Nade();
-        thread secret_enter();
+        thread sr\api\_speedrun::createSecretWays("Secret Way;");
+        thread sr\api\_speedrun::createTeleporter((-948.616, -137.213, 0.125), 60, 35, (1224, 5608, 252), 1, "freeze", "yellow", "secret_0");
+
+        //thread trap1();
+        //thread trap2();
+        //thread trap3();
+        //thread trap4();
+        //thread trap5();
+        //thread trap6();
+        //thread trap7();
+        //thread trap8();
+        //thread Sniper();
+        //thread Knife();
+        //thread Nade();
+        //thread secret_enter();
         thread secret_end();
-        thread amkimbo();
-        thread nadesammo();
-        thread nadesammo2();
+        //thread amkimbo();
+        //thread nadesammo();
+        //thread nadesammo2();
         thread teleport();
         thread teleport2();
         thread teleport3();
-        thread old();
-	// thread speed();
-        addTriggerToList("trap1_acti");
-    addTriggerToList("trap2_acti");
-    addTriggerToList("trap3_acti");
-    addTriggerToList("trap4_acti");
-    addTriggerToList("trap5_acti");
-    addTriggerToList("trap6_acti");
-    addTriggerToList("trap7_acti");
-        addTriggerToList("trap8_acti");
+       //thread old();
+
         level.rooms_cantenter = getEnt( "rooms_cantenter", "targetname");
         level.rooms_cantenter hide();
         level.rooms_cantenter notsolid();
@@ -391,12 +377,11 @@ secret_end()
 
         for(;;)
         {
-                trig waittill ("trigger", user);
-                user SetOrigin(target1.origin);
-                user SetPlayerAngles( target1.angles );
-                user giveweapon( "ak47_mp" );
-                user givemaxammo( "ak47_mp" );
-                user switchtoweapon( "ak47_mp" );
+                trig waittill ("trigger", player);
+                player thread sr\api\_speedrun::finishWay("secret_0");
+                player SetOrigin(target1.origin);
+                player SetPlayerAngles( target1.angles );
+
         }
 }
 
@@ -465,23 +450,4 @@ old()
         nade_trigger delete();
 
         iprintlnbold (player.name + " ^2Opened the old way!");
-}
-
-speed()
-{
-   trigger = getent("speed","targetname");
-   while(1)
-   {
-      trigger waittill ("trigger",player);
-      i=12;
-
-      while(i > 8 && player isOnGround())
-      {
-         player sr\api\_player::setPlayerSpeedScale(i);
-         wait(.05);
-      }
-
-      player sr\api\_player::setPlayerSpeedScale(1);
-      wait(2);
-   }
 }

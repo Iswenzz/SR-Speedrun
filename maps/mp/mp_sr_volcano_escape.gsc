@@ -1,22 +1,8 @@
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//     $$$$$                           /$$   /$$ /$$           /$$ /$$   /$$                           /$$                                                   /$$  //
-//   /$$__  $$                        | $$  /$$/| $$          |__/| $$$ | $$                          |__/                                                  | $$  //
-//  | $$  \__/  /$$$$$$               | $$ /$$/ | $$  /$$$$$$  /$$| $$$$| $$        /$$$$$$   /$$$$$$  /$$  /$$$$$$$       /$$$$$$/$$$$   /$$$$$$   /$$$$$$ | $$  //
-//  |  $$$$$$  /$$__  $$ /$$$$$$      | $$$$$/  | $$ /$$__  $$| $$| $$ $$ $$       /$$__  $$ /$$__  $$| $$ /$$_____/      | $$_  $$_  $$ |____  $$ /$$__  $$| $$  //
-//  \____  $$| $$  \__/|______/      | $$  $$  | $$| $$$$$$$$| $$| $$  $$$$      | $$$$$$$$| $$  \ $$| $$| $$            | $$ \ $$ \ $$  /$$$$$$$| $$  \ $$|__/   //
-//   /$$  \ $$| $$                    | $$\  $$ | $$| $$_____/| $$| $$\  $$$      | $$_____/| $$  | $$| $$| $$            | $$ | $$ | $$ /$$__  $$| $$  | $$      //
-//  |  $$$$$$/| $$                    | $$ \  $$| $$|  $$$$$$$| $$| $$ \  $$      |  $$$$$$$| $$$$$$$/| $$|  $$$$$$$      | $$ | $$ | $$|  $$$$$$$| $$$$$$$/ /$$  //
-//   \______/ |__/                    |__/  \__/|__/ \_______/|__/|__/  \__/       \_______/| $$____/ |__/ \_______/      |__/ |__/ |__/ \_______/| $$____/ |__/  //
-//                                                                                        | $$                                                  | $$              //
-//                                                                                        | $$                                                  | $$              //
-//                                                                                        |__/                                                  |__/              //
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 main()
 {
-thread sr\api\_map::createSpawnOrigin((944.125, -96, 96.125), 180);
     maps\mp\_load::main();
+
+    thread sr\api\_map::createSpawnOrigin((944.125, -96, 96.125), 180);
 
 
     game["allies"] = "marines";
@@ -36,18 +22,18 @@ thread sr\api\_map::createSpawnOrigin((944.125, -96, 96.125), 180);
 	setDvar("bg_falldamageminheight", 15000000 );
 
 	preCacheItem("rpg_mp");
-
+    
 	visionSetNaked("mp_sr_pure_distance");
 
 	ambientPlay("ambient");
 
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("Secret Way;");
+
     thread rpgtrigger();
-	thread fail();
 	thread secrettp();
 	thread secretfinish();
-	//thread sr\api\_speedrun::createNormalWays("Normal Way");
-	//thread sr\api\_speedrun::createSecretWays("Secret Way");
-
+	//thread fail();
 
 }
 
@@ -67,18 +53,13 @@ secrettp()
 {
 	trig = getEnt("secret_trigger", "targetname");
 	spawn = getEnt("secret_spawn", "targetname");
-	trig setHintString("^3What is this random door doing here!?!?!");
 
 	for(;;)
 	{
 		trig waittill("trigger",player);
-		//player thread sr\api\_speedrun::changeWay("secret_0");
+		player thread sr\api\_speedrun::changeWay("secret_0");
 		player setPlayerAngles( spawn.angles );
 		player setOrigin( spawn.origin );
-		player iPrintLnBold("^3You Entered The Secret!");
-		player freezeControls( 1 );
-		wait 0.05;
-		player freezeControls( 0 );
 	}
 }
 
@@ -89,12 +70,10 @@ secretfinish()
 	for(;;)
 	{
 		trig waittill("trigger",player);
-		//player thread sr\api\_speedrun::finishWay("secret_0");
-		player iPrintLnBold("^3Nice One");
+		player thread sr\api\_speedrun::finishWay("secret_0");
 
 	}
 }
-
 
 fail()
 {
@@ -163,6 +142,7 @@ fail()
 			player freezeControls( 1 );
 			wait 0.05;
 			player freezeControls( 0 );
+			
 		}
 		 else if (player.cp == 1 )
         {
@@ -207,7 +187,7 @@ fail()
 		else if (player.cp == 6 )
 		{
 			player setPlayerAngles( target6.angles );
-			player setOrigin( target6.origin );
+			player setOrigin( target6.origin );	
 			player freezeControls( 1 );
 			wait 0.05;
 			player freezeControls( 0 );
@@ -275,7 +255,7 @@ fail()
 			player freezeControls( 1 );
 			wait 0.05;
 			player freezeControls( 0 );
-
+			
 		}
 		else if (player.cp == 15 )
 		{
@@ -325,7 +305,7 @@ fail()
 			wait 0.05;
 			player freezeControls( 0 );
 		}
-
+	
 	 }
 
  }

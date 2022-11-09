@@ -1,13 +1,13 @@
 main()
 {
 	maps\mp\_load::main();
-
-	thread sr\api\_speedrun::createNormalWays("Trap Way;Trance Way;");
-	thread sr\api\_speedrun::createSecretWays("Secret Way;");
-	thread sr\api\_map::createSpawn((-3721, 1758, 570), -90);
-	thread sr\api\_speedrun::createTeleporter((-3712.56, -155.318, 496.125), 80, 50, (-3722, -1835, 556), 270, "freeze", "blue", "normal_1");
-    thread sr\api\_speedrun::createEndMap((-2288.99, -8639.36, 496.125),70,40, "normal_0");
-	thread sr\api\_speedrun::createEndMap((-3712.56, -155.318, 496.125),70,40, "normal_1");
+    
+	thread sr\api\_map::createSpawn((-3721, 1758, 556), 270);
+    thread sr\api\_speedrun::createNormalWays("^6Trap Way;^5Trance Way;");
+    thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread sr\api\_speedrun::createTeleporter((-3712.56, -155.318, 496.125), 80, 60, (-3722, -1835, 556), 270, "freeze", "blue", "normal_1");
+	thread sr\api\_speedrun::createEndMap((-2288.99, -8639.36, 496.125),70,135, "normal_0");
+	thread sr\api\_speedrun::createEndMap((-2864.07, -8641.74, 496.125),70,135, "normal_1");
 	// ================ Game Settings ================ //
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
@@ -33,7 +33,7 @@ main()
 	thread endmap_trig();
   	thread doors();
   	thread tnt_secret();
-	thread trap_trap5();
+    thread trap_trap5();
 	thread trap_trap7();
 
   	//thread tnt_rooms();
@@ -44,9 +44,8 @@ main()
 endmap_trig()
 {
 	end = getent("endmap_trig","targetname");
-
-    end delete();
 	
+	end delete();
 }
 
 doors()

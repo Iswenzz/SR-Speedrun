@@ -6,11 +6,11 @@
 main()
 {
 maps\mp\_load::main();
-
+//otherstuff
 thread sr\api\_map::createSpawn((94,-71,78), 270);
 thread sr\api\_speedrun::createNormalWays("Normal Way;^5Short Way;");
-thread sr\api\_speedrun::createSecretWays("^1Hard Way;^2Easy Way;");
-thread sr\api\_speedrun::createWay((-632, -1119, 27), 250, 250, "yellow", "normal_1");
+thread sr\api\_speedrun::createSecretWays("^1Hard Way;^2Easy Way");
+thread sr\api\_speedrun::createWay((-733.679, -1204.12, 27.125), 180, 100, "none", "normal_1");
 thread sr\api\_speedrun::createTeleporter((340.535, -496.931, 18.125), 80, 120, (-2638, 3827, 8318), 93, "freeze", "blue", "secret_0");
 thread sr\api\_speedrun::createTeleporter((-177.916, -503.027, 18.125), 60, 80, (9604, -1754, 1774), 1, "freeze", "blue", "secret_1");
 thread sr\api\_speedrun::createEndMap((16447.9, 16834.4, -2547.95), 400, 55, "secret_0");
@@ -25,6 +25,7 @@ thread ezsecend();
 //thread hardsecretteleports();
 //thread ezsecretteleports();
 //thread endrooms();
+//thread musictrig();
 thread shortcut();
 thread endmaptrig();
 //traps
@@ -47,6 +48,19 @@ thread trap2();
 //thread trap8();
 //thread trap9();
 
+
+if(!isdefined(level.music))
+		level.music=[];
+
+	level.music[0]["song"]	="Goblins from Mars - Cold Blooded";
+	level.music[0]["alias"]	="coldblooded";
+	level.music[1]["song"]	="Aero Chord - Break Them";
+	level.music[1]["alias"]	="breakthem";
+    level.music[2]["song"]	="Tristam & Braken - Frame of Mind";
+	level.music[2]["alias"]	="frameofmind";
+	level.music[3]["song"]	="Tristam - Till Its Over";
+	level.music[3]["alias"]	="tillitsover";
+
 game["allies"] = "marines";
 game["axis"] = "opfor";
 game["attackers"] = "axis";
@@ -54,6 +68,149 @@ game["defenders"] = "allies";
 game["allies_soldiertype"] = "desert";
 game["axis_soldiertype"] = "desert";
 
+precacheshader("musicmenu");
+}
+
+
+
+
+
+//Other Stuff
+
+
+//By Blade
+musicMenu()
+{
+	self endon( "disconnect" );
+	self endon( "death" );
+	self endon( "spawned" );
+	self endon( "joined_spectators" );
+	self endon( "music thread terminated" );
+
+	self thread onDeath();
+	self thread onDisconnect();
+
+	self.hud_music = [];
+	self.selection = 0;
+
+	// create huds
+	i = 0;
+	self.hud_music[i] = braxi\_mod::addTextHud( self, 160, 200, 0.6, "left", "top", 2 );
+	self.hud_music[i].sort = 880;
+	self.hud_music[i] setShader( "musicmenu", 320, 160 );
+
+	i++;
+	self.hud_music[i] = braxi\_mod::addTextHud( self, 210, 204, 0.93, "left", "top", 1.8 );
+	self.hud_music[i].sort = 884;
+	self.hud_music[i] setText("^5CM Clan");
+	self.hud_music[i].glowalpha=1;
+	if(isdefined(level.randomcolor))
+		self.hud_music[i].glowcolor=level.randomcolor;
+	else
+		self.hud_music[i].glowcolor=(0,1,0);
+
+	i++;
+	self.hud_music[i] = braxi\_mod::addTextHud( self, 250, 360, 1, "center", "bottom", 1.4 );
+	self.hud_music[i].sort = 886;
+	self.hud_music[i] setText("Scroll: ^3[{+attack}] ^7| Select: ^3[{+activate}] ^7| Close: ^3[{+frag}]");
+
+	for( j = 0; j < level.music.size; j++ )
+	{
+		i++;
+		self.hud_music[i] = braxi\_mod::addTextHud( self, 172, 230+(j*16), 0.93, "left", "top", 1.4 );
+		self.hud_music[i].sort = 882;
+		self.hud_music[i].font = "objective";
+		self.hud_music[i].glowalpha=1;
+		if(isdefined(level.randomcolor))
+			self.hud_music[i].glowcolor=level.randomcolor;
+		else
+			self.hud_music[i].glowcolor=(0,1,0);
+
+		entry = level.music[j];
+		self.hud_music[i] setText(entry["song"]);
+	}
+
+	i++;
+	self.hud_music[self.hud_music.size] = braxi\_mod::addTextHud( self, 167, 230, 0.4, "left", "top", 1.4 );
+	self.hud_music[i].sort = 881;
+	indicator = self.hud_music[self.hud_music.size-1];
+	indicator setShader( "black", 306, 17 );
+
+	while(self.sessionstate == "playing")
+	{
+		wait 0.1;
+
+		if(self attackButtonPressed())
+		{
+			self.hud_music[3+self.selection].alpha = 0.93;
+
+			self.selection++;
+			if( self.selection >= level.music.size )
+				self.selection = 0;
+
+			item = self.hud_music[3+self.selection];
+			item.alpha = 1;
+			indicator.y = item.y;
+		}
+		else if(self useButtonPressed())
+		{
+ 			iprintln("^1>> ^7Now playing: ^1"+level.music[self.selection]["song"]);
+			ambientPlay(level.music[self.selection]["alias"]);
+			self freezecontrols(0);
+			break;
+		}
+		else if(self fragButtonPressed())
+		{
+			self freezecontrols(0);
+			break;
+		}
+	}
+
+	self cleanUp();
+}
+
+	musictrig()
+{
+	trig = getEnt ("music_trig", "targetname");
+	trig setHintString("Press [^5&&1^7] to choose Music");
+
+	trig waittill("trigger",player);
+	player freezecontrols(1);
+	trig delete();
+	player musicMenu();
+}
+
+	onDisconnect()
+{
+	self endon( "music thread terminated" );
+	self waittill( "disconnect" );
+	self cleanUp();
+}
+
+	onDeath()
+{
+	self endon( "disconnect" );
+	self endon( "music thread terminated" );
+	self waittill( "death" );
+	self cleanUp();
+}
+
+	cleanUp()
+{
+	if( !isDefined( self ) )
+		return;
+
+
+
+	if( isDefined( self.hud_music ) )
+	{
+		for( i = 0; i < self.hud_music.size; i++ )
+		{
+			if( isDefined( self.hud_music[i] ) )
+				self.hud_music[i] destroy();
+		}
+	}
+	self notify( "music thread terminated" );
 }
 
 startmessages()
