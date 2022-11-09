@@ -41,7 +41,7 @@ thread sr\api\_map::createSpawnOrigin((12, -10, 8), 89);
 	    thread sr\api\_speedrun::createEndMap((1640.16, 811.769, 343.825), 165, 170);
 	thread Traps();
 	thread secret();
-	thread Old();
+	// thread Old();
 	thread wall();
 
 }

@@ -107,10 +107,6 @@ secretp4()
 	while(1)
     	{
         trig waittill ("trigger", player);
-	if (level.step4 == false)
-	{
-		exitLevel(true);
-	}
 		else {
 		player SetOrigin(out.origin);
         player SetPlayerAngles(out.angles);

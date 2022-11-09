@@ -38,7 +38,6 @@ thread sr\api\_map::createSpawnOrigin((-531, 11186, 1576), 180);
 	thread sr\api\_speedrun::createTeleporter((-881.141, 10927.7, 1576.13), 110, 75, (9998, 22167, 277), 60, "freeze", "red", "secret_1");
 	thread sr\api\_speedrun::createEndMap((8183.27, 7359.79, 35.125),150,75,"secret_0");
 	thread sr\api\_speedrun::createEndMap((2774.49, 9859.01, -6214.88),175,75,"secret_1");
-	thread sr\api\_speedrun::createEndMap((-5693.92, 617.378, -2606.4),105,75,"normal_0");
 
 
 	game["allies"] = "marines";

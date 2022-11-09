@@ -186,7 +186,7 @@ SecretTeleport()
 
 ezfinish()
 {
-   trig = getent("trig_secretEnd_easy", "targetname");
+   trig = getent("trig_secretEnd_Easy", "targetname");
 
    for(;;)
     {
@@ -198,7 +198,7 @@ ezfinish()
 
 hardfinish()
 {
-   trig = getent("trig_secretEnd_hard", "targetname");
+   trig = getent("trig_secretEnd_Hard", "targetname");
 
    for(;;)
     {
