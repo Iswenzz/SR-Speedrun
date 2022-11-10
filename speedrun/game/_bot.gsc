@@ -17,7 +17,6 @@ start()
 		bot notify("menuresponse", "main_mp", "axis");
 
 		wait 0.1;
-		bot hide();
 
 		wait 2;
 

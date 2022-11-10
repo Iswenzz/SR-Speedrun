@@ -26,6 +26,7 @@ playerConnect()
 	self.classType = undefined;
 	self.selectedClass = false;
 	self.teamKill = false;
+	self.hidden = false;
 	self.shortName = getSubStr(self.name, 0, 15);
 	self.number = self getEntityNumber();
 	self.statusicon = "hud_status_connecting";
