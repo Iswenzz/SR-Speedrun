@@ -432,12 +432,13 @@ xpTable()
 {
 	xp = [];
 	multiplier = 1;
+	threshold = 100;
 
 	for (i = 1; i <= level.leaderboard_max_entries; i++)
 	{
 		if (!(i % 10))
-			multiplier += 7;
-		xp[xp.size] = i * multiplier;
+			multiplier += threshold / (level.leaderboard_max_entries / 10);
+		xp[xp.size] = float(i * multiplier);
 	}
 	return Reverse(xp);
 }
@@ -490,8 +491,9 @@ givePlacementXP(entry, entries, placement)
 	if (entries.size && entries[0]["time"].origin == entry["time"].origin)
 		return;
 
-	multiplier = (entries.size / 10) * Ternary(self sr\sys\_admins::isVIP(), 3, 1);
-	xp = level.leaderboard_xps[placement - 1] * multiplier;
+	multiplier = Ternary(self sr\sys\_admins::isVIP(), 3, 1);
+	filled = entries.size / level.leaderboard_max_entries;
+	xp = level.leaderboard_xps[placement - 1] * filled * multiplier;
 
 	self sr\game\_rank::giveRankXP("", xp);
 }
