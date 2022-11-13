@@ -51,8 +51,11 @@ playerConnect()
 	if (game["state"] == "endmap")
 		return;
 
-	self setu("sr_xp_bar", "0");
-	self setu("sr_vote_search", "_");
+	if (!self.isBot)
+	{
+		self setu("sr_xp_bar", "0");
+		self setu("sr_vote_search", "_");
+	}
 
 	self setClientDvar("g_scriptMainMenu", "main_mp");
 	wait 0.05;
