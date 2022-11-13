@@ -10,25 +10,14 @@ start()
 
 	while (true)
 	{
-		bot = AddTestClient();
-		bot.isBot = true;
+		bot = addTestClient();
 		bot.sr_cheat = true;
 		bot.run = "^5Speedrun Bot";
-		bot notify("menuresponse", "main_mp", "axis");
 
 		wait 0.1;
+		bot notify("menuresponse", "main_mp", "autoassign");
 
-		wait 2;
-
+		wait 10;
 		self notify("menuresponse", "main_mp", "spectator");
 	}
-}
-
-step()
-{
-	self endon("death");
-	self endon("disconnect");
-
-	wait 0.20;
-	self playSoundToPlayer("gear_rattle_plr_sprint", self);
 }

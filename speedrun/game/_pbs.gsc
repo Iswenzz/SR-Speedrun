@@ -10,6 +10,8 @@ onConnect()
 {
     self.pbs = [];
 
+    if (self.isBot) return;
+
     mutex_acquire("mysql");
 
 	SQL_Prepare("SELECT mode, way, time FROM pbs WHERE map = ? AND player = ?");
