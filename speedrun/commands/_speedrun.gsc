@@ -4,6 +4,8 @@ main()
 {
     cmd("player", 	"defrag",   ::cmd_Defrag);
     cmd("player", 	"speed",    ::cmd_Speed);
+    cmd("player", 	"190",    	::cmd_190);
+    cmd("player", 	"210",    	::cmd_210);
     cmd("player", 	"portal",   ::cmd_Portal);
 	cmd("player", 	"practise",	::cmd_Practise);
 }
@@ -14,6 +16,24 @@ cmd_Speed(args)
 	self setStat(1700, Ternary(speed == "190", 1, 2));
     self.sr_mode = speed;
     self pm(fmt("Run mode: ^5%s", speed));
+	self thread speedrun\game\_leaderboards::updateMenuInfo();
+    self suicide();
+}
+
+cmd_190(args)
+{
+	self setStat(1700, 1);
+	self.sr_mode = "190";
+    self pm("Run mode: ^5190");
+	self thread speedrun\game\_leaderboards::updateMenuInfo();
+    self suicide();
+}
+
+cmd_210(args)
+{
+	self setStat(1700, 2);
+	self.sr_mode = "210";
+    self pm("Run mode: ^5210");
 	self thread speedrun\game\_leaderboards::updateMenuInfo();
     self suicide();
 }
