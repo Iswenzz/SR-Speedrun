@@ -213,6 +213,8 @@ load()
 	{
 		for (j = 0; j < ways.size; j++)
 		{
+			wait 0.05;
+
 			mode = level.leaderboard_modes[modes[i]];
 			way = level.leaderboard_ways[ways[j]];
 			index = getLeaderboardIndex(mode.id, way.id);
@@ -235,7 +237,6 @@ load()
 					break;
 
 				entry = level.leaderboards[index].entries[entryIndex];
-				wait 0.05;
 			}
 			level.demos[index] = entry;
 		}
