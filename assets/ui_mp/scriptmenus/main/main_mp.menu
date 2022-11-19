@@ -129,7 +129,7 @@
 			rect			583 298 16 16 0 0
 			background		"speedrunner_logo"
 			style			3
-			visible			when((stat(2001)) >= 20)
+			visible			when((stat(2001)) >= 10)
 			decoration
 		}
 
@@ -177,7 +177,7 @@
 
 		SR_TEXT_KV(1, "Personal Best", dvarString("sr_leaderboard_pb"))
 		SR_TEXT_KV(2, "World Record", dvarString("sr_leaderboard_wr"))
-		SR_TEXT_KV(3, "WR Count", ("" + stat(2001)))
+		SR_TEXT_KV(3, "WR Count", dvarString("sr_leaderboard_wr_count"))
 		SR_TEXT_KV(4, "Leaderboard Entries", ("" + stat(2002)))
 		SR_TEXT_KV(5, "Time Played", dvarString("sr_info_timePlayed"))
 

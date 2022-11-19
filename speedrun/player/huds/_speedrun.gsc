@@ -46,12 +46,12 @@ hud()
 		self.huds["speedrun"]["vip"] = addHud(self, 144, -1, 1, "left", "top", 1.8, 99, true);
 		self.huds["speedrun"]["vip"] setShader("vip_status", 24, 22);
 	}
-	if (isDefined(self.wrCount) && self.wrCount >= 20)
+	if (isDefined(self.wrBaseCount) && self.wrBaseCount >= 10)
 	{
 		self.huds["speedrun"]["wr_icon"] = addHud(self, 170, 1, 1, "left", "top", 1.4, 99, true);
 		self.huds["speedrun"]["wr_icon"] setShader("speedrunner_logo", 18, 18);
-		self.huds["speedrun"]["wr_icon_count"] = addHud(self, 182, 5, 1, "left", "top", 1.4, 99, true);
-		self.huds["speedrun"]["wr_icon_count"] setText("^3" + self.wrCount);
+		self.huds["speedrun"]["wr_icon_count"] = addHud(self, 185, 5, 1, "left", "top", 1.4, 100, true);
+		self.huds["speedrun"]["wr_icon_count"] setText(fmt("^3%d ^7[%d]", self.wrBaseCount, self.wrCount));
 	}
 	if (isDefined(self.showRank) && self.showRank)
 	{

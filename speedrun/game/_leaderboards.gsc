@@ -102,6 +102,7 @@ getPlayerWorldRecordCount()
 {
 	mutex_acquire("mysql");
 
+	// All
 	filter = "SELECT id, map, name, mode, way, player, time, min(time) OVER (PARTITION BY map, mode, way) AS minTime FROM leaderboards";
 	query = fmt("SELECT count(id) FROM (%s) b WHERE time = minTime AND player = ?", filter);
 
@@ -116,7 +117,24 @@ getPlayerWorldRecordCount()
 	if (isDefined(count) && isDefined(count.size))
 		self.wrCount = count[0];
 
-	self setStat(2001, self.wrCount);
+	// 190 / 210
+	filter = "SELECT id, map, name, mode, way, player, time, min(time) OVER (PARTITION BY map, mode, way) AS minTime FROM leaderboards";
+	query = fmt("SELECT count(id) FROM (%s) b WHERE time = minTime AND player = ? AND (mode = %s OR mode = %s)",
+		filter, "190", "210");
+
+	SQL_Prepare(query);
+	SQL_BindParam(self.id, level.MYSQL_TYPE_STRING);
+	SQL_BindResult(level.MYSQL_TYPE_LONG);
+	SQL_Execute();
+
+	count = SQL_FetchRow();
+
+	self.wrBaseCount = 0;
+	if (isDefined(count) && isDefined(count.size))
+		self.wrBaseCount = count[0];
+
+	self setStat(2001, self.wrBaseCount);
+	self setClientDvar("sr_leaderboard_wr_count", fmt("%d ^5(%d)", self.wrBaseCount, self.wrCount));
 
 	mutex_release("mysql");
 }
