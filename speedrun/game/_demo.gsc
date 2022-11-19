@@ -14,6 +14,8 @@ setup(id)
 		self sr\sys\_admins::pm("^1Demo not found.");
 		return false;
 	}
+	self sr\game\_teams::setTeam("allies");
+	self eventSpawn();
 	self stopDemoPlayer();
 	self.demo = level.demos[id];
 	self endon("demo_stop");

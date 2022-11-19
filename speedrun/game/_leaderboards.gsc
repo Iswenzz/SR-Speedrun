@@ -29,9 +29,6 @@ menu_Open(arg)
 
 menu_Demo(arg)
 {
-	if (!self isReallyAlive())
-		return;
-
 	index = getLeaderboardIndex(self.leaderboard_mode, self.leaderboard_way);
 	self thread speedrun\game\_demo::play(index);
 
