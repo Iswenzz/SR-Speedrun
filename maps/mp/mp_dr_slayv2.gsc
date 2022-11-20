@@ -152,7 +152,7 @@ endmap_trigger()
 	door2 = GetEnt("finish_door2","targetname");
 	trig = GetEnt("endmap_trig","targetname");
 
-	trig waittill("trigger", player);
+	// trig waittill("trigger", player);
 
 	//thread Music();
 
