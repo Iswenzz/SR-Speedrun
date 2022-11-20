@@ -45,8 +45,11 @@ setup(id)
 
 play(id)
 {
-	if(!self setup(id))
+	if (!self setup(id))
+	{
+		self stopDemoPlayer();
 		return;
+	}
 
 	self endon("death");
 	self endon("disconnect");
