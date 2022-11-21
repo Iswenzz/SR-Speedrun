@@ -10,12 +10,6 @@ hud()
 {
 	self endon("disconnect");
 	self endon("death");
-
-	wait 2;
-	self setClientDvar("sr_anticheat_player_id", self.id);
-	self setClientDvar("sr_anticheat_player_name", self.shortName);
-	self setClientDvar("sr_anticheat_player_run", self.run);
-	self setClientDvar("sr_anticheat_player_guid", self.guid);
 }
 
 spec()
@@ -30,10 +24,5 @@ spec()
 
 		if (!isDefined(self.player))
 			continue;
-
-		self setClientDvar("sr_anticheat_player_id", self.player.id);
-		self setClientDvar("sr_anticheat_player_name", self.player.shortName);
-		self setClientDvar("sr_anticheat_player_run", self.player.run);
-		self setClientDvar("sr_anticheat_player_guid", self.player.guid);
 	}
 }
