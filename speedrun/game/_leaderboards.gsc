@@ -297,14 +297,17 @@ saveEntry(entry)
 
 	index = getLeaderboardIndex(entry["mode"], entry["way"]);
 	entries = level.leaderboards[index].entries;
+	self iprintlnbold(isTie(entry, entries));
 	level.leaderboards[index].entries = addEntry(entry, entries);
 
 	placement = getEntryPlacement(entry, entries);
 	self givePlacementXP(entry, entries, placement);
 
+	self iprintlnbold(isTie(entry, entries));
+
 	if (placement == 1)
 		self thread worldRecord(entry);
-	if (placement <= 3)
+	if (placement <= 3 && !isTie(entry, entries))
 		self sr\game\_demo::recordSave();
 
 	mutex_acquire("mysql");
@@ -500,11 +503,14 @@ getPlayerEntry(entries)
 	return undefined;
 }
 
+isTie(entry, entries)
+{
+	return entries.size && entries[0]["time"].origin == entry["time"].origin;
+}
+
 givePlacementXP(entry, entries, placement)
 {
-	if (isDefined(level.leaderboard_xp_disabled) || placement == 0)
-		return;
-	if (entries.size && entries[0]["time"].origin == entry["time"].origin)
+	if (isDefined(level.leaderboard_xp_disabled) || placement == 0 || isTie(entry, entries))
 		return;
 
 	multiplier = Ternary(self sr\sys\_admins::isVIP(), 3, 1);

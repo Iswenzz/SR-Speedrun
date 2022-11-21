@@ -44,13 +44,13 @@ isValidEntry(entry)
         return true;
     if (!isDefined(self.pbs[mode][way]))
         return true;
-    return entry["time"].origin <= self.pbs[mode][way].origin;
+    return entry["time"].origin < self.pbs[mode][way].origin;
 }
 
 saveEntry(entry)
 {
     if (!isValidEntry(entry))
-        return;
+		return;
 
     mode = entry["mode"];
     way = entry["way"];
@@ -68,8 +68,12 @@ saveEntry(entry)
     SQL_BindParam(entry["way"], level.MYSQL_TYPE_STRING);
     SQL_Execute();
 
+	self iPrintLnBold("update");
+
     if (!SQL_AffectedRows())
     {
+		self iPrintLnBold("insert");
+
 		SQL_Prepare("INSERT INTO pbs (map, time, name, mode, way, player, run) VALUES (?, ?, ?, ?, ?, ?, ?)");
         SQL_BindParam(level.map, level.MYSQL_TYPE_STRING);
 		SQL_BindParam(entry["time"].origin, level.MYSQL_TYPE_LONG);
