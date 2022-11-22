@@ -1,5 +1,5 @@
 #!/bin/bash
-source cod4env
+source .cod4env
 
 # Cleanup
 cd "$MOD"
