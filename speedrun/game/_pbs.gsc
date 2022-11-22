@@ -68,12 +68,8 @@ saveEntry(entry)
     SQL_BindParam(entry["way"], level.MYSQL_TYPE_STRING);
     SQL_Execute();
 
-	self iPrintLnBold("update");
-
     if (!SQL_AffectedRows())
     {
-		self iPrintLnBold("insert");
-
 		SQL_Prepare("INSERT INTO pbs (map, time, name, mode, way, player, run) VALUES (?, ?, ?, ?, ?, ?, ?)");
         SQL_BindParam(level.map, level.MYSQL_TYPE_STRING);
 		SQL_BindParam(entry["time"].origin, level.MYSQL_TYPE_LONG);
