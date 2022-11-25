@@ -226,9 +226,11 @@ load()
 	// Sort and register demos
 	for (i = 0; i < modes.size; i++)
 	{
+		resetTimeout();
+
 		for (j = 0; j < ways.size; j++)
 		{
-			wait 0.05;
+			resetTimeout();
 
 			mode = level.leaderboard_modes[modes[i]];
 			way = level.leaderboard_ways[ways[j]];
