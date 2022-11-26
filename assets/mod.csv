@@ -9,6 +9,7 @@ xmodel,ch_crate64x64
 xmodel,chicken
 xmodel,viewmodel_knife
 xanim,chicken_dance
+xmodel,x_spray10
 xmodel,x_mirror
 xmodel,x_volumetric_clouds
 xmodel,x_space_curvature
@@ -247,16 +248,6 @@ fx,deathrun/spray6
 fx,deathrun/spray7
 fx,deathrun/spray8
 fx,deathrun/spray9
-fx,deathrun/spray10
-fx,deathrun/spray11
-fx,deathrun/spray12
-fx,deathrun/spray13
-fx,deathrun/spray14
-fx,deathrun/spray15
-fx,deathrun/spray16
-fx,deathrun/spray17
-fx,deathrun/spray18
-fx,deathrun/spray19
 fx,deathrun/endgame_fx
 fx,muzzleflashes/mist_mk2_flashview
 rawfile,soundaliases/deathrun.csv
