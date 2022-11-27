@@ -1302,3 +1302,14 @@ xanim,vm_t5_smg_mp40_reload_empty
 xanim,vm_t5_smg_mp40_sprint_in
 xanim,vm_t5_smg_mp40_sprint_loop
 xanim,vm_t5_smg_mp40_sprint_out
+
+// Shaohammer
+// xmodel,shaohammer
+// weapon,mp/shaohammer_mp
+// xanim,shaohammer_idle
+// xanim,shaohammer_melee
+// xanim,shaohammer_pullout
+// xanim,shaohammer_putaway
+// xanim,shaohammer_sprint_in
+// xanim,shaohammer_sprint_loop
+// xanim,shaohammer_sprint_out
