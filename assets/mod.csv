@@ -1280,3 +1280,25 @@ fx,smoke/jetpack
 // xanim,vm_rw1_sprint_in
 // xanim,vm_rw1_sprint_loop
 // xanim,vm_rw1_sprint_out
+
+// MP40 T5
+sound,t5_smg_mp40,,all_mp
+xmodel,t5_smg_mp40_view
+xmodel,t5_smg_mp40_npc
+xanim,vm_t5_smg_mp40_ads_down
+xanim,vm_t5_smg_mp40_ads_up
+xanim,vm_t5_smg_mp40_fire
+xanim,vm_t5_smg_mp40_idle
+xanim,vm_t5_smg_mp40_idle_empty
+xanim,vm_t5_smg_mp40_lastshot
+xanim,vm_t5_smg_mp40_pullout
+xanim,vm_t5_smg_mp40_pullout_empty
+xanim,vm_t5_smg_mp40_pullout_fast
+xanim,vm_t5_smg_mp40_putaway
+xanim,vm_t5_smg_mp40_putaway_empty
+xanim,vm_t5_smg_mp40_putaway_fast
+xanim,vm_t5_smg_mp40_reload
+xanim,vm_t5_smg_mp40_reload_empty
+xanim,vm_t5_smg_mp40_sprint_in
+xanim,vm_t5_smg_mp40_sprint_loop
+xanim,vm_t5_smg_mp40_sprint_out
