@@ -1,14 +1,13 @@
-/*
-Map made by Sheep Wizard
-youtube: http://www.youtube.com/user/paap15
-xfire: paap15
-*/
 main()
 {
-thread sr\api\_map::createSpawnOrigin((-493.764, 253.429, 21.188), 235);
 trigger = spawn( "trigger_radius", (-612.406, -2376.85, -2087.88), 0, 75, 95 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 75;
+thread sr\api\_map::createSpawnOrigin((-493.764, 253.429, 21.188), 235);
+thread sr\api\_speedrun::createNormalWays("Island Way;");
+thread sr\api\_speedrun::createSecretWays("Secret Way;");
+thread sr\api\_speedrun::createTeleporter((-436.11, -5796.13, 453.024), 910, 300, (-493.764, 253.429, 21.188), 235, "freeze", "blue");
+
      maps\mp\_load::main();
 	 maps\mp\mp_deathrun_island\teleport::main();
 	 //maps\mp\mp_deathrun_island\traps::main();
@@ -46,28 +45,10 @@ trigger.radius = 75;
 	 //thread beta();
 	 thread fx();
 	 thread jaja();
-     thread way_connect();
      checktele();
 
 	 //setExpFog(3000, 4000, 0.4, 0.425, 0.44, 0.0);
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-way_connect()
-{
-    wait 0.05;
-
-    sr\api\_speedrun::createNormalWays("Island Way;");
-	sr\api\_speedrun::createSecretWays("Secret Way;");
-
-    for(;;)
-    {
-        level waittill( "connected", player );
-
-
-    }
-}
-////////////////////////////////////////////////////////////////////////////////////////////////
 
 checktele()
 {

@@ -1,24 +1,5 @@
-/*
-##############################################################################
-##|       |##\  \####/  /##|        |##|        |##|        |##|   \####|  |##
-##|   _   |###\  \##/  /###|  ______|##|   __   |##|   __   |##|    \###|  |##
-##|  |_|  |####\  \/  /####|  |########|  |  |  |##|  |  |  |##|  \  \##|  |##
-##|       |#####\    /#####|  |########|  |  |  |##|  |  |  |##|  |\  \#|  |##
-##|       |######|  |######|  |########|  |  |  |##|  |  |  |##|  |#\  \|  |##
-##|  |\  \#######|  |######|  |########|  |__|  |##|  |__|  |##|  |##\  |  |##
-##|  |#\  \######|  |######|        |##|        |##|        |##|  |###\    |##
-##|__|##\__\#####|__|######|________|##|________|##|________|##|__|####\___|##
-##############################################################################
-
-	thks Rycoon! :)
-|*************************************|
-	Xfire: phaedrean
-*/
-
-
 main()
 {
-thread sr\api\_map::createSpawnOrigin((-1242.363, -4859.194, 108.747), 135);
 trig = getEnt("finaldoor", "targetname");
 level.mapHasTimeTrigger = true;
 trig.targetname = "endmap_trig";
@@ -30,6 +11,10 @@ thread sr\api\_map::createTriggerFx(trig, "endtrig");
 	maps\createfx\mp_fnrp_iceland_fx::main();
 	maps\mp\mp_fnrp_iceland_navegar::main();
 	maps\mp\_compass::setupMiniMap ("compass_map_mp_fnrp_iceland");
+
+thread sr\api\_map::createSpawnOrigin((-1242.363, -4859.194, 108.747), 135);
+thread sr\api\_speedrun::createNormalWays("Normal Way;Glitch Way;");
+thread sr\api\_speedrun::createWay((-1754.21, -1411.66, 568.146), 405, 100, "none", "normal_1");
 
 	// ambientPlay("ambient_mp_fnrp_iceland");
 
@@ -47,7 +32,6 @@ thread sr\api\_map::createTriggerFx(trig, "endtrig");
 	setdvar("r_glowskybleedintensity0",".1");
 	setdvar("compassmaxrange","1400");
 
-	thread way_connect();
 	thread bigjumper();
 	thread jumper();
 	// thread MakeTriggers();
@@ -64,21 +48,6 @@ thread sr\api\_map::createTriggerFx(trig, "endtrig");
 	// endtrig thread WatchEndTrigger();
 
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-way_connect()
-{
-    wait 0.05;
-
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-
-    for(;;)
-    {
-        level waittill( "connected", player );
-
-    }
-}
-////////////////////////////////////////////////////////////////////////////////////////////////
 
 onConnected()
 {

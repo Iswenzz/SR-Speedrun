@@ -1,16 +1,18 @@
 main()//Made by Phill580
 {
-thread sr\api\_map::createSpawnOrigin((-322.542, -642.667, 16.125), 90);
+maps\mp\_load::main();
+
 trigger = spawn( "trigger_radius", (553, -611, 92), 0, 300, 300 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 300;
-          maps\mp\_load::main();
+
+thread sr\api\_map::createSpawnOrigin((-322.542, -642.667, 16.125), 90);
+thread sr\api\_speedrun::createNormalWays("Normal Way;Glitch Way;");
+thread sr\api\_speedrun::createWay((288.457, 1457.94, 176.125), 410, 100, "none", "normal_1");
 
           PreCacheItem("brick_blaster_mp");
 
          // ambientPlay("ambient_wtf");
-
-         thread way_connect();
 
            //thread crush();
           // thread fan();
@@ -29,21 +31,6 @@ trigger.radius = 300;
 
 
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-way_connect()
-{
-    wait 0.05;
-
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-
-    for(;;)
-    {
-        level waittill( "connected", player );
-
-    }
-}
-////////////////////////////////////////////////////////////////////////////////////////////////
 
 addTestClients()
 {

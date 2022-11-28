@@ -1,6 +1,12 @@
 main()
 {
 thread sr\api\_map::createSpawnOrigin((-2822, 3241, -1008), 270);
+thread sr\api\_speedrun::createNormalWays("Normal Way;Glitch Way;");
+thread sr\api\_speedrun::createWay((-1233.17, 2212.47, 0.124999), 270, 100, "blue", "normal_1");
+thread sr\api\_speedrun::createWay((254.796, -1378.53, 0.124999), 375, 100, "blue", "normal_1");
+thread sr\api\_speedrun::createWay((1138.49, 1813.46, 0.124999), 165, 100, "blue", "normal_1");
+thread sr\api\_speedrun::createEndMap((47.7244, -623.468, 224.125), 355, 150);
+
     level._effect["helicopter_explosion"] = loadfx( "explosions/helicopter_explosion" );
 
 	addTriggerToList( "trig_trap1" );
@@ -32,9 +38,9 @@ thread sr\api\_map::createSpawnOrigin((-2822, 3241, -1008), 270);
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
 	setdvar("compassmaxrange","1800");
+	setDvar("bg_falldamagemaxheight", 99999);
+    setDvar("bg_falldamageminheight", 99998);
 
-	thread sr\api\_speedrun::createNormalWays("Normal Way");
-        thread sr\api\_speedrun::createEndMap((47.7244, -623.468, 224.125), 355, 150);
 	//thread creator();
 	thread startdoor();
 	//thread trap1();

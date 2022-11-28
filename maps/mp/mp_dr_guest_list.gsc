@@ -1,9 +1,9 @@
-//Map by Fish Da Rekter
-
-
 main()
 {
 thread sr\api\_map::createSpawnOrigin((-30, 642, 130), 270);
+thread sr\api\_speedrun::createNormalWays("Normal Way;Glitch Way;");
+thread sr\api\_speedrun::createWay((5560.5, -16.5971, 80.125), 400, 300, "none", "normal_1");
+
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
 	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
@@ -27,8 +27,6 @@ if (!level.spawn["allies"].size)
 	setDvar("bg_falldamageminheight", 1500000000 );
 
 	level.boom_fx = LoadFx("explosions/default_explosion");
-
-	thread way_connect();
 
 	thread messages();
 	thread startdoors();
@@ -63,21 +61,6 @@ if (!level.spawn["allies"].size)
 	addTriggerToList( "trig_trap8" );
 
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-way_connect()
-{
-    wait 0.05;
-
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-
-    for(;;)
-    {
-        level waittill( "connected", player );
-
-    }
-}
-////////////////////////////////////////////////////////////////////////////////////////////////
 
 addTriggerToList( name )
 {

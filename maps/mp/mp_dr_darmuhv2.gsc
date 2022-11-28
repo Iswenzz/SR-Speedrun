@@ -1,7 +1,12 @@
 main()
 {
-thread sr\api\_map::createSpawnOrigin((202.275, 257.720, 16.125), 0);
  maps\mp\_load::main();
+
+thread sr\api\_map::createSpawnOrigin((202.275, 257.720, 16.125), 0);
+thread sr\api\_speedrun::createNormalWays("Normal Way;Glitch Way;");
+thread sr\api\_speedrun::createSecretWays("Secret Way;");
+thread sr\api\_speedrun::createWay((1214.18, 699.06, 224.125), 330, 100, "none", "normal_1");
+thread sr\api\_speedrun::createTeleporter((3122.29, -2255.66, 224.125), 250, 100, (202.275, 257.720, 16.125), 0, "freeze", "blue");
 
  precacheItem("winchester1200_mp");
  precacheItem("skorpion_mp");
@@ -47,7 +52,6 @@ addTriggerToList( "trigger11" );
 addTriggerToList( "trigger12" );
 addTriggerToList( "jumpweapon" );
 
-thread way_connect();
 // thread ambient();
 // thread trap2();
 // thread trap3();
@@ -65,9 +69,9 @@ thread way_connect();
 thread teleport2();
 // thread kniferoom();
 // thread Jumproom();
-thread LastmoveLeft();
-thread LastmoveRight();
-thread secretpeg();
+//thread LastmoveLeft();
+//thread LastmoveRight();
+//thread secretpeg();
 thread secretup();
 thread guidsecret();
 // thread jumpfail();
@@ -86,22 +90,6 @@ thread pff();
 // thread matrix();
 
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-way_connect()
-{
-    wait 0.05;
-
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-	sr\api\_speedrun::createSecretWays("Secret Way;");
-
-    for(;;)
-    {
-        level waittill( "connected", player );
-
-    }
-}
-////////////////////////////////////////////////////////////////////////////////////////////////
 
 pff()
 {
