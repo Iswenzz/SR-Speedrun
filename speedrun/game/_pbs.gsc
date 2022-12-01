@@ -24,12 +24,17 @@ onConnect()
 
     if (SQL_NumRows())
 	{
-		row = SQL_FetchRowDict();
-        mode = row["mode"];
-        way = row["way"];
+		rows = SQL_FetchRowsDict();
+		for (i = 0; i < rows.size; i++)
+		{
+			row = rows[i];
+			mode = row["mode"];
+			way = row["way"];
 
-        self.pbs[mode] = [];
-        self.pbs[mode][way] = originToTime(row["time"]);
+			if (!isDefined(self.pbs[mode]))
+				self.pbs[mode] = [];
+			self.pbs[mode][way] = originToTime(row["time"]);
+		}
     }
 
     mutex_release("mysql");

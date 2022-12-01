@@ -84,6 +84,10 @@ onConnect()
 		leaderboard = level.leaderboards[names[i]];
 		self setClientDvar(leaderboard.id, IfUndef(leaderboard.name, ""));
 	}
+
+	// Stats
+	self getPlayerEntriesCount();
+	self getPlayerWorldRecordCount();
 }
 
 updateMenuInfo()
@@ -93,9 +97,6 @@ updateMenuInfo()
 
 	self setClientDvar("sr_leaderboard_pb", fmt("^3%s", pb));
 	self setClientDvar("sr_leaderboard_wr", fmt("^2%s", wr));
-
-	self getPlayerEntriesCount();
-	self getPlayerWorldRecordCount();
 }
 
 getPlayerWorldRecordCount()
