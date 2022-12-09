@@ -21,7 +21,10 @@ setup(id)
 	self endon("demo_stop");
 
 	if (!isDefined(self.demo))
+	{
+		self sr\sys\_admins::pm("^1Demo not found.");
 		return false;
+	}
 
 	self.sr_mode = self.demo["mode"];
 	self setStat(1700, self speedrun\player\run\_main::getLastModeStat());
@@ -31,9 +34,18 @@ setup(id)
 	{
 		self suicide();
 		wait 0.05;
-		self.demoEnt = self playDemo(id);
-		if (!isDefined(self.demoEnt))
+		self.demoEnt = self PlayDemo(id);
+
+		if (!IsDemoLoaded(id))
+		{
+			self sr\sys\_admins::pm("^3Demo loading...");
 			return false;
+		}
+		if (!isDefined(self.demoEnt))
+		{
+			self sr\sys\_admins::pm("^1Demo corrupted.");
+			return false;
+		}
 	}
 
 	self.sr_cheat = true;
