@@ -12,7 +12,7 @@ Complete the map in the fastest time possible and compete for the top spot on th
 
 * Customization
 * Shaders, sprays, trails
-* HUDs cgaz, snap, crosshair, keys, velocity, fps, viewkick
+* HUDs cgaz, crosshair, keys, velocity, fps, viewkick
 * 210, 190, Defrag and portal movements
 * Noclip, pickup, practise player modes
 * Bunny hop, player hiding and insertions
