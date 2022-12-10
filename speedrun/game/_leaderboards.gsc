@@ -247,16 +247,19 @@ load()
 
 			entryIndex = 0;
 			entry = level.leaderboards[index].entries[entryIndex];
+			registred = RegisterSpeedrunDemo(level.map, entry["player"], entry["run"], entry["mode"], entry["way"]);
 
-			while (!RegisterSpeedrunDemo(level.map, entry["player"], entry["run"], entry["mode"], entry["way"]))
+			while (!registred)
 			{
 				entryIndex++;
 				if (entryIndex > 10 || !isDefined(level.leaderboards[index].entries[entryIndex]))
 					break;
 
 				entry = level.leaderboards[index].entries[entryIndex];
+				registred = RegisterSpeedrunDemo(level.map, entry["player"], entry["run"], entry["mode"], entry["way"]);
 			}
-			level.demos[index] = entry;
+			if (registred)
+				level.demos[index] = entry;
 		}
 	}
 }
@@ -305,10 +308,10 @@ saveEntry(entry)
 	placement = getEntryPlacement(entry, entries);
 	self givePlacementXP(entry, entries, placement);
 
-	if (placement == 1)
-		self thread worldRecord(entry);
 	if (placement <= 3)
 		self sr\game\_demo::recordSave();
+	if (placement == 1)
+		self thread worldRecord(entry);
 
 	mutex_acquire("mysql");
 
@@ -534,6 +537,8 @@ worldRecord(entry)
 	players = getAllPlayers();
 
 	way = getLeaderboardName(entry["mode"], entry["way"]);
+	index = getLeaderboardIndex(entry["mode"], entry["way"]);
+
 	iPrintLnBold(fmt("^5New ^2WR ^7on ^6%s ^2%s ^7By ^5%s", entry["mode"], way, self.shortName));
 
 	for (i = 0; i < players.size; i++)
@@ -541,6 +546,10 @@ worldRecord(entry)
 		players[i] thread effects();
 		players[i] thread speedrun\game\_leaderboards::updateMenuInfo();
 	}
+
+	wait 1;
+	if (RegisterSpeedrunDemo(level.map, entry["player"], entry["run"], entry["mode"], entry["way"]))
+		level.demos[index] = entry;
 }
 
 effects()

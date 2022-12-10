@@ -34,13 +34,14 @@ setup(id)
 	{
 		self suicide();
 		wait 0.05;
-		self.demoEnt = self PlayDemo(id);
 
-		if (!IsDemoLoaded(id))
+		if (IsDemoLoading(id))
 		{
 			self sr\sys\_admins::pm("^3Demo loading...");
 			return false;
 		}
+
+		self.demoEnt = self PlayDemo(id);
 		if (!isDefined(self.demoEnt))
 		{
 			self sr\sys\_admins::pm("^1Demo corrupted.");
