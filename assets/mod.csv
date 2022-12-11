@@ -101,7 +101,8 @@ material,weapon_knife
 material,default
 material,hit_direction
 material,caulk
-material,headicon_admin
+material,headicon_vip
+material,headicon_voice
 material,hud_icon_44
 material,hudstopwatch
 material,score_icon
