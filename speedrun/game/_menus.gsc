@@ -35,6 +35,7 @@ precache()
 	precacheMenu("popups/exit");
 	precacheMenu("misc/clientcmd");
 	precacheMenu("misc/scoreboard");
+	precacheMenu("misc/muteplayer");
 }
 
 menu_Dog(arg)
