@@ -1,4 +1,5 @@
 #include sr\sys\_events;
+#include sr\sys\_mysql;
 #include sr\utils\_common;
 
 initPBs()
@@ -12,19 +13,20 @@ onConnect()
 
     if (self.isBot) return;
 
-    mutex_acquire("mysql");
+	mutex_acquire("mysql");
 
-	SQL_Prepare("SELECT mode, way, time FROM pbs WHERE map = ? AND player = ?");
-    SQL_BindParam(level.map, level.MYSQL_TYPE_STRING);
-    SQL_BindParam(self.id, level.MYSQL_TYPE_STRING);
-    SQL_BindResult(level.MYSQL_TYPE_STRING, 20);
-    SQL_BindResult(level.MYSQL_TYPE_STRING, 20);
-    SQL_BindResult(level.MYSQL_TYPE_LONG);
-    SQL_Execute();
+	request = SQL_Prepare("SELECT mode, way, time FROM pbs WHERE map = ? AND player = ?");
+    SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
+    SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
+    SQL_BindResult(request, level.MYSQL_TYPE_STRING, 20);
+    SQL_BindResult(request, level.MYSQL_TYPE_STRING, 20);
+    SQL_BindResult(request, level.MYSQL_TYPE_LONG);
+    SQL_Execute(request);
+	SQL_Wait(request);
 
-    if (SQL_NumRows())
+    if (SQL_NumRows(request))
 	{
-		rows = SQL_FetchRowsDict();
+		rows = SQL_FetchRowsDict(request);
 		for (i = 0; i < rows.size; i++)
 		{
 			row = rows[i];
@@ -37,7 +39,8 @@ onConnect()
 		}
     }
 
-    mutex_release("mysql");
+	SQL_Free(request);
+	mutex_release("mysql");
 }
 
 isValidEntry(entry)
@@ -63,29 +66,35 @@ saveEntry(entry)
 
 	self thread speedrun\game\_leaderboards::updateMenuInfo();
 
-    mutex_acquire("mysql");
+	mutex_acquire("mysql");
 
-    SQL_Prepare("UPDATE pbs SET time = ? WHERE map = ? AND player = ? AND mode = ? AND way = ?");
-    SQL_BindParam(entry["time"].origin, level.MYSQL_TYPE_LONG);
-	SQL_BindParam(level.map, level.MYSQL_TYPE_STRING);
-    SQL_BindParam(entry["player"], level.MYSQL_TYPE_STRING);
-    SQL_BindParam(entry["mode"], level.MYSQL_TYPE_STRING);
-    SQL_BindParam(entry["way"], level.MYSQL_TYPE_STRING);
-    SQL_Execute();
+    request = SQL_Prepare("UPDATE pbs SET time = ? WHERE map = ? AND player = ? AND mode = ? AND way = ?");
+    SQL_BindParam(request, entry["time"].origin, level.MYSQL_TYPE_LONG);
+	SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
+    SQL_BindParam(request, entry["player"], level.MYSQL_TYPE_STRING);
+    SQL_BindParam(request, entry["mode"], level.MYSQL_TYPE_STRING);
+    SQL_BindParam(request, entry["way"], level.MYSQL_TYPE_STRING);
+    SQL_Execute(request);
+	SQL_Wait(request);
 
-    if (!SQL_AffectedRows())
+	affected = SQL_AffectedRows(request);
+	SQL_Free(request);
+
+    if (!affected)
     {
-		SQL_Prepare("INSERT INTO pbs (map, time, name, mode, way, player, run) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        SQL_BindParam(level.map, level.MYSQL_TYPE_STRING);
-		SQL_BindParam(entry["time"].origin, level.MYSQL_TYPE_LONG);
-		SQL_BindParam(entry["name"], level.MYSQL_TYPE_STRING);
-		SQL_BindParam(entry["mode"], level.MYSQL_TYPE_STRING);
-		SQL_BindParam(entry["way"], level.MYSQL_TYPE_STRING);
-		SQL_BindParam(entry["player"], level.MYSQL_TYPE_STRING);
-		SQL_BindParam(entry["run"], level.MYSQL_TYPE_STRING);
-		SQL_Execute();
+		request = SQL_Prepare("INSERT INTO pbs (map, time, name, mode, way, player, run) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
+		SQL_BindParam(request, entry["time"].origin, level.MYSQL_TYPE_LONG);
+		SQL_BindParam(request, entry["name"], level.MYSQL_TYPE_STRING);
+		SQL_BindParam(request, entry["mode"], level.MYSQL_TYPE_STRING);
+		SQL_BindParam(request, entry["way"], level.MYSQL_TYPE_STRING);
+		SQL_BindParam(request, entry["player"], level.MYSQL_TYPE_STRING);
+		SQL_BindParam(request, entry["run"], level.MYSQL_TYPE_STRING);
+		SQL_Execute(request);
+		SQL_Wait(request);
+		SQL_Free(request);
     }
-    mutex_release("mysql");
+	mutex_release("mysql");
 }
 
 getPersonalBest(mode, way)

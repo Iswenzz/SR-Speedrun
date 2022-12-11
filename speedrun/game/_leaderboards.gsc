@@ -1,4 +1,5 @@
 #include sr\sys\_events;
+#include sr\sys\_mysql;
 #include sr\utils\_common;
 
 initLeaderboards()
@@ -101,18 +102,20 @@ updateMenuInfo()
 
 getPlayerWorldRecordCount()
 {
-	mutex_acquire("mysql");
-
 	// All
 	filter = "SELECT id, map, name, mode, way, player, time, min(time) OVER (PARTITION BY map, mode, way) AS minTime FROM leaderboards";
 	query = fmt("SELECT count(id) FROM (%s) b WHERE time = minTime AND player = ?", filter);
 
-	SQL_Prepare(query);
-	SQL_BindParam(self.id, level.MYSQL_TYPE_STRING);
-	SQL_BindResult(level.MYSQL_TYPE_LONG);
-	SQL_Execute();
+	mutex_acquire("mysql");
 
-	count = SQL_FetchRow();
+	request = SQL_Prepare(query);
+	SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
+	SQL_BindResult(request, level.MYSQL_TYPE_LONG);
+	SQL_Execute(request);
+	SQL_Wait(request);
+
+	count = SQL_FetchRow(request);
+	SQL_Free(request);
 
 	self.wrCount = 0;
 	if (isDefined(count) && isDefined(count.size))
@@ -123,12 +126,15 @@ getPlayerWorldRecordCount()
 	query = fmt("SELECT count(id) FROM (%s) b WHERE time = minTime AND player = ? AND (mode = %s OR mode = %s)",
 		filter, "190", "210");
 
-	SQL_Prepare(query);
-	SQL_BindParam(self.id, level.MYSQL_TYPE_STRING);
-	SQL_BindResult(level.MYSQL_TYPE_LONG);
-	SQL_Execute();
+	request = SQL_Prepare(query);
+	SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
+	SQL_BindResult(request, level.MYSQL_TYPE_LONG);
+	SQL_Execute(request);
+	SQL_Wait(request);
 
-	count = SQL_FetchRow();
+	count = SQL_FetchRow(request);
+	SQL_Free(request);
+	mutex_release("mysql");
 
 	self.wrBaseCount = 0;
 	if (isDefined(count) && isDefined(count.size))
@@ -136,28 +142,27 @@ getPlayerWorldRecordCount()
 
 	self setStat(2001, self.wrBaseCount);
 	self setClientDvar("sr_leaderboard_wr_count", fmt("%d ^5(%d)", self.wrBaseCount, self.wrCount));
-
-	mutex_release("mysql");
 }
 
 getPlayerEntriesCount()
 {
 	mutex_acquire("mysql");
 
-	SQL_Prepare("SELECT COUNT(id) FROM leaderboards WHERE player = ?");
-	SQL_BindParam(self.id, level.MYSQL_TYPE_STRING);
-	SQL_BindResult(level.MYSQL_TYPE_LONG);
-	SQL_Execute();
+	request = SQL_Prepare("SELECT COUNT(id) FROM leaderboards WHERE player = ?");
+	SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
+	SQL_BindResult(request, level.MYSQL_TYPE_LONG);
+	SQL_Execute(request);
+	SQL_Wait(request);
 
-	count = SQL_FetchRow();
+	count = SQL_FetchRow(request);
+	SQL_Free(request);
+	mutex_release("mysql");
 
 	self.lbEntries = 0;
 	if (isDefined(count) && isDefined(count.size))
 		self.lbEntries = count[0];
 
 	self setStat(2002, self.lbEntries);
-
-	mutex_release("mysql");
 }
 
 load()
@@ -189,18 +194,22 @@ load()
 
 	mutex_acquire("mysql");
 
-	SQL_Prepare("SELECT mode, way, time, name, player, run FROM leaderboards WHERE map = ?");
-	SQL_BindParam(level.map, level.MYSQL_TYPE_STRING);
-	SQL_BindResult(level.MYSQL_TYPE_STRING, 20);
-	SQL_BindResult(level.MYSQL_TYPE_STRING, 20);
-	SQL_BindResult(level.MYSQL_TYPE_LONG);
-	SQL_BindResult(level.MYSQL_TYPE_STRING, 36);
-	SQL_BindResult(level.MYSQL_TYPE_STRING, 36);
-	SQL_BindResult(level.MYSQL_TYPE_STRING, 36);
-	SQL_Execute();
+	request = SQL_Prepare("SELECT mode, way, time, name, player, run FROM leaderboards WHERE map = ?");
+	SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
+	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 20);
+	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 20);
+	SQL_BindResult(request, level.MYSQL_TYPE_LONG);
+	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 36);
+	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 36);
+	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 36);
+	SQL_Execute(request);
+	SQL_Wait(request);
+
+	rows = SQL_FetchRowsDict(request);
+	SQL_Free(request);
+	mutex_release("mysql");
 
 	// Fetch
-	rows = SQL_FetchRowsDict();
 	for (i = 0; i < rows.size; i++)
 	{
 		entry = [];
@@ -222,7 +231,6 @@ load()
 		entryIndex = level.leaderboards[index].entries.size;
 		level.leaderboards[index].entries[entryIndex] = entry;
 	}
-	mutex_release("mysql");
 
 	// Sort and register demos
 	for (i = 0; i < modes.size; i++)
@@ -316,28 +324,34 @@ saveEntry(entry)
 	mutex_acquire("mysql");
 
 	// Update
-	SQL_Prepare("UPDATE leaderboards SET time = ?, name = ?, run = ? WHERE map = ? AND player = ? AND mode = ? AND way = ?");
-	SQL_BindParam(entry["time"].origin, level.MYSQL_TYPE_LONG);
-	SQL_BindParam(entry["name"], level.MYSQL_TYPE_STRING);
-	SQL_BindParam(entry["run"], level.MYSQL_TYPE_STRING);
-	SQL_BindParam(level.map, level.MYSQL_TYPE_STRING);
-	SQL_BindParam(entry["player"], level.MYSQL_TYPE_STRING);
-	SQL_BindParam(entry["mode"], level.MYSQL_TYPE_STRING);
-	SQL_BindParam(entry["way"], level.MYSQL_TYPE_STRING);
-	SQL_Execute();
+	request = SQL_Prepare("UPDATE leaderboards SET time = ?, name = ?, run = ? WHERE map = ? AND player = ? AND mode = ? AND way = ?");
+	SQL_BindParam(request, entry["time"].origin, level.MYSQL_TYPE_LONG);
+	SQL_BindParam(request, entry["name"], level.MYSQL_TYPE_STRING);
+	SQL_BindParam(request, entry["run"], level.MYSQL_TYPE_STRING);
+	SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
+	SQL_BindParam(request, entry["player"], level.MYSQL_TYPE_STRING);
+	SQL_BindParam(request, entry["mode"], level.MYSQL_TYPE_STRING);
+	SQL_BindParam(request, entry["way"], level.MYSQL_TYPE_STRING);
+	SQL_Execute(request);
+	SQL_Wait(request);
+
+	affected = SQL_AffectedRows(request);
+	SQL_Free(request);
 
 	// Insert
-	if (!SQL_AffectedRows())
+	if (!affected)
 	{
-		SQL_Prepare("INSERT INTO leaderboards (map, time, name, mode, way, player, run) VALUES (?, ?, ?, ?, ?, ?, ?)");
-		SQL_BindParam(level.map, level.MYSQL_TYPE_STRING);
-		SQL_BindParam(entry["time"].origin, level.MYSQL_TYPE_LONG);
-		SQL_BindParam(entry["name"], level.MYSQL_TYPE_STRING);
-		SQL_BindParam(entry["mode"], level.MYSQL_TYPE_STRING);
-		SQL_BindParam(entry["way"], level.MYSQL_TYPE_STRING);
-		SQL_BindParam(entry["player"], level.MYSQL_TYPE_STRING);
-		SQL_BindParam(entry["run"], level.MYSQL_TYPE_STRING);
-		SQL_Execute();
+		request = SQL_Prepare("INSERT INTO leaderboards (map, time, name, mode, way, player, run) VALUES (?, ?, ?, ?, ?, ?, ?)");
+		SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
+		SQL_BindParam(request, entry["time"].origin, level.MYSQL_TYPE_LONG);
+		SQL_BindParam(request, entry["name"], level.MYSQL_TYPE_STRING);
+		SQL_BindParam(request, entry["mode"], level.MYSQL_TYPE_STRING);
+		SQL_BindParam(request, entry["way"], level.MYSQL_TYPE_STRING);
+		SQL_BindParam(request, entry["player"], level.MYSQL_TYPE_STRING);
+		SQL_BindParam(request, entry["run"], level.MYSQL_TYPE_STRING);
+		SQL_Execute(request);
+		SQL_Wait(request);
+		SQL_Free(request);
 	}
 	mutex_release("mysql");
 }
