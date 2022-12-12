@@ -11,7 +11,8 @@ onConnect()
 {
     self.pbs = [];
 
-    if (self.isBot) return;
+    if (self.isBot)
+		return;
 
 	mutex_acquire("mysql");
 

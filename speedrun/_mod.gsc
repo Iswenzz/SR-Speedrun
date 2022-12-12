@@ -29,6 +29,4 @@ main()
 	speedrun\player\huds\_cheat::main();
 	speedrun\player\huds\_speedrun::main();
 	speedrun\player\huds\_demo::main();
-
-	speedrun\_tests::runTests();
 }

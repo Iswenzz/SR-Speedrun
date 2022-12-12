@@ -26,6 +26,11 @@ CodeCallback_StartGameType()
 
 	setDvar("g_gametype", "deathrun");
 
+	speedrun\_tests::runTests();
+
+	if (level.gscunit.enabled)
+		return;
+
 	if (!isDefined(level.gametypestarted) || !level.gametypestarted)
 	{
 		if (isDefined(level.callbackStartGameType))
@@ -90,6 +95,9 @@ CodeCallback_PlayerTeam()
 
 CodeCallback_PlayerConnect()
 {
+	if (level.gscunit.enabled)
+		return;
+
 	self endon("disconnect");
 	self waittill("begin");
 	level notify("connecting", self);
@@ -109,6 +117,9 @@ CodeCallback_PlayerConnect()
 
 CodeCallback_PlayerDisconnect()
 {
+	if (level.gscunit.enabled)
+		return;
+
 	self notify("disconnect");
 
 	for (i = 0; isDefined(level.events["disconnect"]) && i < level.events["disconnect"].size; i++)
@@ -145,6 +156,9 @@ CodeCallback_PlayerLastStand(eInflictor, eAttacker, iDamage, sMeansOfDeath, sWea
 
 CodeCallback_ScriptCommand(cmd, arg)
 {
+	if (level.gscunit.enabled)
+		return;
+
 	self endon("disconnect");
 
 	for (i = 0; isDefined(level.events["command"]) && i < level.events["command"].size; i++)

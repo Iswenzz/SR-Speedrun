@@ -4,6 +4,7 @@
 
 initLeaderboards()
 {
+	level.leaderboards = [];
 	level.leaderboard_max_page = 7;
 	level.leaderboard_max_entries = 40;
 	level.leaderboard_xps = xpTable();
@@ -102,6 +103,9 @@ updateMenuInfo()
 
 getPlayerWorldRecordCount()
 {
+	if (self.isBot)
+		return;
+
 	// All
 	filter = "SELECT id, map, name, mode, way, player, time, min(time) OVER (PARTITION BY map, mode, way) AS minTime FROM leaderboards";
 	query = fmt("SELECT count(id) FROM (%s) b WHERE time = minTime AND player = ?", filter);
@@ -146,6 +150,9 @@ getPlayerWorldRecordCount()
 
 getPlayerEntriesCount()
 {
+	if (self.isBot)
+		return;
+
 	mutex_acquire("mysql");
 
 	request = SQL_Prepare("SELECT COUNT(id) FROM leaderboards WHERE player = ?");
@@ -172,7 +179,6 @@ load()
 	if (!mapHasLeaderboards())
 		addWay("normal_0", "Normal Way");
 
-	level.leaderboards = [];
 	modes = getArrayKeys(level.leaderboard_modes);
 	ways = getArrayKeys(level.leaderboard_ways);
 
