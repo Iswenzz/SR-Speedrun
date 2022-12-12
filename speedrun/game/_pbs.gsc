@@ -1,5 +1,4 @@
 #include sr\sys\_events;
-#include sr\sys\_mysql;
 #include sr\utils\_common;
 
 initPBs()
@@ -23,7 +22,7 @@ onConnect()
     SQL_BindResult(request, level.MYSQL_TYPE_STRING, 20);
     SQL_BindResult(request, level.MYSQL_TYPE_LONG);
     SQL_Execute(request);
-	SQL_Wait(request);
+	AsyncWait(request);
 
     if (SQL_NumRows(request))
 	{
@@ -76,7 +75,7 @@ saveEntry(entry)
     SQL_BindParam(request, entry["mode"], level.MYSQL_TYPE_STRING);
     SQL_BindParam(request, entry["way"], level.MYSQL_TYPE_STRING);
     SQL_Execute(request);
-	SQL_Wait(request);
+	AsyncWait(request);
 
 	affected = SQL_AffectedRows(request);
 	SQL_Free(request);
@@ -92,7 +91,7 @@ saveEntry(entry)
 		SQL_BindParam(request, entry["player"], level.MYSQL_TYPE_STRING);
 		SQL_BindParam(request, entry["run"], level.MYSQL_TYPE_STRING);
 		SQL_Execute(request);
-		SQL_Wait(request);
+		AsyncWait(request);
 		SQL_Free(request);
     }
 	mutex_release("mysql");
