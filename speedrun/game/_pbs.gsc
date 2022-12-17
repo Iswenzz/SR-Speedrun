@@ -24,7 +24,7 @@ onConnect()
     SQL_Execute(request);
 	AsyncWait(request);
 
-    if (SQL_NumRows(request))
+    if (SQL_NumRows(request) && isDefined(self))
 	{
 		rows = SQL_FetchRowsDict(request);
 		for (i = 0; i < rows.size; i++)

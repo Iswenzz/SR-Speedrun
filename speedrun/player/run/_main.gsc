@@ -98,7 +98,7 @@ playerTimer()
 
 endTimer()
 {
-	if (self.finishedMap || !self isPlaying() || !isDefined(self.time))
+	if (!self isPlaying() || self.finishedMap || !isDefined(self.time))
 		return;
 	self.finishedMap = true;
 
@@ -118,8 +118,8 @@ endTimer()
 		self.sr_mode, way));
 
 	entry = self makeEntry();
-    speedrun\game\_leaderboards::saveEntry(entry);
-    speedrun\game\_pbs::saveEntry(entry);
+    self thread speedrun\game\_leaderboards::saveEntry(entry);
+    self thread speedrun\game\_pbs::saveEntry(entry);
 
 	self speedrun\player\huds\_speedrun::updateRecords();
 }

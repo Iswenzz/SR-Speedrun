@@ -87,8 +87,8 @@ onConnect()
 	}
 
 	// Stats
-	self getPlayerEntriesCount();
-	self getPlayerWorldRecordCount();
+	self thread getPlayerEntriesCount();
+	self thread getPlayerWorldRecordCount();
 }
 
 updateMenuInfo()
@@ -120,9 +120,12 @@ getPlayerWorldRecordCount()
 	count = SQL_FetchRow(request);
 	SQL_Free(request);
 
-	self.wrCount = 0;
-	if (isDefined(count) && isDefined(count.size))
-		self.wrCount = count[0];
+	if (isDefined(self))
+	{
+		self.wrCount = 0;
+		if (isDefined(count) && isDefined(count.size))
+			self.wrCount = count[0];
+	}
 
 	// 190 / 210
 	filter = "SELECT id, map, name, mode, way, player, time, min(time) OVER (PARTITION BY map, mode, way) AS minTime FROM leaderboards";
@@ -139,12 +142,15 @@ getPlayerWorldRecordCount()
 	SQL_Free(request);
 	mutex_release("mysql");
 
-	self.wrBaseCount = 0;
-	if (isDefined(count) && isDefined(count.size))
-		self.wrBaseCount = count[0];
+	if (isDefined(self))
+	{
+		self.wrBaseCount = 0;
+		if (isDefined(count) && isDefined(count.size))
+			self.wrBaseCount = count[0];
 
-	self setStat(2001, self.wrBaseCount);
-	self setClientDvar("sr_leaderboard_wr_count", fmt("%d ^5(%d)", self.wrBaseCount, self.wrCount));
+		self setStat(2001, self.wrBaseCount);
+		self setClientDvar("sr_leaderboard_wr_count", fmt("%d ^5(%d)", self.wrBaseCount, self.wrCount));
+	}
 }
 
 getPlayerEntriesCount()
@@ -164,11 +170,14 @@ getPlayerEntriesCount()
 	SQL_Free(request);
 	mutex_release("mysql");
 
-	self.lbEntries = 0;
-	if (isDefined(count) && isDefined(count.size))
-		self.lbEntries = count[0];
+	if (isDefined(self))
+	{
+		self.lbEntries = 0;
+		if (isDefined(count) && isDefined(count.size))
+			self.lbEntries = count[0];
 
-	self setStat(2002, self.lbEntries);
+		self setStat(2002, self.lbEntries);
+	}
 }
 
 load()
@@ -322,7 +331,7 @@ saveEntry(entry)
 	self givePlacementXP(entry, entries, placement);
 
 	if (placement <= 3)
-		self sr\game\_demo::recordSave();
+		self thread sr\game\_demo::recordSave();
 	if (placement == 1)
 		self thread worldRecord(entry);
 
@@ -534,7 +543,7 @@ givePlacementXP(entry, entries, placement)
 	filled = entries.size / level.leaderboard_max_entries;
 	xp = level.leaderboard_xps[placement - 1] * filled * multiplier;
 
-	self sr\game\_rank::giveRankXP("", xp);
+	self thread sr\game\_rank::giveRankXP("", xp);
 }
 
 getWorldRecord(mode, way)
