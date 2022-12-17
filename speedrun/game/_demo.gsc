@@ -35,7 +35,7 @@ setup(id)
 		self suicide();
 		wait 0.05;
 
-		if (IsDemoLoading(id))
+		if (!IsDemoLoaded(id))
 		{
 			self sr\sys\_admins::pm("^3Demo loading...");
 			return false;
