@@ -318,6 +318,13 @@ mapHasLeaderboards()
 	return isDefined(level.leaderboard_ways) && isDefined(level.leaderboard_modes);
 }
 
+isTie(entry, entries)
+{
+	if (!isDefined(entries[0]))
+		return false;
+	return entry["time"].origin == entries[0]["time"].origin;
+}
+
 saveEntry(entry)
 {
 	if (!mapHasLeaderboards() || !isValidEntry(entry))
@@ -332,7 +339,7 @@ saveEntry(entry)
 
 	if (placement <= 3)
 		self thread sr\game\_demo::recordSave();
-	if (placement == 1)
+	if (placement == 1 && !self isTie(entry, entries))
 		self thread worldRecord(entry);
 
 	mutex_acquire("mysql");
