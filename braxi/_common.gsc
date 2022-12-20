@@ -46,7 +46,8 @@ bounce(pos, power)
 	oldhp = self.health;
 	self.health = self.health + power;
 	self setClientDvars("bg_viewKickMax", 0, "bg_viewKickMin", 0, "bg_viewKickRandom", 0, "bg_viewKickScale", 0);
-	self finishPlayerDamage(self, self, power, 0, "MOD_PROJECTILE", "none", undefined, pos, "none", 0);
+	if (isDefined(self))
+		self finishPlayerDamage(self, self, power, 0, "MOD_PROJECTILE", "none", undefined, pos, "none", 0);
 	self.health = oldhp;
 	self thread bounce2();
 }
@@ -122,7 +123,8 @@ isPlaying()
 
 doDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc)
 {
-	self finishPlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, 0);
+	if (isDefined(self))
+		self finishPlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, 0);
 }
 
 loadWeapon(name, attachments, image)

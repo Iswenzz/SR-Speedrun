@@ -118,7 +118,7 @@ playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vP
 	if (!isDefined(vDir))
 		iDFlags |= level.iDFLAGS_NO_KNOCKBACK;
 
-	if (!(iDFlags & level.iDFLAGS_NO_PROTECTION))
+	if (isDefined(self) && !(iDFlags & level.iDFLAGS_NO_PROTECTION))
 	{
 		if (iDamage < 1)
 			iDamage = 1;
