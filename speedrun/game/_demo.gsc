@@ -83,6 +83,9 @@ play(id)
 		if (self.demoWeapon.size && self.demoWeapon != self.prevDemoWeapon
 			&& self getCurrentWeapon() != self.demoWeapon)
 		{
+			if (!isDefinedWeapon(self.demoWeapon))
+				self.demoWeapon = "beretta_mp";
+
 			self takeAllWeapons();
 			self giveWeapon(self.demoWeapon);
 			self switchToWeapon(self.demoWeapon);
