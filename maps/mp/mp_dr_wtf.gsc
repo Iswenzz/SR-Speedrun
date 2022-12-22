@@ -8,7 +8,8 @@ trigger.radius = 300;
 
 thread sr\api\_map::createSpawnOrigin((-322.542, -642.667, 16.125), 90);
 thread sr\api\_speedrun::createNormalWays("Normal Way;Glitch Way;");
-thread sr\api\_speedrun::createWay((288.457, 1457.94, 176.125), 410, 100, "none", "normal_1");
+thread sr\api\_speedrun::createWay((288, 1457, 205), 500, 100, "none", "normal_1");
+thread sr\api\_speedrun::createWay((288, 820, 205), 500, 100, "none", "normal_1");
 
           PreCacheItem("brick_blaster_mp");
 

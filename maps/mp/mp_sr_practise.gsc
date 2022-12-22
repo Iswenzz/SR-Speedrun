@@ -87,6 +87,15 @@ welcome()
 
 }
 
+freeze()
+{
+	self endon("disconnect");
+
+	self FreezeControls(1);  /////To prevent 10 fps glitches////
+	wait 0.5;
+	self FreezeControls(0);
+}
+
 pure_ladder_s()
 {
     trig = getEnt ("sr_ladder_start", "targetname");
@@ -100,9 +109,7 @@ pure_ladder_s()
          player thread sr\api\_speedrun::changeWay("normal_1");
          player SetOrigin(orig.origin);
          player SetPlayerAngles(orig.angles );
-         player FreezeControls(1);  /////To prevent 10 fps glitches////
-         wait 0.5;
-         player FreezeControls(0);
+         player thread freeze();
 
 	}
 }
@@ -134,9 +141,7 @@ pure_angle_s()
          player thread sr\api\_speedrun::changeWay("normal_2");
          player SetOrigin(orig.origin);
          player SetPlayerAngles(orig.angles );
-         player FreezeControls(1);  /////To prevent 10 fps glitches////
-         wait 0.5;
-         player FreezeControls(0);
+         player thread freeze();
 
 	}
 }
@@ -166,9 +171,7 @@ pure_bhop_s()
          player thread sr\api\_speedrun::changeWay("normal_3");
          player SetOrigin(orig.origin);
          player SetPlayerAngles(orig.angles );
-         player FreezeControls(1);  /////To prevent 10 fps glitches////
-         wait 0.5;
-         player FreezeControls(0);
+         player thread freeze();
 
 	}
 }
@@ -199,9 +202,7 @@ pure_bounce_s()
          player thread sr\api\_speedrun::changeWay("normal_4");
          player SetOrigin(orig.origin);
          player SetPlayerAngles(orig.angles );
-         player FreezeControls(1);  /////To prevent 10 fps glitches////
-         wait 0.5;
-         player FreezeControls(0);
+         player thread freeze();
 
 	}
 }
@@ -231,9 +232,7 @@ pure_fall_s()
          player thread sr\api\_speedrun::changeWay("normal_5");
          player SetOrigin(orig.origin);
          player SetPlayerAngles(orig.angles );
-         player FreezeControls(1);  /////To prevent 10 fps glitches////
-         wait 0.5;
-         player FreezeControls(0);
+         player thread freeze();
 
 	}
 }
@@ -264,9 +263,7 @@ pure_stairs_s()
          player thread sr\api\_speedrun::changeWay("secret_0");
          player SetOrigin(orig.origin);
          player SetPlayerAngles(orig.angles );
-         player FreezeControls(1);  /////To prevent 10 fps glitches////
-         wait 0.5;
-         player FreezeControls(0);
+         player thread freeze();
 
 	}
 }

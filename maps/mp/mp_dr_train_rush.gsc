@@ -20,10 +20,11 @@ Email Pro: suxlolz@outlook.fr
 
 main()
 {
-thread sr\api\_map::createSpawnOrigin((0, -19544, 192), 90);
-level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
-if (!level.spawn["allies"].size)
-	level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
+	thread sr\api\_map::createSpawnOrigin((0, -19544, 192), 90);
+	level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
+	if (!level.spawn["allies"].size)
+		level.spawn["allies"] = getEntArray("mp_dm_spawn", "classname");
+
 	maps\mp\_load::main();
 	maps\mp\_compass::setupMiniMap("compass_map_mp_dr_train_rush");
 
@@ -92,12 +93,6 @@ way_connect()
 	sr\api\_speedrun::createSecretWays("Secret Way;");
 
 	thread secret_1();
-
-    for(;;)
-    {
-        level waittill( "connected", player );
-
-    }
 }
 
 secret_1()

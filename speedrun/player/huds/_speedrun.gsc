@@ -96,7 +96,7 @@ updateTime()
 
 updateWay()
 {
-	if (!isDefined(self.huds["speedrun"]["name"]))
+	if (!isDefined(self.huds["speedrun"]["name"]) || isDefined(self.demo))
 		return;
 
 	self updateRecords();

@@ -2,7 +2,7 @@ main()
 {
 thread sr\api\_map::createSpawnOrigin((-30, 642, 130), 270);
 thread sr\api\_speedrun::createNormalWays("Normal Way;Glitch Way;");
-thread sr\api\_speedrun::createWay((5560.5, -16.5971, 80.125), 400, 300, "none", "normal_1");
+thread sr\api\_speedrun::createWay((6844, -67, 100), 600, 300, "none", "normal_1");
 
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
