@@ -84,7 +84,7 @@ play(id)
 			&& self getCurrentWeapon() != self.demoWeapon)
 		{
 			if (!isPrecached(self.demoWeapon, "item"))
-				self.demoWeapon = "knife_mp";
+				self.demoWeapon = "beretta_mp";
 
 			self takeAllWeapons();
 			self giveWeapon(self.demoWeapon);
