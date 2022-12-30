@@ -13,7 +13,7 @@ onConnect()
     if (self.isBot)
 		return;
 
-	mutex_acquire("mysql");
+	critical_enter("mysql");
 
 	request = SQL_Prepare("SELECT mode, way, time FROM pbs WHERE map = ? AND player = ?");
     SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
@@ -40,7 +40,7 @@ onConnect()
     }
 
 	SQL_Free(request);
-	mutex_release("mysql");
+	critical_release("mysql");
 }
 
 isValidEntry(entry)
@@ -66,7 +66,7 @@ saveEntry(entry)
 
 	self thread speedrun\game\_leaderboards::updateMenuInfo();
 
-	mutex_acquire("mysql");
+	critical_enter("mysql");
 
     request = SQL_Prepare("UPDATE pbs SET time = ? WHERE map = ? AND player = ? AND mode = ? AND way = ?");
     SQL_BindParam(request, entry["time"].origin, level.MYSQL_TYPE_LONG);
@@ -94,7 +94,7 @@ saveEntry(entry)
 		AsyncWait(request);
 		SQL_Free(request);
     }
-	mutex_release("mysql");
+	critical_release("mysql");
 }
 
 getPersonalBest(mode, way)

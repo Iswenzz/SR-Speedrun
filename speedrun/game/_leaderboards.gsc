@@ -109,7 +109,7 @@ getPlayerWorldRecordCount()
 	filter = "SELECT id, map, name, mode, way, player, time, min(time) OVER (PARTITION BY map, mode, way) AS minTime FROM leaderboards";
 	query = fmt("SELECT count(id) FROM (%s) b WHERE time = minTime AND player = ?", filter);
 
-	mutex_acquire("mysql");
+	critical_enter("mysql");
 
 	request = SQL_Prepare(query);
 	SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
@@ -140,7 +140,7 @@ getPlayerWorldRecordCount()
 
 	count = SQL_FetchRow(request);
 	SQL_Free(request);
-	mutex_release("mysql");
+	critical_release("mysql");
 
 	if (isDefined(self))
 	{
@@ -158,7 +158,7 @@ getPlayerEntriesCount()
 	if (self.isBot)
 		return;
 
-	mutex_acquire("mysql");
+	critical_enter("mysql");
 
 	request = SQL_Prepare("SELECT COUNT(id) FROM leaderboards WHERE player = ?");
 	SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
@@ -168,7 +168,7 @@ getPlayerEntriesCount()
 
 	count = SQL_FetchRow(request);
 	SQL_Free(request);
-	mutex_release("mysql");
+	critical_release("mysql");
 
 	if (isDefined(self))
 	{
@@ -206,7 +206,7 @@ load()
 		}
 	}
 
-	mutex_acquire("mysql");
+	critical_enter("mysql");
 
 	request = SQL_Prepare("SELECT mode, way, time, name, player, run FROM leaderboards WHERE map = ?");
 	SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
@@ -221,7 +221,7 @@ load()
 
 	rows = SQL_FetchRowsDict(request);
 	SQL_Free(request);
-	mutex_release("mysql");
+	critical_release("mysql");
 
 	// Fetch
 	for (i = 0; i < rows.size; i++)
@@ -342,7 +342,7 @@ saveEntry(entry)
 	if (placement == 1 && !self isTie(entry, entries))
 		self thread worldRecord(entry);
 
-	mutex_acquire("mysql");
+	critical_enter("mysql");
 
 	// Update
 	request = SQL_Prepare("UPDATE leaderboards SET time = ?, name = ?, run = ? WHERE map = ? AND player = ? AND mode = ? AND way = ?");
@@ -374,7 +374,7 @@ saveEntry(entry)
 		AsyncWait(request);
 		SQL_Free(request);
 	}
-	mutex_release("mysql");
+	critical_release("mysql");
 }
 
 addMode(mode, callback)
