@@ -30,7 +30,6 @@ playerConnect()
 	self.shortName = getSubStr(self.name, 0, 15);
 	self.number = self getEntityNumber();
 	self.statusicon = "hud_status_connecting";
-	self.died = false;
 	self.pers["score"] = 0;
 	self.pers["kills"] = 0;
 	self.pers["deaths"] = 0;
@@ -51,11 +50,8 @@ playerConnect()
 	if (game["state"] == "endmap")
 		return;
 
-	if (!self.isBot)
-	{
-		self setu("sr_xp_bar", "0");
-		self setu("sr_vote_search", "_");
-	}
+	self setu("sr_xp_bar", "0");
+	self setu("sr_vote_search", "_");
 
 	self setClientDvar("g_scriptMainMenu", "main_mp");
 	wait 0.05;
@@ -152,10 +148,6 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 	}
 	if (sHitLoc == "head" && sMeansOfDeath != "MOD_MELEE")
 		sMeansOfDeath = "MOD_HEAD_SHOT";
-
-	self.statusicon = "hud_status_dead";
-	self.sessionstate = "spectator";
-	self.died = true;
 
 	self thread ragdoll(sHitLoc, vDir, sWeapon, eInflictor, sMeansOfDeath, deathAnimDuration);
 

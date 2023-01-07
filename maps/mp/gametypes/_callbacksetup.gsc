@@ -57,6 +57,8 @@ CodeCallback_PlayerSpawned()
 
 		for (i = 0; isDefined(level.events["spawn"]) && i < level.events["spawn"].size; i++)
 			self thread [[level.events["spawn"][i]]]();
+
+		self notify("spawned_player_after");
 	}
 }
 
@@ -73,6 +75,8 @@ CodeCallback_PlayerSpectator()
 
 		for (i = 0; isDefined(level.events["spectator"]) && i < level.events["spectator"].size; i++)
 			self thread [[level.events["spectator"][i]]]();
+
+		self notify("joined_spectators_after");
 	}
 }
 
@@ -86,6 +90,8 @@ CodeCallback_PlayerTeam()
 
 		for (i = 0; isDefined(level.events["team"]) && i < level.events["team"].size; i++)
 			self thread [[level.events["team"][i]]]();
+
+		self notify("joined_team_after");
 	}
 }
 
@@ -98,9 +104,11 @@ CodeCallback_PlayerConnect()
 	self waittill("begin");
 	level notify("connecting", self);
 
-	self.team = "spectator";
 	self.pers["team"] = "spectator";
+	self.team = "spectator";
+	self.sessionteam = "spectator";
 	self.sessionstate = Ternary(game["state"] == "endmap", "intermission", "spectator");
+	self.died = false;
 	self.run = 0;
 
 	self thread CodeCallback_PlayerSpawned();
@@ -109,6 +117,8 @@ CodeCallback_PlayerConnect()
 
 	for (i = 0; isDefined(level.events["connect"]) && i < level.events["connect"].size; i++)
 		self thread [[level.events["connect"][i]]]();
+
+	self notify("connecting_after");
 }
 
 CodeCallback_PlayerDisconnect()
@@ -134,7 +144,9 @@ CodeCallback_PlayerKilled(eInflictor, eAttacker, iDamage, sMeansOfDeath, sWeapon
 {
 	self endon("disconnect");
 
+	self.statusicon = "hud_status_dead";
 	self.sessionstate = "dead";
+	self.died = true;
 
 	for (i = 0; isDefined(level.events["killed"]) && i < level.events["killed"].size; i++)
 		self thread [[level.events["killed"][i]]](eInflictor, eAttacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, timeOffset, deathAnimDuration);

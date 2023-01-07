@@ -26,7 +26,6 @@ main()
 	speedrun\game\_leaderboards::initLeaderboards();
 	speedrun\game\_pbs::initPBs();
 	speedrun\player\run\_main::main();
-	speedrun\player\huds\_cheat::main();
 	speedrun\player\huds\_speedrun::main();
 	speedrun\player\huds\_demo::main();
 }

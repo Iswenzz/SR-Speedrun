@@ -85,7 +85,6 @@ menu_Team(arg)
 		self iPrintLn("^1Suicide disabled");
 		return;
 	}
-
 	self sr\game\_teams::setTeam("allies");
 
 	if (self canSpawn())

@@ -102,11 +102,13 @@ waitForPlayers(requiredPlayersCount)
 
 canSpawn()
 {
-	if (level.freeRun || self.pers["lifes"])
-		return true;
 	if (!level.allowSpawn)
 		return false;
-	if (self.died)
+	if (game["state"] == "endmap" || game["state"] == "round ended")
+		return false;
+	if (level.freeRun)
+		return true;
+	if (self.sessionstate == "playing" || self.died)
 		return false;
 	return true;
 }
