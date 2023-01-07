@@ -56,6 +56,7 @@ menu_Mode(args)
 onConnect()
 {
 	self endon("disconnect");
+	level loading("leaderboards");
 
 	if (!isDefined(self.sr_way))
 		self.sr_way = "normal_0";
@@ -67,13 +68,9 @@ onConnect()
 	// Default
 	for (i = 0; i < level.leaderboard_max_page; i++)
 	{
-		self setClientDvars(
-			fmt("normal_%d", i), "",
-			fmt("secret_%d", i), ""
-		);
+		self setClientDvars(fmt("normal_%d", i), "", fmt("secret_%d", i), "");
 		wait 0.05;
 	}
-	waitMapLoad(1);
 
 	if (!mapHasLeaderboards())
 		return;
@@ -89,8 +86,9 @@ onConnect()
 	}
 
 	// Stats
-	self thread getPlayerEntriesCount();
-	self thread getPlayerWorldRecordCount();
+	self getPlayerEntriesCount();
+	self getPlayerWorldRecordCount();
+	self speedrun\player\huds\_speedrun::updateRecords();
 }
 
 updateMenuInfo()
@@ -288,6 +286,7 @@ load()
 				level.demos[index] = entry;
 		}
 	}
+	level setLoading("leaderboards", false);
 }
 
 makeEntry()
@@ -525,7 +524,7 @@ getLeaderboardName(mode, way)
 	leaderboard = getLeaderboard(mode, way);
 	if (isDefined(leaderboard))
 		return leaderboard.name;
-	return "Loading...";
+	return "Normal Way";
 }
 
 getEntryPlacement(entry, entries)

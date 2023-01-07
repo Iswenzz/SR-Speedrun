@@ -41,6 +41,8 @@ onConnect()
 
 	SQL_Free(request);
 	critical_release("mysql");
+
+	self setLoading("pbs", false);
 }
 
 isValidEntry(entry)
