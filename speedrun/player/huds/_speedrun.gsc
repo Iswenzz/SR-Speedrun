@@ -30,9 +30,7 @@ hud()
 	self.huds["speedrun"]["row1"].label = &"^5&&1";
 	self.huds["speedrun"]["row1"] setTenthsTimerUp(0.0001);
  	self.huds["speedrun"]["row2"] = addHud(self, 5, 42, 1, "left", "top", 1.4, 99, true);
- 	self.huds["speedrun"]["row2"] setText("(PB)");
  	self.huds["speedrun"]["row3"] = addHud(self, 5, 61, 1, "left", "top", 1.4, 99, true);
- 	self.huds["speedrun"]["row3"] setText("(WR)");
 
  	self.huds["speedrun"]["role"] = addHud(self, 142, 18, 1, "left", "top", 1.8, 99, true);
 	self.huds["speedrun"]["vip"] = addHud(self, 144, -1, 1, "left", "top", 1.8, 99, true);
@@ -99,13 +97,35 @@ updateRecords()
 	wr = speedrun\game\_leaderboards::getWorldRecord(self.sr_mode, self.sr_way);
 	pb = self speedrun\game\_pbs::getPersonalBest(self.sr_mode, self.sr_way);
 
-	self.huds["speedrun"]["row2"] setText(fmt("(PB)                  ^3%s", pb));
-	self.huds["speedrun"]["row3"] setText(fmt("(WR)                 ^2%s", wr));
+	self.huds["speedrun"]["row2"] setText("^3" + pb);
+	self.huds["speedrun"]["row2"].label = &"(PB)                  ";
+	self.huds["speedrun"]["row3"] setText("^2" + wr);
+ 	self.huds["speedrun"]["row3"].label = &"(WR)                 ";
 
-	if (isDefined(self.wrBaseCount) && self.wrBaseCount >= 10)
+	if (!self hasLoaded("pbs"))
 	{
-		self.huds["speedrun"]["wr_icon"] setShader("speedrunner_logo", 18, 18);
-		self.huds["speedrun"]["wr_icon_count"] setText(fmt("^3%d ^7[%d]", self.wrBaseCount, self.wrCount));
+		self.huds["speedrun"]["row2"] setShader("sr_loader", 18, 18);
+		self.huds["speedrun"]["row2"].label = &"(PB)                        ";
+	}
+	if (!level hasLoaded("leaderboards"))
+ 	{
+		self.huds["speedrun"]["row3"] setShader("sr_loader", 18, 18);
+ 		self.huds["speedrun"]["row3"].label = &"(WR)                       ";
+	}
+	if (!self hasLoaded("wr_count"))
+	{
+		self.huds["speedrun"]["wr_icon"] setShader("sr_loader", 18, 18);
+		self.huds["speedrun"]["wr_icon"].alpha = 1;
+	}
+	if (isDefined(self.wrBaseCount))
+	{
+		self.huds["speedrun"]["wr_icon"].alpha = self.wrBaseCount >= 10;
+
+		if (self.wrBaseCount >= 10)
+		{
+			self.huds["speedrun"]["wr_icon"] setShader("speedrunner_logo", 18, 18);
+			self.huds["speedrun"]["wr_icon_count"] setText(fmt("^3%d ^7[%d]", self.wrBaseCount, self.wrCount));
+		}
 	}
 }
 
@@ -124,16 +144,12 @@ updateWay()
 
 	if (isDefined(self.demo))
 		return;
-
-	level loading("leaderboards");
-	self loading("pbs");
-
-	self updateRecords();
-
 	if (self sr\game\minigames\_main::isInAnyQueue())
 		return;
 	if (self sr\player\modes\_main::isInAnyMode())
 		return;
+
+	self updateRecords();
 
 	name = speedrun\game\_leaderboards::getLeaderboardName(self.sr_mode, self.sr_way);
 	self.huds["speedrun"]["name"] setText(name);

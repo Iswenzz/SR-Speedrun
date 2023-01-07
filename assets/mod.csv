@@ -37,6 +37,7 @@ material,sr_edge
 material,sr_psy_edge
 material,sr_psy_glass
 material,sr_grid
+material,sr_loader
 material,time_hud
 material,sr_banner
 material,sr_race

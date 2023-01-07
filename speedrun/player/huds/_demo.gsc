@@ -46,7 +46,9 @@ huds()
 	self.huds["demo"]["slowmo"] setText("Hold ^5[{+gostand}]^7 to slowmo");
 
 	self.huds["speedrun"]["row2"] setText(self.demo["name"]);
+	self.huds["speedrun"]["row2"].label = level.texts["empty"];
 	self.huds["speedrun"]["row3"] setText("^2" + timeFormat);
+	self.huds["speedrun"]["row3"].label = level.texts["empty"];
 	self.huds["speedrun"]["mode"] setText(self.demo["mode"]);
 	self.huds["speedrun"]["name"] setText(wayName);
 }

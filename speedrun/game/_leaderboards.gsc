@@ -88,6 +88,8 @@ onConnect()
 	// Stats
 	self getPlayerEntriesCount();
 	self getPlayerWorldRecordCount();
+
+	self setLoading("wr_count", false);
 	self speedrun\player\huds\_speedrun::updateRecords();
 }
 

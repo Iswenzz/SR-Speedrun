@@ -222,6 +222,8 @@ isWallKnifing(attacker, victim)
 
 welcome()
 {
+	level loading("admins");
+
 	role = self sr\sys\_admins::getRoleName();
 	geo = self getGeoLocation(2);
 
