@@ -71,7 +71,6 @@ onConnect()
 		self setClientDvars(fmt("normal_%d", i), "", fmt("secret_%d", i), "");
 		wait 0.05;
 	}
-
 	if (!mapHasLeaderboards())
 		return;
 
@@ -410,6 +409,9 @@ display()
 	times = "";
 
 	leaderboard = getLeaderboard(self.leaderboard_mode, self.leaderboard_way);
+	if (!isDefined(leaderboard))
+		return;
+
 	entries = leaderboard.entries;
 
 	self setClientDvar("leaderboard_name", fmt("%s ^7%s", self.leaderboard_mode, leaderboard.name));
