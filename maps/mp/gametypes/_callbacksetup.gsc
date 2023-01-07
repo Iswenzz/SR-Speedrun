@@ -57,8 +57,6 @@ CodeCallback_PlayerSpawned()
 
 		for (i = 0; isDefined(level.events["spawn"]) && i < level.events["spawn"].size; i++)
 			self thread [[level.events["spawn"][i]]]();
-
-		self notify("end_spawned_player");
 	}
 }
 
@@ -75,8 +73,6 @@ CodeCallback_PlayerSpectator()
 
 		for (i = 0; isDefined(level.events["spectator"]) && i < level.events["spectator"].size; i++)
 			self thread [[level.events["spectator"][i]]]();
-
-		self notify("end_joined_spectators");
 	}
 }
 

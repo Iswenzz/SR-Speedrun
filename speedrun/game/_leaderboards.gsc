@@ -67,8 +67,10 @@ onConnect()
 	// Default
 	for (i = 0; i < level.leaderboard_max_page; i++)
 	{
-		self setClientDvar(fmt("normal_%d", i), "");
-		self setClientDvar(fmt("secret_%d", i), "");
+		self setClientDvars(
+			fmt("normal_%d", i), "",
+			fmt("secret_%d", i), ""
+		);
 		wait 0.05;
 	}
 	waitMapLoad(1);
@@ -96,8 +98,10 @@ updateMenuInfo()
 	wr = speedrun\game\_leaderboards::getWorldRecord(self.sr_mode, self.sr_way);
 	pb = self speedrun\game\_pbs::getPersonalBest(self.sr_mode, self.sr_way);
 
-	self setClientDvar("sr_leaderboard_pb", fmt("^3%s", pb));
-	self setClientDvar("sr_leaderboard_wr", fmt("^2%s", wr));
+	self setClientDvars(
+		"sr_leaderboard_pb", fmt("^3%s", pb),
+		"sr_leaderboard_wr", fmt("^2%s", wr)
+	);
 }
 
 getPlayerWorldRecordCount()
@@ -414,9 +418,11 @@ display()
 
 	for (i = 0; i < int(level.leaderboard_max_entries / 10); i++)
 	{
-		self setClientDvar("leaderboard_numbers_" + i, "");
-		self setClientDvar("leaderboard_names_" + i, "");
-		self setClientDvar("leaderboard_values_" + i, "");
+		self setClientDvars(
+			"leaderboard_numbers_" + i, "",
+			"leaderboard_names_" + i, "",
+			"leaderboard_values_" + i, ""
+		);
 	}
 
 	stringIndex = 0;
@@ -438,9 +444,11 @@ display()
 
 		if (!(placement % 10) || i == entries.size - 1)
 		{
-			self setClientDvar("leaderboard_numbers_" + stringIndex, numbers);
-			self setClientDvar("leaderboard_names_" + stringIndex, names);
-			self setClientDvar("leaderboard_values_" + stringIndex, times);
+			self setClientDvars(
+				"leaderboard_numbers_" + stringIndex, numbers,
+				"leaderboard_names_" + stringIndex, names,
+				"leaderboard_values_" + stringIndex, times
+			);
 
 			numbers = "";
 			names = "";

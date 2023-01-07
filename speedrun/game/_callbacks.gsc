@@ -66,18 +66,22 @@ playerConnect()
 
 	wait 3;
 
-	self setClientDvar("ui_3dwaypointtext", "1");
-	self setClientDvar("ui_deathicontext", "1");
-	self setClientDvar("cl_maxpackets", 125);
-	self setClientDvar("rate", 25000);
-	self setClientDvar("show_hud", "true");
-	self setClientDvar("ip", getDvar("net_ip"));
+	self setClientDvars(
+		"ui_3dwaypointtext", "1",
+		"ui_deathicontext", "1",
+		"cl_maxpackets", 125,
+		"rate", 25000,
+		"ip", getDvar("net_ip"),
+		"port", getDvar("net_port")
+	);
 	wait 0.05;
-	self setClientDvar("port", getDvar("net_port"));
-	self setClientDvar("cg_drawSpectatorMessages", 1);
-	self setClientDvar("ui_hud_hardcore", 1);
-	self setClientDvar("player_sprintTime", 4);
-	self setClientDvar("ui_uav_client", 0);
+	self setClientDvars(
+		"show_hud", "true",
+		"cg_drawSpectatorMessages", 1,
+		"ui_hud_hardcore", 1,
+		"player_sprintTime", 4,
+		"ui_uav_client", 0
+	);
 }
 
 playerDisconnect()

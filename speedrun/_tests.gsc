@@ -16,8 +16,8 @@ setup()
 	gscunitEnv();
 
 	level.tests = spawnStruct();
-	level.tests.ftp = false;
-	level.tests.sftp = false;
+	level.tests.ftp = true;
+	level.tests.sftp = true;
 	level.tests.mysql = true;
 
 	return level.gscunit.enabled;
