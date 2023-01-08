@@ -25,7 +25,7 @@ main()
 	speedrun\game\_scoreboard::main();
 	speedrun\game\_leaderboards::initLeaderboards();
 	speedrun\game\_pbs::initPBs();
-	speedrun\player\run\_main::main();
 	speedrun\player\huds\_speedrun::main();
 	speedrun\player\huds\_demo::main();
+	speedrun\player\run\_main::main();
 }

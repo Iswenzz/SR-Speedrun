@@ -13,9 +13,8 @@ initLeaderboards()
 	menu_multiple("sr_leaderboard", "way", ::menu_Leaderboard);
 	menu_multiple("sr_leaderboard", "mode", ::menu_Mode);
 
+	event("map", ::load);
 	event("connect", ::onConnect);
-
-	thread load();
 }
 
 menu_Open(arg)
@@ -185,8 +184,6 @@ getPlayerEntriesCount()
 
 load()
 {
-	waitMapLoad();
-
 	if (!mapHasLeaderboards())
 		addWay("normal_0", "Normal Way");
 
@@ -288,6 +285,10 @@ load()
 		}
 	}
 	level setLoading("leaderboards", false);
+
+	players = getAllPlayers();
+	for (i = 0; i < players.size; i++)
+		players[i] thread speedrun\player\huds\_speedrun::updateRecords();
 }
 
 makeEntry()

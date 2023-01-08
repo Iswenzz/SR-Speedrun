@@ -4,25 +4,18 @@
 
 main()
 {
-    event("spawn", ::onSpawn);
-
 	addMode("190", speedrun\player\run\_190::start);
 	addMode("210", speedrun\player\run\_210::start);
 	addMode("Portal", speedrun\player\run\_portal::start);
 	addMode("Defrag", speedrun\player\run\_defrag::start);
 
-    thread endmapTrig();
+    event("map", ::trigger);
+    event("spawn", ::onSpawn);
 }
 
 onSpawn()
 {
 	self endon("disconnect");
-
-	if (self sr\game\minigames\_main::isInAnyQueue())
-		self.sr_mode = "210";
-	else
-		self.sr_mode = self getLastMode();
-	self.sr_way = "normal_0";
 
 	self startMode();
 	self playerTimer();
@@ -57,10 +50,8 @@ startMode()
     self [[level.leaderboard_modes[self.sr_mode].callback]]();
 }
 
-endmapTrig()
+trigger()
 {
-	waitMapLoad(2);
-
 	array = getEntArray("endmap_trig", "targetname");
 	if (!array.size)
 	{
@@ -86,13 +77,17 @@ playerTimer()
 
 	if (self.finishedMap)
 		return;
+	self.time = undefined;
 
-	if (game["state"] != "playing")
+	// Spastic delay caused by bad modding, too bad...
+	if (game["state"] == "playing")
+		wait 0.05;
+	if (game["state"] == "readyup")
 		level waittill("round_started");
 
-	self.time = undefined;
-	wait 0.1; // Spastic delay caused by bad modding, too bad...
+	wait 0.05;
 
+	self speedrun\player\huds\_speedrun::updateTime();
 	self.time = originToTime(getTime());
 }
 

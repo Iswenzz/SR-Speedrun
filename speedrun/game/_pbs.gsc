@@ -43,6 +43,7 @@ onConnect()
 	critical_release("mysql");
 
 	self setLoading("pbs", false);
+	self speedrun\player\huds\_speedrun::updateRecords();
 }
 
 isValidEntry(entry)

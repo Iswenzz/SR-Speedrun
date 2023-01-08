@@ -27,8 +27,7 @@ hud()
 	self.huds["speedrun"]["mode"] setText(self.sr_mode);
 
 	self.huds["speedrun"]["row1"] = addHud(self, 72, 18, 1, "left", "top", 1.8, 99, true);
-	self.huds["speedrun"]["row1"].label = &"^5&&1";
-	self.huds["speedrun"]["row1"] setTenthsTimerUp(0.0001);
+	self.huds["speedrun"]["row1"] setText("^50:0.0");
  	self.huds["speedrun"]["row2"] = addHud(self, 5, 42, 1, "left", "top", 1.4, 99, true);
  	self.huds["speedrun"]["row3"] = addHud(self, 5, 61, 1, "left", "top", 1.4, 99, true);
 
@@ -44,9 +43,9 @@ hud()
 		self.huds["speedrun"]["rank_icon"] = addHud(self, 185, 1, 1, "left", "top", 1.4, 80, true);
 	}
 
-	self updateAdmin();
-	self updateRank();
 	self updateWay();
+	self updateRank();
+	self updateAdmin();
 
 	self notify("speedrun_hud");
 }
@@ -131,10 +130,18 @@ updateRecords()
 
 updateTime()
 {
-	self.huds["speedrun"]["row1"] setText(self.time.min + ":" + self.time.sec + "." + self.time.ms);
-	self.huds["speedrun"]["row1"].fontScale = 1.4;
-	self.huds["speedrun"]["row1"].x = 73;
-	self.huds["speedrun"]["row1"].y = 21;
+	if (isDefined(self.time))
+	{
+		self.huds["speedrun"]["row1"] setText(self.time.min + ":" + self.time.sec + "." + self.time.ms);
+		self.huds["speedrun"]["row1"].fontScale = 1.4;
+		self.huds["speedrun"]["row1"].x = 73;
+		self.huds["speedrun"]["row1"].y = 21;
+	}
+	else
+	{
+		self.huds["speedrun"]["row1"].label = &"^5&&1";
+		self.huds["speedrun"]["row1"] setTenthsTimerUp(0.0001);
+	}
 }
 
 updateWay()

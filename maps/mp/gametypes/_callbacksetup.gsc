@@ -1,42 +1,14 @@
 CodeCallback_StartGameType()
 {
-	level.splitscreen = isSplitScreen();
-	level.xenon = false;
-	level.ps3 = false;
-	level.onlineGame = true;
-	level.console = false;
-	level.rankedMatch = getDvarInt("sv_pure");
-	level.teamBased = true;
-	level.oldschool = false;
-	level.gameEnded = false;
-	level.map = getDvar("mapname");
-
-	level.iDFLAGS_RADIUS				= 1;
-	level.iDFLAGS_NO_ARMOR				= 2;
-	level.iDFLAGS_NO_KNOCKBACK			= 4;
-	level.iDFLAGS_PENETRATION			= 8;
-	level.iDFLAGS_NO_TEAM_PROTECTION 	= 16;
-	level.iDFLAGS_NO_PROTECTION			= 32;
-	level.iDFLAGS_PASSTHRU				= 64;
-
 	printLn("^5===================================");
-	printLn("^5SR Mod (c) Iswenzz 2016-2022");
+	printLn("^5SR Mod (c) Iswenzz 2016-2023");
 	printLn("^5Visit: iswenzz.com" );
 	printLn("^5===================================");
 
 	setDvar("g_gametype", "deathrun");
 
-	speedrun\_tests::runTests();
-
-	if (level.gscunit.enabled)
-		return;
-
-	if (!isDefined(level.gametypestarted) || !level.gametypestarted)
-	{
-		if (isDefined(level.callbackStartGameType))
-			[[level.callbackStartGameType]]();
-		level.gametypestarted = true;
-	}
+	for (i = 0; isDefined(level.events["map"]) && i < level.events["map"].size; i++)
+		self thread [[level.events["map"][i]]]();
 }
 
 CodeCallback_PlayerSpawned()

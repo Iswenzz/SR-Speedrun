@@ -57,6 +57,7 @@ playerConnect()
 
 	if (isDefined(self.pers["joined"]))
 	{
+		self sr\game\_teams::setTeam("allies");
 		self eventSpawn();
 		return;
 	}
@@ -170,6 +171,11 @@ playerSpawn()
 
 	self.statusicon = Ternary(self sr\sys\_admins::isVIP(), "vip_status", "");
 	self.finishedMap = false;
+
+	self.sr_mode = self speedrun\player\run\_main::getLastMode();
+	if (self sr\game\minigames\_main::isInAnyQueue())
+		self.sr_mode = "210";
+	self.sr_way = "normal_0";
 
 	self sr\game\_teams::setPlayerModel();
 	self sr\game\_teams::setHealth();
