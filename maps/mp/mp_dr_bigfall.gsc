@@ -14,7 +14,7 @@ maps\mp\_load::main();
 
 	PreCacheItem("remington700_mp");
 	PreCacheItem("winchester1200_grip_mp");
-	
+
 	setdvar( "r_specularcolorscale", "1" );
     setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
@@ -46,20 +46,21 @@ death()
 teleport()
 {
 	entTransporter = getentarray( "enter", "targetname" );
- 
+
 	if(isdefined(entTransporter))
 	{
 		for( i = 0; i < entTransporter.size; i++ )
 			entTransporter[i] thread transporter();
 	}
 }
- 
+
 transporter()
 {
 	while(true)
 	{
 		self waittill( "trigger", player );
 		entTarget = getEnt( self.target, "targetname" );
+		player sr\api\_player::antiElevator(false);
 		player setOrigin( entTarget.origin );
 		player setplayerangles( entTarget.angles );
 	}
@@ -71,7 +72,7 @@ brush = getEnt ("door","targetname");
 
 wait 0.1;
 brush delete();
-	
+
 }
 
 trap9()
@@ -82,7 +83,7 @@ brush2 = getEnt ("trap9_2","targetname");
 wait 0.2;
 brush delete();
 brush2 moveY(192,0.2);
-	
+
 }
 
 trap14()
@@ -93,5 +94,5 @@ trap14_2 = getEnt ("trap14_2","targetname");
 wait 0.5;
 trap14_1 delete();
 trap14_2 moveY(128,0.5);
-	
+
 }
