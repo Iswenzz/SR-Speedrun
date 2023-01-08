@@ -43,7 +43,6 @@ playerConnect()
 	self.kills = self.pers["kills"];
 	self.assists = self.pers["assists"];
 	self.deaths = self.pers["deaths"];
-	self.viewKick = true;
 
 	logPrint(fmt("J;%s;%d;%s\n", self.guid, self.number, self.name));
 
@@ -56,12 +55,18 @@ playerConnect()
 	self setClientDvar("g_scriptMainMenu", "main_mp");
 	wait 0.05;
 
+	if (isDefined(self.pers["joined"]))
+	{
+		self eventSpawn();
+		return;
+	}
+	self.pers["joined"] = true;
+
 	self openMenu("main_mp");
 	self welcome();
 	self eventSpectator();
 
 	wait 3;
-
 	self setClientDvars(
 		"ui_3dwaypointtext", "1",
 		"ui_deathicontext", "1",
@@ -168,9 +173,7 @@ playerSpawn()
 
 	self sr\game\_teams::setPlayerModel();
 	self sr\game\_teams::setHealth();
-	spawn = IfUndef(self.spawnPoint, level.masterSpawn);
-	self spawn(spawn.origin, spawn.angles);
-	self.spawnPoint = undefined;
+	self spawnPlayer();
 
 	self.pers["weapon"] = level.assets["weapon"][self getStat(981)]["item"];
 	self.pers["knife"] = level.assets["knife"][self getStat(982)]["item"];
@@ -179,12 +182,19 @@ playerSpawn()
 	if (self.model == "german_sheperd_dog")
 		self.pers["weapon"] = "dog_mp";
 
-	weapon = Ternary(!self.settings["player_knife"], self.pers["weapon"], self.pers["knife"]);
-	if (!self.settings["player_knife"])
+	if (self.settings["player_knife"])
+	{
 		self giveWeapon(self.pers["knife"], self.pers["knife_skin"]);
-	self giveWeapon(weapon);
-	self setSpawnWeapon(weapon);
-	self giveMaxAmmo(weapon);
+		self setSpawnWeapon(self.pers["knife"]);
+		self giveMaxAmmo(self.pers["knife"]);
+	}
+	else
+	{
+		self giveWeapon(self.pers["knife"], self.pers["knife_skin"]);
+		self giveWeapon(self.pers["weapon"]);
+		self setSpawnWeapon(self.pers["weapon"]);
+		self giveMaxAmmo(self.pers["weapon"]);
+	}
 
 	if (sr\api\_speedrun::isCJ())
 	{
@@ -197,7 +207,7 @@ playerSpawn()
 		self freezeControls(true);
 		self disableWeapons();
 	}
-	if (self getStat(988) == 1)
+	if (self getStat(988))
 		self setClientDvar("cg_thirdperson", 1);
 
 	level notify("player_spawn", self);
@@ -206,7 +216,11 @@ playerSpawn()
 playerSpectator()
 {
 	self endon("disconnect");
-	self sr\game\_map::spawnSpectator();
+
+	self cleanUp();
+	self spawnSpectator();
+	self sr\game\_teams::setSpectatePermissions();
+
 	level notify("player_spectator", self);
 }
 

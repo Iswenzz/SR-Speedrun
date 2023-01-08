@@ -139,9 +139,6 @@ updateTime()
 
 updateWay()
 {
-	self endon("death");
-	self endon("disconnect");
-
 	if (isDefined(self.demo))
 		return;
 	if (self sr\game\minigames\_main::isInAnyQueue())

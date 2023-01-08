@@ -80,6 +80,6 @@
 			text			"4. Prestige"
 			decoration
 		}
-		execKey "4" { scriptMenuResponse "prestigemode"; close quickstuff }
+		execKey "4" { scriptMenuResponse "prestige"; close quickstuff }
 	}
 }

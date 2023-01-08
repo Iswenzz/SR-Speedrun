@@ -5,6 +5,7 @@ initDvars()
 	addDvar("damage_messages", "dr_damage_messages", 1, 0, 1, "int");
 	addDvar("displayBestPlayers", "dr_draw_best_players", 1, 0, 1, "int");
 	addDvar("insertion", "dr_insertion", 1, 0, 1, "int");
+	addDvar("insertion_spawn", "dr_insertion_spawn", 0, 0, 1, "int");
 	addDvar("allowLifes", "dr_allowLifes", 1, 0, 1, "int");
 	addDvar("antiHackStat", "dr_antiHackStat_pass", 2900, 1, 3950, "int");
 	addDvar("playerCards", "dr_playerCards", 1, 0, 1, "int");
