@@ -116,14 +116,14 @@ updateRecords()
 		self.huds["speedrun"]["wr_icon"] setShader("sr_loader", 18, 18);
 		self.huds["speedrun"]["wr_icon"].alpha = 1;
 	}
-	if (isDefined(self.wrBaseCount))
+	if (isDefined(self.pers["wrBaseCount"]))
 	{
-		self.huds["speedrun"]["wr_icon"].alpha = self.wrBaseCount >= 10;
+		self.huds["speedrun"]["wr_icon"].alpha = self.pers["wrBaseCount"] >= 10;
 
-		if (self.wrBaseCount >= 10)
+		if (self.pers["wrBaseCount"] >= 10)
 		{
 			self.huds["speedrun"]["wr_icon"] setShader("speedrunner_logo", 18, 18);
-			self.huds["speedrun"]["wr_icon_count"] setText(fmt("^3%d ^7[%d]", self.wrBaseCount, self.wrCount));
+			self.huds["speedrun"]["wr_icon_count"] setText(fmt("^3%d ^7[%d]", self.pers["wrBaseCount"], self.pers["wrCount"]));
 		}
 	}
 }

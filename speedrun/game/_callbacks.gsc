@@ -27,9 +27,21 @@ playerConnect()
 	self.selectedClass = false;
 	self.teamKill = false;
 	self.hidden = false;
-	self.shortName = getSubStr(self.name, 0, 15);
-	self.number = self getEntityNumber();
-	self.statusicon = "hud_status_connecting";
+
+	if (game["state"] == "endmap")
+		return;
+
+	if (!self isFirstConnection())
+	{
+		self.score = self.pers["score"];
+		self.kills = self.pers["kills"];
+		self.assists = self.pers["assists"];
+		self.deaths = self.pers["deaths"];
+
+		self sr\game\_teams::setTeam("allies");
+		self eventSpawn();
+		return;
+	}
 	self.pers["score"] = 0;
 	self.pers["kills"] = 0;
 	self.pers["deaths"] = 0;
@@ -39,29 +51,9 @@ playerConnect()
 	self.pers["knifes"] = 0;
 	self.pers["activator"] = 0;
 	self.pers["isDog"] = false;
-	self.score = self.pers["score"];
-	self.kills = self.pers["kills"];
-	self.assists = self.pers["assists"];
-	self.deaths = self.pers["deaths"];
-
-	logPrint(fmt("J;%s;%d;%s\n", self.guid, self.number, self.name));
-
-	if (game["state"] == "endmap")
-		return;
 
 	self setu("sr_xp_bar", "0");
 	self setu("sr_vote_search", "_");
-
-	self setClientDvar("g_scriptMainMenu", "main_mp");
-	wait 0.05;
-
-	if (isDefined(self.pers["joined"]))
-	{
-		self sr\game\_teams::setTeam("allies");
-		self eventSpawn();
-		return;
-	}
-	self.pers["joined"] = true;
 
 	self openMenu("main_mp");
 	self welcome();
@@ -95,7 +87,6 @@ playerDisconnect()
 		self.clone delete();
 
 	iPrintln(self.name + " ^7left the game");
-	logPrint(fmt("Q;%s;%d;%s\n", self.guid, self.number, self.name));
 }
 
 playerLastStand(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration)
@@ -170,12 +161,6 @@ playerSpawn()
 	self cleanUp();
 
 	self.statusicon = Ternary(self sr\sys\_admins::isVIP(), "vip_status", "");
-	self.finishedMap = false;
-
-	self.sr_mode = self speedrun\player\run\_main::getLastMode();
-	if (self sr\game\minigames\_main::isInAnyQueue())
-		self.sr_mode = "210";
-	self.sr_way = "normal_0";
 
 	self sr\game\_teams::setPlayerModel();
 	self sr\game\_teams::setHealth();
@@ -216,6 +201,7 @@ playerSpawn()
 	if (self getStat(988))
 		self setClientDvar("cg_thirdperson", 1);
 
+	self notify("spawned_player");
 	level notify("player_spawn", self);
 }
 

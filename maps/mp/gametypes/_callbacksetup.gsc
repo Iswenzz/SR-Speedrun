@@ -1,3 +1,5 @@
+#include sr\utils\_common;
+
 CodeCallback_StartGameType()
 {
 	printLn("^5===================================");
@@ -17,7 +19,7 @@ CodeCallback_PlayerSpawned()
 
 	while (true)
 	{
-		self waittill("spawned_player");
+		self waittill("spawned");
 
 		self.team = self.pers["team"];
 		self.sessionteam = self.team;
@@ -30,7 +32,7 @@ CodeCallback_PlayerSpawned()
 		for (i = 0; isDefined(level.events["spawn"]) && i < level.events["spawn"].size; i++)
 			self thread [[level.events["spawn"][i]]]();
 
-		self notify("spawned_player_after");
+		self notify("spawned_after");
 	}
 }
 
@@ -76,10 +78,13 @@ CodeCallback_PlayerConnect()
 	self waittill("begin");
 	level notify("connecting", self);
 
-	self.pers["team"] = "spectator";
-	self.team = "spectator";
-	self.sessionteam = "spectator";
+	self.shortName = getSubStr(self.name, 0, 15);
+	self.number = self getEntityNumber();
+	self.team = IfUndef(self.pers["team"], "spectator");
+	self.sessionteam = self.team;
+	self.pers["team"] = self.team;
 	self.sessionstate = Ternary(game["state"] == "endmap", "intermission", "spectator");
+	self.statusicon = "hud_status_connecting";
 	self.died = false;
 	self.run = 0;
 
@@ -90,6 +95,13 @@ CodeCallback_PlayerConnect()
 	for (i = 0; isDefined(level.events["connect"]) && i < level.events["connect"].size; i++)
 		self thread [[level.events["connect"][i]]]();
 
+	if (self isFirstConnection())
+	{
+		for (i = 0; isDefined(level.events["connected"]) && i < level.events["connected"].size; i++)
+			self thread [[level.events["connected"][i]]]();
+	}
+	wait 2;
+	self.pers["connected"] = true;
 	self notify("connecting_after");
 }
 

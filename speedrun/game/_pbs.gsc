@@ -8,9 +8,9 @@ initPBs()
 
 onConnect()
 {
-    self.pbs = [];
+    self.pbs = self getPersistence("pbs", []);
 
-    if (self.isBot)
+    if (!self isFirstConnection() || self isBot())
 		return;
 
 	critical_enter("mysql");
@@ -42,6 +42,7 @@ onConnect()
 	SQL_Free(request);
 	critical_release("mysql");
 
+	self setPersistence("pbs", self.pbs);
 	self setLoading("pbs", false);
 	self speedrun\player\huds\_speedrun::updateRecords();
 }

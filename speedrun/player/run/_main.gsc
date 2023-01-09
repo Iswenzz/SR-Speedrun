@@ -16,6 +16,12 @@ main()
 onSpawn()
 {
 	self endon("disconnect");
+	self.finishedMap = false;
+
+	self.sr_mode = self speedrun\player\run\_main::getLastMode();
+	if (self sr\game\minigames\_main::isInAnyQueue())
+		self.sr_mode = "210";
+	self.sr_way = "normal_0";
 
 	self startMode();
 	self playerTimer();
@@ -71,7 +77,7 @@ trigger()
 playerTimer()
 {
 	self endon("disconnect");
-	self endon("spawned_player");
+	self endon("spawned");
 	self endon("joined_spectators");
 	self endon("death");
 

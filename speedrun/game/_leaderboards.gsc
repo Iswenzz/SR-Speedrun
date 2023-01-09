@@ -14,7 +14,7 @@ initLeaderboards()
 	menu_multiple("sr_leaderboard", "mode", ::menu_Mode);
 
 	event("map", ::load);
-	event("connect", ::onConnect);
+	event("connected", ::onConnect);
 }
 
 menu_Open(arg)
@@ -57,6 +57,8 @@ onConnect()
 	self endon("disconnect");
 	level loading("leaderboards");
 
+	if (self isBot())
+		return;
 	if (!isDefined(self.sr_way))
 		self.sr_way = "normal_0";
 	if (!isDefined(self.sr_mode))
@@ -104,9 +106,6 @@ updateMenuInfo()
 
 getPlayerWorldRecordCount()
 {
-	if (self.isBot)
-		return;
-
 	// All
 	filter = "SELECT id, map, name, mode, way, player, time, min(time) OVER (PARTITION BY map, mode, way) AS minTime FROM leaderboards";
 	query = fmt("SELECT count(id) FROM (%s) b WHERE time = minTime AND player = ?", filter);
@@ -124,9 +123,9 @@ getPlayerWorldRecordCount()
 
 	if (isDefined(self))
 	{
-		self.wrCount = 0;
+		self.pers["wrCount"] = 0;
 		if (isDefined(count) && isDefined(count.size))
-			self.wrCount = count[0];
+			self.pers["wrCount"] = count[0];
 	}
 
 	// 190 / 210
@@ -146,20 +145,17 @@ getPlayerWorldRecordCount()
 
 	if (isDefined(self))
 	{
-		self.wrBaseCount = 0;
+		self.pers["wrBaseCount"] = 0;
 		if (isDefined(count) && isDefined(count.size))
-			self.wrBaseCount = count[0];
+			self.pers["wrBaseCount"] = count[0];
 
-		self setStat(2001, self.wrBaseCount);
-		self setClientDvar("sr_leaderboard_wr_count", fmt("%d ^5(%d)", self.wrBaseCount, self.wrCount));
+		self setStat(2001, self.pers["wrBaseCount"]);
+		self setClientDvar("sr_leaderboard_wr_count", fmt("%d ^5(%d)", self.pers["wrBaseCount"], self.pers["wrCount"]));
 	}
 }
 
 getPlayerEntriesCount()
 {
-	if (self.isBot)
-		return;
-
 	critical_enter("mysql");
 
 	request = SQL_Prepare("SELECT COUNT(id) FROM leaderboards WHERE player = ?");
