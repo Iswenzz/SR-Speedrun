@@ -79,6 +79,7 @@ CodeCallback_PlayerConnect()
 	level notify("connecting", self);
 
 	self.shortName = getSubStr(self.name, 0, 15);
+	self.guid = getSubStr(self getGuid(), 24, 32);
 	self.number = self getEntityNumber();
 	self.team = IfUndef(self.pers["team"], "spectator");
 	self.sessionteam = self.team;

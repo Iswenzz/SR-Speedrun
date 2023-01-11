@@ -52,9 +52,6 @@ playerConnect()
 	self.pers["activator"] = 0;
 	self.pers["isDog"] = false;
 
-	self setu("sr_xp_bar", "0");
-	self setu("sr_vote_search", "_");
-
 	self openMenu("main_mp");
 	self welcome();
 	self eventSpectator();

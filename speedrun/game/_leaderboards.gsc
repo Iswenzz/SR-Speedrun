@@ -58,7 +58,10 @@ onConnect()
 	level loading("leaderboards");
 
 	if (self isBot())
+	{
+		self setLoading("wr_count", false);
 		return;
+	}
 	if (!isDefined(self.sr_way))
 		self.sr_way = "normal_0";
 	if (!isDefined(self.sr_mode))
@@ -106,29 +109,19 @@ updateMenuInfo()
 
 getPlayerWorldRecordCount()
 {
-	// All
+	critical_enter("mysql");
+
 	filter = "SELECT id, map, name, mode, way, player, time, min(time) OVER (PARTITION BY map, mode, way) AS minTime FROM leaderboards";
 	query = fmt("SELECT count(id) FROM (%s) b WHERE time = minTime AND player = ?", filter);
-
-	critical_enter("mysql");
 
 	request = SQL_Prepare(query);
 	SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
 	SQL_BindResult(request, level.MYSQL_TYPE_LONG);
 	SQL_Execute(request);
 	AsyncWait(request);
-
-	count = SQL_FetchRow(request);
+	wrCount = SQL_FetchRow(request);
 	SQL_Free(request);
 
-	if (isDefined(self))
-	{
-		self.pers["wrCount"] = 0;
-		if (isDefined(count) && isDefined(count.size))
-			self.pers["wrCount"] = count[0];
-	}
-
-	// 190 / 210
 	filter = "SELECT id, map, name, mode, way, player, time, min(time) OVER (PARTITION BY map, mode, way) AS minTime FROM leaderboards";
 	query = fmt("SELECT count(id) FROM (%s) b WHERE time = minTime AND player = ? AND (mode = %s OR mode = %s)",
 		filter, "190", "210");
@@ -138,20 +131,17 @@ getPlayerWorldRecordCount()
 	SQL_BindResult(request, level.MYSQL_TYPE_LONG);
 	SQL_Execute(request);
 	AsyncWait(request);
-
-	count = SQL_FetchRow(request);
+	wrBaseCount = SQL_FetchRow(request);
 	SQL_Free(request);
 	critical_release("mysql");
 
-	if (isDefined(self))
-	{
-		self.pers["wrBaseCount"] = 0;
-		if (isDefined(count) && isDefined(count.size))
-			self.pers["wrBaseCount"] = count[0];
+	if (!isDefined(self))
+		return;
 
-		self setStat(2001, self.pers["wrBaseCount"]);
-		self setClientDvar("sr_leaderboard_wr_count", fmt("%d ^5(%d)", self.pers["wrBaseCount"], self.pers["wrCount"]));
-	}
+	self.pers["wrCount"] = IfUndef(wrCount[0], 0);
+	self.pers["wrBaseCount"] = IfUndef(wrBaseCount[0], 0);
+	self setStat(2001, self.pers["wrBaseCount"]);
+	self setClientDvar("sr_leaderboard_wr_count", fmt("%d ^5(%d)", self.pers["wrBaseCount"], self.pers["wrCount"]));
 }
 
 getPlayerEntriesCount()
@@ -163,19 +153,16 @@ getPlayerEntriesCount()
 	SQL_BindResult(request, level.MYSQL_TYPE_LONG);
 	SQL_Execute(request);
 	AsyncWait(request);
-
 	count = SQL_FetchRow(request);
 	SQL_Free(request);
+
 	critical_release("mysql");
 
-	if (isDefined(self))
-	{
-		self.lbEntries = 0;
-		if (isDefined(count) && isDefined(count.size))
-			self.lbEntries = count[0];
+	if (!isDefined(self))
+		return;
 
-		self setStat(2002, self.lbEntries);
-	}
+	self.lbEntries = IfUndef(count[0], 0);
+	self setStat(2002, self.lbEntries);
 }
 
 load()
@@ -345,7 +332,6 @@ saveEntry(entry)
 
 	critical_enter("mysql");
 
-	// Update
 	request = SQL_Prepare("UPDATE leaderboards SET time = ?, name = ?, run = ? WHERE map = ? AND player = ? AND mode = ? AND way = ?");
 	SQL_BindParam(request, entry["time"].origin, level.MYSQL_TYPE_LONG);
 	SQL_BindParam(request, entry["name"], level.MYSQL_TYPE_STRING);
@@ -360,7 +346,6 @@ saveEntry(entry)
 	affected = SQL_AffectedRows(request);
 	SQL_Free(request);
 
-	// Insert
 	if (!affected)
 	{
 		request = SQL_Prepare("INSERT INTO leaderboards (map, time, name, mode, way, player, run) VALUES (?, ?, ?, ?, ?, ?, ?)");

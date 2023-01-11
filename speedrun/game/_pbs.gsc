@@ -8,11 +8,13 @@ initPBs()
 
 onConnect()
 {
-    self.pbs = self getPersistence("pbs", []);
+    self.pbs = [];
 
-    if (!self isFirstConnection() || self isBot())
+    if (self isBot())
+	{
+		self setLoading("pbs", false);
 		return;
-
+	}
 	critical_enter("mysql");
 
 	request = SQL_Prepare("SELECT mode, way, time FROM pbs WHERE map = ? AND player = ?");
@@ -23,26 +25,24 @@ onConnect()
     SQL_BindResult(request, level.MYSQL_TYPE_LONG);
     SQL_Execute(request);
 	AsyncWait(request);
-
-    if (SQL_NumRows(request) && isDefined(self))
-	{
-		rows = SQL_FetchRowsDict(request);
-		for (i = 0; i < rows.size; i++)
-		{
-			row = rows[i];
-			mode = row["mode"];
-			way = row["way"];
-
-			if (!isDefined(self.pbs[mode]))
-				self.pbs[mode] = [];
-			self.pbs[mode][way] = originToTime(row["time"]);
-		}
-    }
-
+	rows = SQL_FetchRowsDict(request);
 	SQL_Free(request);
+
 	critical_release("mysql");
 
-	self setPersistence("pbs", self.pbs);
+    if (!isDefined(self))
+		return;
+
+	for (i = 0; i < rows.size; i++)
+	{
+		row = rows[i];
+		mode = row["mode"];
+		way = row["way"];
+
+		if (!isDefined(self.pbs[mode]))
+			self.pbs[mode] = [];
+		self.pbs[mode][way] = originToTime(row["time"]);
+	}
 	self setLoading("pbs", false);
 	self speedrun\player\huds\_speedrun::updateRecords();
 }
