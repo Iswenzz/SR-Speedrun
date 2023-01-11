@@ -9,6 +9,9 @@ CodeCallback_StartGameType()
 
 	setDvar("g_gametype", "deathrun");
 
+	if (level.gscunit.enabled)
+		return;
+
 	for (i = 0; isDefined(level.events["map"]) && i < level.events["map"].size; i++)
 		self thread [[level.events["map"][i]]]();
 }
@@ -88,6 +91,8 @@ CodeCallback_PlayerConnect()
 	self.statusicon = "hud_status_connecting";
 	self.died = false;
 	self.run = 0;
+
+	self setClientDvar("g_scriptMainMenu", "main_mp");
 
 	self thread CodeCallback_PlayerSpawned();
 	self thread CodeCallback_PlayerSpectator();

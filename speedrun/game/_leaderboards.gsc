@@ -62,10 +62,10 @@ onConnect()
 		self setLoading("wr_count", false);
 		return;
 	}
+	if (!isDefined(self.sr_mode))
+		self.sr_mode = self speedrun\player\run\_main::getLastMode();
 	if (!isDefined(self.sr_way))
 		self.sr_way = "normal_0";
-	if (!isDefined(self.sr_mode))
-		self.sr_mode = "190";
 
 	wait 0.5;
 
@@ -572,7 +572,7 @@ worldRecord(entry)
 	for (i = 0; i < players.size; i++)
 	{
 		players[i] thread effects();
-		players[i] thread speedrun\game\_leaderboards::updateMenuInfo();
+		players[i] thread updateMenuInfo();
 	}
 
 	wait 1;
