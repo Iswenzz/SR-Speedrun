@@ -27,7 +27,7 @@ hud()
 	self.huds["speedrun"]["mode"] setText(self.sr_mode);
 
 	self.huds["speedrun"]["row1"] = addHud(self, 72, 18, 1, "left", "top", 1.8, 99, true);
-	self.huds["speedrun"]["row1"] setText("^50:0.0");
+	self.huds["speedrun"]["row1"] setText("^50:00.0");
  	self.huds["speedrun"]["row2"] = addHud(self, 5, 42, 1, "left", "top", 1.4, 99, true);
  	self.huds["speedrun"]["row3"] = addHud(self, 5, 61, 1, "left", "top", 1.4, 99, true);
 
