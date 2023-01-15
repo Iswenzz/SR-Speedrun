@@ -22,9 +22,14 @@ hud()
 	self clear();
 	self huds();
 
+	version = self getDemoVersion();
+	timeOffset = Ternary(version == 1, 1000, 0);
+
+	iPrintLnBold(version, " ", timeOffset);
+
 	while (true)
 	{
-		time = originToTime(1000 + self getDemoTimer());
+		time = originToTime(timeOffset + self getDemoTimer());
 		self.huds["speedrun"]["row1"] setText(fmt("%d:%d.%d", time.min, time.sec, int(time.ms / 100)));
 
 		wait 0.05;
