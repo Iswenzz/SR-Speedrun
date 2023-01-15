@@ -167,6 +167,8 @@ getPlayerEntriesCount()
 
 load()
 {
+	waitMapLoad(1);
+
 	if (!mapHasLeaderboards())
 		addWay("normal_0", "Normal Way");
 
