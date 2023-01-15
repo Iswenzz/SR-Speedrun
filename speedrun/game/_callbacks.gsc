@@ -112,12 +112,12 @@ playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vP
 	if (!isDefined(vDir))
 		iDFlags |= level.iDFLAGS_NO_KNOCKBACK;
 
-	if (isDefined(self) && !(iDFlags & level.iDFLAGS_NO_PROTECTION))
+	if (!(iDFlags & level.iDFLAGS_NO_PROTECTION))
 	{
 		if (iDamage < 1)
 			iDamage = 1;
 
-		self finishPlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime);
+		self doPlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime);
 	}
 }
 

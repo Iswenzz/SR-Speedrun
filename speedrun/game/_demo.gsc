@@ -116,4 +116,19 @@ stopDemoPlayer()
 	self.godmode = undefined;
 	self.antiLag = true;
 	self.antiElevator = true;
+
+	if (game["state"] == "endmap")
+	{
+		players = getAllPlayers();
+		for (i = 0; i < players.size; i++)
+		{
+			if (players[i].spectatorclient == self getEntityNumber() || players[i] == self)
+			{
+				players[i] sr\game\_teams::setTeam("spectator");
+				players[i] eventSpectator();
+				players[i] allowSpectateTeam("freelook", false);
+				players[i] allowSpectateTeam("none", true);
+			}
+		}
+	}
 }
