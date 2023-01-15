@@ -148,10 +148,6 @@ updateWay()
 {
 	if (isDefined(self.demo))
 		return;
-	if (self sr\game\minigames\_main::isInAnyQueue())
-		return;
-	if (self sr\player\modes\_main::isInAnyMode())
-		return;
 
 	self updateRecords();
 
