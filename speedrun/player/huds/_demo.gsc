@@ -25,8 +25,6 @@ hud()
 	version = self getDemoVersion();
 	timeOffset = Ternary(version == 1, 1000, 0);
 
-	iPrintLnBold(version, " ", timeOffset);
-
 	while (true)
 	{
 		time = originToTime(timeOffset + self getDemoTimer());
