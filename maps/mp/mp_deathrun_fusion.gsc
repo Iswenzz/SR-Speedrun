@@ -831,13 +831,13 @@ level.sux=false;
 trigger=getent("sux1","targetname");
 trigger_trap=getent("acti_suxtrap","targetname");
 trigger_trap waittill("trigger", player);
-thread suxtimer();
-level.sux=true;
-while(level.sux==true)
-{
-trigger waittill("trigger", player);
-player bounce( vectorNormalize( player.origin + ( player.origin + (150,0,150) ) ), 150 );
-}
+// thread suxtimer();
+// level.sux=true;
+// while(level.sux==true)
+// {
+// trigger waittill("trigger", player);
+// player bounce( vectorNormalize( player.origin + ( player.origin + (150,0,150) ) ), 150 );
+// }
 }
 
 
@@ -887,12 +887,12 @@ hardtrap()
 	level endon("trigger");
 spot=getent("tele_hardtrap","targetname");
 trigger=getent("teleport_hard","targetname");
-while(1)
-{
-trigger waittill("trigger", player);
-player SetOrigin( spot.origin );
-player setplayerangles( spot.angles );
-}
+// while(1)
+// {
+// trigger waittill("trigger", player);
+// player SetOrigin( spot.origin );
+// player setplayerangles( spot.angles );
+// }
 }
 
 
@@ -902,9 +902,9 @@ trap1_removeblocks()
 blocks=getent("blocks_trap1","targetname");
 trigger=getent("blocks_trap1_trigger","targetname");
 trigger waittill("trigger",player);
-blocks notsolid();
-blocks hide();
-thread trap1_moveblocks();
+// blocks notsolid();
+// blocks hide();
+// thread trap1_moveblocks();
 }
 
 
@@ -932,19 +932,19 @@ trigger=getent("bouncerings_trigger","targetname");
 death_trigger.dmg = 0;
 electrotimer=15;
 
-trigger waittill("trigger",player);
-while(electrotimer>1)
-{
-death_trigger.dmg = 999;
-electrotimer--;
-playFx(level._effect["lightning"], (-2464,-256,3840));
-playFx(level._effect["lightning"], (-2464,256,3840));
-	if(electrotimer<=1)
-	{
-	death_trigger.dmg = 0;
-	}
-	wait(1.1);
-}
+// trigger waittill("trigger",player);
+// while(electrotimer>1)
+// {
+// death_trigger.dmg = 999;
+// electrotimer--;
+// playFx(level._effect["lightning"], (-2464,-256,3840));
+// playFx(level._effect["lightning"], (-2464,256,3840));
+// 	if(electrotimer<=1)
+// 	{
+// 	death_trigger.dmg = 0;
+// 	}
+// 	wait(1.1);
+// }
 }
 
 
@@ -954,22 +954,22 @@ trap3()
 	trig3 = getent("trap3_trig", "targetname");
 	rotate = getent( "rotate_trap3", "targetname" );
 
-	trig3 waittill ("trigger");
-	trig3 delete();
+	// trig3 waittill ("trigger");
+	// trig3 delete();
 
-	while(1)
-	{
-		rotate rotateRoll (360,1);
-		rotate movez (192,1);
-		rotate waittill ("movedone");
-		rotate movez (-192,1);
-		rotate waittill ("movedone");
-		rotate movez (192,1);
-		rotate waittill ("movedone");
-		rotate movez (-192,1);
-		rotate waittill ("movedone");
-		wait(2);
-	}
+	// while(1)
+	// {
+	// 	rotate rotateRoll (360,1);
+	// 	rotate movez (192,1);
+	// 	rotate waittill ("movedone");
+	// 	rotate movez (-192,1);
+	// 	rotate waittill ("movedone");
+	// 	rotate movez (192,1);
+	// 	rotate waittill ("movedone");
+	// 	rotate movez (-192,1);
+	// 	rotate waittill ("movedone");
+	// 	wait(2);
+	// }
 }
 
 
@@ -983,16 +983,16 @@ trap3()
 
 
 	trigger waittill("trigger");
-	trigger delete();
+	// trigger delete();
 
-		spikepush_brush show();
-		spikepush_brush movez (384,2);
-		spikepush_brush waittill ("movedone");
-		wait 13 ;
-		spikepush_brush movez (-384,2);
-		spikepush_brush waittill ("movedone");
-		wait 4.5 ;
-		spikepush_brush hide();
+	// 	spikepush_brush show();
+	// 	spikepush_brush movez (384,2);
+	// 	spikepush_brush waittill ("movedone");
+	// 	wait 13 ;
+	// 	spikepush_brush movez (-384,2);
+	// 	spikepush_brush waittill ("movedone");
+	// 	wait 4.5 ;
+	// 	spikepush_brush hide();
 
 }
 
@@ -1006,26 +1006,26 @@ trigger = getent("trigger_catapult", "targetname");
 spot=getent("tele_hardtrap","targetname");
 level.catchable=false;
 	trigger waittill("trigger", who);
-	thread catchcounter();
-	level.catchable=true;
+	// thread catchcounter();
+	// level.catchable=true;
 
-		while(1)
-		{
-			if ( level.catchable==true )
-			{
-			catchplayer waittill("trigger", player);
-			player freezeControls( true );
-			/* [AUTO DELETE] player iPrintlnbold("^1GOTCHA!"); */
-			wait(2);
-			player SetOrigin( spot.origin );
-			player setplayerangles( spot.angles );
-			player freezeControls( false );
-			}
-			if (level.catchable==false)
-			{
-			catchplayer delete();
-			}
-		}
+	// 	while(1)
+	// 	{
+	// 		if ( level.catchable==true )
+	// 		{
+	// 		catchplayer waittill("trigger", player);
+	// 		player freezeControls( true );
+	// 		/* [AUTO DELETE] player iPrintlnbold("^1GOTCHA!"); */
+	// 		wait(2);
+	// 		player SetOrigin( spot.origin );
+	// 		player setplayerangles( spot.angles );
+	// 		player freezeControls( false );
+	// 		}
+	// 		if (level.catchable==false)
+	// 		{
+	// 		catchplayer delete();
+	// 		}
+	// 	}
 }
 
 
@@ -1049,14 +1049,14 @@ catchcounter()
 	trigger = getEnt ("trigger_rotatefloor", "targetname");
 
 	trigger waittill ("trigger");
-	trigger delete();
+	// trigger delete();
 
-	while (1)
-	{
-		rotatefloor_brush rotateroll (360, 4);
-		rotatefloor_brush waittill("rotatedone");
-		wait(1);
-	}
+	// while (1)
+	// {
+	// 	rotatefloor_brush rotateroll (360, 4);
+	// 	rotatefloor_brush waittill("rotatedone");
+	// 	wait(1);
+	// }
 }
 
 

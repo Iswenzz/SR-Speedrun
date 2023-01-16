@@ -19,6 +19,7 @@ hud()
 	self.huds["speedrun"] = [];
  	self.huds["speedrun"]["background"] = addHud(self, 0, 0, 1, "left", "top", 1.8, 90, true);
 	self.huds["speedrun"]["background"] setShader("time_hud", 142, 80);
+	self.huds["speedrun"]["background"].color = (0, 0, 0);
 	self.huds["speedrun"]["background"].glowAlpha = 1;
 
 	self.huds["speedrun"]["name"] = addHud(self, 3, 0, 1, "left", "top", 1.4, 99, true);

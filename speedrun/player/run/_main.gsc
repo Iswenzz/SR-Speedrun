@@ -58,6 +58,8 @@ startMode()
 
 trigger()
 {
+	waitMapLoad(3);
+
 	array = getEntArray("endmap_trig", "targetname");
 	if (!array.size)
 	{
