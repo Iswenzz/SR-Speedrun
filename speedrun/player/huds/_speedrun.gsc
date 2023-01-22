@@ -112,7 +112,7 @@ updateRecords()
 		self.huds["speedrun"]["row3"] setShader("sr_loader", 18, 18);
  		self.huds["speedrun"]["row3"].label = &"(WR)                       ";
 	}
-	if (!self hasLoaded("wr_count"))
+	if (!self hasLoaded("wr"))
 	{
 		self.huds["speedrun"]["wr_icon"] setShader("sr_loader", 18, 18);
 		self.huds["speedrun"]["wr_icon"].alpha = 1;

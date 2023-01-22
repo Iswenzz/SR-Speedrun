@@ -105,9 +105,11 @@ canSpawn()
 		return false;
 	if (game["state"] == "endmap" || game["state"] == "round ended")
 		return false;
+	if (self.sessionstate == "playing")
+		return false;
 	if (level.freeRun)
 		return true;
-	if (self.sessionstate == "playing" || self.died)
+	if (self.died && !self.pers["lifes"])
 		return false;
 	return true;
 }

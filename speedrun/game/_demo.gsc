@@ -72,7 +72,7 @@ play(id)
 
 	self.prevDemoWeapon = "";
 
-	while (self isDemoPlaying())
+	while (self isReallyAlive() && self isDemoPlaying())
 	{
 		if (self meleeButtonPressed())
 			break;

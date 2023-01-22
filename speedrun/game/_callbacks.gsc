@@ -79,11 +79,6 @@ playerDisconnect()
 {
 	level notify("disconnected", self);
 	self cleanUp();
-
-	if (isDefined(self.clone))
-		self.clone delete();
-
-	iPrintln(self.name + " ^7left the game");
 }
 
 playerLastStand(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration)
@@ -158,6 +153,7 @@ playerSpawn()
 	self cleanUp();
 
 	self.statusicon = Ternary(self sr\sys\_admins::isVIP(), "vip_status", "");
+	self.died = false;
 
 	self sr\game\_teams::setPlayerModel();
 	self sr\game\_teams::setHealth();

@@ -55,17 +55,19 @@ menu_Mode(args)
 onConnect()
 {
 	self endon("disconnect");
-	level loading("leaderboards");
 
-	if (self isBot())
-	{
-		self setLoading("wr_count", false);
-		return;
-	}
 	if (!isDefined(self.sr_mode))
 		self.sr_mode = self speedrun\player\run\_main::getLastMode();
 	if (!isDefined(self.sr_way))
 		self.sr_way = "normal_0";
+
+	level loading("leaderboards");
+
+	if (self isBot())
+	{
+		self setLoading("wr", false);
+		return;
+	}
 
 	wait 0.5;
 
@@ -92,7 +94,7 @@ onConnect()
 	self getPlayerEntriesCount();
 	self getPlayerWorldRecordCount();
 
-	self setLoading("wr_count", false);
+	self setLoading("wr", false);
 	self speedrun\player\huds\_speedrun::updateRecords();
 }
 

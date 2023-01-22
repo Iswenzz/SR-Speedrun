@@ -106,6 +106,8 @@ CodeCallback_PlayerConnect()
 		for (i = 0; isDefined(level.events["connected"]) && i < level.events["connected"].size; i++)
 			self thread [[level.events["connected"][i]]]();
 	}
+	comPrintLn(fmt("[Player] ", removeColorFromString(self sr\sys\_admins::getPlayerInfo())));
+
 	wait 2;
 	self.pers["connected"] = true;
 	self notify("connecting_after");
@@ -120,6 +122,8 @@ CodeCallback_PlayerDisconnect()
 
 	for (i = 0; isDefined(level.events["disconnect"]) && i < level.events["disconnect"].size; i++)
 		self thread [[level.events["disconnect"][i]]]();
+
+	iPrintln(self.name + " ^7left the game");
 }
 
 CodeCallback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, timeOffset)
