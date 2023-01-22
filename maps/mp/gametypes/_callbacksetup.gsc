@@ -106,7 +106,7 @@ CodeCallback_PlayerConnect()
 		for (i = 0; isDefined(level.events["connected"]) && i < level.events["connected"].size; i++)
 			self thread [[level.events["connected"][i]]]();
 	}
-	comPrintLn(fmt("[Player] ", removeColorFromString(self sr\sys\_admins::getPlayerInfo())));
+	comPrintLn(fmt("[Player] %s", removeColorFromString(self sr\sys\_admins::getPlayerInfo())));
 
 	wait 2;
 	self.pers["connected"] = true;
