@@ -6,6 +6,7 @@ runTests()
     if (!setup())
 		return;
 
+    sr\libs\cgsc\__test__\_suite::cgsc();
     sr\libs\gsclib\__test__\_suite::gsclib();
 
 	summarize(true);

@@ -121,7 +121,7 @@ getPlayerWorldRecordCount()
 	SQL_BindResult(request, level.MYSQL_TYPE_LONG);
 	SQL_Execute(request);
 	AsyncWait(request);
-	wrCount = SQL_FetchRow(request);
+	wrCount = IfUndef(SQL_FetchRow(request), []);
 	SQL_Free(request);
 
 	filter = "SELECT id, map, name, mode, way, player, time, min(time) OVER (PARTITION BY map, mode, way) AS minTime FROM leaderboards";
@@ -133,7 +133,7 @@ getPlayerWorldRecordCount()
 	SQL_BindResult(request, level.MYSQL_TYPE_LONG);
 	SQL_Execute(request);
 	AsyncWait(request);
-	wrBaseCount = SQL_FetchRow(request);
+	wrBaseCount = IfUndef(SQL_FetchRow(request), []);
 	SQL_Free(request);
 	critical_release("mysql");
 
@@ -155,7 +155,7 @@ getPlayerEntriesCount()
 	SQL_BindResult(request, level.MYSQL_TYPE_LONG);
 	SQL_Execute(request);
 	AsyncWait(request);
-	count = SQL_FetchRow(request);
+	count = IfUndef(SQL_FetchRow(request), []);
 	SQL_Free(request);
 
 	critical_release("mysql");

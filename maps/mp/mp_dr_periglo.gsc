@@ -234,7 +234,7 @@ onPlayerConnect()
 	{
 		level waittill("connecting", player);
 
-		player thread hud_website();
+		// player thread hud_website();
 	}
 }
 
