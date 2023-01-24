@@ -9,9 +9,10 @@ main()
 	braxi\_dvar::initDvars();
 
 	level.freeRun = true;
-	level.trapsDisabled = false;
+	level.trapsDisabled = true;
+	level.trapTriggers = [];
 
-	disableTraps();
+	event("map", ::disableTraps);
 }
 
 endTimer()
@@ -50,13 +51,11 @@ endRoundAnnoucement(text, color)
 
 disableTraps()
 {
-	if (!isDefined(level.trapTriggers))
-		return;
-
-	level.trapsDisabled = true;
 	for (i = 0; i < level.trapTriggers.size; i++)
+	{
 		if (isDefined(level.trapTriggers[i]))
-		level.trapTriggers[i].origin = level.trapTriggers[i].origin - (0, 0, 10000);
+			level.trapTriggers[i].origin = level.trapTriggers[i].origin - (0, 0, 10000);
+	}
 	level notify("traps_disabled");
 }
 

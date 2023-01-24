@@ -2,6 +2,7 @@ main()
 {
 	sr\sys\_dvar::reset();
 
+	level.scriptusage = debug_scriptusage();
 	level.script = toLower(getDvar("mapname"));
 	level.gametype = toLower(getDvar("g_gametype"));
 	level.splitscreen = isSplitScreen();
