@@ -28,6 +28,9 @@ playerConnect()
 	self.teamKill = false;
 	self.hidden = false;
 
+	self.sr_mode = self speedrun\player\run\_main::getLastMode();
+	self.sr_way = "normal_0";
+
 	if (game["state"] == "end")
 		return;
 

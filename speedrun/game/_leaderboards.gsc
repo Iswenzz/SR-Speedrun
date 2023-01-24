@@ -55,12 +55,6 @@ menu_Mode(args)
 onConnect()
 {
 	self endon("disconnect");
-
-	if (!isDefined(self.sr_mode))
-		self.sr_mode = self speedrun\player\run\_main::getLastMode();
-	if (!isDefined(self.sr_way))
-		self.sr_way = "normal_0";
-
 	level loading("leaderboards");
 
 	if (self isBot())
