@@ -23,6 +23,7 @@ main()
 	level.iDFLAGS_NO_PROTECTION			= 32;
 	level.iDFLAGS_PASSTHRU				= 64;
 
+	game["state"] = "start";
 	if (!isDefined(game["allies"]))
 		game["allies"] = "marines";
 	if (!isDefined(game["axis"]))

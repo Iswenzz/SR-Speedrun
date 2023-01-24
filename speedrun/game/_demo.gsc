@@ -117,7 +117,7 @@ stopDemoPlayer()
 	self.antiLag = true;
 	self.antiElevator = true;
 
-	if (game["state"] == "endmap")
+	if (game["state"] == "end")
 	{
 		players = getAllPlayers();
 		for (i = 0; i < players.size; i++)

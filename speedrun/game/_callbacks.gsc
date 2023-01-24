@@ -28,7 +28,7 @@ playerConnect()
 	self.teamKill = false;
 	self.hidden = false;
 
-	if (game["state"] == "endmap")
+	if (game["state"] == "end")
 		return;
 
 	if (!self isFirstConnection())
@@ -88,7 +88,7 @@ playerLastStand(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHi
 
 playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime)
 {
-	if (self.sessionteam == "spectator" || game["state"] == "endmap")
+	if (self.sessionteam == "spectator" || game["state"] == "end")
 		return;
 
 	level notify("player_damage", self, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime);
@@ -122,7 +122,7 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 	self notify("killed_player");
 	self notify("death");
 
-	if (self.sessionteam == "spectator" || game["state"] == "endmap")
+	if (self.sessionteam == "spectator" || game["state"] == "end")
 		return;
 
 	level notify("player_killed", self, eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration);
@@ -146,7 +146,7 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 
 playerSpawn()
 {
-	if (game["state"] == "endmap")
+	if (game["state"] == "end")
 		return;
 
 	level notify("jumper", self);

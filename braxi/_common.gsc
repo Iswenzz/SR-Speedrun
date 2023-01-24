@@ -103,7 +103,7 @@ canSpawn()
 {
 	if (!level.allowSpawn)
 		return false;
-	if (game["state"] == "endmap" || game["state"] == "round ended")
+	if (game["state"] == "end" || game["state"] == "round ended")
 		return false;
 	if (self.sessionstate == "playing")
 		return false;
