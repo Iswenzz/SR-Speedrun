@@ -204,7 +204,6 @@ load()
 	SQL_Free(request);
 	critical_release("mysql");
 
-	// Fetch
 	for (i = 0; i < rows.size; i++)
 	{
 		entry = [];
@@ -227,15 +226,11 @@ load()
 		level.leaderboards[index].entries[entryIndex] = entry;
 	}
 
-	// Sort and register demos
+	// Sort leaderboards
 	for (i = 0; i < modes.size; i++)
 	{
-		resetTimeout();
-
 		for (j = 0; j < ways.size; j++)
 		{
-			resetTimeout();
-
 			mode = level.leaderboard_modes[modes[i]];
 			way = level.leaderboard_ways[ways[j]];
 			index = getLeaderboardIndex(mode.id, way.id);
@@ -244,18 +239,43 @@ load()
 				continue;
 
 			level.leaderboards[index].entries = sortEntries(level.leaderboards[index].entries);
+		}
+	}
+	level setLoading("leaderboards", false);
+	level thread demos();
 
+	players = getAllPlayers();
+	for (i = 0; i < players.size; i++)
+		players[i] thread speedrun\player\huds\_speedrun::updateRecords();
+}
+
+demos()
+{
+	modes = getArrayKeys(level.leaderboard_modes);
+	ways = getArrayKeys(level.leaderboard_ways);
+
+	for (i = 0; i < modes.size; i++)
+	{
+		for (j = 0; j < ways.size; j++)
+		{
+			mode = level.leaderboard_modes[modes[i]];
+			way = level.leaderboard_ways[ways[j]];
+			index = getLeaderboardIndex(mode.id, way.id);
+
+			if (!isDefined(level.leaderboards[index]))
+				continue;
 			if (!level.leaderboards[index].entries.size)
 				continue;
 
 			entryIndex = 0;
-			entry = level.leaderboards[index].entries[entryIndex];
+			entries = level.leaderboards[index].entries;
+			entry = entries[entryIndex];
 			registred = RegisterSpeedrunDemo(level.map, entry["player"], entry["run"], entry["mode"], entry["way"]);
 
 			while (!registred)
 			{
 				entryIndex++;
-				if (entryIndex > 10 || !isDefined(level.leaderboards[index].entries[entryIndex]))
+				if (entryIndex > 10 || entryIndex >= entries.size)
 					break;
 
 				entry = level.leaderboards[index].entries[entryIndex];
@@ -263,13 +283,10 @@ load()
 			}
 			if (registred)
 				level.demos[index] = entry;
+
+			wait 0.05;
 		}
 	}
-	level setLoading("leaderboards", false);
-
-	players = getAllPlayers();
-	for (i = 0; i < players.size; i++)
-		players[i] thread speedrun\player\huds\_speedrun::updateRecords();
 }
 
 makeEntry()
