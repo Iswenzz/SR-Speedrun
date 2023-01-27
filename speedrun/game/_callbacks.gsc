@@ -104,7 +104,7 @@ playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vP
 		return;
 	if (isPlayer(eAttacker) && sMeansOfDeath == "MOD_MELEE" && isWallKnifing(eAttacker, self))
 		return;
-	if (self.sr_mode == "Defrag" && sMeansOfDeath == "MOD_FALLING")
+	if (self isDefrag() && sMeansOfDeath == "MOD_FALLING")
 		return;
 
 	if (!isDefined(vDir))
