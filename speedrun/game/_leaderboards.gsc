@@ -54,7 +54,7 @@ menu_Mode(args)
 
 onConnect()
 {
-	self endon("disconnect");
+	wait 0.5;
 	level loading("leaderboards");
 
 	if (self isBot())
@@ -63,18 +63,16 @@ onConnect()
 		return;
 	}
 
-	wait 0.5;
-
 	// Default
-	for (i = 0; i < level.leaderboard_max_page; i++)
+	for (i = 0; i < isDefined(self) && level.leaderboard_max_page; i++)
 	{
 		self setClientDvars(fmt("normal_%d", i), "", fmt("secret_%d", i), "");
 		wait 0.05;
 	}
-	if (!mapHasLeaderboards())
+	if (!isDefined(self) || !mapHasLeaderboards())
 		return;
 
-	self thread updateMenuInfo();
+	self updateMenuInfo();
 
 	// Registred
 	names = getArrayKeys(level.leaderboards);
