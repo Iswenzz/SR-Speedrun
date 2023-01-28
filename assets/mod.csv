@@ -200,7 +200,6 @@ fx,portal\turret_sparks
 fx,portal\turret_cookoff
 fx,portal\redlaser
 weapon,mp\portalgun_mp
-weapon,mp\portalgun
 
 // Deathrun
 xmodel,gib_abdomen
