@@ -9,6 +9,4 @@ start()
 	self giveWeapon(weapon);
 	self setSpawnWeapon(weapon);
 	self giveMaxAmmo(weapon);
-
-	self thread sr\libs\portal\_portal_gun::watch();
 }
