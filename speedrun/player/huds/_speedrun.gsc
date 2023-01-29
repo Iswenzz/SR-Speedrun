@@ -10,9 +10,9 @@ main()
 
 hud()
 {
+	self endon("spawned");
 	self endon("death");
 	self endon("disconnect");
-	self endon("joined_spectators");
 
 	self clear();
 
@@ -48,7 +48,7 @@ hud()
 	self updateRank();
 	self updateAdmin();
 
-	self notify("speedrun_hud");
+	self notify("speedrun");
 }
 
 updateRank()

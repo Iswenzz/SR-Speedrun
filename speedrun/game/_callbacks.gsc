@@ -18,6 +18,7 @@ main()
 
 playerConnect()
 {
+	self endon("connect");
 	self endon("disconnect");
 	level notify("connected", self);
 
@@ -30,6 +31,7 @@ playerConnect()
 
 	self.sr_mode = self speedrun\player\run\_main::getLastMode();
 	self.sr_way = "normal_0";
+	self.run = 0;
 
 	if (game["state"] == "end")
 		return;
@@ -121,7 +123,6 @@ playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vP
 
 playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration)
 {
-	self endon("spawned");
 	self notify("killed_player");
 	self notify("death");
 
@@ -229,7 +230,7 @@ welcome()
 	role = self sr\sys\_admins::getRoleName();
 	geo = self getGeoLocation(2);
 
-	sr\sys\_admins::message(fmt("^2Welcome ^7%s ^7%s ^7from ^1%s", role, self.name, geo));
+	message(fmt("^2Welcome ^7%s ^7%s ^7from ^1%s", role, self.name, geo));
 }
 
 allies()

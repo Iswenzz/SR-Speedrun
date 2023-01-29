@@ -56,6 +56,18 @@ CodeCallback_StartGameType()
 		self thread [[level.events["map"][i]]]();
 }
 
+CodeCallback_PlayerDamaged()
+{
+	self endon("disconnect");
+
+	while (true)
+	{
+		self waittill("damage", eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime);
+
+		self CodeCallback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime);
+	}
+}
+
 CodeCallback_PlayerSpawned()
 {
 	self endon("disconnect");
@@ -71,6 +83,7 @@ CodeCallback_PlayerSpawned()
 		self.killcamentity = -1;
 		self.archivetime = 0;
 		self.psoffsettime = 0;
+		self.sr_cheat = true;
 
 		for (i = 0; isDefined(level.events["spawn"]) && i < level.events["spawn"].size; i++)
 			self thread [[level.events["spawn"][i]]]();
@@ -119,6 +132,7 @@ CodeCallback_PlayerConnect()
 
 	self endon("disconnect");
 	self waittill("begin");
+	self notify("connected");
 	level notify("connecting", self);
 
 	self.shortName = getSubStr(self.name, 0, 15);
@@ -130,13 +144,15 @@ CodeCallback_PlayerConnect()
 	self.sessionstate = Ternary(game["state"] == "endmap", "intermission", "spectator");
 	self.statusicon = "hud_status_connecting";
 	self.died = false;
-	self.run = 0;
+
+	comPrintLn("^5connect");
 
 	self setClientDvar("g_scriptMainMenu", "main_mp");
 
 	self thread CodeCallback_PlayerSpawned();
 	self thread CodeCallback_PlayerSpectator();
 	self thread CodeCallback_PlayerTeam();
+	self thread CodeCallback_PlayerDamaged();
 
 	for (i = 0; isDefined(level.events["connect"]) && i < level.events["connect"].size; i++)
 		self thread [[level.events["connect"][i]]]();
@@ -159,6 +175,8 @@ CodeCallback_PlayerDisconnect()
 		return;
 
 	self notify("disconnect");
+
+	comPrintLn("^5disconnect");
 
 	for (i = 0; isDefined(level.events["disconnect"]) && i < level.events["disconnect"].size; i++)
 		self thread [[level.events["disconnect"][i]]]();

@@ -14,7 +14,7 @@ hud()
 	self endon("death");
 	self endon("disconnect");
 	self endon("joined_spectators");
-	self endon("demo_stop");
+	self endon("demo");
 
 	if (!isDefined(self.demo))
 		return;

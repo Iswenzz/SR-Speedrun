@@ -9,44 +9,34 @@ main()
 
 setup(id)
 {
+	self stopDemoPlayer();
+
 	if (!isDefined(level.demos[id]))
 	{
-		self sr\sys\_admins::pm("^1Demo not found.");
+		self pm("^1Demo not found.");
 		return false;
 	}
-	self sr\game\_teams::setTeam("allies");
-	self eventSpawn();
-	self stopDemoPlayer();
+
 	self.demo = level.demos[id];
-	self endon("demo_stop");
+	self.sr_mode = self.demo["mode"];
+	self sr\game\_teams::setTeam("allies");
+	self setStat(1700, self speedrun\player\run\_main::getLastModeStat());
+	self eventSpawn(true);
 
-	if (!isDefined(self.demo))
+	if (isDefined(self.demoCamera))
+		return false;
+
+	if (!IsDemoLoaded(id))
 	{
-		self sr\sys\_admins::pm("^1Demo not found.");
+		self pm("^3Demo loading...");
 		return false;
 	}
 
-	self.sr_mode = self.demo["mode"];
-	self setStat(1700, self speedrun\player\run\_main::getLastModeStat());
-
-	// Interpolation
-	if (!isDefined(self.demoEnt))
+	self.demoCamera = self PlayDemo(id);
+	if (!isDefined(self.demoCamera))
 	{
-		self suicide();
-		wait 0.05;
-
-		if (!IsDemoLoaded(id))
-		{
-			self sr\sys\_admins::pm("^3Demo loading...");
-			return false;
-		}
-
-		self.demoEnt = self PlayDemo(id);
-		if (!isDefined(self.demoEnt))
-		{
-			self sr\sys\_admins::pm("^1Demo corrupted.");
-			return false;
-		}
+		self pm("^1Demo corrupted.");
+		return false;
 	}
 
 	self.sr_cheat = true;
@@ -64,12 +54,11 @@ play(id)
 		return;
 	}
 
+	self endon("spawned");
 	self endon("death");
 	self endon("disconnect");
-	self endon("joined_spectators");
 
 	self thread speedrun\player\huds\_demo::hud();
-
 	self.prevDemoWeapon = "";
 
 	while (self isReallyAlive() && self isDemoPlaying())
@@ -77,7 +66,7 @@ play(id)
 		if (self meleeButtonPressed())
 			break;
 
-		self linkTo(self.demoEnt);
+		self linkTo(self.demoCamera);
 		self.demoWeapon = self getDemoWeapon();
 
 		if (self.demoWeapon.size && self.demoWeapon != self.prevDemoWeapon
@@ -104,18 +93,14 @@ play(id)
 
 stopDemoPlayer()
 {
-	if (!isDefined(self.demoEnt))
+	if (!isDefined(self.demoCamera))
 		return;
 
-	self notify("demo_stop");
-	self.demoEnt delete();
+	self.demoCamera delete();
 	self.demo = undefined;
+	self.godmode = undefined;
 	self stopDemo();
 	self suicide();
-
-	self.godmode = undefined;
-	self.antiLag = true;
-	self.antiElevator = true;
 
 	if (game["state"] == "end")
 	{

@@ -11,8 +11,7 @@ start()
 	while (true)
 	{
 		bot = addTestClient();
-		bot.sr_cheat = true;
-		bot.run = "^5Speedrun Bot";
+		bot.run = "^5Bot";
 
 		wait 0.1;
 		bot notify("menuresponse", "main_mp", "autoassign");

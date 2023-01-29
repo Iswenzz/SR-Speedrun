@@ -54,8 +54,8 @@ menu_Mode(args)
 
 onConnect()
 {
-	wait 0.5;
 	level loading("leaderboards");
+	wait 0.5;
 
 	if (self isBot())
 	{
