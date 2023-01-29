@@ -145,8 +145,6 @@ CodeCallback_PlayerConnect()
 	self.statusicon = "hud_status_connecting";
 	self.died = false;
 
-	comPrintLn("^5connect");
-
 	self setClientDvar("g_scriptMainMenu", "main_mp");
 
 	self thread CodeCallback_PlayerSpawned();
@@ -164,7 +162,6 @@ CodeCallback_PlayerConnect()
 	}
 	comPrintLn(fmt("[Info] %s", removeColorFromString(self sr\sys\_admins::getPlayerInfo())));
 
-	wait 2;
 	self.pers["connected"] = true;
 	self notify("connecting_after");
 }
@@ -175,8 +172,6 @@ CodeCallback_PlayerDisconnect()
 		return;
 
 	self notify("disconnect");
-
-	comPrintLn("^5disconnect");
 
 	for (i = 0; isDefined(level.events["disconnect"]) && i < level.events["disconnect"].size; i++)
 		self thread [[level.events["disconnect"][i]]]();

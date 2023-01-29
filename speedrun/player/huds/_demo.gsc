@@ -9,12 +9,9 @@ main()
 
 hud()
 {
-	wait 0.05;
-
+	self endon("spawned");
 	self endon("death");
 	self endon("disconnect");
-	self endon("joined_spectators");
-	self endon("demo");
 
 	if (!isDefined(self.demo))
 		return;
