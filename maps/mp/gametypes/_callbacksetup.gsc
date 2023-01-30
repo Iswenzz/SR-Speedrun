@@ -58,6 +58,7 @@ CodeCallback_StartGameType()
 
 CodeCallback_PlayerDamaged()
 {
+	self endon("connect");
 	self endon("disconnect");
 
 	while (true)
@@ -70,6 +71,7 @@ CodeCallback_PlayerDamaged()
 
 CodeCallback_PlayerSpawned()
 {
+	self endon("connect");
 	self endon("disconnect");
 
 	while (true)
@@ -94,6 +96,7 @@ CodeCallback_PlayerSpawned()
 
 CodeCallback_PlayerSpectator()
 {
+	self endon("connect");
 	self endon("disconnect");
 
 	while (true)
@@ -112,6 +115,7 @@ CodeCallback_PlayerSpectator()
 
 CodeCallback_PlayerTeam()
 {
+	self endon("connect");
 	self endon("disconnect");
 
 	while (true)
