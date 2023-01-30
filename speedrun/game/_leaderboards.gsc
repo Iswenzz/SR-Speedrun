@@ -60,6 +60,8 @@ onConnect()
 	if (self isBot())
 	{
 		self setLoading("wr", false);
+		self botLeaderboardEntries();
+		self speedrun\player\huds\_speedrun::updateRecords();
 		return;
 	}
 
@@ -88,6 +90,13 @@ onConnect()
 
 	self setLoading("wr", false);
 	self speedrun\player\huds\_speedrun::updateRecords();
+}
+
+botLeaderboardEntries()
+{
+	self.lbEntries = 0;
+	self.pers["wrCount"] = 0;
+	self.pers["wrBaseCount"] = 0;
 }
 
 updateMenuInfo()
@@ -602,7 +611,7 @@ effects()
 
 	for (i = 0; i < 25; i++)
 	{
-		PlayFX(level.fx["wr_event"], self.origin);
+		PlayFX(level.gfx["wr_event"], self.origin);
 		wait 0.5;
 	}
 }

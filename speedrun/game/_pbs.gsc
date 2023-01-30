@@ -13,6 +13,7 @@ onConnect()
     if (self isBot())
 	{
 		self setLoading("pbs", false);
+		self speedrun\player\huds\_speedrun::updateRecords();
 		return;
 	}
 	critical_enter("mysql");
