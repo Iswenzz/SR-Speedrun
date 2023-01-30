@@ -1,5 +1,3 @@
-#include sr\sys\_events;
-
 getAllPlayers()
 {
 	return getEntArray("player", "classname");
@@ -128,7 +126,7 @@ isPlaying()
 
 doDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc)
 {
-	self eventDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, 0);
+	self sr\utils\_common::doPlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, 0);
 }
 
 loadWeapon(name, attachments, image)
