@@ -1,21 +1,6 @@
 #include sr\sys\_events;
 #include sr\utils\_common;
 
-main()
-{
-	event("spawn",		::playerSpawn);
-	event("connect", 	::playerConnect);
-	event("disconnect", ::playerDisconnect);
-	event("laststand", 	::playerLastStand);
-	event("damage", 	::playerDamage);
-	event("killed", 	::playerKilled);
-	event("spectator",	::playerSpectator);
-
-	level.allies 	= ::allies;
-	level.axis 		= ::axis;
-	level.spectator = ::spectator;
-}
-
 playerConnect()
 {
 	self endon("connect");
@@ -44,7 +29,6 @@ playerConnect()
 		self.deaths = self.pers["deaths"];
 
 		self sr\game\_teams::setTeam("allies");
-		self eventSpawn();
 		return;
 	}
 	self.pers["score"] = 0;
@@ -58,26 +42,7 @@ playerConnect()
 	self.pers["isDog"] = false;
 
 	self openMenu("main_mp");
-	self welcome();
-	self eventSpectator();
-
-	wait 3;
-	self setClientDvars(
-		"ui_3dwaypointtext", "1",
-		"ui_deathicontext", "1",
-		"cl_maxpackets", 125,
-		"rate", 25000,
-		"ip", getDvar("net_ip"),
-		"port", getDvar("net_port")
-	);
-	wait 0.05;
-	self setClientDvars(
-		"show_hud", "true",
-		"cg_drawSpectatorMessages", 1,
-		"ui_hud_hardcore", 1,
-		"player_sprintTime", 4,
-		"ui_uav_client", 0
-	);
+	self thread serverDvars();
 }
 
 playerDisconnect()
@@ -157,15 +122,16 @@ playerSpawn()
 	self cleanUp();
 
 	self.statusicon = Ternary(self sr\sys\_admins::isVIP(), "vip_status", "");
-	self.died = false;
+	self.sr_cheat = true;
 
 	self sr\game\_teams::setPlayerModel();
 	self sr\game\_teams::setHealth();
-	self spawnPlayer();
 
 	self.pers["weapon"] = level.assets["weapon"][self getStat(981)]["item"];
 	self.pers["knife"] = level.assets["knife"][self getStat(982)]["item"];
 	self.pers["knife_skin"] = int(level.assets["knife_skin"][self getStat(983)]["item"]);
+
+	self spawnPlayer();
 
 	if (self.model == "german_sheperd_dog")
 		self.pers["weapon"] = "dog_mp";
@@ -198,6 +164,8 @@ playerSpawn()
 	if (self getStat(988))
 		self setClientDvar("cg_thirdperson", 1);
 
+	self speedrun\player\run\_main::start();
+
 	self notify("spawned_player");
 	level notify("player_spawn", self);
 }
@@ -213,24 +181,28 @@ playerSpectator()
 	level notify("player_spectator", self);
 }
 
-isWallKnifing(attacker, victim)
+serverDvars()
 {
-	start = attacker getEye();
-	end = victim getEye();
+	wait 3;
 
-	if (bulletTracePassed(start, end, false, attacker) == 1)
-		return false;
-	return true;
-}
+	self setClientDvars(
+		"ui_3dwaypointtext", "1",
+		"ui_deathicontext", "1",
+		"cl_maxpackets", 125,
+		"rate", 25000,
+		"ip", getDvar("net_ip"),
+		"port", getDvar("net_port")
+	);
 
-welcome()
-{
-	level loading("admins");
+	wait 0.05;
 
-	role = self sr\sys\_admins::getRoleName();
-	geo = self getGeoLocation(2);
-
-	message(fmt("^2Welcome ^7%s ^7%s ^7from ^1%s", role, self.name, geo));
+	self setClientDvars(
+		"show_hud", "true",
+		"cg_drawSpectatorMessages", 1,
+		"ui_hud_hardcore", 1,
+		"player_sprintTime", 4,
+		"ui_uav_client", 0
+	);
 }
 
 allies()

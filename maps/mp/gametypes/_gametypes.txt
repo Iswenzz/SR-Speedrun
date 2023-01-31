@@ -1,4 +1,5 @@
 deathrun
+battleroyale
 cj
 dm
 dom

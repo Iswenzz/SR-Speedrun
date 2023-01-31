@@ -151,6 +151,8 @@ rawfile,shock/radiation_high.shock
 rawfile,maps/mp/gametypes/_gametypes.txt
 rawfile,maps/mp/gametypes/war.txt
 rawfile,maps/mp/gametypes/deathrun.txt
+rawfile,maps/mp/gametypes/battleroyale.txt
+rawfile,maps/mp/gametypes/cj.txt
 rawfile,cleanup.cfg
 weapon,mp/bt_rpg_mp
 sound,common,,all_mp
@@ -753,7 +755,7 @@ sound,triton,,all_mp
 xmodel,vm_bo3_triton_2
 xmodel,wm_bo3_triton_2
 
-//PDW57
+// PDW57
 sound,pdw57,,all_mp
 xanim,viewmodel_pdw57_ads_down
 xanim,viewmodel_pdw57_ads_fire

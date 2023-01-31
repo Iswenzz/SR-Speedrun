@@ -1,4 +1,5 @@
 #include sr\utils\_common;
+#include sr\sys\_events;
 
 start()
 {
@@ -85,12 +86,14 @@ CodeCallback_PlayerSpawned()
 		self.killcamentity = -1;
 		self.archivetime = 0;
 		self.psoffsettime = 0;
-		self.sr_cheat = true;
+		self.died = false;
+
+		self speedrun\game\_callbacks::playerSpawn();
 
 		for (i = 0; isDefined(level.events["spawn"]) && i < level.events["spawn"].size; i++)
 			self thread [[level.events["spawn"][i]]]();
 
-		self notify("spawned_after");
+		self notify("spawned_sync");
 	}
 }
 
@@ -101,15 +104,18 @@ CodeCallback_PlayerSpectator()
 
 	while (true)
 	{
-		self waittill("joined_spectators");
+		self waittill("spectator");
+		self notify("joined_spectators");
 
 		self.sessionstate = "spectator";
 		self.spectatorclient = -1;
 
+		self speedrun\game\_callbacks::playerSpectator();
+
 		for (i = 0; isDefined(level.events["spectator"]) && i < level.events["spectator"].size; i++)
 			self thread [[level.events["spectator"][i]]]();
 
-		self notify("joined_spectators_after");
+		self notify("spectator_sync");
 	}
 }
 
@@ -120,12 +126,13 @@ CodeCallback_PlayerTeam()
 
 	while (true)
 	{
-		self waittill("joined_team");
+		self waittill("team");
+		self notify("joined_team");
 
 		for (i = 0; isDefined(level.events["team"]) && i < level.events["team"].size; i++)
 			self thread [[level.events["team"][i]]]();
 
-		self notify("joined_team_after");
+		self notify("team_sync");
 	}
 }
 
@@ -139,8 +146,11 @@ CodeCallback_PlayerConnect()
 	self notify("connected");
 	level notify("connecting", self);
 
+	self setClientDvar("g_scriptMainMenu", "main_mp");
+
 	self.shortName = getSubStr(self.name, 0, 15);
 	self.guid = getSubStr(self getGuid(), 24, 32);
+	self.id = sr\sys\_ids::load();
 	self.number = self getEntityNumber();
 	self.team = IfUndef(self.pers["team"], "spectator");
 	self.sessionteam = self.team;
@@ -149,12 +159,12 @@ CodeCallback_PlayerConnect()
 	self.statusicon = "hud_status_connecting";
 	self.died = false;
 
-	self setClientDvar("g_scriptMainMenu", "main_mp");
-
 	self thread CodeCallback_PlayerSpawned();
 	self thread CodeCallback_PlayerSpectator();
 	self thread CodeCallback_PlayerTeam();
 	self thread CodeCallback_PlayerDamaged();
+
+	self speedrun\game\_callbacks::playerConnect();
 
 	for (i = 0; isDefined(level.events["connect"]) && i < level.events["connect"].size; i++)
 		self thread [[level.events["connect"][i]]]();
@@ -163,11 +173,14 @@ CodeCallback_PlayerConnect()
 	{
 		for (i = 0; isDefined(level.events["connected"]) && i < level.events["connected"].size; i++)
 			self thread [[level.events["connected"][i]]]();
+		self eventSpectator();
 	}
+	else self eventSpawn();
+
 	comPrintLn(fmt("[Info] %s", removeColorFromString(self sr\sys\_admins::getPlayerInfo())));
 
 	self.pers["connected"] = true;
-	self notify("connecting_after");
+	self notify("connecting_sync");
 }
 
 CodeCallback_PlayerDisconnect()
@@ -176,6 +189,8 @@ CodeCallback_PlayerDisconnect()
 		return;
 
 	self notify("disconnect");
+
+	self speedrun\game\_callbacks::playerDisconnect();
 
 	for (i = 0; isDefined(level.events["disconnect"]) && i < level.events["disconnect"].size; i++)
 		self thread [[level.events["disconnect"][i]]]();
@@ -186,6 +201,8 @@ CodeCallback_PlayerDisconnect()
 CodeCallback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, timeOffset)
 {
 	self endon("disconnect");
+
+	self speedrun\game\_callbacks::playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, timeOffset);
 
 	for (i = 0; isDefined(level.events["damage"]) && i < level.events["damage"].size; i++)
 		self thread [[level.events["damage"][i]]](eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, timeOffset);
@@ -198,6 +215,8 @@ CodeCallback_PlayerKilled(eInflictor, eAttacker, iDamage, sMeansOfDeath, sWeapon
 	self.statusicon = "hud_status_dead";
 	self.sessionstate = "dead";
 	self.died = true;
+
+	self speedrun\game\_callbacks::playerKilled(eInflictor, eAttacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, timeOffset, deathAnimDuration);
 
 	for (i = 0; isDefined(level.events["killed"]) && i < level.events["killed"].size; i++)
 		self thread [[level.events["killed"][i]]](eInflictor, eAttacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, timeOffset, deathAnimDuration);

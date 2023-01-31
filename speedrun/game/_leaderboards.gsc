@@ -55,6 +55,7 @@ menu_Mode(args)
 onConnect()
 {
 	level loading("leaderboards");
+
 	wait 0.5;
 
 	if (self isBot())
@@ -74,8 +75,6 @@ onConnect()
 	if (!isDefined(self) || !mapHasLeaderboards())
 		return;
 
-	self updateMenuInfo();
-
 	// Registred
 	names = getArrayKeys(level.leaderboards);
 	for (i = 0; i < names.size; i++)
@@ -90,6 +89,7 @@ onConnect()
 
 	self setLoading("wr", false);
 	self speedrun\player\huds\_speedrun::updateRecords();
+	self updateMenuInfo();
 }
 
 botLeaderboardEntries()

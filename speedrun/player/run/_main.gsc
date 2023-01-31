@@ -10,15 +10,10 @@ main()
 	addMode("Defrag", speedrun\player\run\_defrag::start);
 
     event("map", ::endmapTrigger);
-    event("spawn", ::onSpawn);
 }
 
-onSpawn()
+start()
 {
-	self endon("spawned");
-	self endon("disconnect");
-	self endon("death");
-
 	self.finishedMap = false;
 
 	self.sr_mode = self speedrun\player\run\_main::getLastMode();
@@ -26,8 +21,8 @@ onSpawn()
 		self.sr_mode = "210";
 	self.sr_way = "normal_0";
 
-	self startMode();
-	self playerTimer();
+    self [[level.leaderboard_modes[self.sr_mode].callback]]();
+	self thread playerTimer();
 }
 
 getLastMode()
@@ -54,11 +49,6 @@ getLastModeStat()
 	return 1;
 }
 
-startMode()
-{
-    self [[level.leaderboard_modes[self.sr_mode].callback]]();
-}
-
 endmapTrigger()
 {
 	waitMapLoad(3);
@@ -81,6 +71,10 @@ endmapTrigger()
 
 playerTimer()
 {
+	self endon("spawned");
+	self endon("disconnect");
+	self endon("death");
+
 	if (self.finishedMap)
 		return;
 	self.time = undefined;

@@ -32,5 +32,4 @@ start()
 		if (i == 0)
 			self setSpawnWeapon(weapon);
 	}
-	self thread sr\player\_bhop::loop();
 }
