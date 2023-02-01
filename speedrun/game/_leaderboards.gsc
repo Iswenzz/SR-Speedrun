@@ -611,7 +611,7 @@ effects()
 
 	for (i = 0; i < 25; i++)
 	{
-		PlayFX(level.gfx["wr_event"], self.origin);
+		playFX(level.gfx["wr_event"], self.origin);
 		wait 0.5;
 	}
 }
