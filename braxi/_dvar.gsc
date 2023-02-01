@@ -2,14 +2,11 @@ initDvars()
 {
 	addDvar("time_limit", "dr_timelimit", 5, 0, 60, "int");
 	addDvar("round_limit", "dr_rounds", 15, 1, 30, "int");
-	addDvar("damage_messages", "dr_damage_messages", 1, 0, 1, "int");
-	addDvar("displayBestPlayers", "dr_draw_best_players", 1, 0, 1, "int");
 	addDvar("insertion", "dr_insertion", 1, 0, 1, "int");
 	addDvar("insertion_spawn", "dr_insertion_spawn", 0, 0, 1, "int");
 	addDvar("allowLifes", "dr_allowLifes", 1, 0, 1, "int");
 	addDvar("antiHackStat", "dr_antiHackStat_pass", 2900, 1, 3950, "int");
 	addDvar("playerCards", "dr_playerCards", 1, 0, 1, "int");
-	addDvar("playerCardIcons", "dr_playerCardIcons", 0, 0, 1, "int");
 	addDvar("afk", "dr_afk", 1, 0, 1, "int");
 	addDvar("afk_warn", "dr_afk_warn", 15, 10, 999, "int");
 	addDvar("afk_time", "dr_afk_time", 20, 10, 999, "int");
@@ -37,15 +34,7 @@ initDvars()
 	addDvar("giveXpForKill", "dr_xp_for_kill", 1, 0, 1, "int");
 	addDvar("firstBlood", "dr_firstblood", 1, 0, 1, "int");
 	addDvar("lastalive", "dr_lastalive", 1, 0, 1, "int");
-	addDvar("messages_enable", "dr_messages_enable", 1, 0, 1, "int");
-	addDvar("messages_delay", "dr_messages_delay", 25, 5, 999, "int");
-	addDvar("messages", "dr_messages", "", "", "", "string");
-	addDvar("lastmessage", "dr_lastmessage", "", "", "", "string");
-	addDvar("warns_stat", "dr_warns_stat", 2360, 1, 9999, "int");
-	addDvar("warns_max", "dr_maxwarns", 5, 2, 20, "int");
-	addDvar("show_guids", "dr_show_guids", 1, 0, 1, "int");
 	addDvar("gibs", "dr_gibs", 1, 0, 1, "int");
-	addDvar("playedmaps", "dr_playedmaps", " ", "", "", "string");
 
 	makeDvarServerInfo("netaddr", getDvar("net_ip"));
 	makeDvarServerInfo("dr_motd", level.dvar["motd"]);
