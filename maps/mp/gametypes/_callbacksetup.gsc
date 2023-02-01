@@ -202,6 +202,9 @@ CodeCallback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath
 {
 	self endon("disconnect");
 
+	if (isDefined(self.godmode))
+		return;
+
 	self speedrun\game\_callbacks::playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, timeOffset);
 
 	for (i = 0; isDefined(level.events["damage"]) && i < level.events["damage"].size; i++)

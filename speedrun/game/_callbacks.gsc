@@ -63,27 +63,18 @@ playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vP
 
 	level notify("player_damage", self, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime);
 
-	if (isPlayer(self) && isPlayer(eAttacker) && self.pers["team"] != eAttacker.pers["team"])
+	if (isPlayer(eAttacker) && !self sameTeam(eAttacker))
 		return;
-	if (isPlayer(self) && isPlayer(eAttacker) && self.pers["team"] == eAttacker.pers["team"] && !eAttacker.teamKill)
-		return;
-	if (isPlayer(self) && isDefined(self.godmode))
+	if (isPlayer(eAttacker) && self sameTeam(eAttacker) && !eAttacker.teamKill)
 		return;
 	if (isPlayer(eAttacker) && sMeansOfDeath == "MOD_MELEE" && isWallKnifing(eAttacker, self))
 		return;
 	if (self isDefrag() && sMeansOfDeath == "MOD_FALLING")
 		return;
 
-	if (!isDefined(vDir))
-		iDFlags |= level.iDFLAGS_NO_KNOCKBACK;
+	iDFlags |= level.iDFLAGS_NO_KNOCKBACK;
 
-	if (!(iDFlags & level.iDFLAGS_NO_PROTECTION))
-	{
-		if (iDamage < 1)
-			iDamage = 1;
-
-		self doPlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime);
-	}
+	self doPlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime);
 }
 
 playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration)
