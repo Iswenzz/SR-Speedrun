@@ -87,6 +87,9 @@ onConnect()
 	self getPlayerEntriesCount();
 	self getPlayerWorldRecordCount();
 
+	if (!isDefined(self))
+		return;
+
 	self setLoading("wr", false);
 	self speedrun\player\huds\_speedrun::updateRecords();
 	self updateMenuInfo();

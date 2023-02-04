@@ -24,6 +24,7 @@ start()
 	level.teamBased = true;
 	level.oldschool = false;
 	level.gameEnded = false;
+	level.friendlyfire = false;
 	level.map = getDvar("mapname");
 
 	level.iDFLAGS_RADIUS = 1;
