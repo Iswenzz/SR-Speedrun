@@ -71,12 +71,8 @@ play(id)
 		self linkTo(self.demoCamera);
 		self.demoWeapon = self getDemoWeapon();
 
-		if (self.demoWeapon.size && self.demoWeapon != self.prevDemoWeapon
-			&& self getCurrentWeapon() != self.demoWeapon)
+		if (self weaponHasChanged())
 		{
-			if (!isPrecached(self.demoWeapon, "item"))
-				self.demoWeapon = "beretta_mp";
-
 			self takeAllWeapons();
 			self giveWeapon(self.demoWeapon);
 			self switchToWeapon(self.demoWeapon);
@@ -91,6 +87,13 @@ play(id)
 		self.prevDemoWeapon = self.demoWeapon;
 	}
 	self stopDemoPlayer();
+}
+
+weaponHasChanged()
+{
+	if (self.demoWeapon.size && self.demoWeapon != self.prevDemoWeapon && self getCurrentWeapon() != self.demoWeapon)
+		return isPrecached(self.demoWeapon, "item");
+	return false;
 }
 
 stopDemoPlayer()

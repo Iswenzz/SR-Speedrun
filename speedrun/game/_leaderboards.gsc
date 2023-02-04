@@ -67,7 +67,7 @@ onConnect()
 	}
 
 	// Default
-	for (i = 0; i < isDefined(self) && level.leaderboard_max_page; i++)
+	for (i = 0; isDefined(self) && i < level.leaderboard_max_page; i++)
 	{
 		self setClientDvars(fmt("normal_%d", i), "", fmt("secret_%d", i), "");
 		wait 0.05;
