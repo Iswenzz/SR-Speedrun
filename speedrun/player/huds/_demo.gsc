@@ -13,7 +13,7 @@ hud()
 	self endon("death");
 	self endon("disconnect");
 
-	if (!isDefined(self.demo))
+	if (!self isDemo())
 		return;
 
 	self clear();

@@ -89,7 +89,7 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 
 	if (level.dvar["giveXpForKill"] && !level.trapsDisabled)
 	{
-		if (isDefined(level.activ) && level.activ != self && level.activ isReallyAlive())
+		if (isDefined(level.activ) && level.activ != self && level.activ isPlaying())
 		{
 			if (sMeansOfDeath == "MOD_UNKNOWN" || sMeansOfDeath == "MOD_FALLING" || sMeansOfDeath == "MOD_SUICIDE")
 				level.activ sr\game\_rank::giveRankXP("jumper_died");

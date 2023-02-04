@@ -105,7 +105,7 @@ canSpawn()
 		return false;
 	if (game["state"] == "end" || game["state"] == "round ended")
 		return false;
-	if (self.sessionstate == "playing")
+	if (self isReallyAlive())
 		return false;
 	if (level.freeRun)
 		return true;

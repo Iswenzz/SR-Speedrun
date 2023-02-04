@@ -93,7 +93,7 @@ playerTimer()
 
 endTimer()
 {
-	if (!self isPlaying() || self.finishedMap || !isDefined(self.time))
+	if (self.finishedMap || !self isPlaying() || self isDemo())
 		return;
 	self.finishedMap = true;
 
@@ -102,8 +102,6 @@ endTimer()
 		self iPrintLnBold("^1Your time was not saved!");
 		return;
 	}
-	if (isDefined(self.demo))
-		return;
 
 	self.time = originToTime(getTime() - self.time.origin);
 	self speedrun\player\huds\_speedrun::updateTime();

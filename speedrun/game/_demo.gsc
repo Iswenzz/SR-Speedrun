@@ -21,9 +21,9 @@ setup(id)
 	self.sr_mode = self.demo["mode"];
 	self sr\game\_teams::setTeam("allies");
 	self setStat(1700, self speedrun\player\run\_main::getLastModeStat());
+
 	self eventSpawn(true);
-	// self.sessionstate = "dead";
-	// self.died = true;
+	self.died = true;
 
 	if (isDefined(self.demoCamera))
 		return false;
@@ -63,7 +63,7 @@ play(id)
 	self thread speedrun\player\huds\_demo::hud();
 	self.prevDemoWeapon = "";
 
-	while (self isReallyAlive() && self isDemoPlaying())
+	while (self isPlaying() && self isDemoPlaying())
 	{
 		if (self meleeButtonPressed())
 			break;
@@ -90,7 +90,7 @@ play(id)
 
 		self.prevDemoWeapon = self.demoWeapon;
 	}
-	self thread stopDemoPlayer();
+	self stopDemoPlayer();
 }
 
 stopDemoPlayer()

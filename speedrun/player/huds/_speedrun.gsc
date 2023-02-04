@@ -147,7 +147,7 @@ updateTime()
 
 updateWay()
 {
-	if (isDefined(self.demo))
+	if (self isDemo())
 		return;
 
 	self updateRecords();
