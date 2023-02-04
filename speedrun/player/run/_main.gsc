@@ -97,12 +97,13 @@ endTimer()
 		return;
 	self.finishedMap = true;
 
-	if (self.sr_cheat)
+	if (self isCheat())
 	{
-		if (!isDefined(self.demo))
-			self iPrintLnBold("^1Your time was not saved!");
+		self iPrintLnBold("^1Your time was not saved!");
 		return;
 	}
+	if (isDefined(self.demo))
+		return;
 
 	self.time = originToTime(getTime() - self.time.origin);
 	self speedrun\player\huds\_speedrun::updateTime();

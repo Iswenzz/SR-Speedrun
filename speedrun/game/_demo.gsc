@@ -22,6 +22,8 @@ setup(id)
 	self sr\game\_teams::setTeam("allies");
 	self setStat(1700, self speedrun\player\run\_main::getLastModeStat());
 	self eventSpawn(true);
+	// self.sessionstate = "dead";
+	// self.died = true;
 
 	if (isDefined(self.demoCamera))
 		return false;
@@ -39,7 +41,7 @@ setup(id)
 		return false;
 	}
 
-	self.sr_cheat = true;
+	self cheat();
 	self.godmode = true;
 	self.antiLag = false;
 	self.antiElevator = false;

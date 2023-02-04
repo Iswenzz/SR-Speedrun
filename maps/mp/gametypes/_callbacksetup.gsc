@@ -88,6 +88,7 @@ CodeCallback_PlayerSpawned()
 		self.psoffsettime = 0;
 		self.died = false;
 
+		self sr\game\_cheat::init();
 		self speedrun\game\_callbacks::playerSpawn();
 
 		for (i = 0; isDefined(level.events["spawn"]) && i < level.events["spawn"].size; i++)

@@ -113,7 +113,6 @@ playerSpawn()
 	self cleanUp();
 
 	self.statusicon = Ternary(self sr\sys\_admins::isVIP(), "vip_status", "");
-	self.sr_cheat = true;
 
 	self sr\game\_teams::setPlayerModel();
 	self sr\game\_teams::setHealth();
@@ -174,6 +173,8 @@ playerSpectator()
 
 serverDvars()
 {
+	self endon("disconnect");
+
 	wait 3;
 
 	self setClientDvars(
