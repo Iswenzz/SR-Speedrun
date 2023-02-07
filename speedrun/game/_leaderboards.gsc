@@ -280,7 +280,7 @@ demos()
 			entryIndex = 0;
 			entries = level.leaderboards[index].entries;
 			entry = entries[entryIndex];
-			registred = RegisterSpeedrunDemo(level.map, entry["player"], entry["run"], entry["mode"], entry["way"]);
+			registred = speedrun\game\_demo::addSpeedrunDemo(entry);
 
 			while (!registred)
 			{
@@ -289,7 +289,7 @@ demos()
 					break;
 
 				entry = level.leaderboards[index].entries[entryIndex];
-				registred = RegisterSpeedrunDemo(level.map, entry["player"], entry["run"], entry["mode"], entry["way"]);
+				registred = speedrun\game\_demo::addSpeedrunDemo(entry);
 			}
 			if (registred)
 				level.demos[index] = entry;
@@ -601,7 +601,7 @@ worldRecord(entry)
 	}
 
 	wait 1;
-	if (RegisterSpeedrunDemo(level.map, entry["player"], entry["run"], entry["mode"], entry["way"]))
+	if (speedrun\game\_demo::addSpeedrunDemo(entry))
 		level.demos[index] = entry;
 }
 

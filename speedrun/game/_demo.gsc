@@ -122,3 +122,20 @@ stopDemoPlayer()
 		}
 	}
 }
+
+addSpeedrunDemo(entry)
+{
+	if (!isDefined(entry))
+		return false;
+
+	while (true)
+	{
+		registred = RegisterSpeedrunDemo(level.map, entry["player"], entry["run"], entry["mode"], entry["way"]);
+		if (registred == 0)
+			return false;
+		if (registred == 1)
+			return true;
+		wait 0.05;
+	}
+	return false;
+}
