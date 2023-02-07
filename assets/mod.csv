@@ -38,6 +38,9 @@ material,sr_psy_edge
 material,sr_psy_glass
 material,sr_grid
 material,sr_loader
+material,sr_bokeh
+material,sr_bokeh_add
+material,sr_bokeh_multiply
 material,time_hud
 material,sr_banner
 material,sr_race
