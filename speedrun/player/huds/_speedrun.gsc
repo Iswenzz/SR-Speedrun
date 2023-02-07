@@ -147,7 +147,7 @@ updateTime()
 
 updateWay()
 {
-	if (self isDemo())
+	if (!isHud("name") || self isDemo())
 		return;
 
 	self updateRecords();
