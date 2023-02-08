@@ -190,6 +190,7 @@ serverDvars()
 
 	self setClientDvars(
 		"show_hud", "true",
+		"hud_enable", 1,
 		"cg_drawSpectatorMessages", 1,
 		"ui_hud_hardcore", 1,
 		"player_sprintTime", 4,
