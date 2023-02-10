@@ -161,12 +161,13 @@ CodeCallback_PlayerConnect()
 	self.statusicon = "hud_status_connecting";
 	self.died = false;
 
+	self sr\player\_settings::init();
+	self speedrun\game\_callbacks::playerConnect();
+
 	self thread CodeCallback_PlayerSpawned();
 	self thread CodeCallback_PlayerSpectator();
 	self thread CodeCallback_PlayerTeam();
 	self thread CodeCallback_PlayerDamaged();
-
-	self speedrun\game\_callbacks::playerConnect();
 
 	for (i = 0; isDefined(level.events["connect"]) && i < level.events["connect"].size; i++)
 		self thread [[level.events["connect"][i]]]();
