@@ -93,7 +93,7 @@ playerTimer()
 
 endTimer()
 {
-	if (self.finishedMap || !isDefined(self.time) || !self isPlaying() || self isDemo())
+	if (!self isPlaying() || self isDemo() || !isDefined(self.time) || self.finishedMap)
 		return;
 	self.finishedMap = true;
 
