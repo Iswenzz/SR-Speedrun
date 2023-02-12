@@ -176,7 +176,6 @@ serverDvars()
 	self endon("disconnect");
 
 	wait 3;
-
 	self setClientDvars(
 		"ui_3dwaypointtext", "1",
 		"ui_deathicontext", "1",
@@ -185,15 +184,13 @@ serverDvars()
 		"ip", getDvar("net_ip"),
 		"port", getDvar("net_port")
 	);
-
 	wait 0.05;
-
 	self setClientDvars(
 		"show_hud", "true",
 		"hud_enable", 1,
 		"cg_drawSpectatorMessages", 1,
-		"ui_hud_hardcore", 1,
 		"player_sprintTime", 4,
+		"ui_hud_hardcore", 1,
 		"ui_uav_client", 0
 	);
 }
