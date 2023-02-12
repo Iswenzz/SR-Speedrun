@@ -197,18 +197,3 @@ serverDvars()
 		"ui_uav_client", 0
 	);
 }
-
-allies()
-{
-	self sr\game\_teams::setTeam("allies");
-}
-
-axis()
-{
-	self sr\game\_teams::setTeam("axis");
-}
-
-spectator()
-{
-	self sr\game\_teams::setTeam("spectator");
-}
