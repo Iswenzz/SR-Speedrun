@@ -19,6 +19,7 @@ main()
 	sr\game\minigames\_race::initRace();
 	sr\game\minigames\_bomberman::initBomberman();
 	sr\player\customize\_main::initCustomize();
+	sr\libs\portal\_main::initPortal();
 
 	speedrun\commands\_speedrun::main();
 	speedrun\game\_bot::main();
