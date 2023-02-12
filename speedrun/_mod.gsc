@@ -1,5 +1,9 @@
 main()
 {
+	precache();
+
+	speedrun\game\_dvar::initDvars();
+
 	sr\_mod::main();
 	braxi\_mod::main();
 
@@ -26,4 +30,16 @@ main()
 	speedrun\player\run\_main::main();
 	speedrun\player\huds\_speedrun::main();
 	speedrun\player\huds\_demo::main();
+}
+
+precache()
+{
+	precacheItem("shop_mp");
+	precacheItem("vip_mp");
+	precacheItem("knife_mp");
+	precacheItem("dog_mp");
+	precacheItem("shovel_mp");
+	precacheItem("rtd_mp");
+	precacheItem("tomahawk_mp");
+	precacheItem("fortnite_mp");
 }

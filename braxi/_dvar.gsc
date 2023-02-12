@@ -1,3 +1,5 @@
+#include sr\sys\_dvar;
+
 initDvars()
 {
 	addDvar("time_limit", "dr_timelimit", 5, 0, 60, "int");
@@ -26,7 +28,6 @@ initDvars()
 	addDvar("axis_health", "dr_activators_health", 100, 1, 1000, "int");
 	addDvar("allies_speed", "dr_jumpers_speed", 1.05, 0.1, 2, "float");
 	addDvar("axis_speed", "dr_activators_speed", 1.05, 0.1, 2, "float");
-	addDvar("motd", "dr_motd", "", "", "", "string");
 	addDvar("roundSound", "dr_roundsounds", 1, 0, 1, "int");
 	addDvar("freeRunChoice", "dr_activator_freerun", 2, 0, 2, "int");
 	addDvar("freeRunChoiceTime", "dr_activator_freerun_wait", 5, 3, 60, "int");
@@ -38,14 +39,4 @@ initDvars()
 
 	makeDvarServerInfo("netaddr", getDvar("net_ip"));
 	makeDvarServerInfo("dr_motd", level.dvar["motd"]);
-
-	if (getDvar("last_picked_player") == "")
-		setDvar("last_picked_player", ("bxownu" + randomInt(100)));
-
-	setDvar("g_deadChat", 1);
-}
-
-addDvar(scriptName, varname, vardefault, min, max, type)
-{
-	sr\sys\_dvar::addDvar(scriptName, varname, vardefault, min, max, type);
 }
