@@ -12,7 +12,6 @@ main()
 	sr\commands\_kz::main();
 	sr\commands\_race::main();
 	sr\commands\_portal::main();
-	sr\game\_match::main();
 	sr\game\_hitmarker::main();
 	sr\game\_killcam::main();
 	sr\game\minigames\_kz::initKz();
@@ -24,6 +23,7 @@ main()
 	speedrun\commands\_speedrun::main();
 	speedrun\game\_bot::main();
 	speedrun\game\_demo::main();
+	speedrun\game\_match::main();
 	speedrun\game\_menus::main();
 	speedrun\game\_scoreboard::main();
 	speedrun\game\_leaderboards::initLeaderboards();
@@ -43,4 +43,16 @@ precache()
 	precacheItem("rtd_mp");
 	precacheItem("tomahawk_mp");
 	precacheItem("fortnite_mp");
+
+	precacheShader("time_hud");
+	precacheShader("sr_shop");
+	precacheShader("sr_dice");
+	precacheShader("sr_vip");
+	precacheShader("sr_insert");
+	precacheShader("speedrunner_logo");
+
+	precacheModel("german_sheperd_dog");
+	precacheModel("collision_sphere");
+	precacheModel("mil_frame_charge");
+	precacheModel("ch_crate64x64");
 }
