@@ -33,6 +33,8 @@ start()
 	level.iDFLAGS_NO_PROTECTION = 32;
 	level.iDFLAGS_PASSTHRU = 64;
 
+	level thread CodeCallback_End();
+
 	game["state"] = "start";
 	if (!isDefined(game["allies"]))
 		game["allies"] = "marines";
@@ -56,6 +58,15 @@ CodeCallback_StartGameType()
 		self thread [[level.events["map"][i]]]();
 }
 
+CodeCallback_End()
+{
+	while (true)
+	{
+		level waittill("end", map);
+		speedrun\game\_map::end(map);
+	}
+}
+
 CodeCallback_PlayerDamaged()
 {
 	self endon("connect");
@@ -64,7 +75,6 @@ CodeCallback_PlayerDamaged()
 	while (true)
 	{
 		self waittill("damaged", eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime);
-
 		self CodeCallback_PlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime);
 	}
 }

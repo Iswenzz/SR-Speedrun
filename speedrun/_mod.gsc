@@ -4,6 +4,17 @@ main()
 
 	speedrun\game\_dvar::initDvars();
 
+	maps\mp\gametypes\_hud::init();
+	maps\mp\gametypes\_hud_message::init();
+	maps\mp\gametypes\_damagefeedback::init();
+	maps\mp\gametypes\_clientids::init();
+	maps\mp\gametypes\_gameobjects::init();
+	maps\mp\gametypes\_spawnlogic::init();
+	maps\mp\gametypes\_oldschool::deletePickups();
+	maps\mp\gametypes\_hud::init();
+	maps\mp\gametypes\_quickmessages::init();
+	maps\mp\_weapons::init();
+
 	sr\_mod::main();
 	braxi\_mod::main();
 
@@ -21,6 +32,7 @@ main()
 	sr\libs\portal\_main::initPortal();
 
 	speedrun\commands\_speedrun::main();
+	speedrun\game\_map::main();
 	speedrun\game\_bot::main();
 	speedrun\game\_demo::main();
 	speedrun\game\_match::main();

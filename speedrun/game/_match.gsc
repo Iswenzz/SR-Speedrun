@@ -34,7 +34,7 @@ start()
 
 	matchStartPlayers();
 	timer(level.dvar["time"]);
-	thread sr\game\_map::end();
+	thread speedrun\game\_map::end();
 }
 
 canStartGame()
