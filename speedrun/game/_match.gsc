@@ -166,8 +166,8 @@ huds()
 	level.huds["time"].alignY = "bottom";
 	level.huds["time"].horzAlign = "right";
 	level.huds["time"].vertAlign = "bottom";
-	level.huds["time"].x = -10;
-	level.huds["time"].y = -2;
+	level.huds["time"].x = -5;
+	level.huds["time"].y = 0;
 	level.huds["time"].sort = 100;
 	level.huds["time"].fontScale = 1.4;
 	level.huds["time"].color = (1, 1, 1);
