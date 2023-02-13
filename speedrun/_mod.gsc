@@ -33,7 +33,6 @@ main()
 
 	speedrun\commands\_speedrun::main();
 	speedrun\game\_map::main();
-	speedrun\game\_bot::main();
 	speedrun\game\_demo::main();
 	speedrun\game\_match::main();
 	speedrun\game\_menus::main();
