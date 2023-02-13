@@ -18,11 +18,7 @@ main()
 	sr\_mod::main();
 	braxi\_mod::main();
 
-	sr\commands\_defrag::main();
-	sr\commands\_bomberman::main();
-	sr\commands\_kz::main();
-	sr\commands\_race::main();
-	sr\commands\_portal::main();
+	sr\game\_rank::initRank();
 	sr\game\_hitmarker::main();
 	sr\game\_killcam::main();
 	sr\game\minigames\_kz::initKz();
@@ -30,8 +26,12 @@ main()
 	sr\game\minigames\_bomberman::initBomberman();
 	sr\player\customize\_main::initCustomize();
 	sr\libs\portal\_main::initPortal();
+	sr\commands\_defrag::main();
+	sr\commands\_bomberman::main();
+	sr\commands\_kz::main();
+	sr\commands\_race::main();
+	sr\commands\_portal::main();
 
-	speedrun\commands\_speedrun::main();
 	speedrun\game\_map::main();
 	speedrun\game\_demo::main();
 	speedrun\game\_match::main();
@@ -42,6 +42,7 @@ main()
 	speedrun\player\run\_main::main();
 	speedrun\player\huds\_speedrun::main();
 	speedrun\player\huds\_demo::main();
+	speedrun\commands\_speedrun::main();
 }
 
 precache()
