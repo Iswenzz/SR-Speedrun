@@ -91,6 +91,7 @@ CodeCallback_PlayerSpawned()
 		self.team = self.pers["team"];
 		self.sessionteam = self.team;
 		self.sessionstate = "playing";
+		self.statusicon = Ternary(self sr\sys\_admins::isVIP(), "vip_status", "");
 		self.spectatorclient = -1;
 		self.killcamentity = -1;
 		self.archivetime = 0;

@@ -24,6 +24,7 @@ main()
 	sr\game\minigames\_kz::initKz();
 	sr\game\minigames\_race::initRace();
 	sr\game\minigames\_bomberman::initBomberman();
+	sr\player\_hide::main();
 	sr\player\customize\_main::initCustomize();
 	sr\libs\portal\_main::initPortal();
 	sr\commands\_defrag::main();

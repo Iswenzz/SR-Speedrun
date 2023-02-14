@@ -112,8 +112,6 @@ playerSpawn()
 	level notify("jumper", self);
 	self cleanUp();
 
-	self.statusicon = Ternary(self sr\sys\_admins::isVIP(), "vip_status", "");
-
 	self sr\game\_teams::setPlayerModel();
 	self sr\game\_teams::setHealth();
 
