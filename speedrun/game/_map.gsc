@@ -75,6 +75,7 @@ end(map)
 	game["state"] = "end";
 	level notify("intermission");
 	level notify("game over");
+	level notify("game_ended");
 
 	// Sequence
 	endMusic();
