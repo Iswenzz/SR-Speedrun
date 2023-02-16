@@ -83,6 +83,9 @@ menu_Team(arg)
 	self closeMenu();
 	self closeInGameMenu();
 
+	if (game["state"] == "end")
+		return;
+
 	if (self sr\game\minigames\_main::isInAnyQueue() || self.pers["team"] == "axis")
 	{
 		self iPrintLn("^1Suicide disabled");
@@ -99,11 +102,15 @@ menu_Spectator(arg)
 	self closeMenu();
 	self closeInGameMenu();
 
+	if (game["state"] == "end")
+		return;
+
 	if(self.pers["team"] == "axis")
 	{
 		self iPrintln("^1Nice try.");
 		return;
 	}
 	self sr\game\_teams::setTeam("spectator");
+	self sr\game\_teams::setSpectatePermissions();
 	self eventSpectator();
 }

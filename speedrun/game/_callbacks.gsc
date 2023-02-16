@@ -115,9 +115,9 @@ playerSpawn()
 	self sr\game\_teams::setPlayerModel();
 	self sr\game\_teams::setHealth();
 
-	self.pers["weapon"] = level.assets["weapon"][self getStat(981)]["item"];
-	self.pers["knife"] = level.assets["knife"][self getStat(982)]["item"];
-	self.pers["knife_skin"] = int(level.assets["knife_skin"][self getStat(983)]["item"]);
+	self.pers["weapon"] = self getCustomizeWeapon()["item"];
+	self.pers["knife"] = self getCustomizeKnife()["item"];
+	self.pers["knife_skin"] = self getCustomizeKnifeSkin()["item"];
 
 	self spawnPlayer();
 
@@ -164,7 +164,6 @@ playerSpectator()
 
 	self cleanUp();
 	self spawnSpectator();
-	self sr\game\_teams::setSpectatePermissions();
 
 	level notify("player_spectator", self);
 }

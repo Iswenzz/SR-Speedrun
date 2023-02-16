@@ -86,6 +86,7 @@ play(id)
 
 		self.prevDemoWeapon = self.demoWeapon;
 	}
+	self thread endmapSpectateDemo();
 	self stopDemoPlayer();
 }
 
@@ -98,28 +99,27 @@ weaponHasChanged()
 
 stopDemoPlayer()
 {
-	if (!isDefined(self.demoCamera))
-		return;
+	if (isDefined(self.demoCamera))
+		self.demoCamera delete();
 
-	self.demoCamera delete();
 	self.demo = undefined;
 	self.godmode = undefined;
 	self stopDemo();
 	self suicide();
+}
 
-	if (game["state"] == "end")
+endmapSpectateDemo()
+{
+	if (game["state"] != "end")
+		return;
+
+	wait 0.05;
+
+	players = getAllPlayers();
+	for (i = 0; i < players.size; i++)
 	{
-		players = getAllPlayers();
-		for (i = 0; i < players.size; i++)
-		{
-			if (players[i].spectatorclient == self getEntityNumber() || players[i] == self)
-			{
-				players[i] sr\game\_teams::setTeam("spectator");
-				players[i] eventSpectator();
-				players[i] allowSpectateTeam("freelook", false);
-				players[i] allowSpectateTeam("none", true);
-			}
-		}
+		players[i] sr\game\_teams::setTeam("spectator");
+		players[i] eventSpectator();
 	}
 }
 
