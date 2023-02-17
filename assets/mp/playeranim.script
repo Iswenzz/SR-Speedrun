@@ -145,7 +145,7 @@ STATE COMBAT
 		{
 			both pb_stand_grenade_pullpin
 		}
-		default // two handed rifle type weapon
+		default // Two handed rifle type weapon
 		{
 			both pb_stand_alert
 		}
@@ -204,7 +204,7 @@ STATE COMBAT
 		{
 			both pb_crouch_ads
 		}
-		default // two handed rifle type weapon
+		default // Two handed rifle type weapon
 		{
 			both pb_crouch_alert
 		}
@@ -257,7 +257,7 @@ STATE COMBAT
 		}
 	}
 
-// FLINCHING
+	// FLINCHING
 	flinch_forward
 	{
 		weaponclass pistol
@@ -319,10 +319,10 @@ STATE COMBAT
 		}
 	}
 
-// STUMBLE
+	// STUMBLE
 	stumble_forward
 	{
-		// pistol
+		// Pistol
 		weaponclass pistol, strafing left
 		{
 			both pb_stumble_pistol_left
@@ -348,7 +348,7 @@ STATE COMBAT
 			both pb_stumble_grenade_forward
 		}
 
-		// rifle
+		// Rifle
 		strafing left
 		{
 			both pb_stumble_left
@@ -364,6 +364,7 @@ STATE COMBAT
 	}
 	stumble_backward
 	{
+		// Pistol
 		weaponclass pistol, strafing left
 		{
 			both pb_stumble_pistol_left
@@ -380,7 +381,6 @@ STATE COMBAT
 		{
 			both pb_stumble_grenade_right
 		}
-
 		weaponclass pistol
 		{
 			both pb_stumble_pistol_back
@@ -390,7 +390,7 @@ STATE COMBAT
 			both pb_stumble_grenade_back
 		}
 
-		// rifle
+		// Rifle
 		strafing left
 		{
 			both pb_stumble_left
@@ -405,10 +405,10 @@ STATE COMBAT
 		}
 	}
 
-// STUMBLE WALK
+	// STUMBLE WALK
 	stumble_walk_forward
 	{
-		// pistol
+		// Pistol
 		weaponclass pistol AND grenade, strafing left, playerAnimType all NOT m203
 		{
 			both pb_stumble_pistol_walk_left
@@ -422,7 +422,7 @@ STATE COMBAT
 			both pb_stumble_pistol_walk_forward
 		}
 
-		// rifle
+		// Rifle
 		strafing left
 		{
 			both pb_stumble_walk_left
@@ -438,7 +438,7 @@ STATE COMBAT
 	}
 	stumble_walk_backward
 	{
-		// pistol
+		// Pistol
 		weaponclass pistol AND grenade, strafing left, playerAnimType all NOT m203
 		{
 			both pb_stumble_pistol_walk_left
@@ -451,7 +451,8 @@ STATE COMBAT
 		{
 			both pb_stumble_pistol_walk_back
 		}
-		// rifle
+
+		// Rifle
 		strafing left
 		{
 			both pb_stumble_walk_left
@@ -466,10 +467,10 @@ STATE COMBAT
 		}
 	}
 
-// STUMBLE CROUCH
+	// STUMBLE CROUCH
 	stumble_crouch_forward
 	{
-		// pistol
+		// Pistol
 		weaponclass pistol AND grenade, strafing left, playerAnimType all NOT m203
 		{
 			both pb_stumble_pistol_left
@@ -483,7 +484,7 @@ STATE COMBAT
 			both pb_stumble_pistol_forward
 		}
 
-		// rifle
+		// Rifle
 		strafing left
 		{
 			both pb_stumble_left
@@ -499,7 +500,7 @@ STATE COMBAT
 	}
 	stumble_crouch_backward
 	{
-		// pistol
+		// Pistol
 		weaponclass pistol AND grenade, strafing left, playerAnimType all NOT m203
 		{
 			both pb_stumble_pistol_left
@@ -584,7 +585,7 @@ STATE COMBAT
 		{
 			both pb_stand_shoot_walk_right
 		}
-		default // two handed rifle type weapon
+		default // Two handed rifle type weapon
 		{
 			both pb_stand_shoot_walk_forward
 		}
@@ -690,7 +691,7 @@ STATE COMBAT
 		{
 			both pb_crouch_shoot_run_right
 		}
-		default // two handed rifle type weapon
+		default // Two handed rifle type weapon
 		{
 			both pb_crouch_shoot_run_forward
 		}
@@ -734,7 +735,7 @@ STATE COMBAT
 		{
 			both pb_crouch_shoot_run_right
 		}
-		default // two handed rifle type weapon
+		default // Two handed rifle type weapon
 		{
 			both pb_crouch_shoot_run_back
 		}
@@ -896,7 +897,8 @@ STATE COMBAT
 			both pb_combatrun_forward_loop
 		}
 	}
-// STUMBLE SPRINT
+
+	// STUMBLE SPRINT
 	stumble_sprint_forward
 	{
 		default
@@ -1032,11 +1034,11 @@ STATE COMBAT
 		{
 			both pb_crouch_hold_run
 		}
- 	        weaponclass grenade, strafing left, playerAnimType all NOT m203
+ 			weaponclass grenade, strafing left, playerAnimType all NOT m203
 		{
 			both pb_crouch_run_left_grenade
 		}
-        	weaponclass grenade, strafing right, playerAnimType all NOT m203
+			weaponclass grenade, strafing right, playerAnimType all NOT m203
 		{
 			both pb_crouch_run_right_grenade
 		}
@@ -1088,11 +1090,11 @@ STATE COMBAT
   		{
    			both pb_crouch_hold_run_back
   		}
-   	        weaponclass grenade, strafing left, playerAnimType all NOT m203
+   			weaponclass grenade, strafing left, playerAnimType all NOT m203
 		{
 			both pb_crouch_run_left_grenade
 		}
-  	        weaponclass grenade, strafing right, playerAnimType all NOT m203
+  			weaponclass grenade, strafing right, playerAnimType all NOT m203
 		{
 			both pb_crouch_run_right_grenade
 		}
@@ -1253,13 +1255,13 @@ EVENTS
 
 fireweapon
 {
-// MG42
+	// MG42
 	mounted mg42
 	{
 		// Ignore the fireweapon event while on a turret
 	}
 
-// PISTOLS
+	// PISTOLS
 	perk laststand
 	{
 		torso pt_laststand_fire
@@ -1289,7 +1291,7 @@ fireweapon
 		torso pt_stand_shoot_pistol
 	}
 
-// MG & SMG
+	// MG & SMG
 	weaponclass autofire, movetype prone
 	{
 		torso pt_prone_shoot_auto duration 150
@@ -1315,7 +1317,7 @@ fireweapon
 		torso pt_stand_shoot_auto duration 150
 	}
 
-// PROJECTILE WEAPONS (assume ads since you can't fire these from the hip)
+	// PROJECTILE WEAPONS (assume ads since you can't fire these from the hip)
 	weaponclass rocketlauncher, movetype moving
 	{
 		// Play no special firing animation
@@ -1333,41 +1335,41 @@ fireweapon
 		torso pt_stand_shoot_RPG
 	}
 
-// GRENADES
-	 weaponclass grenade, movetype prone, playerAnimType hold
-	 {
-		  torso pt_hold_prone_throw
-	 }
-	 weaponclass grenade, movetype idlecr, playerAnimType hold
-	 {
-		 torso pt_hold_throw
-	 }
-	 weaponclass grenade, playerAnimType hold
-	 {
- 		 torso pt_hold_throw
-	 }
-	 weaponclass grenade, movetype prone, playerAnimType all NOT m203  // All prone
-	 {
-		  torso pt_prone_grenade_throw
-	 }
-	 weaponclass grenade, movetype idlecr, playerAnimType all NOT m203 // Crouch, still
-	 {
-		  both pb_crouch_grenade_throw
-	 }
-	 weaponclass grenade, movetype crouching, playerAnimType all NOT m203 // Crouch, moving
-	 {
- 		 torso pt_crouch_grenade_throw
-	 }
- 	weaponclass grenade, movetype idle, playerAnimType all NOT m203  // Stand still
-	 {
-		  both pb_stand_grenade_throw blendtime 10
-	 }
-	 weaponclass grenade, playerAnimType all NOT m203     // Stand, moving
+	// GRENADES
+	weaponclass grenade, movetype prone, playerAnimType hold
+	{
+		torso pt_hold_prone_throw
+	}
+	weaponclass grenade, movetype idlecr, playerAnimType hold
+	{
+		torso pt_hold_throw
+	}
+	weaponclass grenade, playerAnimType hold
+	{
+		torso pt_hold_throw
+	}
+	weaponclass grenade, movetype prone, playerAnimType all NOT m203  // All prone
+	{
+		torso pt_prone_grenade_throw
+	}
+	weaponclass grenade, movetype idlecr, playerAnimType all NOT m203 // Crouch, still
+	{
+		both pb_crouch_grenade_throw
+	}
+	weaponclass grenade, movetype crouching, playerAnimType all NOT m203 // Crouch, moving
+	{
+		torso pt_crouch_grenade_throw
+	}
+	weaponclass grenade, movetype idle, playerAnimType all NOT m203  // Stand still
+	{
+		both pb_stand_grenade_throw blendtime 10
+	}
+	weaponclass grenade, playerAnimType all NOT m203 // Stand, moving
  	{
- 		 torso pt_stand_grenade_throw blendtime 10
+ 		torso pt_stand_grenade_throw blendtime 10
  	}
 
-//bolt (RIFLES)
+	//bolt (RIFLES)
 	playerAnimType sniper, movetype prone
 	{
 		torso pt_prone_shoot_auto
@@ -1392,41 +1394,41 @@ fireweapon
 	{
 		torso pt_rifle_fire
 	}
-// DEFAULT (RIFLES)
-	 playerAnimType other, movetype prone
-	 {
-	  torso pt_prone_shoot_auto
-	 }
-	 playerAnimType other
-	 {
-	  torso pt_stand_shoot_shotgun
-	 }
-	 movetype prone
-	 {
-	  torso pt_prone_shoot_auto
-	 }
-	 movetype moving
-	 {
-	  // Play no special firing animation
-	 }
-	 movetype crouching, weapon_position ads
-	 {
-	  torso pt_crouch_shoot_ads
-	 }
-	 movetype crouching
-	 {
-	  torso pt_crouch_shoot
-	 }
-	 weapon_position ads
- 	{
- 	 torso pt_stand_shoot_ads
-	 }
-	 default
-	 {
- 	 torso pt_stand_shoot
-	 }
-}
 
+	// DEFAULT (RIFLES)
+	playerAnimType other, movetype prone
+	{
+		torso pt_prone_shoot_auto
+	}
+	playerAnimType other
+	{
+		torso pt_stand_shoot_shotgun
+	}
+	movetype prone
+	{
+		torso pt_prone_shoot_auto
+	}
+	movetype moving
+	{
+		// Play no special firing animation
+	}
+	movetype crouching, weapon_position ads
+	{
+		torso pt_crouch_shoot_ads
+	}
+	movetype crouching
+	{
+		torso pt_crouch_shoot
+	}
+	weapon_position ads
+	{
+		torso pt_stand_shoot_ads
+	}
+	default
+	{
+		torso pt_stand_shoot
+	}
+}
 
 prone_to_crouch
 {
@@ -1456,7 +1458,7 @@ meleeattack
 {
 	playerAnimType dog
 	{
-		//torso german_shepherd_attack_player
+		// torso german_shepherd_attack_player
 		torso german_shepherd_run_attack
 	}
 	weaponclass pistol AND grenade, movetype prone, playerAnimType all NOT m203
@@ -1491,7 +1493,7 @@ knife_melee
 {
 	playerAnimType dog
 	{
-		//torso german_shepherd_attack_player
+		// torso german_shepherd_attack_player
 		torso german_shepherd_run_attack
 	}
 	movetype prone
@@ -1806,7 +1808,7 @@ pain
 {
 	playerAnimType dog
 	{
-		//both german_shepherd_run_pain
+		// both german_shepherd_run_pain
 	}
 	movetype prone
 	{

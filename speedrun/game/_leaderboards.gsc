@@ -592,7 +592,9 @@ worldRecord(entry)
 	way = getLeaderboardName(entry["mode"], entry["way"]);
 	index = getLeaderboardIndex(entry["mode"], entry["way"]);
 
-	iPrintLnBold(fmt("^5New ^2WR ^7on ^6%s ^2%s ^7By ^5%s", entry["mode"], way, self.shortName));
+	message = fmt("^5New ^2WR ^7on ^6%s ^2%s ^7By ^5%s", entry["mode"], way, self.shortName);
+	iPrintLnBold(message);
+	comPrintLn(message);
 
 	for (i = 0; i < players.size; i++)
 	{

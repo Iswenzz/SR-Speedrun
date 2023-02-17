@@ -117,7 +117,7 @@ playerSpawn()
 
 	self.pers["weapon"] = self getCustomizeWeapon()["item"];
 	self.pers["knife"] = self getCustomizeKnife()["item"];
-	self.pers["knife_skin"] = self getCustomizeKnifeSkin()["item"];
+	self.pers["knife_skin"] = self getCustomizeKnifeSkin()["id"];
 
 	self spawnPlayer();
 
