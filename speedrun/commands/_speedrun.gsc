@@ -9,6 +9,9 @@ main()
     cmd("player", 	"210",    	::cmd_210);
     cmd("player", 	"portal",   ::cmd_Portal);
 	cmd("player", 	"practise",	::cmd_Practise);
+	cmd("player", 	"sheep",	::cmd_Sheep);
+	cmd("player", 	"fxenable",	::cmd_FX);
+	cmd("player", 	"teleport",	::cmd_Teleport);
 }
 
 cmd_Speed(args)
@@ -82,3 +85,39 @@ cmd_Practise(args)
     else
         self pm("^1Practise mode disabled!");
 }
+
+cmd_Teleport(args)
+{
+	if (args.size < 1)
+		return self pm("Usage: teleport <playerName>");
+	if (!self sr\player\modes\_main::isInMode("practise"))
+		return self pm("^1Player need to be in practise mode");
+
+	player = getPlayerByName(args[0]);
+
+	if (!isDefined(player))
+		return pm("Could not find player");
+
+	self cheat();
+	self setOrigin(player.origin);
+}
+
+cmd_Sheep(args)
+{
+	for (i = 0; i < 25; i++)
+	{
+		self iPrintLnBold("^3S^2h^1e^4e^6p ^3w^2i^1z^4a^6r^5d");
+		wait 0.1;
+	}
+	self setClientDvar("r_specular", 1);
+	self setClientDvar("r_specularmap", 2);
+}
+
+cmd_FX(args)
+{
+	self sr\player\_settings::toggle("gfx_fx");
+
+	msg = Ternary(self.settings["gfx_fx"], "^2FX On", "^1FX Off");
+	self pm(msg);
+}
+
