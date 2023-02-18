@@ -135,7 +135,6 @@ rawfile,vision/mp_dr_sm64.vision
 rawfile,vision/mp_dr_train_rush.vision
 rawfile,vision/mp_slide_n64_bowser_c.vision
 rawfile,vision/null.vision
-rawfile,soundaliases/common.csv
 rawfile,shock/concussion_grenade_mp.shock
 rawfile,shock/damage_mp.shock
 rawfile,shock/default.shock
@@ -256,9 +255,6 @@ fx,deathrun/spray5
 fx,deathrun/spray6
 fx,deathrun/endgame_fx
 fx,muzzleflashes/mist_mk2_flashview
-rawfile,soundaliases/deathrun.csv
-rawfile,sound/misc/ee1.wav
-rawfile,sound/misc/sprayer.wav
 sound,deathrun,,all_mp
 sound,braxi,,all_mp
 sound,anaconda,,all_mp
