@@ -87,14 +87,6 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 
 	level notify("player_killed", self, eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration);
 
-	if (level.dvar["giveXpForKill"] && !level.trapsDisabled)
-	{
-		if (isDefined(level.activ) && level.activ != self && level.activ isPlaying())
-		{
-			if (sMeansOfDeath == "MOD_UNKNOWN" || sMeansOfDeath == "MOD_FALLING" || sMeansOfDeath == "MOD_SUICIDE")
-				level.activ sr\game\_rank::giveRankXP("jumper_died");
-		}
-	}
 	if (sHitLoc == "head" && sMeansOfDeath != "MOD_MELEE")
 		sMeansOfDeath = "MOD_HEAD_SHOT";
 
