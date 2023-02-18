@@ -171,6 +171,7 @@ CodeCallback_PlayerConnect()
 	self.died = false;
 
 	self sr\player\_settings::init();
+	self sr\sys\_admins::connection();
 	self speedrun\game\_callbacks::playerConnect();
 
 	self thread CodeCallback_PlayerSpawned();
