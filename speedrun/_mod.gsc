@@ -42,7 +42,6 @@ main()
 
 	sr\player\_hide::main();
 	sr\player\_insertion::main();
-	sr\player\_settings::main();
 	sr\player\customize\_main::initCustomize();
 	sr\player\fx\_spray::main();
 	sr\player\fx\_shaders::initShaders();
@@ -83,6 +82,7 @@ main()
 	speedrun\game\_leaderboards::initLeaderboards();
 	speedrun\game\_pbs::initPBs();
 
+	speedrun\player\_settings::main();
 	speedrun\player\run\_main::main();
 	speedrun\player\huds\_speedrun::main();
 	speedrun\player\huds\_demo::main();
