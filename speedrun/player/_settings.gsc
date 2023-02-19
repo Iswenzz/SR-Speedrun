@@ -7,6 +7,7 @@
 main()
 {
 	level.settings = [];
+	level.settingsMax = 31;
 
 	settings(0,  "hud_crosshair", "Crosshair", 1600, 2, ::update_hudCrosshair, ::toggle_hudCrosshair);
 	settings(1,  "hud_fps", "Draw FPS", 1601, true, ::update_hudFPS, ::toggle_hudFPS);
