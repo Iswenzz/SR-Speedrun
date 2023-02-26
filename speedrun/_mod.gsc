@@ -9,6 +9,7 @@ main()
 	maps\mp\gametypes\_damagefeedback::init();
 	maps\mp\gametypes\_clientids::init();
 	maps\mp\gametypes\_gameobjects::init();
+	maps\mp\gametypes\_gameobjects::main([]);
 	maps\mp\gametypes\_spawnlogic::init();
 	maps\mp\gametypes\_oldschool::deletePickups();
 	maps\mp\gametypes\_hud::init();
