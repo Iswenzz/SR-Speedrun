@@ -1,6 +1,6 @@
 # SR Speedrun
 
-[![License](https://img.shields.io/github/license/Iswenzz/SR-Core?color=blue&logo=gitbook&logoColor=white)](https://github.com/Iswenzz/SR-Core/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/Iswenzz/SR-Speedrun?color=blue&logo=gitbook&logoColor=white)](https://github.com/Iswenzz/SR-Speedrun/blob/master/LICENSE)
 
 ![](https://i.imgur.com/Erq62DG.jpg)
 
