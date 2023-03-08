@@ -7,6 +7,7 @@ main()
 {
 	level.allowSpawn = true;
 	level.huds["match"] = [];
+	level.time = level.dvar["time"];
 
 	game["roundsplayed"] = IfUndef(game["roundsplayed"], 0) + 1;
 	game["roundStarted"] = false;
@@ -121,7 +122,6 @@ timer()
 {
 	level thread timerDelete();
 
-	level.time = level.dvar["time"];
 	level.huds["time"].label = &"^7&&1";
 	level.huds["time"] setTimer(level.time - 1);
 
@@ -178,5 +178,5 @@ huds()
 	level.huds["time"].label = &"^7&&1";
 	level.huds["time"].alpha = 1;
 	level.huds["time"].archived = false;
-	level.huds["time"] setText(fmt("%d:00", int(level.dvar["time"] / 60)));
+	level.huds["time"] setText(fmt("%d:00", int(level.time / 60)));
 }
