@@ -138,7 +138,7 @@ playerSpawn()
 	}
 	if (game["state"] == "readyup")
 	{
-		self freezeControls(true);
+		self linkTo(level.tempEntity);
 		self disableWeapons();
 	}
 	if (self getStat(988))

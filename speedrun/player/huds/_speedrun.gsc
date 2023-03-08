@@ -37,37 +37,10 @@ hud()
 	self.huds["speedrun"]["wr_icon"] = addHud(self, 170, 1, 1, "left", "top", 1.4, 99, true);
 	self.huds["speedrun"]["wr_icon_count"] = addHud(self, 185, 5, 1, "left", "top", 1.4, 100, true);
 
-	if (isDefined(self.showRank))
-	{
-		if (self.pers["prestige"] > 0)
-			self.huds["speedrun"]["rank"] = addHud(self, 197, 5, 1, "left", "top", 1.4, 81, true);
-		self.huds["speedrun"]["rank_icon"] = addHud(self, 185, 1, 1, "left", "top", 1.4, 80, true);
-	}
-
 	self updateWay();
-	self updateRank();
 	self updateAdmin();
 
 	self notify("speedrun");
-}
-
-updateRank()
-{
-	if (!isDefined(self.showRank))
-		return;
-
-	self endon("death");
-	self endon("disconnect");
-
-	self loading("rank");
-	icon = level.assets["rank"][self.pers["rank"]];
-
-	if (self.pers["prestige"] > 0)
-	{
-		icon = level.assets["prestige"][self.pers["prestige"]];
-		self.huds["speedrun"]["rank"] setValue(self.pers["rank"]);
-	}
-	self.huds["speedrun"]["rank_icon"] setShader(icon, 18, 18);
 }
 
 updateAdmin()
