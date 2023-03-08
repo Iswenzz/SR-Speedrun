@@ -34,7 +34,7 @@ start()
 	game["roundStarted"] = true;
 
 	matchStartPlayers();
-	timer(level.dvar["time"]);
+	timer();
 	thread speedrun\game\_map::end();
 }
 
@@ -117,12 +117,13 @@ roundStartTimer()
 	level.huds["match"]["timer"] destroyElem();
 }
 
-timer(time)
+timer()
 {
 	level thread timerDelete();
 
-	level.time = time;
-	level.huds["time"] setTimer(time);
+	level.time = level.dvar["time"];
+	level.huds["time"].label = &"^7&&1";
+	level.huds["time"] setTimer(level.time - 1);
 
 	clock = spawn("script_origin", (0, 0, 0));
 
@@ -177,4 +178,5 @@ huds()
 	level.huds["time"].label = &"^7&&1";
 	level.huds["time"].alpha = 1;
 	level.huds["time"].archived = false;
+	level.huds["time"] setText(fmt("%d:00", int(level.dvar["time"] / 60)));
 }
