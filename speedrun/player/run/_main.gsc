@@ -107,9 +107,14 @@ endTimer()
 	self speedrun\player\huds\_speedrun::updateTime();
 
 	way = getLeaderboardName(self.sr_mode, self.sr_way);
-	iPrintLn(fmt("%s finished the map in %d:%d.%d - %s / %s",
+	message = fmt("%s finished the map in %d:%d.%d - %s / %s",
 		self.name, self.time.min, self.time.sec, self.time.ms,
-		self.sr_mode, way));
+		self.sr_mode, way);
+
+	if (self sr\sys\_admins::isTAS())
+		message = fmt("^5[TAS] ^7%s", message);
+
+	iPrintLn(message);
 
 	entry = self makeEntry();
     self thread speedrun\game\_leaderboards::saveEntry(entry);

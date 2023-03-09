@@ -39,6 +39,7 @@ hud()
 
 	self updateWay();
 	self updateAdmin();
+	self updateTAS();
 
 	self notify("speedrun");
 }
@@ -127,6 +128,16 @@ updateWay()
 
 	name = speedrun\game\_leaderboards::getLeaderboardName(self.sr_mode, self.sr_way);
 	self.huds["speedrun"]["name"] setText(name);
+}
+
+updateTAS()
+{
+	if (!self sr\sys\_admins::isTAS())
+		return;
+
+	self.huds["speedrun"]["tas"] = addHud(self, 5, 0, 1, "left", "bottom", 1.4, 100, true);
+	self.huds["speedrun"]["tas"].label = &"^5TAS";
+	self.huds["speedrun"]["tas"].font = "objective";
 }
 
 isHud(name)
