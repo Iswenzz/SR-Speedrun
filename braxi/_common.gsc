@@ -105,7 +105,7 @@ canSpawn()
 		return false;
 	if (game["state"] == "end" || game["state"] == "round ended")
 		return false;
-	if (self isReallyAlive())
+	if (self isPlaying())
 		return false;
 	if (level.freeRun)
 		return true;
@@ -116,12 +116,17 @@ canSpawn()
 
 isReallyAlive()
 {
-	return isDefined(self.sessionstate) && self.sessionstate == "playing";
+	return self isPlaying();
 }
 
 isPlaying()
 {
-	return isReallyAlive();
+	return isDefined(self) && self.sessionstate == "playing";
+}
+
+isDead()
+{
+	return isDefined(self) && (self.sessionstate == "dead" || self.died);
 }
 
 doDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc)
