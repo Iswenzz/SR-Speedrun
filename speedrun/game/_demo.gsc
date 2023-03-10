@@ -21,9 +21,7 @@ setup(id)
 	self.sr_mode = self.demo["mode"];
 	self sr\game\_teams::setTeam("allies");
 	self setStat(1700, self speedrun\player\run\_main::getLastModeStat());
-
 	self eventSpawn(true);
-	self.died = true;
 
 	if (isDefined(self.demoCamera))
 		return false;
