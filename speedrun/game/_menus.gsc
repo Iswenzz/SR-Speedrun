@@ -110,7 +110,5 @@ menu_Spectator(arg)
 		self iPrintln("^1Nice try.");
 		return;
 	}
-	self sr\game\_teams::setTeam("spectator");
-	self sr\game\_teams::setSpectatePermissions();
-	self eventSpectator();
+	self sr\game\_teams::setSpectator();
 }

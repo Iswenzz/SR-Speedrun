@@ -186,7 +186,7 @@ CodeCallback_PlayerConnect()
 	{
 		for (i = 0; isDefined(level.events["connected"]) && i < level.events["connected"].size; i++)
 			self thread [[level.events["connected"][i]]]();
-		self eventSpectator();
+		self sr\game\_teams::setSpectator();
 	}
 	else self eventSpawn();
 

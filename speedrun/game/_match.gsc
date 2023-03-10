@@ -11,7 +11,7 @@ main()
 
 	game["roundsplayed"] = IfUndef(game["roundsplayed"], 0) + 1;
 	game["roundStarted"] = false;
-	game["state"] = "readyup";
+	game["state"] = "playing";
 
 	event("map", ::huds);
 	event("map", ::start);

@@ -119,7 +119,8 @@ endmapSpectateDemo()
 	for (i = 0; i < players.size; i++)
 	{
 		players[i] sr\game\_teams::setTeam("spectator");
-		players[i] eventSpectator();
+		players[i] eventSpectator(true);
+		players[i] spawnSpectator();
 	}
 }
 
