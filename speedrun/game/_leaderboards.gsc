@@ -117,7 +117,7 @@ getPlayerWorldRecordCount()
 {
 	critical_enter("mysql");
 
-	filter = "SELECT id, map, name, mode, way, player, time, tas, min(time) OVER (PARTITION BY map, mode, way) AS minTime FROM leaderboards";
+	filter = "SELECT id, map, name, mode, way, player, time, tas, min(time) OVER (PARTITION BY map, mode, way, tas) AS minTime FROM leaderboards";
 	query = fmt("SELECT count(id) FROM (%s) b WHERE time = minTime AND player = ? AND tas = 0", filter);
 
 	request = SQL_Prepare(query);
@@ -128,7 +128,7 @@ getPlayerWorldRecordCount()
 	wrCount = IfUndef(SQL_FetchRow(request), []);
 	SQL_Free(request);
 
-	filter = "SELECT id, map, name, mode, way, player, time, tas, min(time) OVER (PARTITION BY map, mode, way) AS minTime FROM leaderboards";
+	filter = "SELECT id, map, name, mode, way, player, time, tas, min(time) OVER (PARTITION BY map, mode, way, tas) AS minTime FROM leaderboards";
 	query = fmt("SELECT count(id) FROM (%s) b WHERE time = minTime AND player = ? AND tas = 0 AND (mode = %s OR mode = %s)",
 		filter, "190", "210");
 
