@@ -19,6 +19,7 @@ main()
 	sr\_mod::main();
 	braxi\_mod::main();
 
+	sr\game\_event::main();
 	sr\game\_cheat::main();
 	sr\game\_demo::main();
 	sr\game\_perks::initPerks();
