@@ -20,6 +20,7 @@ main()
 	settings(8,  "hud_compass", "Compass", 1608, 8, ::update_hudCompass, ::toggle_hudCompass);
 	settings(16, "hud_cgaz", "CGAZ HUD", 1616, false, ::update_hudCgaz, ::toggle_hudCgaz);
 	settings(10, "hud_2D", "Draw 2D", 1610, true, ::update_hud2D, ::toggle_hud2D);
+	settings(22, "hud_spectating", "Spectating HUD", 1624, false, ::update_hudSpectating, ::toggle_hudSpectating);
 	settings(9,  "player_hide", "Hide Players", 1609, false, ::update_playerHide, ::toggle_playerHide);
 	settings(12, "player_knife", "Knife Only", 1612, false, ::update_playerKnife, ::toggle_playerKnife);
 	settings(19, "player_voice", "Voice chat", 1620, true, ::update_playerVoice, ::toggle_playerVoice);
@@ -81,6 +82,12 @@ update_hud2D(setting)
 {
 	value = self.settings["hud_2D"];
 	self setClientDvar("cg_draw2D", value);
+	self updateHud(setting.index, value);
+}
+
+update_hudSpectating(setting)
+{
+	value = self.settings["hud_spectating"];
 	self updateHud(setting.index, value);
 }
 
@@ -242,6 +249,11 @@ toggle_hudCgaz(setting)
 toggle_hud2D(setting)
 {
 	self.settings["hud_2D"] = !self.settings["hud_2D"];
+}
+
+toggle_hudSpectating(setting)
+{
+	self.settings["hud_spectating"] = !self.settings["hud_spectating"];
 }
 
 toggle_playerHide(setting)

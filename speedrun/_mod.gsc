@@ -58,6 +58,7 @@ main()
 	sr\player\huds\_crosshair::main();
 	sr\player\huds\_fps::main();
 	sr\player\huds\_keys::main();
+	sr\player\huds\_spectator::main();
 	sr\player\huds\_velocity::main();
 	sr\player\huds\_viewkick::main();
 	sr\player\huds\_voice::main();
@@ -102,6 +103,7 @@ precache()
 	precacheItem("rtd_mp");
 	precacheItem("tomahawk_mp");
 	precacheItem("fortnite_mp");
+	precacheItem("shepherd_mp");
 
 	precacheShader("time_hud");
 	precacheShader("sr_shop");

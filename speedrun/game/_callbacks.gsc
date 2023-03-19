@@ -67,7 +67,7 @@ playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vP
 		return;
 	if (isPlayer(eAttacker) && self sameTeam(eAttacker) && !eAttacker.teamKill)
 		return;
-	if (isPlayer(eAttacker) && sMeansOfDeath == "MOD_MELEE" && isWallKnifing(eAttacker, self))
+	if (isPlayer(eAttacker) && sMeansOfDeath == "MOD_MELEE" && isWallbang(eAttacker, self))
 		return;
 	if (self isDefrag() && sMeansOfDeath == "MOD_FALLING")
 		return;
@@ -112,9 +112,6 @@ playerSpawn()
 	self.pers["knife_skin"] = self getCustomizeKnifeSkin()["id"];
 
 	self spawnPlayer();
-
-	if (self.model == "german_sheperd_dog")
-		self.pers["weapon"] = "dog_mp";
 
 	if (self.settings["player_knife"])
 	{

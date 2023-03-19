@@ -320,6 +320,7 @@ weapon,mp/colt44_mp
 weapon,mp/tomahawk_mp
 weapon,mp/knife_mp
 weapon,mp/dog_mp
+weapon,mp/shepherd_mp
 
 // Rumble
 rawfile,rumble/ac130_105mm_fire
