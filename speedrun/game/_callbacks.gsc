@@ -92,7 +92,7 @@ playerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLo
 
 	self thread ragdoll(sHitLoc, vDir, sWeapon, eInflictor, sMeansOfDeath, deathAnimDuration);
 
-	if (self.pers["team"] == "allies" && self canSpawn())
+	if (self isAllies() && self canSpawn())
 		self eventSpawn();
 }
 
