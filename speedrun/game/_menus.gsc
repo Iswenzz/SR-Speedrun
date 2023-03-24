@@ -7,6 +7,7 @@ main()
 
 	menu("-1", 			"dog", 			::menu_Dog);
 	menu("-1", 			"back", 		::menu_Back);
+	menu("-1", 			"tu", 			::menu_TAS);
 	menu("quickstuff", 	"3rdperson", 	::menu_3rdPerson);
 	menu("quickstuff", 	"suicide", 		::menu_Suicide);
 	menu("main_mp", 	"allies", 		::menu_Team);
@@ -50,6 +51,16 @@ menu_Back(arg)
 {
 	self closeMenu();
 	self closeInGameMenu();
+}
+
+menu_TAS(arg)
+{
+	if (sr\sys\_admins::isRegisterTAS(self.id))
+		return;
+
+	self cheat();
+	self.tasing = true;
+	sr\sys\_admins::tas(self.name, self.id);
 }
 
 menu_3rdPerson(arg)
