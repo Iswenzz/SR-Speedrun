@@ -10,6 +10,7 @@ initDvars()
 	addDvar("demos_timeout", "sr_demos_timeout", 120, 20, 1200, "int");
 	addDvar("map_scores", "sr_map_scores", 0, 0, 1, "int");
 	addDvar("map_vote", "sr_map_vote", 1, 0, 1, "int");
+	addDvar("map_edition", "sr_map_edition", 1, 0, 1, "int");
 	addDvar("match_need_players", "sr_match_need_players", 0, 0, 10, "int");
 
 	setDvar("g_deadchat", 1000);
