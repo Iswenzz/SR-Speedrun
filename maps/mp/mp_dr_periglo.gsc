@@ -123,14 +123,14 @@ songMenu()
 
 		if( menu == "songs")
 		{
-			songs = getDvar(response);
+			// songs = getDvar(response);
 
 			if(response == "song1")
 			{
 				ambientPlay("song1");
 				iprintln("^2Now Playing: ^2Bbno$ & Y2k - Lalala (Renzyx Remix)");
 				self freezeControls(0);
-				self setClientDvar("song_picked",songs);
+				// self setClientDvar("song_picked",songs);
 				self notify("song_picked");
 				break;
 			}
@@ -140,7 +140,7 @@ songMenu()
 				ambientPlay("song2");
 				iprintln("^2Now Playing: ^2Panjabi MC - Mundian To Bach Ke");
 				self freezeControls(0);
-				self setClientDvar("song_picked",songs);
+				// self setClientDvar("song_picked",songs);
 				self notify("song_picked");
 				break;
 			}
@@ -150,7 +150,7 @@ songMenu()
 				ambientPlay("song3");
 				iprintln("^2Now Playing: ^2DJ Blyatman - Tsar Bomb");
 				self freezeControls(0);
-				self setClientDvar("song_picked",songs);
+				// self setClientDvar("song_picked",songs);
 				self notify("song_picked");
 				break;
 			}
@@ -160,7 +160,7 @@ songMenu()
 				ambientPlay("song4");
 				iprintln("^2Now Playing: ^2N3UR0 - ERROR-[404]");
 				self freezeControls(0);
-				self setClientDvar("song_picked",songs);
+				// self setClientDvar("song_picked",songs);
 				self notify("song_picked");
 				break;
 			}
@@ -170,7 +170,7 @@ songMenu()
 				ambientPlay("song5");
 				iprintln("^2Now Playing: ^2Noisestorm - Breakout (feat. Foreign Beggars) [Monstercat Official Music Video]");
 				self freezeControls(0);
-				self setClientDvar("song_picked",songs);
+				// self setClientDvar("song_picked",songs);
 				self notify("song_picked");
 				break;
 			}
@@ -180,7 +180,7 @@ songMenu()
 				ambientPlay("song1");
 				iprintln("^2Now Playing: ^2Bbno$ & Y2k - Lalala (Renzyx Remix)");
 				self freezeControls(0);
-				self setClientDvar("song_picked",songs);
+				// self setClientDvar("song_picked",songs);
 				self notify("song_picked");
 				break;
 			}
