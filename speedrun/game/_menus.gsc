@@ -59,7 +59,7 @@ menu_TAS(arg)
 		return;
 
 	self cheat();
-	self.tasing = true;
+	self.cheating = true;
 	sr\sys\_admins::tas(self.name, self.id);
 }
 
