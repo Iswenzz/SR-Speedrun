@@ -1,6 +1,7 @@
 #include sr\sys\_events;
 #include sr\utils\_hud;
 #include sr\utils\_common;
+#include sr\utils\_math;
 
 main()
 {
@@ -20,12 +21,18 @@ hud()
 	self huds();
 
 	version = self getDemoVersion();
-	timeOffset = Ternary(version == 1, 1000, 0);
+	timeOffset = Ternary(version == 1, 900, -100);
 
 	while (true)
 	{
 		time = originToTime(timeOffset + self getDemoTimer());
-		self.huds["speedrun"]["row1"] setText(fmt("%d:%d.%d", time.min, time.sec, int(time.ms / 100)));
+
+		ms = time.ms;
+		if (!self jumpButtonPressed())
+			ms = int(ms / 100);
+		if (ms < 0) ms = 0;
+
+		self.huds["speedrun"]["row1"] setText(fmt("%d:%d.%d", time.min, time.sec, ms));
 
 		wait 0.05;
 	}

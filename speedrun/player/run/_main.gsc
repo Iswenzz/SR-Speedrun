@@ -81,10 +81,15 @@ playerTimer()
 
 	// Spastic delay caused by bad modding, too bad...
 	if (game["state"] == "playing")
+	{
+		self sr\game\_demo::record();
 		wait 0.05;
+	}
 	if (game["state"] == "readyup")
+	{
 		level waittill("round_started");
-
+		self sr\game\_demo::record();
+	}
 	wait 0.05;
 
 	self speedrun\player\huds\_speedrun::updateTime();
