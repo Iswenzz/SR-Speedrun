@@ -1,7 +1,6 @@
 #include sr\sys\_events;
 #include sr\utils\_common;
-
-#include maps\mp\gametypes\_hud_util;
+#include sr\utils\_hud;
 
 main()
 {
@@ -63,14 +62,11 @@ waitForMorePlayers()
 {
 	visionSetNaked("mpIntro", 0);
 	if (isDefined(level.huds["match"]["text"]))
-		level.huds["match"]["text"] destroyElem();
+		level.huds["match"]["text"] destroy();
 
-	level.huds["match"]["text"] = createServerFontString("objective", 1.5);
-	level.huds["match"]["text"] setPoint("CENTER", "CENTER", 0, -20);
-	level.huds["match"]["text"].sort = 1001;
+	level.huds["match"]["text"] = addHud(level, 0, -20, 1, "center", "middle", 1.5, 1001);
 	level.huds["match"]["text"] setText(level.texts["waiting_for_players"]);
-	level.huds["match"]["text"].foreground = false;
-	level.huds["match"]["text"].hidewheninmenu = true;
+	level.huds["match"]["text"].font = "objective";
 
 	wait 1;
 }
@@ -97,28 +93,22 @@ roundStartTimer()
 		return;
 
 	if (isDefined(level.huds["match"]["text"]))
-		level.huds["match"]["text"] destroyElem();
+		level.huds["match"]["text"] destroy();
 	if (isDefined(level.huds["match"]["timer"]))
-		level.huds["match"]["timer"] destroyElem();
+		level.huds["match"]["timer"] destroy();
 
-	level.huds["match"]["text"] = createServerFontString("objective", 1.5);
-	level.huds["match"]["text"] setPoint("CENTER", "CENTER", 0, -20);
-	level.huds["match"]["text"].sort = 1001;
+	level.huds["match"]["text"] = addHud(level, 0, -20, 1, "center", "middle", 1.5, 1001);
 	level.huds["match"]["text"] setText(level.texts["round_begins_in"]);
-	level.huds["match"]["text"].foreground = false;
-	level.huds["match"]["text"].hidewheninmenu = true;
+	level.huds["match"]["text"].font = "objective";
 
-	level.huds["match"]["timer"] = createServerTimer("objective", 1.4);
-	level.huds["match"]["timer"] setPoint("CENTER", "CENTER", 0, 0);
+	level.huds["match"]["timer"] = addHud(level, 0, 0, 1, "center", "middle", 1.4, 1001);
 	level.huds["match"]["timer"] setTimer(level.dvar["spawn_time"]);
-	level.huds["match"]["timer"].sort = 1001;
-	level.huds["match"]["timer"].foreground = false;
-	level.huds["match"]["timer"].hideWhenInMenu = true;
+	level.huds["match"]["timer"].font = "objective";
 
 	wait level.dvar["spawn_time"];
 
-	level.huds["match"]["text"] destroyElem();
-	level.huds["match"]["timer"] destroyElem();
+	level.huds["match"]["text"] destroy();
+	level.huds["match"]["timer"] destroy();
 }
 
 timer()
