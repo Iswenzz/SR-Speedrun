@@ -55,10 +55,7 @@ endmapTrigger()
 
 	array = getEntArray("endmap_trig", "targetname");
 	if (!array.size)
-	{
-		iPrintLnBold("^1Error: No endmap_trig found.");
 		return;
-	}
 
 	trigger = array[0];
 	thread sr\game\fx\_trigger::effect(trigger, "red");
