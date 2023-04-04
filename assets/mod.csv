@@ -202,7 +202,6 @@ rawfile,maps/mp/gametypes/deathrun.txt
 rawfile,maps/mp/gametypes/battleroyale.txt
 rawfile,maps/mp/gametypes/cj.txt
 rawfile,cleanup.cfg
-weapon,mp/bt_rpg_mp
 sound,common,,all_mp
 sound,user_interface,,all_mp
 sound,speedrun,,all_mp
@@ -320,7 +319,6 @@ weapon,mp/colt44_mp
 weapon,mp/tomahawk_mp
 weapon,mp/knife_mp
 weapon,mp/dog_mp
-weapon,mp/shepherd_mp
 
 // Rumble
 rawfile,rumble/ac130_105mm_fire
@@ -887,7 +885,6 @@ xmodel,worldmodel_k7
 sound,k7,,all_mp
 
 // BO3 Brecci
-weapon,mp/brecci_mp
 sound,bo3_gator,,all_mp
 xmodel,vm_bo3_gator
 xmodel,wm_bo3_gator
@@ -906,7 +903,6 @@ xanim,vm_gator_sprint_loop
 xanim,vm_gator_sprint_out
 
 // BO3 LOCUS
-weapon,mp/remington700_silencer_mp
 sound,dsr50,,all_mp
 xanim,vm_locus_ads_base_down
 xanim,vm_locus_ads_base_up
@@ -927,7 +923,6 @@ xmodel,vm_bo3_locus
 xmodel,wm_bo3_locus
 
 // COD5 MG42
-weapon,mp/mg42_mp
 xmodel,viewmodel_mg42_waw,,
 xmodel,weapon_mg42_waw,,
 sound,MG42,,all_mp
@@ -990,7 +985,6 @@ xanim,viewmodel_arx160_gl_grenade_idle
 xanim,viewmodel_arx160_ads_fire_gl
 
 // GHOST KAK CHAINSAW
-weapon,mp/chainsaw_mp
 xmodel,viewmodel_ghost_chainsaw_kac
 xmodel,weapon_ghost_chainsaw_kac
 sound,kac,,all_mp
@@ -1045,7 +1039,6 @@ xanim,viewmodel_vks_ads_up
 xanim,viewmodel_vks_ads_down
 
 // MW3 P99
-weapon,mp/beretta_tactical_mp
 xmodel,vm_mw3_p99
 xmodel,wm_mw3_p99
 xanim,viewmodel_p99_ads_down
@@ -1080,7 +1073,6 @@ xanim,viewmodel_p99_sprint_out_tactical
 sound,p99,,all_mp
 
 // BO2 Olympia
-weapon,mp/olympia_mp
 xmodel,viewmodel_olympia_bo2
 xmodel,worldmodel_olympia_bo2
 xanim,viewmodel_olympia_ads_down
@@ -1114,7 +1106,6 @@ xanim,viewmodel_ww2_shovel_pullout_first
 xanim,viewmodel_ww2_shovel_pullout_fast
 xanim,viewmodel_ww2_shovel_idle
 xmodel,viewmodel_fox_ww2_shovel
-weapon,mp/shovel_mp
 
 // Insertion MW2
 xanim,viewmodel_mw2_insertion_idle
@@ -1125,7 +1116,6 @@ xmodel,worldmodel_mw2_insertion
 sound,insertion,,all
 
 // Q3 Rocket
-weapon,mp/rocket_mp
 fx,q3/rocket_trail
 xmodel,viewmodel_rocket
 xmodel,wm_quake_rocket
@@ -1133,7 +1123,6 @@ xmodel,quake_rocket_projectile
 sound,rocket,,all
 
 // Q3 Plasma
-weapon,mp/plasma_mp
 fx,q3/plasma_fire
 fx,q3/plasma_explode
 xmodel,viewmodel_plasma
@@ -1146,9 +1135,6 @@ xanim,predator_idle
 xanim,predator_raise
 xmodel,predator_vm
 xmodel,predator_wm
-weapon,mp/shop_mp
-weapon,mp/vip_mp
-weapon,mp/rtd_mp
 
 // Dog
 xmodel,german_sheperd_dog
@@ -1165,7 +1151,6 @@ xanim,german_shepherd_run_pain
 xanim,german_shepherd_wakeup_fast
 
 // Wavegun
-weapon,mp/wavegun_mp
 fx,wavegun/fire_wavegun
 sound,wavegun,,all_mp
 xmodel,vm_wavegun
@@ -1226,7 +1211,6 @@ xmodel,weapon_csgo_usp_sup
 xmodel,playermodel_terminator
 
 // Fortnite RPG
-weapon,mp/fn_rpg_mp
 xmodel,viewmodel_fortnite_rpg
 xmodel,worldmodel_fortnite_rpg
 
@@ -1249,23 +1233,22 @@ xmodel,plr_adolf_hitler
 xmodel,plr_big_smoke
 
 // PPS42
-//weapon,mp/pps42_mp
-//sound,iw2_pps43,,all_mp
-//xmodel,viewmodel_pps43
-//xmodel,weapon_pps43
-//xanim,viewmodel_pps43_ads_down
-//xanim,viewmodel_pps43_ads_up
-//xanim,viewmodel_pps43_fire
-//xanim,viewmodel_pps43_idle
-//xanim,viewmodel_pps43_lastshot
-//xanim,viewmodel_pps43_melee
-//xanim,viewmodel_pps43_pullout
-//xanim,viewmodel_pps43_putaway
-//xanim,viewmodel_pps43_reload
-//xanim,viewmodel_pps43_reload_empty
-//xanim,viewmodel_pps43_sprint_in
-//xanim,viewmodel_pps43_sprint_loop
-//xanim,viewmodel_pps43_sprint_out
+sound,iw2_pps43,,all_mp
+xmodel,viewmodel_pps43
+xmodel,weapon_pps43
+xanim,viewmodel_pps43_ads_down
+xanim,viewmodel_pps43_ads_up
+xanim,viewmodel_pps43_fire
+xanim,viewmodel_pps43_idle
+xanim,viewmodel_pps43_lastshot
+xanim,viewmodel_pps43_melee
+xanim,viewmodel_pps43_pullout
+xanim,viewmodel_pps43_putaway
+xanim,viewmodel_pps43_reload
+xanim,viewmodel_pps43_reload_empty
+xanim,viewmodel_pps43_sprint_in
+xanim,viewmodel_pps43_sprint_loop
+xanim,viewmodel_pps43_sprint_out
 
 // Fortnite dance
 xanim,fortnitedefault
@@ -1356,7 +1339,6 @@ xanim,vm_t5_smg_mp40_sprint_out
 
 // Shaohammer
 // xmodel,shaohammer
-// weapon,mp/shaohammer_mp
 // xanim,shaohammer_idle
 // xanim,shaohammer_melee
 // xanim,shaohammer_pullout

@@ -95,15 +95,16 @@ main()
 
 precache()
 {
-	precacheItem("shop_mp");
-	precacheItem("vip_mp");
 	precacheItem("knife_mp");
 	precacheItem("dog_mp");
-	precacheItem("shovel_mp");
-	precacheItem("rtd_mp");
+	precacheItem("saw_mp");
 	precacheItem("tomahawk_mp");
 	precacheItem("fortnite_mp");
-	precacheItem("shepherd_mp");
+	precacheItem("artillery_mp");
+	precacheItem("airstrike_mp");
+	precacheItem("cobra_FFAR_mp");
+	precacheItem("hind_FFAR_mp");
+	precacheItem("cobra_20mm_mp");
 
 	precacheShader("time_hud");
 	precacheShader("sr_shop");
