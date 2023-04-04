@@ -67,7 +67,7 @@ play(id)
 			break;
 
 		self linkTo(self.demoCamera);
-		self.demoWeapon = self getDemoWeapon();
+		self.demoWeapon = legacyWeapon(self getDemoWeapon());
 
 		if (self weaponHasChanged())
 		{
