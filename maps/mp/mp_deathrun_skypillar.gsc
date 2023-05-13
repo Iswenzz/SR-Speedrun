@@ -212,15 +212,9 @@ wait(1);
 platformmove()
 {
 mover=getent("platformmover","targetname");
-while(1)
-{
-mover movey(642,4);
-mover waittill ("movedone");
-wait(0.5);
-mover movey(-642,4);
-mover waittill ("movedone");
-wait(0.5);
-}
+
+mover movey(660,0.1);
+
 }
 
 elevatorjump1()

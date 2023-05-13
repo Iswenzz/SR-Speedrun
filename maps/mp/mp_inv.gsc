@@ -5,7 +5,7 @@
 main()
 {
 	maps\mp\_load::main();
-	maps\mp\_compass::setupMiniMap("compass_mp_citystreets");
+	maps\mp\_compass::setupMiniMap("compass_mp_inv");
  
 	game["allies"] = "sas";
 	game["axis"] = "russian";
@@ -22,8 +22,8 @@ main()
 	setDvar("bg_falldamagemaxheight", 20000000 );
 	setDvar("bg_falldamageminheight", 15000000 );
 
-	thread sr\api\_map::createSpawn((4623, 1459, 80), 275);
+	thread sr\api\_map::createSpawn((-1450, 499, 60), 333);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	thread sr\api\_speedrun::createEndMap((4817, -2621, 59), 120, 50);
+	thread sr\api\_speedrun::createEndMap((259.509, -2073.4, 128.125), 70, 70);
 
 }

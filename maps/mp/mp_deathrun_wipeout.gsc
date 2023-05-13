@@ -34,16 +34,6 @@ trigger.radius = 300;
 	}
 	}
 
-	kicker=getentarray("kicker","targetname");
-	if(isdefined(kicker))
-	{
-	for(i=0;i<kicker.size;i++)
-	{
-	kicker[i] thread trap_kicker();
-	}
-	}
-
-
 
 	finalsweeperarm=getentarray("Final_Sweper","targetname");
 	if(isdefined(finalsweeperarm))
@@ -53,8 +43,9 @@ trigger.radius = 300;
 	finalsweeperarm[i] delete();
 	}
 	}
-
-	thread way_connect();
+	
+    thread way_connect();
+	thread kicker_fix();
 	//startthreads
 	// thread credit();
 	thread Spinner_Floor();
@@ -96,6 +87,13 @@ way_connect()
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
+kicker_fix()
+{
+kicker = getEnt("kicker","targetname");
+
+kicker delete();
+
+}
 
 addtriggers()
 {
@@ -420,38 +418,6 @@ pusherhigh movex(32,1);
 pusherhigh waittill("movedone");
 pusherhigh movex(-32,1);
 }
-}
-}
-
-trap_kicker()
-{
-snordmg = getEnt("snor", "targetname");
-snordmgorigin = getEnt("snor_origin", "targetname");
-snordmg.dmg = 0;
-snordmg enablelinkto();
-snordmg linkto(snordmgorigin);
-trigger = getEnt("Kick_Trap", "targetname");
-if (!isdefined(self.speed))
- self.speed = 2;
-if (!isdefined(self.script_noteworthy))
- self.script_noteworthy = "x";
-while(1)
-{
-trigger waittill("trigger", player);
-wait(2);
-if (self.script_noteworthy == "z")
-  self rotateYaw(360,self.speed);
- else if (self.script_noteworthy == "x")
-  self rotateRoll(360,self.speed);
- else if (self.script_noteworthy == "y")
-  self rotatePitch(360,self.speed);
- wait(0.5);
- snordmg.dmg = 10;
- snordmgorigin movez(32,0.2);
- wait(1);
- snordmg.dmg = 0;
- snordmgorigin movez(-32,0.2);
- wait(1);
 }
 }
 

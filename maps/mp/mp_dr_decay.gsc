@@ -30,7 +30,6 @@ start()
 {
 startdoor = getent("start_door", "targetname");  
 
-wait 0.1;
 startdoor delete();
 }
 
@@ -38,7 +37,6 @@ start2()
 {
 wall = getent("trap7_wall", "targetname"); 
 
-wait 0.1;
 wall moveZ(-200, 0.1);
 }
 
@@ -47,7 +45,6 @@ spikes()
 spikes = getent("trap2_spikes", "targetname"); 
 hurt = getent("trap2_hurt", "targetname");
 
-wait 0.1;
 spikes delete();
 hurt delete();
 }
@@ -56,7 +53,6 @@ trap1()
 {
 hurt = getentArray("trap1_hurt", "targetname");  
 
-wait 0.1;
 hurt[0] delete();
 hurt[1] delete();
 

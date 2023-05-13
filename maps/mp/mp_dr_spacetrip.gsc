@@ -21,7 +21,7 @@ main()
     thread sr\api\_speedrun::createTeleporter((423.101, -5945.51, -355.875), 60, 70, (3197, -4699, 181), 315, "freeze", "orange", "secret_1");
     thread sr\api\_speedrun::createTeleporter((-292.093, -5759.71, -355.875), 60, 70, (3093, 6067, -517), 1, "freeze", "red", "secret_2");
     thread sr\api\_speedrun::createEndMap((14310.5, -363.469, -355.875),115,100, "normal_0");
-    thread sr\api\_speedrun::createEndMap((5747.42, -9712.53, -597.875),100,100, "secret_0");
+    thread sr\api\_speedrun::createEndMap((-5877.82, -9706.56, -597.803),110,100, "secret_0");
     thread sr\api\_speedrun::createEndMap((8107.27, -10606, -1276.88),155,100, "secret_1");
     thread sr\api\_speedrun::createEndMap((5608.12, 11794.7, -1531.88),50,100, "secret_2");
 	

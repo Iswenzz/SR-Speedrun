@@ -3,9 +3,6 @@ main()
 thread sr\api\_map::createSpawnOrigin((-12, 356, 0), 266);
 	maps\mp\_load::main();
 
-
-
-
 	game["allies"] = "sas";
 	game["axis"] = "russian";
 	game["attackers"] = "axis";
@@ -21,13 +18,12 @@ thread sr\api\_map::createSpawnOrigin((-12, 356, 0), 266);
 	setdvar("bg_fallDamageMaxHeight", "99999");
     setdvar("bg_FallDamageMinHeight","99998");
 
-      	  thread sr\api\_speedrun::createNormalWays("Normal Way;Pure Strafe");
-	  thread sr\api\_speedrun::createSecretWays("Inter Secret;Hard Secret;");
-	  thread sr\api\_speedrun::createEndMap((4351.44, -16337.2, -4095.88),105,10,"normal_0");
-	  thread sr\api\_speedrun::createEndMap((-2.44038, 5282.71, -439.123),180,10,"normal_1");
-	  thread sr\api\_speedrun::createEndMap((12725.7, 33183.3, 12456.1),70,10,"secret_0");
-	  thread sr\api\_speedrun::createEndMap((-14934.6, 103.061, 21277.1),120,10,"secret_1");
-	  thread sr\api\_speedrun::createEndMap((4352.06, -16433, -4095.88), 260, 10);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;Pure Strafe");
+	thread sr\api\_speedrun::createSecretWays("Inter Secret;Hard Secret;");
+	thread sr\api\_speedrun::createEndMap((4352.06, -16433, -4095.88),260,10,"normal_0");
+	thread sr\api\_speedrun::createEndMap((-2.44038, 5108.88, -439.123),180,10,"normal_1");
+	thread sr\api\_speedrun::createEndMap((12725.7, 33183.3, 12456.1),70,10,"secret_0");
+	thread sr\api\_speedrun::createEndMap((-14934.6, 103.061, 21277.1),120,10,"secret_1");
 
 
 	precacheModel("iw_zapper_view");
@@ -50,13 +46,13 @@ thread sr\api\_map::createSpawnOrigin((-12, 356, 0), 266);
     precacheshader("mtl_chucky_body");
 	precacheModel("plr_terry_chucky");
 	precacheModel("plr_terry_hitler");
-	 precacheshader("mtl_hitler_head");
-	  precacheshader("mtl_hitler_body");
-	   precacheshader("mtl_hitler_teeth");
-	    precacheshader("mtl_hitlerhead");
-		 precacheshader("mtl_hitlerbody");
-		 precacheshader("mtl_hulk_endgame");
-         precacheModel("plr_terry_hulk");
+	precacheshader("mtl_hitler_head");
+	precacheshader("mtl_hitler_body");
+	precacheshader("mtl_hitler_teeth");
+	precacheshader("mtl_hitlerhead");
+	precacheshader("mtl_hitlerbody");
+	precacheshader("mtl_hulk_endgame");
+    precacheModel("plr_terry_hulk");
 
 
 	thread pure_strafe();

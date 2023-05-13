@@ -1,10 +1,10 @@
 /*
 
-  _|_|_|            _|      _|      _|                  _|
-_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|
-  _|_|    _|    _|      _|          _|        _|    _|  _|      _|
-      _|  _|    _|    _|  _|        _|        _|    _|  _|    _|
-_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|
+  _|_|_|            _|      _|      _|                  _|            
+_|        _|    _|    _|  _|        _|          _|_|    _|  _|_|_|_|  
+  _|_|    _|    _|      _|          _|        _|    _|  _|      _|    
+      _|  _|    _|    _|  _|        _|        _|    _|  _|    _|      
+_|_|_|      _|_|_|  _|      _|      _|_|_|_|    _|_|    _|  _|_|_|_|  
 
 Map and GSC Made By SuX Lolz.
 
@@ -22,17 +22,16 @@ Email Pro: suxlolz@outlook.fr
 
 main()
 {
-thread sr\api\_map::createSpawnOrigin((7284, 9572, -704), 60);
 	maps\mp\_load::main();
 	maps\mp\_compass::setupMiniMap("compass_mp_sr_pure_cancer");
-
+ 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-
+ 
 	setdvar("r_specularcolorscale","1");
 	setdvar("compassmaxrange","1600");
 	setdvar("r_glowbloomintensity0",".1");
@@ -41,6 +40,7 @@ thread sr\api\_map::createSpawnOrigin((7284, 9572, -704), 60);
 	setDvar("bg_falldamagemaxheight", 20000000 );
 	setDvar("bg_falldamageminheight", 15000000 );
 
-		thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	thread sr\api\_speedrun::createEndMap((-1287, 1923, 480), 120, 100);
+	thread sr\api\_map::createSpawn((7284, 9572, -644), 90);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_speedrun::createEndMap((7335.93, 9887.84, -567.875), 40, 60);
 }

@@ -1,6 +1,5 @@
 main()
 {
-thread sr\api\_map::createSpawnOrigin((1292, -310, 70), 270);
 maps\mp\_load::main();
 
 game["allies"] = "marines";
@@ -9,7 +8,7 @@ game["attackers"] = "axis";
 game["defenders"] = "allies";
 game["allies_soldiertype"] = "desert";
 game["axis_soldiertype"] = "desert";
-
+ 
 setdvar("r_specularcolorscale","1");
 setdvar("compassmaxrange","1600");
 setdvar("r_glowbloomintensity0",".1");
@@ -18,20 +17,32 @@ setdvar("r_glowskybleedintensity0",".1");
 setDvar("bg_falldamagemaxheight", 20000000 );
 setDvar("bg_falldamageminheight", 15000000 );
 
+thread sr\api\_map::createSpawn((1292, -310, 130), 270);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
-thread sr\api\_speedrun::createEndMap((-3137.81, -10.0093, 81.125), 100, 10);
+thread sr\api\_speedrun::createEndMap((-3137.81, -10.0093, 81.125), 100, 150);
 
 thread doors();
+thread plat();
 }
 
-doors()
+doors() 
 {
-door = getent("startdoor", "targetname");
-door1 = getent("porte1", "targetname");
-door2 = getent("porte2", "targetname");
-
-wait 0.1;
+door = getent("startdoor", "targetname"); 
+door1 = getent("porte1", "targetname"); 
+door2 = getent("porte2", "targetname"); 
+	
 door delete();
 door1 delete();
 door2 delete();
+
+}
+
+plat()
+{
+plat1 = getent("automove2", "targetname"); 
+
+plat1 moveX(-160,0.1);
+wait 0.2;
+plat1 RotateYaw(90,0.1);
+
 }
