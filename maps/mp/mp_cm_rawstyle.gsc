@@ -20,8 +20,8 @@ maps\mp\_load::main();
 	thread startdoor();
 	thread sr\api\_map::createSpawn((243,-1152,486),90);
     thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	thread sr\api\_speedrun::createTeleporter((-4571.33, 298.102, -807.875), 95, 245, (-6586, 293, -698), 180, "freeze", "cyan", "normal_0");
-	thread sr\api\_speedrun::createTeleporter((-8887.05, 301.988, -1407.88), 125, 150, (-9043, 294, -938), 180, "freeze", "cyan", "normal_0");
+	thread sr\api\_speedrun::createTeleporter((-4571.33, 298.102, -807.875), 95, 245, (-6591, 291, -752), 180, "freeze", "cyan");
+	thread sr\api\_speedrun::createTeleporter((-8887.05, 301.988, -1407.88), 125, 150, (-9043, 294, -938), 180, "freeze", "cyan");
 	
 }
 

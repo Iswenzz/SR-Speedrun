@@ -72,19 +72,12 @@ thread sr\api\_map::createSpawnOrigin((19.482, 126.786, 4.125), 74);
 	thread way_connect();
 
 	thread startdoor();
-	thread tele1();
 	thread mover1();
 	thread lastmover();
-	thread secret_start();
+	thread secretrig_e();
+	thread secretrig_h();
 	thread secret_e_end();
 	thread secret_h_end();
-	thread secret_e_fail1();
-	thread secret_e_fail2();
-	thread secret_e_fail3();
-	thread secret_h_fail1();
-	thread secret_h_fail2();
-	thread secret_h_fail3();
-	thread secret_h_fail4();
 	thread secretrig_h();
 	thread acti_tele1();
 	thread acti_tele1back();
@@ -120,6 +113,7 @@ thread sr\api\_map::createSpawnOrigin((19.482, 126.786, 4.125), 74);
 	thread h_rpg();
 	thread sg_up();
 	thread sr_tp();
+	thread sr_tp2();
 }
 
 sr_tp()
@@ -140,11 +134,31 @@ sr_tp()
 	}
 }
 
+sr_tp2()
+{
+	trig = spawn("trigger_radius",(-124.553, 306.589, 4.125), 0, 50, 100);
+	trig.radius = 50;
+	ori_t = getEnt("secretrig_go","targetname");
+
+	wait 1;
+	thread sr\api\_map::createTriggerFx(trig, "blue");
+
+	for(;;)
+	{
+		trig waittill("trigger",player);
+
+		player SetOrigin(ori_t.origin);
+		player SetPlayerAngles(ori_t.angles);
+	}
+}
+
+
 way_connect()
 {
     wait 0.05;
 
     sr\api\_speedrun::createNormalWays("Normal Way;");
+	sr\api\_speedrun::createSecretWays("^2Easy Secret;^1Hard Secret;");
 
     for(;;)
     {
@@ -165,23 +179,11 @@ addTriggerToList(name)
 	object1 = getent("startdoor1","targetname");
 	object2 = getent("startdoor2","targetname");
 	tap4_wat = getent("tap4_wat","targetname");
-	tap4_wat hide();
-	tap4_wat notSolid();
-	wait 1;
-	object1 rotateyaw(100,4);
-	object2 rotateyaw(-100,4);
-}
-	tele1()
-{
-	trig = getEnt ("tele1", "targetname");
-	end = getEnt ("tele1_go", "targetname");
-	while(1)
-    	{
-        trig waittill ("trigger", player);
-	player SetOrigin(end.origin);
-        player SetPlayerAngles( end.angles );
-	iPrintlnBold (" ^5" + player.name + " ^7 Entered the helipad!");
-	}
+
+	tap4_wat delete();
+	object1 delete();
+	object2 delete();
+
 }
 
 	mover1()
@@ -212,166 +214,72 @@ addTriggerToList(name)
 }
 
 
-
-
-	secret_start()
+secretrig_e()
 {
-	trig = getEnt ("secretrig", "targetname");
-	end = getEnt ("secretrig_go", "targetname");
-	while(1)
-    	{
-        trig waittill ("trigger", player);
+	trig = getEnt ("secretrig_e", "targetname");
+	end = getEnt ("secretrig_e_go", "targetname");
+	for(;;)
+    {
+    trig waittill ("trigger", player);
+	player thread sr\api\_speedrun::changeWay("secret_0");       
 	player SetOrigin(end.origin);
-        player SetPlayerAngles( end.angles );
+    player SetPlayerAngles( end.angles );
+	player freezeControls(1);
+	wait 0.05;
+	player freezeControls(0);
 	}
 
-
+	
 }
 
-
-
-
-
-
-	secretrig_h()
+secretrig_h()
 {
 	trig = getEnt ("secretrig_h", "targetname");
 	end = getEnt ("secretrig_h_go", "targetname");
-	while(1)
-    	{
-        trig waittill ("trigger", player);
-	player thread secret_timer_hard();
+	for(;;)
+    {
+    trig waittill ("trigger", player);
+	player thread sr\api\_speedrun::changeWay("secret_1");        
 	player SetOrigin(end.origin);
-        player SetPlayerAngles( end.angles );
+    player SetPlayerAngles( end.angles );
+	player freezeControls(1);
+	wait 0.05;
+	player freezeControls(0);
 	}
 
-
+	
 }
 
-	secret_e_end()
+secret_e_end()
 {
 	trig = getEnt ("secret_e_end", "targetname");
 	end = getEnt ("secret_e_end_go", "targetname");
-	while(1)
-    	{
-        trig waittill ("trigger", player);
+	for(;;)
+    {
+    trig waittill ("trigger", player);
+	player thread sr\api\_speedrun::finishWay("secret_0");
 	player notify("secret1_done");
-	player.secretTimer destroy();
-	player braxi\_rank::giveRankXP("", 420);
-	iPrintlnBold( " ^3" + player.name + " ^7Finished the ^3easy ^7secret." );
 	player SetOrigin(end.origin);
-        player SetPlayerAngles( end.angles );
+    player SetPlayerAngles( end.angles );
 	}
 
 }
 
-	secret_h_end()
+secret_h_end()
 {
 	trig = getEnt ("secret_h_end", "targetname");
 	end = getEnt ("secret_h_end_go", "targetname");
-	while(1)
-    	{
-        trig waittill ("trigger", player);
+	for(;;)
+    {
+    trig waittill ("trigger", player);
+	player thread sr\api\_speedrun::finishWay("secret_1");
 	player notify("secret2_done");
-	player.secretTimer2 destroy();
-	player braxi\_rank::giveRankXP("", 666);
-	iPrintlnBold( " ^3" + player.name + " ^7Finished the ^1hard ^7secret." );
 	player SetOrigin(end.origin);
-        player SetPlayerAngles( end.angles );
+    player SetPlayerAngles( end.angles );
 	}
 
 }
 
-	secret_e_fail1()
-{
-	trig = getEnt ("secret_e_fail1", "targetname");
-	end = getEnt ("secret_e_fail1_go", "targetname");
-	while(1)
-    	{
-        trig waittill ("trigger", player);
-	player SetOrigin(end.origin);
-        player SetPlayerAngles( end.angles );
-	}
-
-}
-
-	secret_e_fail2()
-{
-	trig = getEnt ("secret_e_fail2", "targetname");
-	end = getEnt ("secret_e_fail2_go", "targetname");
-	while(1)
-    	{
-        trig waittill ("trigger", player);
-	player SetOrigin(end.origin);
-        player SetPlayerAngles( end.angles );
-	}
-
-}
-
-	secret_e_fail3()
-{
-	trig = getEnt ("secret_e_fail3", "targetname");
-	end = getEnt ("secret_e_fail3_go", "targetname");
-	while(1)
-    	{
-        trig waittill ("trigger", player);
-	player SetOrigin(end.origin);
-        player SetPlayerAngles( end.angles );
-	}
-
-}
-
-	secret_h_fail1()
-{
-	trig = getEnt ("secret_h_fail1", "targetname");
-	end = getEnt ("secret_h_fail1_go", "targetname");
-	while(1)
-    	{
-        trig waittill ("trigger", player);
-	player SetOrigin(end.origin);
-        player SetPlayerAngles( end.angles );
-	}
-
-}
-
-	secret_h_fail2()
-{
-	trig = getEnt ("secret_h_fail2", "targetname");
-	end = getEnt ("secret_h_fail2_go", "targetname");
-	while(1)
-    	{
-        trig waittill ("trigger", player);
-	player SetOrigin(end.origin);
-        player SetPlayerAngles( end.angles );
-	}
-
-}
-
-	secret_h_fail3()
-{
-	trig = getEnt ("secret_h_fail3", "targetname");
-	end = getEnt ("secret_h_fail3_go", "targetname");
-	while(1)
-    	{
-        trig waittill ("trigger", player);
-	player SetOrigin(end.origin);
-        player SetPlayerAngles( end.angles );
-	}
-
-}
-
-	secret_h_fail4()
-{
-	trig = getEnt ("secret_h_fail4", "targetname");
-	end = getEnt ("secret_h_fail4_go", "targetname");
-	while(1)
-    	{
-        trig waittill ("trigger", player);
-	player SetOrigin(end.origin);
-        player SetPlayerAngles( end.angles );
-	}
-
-}
 
 	acti_tele1()
 {

@@ -167,7 +167,7 @@ intermission()
 
 deleteUnsupportedWeapons()
 {
-	weapons = strTok("knife_mp,m16_gl_mp,ak74u_reflex_mp,ak74u_acog_mp,ak74u_silencer_mp,dog_mp,shovel_mp", ",");
+	weapons = strTok("airstrike_mp,ak74u_acog_mp,ak74u_reflex_mp,ak74u_silencer_mp,artillery_mp,cobra_20mm_mp,cobra_FFAR_mp,dog_mp,fortnite_mp,knife_mp,m16_gl_mp,saw_mp,tomahawk_mp", ",");
 
 	for (i = 0; i < weapons.size; i++)
 	{

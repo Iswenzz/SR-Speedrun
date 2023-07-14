@@ -1,18 +1,18 @@
 main()
 {
 	maps\mp\_load::main();
-	
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
     setdvar( "r_glowbloomintensity0", ".25" );
     setdvar( "r_glowbloomintensity1", ".25" );
-    setdvar( "r_glowskybleedintensity0", ".3" );	
+    setdvar( "r_glowskybleedintensity0", ".3" );
     setdvar( "compassmaxrange", "1800" );
 	setDvar("bg_falldamagemaxheight", 15000 );
 	setDvar("bg_falldamageminheight", 10000 );
@@ -44,7 +44,7 @@ startdoor()
 {
 	start = getEnt("startdoor","targetname");
 	trap6 = getEnt("trap_6_object","targetname");
-	
+
 	start delete();
 	trap6 delete();
 }
@@ -54,35 +54,39 @@ on_rope(trigger_entity, origin_1_entity, origin_2_entity)
 	trigger = getEnt(trigger_entity, "targetname");
 	start = getEnt(origin_1_entity, "targetname");
 	end = getEnt(origin_2_entity, "targetname");
-	
+
 	for(;;)
 	{
 		trigger waittill("trigger", player);
-		
+
 		if (isalive(player) && isdefined(player) && !player.isOnRope)
-		{	
+		{
 			player disableWeapons();
 			player.isOnRope = true;
 			thread do_rope(player, start, end);
 		}
-		
+
 		wait .05;
 	}
 }
 
 do_rope(player, start, end)
 {
+    player sr\api\_player::antiElevator(false);
+
 	src_model = spawn ( "script_model", (5, 7, 1));
 	src_model.origin = player.origin;
-	
+
 	player LinkTo(src_model);
 	src_model moveTo(start.origin, 2, 1, 1);
 	wait 2;
-	
+
 	player enableWeapons();
 	src_model moveTo(end.origin, .5, .25, .25);
 	wait .5;
-	
+
+    player sr\api\_player::antiElevator(true);
+
 	player UnLink();
 	src_model delete();
 	player.isOnRope = false;
@@ -96,36 +100,36 @@ trap_3(spikes_1_entity, spikes_2_entity, spikes_3_entity, hurt_1_entity, hurt_2_
 	hurt_1 = getEnt(hurt_1_entity, "targetname");
 	hurt_2 = getEnt(hurt_2_entity, "targetname");
 	hurt_3 = getEnt(hurt_3_entity, "targetname");
-	
+
 	hurt_1 enableLinkTo();
 	hurt_1 linkTo(spikes_1);
-	
+
 	hurt_2 enableLinkTo();
 	hurt_2 linkTo(spikes_2);
-	
+
 	hurt_3 enableLinkTo();
 	hurt_3 linkTo(spikes_3);
-	
+
 	spikes_1 notSolid();
 	spikes_2 notSolid();
 	spikes_3 notSolid();
-	
+
 	spikes_1 moveZ(-92, .1);
 	spikes_2 moveZ(-92, .1);
 	spikes_3 moveZ(-92, .1);
 	wait .2;
-	
+
 }
 
 do_trigger_death(trigger_entity)
 {
 	trigger = getEnt(trigger_entity, "targetname");
-	
+
 	for(;;)
 	{
 		trigger waittill("trigger", player);
-		
-		if(isDefined(player) && isAlive(player) && !player.isDead)
+
+		if(isDefined(player) && isAlive(player) && isDefined(player.isDead) && !player.isDead)
 		{
 			player.isDead = true;
 			thread on_death(player);
@@ -138,13 +142,13 @@ on_death(player)
 	while(isDefined(player) && isAlive(player))
 	{
 		wait .05;
-		
+
 		if(player IsOnGround())
 			break;
 	}
-	
+
 	player.isDead = false;
-	
+
 	if(isAlive(player))
 		player suicide();
 }

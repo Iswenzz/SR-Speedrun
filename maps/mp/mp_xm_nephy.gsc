@@ -22,4 +22,13 @@ main()
 	setDvar("bg_fallDamageMaxHeight", "99999");
 	setDvar("bg_fallDamageMinHeight", "99998");
 
+	thread deleteZapper();
+
+}
+
+deleteZapper()
+{
+    weapons = getEntArray("weapon_nes_zapper_mp", "classname");
+    for (i = 0; i < weapons.size; i++)
+        weapons[i] delete();
 }

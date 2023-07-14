@@ -2,60 +2,47 @@
 main()
 {
 maps\mp\_load::main();
-	
+
 PreCacheItem("deserteaglegold_mp");
         PreCacheItem("winchester1200_mp");
         PreCacheItem("skorpion_mp");
         PreCacheItem("remington700_mp");
-	
-	
-	
+
+
+
 	addTriggerToList( "t1" );
-		addTriggerToList( "t2" );
-		addTriggerToList( "t3" );
-		addTriggerToList( "t4" );
-		addTriggerToList( "t5" );
-		addTriggerToList( "t6" );
-		addTriggerToList( "t7" );
-		addTriggerToList( "t8" ); 
+	addTriggerToList( "t2" );
+	addTriggerToList( "t3" );
+	addTriggerToList( "t4" );
+	addTriggerToList( "t5" );
+	addTriggerToList( "t6" );
+	addTriggerToList( "t7" );
+	addTriggerToList( "t8" );
 
-		trigger = spawn( "trigger_radius", (-1050.02, -1915.34, 320.125), 0, 210, 100 );
-        trigger.targetname = "endmap_trig";
-        trigger.radius = 210;
+        thread sr\api\_map::createSpawn((685,-65,252),180);
+ 		thread sr\api\_speedrun::createNormalWays("Normal Way;");
+        thread sr\api\_speedrun::createSecretWays("1K Way;");
+        thread sr\api\_speedrun::createWay((-1271, 257, 556), 1000, 150, "none", "secret_0");
+        thread sr\api\_speedrun::createEndMap((-1050.02, -1915.34, 320.125), 210, 100);
 
-		thread way_connect();
-	
-//thread rotate(); 
-//thread trap1(); 
-//thread trap2();  
-//thread trap3();  
-//thread trap4(); 
-//thread trap5(); 
-//thread trap6();  
-//thread trap7(); 
-//thread trap8(); 
-//thread givesniper(); 
-//thread sniper_room();  
-//thread knife_room(); 
-}
-
-way_connect()
-{
-    wait 0.05;
-
-    sr\api\_speedrun::createNormalWays("Normal Way;");
-
-    for(;;) 
-    {
-        level waittill( "connected", player );
-
-    }
+//thread rotate();
+//thread trap1();
+//thread trap2();
+//thread trap3();
+//thread trap4();
+//thread trap5();
+//thread trap6();
+//thread trap7();
+//thread trap8();
+//thread givesniper();
+//thread sniper_room();
+//thread knife_room();
 }
 
 givesniper()
 {
         trigger = getEnt("wepsniper", "targetname");
-        precacheItem("remington700_mp");    
+        precacheItem("remington700_mp");
         while(1)
         {
                 trigger waittill("trigger", player);
@@ -82,8 +69,8 @@ brush = getEnt ("b1", "targetname");
 trig = getEnt ("t1", "targetname");
 trig waittill ("trigger");
 
-		
-	
+
+
 }
 
 
@@ -151,25 +138,25 @@ sniper_room()
     level.sniper_trig = getEnt( "sniper_room", "targetname");
         jump = getEnt( "sniper_jump", "targetname" );
         acti = getEnt( "sniper_acti", "targetname");
-   
+
         while(1)
         {
                 level.sniper_trig waittill( "trigger", player );
                 if( !isDefined( level.sniper_trig ) )
                         return;
-               
+
                 level.wall_trig delete();
                 level.knife_trig delete();
-                                 
-                                     
+
+
                 player SetPlayerAngles( jump.angles );
                 player setOrigin( jump.origin );
                 player TakeAllWeapons();
-                player GiveWeapon( "remington700_mp" );        
+                player GiveWeapon( "remington700_mp" );
                 level.activ setPlayerangles( acti.angles );
                 level.activ setOrigin( acti.origin );
                 level.activ TakeAllWeapons();
-                level.activ GiveWeapon( "remington700_mp" );          
+                level.activ GiveWeapon( "remington700_mp" );
                 wait 0.05;
                 player switchToWeapon( "remington700_mp" );
                 level.activ SwitchToWeapon( "remington700_mp" );
@@ -177,32 +164,32 @@ sniper_room()
                 while( isAlive( player ) && isDefined( player ) )
                         wait 1;
         }
-}              
+}
 
 knife_room()
 {
     level.knife_trig = getEnt( "kroom", "targetname");
         jump = getEnt( "knife_jump", "targetname");
         acti = getEnt( "knife_acti", "targetname");
-   
+
         while(1)
         {
                 level.knife_trig waittill( "trigger", player );
                 if( !isDefined( level.knife_trig ) )
                         return;
-               
+
                 level.sniper_trig delete();
                 level.wall_trig delete();
-                                 
-                                     
+
+
                 player SetPlayerAngles( jump.angles );
                 player setOrigin( jump.origin );
                 player TakeAllWeapons();
-                player GiveWeapon( "tomahawk_mp" );            
+                player GiveWeapon( "tomahawk_mp" );
                 level.activ setPlayerangles( acti.angles );
                 level.activ setOrigin( acti.origin );
                 level.activ TakeAllWeapons();
-                level.activ GiveWeapon( "tomahawk_mp" );              
+                level.activ GiveWeapon( "tomahawk_mp" );
                 wait 0.05;
                 player switchToWeapon( "tomahawk_mp" );
                 level.activ SwitchToWeapon( "tomahawk_mp" );
@@ -211,4 +198,3 @@ knife_room()
                         wait 1;
         }
 }
- 

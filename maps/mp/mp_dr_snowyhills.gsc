@@ -17,11 +17,13 @@ main()
 
     thread Start();
     thread StartingThings();
-	thread JumpPad1();
-	thread JumpPad2();
+	//thread JumpPad1();
+	//thread JumpPad2();
 
 	thread sr\api\_map::createSpawn((505,-979,76),89);
     thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createTeleporter((509.722, 952.438, 208.125), 100, 100, (409, 2184, 908), 178, "freeze", "blue");
+    thread sr\api\_speedrun::createTeleporter((-4096.1, 3522.63, -815.875), 100, 100, (-4103, 4482, 61), 90, "freeze", "blue");
 	thread sr\api\_speedrun::createEndMap((3264.89, 4611.97, -2695.88), 185, 200, "normal_0");
 
 }

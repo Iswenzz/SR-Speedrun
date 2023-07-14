@@ -21,7 +21,7 @@ main()
    addTriggerToList("trig_trap3");
 
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
-thread sr\api\_map::createSpawn((466,870,-52),357);
+thread sr\api\_map::createSpawn((465,-96,-52 ),0);
 
   thread vistic_logo();
   //thread trap1remove();

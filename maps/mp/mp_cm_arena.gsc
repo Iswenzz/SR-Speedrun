@@ -15,7 +15,7 @@ game["axis_soldiertype"] = "desert";
    setdvar("r_glowskybleedintensity0",".1");
 
 thread startdoor();
-thread sr\api\_map::createSpawnOrigin((77, 333, 32), 179);
+thread sr\api\_map::createSpawn((77, 333, 32), 179);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
 }

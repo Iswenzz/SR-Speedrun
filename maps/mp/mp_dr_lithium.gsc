@@ -15,12 +15,10 @@ maps\mp\_load::main();
 	setDvar("bg_falldamageminheight", 15000 );
 
 thread sr\api\_map::createSpawnOrigin((-128.942, 140.800, 16.125), 180);
-thread sr\api\_speedrun::createNormalWays("Secret Way;");
-thread sr\api\_speedrun::createSecretWays("Normal Way;");
-thread sr\api\_speedrun::createWay((-1585.7, 139.399, -15.875), 395, 480, "none", "secret_0");
+thread sr\api\_speedrun::createNormalWays("Normal Way;");
+thread sr\api\_speedrun::createSecretWays("Secret Way;");
 thread sr\api\_speedrun::createTeleporter((1012.95, -3201.73, -15.875), 85, 80, (1905,-3380,44), 0, "freeze", "blue");
-thread sr\api\_speedrun::createEndMap((6899.93, -2205.18, -223.875), 120, 185, "secret_0");
-thread sr\api\_speedrun::createEndMap((6899.93, -2205.18, -223.875), 120, 185, "normal_0");
+thread sr\api\_speedrun::createEndMap((6899.93, -2205.18, -223.875), 120, 185);
 
 
 	entTransporter = getentarray( "enter", "targetname" );
@@ -30,8 +28,6 @@ thread sr\api\_speedrun::createEndMap((6899.93, -2205.18, -223.875), 120, 185, "
 
 //essentials
 thread transporter();
-thread anti_secret_glitch1();
-thread anti_secret_glitch2();
 // thread games();
 // thread credits();
 thread secret11();
@@ -93,43 +89,20 @@ addTriggerToList( name )
     level.trapTriggers[level.trapTriggers.size] = getEnt( name, "targetname" );
 }
 
-anti_secret_glitch1() 
-{
-	for(;;)
-	{
-		self waittill( "trigger", player );
-		entTarget = getEnt( self.target, "targetname" );
-		if ( self.target == "gohere2") {
-			player sr\api\_speedrun::changeWay("normal_0");
-		}
-		player setOrigin( entTarget.origin );
-		player setplayerangles( entTarget.angles );
-		wait 0.1;
-	}
-}
-
-anti_secret_glitch2() 
-{
-	for(;;)
-	{
-		self waittill( "trigger", player );
-		entTarget = getEnt( self.target, "targetname" );
-		if ( self.target == "gohere11") {
-			player sr\api\_speedrun::changeWay("normal_0");
-		}
-		player setOrigin( entTarget.origin );
-		player setplayerangles( entTarget.angles );
-		wait 0.1;
-	}
-}
-
-
 transporter()
 {
 	for(;;)
 	{
 		self waittill( "trigger", player );
 		entTarget = getEnt( self.target, "targetname" );
+
+		if ( self.target == "gohere2") {
+			player sr\api\_speedrun::changeWay("secret_0");
+		}
+		if ( self.target == "gohere11") {
+			player sr\api\_speedrun::changeWay("secret_0");
+		}
+
 		player setOrigin( entTarget.origin );
 		player setplayerangles( entTarget.angles );
 	}

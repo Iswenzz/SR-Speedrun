@@ -1,5 +1,4 @@
 main() {
-thread sr\api\_map::createSpawnOrigin((-74, -9, 0), 360);
 
 	maps\mp\_load::main();
 
@@ -20,21 +19,22 @@ thread sr\api\_map::createSpawnOrigin((-74, -9, 0), 360);
     preCacheItem( "m40a3_mp" );
     preCacheItem( "remington700_mp" );
 
-    thread sr\api\_speedrun::createNormalWays("Normal Way");
-    thread sr\api\_speedrun::createSecretWays("Secret Way");
-        thread sr\api\_speedrun::createTeleporter((452.335, 208.407, 0.125), 80, 80, (4071, 1945, 412), 134, "freeze", "blue", "secret_0");
+    thread sr\api\_map::createSpawn((-74,-9,60),360);
+    thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("Secret Way;");
+    thread sr\api\_speedrun::createTeleporter((452.335, 208.407, 0.125), 80, 80, (4071, 1945, 412), 134, "freeze", "blue", "secret_0");
 
     // Other
-    thread credits();
-    thread music();
-    thread annoy_light();
+    //thread credits();
+    //thread music();
+    //thread annoy_light();
 
     // VIP
-    thread vip();
+    //thread vip();
 
     // Secret
     // thread secret_activate();
-    thread secret_fail();
+    //thread secret_fail();
     thread secret_finish();
     // thread secret_check_1();
     // thread secret_check_2();
@@ -48,10 +48,10 @@ thread sr\api\_map::createSpawnOrigin((-74, -9, 0), 360);
     // thread mover();
 
     // Teleports
-    thread acti_tele_1();
-    thread acti_tele_2();
-    thread acti_tele_3();
-    thread acti_tele_4();
+    //thread acti_tele_1();
+    //thread acti_tele_2();
+    //thread acti_tele_3();
+    //thread acti_tele_4();
 
     thread spawndoor();
     // thread trap1();
@@ -63,12 +63,12 @@ thread sr\api\_map::createSpawnOrigin((-74, -9, 0), 360);
     thread trap7();
 
     // End Rooms
-    thread old();
-    thread knife();
-    thread revolver();
-    thread bounce();
-    thread bounce_weap();
-    thread bounce_fail();
+    //thread old();
+    //thread knife();
+    //thread revolver();
+    //thread bounce();
+    //thread bounce_weap();
+    //thread bounce_fail();
 
 }
 
@@ -351,11 +351,7 @@ secret_finish() {
         trig waittill("trigger", player);
         player SetPlayerAngles( origin_finish.angles );
         player setOrigin( origin_finish.origin );
-        iPrintlnBold(player.name + " Has finished the ^8Secret");
-        iprintln( "^7Enjoy ^82K XP ");
-        // player braxi\_rank::giveRankXp("trap_activation", 1000);
-        // player braxi\_rank::giveRankXp("trap_activation", 1000);
-         player thread sr\api\_speedrun::finishWay("secret_0");
+        player thread sr\api\_speedrun::finishWay("secret_0");
     }
 }
 

@@ -56,13 +56,6 @@ main()
 	thread lastmover();
 	thread secret_e_end();
 	thread secret_h_end();
-	thread secret_e_fail1();
-	thread secret_e_fail2();
-	thread secret_e_fail3();
-	thread secret_h_fail1();
-	thread secret_h_fail2();
-	thread secret_h_fail3();
-	thread secret_h_fail4();
 	thread secretrig_e();
 	thread secretrig_h();
 	//thread acti_tele1();
@@ -121,7 +114,7 @@ sr_tp()
 
 sr_tp2()
 {
-	trig = spawn("trigger_radius",(-124.553, 306.589, 4.125), 0, 50, 30);
+	trig = spawn("trigger_radius",(-124.553, 306.589, 4.125), 0, 50, 100);
 	trig.radius = 50;
 	ori_t = getEnt("secretrig_go","targetname");
 
@@ -257,97 +250,6 @@ secret_h_end()
 	player notify("secret2_done");
 	player SetOrigin(end.origin);
     player SetPlayerAngles( end.angles );
-	}
-
-}
-
-secret_e_fail1()
-{
-	trig = getEnt ("secret_e_fail1", "targetname");
-	end = getEnt ("secret_e_fail1_go", "targetname");
-	while(1)
-    	{
-        trig waittill ("trigger", player);          
-	player SetOrigin(end.origin);
-        player SetPlayerAngles( end.angles );
-	}
-
-}
-
-secret_e_fail2()
-{
-	trig = getEnt ("secret_e_fail2", "targetname");
-	end = getEnt ("secret_e_fail2_go", "targetname");
-	while(1)
-    	{
-        trig waittill ("trigger", player);          
-	player SetOrigin(end.origin);
-        player SetPlayerAngles( end.angles );
-	}
-
-}
-
-secret_e_fail3()
-{
-	trig = getEnt ("secret_e_fail3", "targetname");
-	end = getEnt ("secret_e_fail3_go", "targetname");
-	while(1)
-    	{
-        trig waittill ("trigger", player);          
-	player SetOrigin(end.origin);
-        player SetPlayerAngles( end.angles );
-	}
-
-}
-
-secret_h_fail1()
-{
-	trig = getEnt ("secret_h_fail1", "targetname");
-	end = getEnt ("secret_h_fail1_go", "targetname");
-	while(1)
-    	{
-        trig waittill ("trigger", player);          
-	player SetOrigin(end.origin);
-        player SetPlayerAngles( end.angles );
-	}
-
-}
-
-secret_h_fail2()
-{
-	trig = getEnt ("secret_h_fail2", "targetname");
-	end = getEnt ("secret_h_fail2_go", "targetname");
-	while(1)
-    	{
-        trig waittill ("trigger", player);          
-	player SetOrigin(end.origin);
-        player SetPlayerAngles( end.angles );
-	}
-
-}
-
-secret_h_fail3()
-{
-	trig = getEnt ("secret_h_fail3", "targetname");
-	end = getEnt ("secret_h_fail3_go", "targetname");
-	while(1)
-    	{
-        trig waittill ("trigger", player);          
-	player SetOrigin(end.origin);
-        player SetPlayerAngles( end.angles );
-	}
-
-}
-
-secret_h_fail4()
-{
-	trig = getEnt ("secret_h_fail4", "targetname");
-	end = getEnt ("secret_h_fail4_go", "targetname");
-	while(1)
-    	{
-        trig waittill ("trigger", player);          
-	player SetOrigin(end.origin);
-        player SetPlayerAngles( end.angles );
 	}
 
 }

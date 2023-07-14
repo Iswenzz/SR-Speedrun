@@ -437,7 +437,6 @@ rpg2give = getEnt("give_rpg2","targetname");
 	player giveweapon("rpg_mp");
 	player switchtoweapon("rpg_mp");
 	player givemaxammo("rpg_mp");
-	wait 0.2;
 	}
 }
 
@@ -516,7 +515,6 @@ grpg1 = getEnt("giverpg1","targetname");
 		{
 		player givemaxammo("rpg_mp");
 		}
-	wait 1;
 	}
 }
 

@@ -15,48 +15,51 @@ thread sr\api\_speedrun::cj();
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
 
+	setDvar("bg_falldamagemaxheight", 99999);
+    setDvar("bg_falldamageminheight", 99998);
+
 thread way_connect();
 
-thread endofmap();
+//thread endofmap();
 
 thread move1();
-thread move2();
-thread rotate1();
-thread tele();
+//thread move2();
+//thread rotate1();
+//thread tele();
 thread move1b();
-thread move2b();
-thread rotate1b();
-thread teleb();
+//thread move2b();
+//thread rotate1b();
+//thread teleb();
 
-thread blueblood();
+//thread blueblood();
 
-thread enter1();
-thread journey1();
-thread journey2();
-thread entranceclip();
-thread immigration1();
-thread immigration2();
-thread bouncerfist();
-thread bouncerfoot();
+//thread enter1();
+//thread journey1();
+//thread journey2();
+//thread entranceclip();
+//thread immigration1();
+//thread immigration2();
+//thread bouncerfist();
+//thread bouncerfoot();
 
-thread theshutters();
-thread thedoorshutter();
-thread thejailceiling();
-thread thekilling();
-thread thekilling2();
-thread thekilling3();
-thread thekilling4();
-thread thekilling5();
-thread thekilling6();
-thread thekilling7();
-thread thekilling8();
-thread thekilling9();
-thread thekilling10();
+//thread theshutters();
+//thread thedoorshutter();
+//thread thejailceiling();
+//thread thekilling();
+//thread thekilling2();
+//thread thekilling3();
+//thread thekilling4();
+//thread thekilling5();
+//thread thekilling6();
+//thread thekilling7();
+//thread thekilling8();
+//thread thekilling9();
+//thread thekilling10();
 // thread advertss1();
 // thread advertss2();
 // thread advertss3();
 // thread advertss4();
-thread stairhatch();
+//thread stairhatch();
 
 // thread theprisoner1();
 // thread theprisoner2();
@@ -81,8 +84,8 @@ thread stairhatch();
 // thread thewowteleport3();
 // thread thewowteleport4();
 
-thread bunkerkiller1();
-thread bunkerkiller2();
+//thread bunkerkiller1();
+//thread bunkerkiller2();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -230,15 +233,10 @@ move1()
 frame = getent ("frame","targetname");
 swinger = getent ("swinger","targetname");
 swingertrig = getent ("swingertrig","targetname");
-swingertrig enablelinkto();
-swingertrig linkTo( swinger );
-while(1)
-{
-swinger movex (-2400, 10, 0, 0.5);
-swinger waittill ("movedone");
-swinger movex (2400, 10, 0, 0.5);
-swinger waittill ("movedone");
-}
+
+swinger delete();
+frame delete();
+
 }
 
 move2()
@@ -286,23 +284,15 @@ user setOrigin(org, 0.1);
 }
 
 
-
-
-
 move1b()
 {
 frame2 = getent ("frame2","targetname");
 swinger2 = getent ("swinger2","targetname");
 swinger2trig = getent ("swinger2trig","targetname");
-swinger2trig enablelinkto();
-swinger2trig linkTo( swinger2 );
-while(1)
-{
-swinger2 movex (2400, 10, 0, 0.5);
-swinger2 waittill ("movedone");
-swinger2 movex (-2400, 10, 0, 0.5);
-swinger2 waittill ("movedone");
-}
+
+frame2 delete();
+swinger2 delete();
+
 }
 
 move2b()

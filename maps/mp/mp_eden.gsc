@@ -22,7 +22,7 @@ Email Pro: suxlolz@outlook.fr
 
 main()
 {
-thread sr\api\_map::createSpawnOrigin((400, 5311, -248), 90);
+thread sr\api\_map::createSpawn((542, 6803, -188), 358);
 	maps\mp\_load::main();
 	maps\mp\_compass::setupMiniMap("compass_mp_sr_pure_cancer");
 
@@ -41,6 +41,9 @@ thread sr\api\_map::createSpawnOrigin((400, 5311, -248), 90);
 	setDvar("bg_falldamagemaxheight", 20000000 );
 	setDvar("bg_falldamageminheight", 15000000 );
 
-		thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	thread sr\api\_speedrun::createEndMap((-1287, 1923, 480), 120, 100);
+    precacheItem ("rpg_mp");
+
+    thread sr\api\_speedrun::cj();
+	thread sr\api\_speedrun::createNormalWays("^1Normal Way;");
+	thread sr\api\_speedrun::createEndMap((5732, 6899, -1860), 500, 100);
 }

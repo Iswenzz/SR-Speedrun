@@ -3,7 +3,6 @@
 
 main()
 {
-thread sr\api\_map::createSpawnOrigin((-213, 981, 160), 270);
  maps\mp\_load::main();
 
  game["allies"] = "marines";
@@ -39,11 +38,11 @@ thread sr\api\_map::createSpawnOrigin((-213, 981, 160), 270);
 	//thread trap6();
 	thread trap7();
 	//thread trap8();
-	thread door();
-	thread secret();
-	thread secretweap();
-	thread onPlayerConnect();
-	thread onPlayerConnect2();
+	//thread door();
+	//thread secret();
+	//thread secretweap();
+	//thread onPlayerConnect();
+	//thread onPlayerConnect2();
 	// thread musics();
 	thread startdoor();
 
@@ -56,8 +55,8 @@ thread sr\api\_map::createSpawnOrigin((-213, 981, 160), 270);
 	addTriggerToList( "trig_trap7" );
 	addTriggerToList( "trig_trap8" );
 
-		thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	// thread sr\api\_speedrun::createEndMap((-1287, 1923, 480), 120, 100);
+	thread sr\api\_map::createSpawn((-213, 981, 220), 270);
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 
 }
 
@@ -72,7 +71,6 @@ startdoor()
 {
 door = getEnt("startdoor", "targetname");
 
-wait 0.1;
 door delete();
 
 }
@@ -123,7 +121,7 @@ songMenu()
 
 		if( menu == "songs")
 		{
-			// songs = getDvar(response);
+			songs = getDvar(response);
 
 			if(response == "song1")
 			{
@@ -234,7 +232,7 @@ onPlayerConnect()
 	{
 		level waittill("connecting", player);
 
-		// player thread hud_website();
+		player thread hud_website();
 	}
 }
 
@@ -449,7 +447,6 @@ trap7()
 {
 boom1 = getent("trap7a", "targetname");
 
-wait 0.1;
 boom1 moveZ (-250,0.1);
 
 

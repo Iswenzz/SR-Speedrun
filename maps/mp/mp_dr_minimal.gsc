@@ -68,7 +68,7 @@ oOOOOOO OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO OOOOOOo
     // preCacheModel("plr_mrheyley_venom");
 
     thread startdoor();
-   // thread sniper();
+    //thread sniper();
     //thread bounce();
     //thread bounce_weap();
     //thread bounce_fail();
@@ -98,48 +98,48 @@ oOOOOOO OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO OOOOOOo
     //thread acti_tp2();
     //thread acti_tp3();
     //thread acti_tp4();
-    thread spin1();
-    thread spin2();
-    thread spin3();
-    thread spin4();
-    thread spin5();
-    thread spin6();
-    thread spin7();
-    thread spin8();
-    thread spin9();
-    thread spin10();
-    thread spin11();
-    thread spin12();
-    thread spin13();
-    thread spin14();
-    thread spin15();
-    thread spin16();
-    thread spin17();
-    thread spin18();
+    //thread spin1();
+    //thread spin2();
+    //thread spin3();
+    //thread spin4();
+    //thread spin5();
+    //thread spin6();
+    //thread spin7();
+    //thread spin8();
+    //thread spin9();
+    //thread spin10();
+    //thread spin11();
+    //thread spin12();
+    //thread spin13();
+    //thread spin14();
+    //thread spin15();
+    //thread spin16();
+    //thread spin17();
+    //thread spin18();
     thread slide_door();
     thread tunnel_door();
     //thread vip();
     //thread klein();
-    thread bigspin1();
-    thread bigspin2();
-    thread bigspin3();
-    thread bigspin4();
-    thread bigspin5();
-    thread bigspin6();
-    thread bigspin7();
-    thread bigspin8();
-    thread bigspin9();
-    thread bigspin10();
-    thread bigspin11();
-    thread bigspin12();
-    thread bigspin13();
-    thread bigspin14();
-    thread bigspin15();
-    thread bigspin16();
-    thread bigspin17();
-    thread bigspin18();
-    thread bigspin19();
-    thread bigspin20();
+    //thread bigspin1();
+    //thread bigspin2();
+    //thread bigspin3();
+    //thread bigspin4();
+    //thread bigspin5();
+    //thread bigspin6();
+    //thread bigspin7();
+    //thread bigspin8();
+    //thread bigspin9();
+    //thread bigspin10();
+    //thread bigspin11();
+    //thread bigspin12();
+    //thread bigspin13();
+    //thread bigspin14();
+    //thread bigspin15();
+    //thread bigspin16();
+    //thread bigspin17();
+    //thread bigspin18();
+    //thread bigspin19();
+    //thread bigspin20();
 
 
 
@@ -292,13 +292,10 @@ secret_song()
 
 startdoor()
 {
-level waittill("round_started");
 door = getEnt("start_door", "targetname");
-{
-   door moveZ(498, 10);
-    wait 12;
-    door delete();
-}
+
+door delete();
+
 }
 
 spin1()
@@ -1362,9 +1359,6 @@ slide_door()
     slide = getEnt("slide_door", "targetname");
     trig = getEnt("slide_trig", "targetname");
 
-    trig waittill("trigger", player);
-    slide moveZ(513, 1);
-    wait 2;
     slide delete();
 }
 
@@ -1373,9 +1367,6 @@ tunnel_door()
     tunnel = getEnt("tunnel_door", "targetname");
     trig = getEnt("tunnel_trig", "targetname");
 
-    trig waittill("trigger", player);
-    tunnel moveZ(200, 1);
-    wait 2;
     tunnel delete();
 }
 
