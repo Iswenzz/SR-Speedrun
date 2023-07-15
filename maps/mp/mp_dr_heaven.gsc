@@ -60,7 +60,7 @@ thread sr\api\_map::createSpawnOrigin((240, -470, 28), 180);
 
 	// thread  [AUTO DELETE] trap_bounce2();
 	// thread map_mover();
-	// thread map_mover2();
+	thread map_mover2();
 	thread start_door();
 	thread acti_tele1();
 	thread acti_tele1back();

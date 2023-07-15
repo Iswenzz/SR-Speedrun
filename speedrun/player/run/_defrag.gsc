@@ -23,11 +23,21 @@ start()
 	self setJumpHeight(self.jumpHeight);
 	self setMoveSpeed(self.speed);
 
+	if (!level.defragStartWeapons.size)
+	{
+		for (i = 0; i < level.weapons.size; i++)
+		{
+			weapon = level.weapons[i]["item"];
+			self setWeaponAmmoClip(weapon, 0);
+			self setWeaponAmmoStock(weapon, 0);
+		}
+		return;
+	}
+
 	self takeAllWeapons();
 	for (i = 0; i < level.defragStartWeapons.size; i++)
 	{
 		weapon = level.defragWeapons[level.defragStartWeapons[i]];
-
 		self giveWeapon(weapon);
 		if (i == 0)
 			self setSpawnWeapon(weapon);
