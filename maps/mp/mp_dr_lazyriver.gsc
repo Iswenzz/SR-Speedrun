@@ -3,6 +3,7 @@
 
 main()
 {
+	thread sr\api\_defrag::weapons("");
 	maps\mp\_load::main();
 
 	game["allies"] = "sas";

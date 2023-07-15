@@ -1,5 +1,6 @@
 main()
 {
+	thread sr\api\_defrag::weapons("");
 thread sr\api\_map::createSpawnOrigin((-496, -14, 6), 0);
 	thread sr\api\_speedrun::createNormalWays("^2Easy Way;^1Hard Way;");
 		maps\mp\_load::main();

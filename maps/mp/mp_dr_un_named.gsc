@@ -1,5 +1,6 @@
 main()
 {
+	thread sr\api\_defrag::weapons("");
 thread sr\api\_map::createSpawnOrigin((-15.875, 1424, 16.125), 270);
 	thread onConnect();
 	thread way_connect();

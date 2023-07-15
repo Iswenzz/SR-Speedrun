@@ -2,6 +2,7 @@
 
 main()
  {
+	thread sr\api\_defrag::weapons("");
 thread sr\api\_map::createSpawnOrigin((153.772, 78.118, -3.875), 270);
 trigger = spawn( "trigger_radius", (1507, -871, -896), 0, 300, 300 );
 trigger.targetname = "endmap_trig";

@@ -1,5 +1,6 @@
 main()
 {
+	thread sr\api\_defrag::weapons("");
 thread sr\api\_map::createSpawnOrigin((-2822, 3241, -1008), 270);
 thread sr\api\_speedrun::createNormalWays("Normal Way;Glitch Way;");
 thread sr\api\_speedrun::createWay((-1233.17, 2212.47, 0.124999), 270, 100, "none", "normal_1");

@@ -1,6 +1,7 @@
 //map by Freek Also visit http://infocrawlers.blogspot.com/ for DR plugins and other Essentials
 main()
 {
+	thread sr\api\_defrag::weapons("");
 maps\mp\_load::main();
 
 PreCacheItem("deserteaglegold_mp");

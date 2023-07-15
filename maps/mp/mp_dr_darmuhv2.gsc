@@ -1,5 +1,6 @@
 main()
 {
+	thread sr\api\_defrag::weapons("");
  maps\mp\_load::main();
 
 thread sr\api\_map::createSpawnOrigin((202.275, 257.720, 16.125), 0);

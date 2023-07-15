@@ -1,5 +1,6 @@
 main()
 {
+	thread sr\api\_defrag::weapons("");
 	maps\mp\_load::main();
 
 	setExpFog(600, 600, 0, 0, 0, 0);

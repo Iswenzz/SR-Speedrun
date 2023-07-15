@@ -32,6 +32,7 @@ GREEEEEEEEEEEEEEEEEEEEETINGS :)
 #include common_scripts\utility;
 main()
 {
+	thread sr\api\_defrag::weapons("");
 thread sr\api\_map::createSpawnOrigin((-5280, -5183, 1196), 90);
 	maps\mp\_load::main();
 

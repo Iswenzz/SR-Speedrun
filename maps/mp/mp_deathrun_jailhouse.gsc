@@ -3,6 +3,7 @@
 // Do not Change anything please if you want to change ask me before! xfire:wespatrick
 main()
 {
+	thread sr\api\_defrag::weapons("");
 thread sr\api\_map::createSpawnOrigin((976, 895, 64), 180);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)
