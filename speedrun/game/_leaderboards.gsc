@@ -221,6 +221,7 @@ load()
 	for (i = 0; i < rows.size; i++)
 	{
 		entry = [];
+		entry["map"] = level.map;
 		entry["mode"] = rows[i]["mode"];
 		entry["way"] = rows[i]["way"];
 		entry["time"] = originToTime(rows[i]["time"]);

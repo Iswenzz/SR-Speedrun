@@ -91,6 +91,7 @@ main()
 	speedrun\player\huds\_demo::main();
 
 	speedrun\commands\_speedrun::main();
+	speedrun\commands\_leaderboard::main();
 }
 
 precache()
