@@ -15,7 +15,7 @@ main()
     setdvar("r_glowskybleedintensity0",".3");
 
     thread sr\api\_speedrun::createNormalWays("Normal Way;");
-    thread sr\api\_speedrun::createSecretWays("Secret Way;");
+    thread sr\api\_speedrun::createSecretWays("Easy Secret;Hard Secret");
     thread sr\api\_map::createSpawn((944, 4608, -244), 180);
     thread sr\api\_speedrun::createTeleporter((941.901, 4426.28, -303.875), 60, 100, (-3687, 1584, -259), 180, "freeze", "green", "secret_0");
     thread sr\api\_speedrun::createTeleporter((939.312, 4801.36, -303.875), 60, 100, (-3661, 2357, 172), 180, "freeze", "orange", "secret_1");
