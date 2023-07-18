@@ -38,7 +38,20 @@ main()
 
 	thread sr\api\_map::createSpawn((-406,-13,-388),1);
     thread sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread fix();
+}
 
+fix()
+{
+	trigger = spawn("trigger_radius", (-916, 1433, -900), 0, 300, 1000);
+	trigger.targetname = "fix";
+	trigger.radius = 300;
+
+	while (true)
+	{
+		trigger waittill("trigger", player);
+		player suicide();
+	}
 }
 
 startdoor()
