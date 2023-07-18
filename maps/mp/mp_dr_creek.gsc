@@ -38,12 +38,14 @@ main()
 
 	thread sr\api\_map::createSpawn((-406,-13,-388),1);
     thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	thread fix();
+	thread fix((-916, 1433, -900));
+	thread fix((314, 1879, -805));
+	thread fix((1142, 1928, -805));
 }
 
-fix()
+fix(origin)
 {
-	trigger = spawn("trigger_radius", (-916, 1433, -900), 0, 300, 1000);
+	trigger = spawn("trigger_radius", origin, 0, 300, 1000);
 	trigger.targetname = "fix";
 	trigger.radius = 300;
 
