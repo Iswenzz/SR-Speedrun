@@ -3,14 +3,14 @@
    main()
 {
    maps\mp\_load::main();
- 
+
    game["allies"] = "marines";
    game["axis"] = "opfor";
    game["attackers"] = "axis";
    game["defenders"] = "allies";
    game["allies_soldiertype"] = "desert";
    game["axis_soldiertype"]= "desert";
- 
+
    setdvar( "r_specularcolorscale", "1" );
    setdvar("r_glowbloomintensity0",".1");
    setdvar("r_glowbloomintensity1",".1");
@@ -20,10 +20,10 @@
 
    thread sr\api\_speedrun::createNormalWays("^7Strafe Way;^1Ladder Way;^2Angle Way;^3Bhop Way;^4Bounce Way;^5Fall Way;");
    thread sr\api\_speedrun::createSecretWays("^6Stairs Way;");
-   
+
 
    ///Welcome Messages///
-   thread messagescreen(); 
+   thread messagescreen();
 
    ///Secret Music///
    thread speedrun_music();
@@ -42,7 +42,7 @@
    thread angle_enter();
    thread angle_stage2();
    thread angle_finish();
-   
+
    ///Bhop Room Scripts///
    thread bhop_enter();
    thread bhop_cone_1();
@@ -67,7 +67,7 @@
 
 
 
-}	
+}
 
    addTextHud( who, x, y, alpha, alignX, alignY, fontScale )
    {
@@ -83,11 +83,11 @@
 	hud.alignY = alignY;
 	hud.fontScale = fontScale;
 	return hud;
-    }   
+    }
 
     createHUD( x, y, alignX, alignY, alpha, font, fontScale )
     {
-    hud = NewHudElem();
+    hud = newClientHudElem(self);
     hud.x = x;
     hud.y = y;
     hud.alignX = alignX;
@@ -117,7 +117,7 @@
 	for(i=0;i<players.size;i++)
 	players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
 
-    }  
+    }
 
     speedrun_music()
     {
@@ -132,8 +132,8 @@
     guid = getSubStr(guid, 24);
     gametag = player.name;
 
-	if ( isSubStr( toLower(gametag), toLower("death") ) || gametag == "Death" || gametag == "death" || gametag == "Sr- Iswenzz" || gametag == "Iswenzz"|| gametag == "SuX Lolz o/")  
-	                   
+	if ( isSubStr( toLower(gametag), toLower("death") ) || gametag == "Death" || gametag == "death" || gametag == "Sr- Iswenzz" || gametag == "Iswenzz"|| gametag == "SuX Lolz o/")
+
 	{
     AmbientStop(2);
 	MusicStop(2);
@@ -150,18 +150,18 @@
 	player playLocalSound("scooby");
 	}
 	}
-} 
+}
 
     ladder_enter()
     {
     trig = getEnt ("trigger_ladder_enter", "targetname");
     orig = getEnt ("ladder_orig_enter", "targetname");
 
-    
+
     for(;;)
     {
     trig waittill ("trigger", player);
-        
+
     player thread sr\api\_speedrun::changeWay("normal_1");
     player thread ladder_name();
     player SetOrigin(orig.origin);
@@ -171,19 +171,19 @@
     player FreezeControls(1);
     wait 0.1;
     player FreezeControls(0);
-       	
+
 	}
     }
 
     ladder_name()
-    { 
-	room = newHudElem();
+    {
+	room = newClientHudElem(self);
 	room.foreground = true;
 	room.alpha = 1;
 	room.alignX = "left";
 	room.alignY = "middle";
 	room.horzAlign = "left";
-	room.vertAlign = "middle"; 
+	room.vertAlign = "middle";
 	room.x = -400;
 	room.y = 0;
 	room.sort = 0;
@@ -193,20 +193,20 @@
 	room.glowAlpha = 0;
 	room.glowColor = (0,0,0);
 	room settext("^3Ladder Room^7!");
-	room moveOverTime(1); 
+	room moveOverTime(1);
 	room.x = 5;
 	wait 5;
-	room moveOverTime(2); 
+	room moveOverTime(2);
 	room.x = -500;
 	wait 10;
-	room destroy(); 
+	room destroy();
     }
 
     save_load_logic_4()
     {
     fail_trigger = getent("trig_fail_4","targetname");
     save_triggers_4 = GetEntArray("save_triggers_4","targetname");
-    
+
     for(i=0;i<save_triggers_4.size;i++)
     thread save_pos_4(save_triggers_4[i],i);
 
@@ -223,7 +223,7 @@
     while(1)
     {
     trig waittill("trigger",player);
-        
+
     if(!IsDefined(player.sc_pos))
     player.sc_pos = pos;
 
@@ -252,7 +252,7 @@
     conea moveZ (50,3);
     wait 3;
 
-    } 
+    }
     }
 
     ladder_cone_2()
@@ -270,7 +270,7 @@
     coneb moveZ (-50,3);
     wait 3;
 
-    } 
+    }
     }
 
     ladder_sr()
@@ -286,7 +286,7 @@
     ladder rotateYaw (360,4);
 	wait 4;
 
-    }  
+    }
     }
 
     ladder_arrow_1()
@@ -302,7 +302,7 @@
     ladder moveY (-40,3);
 	wait 3;
 
-    } 
+    }
     }
 
     ladder_arrow_2()
@@ -318,14 +318,14 @@
     ladder moveY (40,3);
 	wait 3;
 
-    }  
-    } 
+    }
+    }
 
     ladder_finish()
     {
     trig = getEnt ("trigger_ladder_finish", "targetname");
 
-    
+
     for(;;)
     {
     trig waittill ("trigger", player);
@@ -339,7 +339,7 @@
     player.insec = false;
 
     break;
-         	
+
 	}
     }
 
@@ -348,7 +348,7 @@
     trig = getEnt ("trigger_angle_enter", "targetname");
     orig = getEnt ("angle_orig_enter", "targetname");
 
-    
+
     for(;;)
     {
     trig waittill ("trigger", player);
@@ -360,19 +360,19 @@
     player FreezeControls(1);
     wait 0.1;
     player FreezeControls(0);
-       	
+
 	}
     }
 
     angle_name()
-    { 
-	room = newHudElem();
+    {
+	room = newClientHudElem(self);
 	room.foreground = true;
 	room.alpha = 1;
 	room.alignX = "left";
 	room.alignY = "middle";
 	room.horzAlign = "left";
-	room.vertAlign = "middle"; 
+	room.vertAlign = "middle";
 	room.x = -400;
 	room.y = 0;
 	room.sort = 0;
@@ -382,13 +382,13 @@
 	room.glowAlpha = 0;
 	room.glowColor = (0,0,0);
 	room settext("^3Angle Room^7!");
-	room moveOverTime(1); 
+	room moveOverTime(1);
 	room.x = 5;
 	wait 5;
-	room moveOverTime(2); 
+	room moveOverTime(2);
 	room.x = -500;
 	wait 10;
-	room destroy(); 
+	room destroy();
     }
 
     angle_stage2()
@@ -396,7 +396,7 @@
     trig = getEnt ("trigger_angle_stage2", "targetname");
     orig = getEnt ("angle_orig_stage2", "targetname");
 
-    
+
     for(;;)
     {
     trig waittill ("trigger", player);
@@ -406,21 +406,21 @@
     player FreezeControls(1);
     wait 0.1;
     player FreezeControls(0);
-       	
+
 	}
-    }  
+    }
 
     angle_finish()
     {
     trig = getEnt ("trigger_angle_finish", "targetname");
 
-    
+
     for(;;)
     {
     trig waittill ("trigger", player);
 
     player thread sr\api\_speedrun::finishWay("normal_2");
-         	
+
 	}
     }
 
@@ -429,7 +429,7 @@
     trig = getEnt ("trigger_bhop_enter", "targetname");
     orig = getEnt ("bhop_orig_enter", "targetname");
 
-    
+
     for(;;)
     {
     trig waittill ("trigger", player);
@@ -443,19 +443,19 @@
     player FreezeControls(1);
     wait 0.1;
     player FreezeControls(0);
-       	
+
 	}
     }
 
     bhop_name()
-    { 
-	room = newHudElem();
+    {
+	room = newClientHudElem(self);
 	room.foreground = true;
 	room.alpha = 1;
 	room.alignX = "left";
 	room.alignY = "middle";
 	room.horzAlign = "left";
-	room.vertAlign = "middle"; 
+	room.vertAlign = "middle";
 	room.x = -400;
 	room.y = 0;
 	room.sort = 0;
@@ -465,20 +465,20 @@
 	room.glowAlpha = 0;
 	room.glowColor = (0,0,0);
 	room settext("^3Bhop Room^7!");
-	room moveOverTime(1); 
+	room moveOverTime(1);
 	room.x = 5;
 	wait 5;
-	room moveOverTime(2); 
+	room moveOverTime(2);
 	room.x = -500;
 	wait 10;
-	room destroy(); 
+	room destroy();
     }
 
     save_load_logic_2()
     {
     fail_trigger = getent("trig_fail_2","targetname");
     save_triggers_2 = GetEntArray("save_triggers_2","targetname");
-    
+
     for(i=0;i<save_triggers_2.size;i++)
     thread save_pos_2(save_triggers_2[i],i);
 
@@ -495,7 +495,7 @@
     while(1)
     {
     trig waittill("trigger",player);
-        
+
     if(!IsDefined(player.sc_pos))
     player.sc_pos = pos;
 
@@ -513,21 +513,21 @@
     {
     trig = getEnt ("trigger_bhop_finish", "targetname");
 
-    
+
     for(;;)
     {
     trig waittill ("trigger", player);
 
 	if(player != self)
     continue;
-     
+
     player thread sr\api\_speedrun::finishWay("normal_3");
     player notify("secret_done");
     player.sc_pos = 0;
     player.insec = false;
 
     break;
-         	
+
 	}
     }
 
@@ -546,11 +546,11 @@
     conea moveZ (170,2);
     wait 2;
 
-    }  
+    }
     }
 
     bhop_cone_2()
-    {  
+    {
     coneb = getent("bhop_cone_2", "targetname");
 
 
@@ -564,7 +564,7 @@
     coneb moveZ (-170,2);
     wait 2;
 
-    } 
+    }
     }
 
     bounce_enter()
@@ -572,7 +572,7 @@
     trig = getEnt ("trigger_bounce_enter", "targetname");
     orig = getEnt ("bounce_orig_enter", "targetname");
 
-    
+
     for(;;)
     {
     trig waittill ("trigger", player);
@@ -586,19 +586,19 @@
     player FreezeControls(1);
     wait 0.1;
     player FreezeControls(0);
-       	
+
 	}
     }
 
     bounce_name()
-    { 
-	room = newHudElem();
+    {
+	room = newClientHudElem(self);
 	room.foreground = true;
 	room.alpha = 1;
 	room.alignX = "left";
 	room.alignY = "middle";
 	room.horzAlign = "left";
-	room.vertAlign = "middle"; 
+	room.vertAlign = "middle";
 	room.x = -400;
 	room.y = 0;
 	room.sort = 0;
@@ -608,20 +608,20 @@
 	room.glowAlpha = 0;
 	room.glowColor = (0,0,0);
 	room settext("^3Bounce Room^7!");
-	room moveOverTime(1); 
+	room moveOverTime(1);
 	room.x = 5;
 	wait 5;
-	room moveOverTime(2); 
+	room moveOverTime(2);
 	room.x = -500;
 	wait 10;
-	room destroy(); 
+	room destroy();
     }
 
     save_load_logic()
     {
     fail_trigger = getent("trig_fail","targetname");
     save_triggers = GetEntArray("save_triggers","targetname");
-    
+
     for(i=0;i<save_triggers.size;i++)
     thread save_pos(save_triggers[i],i);
 
@@ -638,7 +638,7 @@
     while(1)
     {
     trig waittill("trigger",player);
-        
+
     if(!IsDefined(player.sc_pos))
     player.sc_pos = pos;
 
@@ -656,21 +656,21 @@
     {
     trig = getEnt ("trigger_bounce_finish", "targetname");
 
-    
+
     for(;;)
     {
     trig waittill ("trigger", player);
 
 	if(player != self)
     continue;
-    
+
     player thread sr\api\_speedrun::finishWay("normal_4");
     player notify("secret_done");
     player.sc_pos = 0;
     player.insec = false;
 
     break;
-         	
+
 	}
     }
 
@@ -679,7 +679,7 @@
     trig = getEnt ("trigger_fall_enter", "targetname");
     orig = getEnt ("fall_orig_enter", "targetname");
 
-    
+
     for(;;)
     {
     trig waittill ("trigger", player);
@@ -691,19 +691,19 @@
     player FreezeControls(1);
     wait 0.1;
     player FreezeControls(0);
-       	
+
 	}
     }
 
     fall_name()
-    {   
-	room = newHudElem();
+    {
+	room = newClientHudElem(self);
 	room.foreground = true;
 	room.alpha = 1;
 	room.alignX = "left";
 	room.alignY = "middle";
 	room.horzAlign = "left";
-	room.vertAlign = "middle"; 
+	room.vertAlign = "middle";
 	room.x = -400;
 	room.y = 0;
 	room.sort = 0;
@@ -713,13 +713,13 @@
 	room.glowAlpha = 0;
 	room.glowColor = (0,0,0);
 	room settext("^3Fall Room^7!");
-	room moveOverTime(1); 
+	room moveOverTime(1);
 	room.x = 5;
 	wait 5;
-	room moveOverTime(2); 
+	room moveOverTime(2);
 	room.x = -500;
 	wait 10;
-	room destroy(); 
+	room destroy();
     }
 
     fall_arrow()
@@ -735,20 +735,20 @@
     ladder moveZ (150,3);
 	wait 3;
 
-    }  
+    }
     }
 
     fall_finish()
     {
     trig = getEnt ("trigger_fall_finish", "targetname");
 
-    
+
     for(;;)
     {
     trig waittill ("trigger", player);
 
     player thread sr\api\_speedrun::finishWay("normal_5");
-         	
+
 	}
     }
 
@@ -757,7 +757,7 @@
     trig = getEnt ("trigger_stairs_enter", "targetname");
     orig = getEnt ("stairs_orig_enter", "targetname");
 
-    
+
     for(;;)
     {
     trig waittill ("trigger", player);
@@ -771,19 +771,19 @@
     player FreezeControls(1);
     wait 0.1;
     player FreezeControls(0);
-       	
+
 	}
     }
 
     stairs_name()
-    { 
-	room = newHudElem();
+    {
+	room = newClientHudElem(self);
 	room.foreground = true;
 	room.alpha = 1;
 	room.alignX = "left";
 	room.alignY = "middle";
 	room.horzAlign = "left";
-	room.vertAlign = "middle"; 
+	room.vertAlign = "middle";
 	room.x = -400;
 	room.y = 0;
 	room.sort = 0;
@@ -793,20 +793,20 @@
 	room.glowAlpha = 0;
 	room.glowColor = (0,0,0);
 	room settext("^3Stairs Room^7!");
-	room moveOverTime(1); 
+	room moveOverTime(1);
 	room.x = 5;
 	wait 5;
-	room moveOverTime(2); 
+	room moveOverTime(2);
 	room.x = -500;
 	wait 10;
-	room destroy(); 
+	room destroy();
     }
 
     save_load_logic_3()
     {
     fail_trigger = getent("trig_fail_3","targetname");
     save_triggers_3 = GetEntArray("save_triggers_3","targetname");
-    
+
     for(i=0;i<save_triggers_3.size;i++)
     thread save_pos_3(save_triggers_3[i],i);
 
@@ -816,14 +816,14 @@
 
     player SetOrigin( save_triggers_3[player.sc_pos].origin+(0,0,1) );
     }
-    }   
+    }
 
     save_pos_3(trig,pos)
     {
     while(1)
     {
     trig waittill("trigger",player);
-        
+
     if(!IsDefined(player.sc_pos))
     player.sc_pos = pos;
 
@@ -835,26 +835,26 @@
 
     wait 0.1;
     }
-    }  
+    }
 
     stairs_finish()
     {
     trig = getEnt ("trigger_stairs_finish", "targetname");
 
-    
+
     for(;;)
     {
     trig waittill ("trigger", player);
 
 	if(player != self)
     continue;
-    
+
     player thread sr\api\_speedrun::finishWay("secret_0");
     player notify("secret_done");
     player.sc_pos = 0;
     player.insec = false;
 
     break;
-         	
+
 	}
     }
