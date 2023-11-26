@@ -21,6 +21,11 @@
    thread sr\api\_speedrun::createNormalWays("^7Strafe Way;^1Ladder Way;^2Angle Way;^3Bhop Way;^4Bounce Way;^5Fall Way;");
    thread sr\api\_speedrun::createSecretWays("^6Stairs Way;");
 
+   //Death triggers//
+   thread death_fail_1();
+   thread death_fail_2();
+   thread death_fail_3();
+   thread death_fail_4();
 
    ///Welcome Messages///
    thread messagescreen();
@@ -30,7 +35,6 @@
 
    ///Ladder Room Scripts///
    thread ladder_enter();
-   thread save_load_logic_4();
    thread ladder_cone_1();
    thread ladder_cone_2();
    thread ladder_sr();
@@ -47,12 +51,10 @@
    thread bhop_enter();
    thread bhop_cone_1();
    thread bhop_cone_2();
-   thread save_load_logic_2();
    thread bhop_finish();
 
    ///Bounce Room Scripts///
    thread bounce_enter();
-   thread save_load_logic();
    thread bounce_finish();
 
    ///Fall Room Scripts///
@@ -62,19 +64,70 @@
 
    ///Stairs Room Scripts///
    thread stairs_enter();
-   thread save_load_logic_3();
    thread stairs_finish();
 
 
 
 }
 
+    death_fail_1()
+    {
+    trig = getEnt ("trig_fail", "targetname");
+
+    for(;;)
+    {
+    trig waittill ("trigger", player);
+
+    player Suicide();
+
+	}
+    }
+
+    death_fail_2()
+    {
+    trig = getEnt ("trig_fail_2", "targetname");
+
+    for(;;)
+    {
+    trig waittill ("trigger", player);
+
+    player Suicide();
+
+	}
+    }
+
+    death_fail_3()
+    {
+    trig = getEnt ("trig_fail_3", "targetname");
+
+    for(;;)
+    {
+    trig waittill ("trigger", player);
+
+    player Suicide();
+
+	}
+    }
+
+    death_fail_4()
+    {
+    trig = getEnt ("trig_fail_4", "targetname");
+
+    for(;;)
+    {
+    trig waittill ("trigger", player);
+
+    player Suicide();
+
+	}
+    }
+
    addTextHud( who, x, y, alpha, alignX, alignY, fontScale )
    {
 	if( isPlayer( who ) )
 	hud = newClientHudElem( who );
 	else
-	hud = newHudElem();
+	hud = newClientHudElem(self);
 
 	hud.x = x;
 	hud.y = y;
@@ -163,11 +216,8 @@
     trig waittill ("trigger", player);
 
     player thread sr\api\_speedrun::changeWay("normal_1");
-    player thread ladder_name();
     player SetOrigin(orig.origin);
     player SetPlayerAngles(orig.angles );
-	player.sc_pos = 0;
-    player.insec = true;
     player FreezeControls(1);
     wait 0.1;
     player FreezeControls(0);
@@ -202,40 +252,7 @@
 	room destroy();
     }
 
-    save_load_logic_4()
-    {
-    fail_trigger = getent("trig_fail_4","targetname");
-    save_triggers_4 = GetEntArray("save_triggers_4","targetname");
 
-    for(i=0;i<save_triggers_4.size;i++)
-    thread save_pos_4(save_triggers_4[i],i);
-
-    while(1)
-    {
-    fail_trigger waittill("trigger",player);
-
-    player SetOrigin( save_triggers_4[player.sc_pos].origin+(0,0,1) );
-    }
-    }
-
-    save_pos_4(trig,pos)
-    {
-    while(1)
-    {
-    trig waittill("trigger",player);
-
-    if(!IsDefined(player.sc_pos))
-    player.sc_pos = pos;
-
-    else if(IsDefined(player.sc_pos) && player.sc_pos < pos)
-    {
-    player.sc_pos = pos;
-    player IPrintLn("^3" + " Ladder Checkpoint " + "^7" + pos);
-    }
-
-    wait 0.1;
-    }
-    }
 
     ladder_cone_1()
     {
@@ -330,15 +347,7 @@
     {
     trig waittill ("trigger", player);
 
-	if(player != self)
-    continue;
-
     player thread sr\api\_speedrun::finishWay("normal_1");
-    player notify("secret_done");
-    player.sc_pos = 0;
-    player.insec = false;
-
-    break;
 
 	}
     }
@@ -438,8 +447,6 @@
     player thread bhop_name();
     player SetOrigin(orig.origin);
     player SetPlayerAngles(orig.angles );
-	player.sc_pos = 0;
-    player.insec = true;
     player FreezeControls(1);
     wait 0.1;
     player FreezeControls(0);
@@ -474,40 +481,6 @@
 	room destroy();
     }
 
-    save_load_logic_2()
-    {
-    fail_trigger = getent("trig_fail_2","targetname");
-    save_triggers_2 = GetEntArray("save_triggers_2","targetname");
-
-    for(i=0;i<save_triggers_2.size;i++)
-    thread save_pos_2(save_triggers_2[i],i);
-
-    while(1)
-    {
-    fail_trigger waittill("trigger",player);
-
-    player SetOrigin( save_triggers_2[player.sc_pos].origin+(0,0,1) );
-    }
-    }
-
-    save_pos_2(trig,pos)
-    {
-    while(1)
-    {
-    trig waittill("trigger",player);
-
-    if(!IsDefined(player.sc_pos))
-    player.sc_pos = pos;
-
-    else if(IsDefined(player.sc_pos) && player.sc_pos < pos)
-    {
-    player.sc_pos = pos;
-    player IPrintLn("^3" + " Bhop Checkpoint " + "^7" + pos);
-    }
-
-    wait 0.1;
-    }
-    }
 
     bhop_finish()
     {
@@ -518,15 +491,8 @@
     {
     trig waittill ("trigger", player);
 
-	if(player != self)
-    continue;
 
     player thread sr\api\_speedrun::finishWay("normal_3");
-    player notify("secret_done");
-    player.sc_pos = 0;
-    player.insec = false;
-
-    break;
 
 	}
     }
@@ -581,8 +547,6 @@
     player thread bounce_name();
     player SetOrigin(orig.origin);
     player SetPlayerAngles(orig.angles );
-	player.sc_pos = 0;
-    player.insec = true;
     player FreezeControls(1);
     wait 0.1;
     player FreezeControls(0);
@@ -617,40 +581,7 @@
 	room destroy();
     }
 
-    save_load_logic()
-    {
-    fail_trigger = getent("trig_fail","targetname");
-    save_triggers = GetEntArray("save_triggers","targetname");
 
-    for(i=0;i<save_triggers.size;i++)
-    thread save_pos(save_triggers[i],i);
-
-    while(1)
-    {
-    fail_trigger waittill("trigger",player);
-
-    player SetOrigin( save_triggers[player.sc_pos].origin+(0,0,1) );
-    }
-    }
-
-    save_pos(trig,pos)
-    {
-    while(1)
-    {
-    trig waittill("trigger",player);
-
-    if(!IsDefined(player.sc_pos))
-    player.sc_pos = pos;
-
-    else if(IsDefined(player.sc_pos) && player.sc_pos < pos)
-    {
-    player.sc_pos = pos;
-    player IPrintLn("^3" + " Bounce Checkpoint " + "^7" + pos);
-    }
-
-    wait 0.1;
-    }
-    }
 
     bounce_finish()
     {
@@ -661,15 +592,9 @@
     {
     trig waittill ("trigger", player);
 
-	if(player != self)
-    continue;
 
     player thread sr\api\_speedrun::finishWay("normal_4");
-    player notify("secret_done");
-    player.sc_pos = 0;
-    player.insec = false;
 
-    break;
 
 	}
     }
@@ -766,8 +691,6 @@
     player thread stairs_name();
     player SetOrigin(orig.origin);
     player SetPlayerAngles(orig.angles );
-	player.sc_pos = 0;
-    player.insec = true;
     player FreezeControls(1);
     wait 0.1;
     player FreezeControls(0);
@@ -802,40 +725,6 @@
 	room destroy();
     }
 
-    save_load_logic_3()
-    {
-    fail_trigger = getent("trig_fail_3","targetname");
-    save_triggers_3 = GetEntArray("save_triggers_3","targetname");
-
-    for(i=0;i<save_triggers_3.size;i++)
-    thread save_pos_3(save_triggers_3[i],i);
-
-    while(1)
-    {
-    fail_trigger waittill("trigger",player);
-
-    player SetOrigin( save_triggers_3[player.sc_pos].origin+(0,0,1) );
-    }
-    }
-
-    save_pos_3(trig,pos)
-    {
-    while(1)
-    {
-    trig waittill("trigger",player);
-
-    if(!IsDefined(player.sc_pos))
-    player.sc_pos = pos;
-
-    else if(IsDefined(player.sc_pos) && player.sc_pos < pos)
-    {
-    player.sc_pos = pos;
-    player IPrintLn("^3" + " Stairs Checkpoint " + "^7" + pos);
-    }
-
-    wait 0.1;
-    }
-    }
 
     stairs_finish()
     {
@@ -846,15 +735,9 @@
     {
     trig waittill ("trigger", player);
 
-	if(player != self)
-    continue;
 
     player thread sr\api\_speedrun::finishWay("secret_0");
     player notify("secret_done");
-    player.sc_pos = 0;
-    player.insec = false;
-
-    break;
 
 	}
     }
