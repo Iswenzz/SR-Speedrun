@@ -308,15 +308,14 @@ dropPlayer(player, method, msg1, msg2)
 	if (!IsNullOrEmpty(msg2))
 		self setClientDvar("ui_sr_info2", msg2);
 
-	num = player getEntityNumber();
 	switch (method)
 	{
 		case "kick":
-			kick(num);
+			kick(player.number);
 			break;
 
 		case "ban":
-			ban(num);
+			ban(player.number);
 			break;
 
 		case "disconnect":
