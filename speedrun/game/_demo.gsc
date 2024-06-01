@@ -68,6 +68,7 @@ play(id)
 		{
 			self takeAllWeapons();
 			self giveWeapon(self.demoWeapon);
+			wait 0.05;
 			self switchToWeapon(self.demoWeapon);
 		}
 		if (self isOnLadder())
