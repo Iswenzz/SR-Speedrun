@@ -16,7 +16,6 @@ setup(id)
 		self pm("^1Demo not found.");
 		return false;
 	}
-
 	self.demo = level.demos[id];
 	self.sr_mode = self.demo["mode"];
 	self sr\game\_teams::setTeam("allies");
@@ -31,18 +30,15 @@ setup(id)
 		self pm("^3Demo loading...");
 		return false;
 	}
-
 	self.demoCamera = self PlayDemo(id);
+
 	if (!isDefined(self.demoCamera))
 	{
 		self pm("^1Demo corrupted.");
 		return false;
 	}
-
 	self cheat();
 	self.godmode = true;
-	self.antiLag = false;
-	self.antiElevator = false;
 	return true;
 }
 
@@ -53,7 +49,6 @@ play(id)
 		self stopDemoPlayer();
 		return;
 	}
-
 	self endon("spawned");
 	self endon("death");
 	self endon("disconnect");
@@ -105,6 +100,7 @@ stopDemoPlayer()
 
 	self.demo = undefined;
 	self.godmode = undefined;
+
 	self stopDemo();
 	self suicide();
 }
