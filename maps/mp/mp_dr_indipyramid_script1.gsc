@@ -3,10 +3,10 @@ main()
 //thread laser();
 // thread text();
 //thread trap0();
-thread trap1();
-thread trap2();
-thread trap3();
-thread trap4();
+//thread trap1();
+//thread trap2();
+//thread trap3();
+//thread trap4();
 thread trap5();
 thread trap6();
 thread trap7();
@@ -123,34 +123,7 @@ m = getent( "t5_mac" , "targetname" );
 door = getent( "t5_door" , "targetname" );
 t5 = getent ("t5" , "targetname");
 
-trig_door enableLinkTo();
-trig_door linkTo( door );
-door movez ( 84, 1 );
-
-t5 waittill ("trigger");
-t5 delete ();
-
-door movez ( -96, 5 , 0.5, 0.5 );
-trig_door thread killtrigger();
-earthquake( 0.5, 5, door.origin, 512 );
-wait 5;
-trig_door unlink();
-trig_door delete();
-
-m movey (-284, 5);
-wait 4.4;
-trig enableLinkTo();
-trig linkTo( kill );
-kill movez ( 80, 0.01 );
-wait 0.5;
-trig unlink();
-trig delete();
-kill delete();
-m waittill ("movedone");
-wait 2;
-m movey (284, 5);
-door movez ( 96, 5 , 0.5, 0.5 );
-earthquake( 0.5, 5, door.origin, 512 );
+door delete();
 }
 
 trap6()
@@ -161,28 +134,8 @@ m2 = getent ("t6_m2" ,"targetname");
 kill = getent ("t6_kill" ,"targetname");
 trig = getent ("t6_trig" ,"targetname");
 
-m1 movey (82,0.5);
-m2 movey (-78,0.5);
-
-t6 waittill ("trigger");
-t6 delete ();
-
-m1 movey (-210,1);
-m2 movey (210,1);
-
-wait 0.9;
-trig enableLinkTo();
-trig linkTo( kill );
-kill movez (84, 0.05);
-
-wait 0.5;
-
-trig unLink();
-trig delete();
-kill delete();
-
-m1 movey (210,3);
-m2 movey (-210,3);
+m1 delete();
+m2 delete();
 }
 
 trap7()
@@ -195,55 +148,7 @@ desky = getent ("t7_desky" ,"targetname");
 trig_door = getent ("t7_door_trig" ,"targetname");
 t7 = getent ("t7" , "targetname");
 
-trig enableLinkTo();
-trig linkTo( origin );
-gula moveto (origin.origin,0.05);
-
-trig_door enableLinkTo();
-trig_door linkTo( door );
-door movey ( 53, 1 );
-wait 1;
-door movez ( 196, 1 );
-
-t7 waittill ("trigger");
-t7 delete ();
-
-trig thread killtrigger();
-door movez ( -196, 3 );
-trig_door thread killtrigger();
-earthquake( 0.5, 3, door.origin, 512 );
-wait 2;
-
-gula movey (-98,1);
-origin movey (-98,1);
-gula rotateroll (50, 1);
-earthquake( 0.5, 1, gula.origin, 512 );
-wait 1;
-gula movez (-240, 0.5);
-origin movez (-240, 0.5);
-wait 0.5;
-earthquake( 2, 1, gula.origin, 1024 );
-gula movey (-408,5);
-origin movey (-408,5);
-gula rotateroll (310,5);
-earthquake( 0.5, 5, gula.origin, 512 );
-wait 4.9;
-desky delete();
-wait 0.1;
-gula movez (-136,0.5);
-origin movez (-136,0.5);
-wait 0.5;
-earthquake( 2, 1, gula.origin, 1024 );
-trig_door unlink();
-trig_door delete();
-
-trig unLink();
-trig delete();
-
-wait 2;
-
-door movez ( 196, 10 );
-earthquake( 0.5, 10, door.origin, 512 );
+door delete();
 
 }
 

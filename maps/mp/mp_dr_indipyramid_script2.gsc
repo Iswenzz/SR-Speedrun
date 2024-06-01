@@ -1,14 +1,14 @@
 main()
 {
-thread trap8();
-thread trap9();
-thread trap10();
-thread trap11();
+//thread trap8();
+//thread trap9();
+//thread trap10();
+//thread trap11();
 //thread trap12();
-thread trap12_b();
-thread trap13();
-thread trap14();
-thread trap15();
+//thread trap12_b();
+//thread trap13();
+//thread trap14();
+//thread trap15();
 }
 
 trap8()

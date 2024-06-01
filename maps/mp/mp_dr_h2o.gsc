@@ -40,7 +40,7 @@ thread sr\api\_map::createSpawnOrigin((-241.846, -380.986, 16.125), 0);
 	thread trap7b();
 	thread trap8movinga();
 	thread trap8movingb();
-	// thread trap8();
+	thread trap8();
 	thread trap9_moving();
 	// thread actidoor();
 	thread Tilt();
@@ -105,14 +105,9 @@ start_door()
 {
 	door = getent("door","targetname");
 
-	// wait 9;
 
-	// ambientPlay("faint");
+	door delete();
 
-	wait 1;
-
-	door movez(90,3);
-	door waittill ("movedone");
 }
 
 credit()
@@ -190,16 +185,10 @@ trap0moving()
 	platform_a = getEnt( "trap0platforma", "targetname" );
 	platform_b = getEnt( "trap0platformb", "targetname" );
 
-	while (1)
-
-	{
-		platform_a moveY (144,1.5);
-		platform_b moveY (-144,1.5);
-		wait 2.5;
-		platform_a moveY (-144,1.5);
-		platform_b moveY (144,1.5);
-		wait 2.5;
-	}
+	
+	platform_a delete();
+	platform_b delete();
+	
 }
 
 
@@ -747,30 +736,20 @@ trap7b()
 	trap7c moveZ (-80,1.5);
 	wait 1.5;
 
-	while (1)
+	
+	trap7b moveZ (-80,3);
+	trap7c moveZ (80,3);
 
-	{
-		trap7b moveZ (-160,3);
-		trap7c moveZ (160,3);
-		wait 3;
-		trap7b moveZ (160,3);
-		trap7c moveZ (-160,3);
-		wait 3;
 
-	}
 }
 
 Trap8movinga()
 {
 	trap8movinga = getent( "trap8movinga", "targetname" );
 
-	while (1)
-	{
-		trap8movinga moveY (-432,5);
-		wait 5;
-		trap8movinga moveY (432,5);
-		wait 5;
-	}
+	
+	trap8movinga moveY (150,0.1);
+	
 }
 
 trap8movingb()
@@ -778,15 +757,10 @@ trap8movingb()
 	trap8movingb = getent( "trap8movingb", "targetname" );
 	trap8movingc = getent( "trap8movingc", "targetname" );
 
-	while (1)
-	{
-		trap8movingb moveY (296,3);
-		trap8movingc moveY (-296,3);
-		wait 3;
-		trap8movingb moveY (-296,3);
-		trap8movingc moveY (296,3);
-		wait 3;
-	}
+	
+	trap8movingb moveY (300,0.1);
+	trap8movingc moveY (-200,0.1);
+	
 }
 
 trap8()
@@ -796,36 +770,18 @@ trap8()
 	button = getEnt ("trap8button", "targetname");
 
 	trig sethintstring(" Press [Use] ");
-	trig waittill ("trigger");
-	trig delete();
-
-	button moveY(-3,0.4);
-	wait 0.5;
-
-	while (1)
-	{
-		trap8 moveZ(-64,0.3);
-		wait 0.3;
-		trap8 moveY(-432,2);
-		wait 2;
-		trap8 moveZ(64,0.3);
-		wait 0.3;
-		trap8 moveY(432,2);
-		wait 2;
-	}
+	
+	trap8 delete();
+	
 }
 
 trap9_moving()
 {
 	trap9_moving = getEnt( "trap9_moving", "targetname" );
 
-	while (1)
-	{
-		trap9_moving moveY(450,5);
-		wait 5;
-		trap9_moving moveY(-450,5);
-		wait 5;
-	}
+	
+	trap9_moving moveY(300,0.1);
+	
 }
 
 actidoor()
@@ -864,28 +820,15 @@ Tilt()
 	tilt_g = getEnt( "tiltg", "targetname" );
 	tilt_h = getEnt( "tilth", "targetname" );
 
-	while (1)
-	{
+	
 		tilt_b moveX(128,0.5);
 		tilt_d MoveX(128,0.5);
 		tilt_f moveY(128,0.5);
 		tilt_h moveY(128,0.5);
-		wait 1;
-		tilt_b moveX(-128,0.5);
-		tilt_d moveX(-128,0.5);
-		tilt_f moveY(-128,0.5);
-		tilt_h moveY(-128,0.5);
-		tilt_a moveX(128,0.5);
-		tilt_c moveX(128,0.5);
-		tilt_e moveX(128,0.5);
-		tilt_g moveY(128,0.5);
-		wait 1;
-		tilt_a moveX(-128,0.5);
-		tilt_c moveX(-128,0.5);
-		tilt_e moveX(-128,0.5);
-		tilt_g moveY(-128,0.5);
-
-	}
+		tilt_b moveX(1,0.5);
+		tilt_d moveX(1,0.5);
+		tilt_f moveY(1,0.5);
+		tilt_h moveY(1,0.5);
 }
 
 move()
@@ -1024,7 +967,7 @@ secret8()
 	{
 		trig waittill ("trigger", player);
 
-		iprintlnbold("^1" + player.name + " ^2finished secret!");
+		//iprintlnbold("^1" + player.name + " ^2finished secret!");
 		player SetOrigin(target.origin);
 		player SetPlayerAngles( target.angles );
 	}

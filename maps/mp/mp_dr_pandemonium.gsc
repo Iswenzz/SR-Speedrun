@@ -10,6 +10,7 @@ main()
     game["axis_soldiertype"] = "woodland";
     
     thread sr\api\_speedrun::createNormalWays("Normal Way;");
+    thread sr\api\_speedrun::createSecretWays("Secret Way;");
     thread sr\api\_map::createSpawn((-499, 907, 77), 270);
     thread sr\api\_speedrun::createTeleporter((-829.792, -4071.92, 16.125), 105, 100, (-127, -4517, 508), 270, "freeze");
     thread sr\api\_speedrun::createTeleporter((-319.732, 886.41, 16.625), 60, 100, (2192, -10062, 588), 180, "freeze", "yellow", "secret_0");

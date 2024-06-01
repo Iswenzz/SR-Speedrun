@@ -21,7 +21,7 @@ thread sr\api\_map::createSpawnOrigin((4, 276, 16), 269);
 	//thread trap4();
 	//thread trap5();
 	//thread trap6();
-	//thread trap7();
+	thread trap7();
 	thread room1();
 	thread room2();
 	thread room3();
@@ -58,7 +58,7 @@ thread sr\api\_map::createSpawnOrigin((4, 276, 16), 269);
 	//thread credits();
 	thread secret2rpg();
 	thread teleportsecret2();
-	thread finalspin();
+	//thread finalspin();
 	thread finaldoor();
 
 
@@ -682,16 +682,11 @@ trap6()
 trap7()
 {
    	brush = getEnt ("trap7", "targetname");
-    	trig = getEnt ("trap7_trig", "targetname");
+    trig = getEnt ("trap7_trig", "targetname");
 
-	trig waittill("trigger", who);
-    	trig delete();
 
-	while(1)
-{
-    	brush rotateYaw(-360,20);
-	wait 20;
-}
+    brush delete();
+
 
 }
 

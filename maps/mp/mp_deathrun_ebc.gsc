@@ -2,11 +2,6 @@ main()
 {
 
 	maps\mp\_load::main();
-	maps\mp\_teleport1::main();
-	maps\mp\_teleport2::main();
-	maps\mp\_teleport3::main();
-	maps\mp\_teleport4::main();
-	maps\mp\_teleport5::main();
 	
 	
 	game["allies"] = "sas";

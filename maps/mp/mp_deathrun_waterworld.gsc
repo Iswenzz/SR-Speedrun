@@ -12,8 +12,8 @@ thread sr\api\_map::createSpawnOrigin((-698.952, -512, 0.125), 315);
     game["axis_soldiertype"] = "desert";
 
 	//scrits
-	maps\mp\mp_deathrun_online\movings::main();
-	maps\mp\mp_deathrun_online\traps::main();
+	//maps\mp\mp_deathrun_online\movings::main();
+	//maps\mp\mp_deathrun_online\traps::main();
 	// maps\mp\mp_deathrun_online\endrooms::main();
 	// maps\mp\mp_deathrun_online\helicopter::main();
 	// maps\mp\mp_deathrun_online\jukebox::main();
@@ -48,6 +48,15 @@ thread sr\api\_map::createSpawnOrigin((-698.952, -512, 0.125), 315);
 	thread way_connect();
 	thread onConnect();
 	thread startdoor();
+	////Death fixed/////////////////////////////
+	thread elevator();
+	thread bouncer();
+	thread circle();
+	thread secret_move();
+	thread fix((434.629, -1231.13, 0.125001));
+	thread fixv2((2244.21, -160.86, 323.377));
+	thread trap_8();
+	////////////////////////////////////////////
 	// thread icohud();
 	// thread unknown();
 	thread secret_respawn_1();
@@ -134,6 +143,109 @@ startdoor()
 
 	clip delete();
 }
+///Death fixes/////////////////////////////////////
+secret_move()
+{
+	target = getEnt ( "secret_move", "targetname" );
+	
+	while(1)
+	{
+		target moveZ ( 96, 3, 2, 1);
+		wait 4;
+		target moveZ ( -96, 3, 2, 1);
+		wait 4;
+	}
+}
+
+circle()
+{
+	target = getEnt ( "circle", "targetname" );
+	
+	target delete();
+}
+
+elevator() ////Doesn't ruin lb,just prevents bugging it and timing it ////
+{
+	target = getEnt ( "elevator_1", "targetname" );
+	trigger = getEnt ( "elevator_1_trigger", "targetname" );
+	shit = getEnt ( "elevator_1_shit", "targetname" );
+	
+	{
+	target moveY (300,0.1);
+	target waittill ("movedone");
+	target moveX (-200,0.1);
+	shit moveX(-200,0.1);
+	target waittill ("movedone");
+	shit waittill ("movedone");
+	}
+}
+
+
+
+bouncer(who)
+{
+	trigger = getEnt ( "bouncer", "targetname" );
+	
+	while(1)
+	{
+    	trigger waittill ( "trigger", who );
+	
+	    oldpos = who.origin;
+		playFx ( level.bounce, who.origin );
+	    strenght = 3;
+	    for(i=0;i<strenght;i++)
+	    {
+	        who.health += 160;
+            who finishPlayerDamage(who, level.jumpattacker, 160, 0, "MOD_FALLING", "jump_mp", who.origin, AnglesToForward((-90,0,0)), "none", 0);
+	    }
+	}
+}
+
+fix(origin) //ele fix///
+{
+	trigger = spawn("trigger_radius", origin, 0, 90, 550);
+	trigger.targetname = "fix";
+	trigger.radius = 90;
+
+	while (true)
+	{
+		trigger waittill("trigger", player);
+		player suicide();
+	}
+}
+
+fixv2(origin)  ///ele fix///
+{
+	trigger = spawn("trigger_radius", origin, 0, 150, 550);
+	trigger.targetname = "fix";
+	trigger.radius = 150;
+
+	while (true)
+	{
+		trigger waittill("trigger", player);
+		player suicide();
+	}
+}
+
+trap_8()
+{
+	trigger = getEnt ( "trap_8_trigger", "targetname" );
+	target_1 = getEnt ( "trap_8_target_1", "targetname" );
+	target_2 = getEnt ( "trap_8_target_2", "targetname" );
+	target_3 = getEnt ( "trap_8_target_3", "targetname" );
+	hurt_1 = getEnt ( "trap_8_hurt_1", "targetname" );
+	hurt_2 = getEnt ( "trap_8_hurt_2", "targetname" );
+	hurt_3 = getEnt ( "trap_8_hurt_3", "targetname" );
+	
+	hurt_1 delete();
+	hurt_2 delete();
+	hurt_3 delete();
+	target_1 delete();
+	target_2 delete();
+	target_3 delete();
+	
+}
+///////////////////////////////////////////////////
 
 //by Blade
 icohud()

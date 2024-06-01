@@ -2,6 +2,7 @@ main()
 {
 	thread sr\api\_defrag::weapons("");
 thread sr\api\_map::createSpawnOrigin((2428.697, 1641.714, 0.125), 180);
+thread sr\api\_speedrun::createEndMap((-3743.13, 22250.1, -1967.88), 85, 100, "secret_0");
 	maps\mp\_load::main();
 
 	game["allies"] = "sas";
@@ -36,6 +37,7 @@ thread sr\api\_map::createSpawnOrigin((2428.697, 1641.714, 0.125), 180);
 
 
 	thread way_connect();
+	thread sec_enter();
 	// thread creds();
 	// thread music();
 	// thread teleport1();
@@ -67,6 +69,7 @@ way_connect()
     wait 0.05;
 
     sr\api\_speedrun::createNormalWays("Normal Way;");
+	sr\api\_speedrun::createSecretWays("Secret Way;");
 
     for(;;)
     {
@@ -75,6 +78,30 @@ way_connect()
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
+
+sec_enter()
+{
+	trig = spawn("trigger_radius",(2426.68, 1511.13, 0.125), 0, 60, 100);
+	trig.radius = 60;
+	ori = getEnt("hellsecretorigin","targetname");
+	ori.angles = (0,90,0);
+
+
+	thread sr\api\_map::createTriggerFx(trig, "yellow");
+
+	for(;;)
+	{
+		trig waittill("trigger",player);
+
+		player thread sr\api\_speedrun::changeWay("secret_0"); 
+
+		player SetOrigin(ori.origin);
+		player SetPlayerAngles(ori.angles);
+		player FreezeControls(1);
+		wait 0.1;
+		player FreezeControls(0);
+	}
+}
 
 addTriggerToList( name )
 {

@@ -40,6 +40,7 @@ trigger.radius = 96;
 		twisterparts[i] delete();
 
 	thread way_connect();
+	thread hardlevel_lasers();
 	thread startdoor();
 	thread startdoor2();
 	// thread trap_4squares();
@@ -124,6 +125,17 @@ way_connect()
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
+
+hardlevel_lasers()
+{
+laser1_hurt = getEnt("hardlevel_laser1_hurt", "targetname");	
+laser2_hurt = getEnt("hardlevel_laser2_hurt", "targetname");	
+
+
+laser1_hurt delete();
+laser2_hurt delete();
+
+}
 
 startact()
 {
