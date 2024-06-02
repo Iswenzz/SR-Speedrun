@@ -7,7 +7,8 @@ main()
 	level.spawn = [];
 	level.colliders = [];
 	level.tempEntity = spawn("script_model", (0, 0, 0));
-	level.files["rotation"] = PATH_Mod("sr/data/match/rotation.txt");
+	level.files["rotation"] = PATH_Mod("data/match/rotation.txt");
+	level.files["maps"] = PATH_Mod("data/match/maps.txt");
 	level.rotation = sr\game\_map::getRotation(false);
 	level.randomizedMaps = [];
 
