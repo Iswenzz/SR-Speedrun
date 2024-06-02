@@ -6,15 +6,14 @@
 main()
 {
  maps\mp\_load::main();
- 
+
  game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"]= "desert";
- 
-   setdvar("g_speed" ,"210");
+
    setdvar( "r_specularcolorscale", "1" );
    setdvar("r_glowbloomintensity0",".1");
    setdvar("r_glowbloomintensity1",".1");
@@ -29,9 +28,9 @@ main()
    thread tp3();
    thread tp4();
    thread tp5();
-    
-  
-}	
+
+
+}
 
 tp1()
 {
@@ -39,7 +38,7 @@ tp1()
    tele1 = getent ("orig_tp1", "targetname");
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
 	 player setOrigin(tele1.origin);
      player setPlayerAngles(tele1.angles);
@@ -52,7 +51,7 @@ tp2()
    tele1 = getent ("orig_tp2", "targetname");
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
 	 player setOrigin(tele1.origin);
      player setPlayerAngles(tele1.angles);
@@ -65,7 +64,7 @@ tp3()
    tele1 = getent ("orig_tp3", "targetname");
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
 	 player setOrigin(tele1.origin);
      player setPlayerAngles(tele1.angles);
@@ -78,7 +77,7 @@ tp4()
    tele1 = getent ("orig_tp4", "targetname");
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
 	 player setOrigin(tele1.origin);
      player setPlayerAngles(tele1.angles);
@@ -91,7 +90,7 @@ tp5()
    tele1 = getent ("orig_tp5", "targetname");
 
    for(;;)
-    {   
+    {
      trig waittill("trigger", player);
 	 player setOrigin(tele1.origin);
      player setPlayerAngles(tele1.angles);

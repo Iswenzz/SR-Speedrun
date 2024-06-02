@@ -3,15 +3,14 @@
 main()
 {
  maps\mp\_load::main();
- 
+
  game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"]= "desert";
- 
-	setdvar("g_speed" ,"210");
+
 	setdvar( "r_specularcolorscale", "1" );
     setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
@@ -34,8 +33,8 @@ main()
 	//thread endtpa();
 	//thread endtpb();
 
-	
-}	
+
+}
 
 //SECRET ENTRANCE
 something()
@@ -43,8 +42,8 @@ something()
    trig = getent("trig_something", "targetname");
    tele1 = getent ("origin_something", "targetname");
 
-  for(;;) 
-    {   
+  for(;;)
+    {
      trig setHintString ("^5Give me the hand by pressing ^3[&&1]");
      trig waittill("trigger", player);
 	 player setOrigin(tele1.origin);
@@ -60,11 +59,11 @@ somethingnoob()
    tele1 = getent ("origin_somethingfinishnoob", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
-    
+
     player thread sr\api\_speedrun::finishWay("secret_0");
-	
+
     }
 }
 
@@ -74,7 +73,7 @@ somethingpro()
    tele1 = getent ("origin_somethingfinishpro", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
 
     player thread sr\api\_speedrun::finishWay("secret_1");
@@ -87,21 +86,21 @@ endele()
 
    movingplatform = getent("endele", "targetname");
    movingplatform_trigger = getent("trig_endele", "targetname");
-   
+
 
    movingplatform delete();
-   
-}   
+
+}
 
 finishdoor()
 {
    finishdoora = getent("finaldoora", "targetname");
    finishdoorb = getent("finaldoorb", "targetname");
    finishdoor_trigger = getent("trig_finaldoor", "targetname");
-   
+
    finishdoora delete();
    finishdoorb delete();
-   
+
 }
 
 endtpa()
@@ -110,7 +109,7 @@ endtpa()
    tele1 = getent ("origin_end", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
 	player setOrigin(tele1.origin);
     player setPlayerAngles(tele1.angles);
@@ -123,7 +122,7 @@ endtpb()
    tele1 = getent ("origin_end", "targetname");
 
    for(;;)
-    {   
+    {
     trig waittill("trigger", player);
 	player setOrigin(tele1.origin);
     player setPlayerAngles(tele1.angles);

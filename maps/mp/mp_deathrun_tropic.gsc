@@ -368,21 +368,7 @@ startdoor()
 
 Messages()
 {
-    wait 10;
-	/* [AUTO DELETE] iPrintLnBold("Welcome to ^1"+getDvar("mapname")+"^7!"); */
 
-    while(1)
-    {
-		/* [AUTO DELETE] iPrintLn("^1>>^7 Map created by ^1Fen1x!"); */
-		wait 5;
-		/* [AUTO DELETE] iPrintLn("^1>>^7 Special thanks to ^1VC' Blade ^1VC' ERIK ^1VC' Glen :D^7"); */
-		wait 5;
-		/* [AUTO DELETE] iPrintLn("^1>>^7 Thanks for playing ^1"+getDvar("mapname")); */
-        wait 5;
-        /* [AUTO DELETE] iPrintLn("^1>>^7 Visit: ^1vistic-clan.net"); */
-        wait 5;
-
-    }
 }
 
 

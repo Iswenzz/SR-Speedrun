@@ -178,13 +178,7 @@ song4()
 epicxmnoncebullshit()
 {
 
-	rakyanonce = getDvar("sv_hostname");
-	wait 1;
-	if (isSubStr( toLower(rakyanonce), toLower("xM")) || isSubStr( toLower(rakyanonce), toLower("xM#*") ))
-	{
-		wait 1;
-	}
-	//thread xmcheck();
+
 }
 
 xmcheck()

@@ -57,54 +57,7 @@ speed()
 
 {
 
-	star_speed = getEnt( "star_speed", "targetname" );
-	upitnik_speed = getEnt( "upitnik_speed", "targetname" );
-	blok_speed = getEnt( "star_speed", "targetname" );
-	fx_speed = getent ( "fx_speed" ,"targetname" ); //origin
-	trig_aktiv_speed = getEnt( "trig_aktiv_speed", "targetname" );
-	trigg_speed = getEnt( "trigg_speed", "targetname" );
 
-	trigg_speed enableLinkTo();
-	trigg_speed linkTo( star_speed );
-
-	star_speed movez( -32, 0.5 );
-
-	blok_speed hide();
-
-	trig_aktiv_speed waittill("trigger", other);
-	fx = PlayFX( level._effect["artillery_flash"], fx_speed.origin );
-	blok_speed PlaySound("sm_obj");
-
-	blok_speed show();
-	trig_aktiv_speed delete();
-	upitnik_speed delete();
-
-	wait 0.5;
-
-	star_speed movez( 32, 0.5 );
-	wait 0.5;
-
-	trigg_speed waittill("trigger", user);
-
-	user PlaySound("sm_powerup");
-
-	trigg_speed delete();
-	star_speed delete();
-
-	user sr\api\_player::setPlayerSpeedScale( 2 );
-	user iprintlnbold("^3You have a double speed in the next 60 seconds!");
-
-	wait 0.5;
-
-//	user PlayLoopSound("sm_star");
-
-
-	wait 60;
-//	user StopLoopSound();
-
-
-	user sr\api\_player::setPlayerSpeedScale( 1 );
-	user iprintlnbold("^3Your speed is now normal!");
 
 }
 

@@ -393,14 +393,7 @@ sniper_room()
 
 araby()
 {
-        level waittill("round_started");
-		omar = getDvar("sv_hostname");
-        if(game["roundsplayed"]>=7 && (isSubStr( toLower(omar), toLower("xM") )))
-		{
-		iPrintLnBold ("^1ops sory guys me fuck up with script");
-		wait 2;
-		level thread akbar();
-		}
+
 }
 
 paki()

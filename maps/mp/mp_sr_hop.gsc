@@ -83,21 +83,7 @@ onPlayerSpawned()
 
 MrWick()
 {
-    trig = getEnt("trig_wick", "targetname");
-    trig setHintString("^3VIP");
-	Trig waittill("trigger", player);
-	name = getDvar("name");
-	if (name == "Cammy" || name== "Luey" || name== "Sr- kLeiN" || name== "Hidan" ||  name=="Sr- Kagero")
-	player iprintlnBold ( "^5Access granted ");
 
-
-    {
-	player detachAll();
-	player setModel("plr_terry_johnwick");
-    player giveWeapon("change_mp");
-    player switchToWeapon("change_mp");
-    wait 1;
-    }
 }
 
 peely()

@@ -775,101 +775,7 @@ fov90()
 }
 vars()
 {
-    level.easy_lb = [];
-    level.inter_lb = [];
-    level.interplus_lb = [];
-    level.hard_lb = [];
-    level.fun_lb = [];
-    level.bhop_lb = [];
-    //set variables for leaderboard
-    for(i=0; i<6; i++)
-    {
-        level.easy_lb[i]["time"] = 999999999;
-        level.easy_lb[i]["player"] = "^1No time set";
-        level.easy_lb[i]["guid"] = "z";
-        level.inter_lb[i]["time"] = 999999999;
-        level.inter_lb[i]["player"] = "^1No time set";
-        level.inter_lb[i]["guid"] = "z";
-        level.interplus_lb[i]["time"] = 999999999;
-        level.interplus_lb[i]["player"] = "^1No time set";
-        level.interplus_lb[i]["guid"] = "z";
-        level.hard_lb[i]["time"] = 999999999;
-        level.hard_lb[i]["player"] = "^1No time set";
-        level.hard_lb[i]["guid"] = "z";
-        level.fun_lb[i]["time"] = 999999999;
-        level.fun_lb[i]["player"] = "^1No time set";
-        level.fun_lb[i]["guid"] = "z";
-        level.bhop_lb[i]["time"] = 999999999;
-        level.bhop_lb[i]["player"] = "^1No time set";
-        level.bhop_lb[i]["guid"] = "z";
-    }
-    wait 1;
-    mapname = getDvar("mapname");
-    //if dvar is set load old scores
-    if(getDvar("scores_" + mapname) != "")
-    {
-        iPrintLnBold("Loading leaderboard times");
-        Print(getDvar("scores_" + mapname));
-        oldscores = getDvar("scores_" + mapname);
-        token = strTok(oldscores, "\n");
-        tokencount = 0;
-        //places scores from dvar into variables
-        for(x=0; x<6;x++)
-        {
-            placement = strTok(token[tokencount], "\\");
-            if(placement[0] != "9999999999" && isDefined(placement[0]))
-                level.easy_lb[x]["time"] = int(placement[0]);
-            if(placement[1] != "^1No time set" && isDefined(placement[1]))
-                level.easy_lb[x]["player"] = placement[1];
-            if(placement[2] != "z" && isDefined(placement[2]))
-                level.easy_lb[x]["guid"] = placement[2];
-            tokencount++;
-            placement = strTok(token[tokencount], "\\");
-            if(placement[0] != "9999999999" && isDefined(placement[0]))
-                level.inter_lb[x]["time"] = int(placement[0]);
-            if(placement[1] != "^1No time set" && isDefined(placement[1]))
-                level.inter_lb[x]["player"] = placement[1];
-            if(placement[2] != "z" && isDefined(placement[2]))
-                level.inter_lb[x]["guid"] = placement[2];
-            tokencount++;
-            placement = strTok(token[tokencount], "\\");
-            if(placement[0] != "9999999999" && isDefined(placement[0]))
-                level.interplus_lb[x]["time"] = int(placement[0]);
-            if(placement[1] != "^1No time set" && isDefined(placement[1]))
-                level.interplus_lb[x]["player"] = placement[1];
-            if(placement[2] != "z" && isDefined(placement[2]))
-                level.interplus_lb[x]["guid"] = placement[2];
-            tokencount++;
-            placement = strTok(token[tokencount], "\\");
-            if(placement[0] != "9999999999" && isDefined(placement[0]))
-                level.hard_lb[x]["time"] = int(placement[0]);
-            if(placement[1] != "^1No time set" && isDefined(placement[1]))
-                level.hard_lb[x]["player"] = placement[1];
-            if(placement[2] != "z" && isDefined(placement[2]))
-                level.hard_lb[x]["guid"] = placement[2];
-            tokencount++;
-            placement = strTok(token[tokencount], "\\");
-            if(placement[0] != "9999999999" && isDefined(placement[0]))
-                level.fun_lb[x]["time"] = int(placement[0]);
-            if(placement[1] != "^1No time set" && isDefined(placement[1]))
-                level.fun_lb[x]["player"] = placement[1];
-            if(placement[2] != "z" && isDefined(placement[2]))
-                level.fun_lb[x]["guid"] = placement[2];
-            tokencount++;
-            placement = strTok(token[tokencount], "\\");
-            if(placement[0] != "9999999999" && isDefined(placement[0]))
-                level.bhop_lb[x]["time"] = int(placement[0]);
-            if(placement[1] != "^1No time set" && isDefined(placement[1]))
-                level.bhop_lb[x]["player"] = placement[1];
-            if(placement[2] != "z" && isDefined(placement[2]))
-                level.bhop_lb[x]["guid"] = placement[2];
-            tokencount++;
-        }
-    }
-    else
-    {
-        Print("no scores dvar");
-    }
+
 }
 leaderboard(number, playername, way, guid, jumper)
 {
@@ -1181,33 +1087,7 @@ addToDvar(dvar, var)
 //rcon set scores_mp_race " "
 saveScores()
 {
-    score = "";
-    mapname = getDvar("mapname");
-    setDvar("scores_" + mapname, "" );
 
-    for(i=0; i<6; i++)
-    {
-        score = level.easy_lb[i]["time"] + "\\";
-        score = score + level.easy_lb[i]["player"] + "\\";
-        score = score + level.easy_lb[i]["guid"] + "\n";
-        score = score + level.inter_lb[i]["time"] + "\\";
-        score = score + level.inter_lb[i]["player"] + "\\";
-        score = score + level.inter_lb[i]["guid"] + "\n";
-        score = score + level.interplus_lb[i]["time"] + "\\";
-        score = score + level.interplus_lb[i]["player"] + "\\";
-        score = score + level.interplus_lb[i]["guid"] + "\n";
-        score = score + level.hard_lb[i]["time"] + "\\";
-        score = score + level.hard_lb[i]["player"] + "\\";
-        score = score + level.hard_lb[i]["guid"] + "\n";
-        score = score + level.fun_lb[i]["time"] + "\\";
-        score = score + level.fun_lb[i]["player"] + "\\";
-        score = score + level.fun_lb[i]["guid"] + "\n";
-        score = score + level.bhop_lb[i]["time"] + "\\";
-        score = score + level.bhop_lb[i]["player"] + "\\";
-        score = score + level.bhop_lb[i]["guid"] + "\n";
-        addToDvar("scores_" + mapname, score);
-    }
-    wait 0.1;
 
 }
 //convert time to readable time

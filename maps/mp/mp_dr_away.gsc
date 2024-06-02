@@ -90,7 +90,7 @@ teleport1()
 {
 	trig = getent("trigger_teleport1", "targetname");
 	tele1 = getent("origin_teleport1", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger", player);
@@ -103,7 +103,7 @@ teleport2()
 {
 	trig = getent("trigger_teleport2", "targetname");
 	tele2 = getent("origin_teleport2", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger", player);
@@ -116,7 +116,7 @@ teleport3()
 {
 	trig = getent("trigger_teleport3", "targetname");
 	tele3 = getent("origin_teleport3", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger", player);
@@ -279,7 +279,7 @@ teleport19()
 	for(;;)
 	{
 		trig waittill("trigger", player);
-		
+
 		player Suicide();
 
 	}
@@ -470,12 +470,12 @@ teleport35()
 {
 	trig = getent("trigger_teleport35", "targetname");
 	tele34 = getent("origin_teleport34", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger", player);
 		player Suicide();
-		
+
 	}
 }
 
@@ -483,7 +483,7 @@ teleport38()
 {
 	trig = getent("trigger_teleport38", "targetname");
 	tele38 = getent("origin_teleport38", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger", player);
@@ -503,20 +503,10 @@ endoor()
 
 	d1 delete();
 	d2 delete();
-	
+
 }
 
 rpg3()
 {
-	trig = getent("rpg3", "targetname");
 
-	for(;;)
-	{
-
-		trig waittill("trigger", player);
-		player GiveWeapon("rpg_mp"); 
-		player SwitchToWeapon("rpg_mp"); 
-		player GiveMaxAmmo("rpg_mp"); 
-		player SetClientDvar("g_speed" ,"500");
-	}
 }

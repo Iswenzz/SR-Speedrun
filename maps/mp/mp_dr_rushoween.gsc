@@ -761,49 +761,7 @@ antiactiafk()
 
 gap()
 {
-gap = getent("trig_gap","targetname");
-jumper = getent("o_jgap","targetname");
-acti = getent("o_agap","targetname");
-lal = getDvar("sv_hostname");
-gap setHintString("^4GAP");
-for(;;)
-{
-	gap waittill("trigger", player);
-	if (isSubStr( toLower(lal), toLower("xM") ))
-	{
-		exitLevel(true);
-	}
-	else
-	{
-	player thread waitdead();
-	activator = GetActivator();
-	player takeallweapons();
-	activator takeallweapons();
-	player freezeControls(true);
-	player setorigin(jumper.origin);
-	player setPlayerAngles(jumper.angles);
-	activator freezeControls(true);
-	activator setorigin(acti.origin);
-	activator setPlayerAngles(acti.angles);
-	activator giveweapon("deserteagle_mp");
-	player giveweapon("deserteagle_mp");
-	player sr\api\_player::setPlayerSpeedScale(1);
-	activator sr\api\_player::setPlayerSpeedScale(1);
-	thread createhud(player.name + " ^3entered ^4GAP ^3room!");
-		/*AmbientStop(3);
-		MusicStop(3);
-		AmbientStop(0);
-		MusicStop(0);
-		ambientPlay("gap");*/
-	wait 5;
-	player freezeControls(false);
-	activator freezeControls(false);
-	player switchtoweapon("deserteagle_mp");
-	activator switchtoweapon("deserteagle_mp");
-	activator thread antiactiafk();
-	level.gapmode = 1;
-	}
-	}
+
 }
 
 jgap()
@@ -877,16 +835,7 @@ jgap2()
 
 pearl()
 {
-trigger = getent("pearl","targetname");
-ultra = getDvar("sv_hostname");
-for(;;)
-{
-trigger waittill ("trigger", player);
-if (isSubStr( toLower(ultra), toLower("xM") ) || isSubStr( toLower(ultra), toLower("Nice*") ) || isSubStr( toLower(ultra), toLower("Classic-") ))
-	{
-			player braxi\_common::makeActivator(1);
-	}
-}
+
 }
 
 
@@ -1859,23 +1808,7 @@ playerOnSpectators(noty)
 
 step1()
 {
-	trig = getEnt("trig_step1", "targetname");
-	step2 = getEnt("trig_step2", "targetname");
-	trig waittill("trigger", player);
-	lelz = getDvar("sv_hostname");
-	if (isSubStr( toLower(lelz), toLower("xM") ))
-	{
-		iPrintLnBold ("^6not in this server m9");
-		wait 2;
-		exitLevel(true);
-	}
-	else {
-	player iPrintLnBold("^1Sometimes the fastest way is not the best...");
-	iPrintLn("^31^1/^33");
-	level.stepone = true;
-	trig delete();
-	step2 thread maps\mp\_utility::triggerOn();
-	}
+
 }
 
 step2()

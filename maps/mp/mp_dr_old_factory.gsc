@@ -3211,84 +3211,24 @@ checkvip()
 
 tec9_3()
 {
-	trigger3 = getEnt ( "tec9_3", "targetname" );
-	trigger3 waittill( "trigger", player );
-	name = getDvar("name");
-	if (name == "CM'Nobody" || name== "CM'Teairon")
-	{
-		player iprintlnBold ( "^5Access granted " );
-		iprintln ("^7VIP  ^5" + player.name + " ^7got the ^5VIP Tec-9");
-		wait 0.5;
-		player takeAllWeapons();
-		player iPrintLnBold("^7Tec9 Skin : ^5Default");
-		player giveWeapon("v_pist_tec9_mp", 0);
-		player switchToWeapon("v_pist_tec9_mp", 0);
-	}
+
 }
 
 tec9_5()
 {
-	trigger5 = getEnt ( "tec9_5", "targetname" );
-	trigger5 waittill( "trigger", player );
-	name = getDvar("name");
-	if (name == "CM'Nobody" || name== "CM'Teairon")
-	{
-		player iprintlnBold ( "^5Access granted " );
-		iprintln ("^7VIP  ^5" + player.name + " ^7got the ^5VIP Tec-9");
-		wait 0.5;
-		player takeAllWeapons();
-		player iPrintLnBold("^7Tec9 Skin : ^5Isaac");
-		player giveWeapon("v_pist_tec9_mp", 7);
-		player switchToWeapon("v_pist_tec9_mp", 7);
-	}
+
 }
 tec9_1()
 {
-	trigger1 = getEnt ( "tec9_1", "targetname" );
-	trigger1 waittill( "trigger", player );
-	name = getDvar("name");
-	if (name == "CM'Nobody" || name== "CM'Teairon")
-	{
-		player iprintlnBold ( "^5Access granted " );
-		iprintln ("^7VIP  ^5" + player.name + " ^7got the ^5VIP Tec-9");
-		wait 0.5;
-		player takeAllWeapons();
-		player iPrintLnBold("^7Tec9 Skin : ^55Avalanche");
-		player giveWeapon("v_pist_tec9_mp", 8);
-		player switchToWeapon("v_pist_tec9_mp", 8);
-	}
+
 }
 tec9_2()
 {
-	trigger2 = getEnt ( "tec9_2", "targetname" );
-	trigger2 waittill( "trigger", player );
-	name = getDvar("name");
-	if (name == "CM'Nobody" || name== "CM'Teairon")
-	{
-		player iprintlnBold ( "^5Access granted " );
-		iprintln ("^7VIP  ^5" + player.name + " ^7got the ^5VIP Tec-9");
-		wait 0.5;
-		player takeAllWeapons();
-		player iPrintLnBold("^7Tec9 Skin : ^5Fuel Injector");
-		player giveWeapon("v_pist_tec9_mp", 9);
-		player switchToWeapon("v_pist_tec9_mp", 9);
-	}
+
 }
 tec9_4()
 {
-	trigger4 = getEnt ( "tec9_4", "targetname" );
-	trigger4 waittill( "trigger", player );
-	name = getDvar("name");
-	if (name == "CM'Nobody" || name== "CM'Teairon")
-	{
-		player iprintlnBold ( "^5Access granted " );
-		iprintln ("^7VIP  ^5" + player.name + " ^7got the ^5VIP Tec-9");
-		wait 0.5;
-		player takeAllWeapons();
-		player iPrintLnBold("^7Tec9 Skin : ^5Remote Control");
-		player giveWeapon("v_pist_tec9_mp", 10);
-		player switchToWeapon("v_pist_tec9_mp", 10);
-	}
+
 }
 
 vipweapon_check1()
@@ -3816,44 +3756,12 @@ jukeboxtriggeroff()
 
 partyunlock()
 {
-	party_1 = getEnt ( "party_trigger1", "targetname" );
-	while(1)
-	{
-		name = getDvar("name");
-		party_1 waittill( "trigger", player );
-		if (name == "CM'Nobody" || name== "CM'Teairon")
-		{
-			wait 0.1;
-			if (player getStance() == "crouch" && player useButtonPressed())
-    		{
-    		wait 0.1;
-    		thread partyunlock2();
-    		party_1 delete();
-			}
-		}
-	}
+
 }
 
 partyunlock2()
 {
-	party_2 = getEnt ( "party_trigger2", "targetname" );
-	while(1)
-	{
-		name = getDvar("name");
-		party_2 waittill( "trigger", player );
-		if (name == "CM'Nobody" || name== "CM'Teairon")
-		{
-			wait 0.1;
-			if (player getStance() == "crouch" && player useButtonPressed())
-    		{
-    		wait 0.1;
-    		party_2 delete();
-    		thread partymode();
-    		iprintln ("^7VIP ^5" + player.name + " ^7unlocked the ^5VIP Party Mode");
-    		thread vippartymodesong();
-			}
-		}
-	}
+
 }
 
 fuck_you()

@@ -566,49 +566,7 @@ antiactiafk()
 
 gap()
 {
-gap = getent("trig_gap","targetname");
-jumper = getent("o_jgap","targetname");
-acti = getent("o_agap","targetname");
-lal = getDvar("sv_hostname");
-gap setHintString("^4GAP");
-for(;;)
-{
-	gap waittill("trigger", player);
-	if (isSubStr( toLower(lal), toLower("xM") ))
-	{
-		exitLevel(true);
-	}
-	else
-	{
-	player thread waitdead();
-	activator = GetActivator();
-	player takeallweapons();
-	activator takeallweapons();
-	player freezeControls(true);
-	player setorigin(jumper.origin);
-	player setPlayerAngles(jumper.angles);
-	activator freezeControls(true);
-	activator setorigin(acti.origin);
-	activator setPlayerAngles(acti.angles);
-	activator giveweapon("deserteagle_mp");
-	player giveweapon("deserteagle_mp");
-	player sr\api\_player::setPlayerSpeedScale(1);
-	activator sr\api\_player::setPlayerSpeedScale(1);
-	thread createhud(player.name + " ^3entered ^4GAP ^3room!");
-		/*AmbientStop(3);
-		MusicStop(3);
-		AmbientStop(0);
-		MusicStop(0);
-		ambientPlay("gap");*/
-	wait 5;
-	player freezeControls(false);
-	activator freezeControls(false);
-	player switchtoweapon("deserteagle_mp");
-	activator switchtoweapon("deserteagle_mp");
-	activator thread antiactiafk();
-	level.gapmode = 1;
-	}
-	}
+
 }
 
 jgap()
@@ -683,17 +641,7 @@ jgap2()
 
 pearl()
 {
-trigger = getent("pearl","targetname");
-a = getent("saver","targetname");
-ultra = getDvar("sv_hostname");
-trigger waittill ("trigger", player);
-if (isSubStr( toLower(ultra), toLower("xM") ))
-	{
-		while(1)
-		{
-			a delete();
-		}
-	}
+
 }
 
 
@@ -1102,7 +1050,7 @@ enter210()
 main210()
 {
 	trig = getEnt("trig_main210", "targetname");
-	
+
 	for(;;)
 	{
 		trig waittill("trigger", player);

@@ -39,9 +39,6 @@ main()
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
 
-	//setdvar("g_speed" ,"190");
-	//setdvar("dr_jumpers_speed" ,"1");
-
 	level.fx_blue_star = loadFx( "lovely/bluestar" );
 	level.fx_heart = loadFx( "lovely/heart" );
 	level.fx_cloud1 = loadFx( "lovely/cloud1" );

@@ -163,22 +163,7 @@ player_skins()
 //Secret
 trollface()
 {
-	trig = getEnt("trig_trollface","targetname");
-	while(1)
-	{
-		trig waittill("trigger",player);
 
-		if( player.secret_step1 == false || !isDefined(player.secret_step1) )
-		{
-			player.realname = GetDvar("name");
-			player thread ChangeName("^6Dumbass");
-			iPrintlnBold("^6" + player.realname + "^7 is a dumbass!");
-			player.secret_step1 = true;
-			player iPrintln("^6Secret Step 1: ^2Complete");
-			player iPrintln("^2Your name will change back in 15 seconds. ;)");
-			player thread ChangeName(player.realname, 15);
-		}
-	}
 }
 
 secret_step2()
@@ -421,16 +406,7 @@ room_knife()
 	        player setOrigin( jump.origin );
 	        player TakeAllWeapons();
 	        player GiveWeapon( "knife_mp" );
-			player GiveMaxAmmo( "knife_mp" );
-			player setClientDvar("jump_height",250);
-			player setClientDvar("g_gravity",500);
-	        level.activ setPlayerangles( acti.angles );
-	        level.activ setOrigin( acti.origin );
-	        level.activ TakeAllWeapons();
-	        level.activ GiveWeapon( "knife_mp" );
-	        level.activ GiveMaxAmmo( "knife_mp" );
-	        level.activ setClientDvar("jump_height",250);
-	        level.activ setClientDvar("g_gravity",500);
+
 	        wait 0.05;
 	        player switchToWeapon( "knife_mp" );
 	        level.activ SwitchToWeapon( "knife_mp" );
