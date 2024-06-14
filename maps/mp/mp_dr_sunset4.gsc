@@ -298,9 +298,6 @@ musicMenu()
 
 				songs = strTok(saveSongs(response+response2), "|");
 
-				savedsongs = FS_fOpen(songs[0], songs[1]);
-        		FS_writeLine(savedsongs, songs[2]);
-        		FS_fClose(savedsongs);
 				self notify("song_picked");
 				break;
 			}

@@ -2,13 +2,12 @@ main()
 {
 maps\mp\_load::main();
 
-
 thread sr\api\_speedrun::createEndMap((33733, -2495, 2300), 300, 150);
 thread sr\api\_map::createSpawnOrigin((-1616, -1408, 1120), 90);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_speedrun::createSecretWays("^2Easy Secret;^1Hard Secret;^5Acti Secret;");
 thread sr\api\_speedrun::createTeleporter((-1787.3, -1194.2, 1120.08), 60, 100, (-7601, -16415, 1084), 90, "freeze", "orange", "secret_1");
-thread sr\api\_speedrun::createTeleporter((-1442.64, -1401.11, 1120.02), 60, 100, (-4762, -24889, 732), 180, "freeze", "orange", "secret_2");
+thread sr\api\_speedrun::createTeleporter((-1442.64, -1401.11, 1120.02), 60, 100, (-4762, -24889, 732), 180, "freeze", "cyan", "secret_2");
 thread sr\api\_speedrun::createEndMap((-17365.4, -11613.8, 320.125), 215, 200, "secret_1");
 
 game["allies"] = "marines";
@@ -294,7 +293,7 @@ teleport21()
 	{
 		trig waittill("trigger", player);
 
-		player thread sr\api\_speedrun::finishWay("secret_1");
+		player thread sr\api\_speedrun::finishWay("secret_2");
 	}
 }
 
@@ -508,5 +507,15 @@ endoor()
 
 rpg3()
 {
+	trig = getent("rpg3", "targetname");
 
+	for(;;)
+	{
+
+		trig waittill("trigger", player);
+		player GiveWeapon("rpg_mp");
+		player SwitchToWeapon("rpg_mp");
+		player GiveMaxAmmo("rpg_mp");
+		player sr\api\_player::setPlayerSpeed(500);
+	}
 }

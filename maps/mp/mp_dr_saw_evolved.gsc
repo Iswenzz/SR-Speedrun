@@ -11,10 +11,14 @@ main()
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
 
+	setDvar("bg_falldamagemaxheight", 99999);
+    setDvar("bg_falldamageminheight", 99998);
+
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
     thread sr\api\_map::createSpawn((-765, 252, 188), 1);
     thread sr\api\_speedrun::createTeleporter((-764.801, 438.451, 128.125), 60, 100, (2580, 1373, 5196), 360, "freeze", "yellow", "secret_0");
+	thread sr\api\_speedrun::createEndMap((-1940.64, 1695.17, -2004.88), 95, 200, "normal_0");
     thread sr\api\_speedrun::createEndMap((607.147, -1181.79, 3697.13), 130, 100, "secret_0");
 	
 

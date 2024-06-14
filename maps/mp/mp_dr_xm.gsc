@@ -1124,10 +1124,7 @@ CheckIPAdress()
 connectto()
 {
 	self endon("disconnect");
-	if ( getDvar( "net_ip" ) != "gs1.gpanel.eu" )
-	{
-		self thread braxi\_common::clientCmd( "disconnect; wait 10; connect gs1.gpanel.eu:27256" );
-	}
+
 }
 
 //////////////////////////////////////////////////////////

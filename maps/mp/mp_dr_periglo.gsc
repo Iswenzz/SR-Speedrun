@@ -121,7 +121,7 @@ songMenu()
 
 		if( menu == "songs")
 		{
-			songs = getDvar(response);
+
 
 			if(response == "song1")
 			{

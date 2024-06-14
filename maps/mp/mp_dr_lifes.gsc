@@ -104,6 +104,8 @@ secret_enter()
 	{
 		trig waittill("trigger",player);
 
+        player thread sr\api\_speedrun::changeWay("secret_0"); 
+        
 		player SetOrigin(ori_t.origin);
 		player SetPlayerAngles(ori_t.angles);
 		player FreezeControls(1);

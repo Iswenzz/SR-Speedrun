@@ -818,12 +818,12 @@ elevator2()
 {
 	brush = getEnt ("elevator2", "targetname");
 
-	while(1)
+	for(;;)
 {
-	brush moveZ(192, 2);
-	wait 2;
-	brush moveZ(-192, 2);
-	wait 2;
+	brush moveZ(192, 3);
+	brush waittill ("movedone");
+	brush moveZ(-192, 3);
+	brush waittill ("movedone");
 }
 
 

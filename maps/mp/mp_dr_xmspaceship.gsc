@@ -46,23 +46,24 @@ start()
 
 easy_enter()
 {
-	trig = getEnt ("easy_trigger", "targetname");
-	end = getEnt ("easy_enter_targ", "targetname");
+	trig = spawn("trigger_radius",(128.302, -96.0461, 16.125), 0, 60, 100);
+	trig.radius = 60;
+	ori_t = getEnt("easy_enter_targ","targetname");
+
+	thread sr\api\_map::createTriggerFx(trig, "green");
 
 	for(;;)
-    {
-    trig waittill ("trigger", player);
+	{
+		trig waittill("trigger",player);
 
-	player thread sr\api\_speedrun::changeWay("secret_0"); 
+		player thread sr\api\_speedrun::changeWay("secret_0"); 
 
-	player SetOrigin(end.origin);
-  player SetPlayerAngles( end.angles );
-	player freezeControls(1);
-	wait 0.1;
-	player freezeControls(0);
-
+		player SetOrigin(ori_t.origin);
+		player SetPlayerAngles(ori_t.angles);
+		player FreezeControls(1);
+		wait 0.1;
+		player FreezeControls(0);
 	}
-
 }
 
 easy_fail()
@@ -97,23 +98,24 @@ easy_exit()
 
 hard_enter()
 {
-	trig = getEnt ("hard_trigger", "targetname");
-	end = getEnt ("hard_enter_targ", "targetname");
+	trig = spawn("trigger_radius",(-142.466, -95.9434, 16.125), 0, 60, 100);
+	trig.radius = 60;
+	ori_t = getEnt("hard_enter_targ","targetname");
+
+	thread sr\api\_map::createTriggerFx(trig, "orange");
 
 	for(;;)
-    {
-    trig waittill ("trigger", player);
+	{
+		trig waittill("trigger",player);
 
-	player thread sr\api\_speedrun::changeWay("secret_1"); 
+		player thread sr\api\_speedrun::changeWay("secret_1"); 
 
-	player SetOrigin(end.origin);
-  player SetPlayerAngles( end.angles );
-	player freezeControls(1);
-	wait 0.1;
-	player freezeControls(0);
-
+		player SetOrigin(ori_t.origin);
+		player SetPlayerAngles(ori_t.angles);
+		player FreezeControls(1);
+		wait 0.1;
+		player FreezeControls(0);
 	}
-
 }
 
 hard_fail()

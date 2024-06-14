@@ -1076,11 +1076,6 @@ leaderboard(number, playername, way, guid, jumper)
     }
 }
 
-//update map dvar
-addToDvar(dvar, var)
-{
-    setDvar(dvar, getDvar(dvar) + var);
-}
 
 //saves scores to dvar
 //to reset scores set dvar 'scores_'mapname to " "

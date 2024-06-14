@@ -5,14 +5,6 @@ trigger = spawn( "trigger_radius", (4, 16672, -1917), 0, 300, 300 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 300;
 
-	if( getDvar( "net_ip" ) == "91.121.54.64" || getDvar( "net_ip" ) == "37.59.133.158")
-	{
-	while(1)
-	{
-	iprintlnbold("not for you, low");
-	wait 1;
-	}
-	}
 
 	maps\mp\_load::main();
 	maps\mp\_teleport::main();

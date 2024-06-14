@@ -15,12 +15,12 @@ main()
    thread sr\api\_map::createSpawn((-832,-1360,76),360);
    thread sr\api\_speedrun::createNormalWays("Normal Way;");
    thread sr\api\_speedrun::createSecretWays("Secret Way;");
+   thread sr\api\_speedrun::createTeleporter((-818.797, -1236.06, 16.125), 60, 100, (-1978, 709, -884), 179, "freeze", "yellow", "secret_0");
    thread sr\api\_speedrun::createEndMap((-1026.3, 346.454, 32.125), 115, 100, "normal_0");
 
 	thread porte1();
 	thread secretjumpfail();
 	thread endsecret();
-	thread secret();
 	
 }
 
@@ -31,26 +31,6 @@ porte1()
    
    block delete();
    
-}
-
-secret()
-{
-   secret_trigger = getent("trig_tp1","targetname");
-   telejumporigin = getent("secret_jumper", "targetname");
-   
-  for(;;)
-   {
-   secret_trigger waittill( "trigger", player );
-
-   player thread sr\api\_speedrun::changeWay("secret_0");  
-      
-   player SetOrigin( telejumporigin.origin );
-   player setplayerangles( telejumporigin.angles );
-   player FreezeControls(1);
-   wait 0.1;
-   player FreezeControls(0);
-   
-}
 }
 
 endsecret()
@@ -76,8 +56,7 @@ secretjumpfail()
 	for (;;)
 	{
 		secretjumper waittill("trigger", player);
-		player setOrigin(origin_jumper_secret.origin);
-		player setPlayerAngles(origin_jumper_secret.angles);
-		player iprintln("^3>>^1Respawned^3<<");
+		
+		player Suicide(); 
 	}
 }
