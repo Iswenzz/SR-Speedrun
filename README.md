@@ -1,7 +1,5 @@
 # SR Speedrun
 
-[![License](https://img.shields.io/github/license/Iswenzz/SR-Speedrun?color=blue&logo=gitbook&logoColor=white)](https://github.com/Iswenzz/SR-Speedrun/blob/master/LICENSE)
-
 ![](https://i.imgur.com/Erq62DG.jpg)
 
 The official CoD4 multiplayer speedrun mod.
