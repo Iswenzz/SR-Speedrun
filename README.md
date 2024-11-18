@@ -1,6 +1,6 @@
 # SR Speedrun
 
-![](https://i.imgur.com/Erq62DG.jpg)
+![](https://i.imgur.com/sjoTjiZ.jpeg)
 
 The official CoD4 multiplayer speedrun mod.
 
