@@ -1,7 +1,7 @@
 main()
 {
     maps\mp\_load::main();
-	
+
     game["allies"] = "marines";
     game["axis"] = "opfor";
     game["attackers"] = "axis";
@@ -9,7 +9,7 @@ main()
     game["allies_soldiertype"] = "desert";
     game["axis_soldiertype"] = "desert";
 
-    
+
     setdvar( "r_specularcolorscale", "1" );
     setdvar("r_glowbloomintensity0",".25");
     setdvar("r_glowbloomintensity1",".25");
@@ -82,7 +82,7 @@ jump()
 	air1 = getent ("air1","targetname");
 	air2 = getent ("air2","targetname");
 	air3 = getent ("air3","targetname");
-    
+
 	time = .5;
 	for(;;)
 {
@@ -90,24 +90,44 @@ jump()
 
 		user sr\api\_player::antiElevator(true);
 
-		if (user istouching(jumpx))
+		if (user istouching(jumpx) && !isDefined(user.jump_thread))
 		{
-			//throw = user.origin + (100, 100, 0);
-			air = spawn ("script_model",(0,0,0));
-			air.origin = user.origin;
-			air.angles = user.angles;
-			user linkto (air);
-			air moveto (air1.origin, time);
-			wait .5;
-			air moveto (air2.origin, time);
-			wait .25;
-			air moveto (air3.origin, time);
-			wait .5;
-			user sr\api\_player::antiElevator(false);
-			user unlink();
-			wait 1;
+			user thread jump_thread(user);
+		}
 }
 }
+
+jump_thread(user)
+{
+	user endon("disconnect");
+	user endon("death");
+
+	user.jump_thread = true;
+
+	jumpx = getent ("jump","targetname");
+	glow = getent ("glow","targetname");
+	air1 = getent ("air1","targetname");
+	air2 = getent ("air2","targetname");
+	air3 = getent ("air3","targetname");
+
+	time = .5;
+
+	//throw = user.origin + (100, 100, 0);
+	air = spawn ("script_model",(0,0,0));
+	air.origin = user.origin;
+	air.angles = user.angles;
+	user linkto (air);
+	air moveto (air1.origin, time);
+	wait .5;
+	air moveto (air2.origin, time);
+	wait .25;
+	air moveto (air3.origin, time);
+	wait .5;
+	user sr\api\_player::antiElevator(false);
+	user unlink();
+	wait 1;
+
+	user.jump_thread = undefined;
 }
 
 jump2()
@@ -125,22 +145,42 @@ jump2()
 
 		user sr\api\_player::antiElevator(true);
 
-		if (user istouching(jump2))
+		if (user istouching(jump2) && !isDefined(user.jump_thread))
 		{
-			//throw = user.origin + (100, 100, 0);
-			air = spawn ("script_model",(0,0,0));
-			air.origin = user.origin;
-			air.angles = user.angles;
-			user linkto (air);
-			air moveto (air1.origin, time);
-			wait .5;
-			air moveto (air2.origin, time);
-			wait .25;
-			air moveto (air3.origin, time);
-			wait .5;
-			user sr\api\_player::antiElevator(false);
-			user unlink();
-			wait 1;
+			user thread jump2_thread();
 }
 }
+}
+
+jump2_thread(user)
+{
+	user endon("disconnect");
+	user endon("death");
+
+	user.jump_thread = true;
+
+	jump2 = getent ("jump2","targetname");
+	glow = getent ("glow3","targetname");
+	air1 = getent ("air4","targetname");
+	air2 = getent ("air5","targetname");
+	air3 = getent ("air6","targetname");
+
+	time = .5;
+
+	//throw = user.origin + (100, 100, 0);
+	air = spawn ("script_model",(0,0,0));
+	air.origin = user.origin;
+	air.angles = user.angles;
+	user linkto (air);
+	air moveto (air1.origin, time);
+	wait .5;
+	air moveto (air2.origin, time);
+	wait .25;
+	air moveto (air3.origin, time);
+	wait .5;
+	user sr\api\_player::antiElevator(false);
+	user unlink();
+	wait 1;
+
+	user.jump_thread = undefined;
 }

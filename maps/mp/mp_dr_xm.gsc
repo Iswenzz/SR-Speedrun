@@ -161,18 +161,7 @@ spiner2()
 
 somespeed()
 {
-trigger = getent("super_speed","targetname");
-while(1)
-{
-trigger waittill ("trigger",player);
-while(player isOnGround())
-{
-   player sr\api\_player::setPlayerSpeedScale(10);
-   wait(.05);
-}
-player sr\api\_player::setPlayerSpeedScale(1.1);
-wait(0.1);
-}
+
 }
 
 //////////////////////////////////////////////////////

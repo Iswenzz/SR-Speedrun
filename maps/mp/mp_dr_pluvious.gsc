@@ -13,9 +13,9 @@ main()
 	thread sr\api\_map::createSpawn((512, 192, 60), 90);
 
 
-	jumpPads = getEntArray("trig_jumppad", "targetname");
+	/*jumpPads = getEntArray("trig_jumppad", "targetname");
 	for(i = 0; i < jumpPads.size; i++)
-	jumpPads[i] thread monitorTrigger();
+	jumpPads[i] thread monitorTrigger();*/
 
 	windtrigs = getentarray("auto1","targetname");
     for (i = 0; i < windtrigs.size; i++)
@@ -28,7 +28,7 @@ main()
 
 }
 
-monitorTrigger()
+/*monitorTrigger()
 {
 	for(;;)
 	{
@@ -52,4 +52,4 @@ Boost(damage)
 	psOffsetTime = 0;
 	self.health += iDamage;
 	self finishPlayerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vPoint, vDir, sHitLoc, psOffsetTime);
-}
+}*/

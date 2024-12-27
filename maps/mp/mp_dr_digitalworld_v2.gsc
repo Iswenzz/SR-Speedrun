@@ -1,15 +1,15 @@
 main()
 {
 	maps\mp\_load::main();
-	maps\mp\_teleport::main();
-	maps\mp\_teleport1::main();
-	maps\mp\_teleport2::main();
-	maps\mp\_teleport3::main();
-	maps\mp\_teleport4::main();
-	maps\mp\_teleport5::main();
-	maps\mp\_teleport6::main();
-	maps\mp\_teleport7::main();
-	maps\mp\_teleport8::main();
+	//maps\mp\_teleport::main();
+	//maps\mp\_teleport1::main();
+	//maps\mp\_teleport2::main();
+	//maps\mp\_teleport3::main();
+	//maps\mp\_teleport4::main();
+	//maps\mp\_teleport5::main();
+	//maps\mp\_teleport6::main();
+	//maps\mp\_teleport7::main();
+	//maps\mp\_teleport8::main();
 	
 	
 	game["allies"] = "sas";
@@ -31,6 +31,9 @@ main()
 
 	thread platforme();
 	thread start_door();
+	thread teleport1();
+	thread teleport2();
+	thread teleport3();
 	thread trap4();
 	thread trap11();
 
@@ -55,6 +58,54 @@ start_door()
 	
 	door1 delete();
 	door2 delete();
+}
+
+teleport1()
+{
+	trig = getEnt("enter2", "targetname");
+	tele = getEnt("gohere2", "targetname");
+
+	for(;;)
+		{
+			trig waittill("trigger", player);
+			player setOrigin(tele.origin);
+			player setPlayerAngles(tele.angles);
+			player freezeControls(1);
+			wait 0.01;
+			player freezeControls(0);
+		}
+}
+
+teleport2()
+{
+	trig = getEnt("enter4", "targetname");
+	tele = getEnt("gohere4", "targetname");
+
+	for(;;)
+		{
+			trig waittill("trigger", player);
+			player setOrigin(tele.origin);
+			player setPlayerAngles(tele.angles);
+			player freezeControls(1);
+			wait 0.01;
+			player freezeControls(0);
+		}
+}
+
+teleport3()
+{
+	trig = getEnt("enter6", "targetname");
+	tele = getEnt("gohere6", "targetname");
+
+	for(;;)
+		{
+			trig waittill("trigger", player);
+			player setOrigin(tele.origin);
+			player setPlayerAngles(tele.angles);
+			player freezeControls(1);
+			wait 0.01;
+			player freezeControls(0);
+		}
 }
 
 trap4()

@@ -1,4 +1,3 @@
-//exec deatehrun.cfg +set fs_game Mods/deathrun_updated +set scr_game_playerwaittime 0 +set scr_game_matchstarttime 0 +exec deathrun.cfg +developer 0 +devmap mp_deathrun_skypillar
 main()
 {
 thread sr\api\_map::createSpawnOrigin((208.500, -2547, -5343.875), 90);

@@ -1,12 +1,17 @@
 main()
 {
 thread sr\api\_map::createSpawnOrigin((0, -61, 8), 270);
-	maps\mp\_teleport::main();
+	//maps\mp\_teleport::main();
 	maps\mp\_load::main();
 
 
     thread sr\api\_speedrun::createNormalWays("Normal Way");
-    	//thread trap1();
+
+    thread sr_sec_enter();
+    thread sr_sec_tp();
+    thread sr_sec_fail();
+    thread sr_sec_finish();
+    //thread trap1();
 	//thread trap2();
 	//thread trap3();
 	//thread trap4();
@@ -25,6 +30,71 @@ thread sr\api\_map::createSpawnOrigin((0, -61, 8), 270);
 	//thread addTestCLients();
 }
 
+sr_sec_enter()
+{
+	trig = spawn("trigger_radius",(155.39, -61.0581, 8.125), 0, 60, 100);
+	trig.radius = 60;
+	ori_t = getEnt("secret","targetname");
+
+	thread sr\api\_map::createTriggerFx(trig, "yellow");
+
+	for(;;)
+	{
+		trig waittill("trigger",player);
+
+		player thread sr\api\_speedrun::changeWay("secret_0"); 
+
+		player SetOrigin(ori_t.origin);
+		player SetPlayerAngles(ori_t.angles);
+		player FreezeControls(1);
+		wait 0.1;
+		player FreezeControls(0);
+	}
+}
+
+sr_sec_tp()
+{
+	trig = spawn("trigger_radius",(2784.03, -1699.95, -190.875), 0, 35, 30);
+	trig.radius = 35;
+	ori_t = getEnt("secret_tele","targetname");
+
+	for(;;)
+	{
+		trig waittill("trigger",player);
+
+		player SetOrigin(ori_t.origin);
+		player SetPlayerAngles(ori_t.angles);
+		player FreezeControls(1);
+		wait 0.1;
+		player FreezeControls(0);
+	}
+}
+
+sr_sec_fail()
+{
+	trig = spawn("trigger_radius",(2216.72, -1791.38, -317.875), 0, 1010, 5);
+	trig.radius = 1010;
+
+	for(;;)
+	{
+		trig waittill("trigger",player);
+
+		player Suicide();
+	}
+}
+
+sr_sec_finish()
+{
+	trig = spawn("trigger_radius",(1420.55, -1316.09, 24.125), 0, 75, 185);
+	trig.radius = 75;
+
+	for(;;)
+	{
+		trig waittill("trigger",player);
+
+		player thread sr\api\_speedrun::finishWay("secret_0");
+	}
+}
 
 xp_give()
 {
