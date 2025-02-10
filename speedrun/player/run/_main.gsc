@@ -17,6 +17,8 @@ start()
 	self.finishedMap = false;
 
 	self.sr_mode = self speedrun\player\run\_main::getLastMode();
+	if (sr\game\_event::isEventStarted())
+		self.sr_mode = "210";
 	if (self sr\game\minigames\_main::isInAnyQueue())
 		self.sr_mode = "210";
 	self.sr_way = "normal_0";
