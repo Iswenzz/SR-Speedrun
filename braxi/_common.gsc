@@ -109,7 +109,7 @@ canSpawn()
 		return false;
 	if (level.freeRun)
 		return true;
-	if (self.died && !self.pers["lifes"])
+	if (self isDead() && !self.pers["lifes"])
 		return false;
 	return true;
 }

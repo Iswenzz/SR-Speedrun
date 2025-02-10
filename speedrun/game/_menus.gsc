@@ -73,7 +73,7 @@ menu_3rdPerson(arg)
 
 menu_Suicide(arg)
 {
-	if (self sr\game\minigames\_main::isInAnyQueue() || self isAxis())
+	if (self isAxis())
 	{
 		self iPrintLn("^1Suicide disabled");
 		return;
@@ -97,9 +97,9 @@ menu_Team(arg)
 	if (game["state"] == "end")
 		return;
 
-	if (self sr\game\minigames\_main::isInAnyQueue() || self isAxis())
+	if (self isAxis() || self sr\game\minigames\_main::isInAnyQueue())
 	{
-		self iPrintLn("^1Suicide disabled");
+		self iPrintLn("^1Switching team disabled");
 		return;
 	}
 	self sr\game\_teams::setTeam("allies");
