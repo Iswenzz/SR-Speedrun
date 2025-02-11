@@ -21,7 +21,10 @@ main()
 	setDvar("bg_falldamagemaxheight", 20000000);
 	setDvar("bg_falldamageminheight", 15000000);
 
+	registerEventMap();
+
 	thread minigames();
+	thread teleporters();
 
 	event("death", ::onPlayerDeath);
 }
@@ -39,6 +42,26 @@ minigames()
 		minigame_monkeyball();
 
 		ambientStop(1);
+	}
+}
+
+teleporters()
+{
+	tps = getEntArray("tp", "targetname");
+	for (i = 0; i < tps.size; i++)
+		tps[i] thread teleporter_trig();
+}
+
+teleporter_trig()
+{
+	entity = getEnt(self.target, "targetname");
+
+	while (true)
+	{
+		self waittill("trigger", player);
+
+		player setOrigin(entity.origin);
+		player setPlayerAngles(entity.angles);
 	}
 }
 
@@ -84,15 +107,9 @@ colors_start()
 	time = 5;
 	while (true)
 	{
-		players = getPlayingPlayers();
+		watchPlayerCount();
 		color = colors[randomInt(colors.size)];
 
-		if (players.size <= 1)
-		{
-			if (isDefined(players[0]))
-				players[0] suicide();
-			level notify("event_round_end");
-		}
 		wait time;
 		colors_show(color);
 		colors_show_plat("all");
@@ -120,35 +137,6 @@ colors_start()
 			wave(5);
 			time = 1;
 		}
-	}
-}
-
-colors_death()
-{
-	players = getPlayingPlayers();
-
-	switch (players.size)
-	{
-		case 4:
-			iPrintLnBold(fmt("%s ^7finished in 5th place", self.name));
-			self playerAddPoints(1);
-			break;
-		case 3:
-			iPrintLnBold(fmt("%s ^7finished in 4th place", self.name));
-			self playerAddPoints(2);
-			break;
-		case 2:
-			iPrintLnBold(fmt("%s ^7finished in ^93rd place", self.name));
-			self playerAddPoints(3);
-			break;
-		case 1:
-			iPrintLnBold(fmt("%s ^7finished in ^82nd place", self.name));
-			self playerAddPoints(4);
-			break;
-		case 0:
-			iPrintLnBold(fmt("%s ^7finished in ^31st place", self.name));
-			self playerAddPoints(5);
-			break;
 	}
 }
 
@@ -243,12 +231,59 @@ minigame_obstacle()
 
 obstacle_reset()
 {
+	push = getEntArray("push", "targetname");
+	defaultOrigin = push[5].origin;
 
+	for (i = 0; i < 9; i++)
+	{
+		push[i] hideEntity();
+		if (!isDefined(push[i].defaultOrigin))
+			push[i].defaultOrigin = defaultOrigin;
+		push[i].origin = push[i].defaultOrigin;
+	}
 }
 
 obstacle_start()
 {
+	level endon("event_round_end");
+	push = getEntArray("push", "targetname");
 
+	count = 0;
+	time = 3;
+
+	while (true)
+	{
+		mover = push[randomInt(push.size)];
+		watchPlayerCount();
+
+		mover showEntity();
+		mover moveY(1500, time);
+		wait time;
+
+		obstacle_reset();
+
+		count++;
+		if (count == 2)
+		{
+			wave(2);
+			time = 2.5;
+		}
+		if (count == 6)
+		{
+			wave(3);
+			time = 2;
+		}
+		if (count == 12)
+		{
+			wave(4);
+			time = 1.5;
+		}
+		if (count == 20)
+		{
+			wave(5);
+			time = 1;
+		}
+	}
 }
 
 minigame_mover()
@@ -264,12 +299,71 @@ minigame_mover()
 
 mover_reset()
 {
+	mover = getEnt("mover", "targetname");
+	mover_grid = getEnt("mover_grid", "targetname");
 
+	if (!isDefined(mover.defaultOrigin))
+		mover.defaultOrigin = mover.origin;
+	if (!isDefined(mover_grid.defaultOrigin))
+		mover_grid.defaultOrigin = mover_grid.origin;
+
+	mover.origin = mover.defaultOrigin;
+	mover_grid.origin = mover_grid.defaultOrigin;
 }
 
 mover_start()
 {
+	level endon("event_round_end");
 
+	entity = getEnt("minigame_3", "targetname");
+	mover = getEnt("mover", "targetname");
+	mover_grid = getEnt("mover_grid", "targetname");
+
+	count = 0;
+	time = 20;
+
+	mover_grid moveZ(-400, 5);
+	wait 5;
+
+	while (true)
+	{
+		players = getPlayingPlayers();
+		watchPlayerCount();
+
+		mover moveY(-15500, time);
+		wait time;
+
+		mover.origin = mover.defaultOrigin;
+		for (i = 0; i < players.size; i++)
+			players[i] setOrigin(entity.origin);
+
+		count++;
+		if (count == 1)
+		{
+			wave(2);
+			time = 17;
+		}
+		if (count == 2)
+		{
+			wave(3);
+			time = 14;
+		}
+		if (count == 3)
+		{
+			wave(4);
+			time = 12;
+		}
+		if (count == 4)
+		{
+			wave(5);
+			time = 10;
+		}
+		if (count == 5)
+		{
+			wave(6);
+			time = 8;
+		}
+	}
 }
 
 minigame_speedrun()
@@ -285,12 +379,107 @@ minigame_speedrun()
 
 speedrun_reset()
 {
+	run = getEntArray("run", "targetname");
+	run_door = getEnt("run_door", "targetname");
 
+	if (!isDefined(run_door.defaultOrigin))
+		run_door.defaultOrigin = run_door.origin;
+	run_door.origin = run_door.defaultOrigin;
+
+	for (i = 0; i < run.size; i++)
+	{
+		if (!isDefined(run[i].defaultOrigin))
+			run[i].defaultOrigin = run[i].origin;
+		run[i].origin = run[i].defaultOrigin;
+	}
 }
 
 speedrun_start()
 {
+	level endon("event_round_end");
 
+	entity = getEnt("minigame_4", "targetname");
+	run = getEntArray("run", "targetname");
+	run_door = getEnt("run_door", "targetname");
+
+	sections = [];
+	section_1 = (10624, 4152, 228);
+	section_2 = (10624, 2488, 228);
+	section_3 = (10624, 824, 228);
+
+	level.speedrunPlayers = 5;
+	level.speedrunPlayersFinished = [];
+
+	while (sections.size < 3)
+	{
+		section = run[randomInt(run.size)];
+		if (!Contains(sections, section))
+			sections[sections.size] = section;
+	}
+	run_door moveZ(-800, 4);
+	wait 2;
+
+	sections[0].origin = section_1;
+	sections[1].origin = section_2;
+	sections[2].origin = section_3;
+	thread speedrun_trigger();
+
+	while (true)
+	{
+		players = getPlayingPlayers();
+		watchPlayerCount();
+
+		if (level.speedrunPlayersFinished.size < level.speedrunPlayers)
+		{
+			wait 1;
+			continue;
+		}
+		for (i = 0; i < players.size; i++)
+		{
+			if (Contains(level.speedrunPlayersFinished, players[i]))
+				continue;
+
+			players[i] suicide();
+		}
+		wait 5;
+		watchPlayerCount();
+		speedrun_reset();
+
+		for (i = 0; i < level.speedrunPlayersFinished.size; i++)
+		{
+			level.speedrunPlayersFinished[i] setOrigin(entity.origin);
+			level.speedrunPlayersFinished[i] setPlayerAngles(entity.angles);
+		}
+		level.speedrunPlayersFinished = [];
+
+		sections = [];
+		while (sections.size < 3)
+		{
+			section = run[randomInt(run.size)];
+			if (!Contains(sections, section))
+				sections[sections.size] = section;
+		}
+		run_door moveZ(-800, 4);
+		wait 2;
+
+		sections[0].origin = section_1;
+		sections[1].origin = section_2;
+		sections[2].origin = section_3;
+
+		level.speedrunPlayers--;
+	}
+}
+
+speedrun_trigger()
+{
+	level endon("event_round_end");
+	trigger = getEnt("tp_origin_7", "target");
+
+	while (true)
+	{
+		trigger waittill("trigger", player);
+		level.speedrunPlayersFinished = player registerPlayerFinish(level.speedrunPlayersFinished, level.speedrunPlayers);
+	}
 }
 
 minigame_monkeyball()
@@ -300,6 +489,8 @@ minigame_monkeyball()
 	messages[messages.size] = "Navigate by ^5tilting the world ^7with your ^5movement keys";
 	messages[messages.size] = "Only the first ^5five ^7players will ^5earn points";
 
+	thread monkeyball_bounces();
+
 	origin = getEnt("minigame_5", "targetname");
 	ambientPlay("minigame5", 0.5);
 	startGame("Monkey Ball", origin, messages, ::monkeyball_reset, ::monkeyball_start);
@@ -307,12 +498,122 @@ minigame_monkeyball()
 
 monkeyball_reset()
 {
+	start = getEnt("monkey_door", "targetname");
 
+	if (!isDefined(start.defaultOrigin))
+		start.defaultOrigin = start.origin;
+	start.origin = start.defaultOrigin;
 }
 
 monkeyball_start()
 {
+	level endon("event_round_end");
 
+	level.monkeyPlayers = 5;
+	level.monkeyPlayersFinished = [];
+
+	players = getAllPlayers();
+	for (i = 0; i < players.size; i++)
+	{
+		players[i] allowJump(false);
+		players[i] allowSprint(false);
+		players[i] setMoveSpeed(600);
+	}
+	start = getEnt("monkey_door", "targetname");
+	start moveZ(-700, 5);
+	wait 5;
+
+	thread monkeyball_trigger();
+
+	while (true)
+	{
+		players = getPlayingPlayers();
+		watchPlayerCount();
+
+		if (level.monkeyPlayersFinished.size >= level.monkeyPlayers)
+		{
+			for (i = 0; i < players.size; i++)
+				players[i] suicide();
+		}
+		wait 1;
+	}
+}
+
+monkeyball_trigger()
+{
+	level endon("event_round_end");
+	trigger = getEnt("monkey_end", "targetname");
+
+	while (true)
+	{
+		trigger waittill("trigger", player);
+		level.monkeyPlayersFinished = player registerPlayerFinish(level.monkeyPlayersFinished, level.monkeyPlayers);
+	}
+}
+
+monkeyball_bounces()
+{
+	if (isDefined(level.monkeyBounces))
+		return;
+	level.monkeyBounces = true;
+
+	plats = getEntArray("monkey_bounce", "targetname");
+	trigs = getEntArray("monkey_bounce_trig", "targetname");
+
+	for (i = 0; i < trigs.size; i++)
+	{
+		trigs[i] triggerOff();
+		trigs[i] thread monkeyball_bounces_trig(i);
+	}
+	while (true)
+	{
+		for (i = 0; i < plats.size; i++)
+			plats[i] moveZ(64, 0.2);
+
+		for (i = 0; i < trigs.size; i++)
+			trigs[i] triggerOn();
+
+		wait 0.4;
+
+		for (i = 0; i < plats.size; i++)
+			plats[i] moveZ(-64, 0.2);
+
+		for (i = 0; i < trigs.size; i++)
+			trigs[i] triggerOff();
+
+		wait 4;
+	}
+}
+
+monkeyball_bounces_trig(i)
+{
+	power = 10;
+	switch (i)
+	{
+		case 9: power = 20; break;
+		case 10: power = 20; break;
+		case 11: power = 20; break;
+		case 12: power = 20; break;
+	}
+	while (true)
+	{
+		self waittill("trigger", player);
+		player thread monkeyball_bounce_player(power);
+	}
+}
+
+monkeyball_bounce_player(power)
+{
+	self endon("death");
+	self endon("disconnect");
+
+	if (isDefined(self.monkeyBounce))
+		return;
+
+	self.monkeyBounce = true;
+	self bounce(self.origin, vectorNormalize((0, 0, 20)), 1000, power);
+	wait 1;
+	self.monkeyBounce = undefined;
 }
 
 showEntity()
@@ -333,6 +634,44 @@ wave(number)
 	iPrintLnBold("^1WAVE " + number);
 }
 
+watchPlayerCount()
+{
+	players = getPlayingPlayers();
+	if (players.size <= 1)
+	{
+		if (isDefined(players[0]))
+			players[0] suicide();
+		level notify("event_round_end");
+	}
+}
+
+registerPlayerFinish(array, max)
+{
+	if (Contains(array, self) || array.size >= max)
+		return array;
+
+	switch (array.size)
+	{
+		case 4:
+			iPrintLnBold(fmt("%s ^7finished in 5th place", self.name));
+			break;
+		case 3:
+			iPrintLnBold(fmt("%s ^7finished in 4th place", self.name));
+			break;
+		case 2:
+			iPrintLnBold(fmt("%s ^7finished in ^93rd place", self.name));
+			break;
+		case 1:
+			iPrintLnBold(fmt("%s ^7finished in ^82nd place", self.name));
+			break;
+		case 0:
+			iPrintLnBold(fmt("%s ^7finished in ^31st place", self.name));
+			break;
+	}
+	array[array.size] = self;
+	return array;
+}
+
 onPlayerDeath()
 {
 	self endon("spawned");
@@ -341,8 +680,29 @@ onPlayerDeath()
 	if (!isEventStarted())
 		return;
 
-	switch (level.eventGame)
+	players = getPlayingPlayers();
+
+	switch (players.size)
 	{
-		case 0: self colors_death(); break;
+		case 4:
+			iPrintLnBold(fmt("%s ^7finished in 5th place", self.name));
+			self playerAddPoints(1);
+			break;
+		case 3:
+			iPrintLnBold(fmt("%s ^7finished in 4th place", self.name));
+			self playerAddPoints(2);
+			break;
+		case 2:
+			iPrintLnBold(fmt("%s ^7finished in ^93rd place", self.name));
+			self playerAddPoints(3);
+			break;
+		case 1:
+			iPrintLnBold(fmt("%s ^7finished in ^82nd place", self.name));
+			self playerAddPoints(4);
+			break;
+		case 0:
+			iPrintLnBold(fmt("%s ^7finished in ^31st place", self.name));
+			self playerAddPoints(5);
+			break;
 	}
 }
