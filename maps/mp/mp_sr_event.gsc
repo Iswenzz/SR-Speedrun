@@ -486,7 +486,6 @@ minigame_monkeyball()
 {
 	messages = [];
 	messages[messages.size] = "Speedrun through ^5Monkey Ball ^7stages";
-	messages[messages.size] = "Navigate by ^5tilting the world ^7with your ^5movement keys";
 	messages[messages.size] = "Only the first ^5five ^7players will ^5earn points";
 
 	thread monkeyball_bounces();
@@ -548,6 +547,7 @@ monkeyball_trigger()
 	{
 		trigger waittill("trigger", player);
 		level.monkeyPlayersFinished = player registerPlayerFinish(level.monkeyPlayersFinished, level.monkeyPlayers);
+		player suicide();
 	}
 }
 
@@ -654,18 +654,23 @@ registerPlayerFinish(array, max)
 	{
 		case 4:
 			iPrintLnBold(fmt("%s ^7finished in 5th place", self.name));
+			self playerAddPoints(1);
 			break;
 		case 3:
 			iPrintLnBold(fmt("%s ^7finished in 4th place", self.name));
+			self playerAddPoints(2);
 			break;
 		case 2:
 			iPrintLnBold(fmt("%s ^7finished in ^93rd place", self.name));
+			self playerAddPoints(3);
 			break;
 		case 1:
 			iPrintLnBold(fmt("%s ^7finished in ^82nd place", self.name));
+			self playerAddPoints(4);
 			break;
 		case 0:
 			iPrintLnBold(fmt("%s ^7finished in ^31st place", self.name));
+			self playerAddPoints(5);
 			break;
 	}
 	array[array.size] = self;
@@ -677,7 +682,7 @@ onPlayerDeath()
 	self endon("spawned");
 	self endon("disconnect");
 
-	if (!isEventStarted())
+	if (!isEventGame(0) && !isEventGame(1) && !isEventGame(2))
 		return;
 
 	players = getPlayingPlayers();
