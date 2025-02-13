@@ -327,13 +327,13 @@ mover_start()
 
 	while (true)
 	{
-		players = getPlayingPlayers();
 		watchPlayerCount();
 
 		mover moveY(-15500, time);
 		wait time;
-
 		mover.origin = mover.defaultOrigin;
+
+		players = getPlayingPlayers();
 		for (i = 0; i < players.size; i++)
 			players[i] setOrigin(entity.origin);
 
@@ -426,8 +426,11 @@ speedrun_start()
 
 	while (true)
 	{
-		players = getPlayingPlayers();
 		watchPlayerCount();
+
+		players = getPlayingPlayers();
+		if (players.size < level.speedrunPlayers)
+			level.speedrunPlayers = players.size;
 
 		if (level.speedrunPlayersFinished.size < level.speedrunPlayers)
 		{
@@ -478,7 +481,7 @@ speedrun_trigger()
 	while (true)
 	{
 		trigger waittill("trigger", player);
-		level.speedrunPlayersFinished = player registerPlayerFinish(level.speedrunPlayersFinished, level.speedrunPlayers);
+		level.speedrunPlayersFinished = player registerPlayerFinish(level.speedrunPlayersFinished, level.speedrunPlayers, 1);
 	}
 }
 
@@ -519,15 +522,18 @@ monkeyball_start()
 		players[i] setMoveSpeed(600);
 	}
 	start = getEnt("monkey_door", "targetname");
-	start moveZ(-700, 5);
-	wait 5;
+	start moveZ(-700, 3);
+	wait 3;
 
 	thread monkeyball_trigger();
 
 	while (true)
 	{
-		players = getPlayingPlayers();
 		watchPlayerCount();
+
+		players = getPlayingPlayers();
+		if (players.size < level.monkeyPlayers)
+			level.monkeyPlayers = players.size;
 
 		if (level.monkeyPlayersFinished.size >= level.monkeyPlayers)
 		{
@@ -590,10 +596,10 @@ monkeyball_bounces_trig(i)
 	power = 10;
 	switch (i)
 	{
-		case 9: power = 20; break;
-		case 10: power = 20; break;
-		case 11: power = 20; break;
-		case 12: power = 20; break;
+		case 9: power = 15; break;
+		case 10: power = 15; break;
+		case 11: power = 15; break;
+		case 12: power = 15; break;
 	}
 	while (true)
 	{
@@ -645,34 +651,39 @@ watchPlayerCount()
 	}
 }
 
-registerPlayerFinish(array, max)
+registerPlayerFinish(array, max, maxPoint)
 {
 	if (Contains(array, self) || array.size >= max)
 		return array;
 
+	point = 1;
 	switch (array.size)
 	{
 		case 4:
 			iPrintLnBold(fmt("%s ^7finished in 5th place", self.name));
-			self playerAddPoints(1);
+			point = 1;
 			break;
 		case 3:
 			iPrintLnBold(fmt("%s ^7finished in 4th place", self.name));
-			self playerAddPoints(2);
+			point = 2;
 			break;
 		case 2:
 			iPrintLnBold(fmt("%s ^7finished in ^93rd place", self.name));
-			self playerAddPoints(3);
+			point = 3;
 			break;
 		case 1:
 			iPrintLnBold(fmt("%s ^7finished in ^82nd place", self.name));
-			self playerAddPoints(4);
+			point = 4;
 			break;
 		case 0:
 			iPrintLnBold(fmt("%s ^7finished in ^31st place", self.name));
-			self playerAddPoints(5);
+			point = 5;
 			break;
 	}
+	if (isDefined(maxPoint) && point > maxPoint)
+		point = maxPoint;
+
+	self playerAddPoints(point);
 	array[array.size] = self;
 	return array;
 }
