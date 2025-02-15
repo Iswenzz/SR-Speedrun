@@ -281,7 +281,7 @@ obstacle_start()
 		if (count == 20)
 		{
 			wave(5);
-			time = 1;
+			time = 1.25;
 		}
 	}
 }
@@ -407,7 +407,7 @@ speedrun_start()
 	section_2 = (10624, 2488, 228);
 	section_3 = (10624, 824, 228);
 
-	level.speedrunPlayers = 5;
+	level.speedrunPlayers = 10;
 	level.speedrunPlayersFinished = [];
 
 	while (sections.size < 3)
@@ -469,7 +469,7 @@ speedrun_start()
 		sections[1].origin = section_2;
 		sections[2].origin = section_3;
 
-		level.speedrunPlayers--;
+		level.speedrunPlayers = int(level.speedrunPlayers / 2);
 	}
 }
 
@@ -520,10 +520,11 @@ monkeyball_start()
 		players[i] allowJump(false);
 		players[i] allowSprint(false);
 		players[i] setMoveSpeed(600);
+		players[i].monkeyBounce = undefined;
 	}
 	start = getEnt("monkey_door", "targetname");
-	start moveZ(-700, 3);
-	wait 3;
+	start moveZ(-700, 2);
+	wait 2;
 
 	thread monkeyball_trigger();
 
@@ -610,7 +611,6 @@ monkeyball_bounces_trig(i)
 
 monkeyball_bounce_player(power)
 {
-	self endon("death");
 	self endon("disconnect");
 
 	if (isDefined(self.monkeyBounce))
