@@ -1,6 +1,5 @@
 main()
 {
-	thread sr\api\_defrag::weapons("");
 thread sr\api\_map::createSpawnOrigin((-48, -464, 16), 90);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 

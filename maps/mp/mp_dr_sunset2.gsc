@@ -6,7 +6,6 @@
 
 main()
 {
-	thread sr\api\_defrag::weapons("");
 
 	game["allies"] = "marines";
     game["axis"] = "opfor";

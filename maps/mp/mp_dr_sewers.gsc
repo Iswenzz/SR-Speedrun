@@ -1,6 +1,5 @@
 main()
 {
-	thread sr\api\_defrag::weapons("");
 	maps\mp\_load::main();
 
 	setExpFog(600, 600, 0, 0, 0, 0);
@@ -21,7 +20,7 @@ main()
 	thread sr\api\_speedrun::createNormalWays("Normal Way");
 
 	thread finaldoor();
-	
+
 }
 
 finaldoor()
@@ -30,10 +29,10 @@ finaldoor()
 	final_door_b = getent("final_door_b","targetname");
 	final_door_open = getent("final_door_open","targetname");
 
-	
+
 	final_door_a delete();
 	final_door_b delete();
-	
-	
+
+
 }
 

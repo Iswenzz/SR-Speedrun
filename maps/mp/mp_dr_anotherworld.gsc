@@ -21,7 +21,6 @@
 
 main()
 {
-	thread sr\api\_defrag::weapons("");
 thread sr\api\_map::createSpawnOrigin((-66.063, 538.287, 14.125), 270);
  maps\mp\_load::main();
 
@@ -61,7 +60,7 @@ thread sr\api\_map::createSpawnOrigin((-66.063, 538.287, 14.125), 270);
 	entTransporter[i] thread transporter();
 }
 
-transporter() 
+transporter()
 {
 	for(;;)
 	{
@@ -76,7 +75,7 @@ transporter()
 	}
 }
 
-end() 
+end()
 {
 trigger = GetEnt( "end", "targetname" );
 	while (1){
@@ -97,6 +96,6 @@ secret1()
 secret = getEnt("secret_1", "targetname");
 
 secret delete();
-	
+
 }
 

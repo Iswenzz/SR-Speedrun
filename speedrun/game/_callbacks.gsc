@@ -69,7 +69,7 @@ playerDamage(eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, sWeapon, vP
 		return;
 	if (isPlayer(eAttacker) && sMeansOfDeath == "MOD_MELEE" && isWallbang(eAttacker, self))
 		return;
-	if (self isDefrag() && sMeansOfDeath == "MOD_FALLING")
+	if (sMeansOfDeath == "MOD_FALLING" && (self isDefrag() || self isBhop()))
 		return;
 
 	iDFlags |= level.iDFLAGS_NO_KNOCKBACK;

@@ -3,7 +3,6 @@
 
 main()
 {
-	thread sr\api\_defrag::weapons("");
 	maps\mp\_load::main();
 
 	game["allies"] = "sas";
@@ -18,22 +17,22 @@ main()
 	setDvar("bg_fallDamageMaxHeight", "999999");
 
 	VisionSetNaked( "mp_dr_lazyriver");
-	
+
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 thread sr\api\_map::createSpawn((66, -1020, 651), 90);
 thread sr\api\_speedrun::createTeleporter((-676.899, -69.2373, 584.125), 500, 100, (66, -1020, 651), 90, "freeze", "cyan");
 thread sr\api\_speedrun::createTeleporter((738.394, -134.923, 584.125), 410, 100, (66, -1020, 651), 90, "freeze", "cyan");
 
-	//thread trap1();	
+	//thread trap1();
 	thread trap2();
 	//thread trap3();
-	//thread trap4();	
-	//thread trap5();	
-	thread trap6();	
-	thread tele1();	
-	thread tele2();	
-	thread tele3();	
-	thread telejumper();	
+	//thread trap4();
+	//thread trap5();
+	thread trap6();
+	thread tele1();
+	thread tele2();
+	thread tele3();
+	thread telejumper();
 	thread trap9();
 	thread trap8();
 }
@@ -43,19 +42,19 @@ trap1()
 	trap1a = getent ("trap1a","targetname");
 	trap1b = getent ("trap1b","targetname");
 	trap1_trig = getent ("trap1_trig","targetname");
-	
+
 	trap1_trig waittill ("trigger");
 	trap1_trig delete ();
 
 	while (1)
 	{
-		trap1a moveZ (100,1,0.4,0);		
+		trap1a moveZ (100,1,0.4,0);
 		trap1b moveZ (-100,1,0,0.4);
 		wait 1;
-		trap1a moveZ (-200,1,0.4,0.4);		
+		trap1a moveZ (-200,1,0.4,0.4);
 		trap1b moveZ (200,1,0.4,0.4);
 		wait 1;
-		trap1a moveZ (100,1,0,0.4);		
+		trap1a moveZ (100,1,0,0.4);
 		trap1b moveZ (-100,1,0.4,0);
 		wait 1;
 	}
@@ -63,14 +62,14 @@ trap1()
 
 trap2()
 {
-	fire1_hurt = getent("trap2","targetname"); 
-	fire2_hurt = getent("trap22","targetname"); 
-	fire3_hurt = getent("trap23","targetname"); 
+	fire1_hurt = getent("trap2","targetname");
+	fire2_hurt = getent("trap22","targetname");
+	fire3_hurt = getent("trap23","targetname");
 
 	fire1_hurt delete();
 	fire2_hurt delete();
 	fire3_hurt delete();
-	
+
 }
 
 trap3()
@@ -83,7 +82,7 @@ trap3()
 
 	while(1)
 	{
-		trap3 moveZ (-700,1,0.4,0);	
+		trap3 moveZ (-700,1,0.4,0);
 		wait 3;
 		trap3 moveZ (700,1,0,0.4);
 		wait 3;
@@ -94,7 +93,7 @@ trap4()
 {
 	trap4 = getent ("trap4","targetname");
 	trap4_trig = getent ("trap4_trig","targetname");
-	
+
 	trap4_trig waittill ("trigger");
 	trap4_trig delete ();
 
@@ -111,7 +110,7 @@ trap5()
 	trap5c = getent ("trap5c","targetname");
 	trap5d = getent ("trap5d","targetname");
 	trap5_trig = getent ("trap5_trig","targetname");
-	
+
 	trap5_trig waittill ("trigger");
 	trap5_trig delete ();
 
@@ -137,15 +136,15 @@ trap9()
 {
 	trap8 = getent ("trap8","targetname");
 	trap9_trig = getent ("trap9_trig","targetname");
-	
+
 }
 
 trap8()
 {
-	fire18 = getent("fire18","targetname"); 
-	fire48 = getent("fire48","targetname"); 
-	fire1_hurt = getent("trap8_h1","targetname"); 
-	fire2_hurt = getent("trap8_h2","targetname"); 
+	fire18 = getent("fire18","targetname");
+	fire48 = getent("fire48","targetname");
+	fire1_hurt = getent("trap8_h1","targetname");
+	fire2_hurt = getent("trap8_h2","targetname");
 
 	fire1_hurt delete();
 	fire2_hurt delete();
@@ -156,11 +155,11 @@ tele1()
 {
 	tele1_trig = getEnt ("tele1_trig", "targetname");
 	tele1 = getEnt ("tele1", "targetname");
-	
+
 	for(;;)
 	{
 		tele1_trig waittill ("trigger", player);
-		
+
 		player SetOrigin(tele1.origin);
 		player SetPlayerAngles( tele1.angles );
 	}
@@ -170,11 +169,11 @@ tele2()
 {
 	tele2_trig = getEnt ("tele2_trig", "targetname");
 	tele2 = getEnt ("tele2", "targetname");
-	
+
 	for(;;)
 	{
 		tele2_trig waittill ("trigger", player);
-		
+
 		player SetOrigin(tele2.origin);
 		player SetPlayerAngles( tele2.angles );
 	}
@@ -184,11 +183,11 @@ tele3()
 {
 	tele3_trig = getEnt ("tele3_trig", "targetname");
 	tele3 = getEnt ("tele3", "targetname");
-	
+
 	for(;;)
 	{
 		tele3_trig waittill ("trigger", player);
-		
+
 		player SetOrigin(tele3.origin);
 		player SetPlayerAngles( tele3.angles );
 	}
@@ -198,11 +197,11 @@ telejumper()
 {
 	telejumper = getEnt ("telejumper", "targetname");
 	jumper_origin = getEnt ("jumper_origin", "targetname");
-	
+
 	for(;;)
 	{
 		telejumper waittill ("trigger", player);
-		
+
 		player SetOrigin(jumper_origin.origin);
 		player SetPlayerAngles( jumper_origin.angles );
 		player FreezeControls(1);
@@ -211,12 +210,12 @@ telejumper()
 	}
 }
 
-trap6() 
+trap6()
 {
-	trap6_trigger = getent("trap6_trig","targetname"); 
-	level.plane_start = getent("plane_start","targetname"); 
-	level.plane_end = getent("plane_end","targetname"); 
-	level.trap6_kill = getent("trap6_kill","targetname"); 
+	trap6_trigger = getent("trap6_trig","targetname");
+	level.plane_start = getent("plane_start","targetname");
+	level.plane_end = getent("plane_end","targetname");
+	level.trap6_kill = getent("trap6_kill","targetname");
 
 	level.trap6_kill delete();
 
@@ -268,7 +267,7 @@ targetisinfront(other, target)
 {
 	forwardvec = anglestoforward(flat_angle(other.angles));
 	normalvec = vectorNormalize(flat_origin(target)-other.origin);
-	dot = vectordot(forwardvec,normalvec); 
+	dot = vectordot(forwardvec,normalvec);
 	if(dot > 0)
 		return true;
 	else

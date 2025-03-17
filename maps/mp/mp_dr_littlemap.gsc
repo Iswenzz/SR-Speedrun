@@ -1,6 +1,5 @@
 main()
 {
-	thread sr\api\_defrag::weapons("");
 maps\mp\_load::main();
 
 game["allies"] = "marines";
@@ -9,7 +8,7 @@ game["attackers"] = "axis";
 game["defenders"] = "allies";
 game["allies_soldiertype"] = "desert";
 game["axis_soldiertype"] = "desert";
- 
+
 setdvar("r_specularcolorscale","1");
 setdvar("compassmaxrange","1600");
 setdvar("r_glowbloomintensity0",".1");
@@ -26,12 +25,12 @@ thread doors();
 thread plat();
 }
 
-doors() 
+doors()
 {
-door = getent("startdoor", "targetname"); 
-door1 = getent("porte1", "targetname"); 
-door2 = getent("porte2", "targetname"); 
-	
+door = getent("startdoor", "targetname");
+door1 = getent("porte1", "targetname");
+door2 = getent("porte2", "targetname");
+
 door delete();
 door1 delete();
 door2 delete();
@@ -40,7 +39,7 @@ door2 delete();
 
 plat()
 {
-plat1 = getent("automove2", "targetname"); 
+plat1 = getent("automove2", "targetname");
 
 plat1 moveX(-160,0.1);
 wait 0.2;

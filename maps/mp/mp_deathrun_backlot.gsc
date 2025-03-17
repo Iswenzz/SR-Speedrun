@@ -1,6 +1,5 @@
 main()
 {
-	thread sr\api\_defrag::weapons("");
 thread sr\api\_map::createSpawnOrigin((-450, 1515, 64.125), 0);
 level.spawn["allies"] = getEntArray("mp_jumper_spawn", "classname");
 if (!level.spawn["allies"].size)

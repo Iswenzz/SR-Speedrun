@@ -16,7 +16,6 @@ main()
 	setdvar("r_glowbloomintensity1",".1");
 	setdvar("r_glowskybleedintensity0",".1");
 
-	thread sr\api\_defrag::weapons("");
     thread sr\api\_map::createSpawnOrigin((672, -384, -491.757), 270);
     thread sr\api\_speedrun::createNormalWays("Normal Way;");
     thread sr\api\_speedrun::createSecretWays("Secret Way;");
@@ -113,7 +112,7 @@ teleporterglitch()
 	for(;;)
 	{
 		trig waittill("trigger",player);
-		
+
 		player suicide();
 	}
 }
@@ -177,7 +176,7 @@ teleport_secretfail()
 	{
 		trig waittill("trigger",player);
 		player Suicide();
-		
+
 	}
 }
 
@@ -185,14 +184,14 @@ move_1()
 {
     target = getEnt ("move_1", "targetname");
 
-	
+
 }
 
 move_2()
 {
     target = getEnt ("move_2", "targetname");
 
-	
+
 }
 
 trap3()

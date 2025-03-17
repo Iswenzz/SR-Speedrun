@@ -22,7 +22,6 @@
 #include common_scripts\utility;
 
 main() {
-	thread sr\api\_defrag::weapons("");
 thread sr\api\_map::createSpawnOrigin((-5318, -679, 312), 0);
     game["allies"] = "marines";
     game["axis"] = "opfor";

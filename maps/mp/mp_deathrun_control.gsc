@@ -1,6 +1,5 @@
 main()
 {
-	thread sr\api\_defrag::weapons("");
 thread sr\api\_map::createSpawnOrigin((218, 106, 16), 89);
 	level.mortar = LoadFX("explosions/artilleryExp_dirt_brown_low");
 	level.fire = LoadFX("fire/mp_deathrun_control");

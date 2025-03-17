@@ -1,6 +1,5 @@
 main()
 {
-	thread sr\api\_defrag::weapons("");
 thread sr\api\_map::createSpawnOrigin((-13, -217, 16), 90);
 	maps\createart\mp_deathrun_long_art::main();
 	maps\mp\mp_deathrun_long_fx::main();

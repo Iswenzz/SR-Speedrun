@@ -12,7 +12,6 @@ main()
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("compassmaxrange","1600");
 
-	thread sr\api\_defrag::weapons("");
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
     thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	thread sr\api\_map::createSpawn((97, -2, -52), 0);

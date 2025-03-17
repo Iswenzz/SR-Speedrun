@@ -6,7 +6,6 @@
 
 main()
 {
-	thread sr\api\_defrag::weapons("");
 thread sr\api\_map::createSpawn((-1456, 8960, 2124), 90);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	maps\mp\_load::main();

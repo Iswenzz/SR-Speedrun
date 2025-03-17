@@ -8,6 +8,7 @@ main()
 	addMode("210", speedrun\player\run\_210::start);
 	addMode("Portal", speedrun\player\run\_portal::start);
 	addMode("Defrag", speedrun\player\run\_defrag::start);
+	addMode("Bhop", speedrun\player\run\_bhop::start);
 
     event("map", ::endmapTrigger);
 }
@@ -35,6 +36,7 @@ getLastMode()
 		case 2: return "210";
 		case 3: return "Portal";
 		case 4: return "Defrag";
+		case 5: return "Bhop";
 	}
 	return "190";
 }
@@ -47,6 +49,7 @@ getLastModeStat()
 		case "210": return 2;
 		case "Portal": return 3;
 		case "Defrag": return 4;
+		case "Bhop": return 5;
 	}
 	return 1;
 }

@@ -1,6 +1,5 @@
 main()
 {
-	thread sr\api\_defrag::weapons("");
 thread sr\api\_map::createSpawnOrigin((-619, -440, 16), 360);
     addTriggerToList("trig_trap1");
 	addTriggerToList("trig_trap2");

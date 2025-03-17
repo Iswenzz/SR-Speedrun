@@ -1,6 +1,5 @@
 main()
 {
-	thread sr\api\_defrag::weapons("");
 thread sr\api\_map::createSpawnOrigin((-241.846, -380.986, 16.125), 0);
 
 	maps\mp\_load::main();
@@ -185,10 +184,10 @@ trap0moving()
 	platform_a = getEnt( "trap0platforma", "targetname" );
 	platform_b = getEnt( "trap0platformb", "targetname" );
 
-	
+
 	platform_a delete();
 	platform_b delete();
-	
+
 }
 
 
@@ -736,7 +735,7 @@ trap7b()
 	trap7c moveZ (-80,1.5);
 	wait 1.5;
 
-	
+
 	trap7b moveZ (-80,3);
 	trap7c moveZ (80,3);
 
@@ -747,9 +746,9 @@ Trap8movinga()
 {
 	trap8movinga = getent( "trap8movinga", "targetname" );
 
-	
+
 	trap8movinga moveY (150,0.1);
-	
+
 }
 
 trap8movingb()
@@ -757,10 +756,10 @@ trap8movingb()
 	trap8movingb = getent( "trap8movingb", "targetname" );
 	trap8movingc = getent( "trap8movingc", "targetname" );
 
-	
+
 	trap8movingb moveY (300,0.1);
 	trap8movingc moveY (-200,0.1);
-	
+
 }
 
 trap8()
@@ -770,18 +769,18 @@ trap8()
 	button = getEnt ("trap8button", "targetname");
 
 	trig sethintstring(" Press [Use] ");
-	
+
 	trap8 delete();
-	
+
 }
 
 trap9_moving()
 {
 	trap9_moving = getEnt( "trap9_moving", "targetname" );
 
-	
+
 	trap9_moving moveY(300,0.1);
-	
+
 }
 
 actidoor()
@@ -820,7 +819,7 @@ Tilt()
 	tilt_g = getEnt( "tiltg", "targetname" );
 	tilt_h = getEnt( "tilth", "targetname" );
 
-	
+
 		tilt_b moveX(128,0.5);
 		tilt_d MoveX(128,0.5);
 		tilt_f moveY(128,0.5);

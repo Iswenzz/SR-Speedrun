@@ -1,8 +1,7 @@
 main()
 {
-	thread sr\api\_defrag::weapons("");
 maps\mp\_load::main();
- 
+
 game["allies"] = "marines";
 game["axis"] = "opfor";
 game["attackers"] = "axis";

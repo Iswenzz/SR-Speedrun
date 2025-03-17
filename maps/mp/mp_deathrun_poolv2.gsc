@@ -2,7 +2,6 @@
 //Discord:Death#7416
 main()
 {
-	thread sr\api\_defrag::weapons("");
 thread sr\api\_map::createSpawnOrigin((68, 21, 16), 91);
  maps\mp\_load::main();
 

@@ -1,6 +1,5 @@
 main()
 {
-	thread sr\api\_defrag::weapons("");
 thread sr\api\_map::createSpawnOrigin((-698.952, -512, 0.125), 315);
 	maps\mp\_load::main();
 
@@ -147,7 +146,7 @@ startdoor()
 secret_move()
 {
 	target = getEnt ( "secret_move", "targetname" );
-	
+
 	while(1)
 	{
 		target moveZ ( 96, 3, 2, 1);
@@ -160,7 +159,7 @@ secret_move()
 circle()
 {
 	target = getEnt ( "circle", "targetname" );
-	
+
 	target delete();
 }
 
@@ -169,7 +168,7 @@ elevator() ////Doesn't ruin lb,just prevents bugging it and timing it ////
 	target = getEnt ( "elevator_1", "targetname" );
 	trigger = getEnt ( "elevator_1_trigger", "targetname" );
 	shit = getEnt ( "elevator_1_shit", "targetname" );
-	
+
 	{
 	target moveY (300,0.1);
 	target waittill ("movedone");
@@ -185,11 +184,11 @@ elevator() ////Doesn't ruin lb,just prevents bugging it and timing it ////
 bouncer(who)
 {
 	trigger = getEnt ( "bouncer", "targetname" );
-	
+
 	while(1)
 	{
     	trigger waittill ( "trigger", who );
-	
+
 	    oldpos = who.origin;
 		playFx ( level.bounce, who.origin );
 	    strenght = 3;
@@ -236,14 +235,14 @@ trap_8()
 	hurt_1 = getEnt ( "trap_8_hurt_1", "targetname" );
 	hurt_2 = getEnt ( "trap_8_hurt_2", "targetname" );
 	hurt_3 = getEnt ( "trap_8_hurt_3", "targetname" );
-	
+
 	hurt_1 delete();
 	hurt_2 delete();
 	hurt_3 delete();
 	target_1 delete();
 	target_2 delete();
 	target_3 delete();
-	
+
 }
 ///////////////////////////////////////////////////
 

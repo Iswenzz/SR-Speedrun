@@ -1,6 +1,5 @@
 main()
 {
-	thread sr\api\_defrag::weapons("");
 thread sr\api\_map::createSpawnOrigin((2428.697, 1641.714, 0.125), 180);
 thread sr\api\_speedrun::createEndMap((-3743.13, 22250.1, -1967.88), 85, 100, "secret_0");
 	maps\mp\_load::main();
@@ -93,7 +92,7 @@ sec_enter()
 	{
 		trig waittill("trigger",player);
 
-		player thread sr\api\_speedrun::changeWay("secret_0"); 
+		player thread sr\api\_speedrun::changeWay("secret_0");
 
 		player SetOrigin(ori.origin);
 		player SetPlayerAngles(ori.angles);

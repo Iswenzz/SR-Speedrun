@@ -23,6 +23,7 @@ main()
 	sr\game\_demo::main();
 	sr\game\_perks::initPerks();
 	sr\game\_defrag::main();
+	sr\game\_bhop::main();
 	sr\game\_time::main();
 	sr\game\_vote::initVote();
 	sr\game\_poll::initPoll();

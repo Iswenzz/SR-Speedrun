@@ -1,23 +1,22 @@
 main()
 {
-	thread sr\api\_defrag::weapons("");
 trigger = spawn( "trigger_radius", (1537.73, 19611.5, 671.113), 0, 150, 20 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 150;
 maps\mp\_load::main();
-		
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-		
+
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
 	setdvar("r_glowskybleedintensity0",".3");
-		
+
 thread sr\api\_map::createSpawn((1533,735,124),90);
 thread sr\api\_speedrun::createNormalWays("Normal Way;");
 

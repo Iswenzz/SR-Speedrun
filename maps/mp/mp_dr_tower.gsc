@@ -1,15 +1,14 @@
 main()
 {
-	thread sr\api\_defrag::weapons("");
 maps\mp\_load::main();
-	
+
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
     setdvar( "r_glowbloomintensity0", ".25" );
     setdvar( "r_glowbloomintensity1", ".25" );
@@ -17,7 +16,7 @@ maps\mp\_load::main();
     setdvar( "compassmaxrange", "1800" );
 	setDvar("bg_falldamagemaxheight", 15000 );
 	setDvar("bg_falldamageminheight", 10000 );
-	
+
 
 	thread startdoor();
 	thread setup_bounce_pad("bounce_pad_1", (-60, -90, 0), 280, 4);
@@ -46,24 +45,24 @@ trap2_1 delete();
 trap2_2 delete();
 trap2_3 delete();
 trap2_4 delete();
-	
+
 }
 
 setup_bounce_pad(trigger_entity, angles, strength, multiplyer)
 {
 	trigger = getEnt(trigger_entity, "targetname");
-	
+
 	for(;;)
 	{
 		trigger waittill("trigger", player);
-		
+
 		if(isDefined(player) && isAlive(player) && !player.isBouncing)
 		{
 			player.isBouncing = true;
 			player playSound("beam");
 			thread do_bounce(player, strength, multiplyer, angles, "none");
 		}
-		
+
 		wait .05;
 	}
 }
@@ -71,21 +70,21 @@ setup_bounce_pad(trigger_entity, angles, strength, multiplyer)
 do_bounce(player, strength, multiplyer, angle, pos)
 {
 	while(isDefined(player) && isAlive(player))
-	{	
+	{
 		if(player isOnGround())
-		{		
+		{
 			for(i = 0; i < multiplyer; i++)
 			{
 				player.health += strength;
 				player finishPlayerDamage(player, level.jumpattacker, strength, 0, "MOD_FALLING", "jump_mp", player.origin, AnglesToForward(angle), pos, 0);
 			}
-			
+
 			if(player GetStance() == "crouch" || player GetStance() == "prone") // to avoid sound spamming
 			{
 				player iPrintLnBold("^1Do not Crouch!");
 				wait 3;
 			}
-			
+
 			wait .1;
 			player.isBouncing = false;
 			break;

@@ -3,6 +3,7 @@
 
 main()
 {
+    cmd("player", 	"bhop",   	::cmd_Bhop);
     cmd("player", 	"defrag",   ::cmd_Defrag);
     cmd("player", 	"speed",    ::cmd_Speed);
     cmd("player", 	"190",    	::cmd_190);
@@ -61,7 +62,16 @@ cmd_Defrag(args)
 
 	self setStat(1700, 4);
 	self.sr_mode = "Defrag";
-    self pm("Run mode: ^3Defrag");
+    self pm("Run mode: ^5Defrag");
+	self thread speedrun\game\_leaderboards::updateMenuInfo();
+    self suicide();
+}
+
+cmd_Bhop(args)
+{
+	self setStat(1700, 5);
+	self.sr_mode = "Bhop";
+    self pm("Run mode: ^5Bhop");
 	self thread speedrun\game\_leaderboards::updateMenuInfo();
     self suicide();
 }
