@@ -21,15 +21,15 @@ main()
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_map::createSpawn((66, -1020, 651), 90);
 
-	thread sr\api\_speedrun::createTeleporter((-676, 0, 584), 300, 100, (66, -1020, 651), 90, "freeze", "cyan");
-	thread sr\api\_speedrun::createTeleporter((-676, 300, 584), 300, 100, (66, -1020, 651), 90, "freeze", "cyan");
-	thread sr\api\_speedrun::createTeleporter((-676, 600, 584), 300, 100, (66, -1020, 651), 90, "freeze", "cyan");
-	thread sr\api\_speedrun::createTeleporter((-676, 900, 584), 300, 100, (66, -1020, 651), 90, "freeze", "cyan");
+	thread sr\api\_speedrun::createTeleporter((-676, 0, 370), 300, 100, (66, -1020, 651), 90, "freeze", "cyan");
+	thread sr\api\_speedrun::createTeleporter((-676, 300, 370), 300, 100, (66, -1020, 651), 90, "freeze", "cyan");
+	thread sr\api\_speedrun::createTeleporter((-676, 600, 370), 300, 100, (66, -1020, 651), 90, "freeze", "cyan");
+	thread sr\api\_speedrun::createTeleporter((-676, 900, 370), 300, 100, (66, -1020, 651), 90, "freeze", "cyan");
 
-	thread sr\api\_speedrun::createTeleporter((738, 0, 584), 300, 100, (66, -1020, 651), 90, "freeze", "cyan");
-	thread sr\api\_speedrun::createTeleporter((738, 300, 584), 300, 100, (66, -1020, 651), 90, "freeze", "cyan");
-	thread sr\api\_speedrun::createTeleporter((738, 600, 584), 300, 100, (66, -1020, 651), 90, "freeze", "cyan");
-	thread sr\api\_speedrun::createTeleporter((738, 900, 584), 300, 100, (66, -1020, 651), 90, "freeze", "cyan");
+	thread sr\api\_speedrun::createTeleporter((738, 0, 370), 300, 100, (66, -1020, 651), 90, "freeze", "cyan");
+	thread sr\api\_speedrun::createTeleporter((738, 300, 370), 300, 100, (66, -1020, 651), 90, "freeze", "cyan");
+	thread sr\api\_speedrun::createTeleporter((738, 600, 370), 300, 100, (66, -1020, 651), 90, "freeze", "cyan");
+	thread sr\api\_speedrun::createTeleporter((738, 900, 370), 300, 100, (66, -1020, 651), 90, "freeze", "cyan");
 
 	//thread trap1();
 	thread trap2();
