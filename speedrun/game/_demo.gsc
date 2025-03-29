@@ -44,6 +44,9 @@ setup(id)
 
 play(id)
 {
+	if (sr\game\_event::isEventStarted())
+		return;
+
 	if (!self setup(id))
 	{
 		self stopDemoPlayer();
