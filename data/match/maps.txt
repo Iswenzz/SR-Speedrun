@@ -9,6 +9,8 @@ mp_cm_rush
 mp_convoy
 mp_crash
 mp_creek
+mp_dc_forward
+mp_dc_kalakukko
 mp_deathrun_abandoned
 mp_deathrun_airstruck
 mp_deathrun_amazon
@@ -43,6 +45,7 @@ mp_deathrun_diehard
 mp_deathrun_dirt
 mp_deathrun_dragonball
 mp_deathrun_dungeon
+mp_deathrun_easy
 mp_deathrun_ebc
 mp_deathrun_electory
 mp_deathrun_empire
@@ -189,6 +192,7 @@ mp_dr_communism
 mp_dr_conox
 mp_dr_construct
 mp_dr_corner
+mp_dr_courtesy
 mp_dr_crackshot
 mp_dr_crawl
 mp_dr_creek
@@ -223,6 +227,7 @@ mp_dr_fallguys
 mp_dr_fallrun
 mp_dr_famous
 mp_dr_fireball_v2
+mp_dr_fjord
 mp_dr_fnrp_ab_v4
 mp_dr_foggy
 mp_dr_framey_v2
@@ -251,6 +256,7 @@ mp_dr_holyshiet_v2
 mp_dr_iceworld
 mp_dr_idk
 mp_dr_imaginary
+mp_dr_inddor
 mp_dr_indipyramid
 mp_dr_industry_v3
 mp_dr_inside
@@ -260,6 +266,7 @@ mp_dr_jump_hard
 mp_dr_jumpv2
 mp_dr_jungletemple
 mp_dr_jurapark
+mp_dr_kiti
 mp_dr_korkuncc
 mp_dr_kris_v2
 mp_dr_laboratory
@@ -270,6 +277,7 @@ mp_dr_lazycave
 mp_dr_lazyriver
 mp_dr_legacy
 mp_dr_legion
+mp_dr_lentava_v2
 mp_dr_levels
 mp_dr_lifes
 mp_dr_likeaboss
@@ -311,6 +319,7 @@ mp_dr_noob
 mp_dr_nuka2
 mp_dr_nxs_jump
 mp_dr_nxs_road
+mp_dr_offshore
 mp_dr_old_factory
 mp_dr_old_fucktory
 mp_dr_oldschool
@@ -364,6 +373,7 @@ mp_dr_ryno
 mp_dr_samsara
 mp_dr_sand
 mp_dr_saw_evolved
+mp_dr_schizo
 mp_dr_sean
 mp_dr_seasons
 mp_dr_serioussam
@@ -429,6 +439,7 @@ mp_dr_universe
 mp_dr_unreal
 mp_dr_up
 mp_dr_upperworld
+mp_dr_upt
 mp_dr_urban
 mp_dr_vector
 mp_dr_version1
@@ -451,6 +462,7 @@ mp_dr_wtf
 mp_dr_xm
 mp_dr_xm2
 mp_dr_xm3
+mp_dr_xmdc
 mp_dr_xmfun
 mp_dr_xmfun_v2
 mp_dr_xmfun_v3
