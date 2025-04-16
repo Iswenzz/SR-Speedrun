@@ -256,8 +256,8 @@ mp_dr_holyshiet_v2
 mp_dr_iceworld
 mp_dr_idk
 mp_dr_imaginary
-mp_dr_inddor
 mp_dr_indipyramid
+mp_dr_indoor
 mp_dr_industry_v3
 mp_dr_inside
 mp_dr_iwillrockyou
