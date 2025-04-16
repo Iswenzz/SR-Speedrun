@@ -29,7 +29,7 @@ main()
 	setDvar("bg_FallDamageMinHeight","99998");
 
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-	thread sr\api\_speedrun::createSecretWays("Secret Way;");
+	thread sr\api\_speedrun::createSecretWays("Easy Secret;Hard Secret;");
     thread sr\api\_map::createSpawn((-469, 512, 68), 90);
 	
 	precacheItem("remington700_mp"); 
@@ -102,7 +102,7 @@ sr_hard_sec_enter()
 {
 	trig = spawn("trigger_radius",(-299.367, 507.471, 8.125), 0, 60, 100);
 	trig.radius = 60;
-	ori = getEnt("sec_enter","targetname");
+	ori_t = getEnt("sec_enter","targetname");
 
 	thread sr\api\_map::createTriggerFx(trig, "orange");
 
@@ -112,9 +112,11 @@ sr_hard_sec_enter()
 
 		player thread sr\api\_speedrun::changeWay("secret_1"); 
 
-		player SetOrigin(ori.origin);
-		player SetPlayerAngles(ori.angles);
-		player thread sr_tp_safe(ori);
+		player SetOrigin(ori_t.origin);
+		player SetPlayerAngles(ori_t.angles);
+		player FreezeControls(1);
+		wait 0.1;
+		player FreezeControls(0);
 	}
 }
 
@@ -122,7 +124,7 @@ sr_easy_sec_enter()
 {
 	trig = spawn("trigger_radius",(-628.181, 512.086, 8.125), 0, 60, 100);
 	trig.radius = 60;
-	ori = getEnt("sec2here","targetname");
+	ori_t = getEnt("sec2here","targetname");
 
 	thread sr\api\_map::createTriggerFx(trig, "green");
 
@@ -132,20 +134,14 @@ sr_easy_sec_enter()
 
 		player thread sr\api\_speedrun::changeWay("secret_0"); 
 
-		player SetOrigin(ori.origin);
-		player SetPlayerAngles(ori.angles);
-		player thread sr_tp_safe(ori);
+		player SetOrigin(ori_t.origin);
+		player SetPlayerAngles(ori_t.angles);
+		player FreezeControls(1);
+		wait 0.1;
+		player FreezeControls(0);
 	}
 }
-sr_tp_safe(ori)
-{   
-	self endon("death");
-	self endon("disconnect");
-	
-	self FreezeControls(1);
-	wait 0.05;
-	self FreezeControls(0);
-}
+
 startdoor()
 {
 	door = getEnt("startdoor","targetname");

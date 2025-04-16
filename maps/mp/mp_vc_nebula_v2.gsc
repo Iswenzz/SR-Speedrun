@@ -16,6 +16,7 @@ main()
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
     thread sr\api\_map::createSpawn((-1699, -2466,380), 90);
+	thread sr\api\_speedrun::createEndMap((20706.6, -1884.48, 448.125),95,120, "normal_0");
 
 	setdvar( "r_specularcolorscale", "1" );
 
@@ -118,7 +119,9 @@ sr_tp()
 
 		player SetOrigin(ori.origin);
 		player SetPlayerAngles(ori.angles);
-		player thread sr_tp_safe(ori);
+		player FreezeControls(1);
+		wait 0.1;
+		player FreezeControls(0);
 	}
 }
 
@@ -126,7 +129,7 @@ sr_sec_enter()
 {
 	trig = spawn("trigger_radius",(-1848.66, -2465.61, 320.125), 0, 60, 100);
 	trig.radius = 60;
-	ori = getEnt("sec_here","targetname");
+	ori_t = getEnt("sec_here","targetname");
 
 	thread sr\api\_map::createTriggerFx(trig, "green");
 
@@ -136,20 +139,14 @@ sr_sec_enter()
 
 		player thread sr\api\_speedrun::changeWay("secret_0"); 
 
-		player SetOrigin(ori.origin);
-		player SetPlayerAngles(ori.angles);
-		player thread sr_tp_safe(ori);
+		player SetOrigin(ori_t.origin);
+		player SetPlayerAngles(ori_t.angles);
+		player FreezeControls(1);
+		wait 0.1;
+		player FreezeControls(0);
 	}
 }
-sr_tp_safe(ori)
-{   
-	self endon("death");
-	self endon("disconnect");
-	
-	self FreezeControls(1);
-	wait 0.05;
-	self FreezeControls(0);
-}
+
 precacheFX()
 {
 	level.teleport = loadfx("misc/ui_pickup_unavailable"); 	playLoopedFX(level.teleport, 1, (-1952, 3008, 466)); 
