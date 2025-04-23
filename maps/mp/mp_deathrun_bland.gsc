@@ -6,6 +6,7 @@ thread sr\api\_map::createSpawnOrigin((0, -61, 8), 270);
 
 
     thread sr\api\_speedrun::createNormalWays("Normal Way");
+    thread sr\api\_speedrun::createSecretWays("Secret Way");
 
     thread sr_sec_enter();
     thread sr_sec_tp();

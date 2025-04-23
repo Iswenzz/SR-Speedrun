@@ -21,7 +21,7 @@ main()
     
     thread sr\api\_speedrun::createNormalWays("DC| Way;xM# Way;");
     thread sr\api\_map::createSpawn((-286, -353, 76), 0);
-    thread sr\api\_speedrun::createTeleporter((1396.44, -197.904, 144.125), 140, 285, "yellow", "normal_1");
+    thread sr\api\_speedrun::createWay((1396.44, -197.904, 144.125), 140, 285, "yellow", "normal_1");
     thread sr\api\_speedrun::createEndMap((-4104.38, -1352.89, -1615.88),90,120, "normal_1");
 
     precacheitem("h1_ringsword_mp");

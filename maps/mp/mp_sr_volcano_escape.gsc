@@ -33,8 +33,14 @@ main()
     thread rpgtrigger();
 	thread secrettp();
 	thread secretfinish();
-	//thread fail();
+	thread fail();
 
+	sr\sys\_events::event("death", ::onDeath);
+}
+
+onDeath()
+{
+	self.cp = 0;
 }
 
 rpgtrigger()
