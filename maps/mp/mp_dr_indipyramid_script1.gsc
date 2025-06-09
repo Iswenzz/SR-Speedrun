@@ -123,7 +123,7 @@ m = getent( "t5_mac" , "targetname" );
 door = getent( "t5_door" , "targetname" );
 t5 = getent ("t5" , "targetname");
 
-door delete();
+door movez ( 84, 1 );
 }
 
 trap6()
@@ -134,8 +134,6 @@ m2 = getent ("t6_m2" ,"targetname");
 kill = getent ("t6_kill" ,"targetname");
 trig = getent ("t6_trig" ,"targetname");
 
-m1 delete();
-m2 delete();
 }
 
 trap7()
@@ -148,7 +146,6 @@ desky = getent ("t7_desky" ,"targetname");
 trig_door = getent ("t7_door_trig" ,"targetname");
 t7 = getent ("t7" , "targetname");
 
-door delete();
 
 }
 
