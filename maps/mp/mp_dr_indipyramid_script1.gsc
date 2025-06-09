@@ -134,6 +134,11 @@ m2 = getent ("t6_m2" ,"targetname");
 kill = getent ("t6_kill" ,"targetname");
 trig = getent ("t6_trig" ,"targetname");
 
+m1 movey (82,0.5);
+m2 movey (-78,0.5);
+
+t6 waittill ("trigger");
+
 }
 
 trap7()
@@ -145,6 +150,18 @@ door = getent ("t7_door" ,"targetname");
 desky = getent ("t7_desky" ,"targetname");
 trig_door = getent ("t7_door_trig" ,"targetname");
 t7 = getent ("t7" , "targetname");
+
+trig enableLinkTo();
+trig linkTo( origin );
+gula moveto (origin.origin,0.05);
+
+trig_door enableLinkTo();
+trig_door linkTo( door );
+door movey ( 53, 1 );
+wait 1;
+door movez ( 196, 1 );
+
+t7 waittill ("trigger");
 
 
 }
