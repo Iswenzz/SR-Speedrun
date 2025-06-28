@@ -73,7 +73,7 @@ saveEntry(entry)
 
 	critical_enter("mysql");
 
-    request = SQL_Prepare("UPDATE pbs SET time = ? WHERE map = ? AND player = ? AND mode = ? AND way = ?");
+    request = SQL_Prepare("UPDATE pbs SET time = ?, date = NOW() WHERE map = ? AND player = ? AND mode = ? AND way = ?");
     SQL_BindParam(request, entry["time"].origin, level.MYSQL_TYPE_LONG);
 	SQL_BindParam(request, entry["map"], level.MYSQL_TYPE_STRING);
     SQL_BindParam(request, entry["player"], level.MYSQL_TYPE_STRING);
@@ -87,7 +87,7 @@ saveEntry(entry)
 
     if (!affected)
     {
-		request = SQL_Prepare("INSERT INTO pbs (map, time, name, mode, way, player, run) VALUES (?, ?, ?, ?, ?, ?, ?)");
+		request = SQL_Prepare("INSERT INTO pbs (map, time, name, mode, way, player, run, date) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
         SQL_BindParam(request, entry["map"], level.MYSQL_TYPE_STRING);
 		SQL_BindParam(request, entry["time"].origin, level.MYSQL_TYPE_LONG);
 		SQL_BindParam(request, entry["name"], level.MYSQL_TYPE_STRING);

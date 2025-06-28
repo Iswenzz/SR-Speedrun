@@ -368,7 +368,7 @@ saveEntry(entry)
 
 	critical_enter("mysql");
 
-	request = SQL_Prepare("UPDATE leaderboards SET time = ?, name = ?, run = ?, tas = ? WHERE map = ? AND player = ? AND mode = ? AND way = ?");
+	request = SQL_Prepare("UPDATE leaderboards SET time = ?, name = ?, run = ?, tas = ?, date = NOW() WHERE map = ? AND player = ? AND mode = ? AND way = ?");
 	SQL_BindParam(request, entry["time"].origin, level.MYSQL_TYPE_LONG);
 	SQL_BindParam(request, entry["name"], level.MYSQL_TYPE_STRING);
 	SQL_BindParam(request, entry["run"], level.MYSQL_TYPE_STRING);
@@ -385,7 +385,7 @@ saveEntry(entry)
 
 	if (!affected)
 	{
-		request = SQL_Prepare("INSERT INTO leaderboards (map, time, name, mode, way, player, run, tas) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+		request = SQL_Prepare("INSERT INTO leaderboards (map, time, name, mode, way, player, run, tas, date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())");
 		SQL_BindParam(request, entry["map"], level.MYSQL_TYPE_STRING);
 		SQL_BindParam(request, entry["time"].origin, level.MYSQL_TYPE_LONG);
 		SQL_BindParam(request, entry["name"], level.MYSQL_TYPE_STRING);
