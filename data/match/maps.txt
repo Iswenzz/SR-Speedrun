@@ -212,6 +212,7 @@ mp_dr_digital
 mp_dr_digitalworld_v2
 mp_dr_disco
 mp_dr_discovery
+mp_dr_divine
 mp_dr_dova
 mp_dr_dragoon11frx8
 mp_dr_easy_hard
@@ -221,6 +222,7 @@ mp_dr_edgeville
 mp_dr_electric
 mp_dr_emerald
 mp_dr_ephemeral
+mp_dr_ethereal3_v2
 mp_dr_evangelion
 mp_dr_everglow
 mp_dr_fallguys
@@ -228,6 +230,7 @@ mp_dr_fallrun
 mp_dr_famous
 mp_dr_fireball_v2
 mp_dr_fjord
+mp_dr_flippery
 mp_dr_fnrp_ab_v4
 mp_dr_foggy
 mp_dr_framey_v2
@@ -267,6 +270,7 @@ mp_dr_jumpv2
 mp_dr_jungletemple
 mp_dr_jurapark
 mp_dr_kiti
+mp_dr_kiti2
 mp_dr_korkuncc
 mp_dr_kris_v2
 mp_dr_laboratory
@@ -316,6 +320,7 @@ mp_dr_nighty_v2
 mp_dr_nimble
 mp_dr_nitro
 mp_dr_noob
+mp_dr_nosprint
 mp_dr_nuka2
 mp_dr_nxs_jump
 mp_dr_nxs_road
@@ -331,6 +336,7 @@ mp_dr_overgrown
 mp_dr_overgrownv2
 mp_dr_pacrun
 mp_dr_pandemonium
+mp_dr_pendulum
 mp_dr_periglo
 mp_dr_phantasy
 mp_dr_pillars
@@ -426,6 +432,7 @@ mp_dr_train_rush
 mp_dr_trapntrance
 mp_dr_trapntrance_v2
 mp_dr_trapz
+mp_dr_trench
 mp_dr_trikx
 mp_dr_triumph
 mp_dr_tron
@@ -442,6 +449,7 @@ mp_dr_upperworld
 mp_dr_upt
 mp_dr_urban
 mp_dr_vector
+mp_dr_velocity
 mp_dr_version1
 mp_dr_vistic_castle
 mp_dr_vistic_castle_w
@@ -564,4 +572,10 @@ mp_vc_unnatural
 mp_vc_widow
 mp_vc_winter_run
 mp_vc_woodland
+mp_vlct_duality_v2
+mp_vlct_float
+mp_vlct_gem
+mp_vlct_grotfjord
+mp_vlct_poolday
+mp_vlct_rampage
 mp_xm_nephy
