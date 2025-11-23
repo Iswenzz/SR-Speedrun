@@ -79,9 +79,9 @@ main()
 	songlist[songlist.size] = "hasel";
 	songlist[songlist.size] = "rainynight";
 	songlist[songlist.size] = "danceforme";
-	notify_message("^7Welcome to ^3Flippery^7!", "^7Map by ^3Clippy^7!", 5, (1, 0.74, 0.47), undefined, undefined );
-	ambientstop(2);
-	ambientplay(songlist[randomint(songlist.size)]);
+	// notify_message("^7Welcome to ^3Flippery^7!", "^7Map by ^3Clippy^7!", 5, (1, 0.74, 0.47), undefined, undefined );
+	// ambientstop(2);
+	// ambientplay(songlist[randomint(songlist.size)]);
 }
 
 sr_easy_sec_enter()
