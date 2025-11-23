@@ -6,7 +6,7 @@
 main()
 {
 	// map version 1.0
-	
+
 	//maps\mp\mp_dr_flippery_fx::main();
 	maps\mp\_load::main();
 
@@ -96,7 +96,7 @@ sr_easy_sec_enter()
 	{
 		trig waittill("trigger",player);
 
-		player thread sr\api\_speedrun::changeWay("secret_0"); 
+		player thread sr\api\_speedrun::changeWay("secret_0");
 
 		player SetOrigin(ori_t.origin);
 		player SetPlayerAngles((player getplayerangles()[0], ori_t.angles[1], 0));
@@ -116,7 +116,7 @@ sr_hard_sec_enter()
 	{
 		trig waittill("trigger",player);
 
-		player thread sr\api\_speedrun::changeWay("secret_2"); 
+		player thread sr\api\_speedrun::changeWay("secret_2");
 
 		player SetOrigin(ori_t.origin);
 		player SetPlayerAngles((player getplayerangles()[0], ori_t.angles[1], 0));
@@ -124,7 +124,7 @@ sr_hard_sec_enter()
 	}
 }
 
-sr_arrows_remove() 
+sr_arrows_remove()
 {
 	arrows1 = getentArray("trap_1_arrow", "targetname");
 	arrows2 = getentArray("trap_2_arrow", "targetname");
@@ -151,29 +151,32 @@ sr_arrows_remove()
     for(i=0;i<arrows11.size;i++) arrows11[i] delete();
 }
 
-sr_traps_remove() 
+sr_traps_remove()
 {
 	trap_9_1 = getent("trap_9_1", "targetname");
-	trap_9_2 = getent("trap_9_2", "targetname");
-	trap_9_3 = getent("trap_9_3", "targetname");
-	trap_9_4 = getent("trap_9_4", "targetname");
-	trap_9_5 = getent("trap_9_5", "targetname");
-	trap_9_6 = getent("trap_9_6", "targetname");
-	trap_9_7 = getent("trap_9_7", "targetname");
-	trap_9_8 = getent("trap_9_8", "targetname");
-	brush_1 = getent("ghost_secret_gate", "targetname");
-    
-	wait 0.1;
+    trap_9_2 = getent("trap_9_2", "targetname");
+    trap_9_3 = getent("trap_9_3", "targetname");
+    trap_9_4 = getent("trap_9_4", "targetname");
+    trap_9_5 = getent("trap_9_5", "targetname");
+    trap_9_6 = getent("trap_9_6", "targetname");
+    trap_9_7 = getent("trap_9_7", "targetname");
+    trap_9_8 = getent("trap_9_8", "targetname");
+    brush_1 = getent("ghost_secret_gate", "targetname");
+    trap_8 = GetEnt("trap_8", "targetname");
+
+    wait 0.1;
 
     trap_9_1 movex(-136,0.1);
-	trap_9_2 movex(-136,0.1);
-	trap_9_3 movex(-136,0.1);
-	trap_9_4 movex(-136,0.1);
-	trap_9_5 movex(-136,0.1);
-	trap_9_6 movex(-136,0.1);
-	trap_9_7 movex(-136,0.1);
-	trap_9_8 movex(-136,0.1);
+    trap_9_2 movex(-136,0.1);
+    trap_9_3 movex(-136,0.1);
+    trap_9_4 movex(-136,0.1);
+    trap_9_5 movex(-136,0.1);
+    trap_9_6 movex(-136,0.1);
+    trap_9_7 movex(-136,0.1);
+    trap_9_8 movex(-136,0.1);
     brush_1 notsolid();
+
+    trap_8 RotateTo ((0,-45,0),.1);
 }
 
 water_splash_fx() {
@@ -321,7 +324,7 @@ sniper_room(trigger) {
 
 	sniper_fail = getEnt ("sniper_fail", "targetname");
 	sniper_fail thread sniper_fail();
-	
+
 	sniper_ele_1_top = getEnt ("sniper_ele_1_top", "targetname");
 	sniper_ele_2_top = getEnt ("sniper_ele_2_top", "targetname");
 	sniper_ele_1_top thread sniper_ele_velocity((-60, 0, 250));
@@ -334,7 +337,7 @@ sniper_room(trigger) {
 
 	sniper_velocity_1 = getEnt ("velocity_trigger1", "targetname");
 	sniper_velocity_2 = getEnt ("velocity_trigger2", "targetname");
-	
+
 	mid_point = getent(sniper_fail.target,"targetname");
 	sniper_velocity_1 thread snipervelocity();
 	sniper_velocity_2 thread snipervelocity();
@@ -365,7 +368,7 @@ sniper_room(trigger) {
 
 		player setOrigin (sniper_jumper.origin);
         activator setOrigin (sniper_acti.origin);
-		
+
         player setPlayerAngles (sniper_jumper.angles);
         activator setPlayerAngles (sniper_acti.angles);
 
@@ -383,7 +386,7 @@ sniper_room(trigger) {
 
         player.health = player.maxhealth;
         activator.health = activator.maxhealth;
-        
+
 		while(isDefined(player) && isAlive(player))
             wait .05;
     }
@@ -486,7 +489,7 @@ ghost_secret() {
 	ghost_secret_gate = getEnt ("ghost_secret_gate", "targetname");
 
 	thread teleporter_logic(ghost_secret_enter, ghost_org_1, true, undefined, ::ghost_velocity_enter);
-	
+
 	//ghost_secret_protect thread ghost_secret_protect(ghost_secret_protect_org);
 	//ghost_secret_open thread ghost_secret_gate(ghost_secret_gate);
 
@@ -516,7 +519,7 @@ ghost_secret() {
 }
 
 ghost_velocity_enter() {
-	self thread sr\api\_speedrun::changeWay("secret_1"); 
+	self thread sr\api\_speedrun::changeWay("secret_1");
 	self setvelocity((180,180,0));
 	self.ghost_secret_spree = 0;
 }
@@ -563,7 +566,7 @@ ghost_secret_fail(ent) {
 		self waittill("trigger", player);
 		if(!isdefined(player.ghost_secret_spree))
 			player.ghost_secret_spree = 0;
-			
+
 		PlayFX(level.water_splash_player_fx, player.origin);
 
 		if(player.ghost_secret_spree > 0)
@@ -582,15 +585,15 @@ ghost_secret_fail(ent) {
 GetActivator()
 {
 	players = getentarray( "player", "classname" );
-	
+
 	for(i = 0;i < players.size;i++)
 	{
 		player = players[i];
-		
+
 		if( isdefined( player ) && isplayer( player ) && isalive( player ) && player.pers["team"] == "axis"	)
 			return player;
 	}
-	
+
 	return undefined;
 }
 
@@ -667,7 +670,7 @@ jump_room_teleport_stuff(string) {
 
 		if(!isdefined(player.jump_room_pos))
 			player.jump_room_pos = 1;
-		
+
 		ent = GetEnt("bounce_" + string + "_" + player.jump_room_pos, "targetname");
 		if(isdefined(ent)) {
 			player freeze_on_tps(0.05);
@@ -699,7 +702,7 @@ jump_room(trigger)
 	bounce_jumper_2_trig = getEnt ("bounce_jumper_2_trig", "targetname");
 	bounce_jumper_3_trig = getEnt ("bounce_jumper_3_trig", "targetname");
 	bounce_jumper_4_trig = getEnt ("bounce_jumper_4_trig", "targetname");
-	
+
 	bounce_jumper_2_trig thread jump_room_stuff(2);
 	bounce_jumper_3_trig thread jump_room_stuff(3);
 	bounce_jumper_4_trig thread jump_room_stuff(4);
@@ -720,7 +723,7 @@ jump_room(trigger)
 
 	room_bounce_weapon_1 = getEnt ("room_bounce_weapon_1", "targetname");
 	room_bounce_weapon_2 = getEnt ("room_bounce_weapon_2", "targetname");
-	
+
 	room_bounce_weapon_1 thread jump_room_weapon("remington700_mp");
 	room_bounce_weapon_2 thread jump_room_weapon("m40a3_mp");
 
@@ -737,7 +740,7 @@ jump_room(trigger)
 			iprintln("^1Activator Can't Enter Room");
 			continue;
 		}
-		
+
 
         player thread disable_triggers_untill_death();
         thread fightHUD("Jump Room", player, activator);
@@ -748,7 +751,7 @@ jump_room(trigger)
 
 	    player setOrigin (bounce_jumper_1.origin);
         activator setOrigin (bounce_acti_1.origin);
-		
+
         player setPlayerAngles (bounce_jumper_1.angles);
         activator setPlayerAngles (bounce_acti_1.angles);
 
@@ -763,7 +766,7 @@ jump_room(trigger)
 
         player.health = player.maxhealth;
         activator.health = activator.maxhealth;
-        
+
 		while(isDefined(player) && isAlive(player))
             wait .05;
     }
@@ -797,7 +800,7 @@ knife_room(trigger)
 
 	    player setOrigin (knife_jumper.origin);
         activator setOrigin (knife_acti.origin);
-		
+
         player setPlayerAngles (knife_jumper.angles);
         activator setPlayerAngles (knife_acti.angles);
 
@@ -812,7 +815,7 @@ knife_room(trigger)
 
         player.health = player.maxhealth;
         activator.health = activator.maxhealth;
-        
+
 		while(isDefined(player) && isAlive(player))
             wait .05;
     }
@@ -856,7 +859,7 @@ rpg_room(trigger) {
 
 		player setOrigin (rpg_room_sur.origin);
         activator setOrigin (rpg_room_acti.origin);
-		
+
         player setPlayerAngles (rpg_room_sur.angles);
         activator setPlayerAngles (rpg_room_acti.angles);
 
@@ -874,7 +877,7 @@ rpg_room(trigger) {
 
         player.health = player.maxhealth;
         activator.health = activator.maxhealth;
-        
+
 		while(isDefined(player) && isAlive(player))
             wait .05;
     }
@@ -986,7 +989,7 @@ rpg_fall_trigger(mid, acti, sur) {
 			player setplayerangles((player getplayerangles()[0], acti.angles[1], 0));
 		} else {
 			player setorigin(sur.origin);
-			player setplayerangles((player getplayerangles()[0], sur.angles[1], 0)); 
+			player setplayerangles((player getplayerangles()[0], sur.angles[1], 0));
 		}
 	}
 }
@@ -1018,7 +1021,7 @@ setup_secret() {
 	thread teleporter_logic(secret_hard_end, secret_hard_exit, true, 0.1, ::exit_hard_secret_msg);
 
 	//teleporter_logic(trigger, exit_ent, angles, freeze, function)
-	
+
 
 
 	secret_easy = GetEnt("secret_easy", "targetname");
@@ -1068,7 +1071,7 @@ secret_timer(label, time, ent, fail_string) {
 
 	if(isdefined(fail_string))
 		iprintln(fail_string);
-	
+
 	self freeze_on_tps(0.05);
 
 	self setorigin(ent.origin);
@@ -1111,7 +1114,7 @@ giving_weaps_secret(weapon) {
 		if(!level.freerun) { // ????? check if good
 			self giveweapon("m1014_mp", 6);
 			self switchtoweapon("m1014_mp");
-		} else 
+		} else
 			self switchtoweapon("h1_bayonet_mp");
 
 	} else if(weapon == "uzi") {
@@ -1119,7 +1122,7 @@ giving_weaps_secret(weapon) {
 		if(!level.freerun) { // ????? check if good
 			self giveweapon("uzi_mp", 6);
 			self switchtoweapon("uzi_mp");
-		} else 
+		} else
 			self switchtoweapon("codol_tacknife_mp");
 
 	} else if(weapon == "ak74u") {
@@ -1130,7 +1133,7 @@ giving_weaps_secret(weapon) {
 		} else {
 			self giveweapon("codol_tacknife_mp");
 			self switchtoweapon("codol_tacknife_mp");
-		} 
+		}
 
 	}
 }
@@ -1197,7 +1200,7 @@ easy_secret_teleport_logic() {
 		self waittill("trigger", player);
 		if(!isdefined(player.easy_secret_pos))
 			player.easy_secret_pos = 1;
-		
+
 		ent = GetEnt("secret_easy_org_" + player.easy_secret_pos, "targetname");
 		if(isdefined(ent)) {
 			player freeze_on_tps(0.05);
@@ -1254,12 +1257,12 @@ enter_easy_secret_msg() {
 	//self thread secret_timer(&"^2Easy ^7Secret Timer:^3 ", 80, GetEnt("failed_easy_secret", "targetname"), "^6" + self.name + " ^1Failed ^2Easy ^3Secret");
 	iprintln("^6" + self.name + " ^7Entered ^2Easy ^3Secret");
 }
-exit_hard_secret_msg() 
+exit_hard_secret_msg()
 {
 	self notify("finish_secret");
 	self thread sr\api\_speedrun::finishWay("secret_2");
 }
-exit_easy_secret_msg() 
+exit_easy_secret_msg()
 {
 	self notify("finish_secret");
 	self thread sr\api\_speedrun::finishWay("secret_0");
@@ -1317,7 +1320,7 @@ trap_1() {
     trap_1_trigger waittill ("trigger");
 	thread valve_rotate(GetEnt(trap_1_trigger.target, "targetname"));
     trap_1_trigger setHintString("- ^1Activated ^7-");
-	
+
 	arrow_kill_notify("trap_1");
 
 	trap_1 delete();
@@ -1428,7 +1431,7 @@ trap_6() {
     trap_6_trigger setHintString("- ^1Activated ^7-");
 
 	arrow_kill_notify("trap_6");
-	
+
 	initial_position = trap_6.origin;
 	activated_position = initial_position - (76,0,0);
 	for(;;) {
@@ -1444,7 +1447,7 @@ trap_7() {
 	trap_7 = GetEnt("trap_7", "targetname");
 
 	thread arrow_logic("trap_7", trap_7_trigger);
-	
+
 	trap_7_trigger setHintString("- Trap^1 7 ^7- ^7Press ^3[&&1] \n^7- Make Platform Disappear");
     trap_7_trigger waittill ("trigger");
 	thread valve_rotate(GetEnt(trap_7_trigger.target, "targetname"));
@@ -1468,7 +1471,7 @@ trap_8() {
 	trap_8_trigger = GetEnt("trap_8_trigger", "targetname");
 
 	thread arrow_logic("trap_8", trap_8_trigger);
-	
+
 	trap_8_trigger setHintString("- Trap^1 8 ^7- ^7Press ^3[&&1] \n^7- Tilt First Platform\n^7- Rotate Second Platform\n^7- Flip Third Platform Down\n^7- Rotate Bounce");
     trap_8_trigger waittill ("trigger");
 	thread valve_rotate(GetEnt(trap_8_trigger.target, "targetname"));
@@ -1485,7 +1488,7 @@ trap_8() {
 	trap_8_turn_3 RotateTo((0,0,90), 1);
 	trap_8_turn_4 RotateTo((0,0,-90), 1);
 	wait 2;
-	
+
 	for(;;) {
 		trap_8_turn_3 RotateTo((0,0,0), 2);
 		trap_8_turn_4 RotateTo((0,0,0), 2);
@@ -1510,7 +1513,7 @@ trap_9() {
 	trap_9_trigger = GetEnt("trap_9_trigger", "targetname");
 
 	thread arrow_logic("trap_9", trap_9_trigger);
-	
+
 	trap_9_trigger setHintString("- Trap^1 9 ^7- ^7Press ^3[&&1] \n^7- Push With Walls");
     trap_9_trigger waittill ("trigger");
 	thread valve_rotate(GetEnt(trap_9_trigger.target, "targetname"));
@@ -1569,7 +1572,7 @@ trap_10() {
 	trap_10_1_hurt = GetEnt("trap_10_1_hurt", "targetname");
 	trap_10_2_hurt = GetEnt("trap_10_2_hurt", "targetname");
 
-	
+
 	trap_10_1_hurt EnableLinkTo();
 	trap_10_2_hurt EnableLinkTo();
 	trap_10_1_hurt LinkTo(trap_10_1);
@@ -1610,7 +1613,7 @@ trap_10_func(trap_10_start_origin, trap_10_end_origin, trap_10_bot_origin, trap_
 		// self moveto(trap_10_top_origin.origin,return_time);
 		// wait return_time/2;
 		// self RotateTo((0,0,0), return_time/2);
-		// wait ((return_time/2) + 0.05); 
+		// wait ((return_time/2) + 0.05);
 		self.origin = trap_10_top_origin.origin;
 		self.angles = (0,0,0);
 	}
@@ -1646,7 +1649,7 @@ trap_11() {
 	movement_time = 1;
 
 	initial = 1.5;
-	
+
 	trap_11_1 moveto(trap_11_a.origin,initial, movement_time/4, movement_time/4);
 	trap_11_2 moveto(trap_11_b.origin,initial, movement_time/4, movement_time/4);
 	trap_11_3 moveto(trap_11_c.origin,initial, movement_time/4, movement_time/4);
@@ -1698,7 +1701,7 @@ arrow_logic(string, trigger) {
 		arrows[d] thread arrow_movement_logic();
 		arrows[d] thread arrow_kill_on_freerun(string);
 	}
-	
+
 	for(;;) {
 		wait 0.05;
 		players = getentarray("player", "classname");
