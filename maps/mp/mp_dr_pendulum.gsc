@@ -26,9 +26,8 @@ main()
     //precacheitem("china_lake_mp");
 
     thread sr\api\_map::createSpawn((288, 1424, 76), 270);
-    thread sr\api\_speedrun::createNormalWays("Normal Way;Shortcut Way");
+    thread sr\api\_speedrun::createNormalWays("Normal Way");
     thread sr\api\_speedrun::createSecretWays("Secret Way");
-    thread sr\api\_speedrun::createWay((2451.25, -8813.59, -8191.28), 300, 1115, "none", "normal_1");
 
     thread sr_sec_enter();
 
@@ -61,7 +60,7 @@ sr_sec_enter()
 	{
 		trig waittill("trigger",player);
 
-		player thread sr\api\_speedrun::changeWay("secret_0"); 
+		player thread sr\api\_speedrun::changeWay("secret_0");
 
 		player SetOrigin(ori_t.origin);
 		player SetPlayerAngles(ori_t.angles);
@@ -74,7 +73,7 @@ sr_sec_enter()
 antiglitcher()
 {
 level.activator1 = GetActivator();
-level.activ = GetActivator();  
+level.activ = GetActivator();
 self common_scripts\utility::waittill_any("death","disconnect");
     if(isDefined(self))
     {
@@ -88,8 +87,8 @@ self common_scripts\utility::waittill_any("death","disconnect");
 self freezeControls(0);
 level.activ notify("matchend");
 
-    iPrintln("^3"+self.name+" ^7died^3!"); 
-    wait 0.2; 
+    iPrintln("^3"+self.name+" ^7died^3!");
+    wait 0.2;
     iPrintlnBold("^3Room selection opened^7!");
 }
 
@@ -139,8 +138,8 @@ waitdead()
 }
 
 endmap()
-{ 
-    trig = getEnt("endmaptrigger", "targetname");     
+{
+    trig = getEnt("endmaptrigger", "targetname");
     trig waittill ("trigger" , player );
     firstPlace = newHudElem();
     firstPlace.foreground = true;
@@ -148,7 +147,7 @@ endmap()
     firstPlace.alignX = "left";
     firstPlace.alignY = "middle";
     firstPlace.horzAlign = "left";
-    firstPlace.vertAlign = "middle"; 
+    firstPlace.vertAlign = "middle";
     firstPlace.x = -400;
     firstPlace.y = 0;
     firstPlace.sort = 0;
@@ -158,13 +157,13 @@ endmap()
     firstPlace.glowAlpha = 1;
     firstPlace.glowColor = (.3,.0,3);
     firstPlace settext("^5" + player.name + " ^7has finished ^5FIRST^7");
-    firstPlace moveOverTime(2); 
+    firstPlace moveOverTime(2);
     firstPlace.x = 5;
     wait 5;
-    firstPlace moveOverTime(2); 
+    firstPlace moveOverTime(2);
     firstPlace.x = -500;
     wait 7;
-    firstPlace destroy(); 
+    firstPlace destroy();
 }
 
 fightHUD(room, jumper, activ)
@@ -232,20 +231,20 @@ removeTextActivator()
     {
         self.hud_textacti destroy();
     }
-} 
-    
+}
+
 GetActivator()
 {
     players = getentarray( "player", "classname" );
-    
+
     for(i = 0;i < players.size;i++)
     {
         player = players[i];
-        
+
         if( isdefined( player ) && isplayer( player ) && isalive( player ) && player.pers["team"] == "axis"    )
             return player;
     }
-    
+
     return "Noactivator";
 }
 
@@ -267,7 +266,7 @@ createHUD( x, y, alignX, alignY, alpha, font, fontScale )
     return hud;
 }
 
-select() 
+select()
 {
 level.room_trig = getEnt( "roomselecttrigger", "targetname");
 room = getEnt( "endroomorigin", "targetname" );
@@ -320,7 +319,7 @@ secretendtp()
     {
         trig waittill("trigger", player);
 
-        player thread sr\api\_speedrun::finishWay("secret_0"); 
+        player thread sr\api\_speedrun::finishWay("secret_0");
     }
 }
 
@@ -401,7 +400,7 @@ sniper()
     for(;;)
     {
         level.trigger_scope waittill ("trigger", player);
-        
+
         iPrintLnBold("^2 " + player.name + " ^7Entered The ^2Sniper ^7Room^2!");
         activator = GetActivator();
         player thread waitdead();
@@ -409,7 +408,7 @@ sniper()
         player thread RoomCountDown("^3Snipe each other !", 3, 0);
         activator thread RoomCountDown("^3Snipe each other !", 3, 0);
         player setOrigin (jumpersc.origin);
-        player setPlayerAngles (jumpersc.angles);    
+        player setPlayerAngles (jumpersc.angles);
         activator setOrigin (actisc.origin);
         activator setPlayerAngles (actisc.angles);
         player takeAllWeapons();
@@ -423,7 +422,7 @@ sniper()
         player giveMaxAmmo("m40a3_mp");
         activator giveMaxAmmo("m40a3_mp");
         player switchToWeapon("iw8_hdromeo_mp");
-        activator switchToWeapon("iw8_hdromeo_mp");   
+        activator switchToWeapon("iw8_hdromeo_mp");
         player.maxhealth = 100;
         player.health = player.maxhealth;
 
@@ -461,10 +460,10 @@ knife()
         activator switchToWeapon("t10_skateboard_mp");
         player.maxhealth = 100;
         player.health = player.maxhealth;
-        
+
         while(isDefined(player) && isAlive(player))
         wait .05;
-        
+
     }
 }
 
@@ -478,7 +477,7 @@ grenade_launcher()
     for(;;)
     {
         level.trigger_grenade waittill ("trigger", player);
-        
+
         iPrintLnBold("^2 " + player.name + " ^7Entered The ^2Grenade Launcher ^7Room^2!");
         activator = GetActivator();
         player thread waitdead();
@@ -486,7 +485,7 @@ grenade_launcher()
         player thread RoomCountDown("^3BOMB each other!", 3, 0);
         activator thread RoomCountDown("^3BOMB each other!", 3, 0);
         player setOrigin (jumpersc.origin);
-        player setPlayerAngles (jumpersc.angles);    
+        player setPlayerAngles (jumpersc.angles);
         activator setOrigin (actisc.origin);
         activator setPlayerAngles (actisc.angles);
         player takeAllWeapons();
@@ -496,7 +495,7 @@ grenade_launcher()
         player giveMaxAmmo("china_lake_mp");
         activator giveMaxAmmo("china_lake_mp");
         player switchToWeapon("china_lake_mp");
-        activator switchToWeapon("china_lake_mp");   
+        activator switchToWeapon("china_lake_mp");
         player.maxhealth = 100;
         player.health = player.maxhealth;
 
@@ -545,13 +544,13 @@ music()
             AmbientStop(2);
      AmbientPlay( "song5" );
      iPrintLN("Song name: The Tempest - Pendulum");
-     break; 
+     break;
     }
 }
 
 credits()
 {
-  while(1) 
+  while(1)
     {
         wait 10;
         iPrintln("^3Map created by Flub");

@@ -89,7 +89,6 @@ main()
 	thread sr\api\_speedrun::createSecretWays("Secret Way");
 
     thread sr_sec_enter();
-    thread sr_sec_finish();
 
     //thread onPConnected();
     //thread platform();
