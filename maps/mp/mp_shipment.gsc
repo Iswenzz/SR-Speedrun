@@ -25,7 +25,7 @@ main()
 	thread sr\api\_map::createSpawn((-721, -603, 260), 49);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;Cargo Way");
 	thread sr\api\_speedrun::createEndMap((690.455, 735.083, 192.077), 85, 115, "normal_0");
-	thread sr\api\_speedrun::createWay((-713.248, 77.0254, 299.125), 115, 200, "blue", "normal_1");
+	thread sr\api\_speedrun::createWay((-713.248, 77.0254, 299.125), 115, 200, "none", "normal_1");
 	thread sr\api\_speedrun::createEndMap((-713.248, 77.0254, 299.125), 115, 200, "normal_1");
 
 }
