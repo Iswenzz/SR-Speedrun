@@ -64,6 +64,7 @@ main()
 	sr\player\huds\_voice::main();
 
 	sr\commands\_admin::main();
+	sr\commands\_cef::main();
 	sr\commands\_debug::main();
 	sr\commands\_graphics::main();
 	sr\commands\_misc::main();
