@@ -48,7 +48,7 @@ thread sr\api\_map::createSpawnOrigin((-66.063, 538.287, 14.125), 270);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createSecretWays("Secret Way;");
 
-	thread sr\api\_speedrun::createTeleporter((-14.4884, 2512.23, 475.038), 2810, 1000, (-66.063, 538.287, 14.125), 270, "freeze", "blue");
+	//thread sr\api\_speedrun::createTeleporter((-14.4884, 2512.23, 475.038), 2810, 1000, (-66.063, 538.287, 14.125), 270, "freeze", "blue");
 
 	thread startdoor();
 	thread secret1();
