@@ -38,6 +38,7 @@ mp_deathrun_coyote_v2
 mp_deathrun_creepy
 mp_deathrun_crystal
 mp_deathrun_crystal_v2
+mp_deathrun_crystal_v3
 mp_deathrun_curt
 mp_deathrun_darkness
 mp_deathrun_death
@@ -49,6 +50,7 @@ mp_deathrun_easy
 mp_deathrun_ebc
 mp_deathrun_electory
 mp_deathrun_empire
+mp_deathrun_enigma
 mp_deathrun_epicfail
 mp_deathrun_factory
 mp_deathrun_fall
@@ -327,6 +329,7 @@ mp_dr_nxs_road
 mp_dr_offshore
 mp_dr_old_factory
 mp_dr_old_fucktory
+mp_dr_old_fucktory2
 mp_dr_oldschool
 mp_dr_omar2
 mp_dr_omar3
@@ -352,6 +355,7 @@ mp_dr_pro
 mp_dr_pro_v2
 mp_dr_progression
 mp_dr_prototype
+mp_dr_pure_nosprint
 mp_dr_pure_strafe
 mp_dr_pure_strafe_v2
 mp_dr_purple_world
@@ -401,6 +405,7 @@ mp_dr_smart
 mp_dr_snip
 mp_dr_snowyhills
 mp_dr_something
+mp_dr_sorrow
 mp_dr_spaceball_v2
 mp_dr_spacelab
 mp_dr_spacetrip
@@ -515,6 +520,7 @@ mp_sr_altitude
 mp_sr_cancerepicslide
 mp_sr_cancerepicslide2
 mp_sr_choice
+mp_sr_cinema
 mp_sr_compact
 mp_sr_delay_cope
 mp_sr_descent
