@@ -10,7 +10,8 @@
 #include common_scripts\utility;
 main()
 {
-thread sr\api\_map::createSpawnOrigin((-23318, -50, 40080), 0);
+	thread sr\api\_speedrun::cj();
+	thread sr\api\_map::createSpawnOrigin((-23318, -50, 40080), 0);
 	maps\mp\_load::main();
 	//maps\mp\_teleport::main();
 
