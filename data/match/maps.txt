@@ -583,5 +583,6 @@ mp_vlct_float
 mp_vlct_gem
 mp_vlct_grotfjord
 mp_vlct_poolday
+mp_vlct_rammstein
 mp_vlct_rampage
 mp_xm_nephy
