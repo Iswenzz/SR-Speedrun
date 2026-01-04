@@ -532,10 +532,10 @@ mp_sr_parkour
 mp_sr_practise
 mp_sr_pure_bhop
 mp_sr_pure_cancer
+mp_sr_pure_nosprint
 mp_sr_pure_slide
 mp_sr_pure_slide_v2
 mp_sr_pure_strafe
-mp_sr_pure_strafe_nosprint
 mp_sr_pure_strafe_v2
 mp_sr_pure_strafe_v3
 mp_sr_pure_strafe_v4
