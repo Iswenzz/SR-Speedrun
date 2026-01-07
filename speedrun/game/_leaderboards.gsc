@@ -122,7 +122,6 @@ getPlayerWorldRecordCount()
 
 	request = SQL_Prepare(query);
 	SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
-	SQL_BindResult(request, level.MYSQL_TYPE_LONG);
 	SQL_Execute(request);
 	AsyncWait(request);
 	wrCount = IfUndef(SQL_FetchRow(request), []);
@@ -134,7 +133,6 @@ getPlayerWorldRecordCount()
 
 	request = SQL_Prepare(query);
 	SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
-	SQL_BindResult(request, level.MYSQL_TYPE_LONG);
 	SQL_Execute(request);
 	AsyncWait(request);
 	wrBaseCount = IfUndef(SQL_FetchRow(request), []);
@@ -156,7 +154,6 @@ getPlayerEntriesCount()
 
 	request = SQL_Prepare("SELECT COUNT(id) FROM leaderboards WHERE player = ?");
 	SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
-	SQL_BindResult(request, level.MYSQL_TYPE_LONG);
 	SQL_Execute(request);
 	AsyncWait(request);
 	count = IfUndef(SQL_FetchRow(request), []);
@@ -204,13 +201,6 @@ load()
 
 	request = SQL_Prepare("SELECT mode, way, time, name, player, run, tas FROM leaderboards WHERE map = ?");
 	SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
-	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 20);
-	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 20);
-	SQL_BindResult(request, level.MYSQL_TYPE_LONG);
-	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 36);
-	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 36);
-	SQL_BindResult(request, level.MYSQL_TYPE_STRING, 36);
-	SQL_BindResult(request, level.MYSQL_TYPE_LONG);
 	SQL_Execute(request);
 	AsyncWait(request);
 

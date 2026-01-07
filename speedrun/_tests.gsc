@@ -6,7 +6,6 @@ runTests()
     if (!setup())
 		return;
 
-    sr\libs\cgsc\__test__\_suite::cgsc();
     sr\libs\gsclib\__test__\_suite::gsclib();
 
 	summarize(true);
@@ -17,8 +16,8 @@ setup()
 	gscunitEnv();
 
 	level.tests = spawnStruct();
-	level.tests.ftp = false;
-	level.tests.sftp = false;
+	level.tests.ftp = true;
+	level.tests.sftp = true;
 	level.tests.mysql = true;
 
 	return level.gscunit.enabled;

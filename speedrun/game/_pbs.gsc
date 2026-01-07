@@ -21,9 +21,6 @@ onConnect()
 	request = SQL_Prepare("SELECT mode, way, time FROM pbs WHERE map = ? AND player = ?");
     SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
     SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
-    SQL_BindResult(request, level.MYSQL_TYPE_STRING, 20);
-    SQL_BindResult(request, level.MYSQL_TYPE_STRING, 20);
-    SQL_BindResult(request, level.MYSQL_TYPE_LONG);
     SQL_Execute(request);
 	AsyncWait(request);
 	rows = SQL_FetchRowsDict(request);
