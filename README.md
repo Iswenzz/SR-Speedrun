@@ -4,6 +4,8 @@
 
 The official CoD4 multiplayer speedrun mod.
 
+A complete speedrunning server experience including leaderboards, anti-cheats, character customization, with over 12,000 unique players and over 100,000 unique records set on the leaderboards.
+
 Complete the map in the fastest time possible and compete for the top spot on the leaderboard. Getting a time on the leaderboard will give you XP, you get more XP depending on how high up your time is and how many times have already been set.
 
 ## Player
