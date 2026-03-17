@@ -98,12 +98,16 @@ endTimer()
 	self.time = originToTime(getTime() - self.time.origin);
 	self speedrun\player\huds\_speedrun::updateTime();
 
+	if (!self sr\sys\_admins::isAuth())
+	{
+		self sr\sys\_admins::printAuthRequired();
+		return;
+	}
 	if (self isCheat())
 	{
 		self iPrintLnBold("^1Your time was not saved!");
 		return;
 	}
-
 	way = getLeaderboardName(self.sr_mode, self.sr_way);
 	message = fmt("%s finished the map in %d:%d.%d - %s / %s",
 		self.name, self.time.min, self.time.sec, self.time.ms,

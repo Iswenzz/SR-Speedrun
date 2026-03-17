@@ -161,7 +161,6 @@ CodeCallback_PlayerConnect()
 
 	self.shortName = getSubStr(self.name, 0, 15);
 	self.guid = getSubStr(self getGuid(), 24, 32);
-	self.id = sr\sys\_ids::load();
 	self.number = self getEntityNumber();
 	self.team = IfUndef(self.pers["team"], "spectator");
 	self.sessionteam = self.team;
