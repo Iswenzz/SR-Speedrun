@@ -118,7 +118,7 @@ getPlayerWorldRecordCount()
 	critical_enter("mysql");
 
 	filter = "SELECT id, map, name, mode, way, player, time, tas, min(time) OVER (PARTITION BY map, mode, way, tas) AS minTime FROM leaderboards";
-	query = fmt("SELECT count(id) FROM (%s) b WHERE time = minTime AND player = ? AND tas = 0", filter);
+	query = fmt("SELECT COUNT(*) FROM (%s) b WHERE time = minTime AND player = ? AND tas = 0", filter);
 
 	request = SQL_Prepare(query);
 	SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
@@ -128,7 +128,7 @@ getPlayerWorldRecordCount()
 	SQL_Free(request);
 
 	filter = "SELECT id, map, name, mode, way, player, time, tas, min(time) OVER (PARTITION BY map, mode, way, tas) AS minTime FROM leaderboards";
-	query = fmt("SELECT count(id) FROM (%s) b WHERE time = minTime AND player = ? AND tas = 0 AND (mode = %s OR mode = %s)",
+	query = fmt("SELECT COUNT(*) FROM (%s) b WHERE time = minTime AND player = ? AND tas = 0 AND (mode = %s OR mode = %s)",
 		filter, "190", "210");
 
 	request = SQL_Prepare(query);
@@ -152,7 +152,7 @@ getPlayerEntriesCount()
 {
 	critical_enter("mysql");
 
-	request = SQL_Prepare("SELECT COUNT(id) FROM leaderboards WHERE player = ?");
+	request = SQL_Prepare("SELECT COUNT(*) FROM leaderboards WHERE player = ?");
 	SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
 	SQL_Execute(request);
 	AsyncWait(request);
