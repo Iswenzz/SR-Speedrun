@@ -55,7 +55,7 @@ menu_Back(arg)
 
 menu_TAS(arg)
 {
-	if (sr\sys\_admins::isRegisterTAS(self.id))
+	if (sr\sys\_admins::isTAS())
 		return;
 
 	self cheat();
