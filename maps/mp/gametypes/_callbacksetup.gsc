@@ -190,7 +190,7 @@ CodeCallback_PlayerConnect()
 	}
 	else self eventSpawn();
 
-	comPrintLn(fmt("[Info] %s", removeColorFromString(self sr\sys\_admins::getPlayerInfo())));
+	comPrintLn(fmt("^5[Player] %s", removeColorFromString(self sr\sys\_admins::getPlayerInfo())));
 
 	self.pers["connected"] = true;
 	self notify("connecting_sync");
