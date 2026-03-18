@@ -100,7 +100,7 @@ endTimer()
 
 	if (!self sr\sys\_admins::isAuth())
 	{
-		self sr\sys\_admins::printAuthRequired();
+		self sr\sys\_admins::printLinkRequired();
 		return;
 	}
 	if (self isCheat())
