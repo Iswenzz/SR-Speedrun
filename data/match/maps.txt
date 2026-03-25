@@ -583,6 +583,7 @@ mp_vlct_duality_v2
 mp_vlct_float
 mp_vlct_gem
 mp_vlct_grotfjord
+mp_vlct_kretto
 mp_vlct_poolday
 mp_vlct_rammstein
 mp_vlct_rampage
