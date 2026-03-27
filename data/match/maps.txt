@@ -371,6 +371,7 @@ mp_dr_raky
 mp_dr_rakyfaggot
 mp_dr_ravine
 mp_dr_red
+mp_dr_revisited
 mp_dr_riverbed
 mp_dr_rock
 mp_dr_royals
@@ -429,6 +430,7 @@ mp_dr_takeshi
 mp_dr_templerun
 mp_dr_terror
 mp_dr_test1
+mp_dr_the_end
 mp_dr_theshack
 mp_dr_theship
 mp_dr_thewar
