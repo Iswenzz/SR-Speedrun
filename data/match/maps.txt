@@ -22,6 +22,7 @@ mp_deathrun_boss
 mp_deathrun_boss_v2
 mp_deathrun_bounce_v3
 mp_deathrun_bricky
+mp_deathrun_bunker
 mp_deathrun_cage
 mp_deathrun_castle
 mp_deathrun_cherry
@@ -177,6 +178,7 @@ mp_dr_bounce
 mp_dr_bouncev2
 mp_dr_boy
 mp_dr_brainfuck
+mp_dr_brasso
 mp_dr_brix
 mp_dr_broken
 mp_dr_broken2
@@ -590,3 +592,7 @@ mp_vlct_poolday
 mp_vlct_rammstein
 mp_vlct_rampage
 mp_xm_nephy
+mp_xm_speed_v2
+mp_xm_speed
+mp_xm_summer_v2
+mp_xm_summer
