@@ -38,5 +38,6 @@ main()
 	
 	level._effect[ "door_kick_dust" ]				= loadfx( "impacts/large_woodhit" );
 
-	}
+	maps\createfx\mp_sp_airplane_fx::main();
+}
 
