@@ -1,13 +1,13 @@
 main()
 {
 	//sinking sequence fx
-	level._effect["sinking_explosion"]					= loadfx ("explosions/cobrapilot_vehicle_explosion"); 
+	// level._effect["sinking_explosion"]					= loadfx ("explosions/cobrapilot_vehicle_explosion"); 
 	
-	level._effect["sinking_leak_large"]					= loadfx ("misc/cargoship_sinking_leak_large"); 
-	level._effect["event_waterleak"]					= loadfx ("misc/cargoship_sinking_leak_med"); 
-	level._effect["event_steamleak"]					= loadfx ("misc/cargoship_sinking_steam_leak");
-	level._effect["event_sparks"]						= loadfx ("explosions/sparks_d");
-	level._effect["sparks_runner"]						= loadfx ("explosions/sparks_runner"); 
+	// level._effect["sinking_leak_large"]					= loadfx ("misc/cargoship_sinking_leak_large"); 
+	// level._effect["event_waterleak"]					= loadfx ("misc/cargoship_sinking_leak_med"); 
+	// level._effect["event_steamleak"]					= loadfx ("misc/cargoship_sinking_steam_leak");
+	// level._effect["event_sparks"]						= loadfx ("explosions/sparks_d");
+	// level._effect["sparks_runner"]						= loadfx ("explosions/sparks_runner"); 
 	
 	level._effect["sinking_waterlevel_center"]			= loadfx ("misc/cargoship_water_noise");
 	level._effect["sinking_waterlevel_edge"]			= loadfx ("misc/cargoship_water_noise");
@@ -32,21 +32,21 @@ main()
 	level._effect["cargo_steam"]						= loadfx ("smoke/cargo_steam");
 
 	//fx for helicopter
-	level._effect["heli_spotlight"]						= loadfx ("misc/spotlight_medium_cargoship"); 
-	level._effect["spotlight_dlight"]					= loadfx ("misc/spotlight_dlight"); 
-	level._effect["cigar_glow"]							= loadfx ("fire/cigar_glow");
-	level._effect["cigar_glow_puff"]					= loadfx ("fire/cigar_glow_puff");	
-	level._effect["cigar_smoke_puff"]					= loadfx ("smoke/cigarsmoke_puff");
-	level._effect["cigar_exhale"]						= loadfx ("smoke/cigarsmoke_exhale");
-	level._effect["heli_minigun_shells"]				= loadfx ("shellejects/20mm_cargoship");
+	// level._effect["heli_spotlight"]						= loadfx ("misc/spotlight_medium_cargoship"); 
+	// level._effect["spotlight_dlight"]					= loadfx ("misc/spotlight_dlight"); 
+	// level._effect["cigar_glow"]							= loadfx ("fire/cigar_glow");
+	// level._effect["cigar_glow_puff"]					= loadfx ("fire/cigar_glow_puff");	
+	// level._effect["cigar_smoke_puff"]					= loadfx ("smoke/cigarsmoke_puff");
+	// level._effect["cigar_exhale"]						= loadfx ("smoke/cigarsmoke_exhale");
+	// level._effect["heli_minigun_shells"]				= loadfx ("shellejects/20mm_cargoship");
 	
 	//fx for heli interior/exterior lights
-	level._effect["aircraft_light_cockpit_red"]			= loadfx ("misc/aircraft_light_cockpit_red_powerfull");
-	level._effect["aircraft_light_cockpit_blue"]		= loadfx ("misc/aircraft_light_cockpit_blue");
-	level._effect["aircraft_light_red_blink"]			= loadfx ("misc/aircraft_light_red_blink");
-	level._effect["aircraft_light_white_blink"]			= loadfx ("misc/aircraft_light_white_blink");
-	level._effect["aircraft_light_wingtip_green"]		= loadfx ("misc/aircraft_light_wingtip_green");
-	level._effect["aircraft_light_wingtip_red"]			= loadfx ("misc/aircraft_light_wingtip_red");
+	// level._effect["aircraft_light_cockpit_red"]			= loadfx ("misc/aircraft_light_cockpit_red_powerfull");
+	// level._effect["aircraft_light_cockpit_blue"]		= loadfx ("misc/aircraft_light_cockpit_blue");
+	// level._effect["aircraft_light_red_blink"]			= loadfx ("misc/aircraft_light_red_blink");
+	// level._effect["aircraft_light_white_blink"]			= loadfx ("misc/aircraft_light_white_blink");
+	// level._effect["aircraft_light_wingtip_green"]		= loadfx ("misc/aircraft_light_wingtip_green");
+	// level._effect["aircraft_light_wingtip_red"]			= loadfx ("misc/aircraft_light_wingtip_red");
 	 
 	//lights
 	level._effect["cgoshp_lights_cr"]			= loadfx ("misc/cgoshp_lights_cr");

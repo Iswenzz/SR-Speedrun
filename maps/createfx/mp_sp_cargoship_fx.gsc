@@ -2950,71 +2950,71 @@ main()
      	ent.v[ "fxid" ] = "cgoshp_drips_a";
      	ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( 705.865, -494.316, -34.1141 );
-     	ent.v[ "angles" ] = ( 0, 0, 176 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( 705.865, -494.316, -34.1141 );
+     	// ent.v[ "angles" ] = ( 0, 0, 176 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( 997.35, 223.89, -257 );
-     	ent.v[ "angles" ] = ( 14.4833, 6.77972, 161.986 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( 997.35, 223.89, -257 );
+     	// ent.v[ "angles" ] = ( 14.4833, 6.77972, 161.986 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -550.458, 515.26, -86.7721 );
-     	ent.v[ "angles" ] = ( 0, 0, 156 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -550.458, 515.26, -86.7721 );
+     	// ent.v[ "angles" ] = ( 0, 0, 156 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -1375.21, 494.263, -29.125 );
-     	ent.v[ "angles" ] = ( 0, 0, 156 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -1375.21, 494.263, -29.125 );
+     	// ent.v[ "angles" ] = ( 0, 0, 156 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -1867.68, -1.15315, -32.9657 );
-     	ent.v[ "angles" ] = ( 0, 0, 148 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -1867.68, -1.15315, -32.9657 );
+     	// ent.v[ "angles" ] = ( 0, 0, 148 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -2314.01, 217.052, -68.9389 );
-     	ent.v[ "angles" ] = ( 324.284, 358.06, 164.957 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -2314.01, 217.052, -68.9389 );
+     	// ent.v[ "angles" ] = ( 324.284, 358.06, 164.957 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -2195.56, 80.2874, -111.515 );
-     	ent.v[ "angles" ] = ( 324.935, 158.5, -130.59 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -2195.56, 80.2874, -111.515 );
+     	// ent.v[ "angles" ] = ( 324.935, 158.5, -130.59 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -2958.18, -330.402, 1.83042 );
-     	ent.v[ "angles" ] = ( 323.608, 272.503, 174.551 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -2958.18, -330.402, 1.83042 );
+     	// ent.v[ "angles" ] = ( 323.608, 272.503, 174.551 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -3089.73, 14.3479, -82.2233 );
-     	ent.v[ "angles" ] = ( 323.608, 272.503, 174.551 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -3089.73, 14.3479, -82.2233 );
+     	// ent.v[ "angles" ] = ( 323.608, 272.503, 174.551 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -2375.5, -76.786, 113.496 );
-     	ent.v[ "angles" ] = ( 323.267, 170.512, -145.97 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -2375.5, -76.786, 113.496 );
+     	// ent.v[ "angles" ] = ( 323.267, 170.512, -145.97 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -2495.51, -273.976, 133.479 );
-     	ent.v[ "angles" ] = ( 348.46, 10.0133, 155.813 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -2495.51, -273.976, 133.479 );
+     	// ent.v[ "angles" ] = ( 348.46, 10.0133, 155.813 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
      	ent = maps\mp\_utility::createOneshotEffect( "escape_waterdrips" );
      	ent.v[ "origin" ] = ( -3043.93, -28.2097, -44.125 );
@@ -3556,35 +3556,35 @@ main()
      	ent.v[ "fxid" ] = "escape_waternoise_ud";
      	ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -2529.12, -91.9302, 148.572 );
-     	ent.v[ "angles" ] = ( 350.248, 95.8308, 178.527 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -2529.12, -91.9302, 148.572 );
+     	// ent.v[ "angles" ] = ( 350.248, 95.8308, 178.527 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -2526.88, 30.8751, 159.097 );
-     	ent.v[ "angles" ] = ( 307.628, 273.301, 173.421 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -2526.88, 30.8751, 159.097 );
+     	// ent.v[ "angles" ] = ( 307.628, 273.301, 173.421 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -2770.11, -117.523, 150.869 );
-     	ent.v[ "angles" ] = ( 323.267, 170.512, -145.97 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -2770.11, -117.523, 150.869 );
+     	// ent.v[ "angles" ] = ( 323.267, 170.512, -145.97 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -2829.08, 5.15069, 186.243 );
-     	ent.v[ "angles" ] = ( 307.628, 273.301, 173.421 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -2829.08, 5.15069, 186.243 );
+     	// ent.v[ "angles" ] = ( 307.628, 273.301, 173.421 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -2378.55, -236.343, 186.055 );
-     	ent.v[ "angles" ] = ( 323.267, 170.512, -145.97 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -2378.55, -236.343, 186.055 );
+     	// ent.v[ "angles" ] = ( 323.267, 170.512, -145.97 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
      	ent = maps\mp\_utility::createOneshotEffect( "escape_caustics" );
      	ent.v[ "origin" ] = ( -2767.7, -211.517, -51.6735 );
@@ -3646,29 +3646,29 @@ main()
      	ent.v[ "fxid" ] = "escape_caustics";
      	ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -2300.6, 64.956, -91.2392 );
-     	ent.v[ "angles" ] = ( 344.275, 358.364, 164.268 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -2300.6, 64.956, -91.2392 );
+     	// ent.v[ "angles" ] = ( 344.275, 358.364, 164.268 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -2659.7, -81.2363, -65.1047 );
-     	ent.v[ "angles" ] = ( 344.275, 358.364, 164.268 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -2659.7, -81.2363, -65.1047 );
+     	// ent.v[ "angles" ] = ( 344.275, 358.364, 164.268 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -2920.32, 16.5513, -32.3471 );
-     	ent.v[ "angles" ] = ( 330.52, 230.444, -150.679 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -2920.32, 16.5513, -32.3471 );
+     	// ent.v[ "angles" ] = ( 330.52, 230.444, -150.679 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -3144.6, -150.259, 22.875 );
-     	ent.v[ "angles" ] = ( 324.935, 218.5, -130.59 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -3144.6, -150.259, 22.875 );
+     	// ent.v[ "angles" ] = ( 324.935, 218.5, -130.59 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
      	ent = maps\mp\_utility::createOneshotEffect( "escape_water_gush_stairs" );
      	ent.v[ "origin" ] = ( -2804.85, -228.312, -95.875 );
@@ -3682,53 +3682,53 @@ main()
      	ent.v[ "fxid" ] = "escape_water_gush_stairs";
      	ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -1853.54, 495.148, -28.5562 );
-     	ent.v[ "angles" ] = ( 0, 0, 156 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -1853.54, 495.148, -28.5562 );
+     	// ent.v[ "angles" ] = ( 0, 0, 156 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -2149.78, 514.85, -85.5822 );
-     	ent.v[ "angles" ] = ( 0, 0, 156 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -2149.78, 514.85, -85.5822 );
+     	// ent.v[ "angles" ] = ( 0, 0, 156 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -895.619, 493.898, -31.5484 );
-     	ent.v[ "angles" ] = ( 0, 0, 156 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -895.619, 493.898, -31.5484 );
+     	// ent.v[ "angles" ] = ( 0, 0, 156 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -254.347, 493.6, -31.6453 );
-     	ent.v[ "angles" ] = ( 0, 0, 156 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -254.347, 493.6, -31.6453 );
+     	// ent.v[ "angles" ] = ( 0, 0, 156 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( 225.037, 493.837, -30.4874 );
-     	ent.v[ "angles" ] = ( 0, 0, 156 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( 225.037, 493.837, -30.4874 );
+     	// ent.v[ "angles" ] = ( 0, 0, 156 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( 704.637, 494.139, -32.0038 );
-     	ent.v[ "angles" ] = ( 0, 0, 156 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( 704.637, 494.139, -32.0038 );
+     	// ent.v[ "angles" ] = ( 0, 0, 156 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( 993.988, 515.759, -88.4605 );
-     	ent.v[ "angles" ] = ( 0, 0, 156 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( 993.988, 515.759, -88.4605 );
+     	// ent.v[ "angles" ] = ( 0, 0, 156 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
-     	ent.v[ "origin" ] = ( -3246.45, -81.3794, -25.125 );
-     	ent.v[ "angles" ] = ( 323.608, 272.503, 174.551 );
-     	ent.v[ "fxid" ] = "sparks_runner";
-     	ent.v[ "delay" ] = -15;
+     	// ent = maps\mp\_utility::createOneshotEffect( "sparks_runner" );
+     	// ent.v[ "origin" ] = ( -3246.45, -81.3794, -25.125 );
+     	// ent.v[ "angles" ] = ( 323.608, 272.503, 174.551 );
+     	// ent.v[ "fxid" ] = "sparks_runner";
+     	// ent.v[ "delay" ] = -15;
  
      	ent = maps\mp\_utility::createOneshotEffect( "escape_waterdrips" );
      	ent.v[ "origin" ] = ( -2865.38, -503.592, 175.881 );

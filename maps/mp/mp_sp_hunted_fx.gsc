@@ -37,8 +37,8 @@ main()
 	level._effect["stream_hunted"]					= loadfx ("misc/stream_hunted");
 	
 	// level script effects
-	level._effect["truck_smoke"]					= loadfx ("smoke/car_damage_blacksmoke");
-	level._effect["flashlight"]						= loadfx ("misc/flashlight");
+	// level._effect["truck_smoke"]					= loadfx ("smoke/car_damage_blacksmoke");
+	// level._effect["flashlight"]						= loadfx ("misc/flashlight");
 
 	// "hunted light" required zfeather == 1 and r_zfeather is undefined on console.  So, test for != "0".
 	if ( getdvarint( "sm_enable" ) && getdvar( "r_zfeather" ) != "0" )
@@ -47,17 +47,17 @@ main()
 		level._effect["spotlight"]						= loadfx ("misc/spotlight_large");
 
 	//gas station destruction
-	level._effect["gasstation_explosion"]			= loadfx ("explosions/hunted_gasstation_explosion");
-	level._effect["big_explosion"]					= loadfx ("explosions/helicopter_explosion");
-	level._effect["small_explosion"]				= loadfx ("explosions/small_vehicle_explosion");
-	level._effect["tracer_incoming"]				= loadfx ("misc/tracer_incoming");
+	// level._effect["gasstation_explosion"]			= loadfx ("explosions/hunted_gasstation_explosion");
+	// level._effect["big_explosion"]					= loadfx ("explosions/helicopter_explosion");
+	// level._effect["small_explosion"]				= loadfx ("explosions/small_vehicle_explosion");
+	// level._effect["tracer_incoming"]				= loadfx ("misc/tracer_incoming");
 	level._effect["gas_pump_fire"]					= loadfx ("fire/gas_pump_fire");
 	level._effect["thin_black_smoke_M"]				= loadfx ("smoke/thin_black_smoke_M");
 	level._effect["tire_fire_med"]					= loadfx ("fire/tire_fire_med");
 
-	level._effect["heli_dlight_blue"]					= loadfx ("misc/aircraft_light_cockpit_blue");
-	level._effect["heli_dlight_red"]					= loadfx ("misc/aircraft_light_cockpit_red");
-	level._effect["missile_explosion"]				= loadfx ("explosions/small_vehicle_explosion");
+	// level._effect["heli_dlight_blue"]					= loadfx ("misc/aircraft_light_cockpit_blue");
+	// level._effect["heli_dlight_red"]					= loadfx ("misc/aircraft_light_cockpit_red");
+	// level._effect["missile_explosion"]				= loadfx ("explosions/small_vehicle_explosion");
 
 	maps\createfx\mp_sp_hunted_fx::main();
 }
