@@ -14,4 +14,8 @@ main()
 
 	setExpFog(0, 2610.72, 0.531857, 0.529929, 0.474802, 0);
 	VisionSetNaked( "coup", 0 );
+
+	thread sr\api\_map::createSpawn((67, -549, 60), 90);
+	thread sr\api\_speedrun::createNormalWays("Normal Way");
+	thread sr\api\_speedrun::createEndMap((-7155, 9030, 390), 75, 70, "normal_0");
 }
