@@ -45,4 +45,3 @@ delEnts(property, value, modelFilter)
 		}
 	}
 }
-

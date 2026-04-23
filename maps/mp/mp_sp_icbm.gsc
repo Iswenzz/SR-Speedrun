@@ -48,4 +48,3 @@ delEnts(property, value, modelFilter)
 		}
 	}
 }
-

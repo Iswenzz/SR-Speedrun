@@ -10,7 +10,7 @@ main()
 	// level._effect[ "wind_controlled_leaves" ]		= loadfx( "misc/wind_controlled_leaves" );
 	// level._effect[ "blood_pool" ]					= loadfx( "impacts/deathfx_bloodpool" );
 	// level._effect[ "ghillie_leaves" ]				= loadfx( "misc/gilli_leaves" );	
-	// // level._effect[ "wall_explosion" ]				= loadfx( "explosions/wall_explosion_sniperescape" );
+	// level._effect[ "wall_explosion" ]				= loadfx( "explosions/wall_explosion_sniperescape" );
 	// level._effect[ "hind_fire" ]					= loadfx( "muzzleflashes/bmp_flash_wv" );
 	
 
@@ -35,7 +35,7 @@ main()
 	// main building fx
 	// level._effect[ "aerial_explosion" ]					 = loadfx( "explosions/aerial_explosion" );
 	// level._effect[ "window_explosion" ]					 = loadfx( "explosions/window_explosion" );
-	level._effect[ "window_rock" ]						 = loadfx( "explosions/window_rock" );
+	// level._effect[ "window_rock" ]						 = loadfx( "explosions/window_rock" );
 	level._effect[ "window_fire_large" ]				 = loadfx( "fire/window_fire_large" );
 	level._effect[ "dust_ceiling_ash_large" ]			 = loadfx( "dust/dust_ceiling_ash_large" );
 	level._effect[ "dust_ceiling_ash_large_stairwell" ]	 = loadfx( "dust/dust_ceiling_ash_large_stairwell" );
@@ -44,21 +44,21 @@ main()
 	level._effect[ "room_dust_200" ]					 = loadfx( "dust/room_dust_200" );	
 
 	// level._effect[ "heli_explosion" ]					= loadfx( "explosions/helicopter_explosion" );
-	level._effect[ "aerial_explosion_heli" ]			= loadfx( "explosions/aerial_explosion_heli" );
-	level._effect[ "helicopter_crash_dirt" ]			= loadfx( "explosions/helicopter_crash_dirt" );
-	level._effect[ "aerial_explosion_large" ]			= loadfx( "explosions/aerial_explosion_large" );
-	level._effect[ "detpack_explosion" ]				= loadfx( "explosions/exp_pack_hallway" );
+	// level._effect[ "aerial_explosion_heli" ]			= loadfx( "explosions/aerial_explosion_heli" );
+	// level._effect[ "helicopter_crash_dirt" ]			= loadfx( "explosions/helicopter_crash_dirt" );
+	// level._effect[ "aerial_explosion_large" ]			= loadfx( "explosions/aerial_explosion_large" );
+	// level._effect[ "detpack_explosion" ]				= loadfx( "explosions/exp_pack_hallway" );
 	level._effect[ "heli_missile_launch" ]				= loadfx( "muzzleflashes/cobra_rocket_flash_wv" );
 	level._effect[ "heli_engine_smolder" ]				= loadfx( "smoke/heli_engine_smolder" );	
 	level._effect[ "fire_trail_heli" ]					= loadfx( "fire/fire_smoke_trail_L" );	
 	level._effect[ "smoke_trail_heli" ]					= loadfx( "smoke/smoke_trail_black_heli" );	
-	level._effect[ "brick_chunk" ]						= loadfx( "explosions/brick_chunk" );	
-	// level._effect[ "helicopter_tail_sparks" ]			= loadfx( "misc/helicopter_tail_sparks" );
-	// level._effect[ "rotor_smash" ]						= loadfx( "misc/rotor_smash" );
+	// level._effect[ "brick_chunk" ]						= loadfx( "explosions/brick_chunk" );	
+	level._effect[ "helicopter_tail_sparks" ]			= loadfx( "misc/helicopter_tail_sparks" );
+	level._effect[ "rotor_smash" ]						= loadfx( "misc/rotor_smash" );
 	// level._effect[ "heli_dirt" ]						= loadfx( "explosions/heli_dirt" );
 	// level._effect[ "heli_dirt_rear" ]					= loadfx( "explosions/heli_dirt_rear" );
 	// level._effect[ "heli_rotor_dirt" ]					= loadfx( "explosions/heli_rotor_dirt" );
-	// level._effect[ "heli_crash_dust" ]					= loadfx( "dust/heli_crash_dust" );
+	level._effect[ "heli_crash_dust" ]					= loadfx( "dust/heli_crash_dust" );
 
 	maps\createfx\mp_sp_sniperescape_fx::main();
 }
