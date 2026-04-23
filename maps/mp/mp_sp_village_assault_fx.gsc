@@ -28,12 +28,12 @@ main()
 	level._effect["insect_trail_runner"]			= loadfx ("misc/insect_trail_runner");
 	level._effect["village_ash"]					= loadfx ("smoke/village_ash");
 	
-	level._effect["air_support_fx_yellow"] 			= loadfx( "misc/ui_pickup_available" );
-	level._effect["air_support_fx_red"] 			= loadfx( "misc/ui_pickup_unavailable" );
-	level._effect["ffar_mi28_muzzleflash"] 			= loadfx( "muzzleflashes/cobra_rocket_flash_wv" );
-	level._effect["alasad_flash"] 					= loadfx( "misc/village_assault_alasad_flash" );
+	// level._effect["air_support_fx_yellow"] 			= loadfx( "misc/ui_pickup_available" );
+	// level._effect["air_support_fx_red"] 			= loadfx( "misc/ui_pickup_unavailable" );
+	// level._effect["ffar_mi28_muzzleflash"] 			= loadfx( "muzzleflashes/cobra_rocket_flash_wv" );
+	// level._effect["alasad_flash"] 					= loadfx( "misc/village_assault_alasad_flash" );
 	
-	level._effect[ "headshot" ]						= loadfx ( "impacts/flesh_hit_head_fatal_exit" );
+	// level._effect[ "headshot" ]						= loadfx ( "impacts/flesh_hit_head_fatal_exit" );
 	level._effect[ "flashlight" ]					= loadfx( "misc/flashlight" );
 	
 	maps\createfx\mp_sp_village_assault_fx::main();

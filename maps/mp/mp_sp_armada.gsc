@@ -15,6 +15,14 @@ main()
 	thread delEnts("targetname", "door_tv_station");
 	thread delEnts("targetname", "news_room_exit_door");
 	thread delEnts("targetname", "news_door_attachments");
+	thread delEnts("targetname", "door_safehouse_livingroom");
+	thread delEnts("targetname", "hq_building_exit_door");
+	thread delEnts("targetname", "pf12596_auto1");
+	thread delEnts("targetname", "pf12596_auto2");
+	thread delEnts("targetname", "pf12601_auto1");
+	thread delEnts("targetname", "pf12601_auto2");
+	thread delEnts("targetname", "pf12899_auto1");
+	thread delEnts("targetname", "pf12899_auto2");
 }
 
 delEnts(property, value, modelFilter)
@@ -34,4 +42,3 @@ delEnts(property, value, modelFilter)
 		}
 	}
 }
-

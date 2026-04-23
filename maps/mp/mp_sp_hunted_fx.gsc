@@ -7,8 +7,8 @@ main()
 	level._effect["firelp_small_pm_a"]				= loadfx ("fire/firelp_small_pm_a");
 	level._effect["fog_hunted"]						= loadfx ("weather/fog_hunted");
 	level._effect["fog_hunted_a"]					= loadfx ("weather/fog_hunted_a");
-	level._effect["bird_pm"]						= loadfx ("misc/bird_pm");
-	level._effect["bird_takeoff_pm"]				= loadfx ("misc/bird_takeoff_pm");
+	// level._effect["bird_pm"]						= loadfx ("misc/bird_pm");
+	// level._effect["bird_takeoff_pm"]				= loadfx ("misc/bird_takeoff_pm");
 	level._effect["leaves"]							= loadfx ("misc/leaves");
 	level._effect["leaves_runner"]					= loadfx ("misc/leaves_runner");
 	level._effect["leaves_runner_1"]				= loadfx ("misc/leaves_runner_1");
@@ -25,8 +25,8 @@ main()
 	level._effect["hunted_vl_od_dtl_a"]				= loadfx ("misc/hunted_vl_od_dtl_a");
 	level._effect["hunted_vl_od_dtl_b"]				= loadfx ("misc/hunted_vl_od_dtl_b");			
 	level._effect["mist_hunted_add"]				= loadfx ("weather/mist_hunted_add");	
-	level._effect["insects_light_hunted"]			= loadfx ("misc/insects_light_hunted");	
-	level._effect["insects_light_hunted_a"]			= loadfx ("misc/insects_light_hunted_a");	
+	// level._effect["insects_light_hunted"]			= loadfx ("misc/insects_light_hunted");	
+	// level._effect["insects_light_hunted_a"]			= loadfx ("misc/insects_light_hunted_a");	
 	level._effect["hunted_vl_white_eql"]			= loadfx ("misc/hunted_vl_white_eql");	
 	level._effect["hunted_vl_white_eql_flare"]		= loadfx ("misc/hunted_vl_white_eql_flare");
 	level._effect["hunted_vl_white_eql_a"]			= loadfx ("misc/hunted_vl_white_eql_a");	
@@ -37,13 +37,13 @@ main()
 	level._effect["stream_hunted"]					= loadfx ("misc/stream_hunted");
 	
 	// level script effects
-	// level._effect["truck_smoke"]					= loadfx ("smoke/car_damage_blacksmoke");
-	// level._effect["flashlight"]						= loadfx ("misc/flashlight");
+	level._effect["truck_smoke"]					= loadfx ("smoke/car_damage_blacksmoke");
+	level._effect["flashlight"]						= loadfx ("misc/flashlight");
 
 	// "hunted light" required zfeather == 1 and r_zfeather is undefined on console.  So, test for != "0".
-	if ( getdvarint( "sm_enable" ) && getdvar( "r_zfeather" ) != "0" )
-		level._effect["spotlight"]						= loadfx ("misc/hunted_spotlight_model");
-	else
+	// if ( getdvarint( "sm_enable" ) && getdvar( "r_zfeather" ) != "0" )
+	// 	level._effect["spotlight"]						= loadfx ("misc/hunted_spotlight_model");
+	// else
 		level._effect["spotlight"]						= loadfx ("misc/spotlight_large");
 
 	//gas station destruction
@@ -51,9 +51,9 @@ main()
 	// level._effect["big_explosion"]					= loadfx ("explosions/helicopter_explosion");
 	// level._effect["small_explosion"]				= loadfx ("explosions/small_vehicle_explosion");
 	// level._effect["tracer_incoming"]				= loadfx ("misc/tracer_incoming");
-	level._effect["gas_pump_fire"]					= loadfx ("fire/gas_pump_fire");
-	level._effect["thin_black_smoke_M"]				= loadfx ("smoke/thin_black_smoke_M");
-	level._effect["tire_fire_med"]					= loadfx ("fire/tire_fire_med");
+	// level._effect["gas_pump_fire"]					= loadfx ("fire/gas_pump_fire");
+	// level._effect["thin_black_smoke_M"]				= loadfx ("smoke/thin_black_smoke_M");
+	// level._effect["tire_fire_med"]					= loadfx ("fire/tire_fire_med");
 
 	// level._effect["heli_dlight_blue"]					= loadfx ("misc/aircraft_light_cockpit_blue");
 	// level._effect["heli_dlight_red"]					= loadfx ("misc/aircraft_light_cockpit_red");

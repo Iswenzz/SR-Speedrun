@@ -12,6 +12,8 @@ main()
 
 	thread delEnts("targetname", "alley_door");
 	thread delEnts("targetname", "alley_door_player_clip");
+
+	thread tank();
 }
 
 delEnts(property, value, modelFilter)
@@ -30,4 +32,12 @@ delEnts(property, value, modelFilter)
 			ents[i] delete();
 		}
 	}
+}
+
+tank()
+{
+	tank = getEnt("cockbone_tank", "targetname");
+
+	tank.origin = tank.origin + (19, -28, 6.5);
+	tank.angles = (0, 322, -5);
 }

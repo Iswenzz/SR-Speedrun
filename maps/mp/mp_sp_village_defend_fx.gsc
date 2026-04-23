@@ -31,12 +31,12 @@ main()
 	level._effect["sewer_stream_village"]		= loadfx ("distortion/sewer_stream_village");
 	level._effect["sewer_stream_village_far"]	= loadfx ("distortion/sewer_stream_village_far");
 	
-	level._effect["belltower_explosion"]		= loadfx ("explosions/belltower_explosion");
-	level._effect["tracer_incoming"]			= loadfx ("misc/tracer_incoming");
-	level._effect["killzone_marker"]			= loadfx ("misc/ui_flagbase_gold");
+	// level._effect["belltower_explosion"]		= loadfx ("explosions/belltower_explosion");
+	// level._effect["tracer_incoming"]			= loadfx ("misc/tracer_incoming");
+	// level._effect["killzone_marker"]			= loadfx ("misc/ui_flagbase_gold");
 	
-	level._effect[ "turret_overheat_haze" ]		= loadfx ( "distortion/abrams_exhaust" );
-	level._effect[ "turret_overheat_smoke" ]	= loadfx ( "distortion/armored_car_overheat" );
+	// level._effect[ "turret_overheat_haze" ]		= loadfx ( "distortion/abrams_exhaust" );
+	// level._effect[ "turret_overheat_smoke" ]	= loadfx ( "distortion/armored_car_overheat" );
 
 	maps\createfx\mp_sp_village_defend_fx::main();
 }

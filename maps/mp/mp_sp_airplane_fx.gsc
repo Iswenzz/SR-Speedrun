@@ -18,12 +18,12 @@ main()
 	/*-----------------------
 	EXPLODERS
 	-------------------------*/	
-	level._effect[ "suitcase_explosion" ]					= loadfx( "explosions/suitcase_explosion" );
-	level._effect[ "airplane_explosion" ]					= loadfx( "explosions/tanker_explosion" );
-	level._effect[ "player_death_explosion" ]				= loadfx( "explosions/player_death_explosion" );
+	// level._effect[ "suitcase_explosion" ]					= loadfx( "explosions/suitcase_explosion" );
+	// level._effect[ "airplane_explosion" ]					= loadfx( "explosions/tanker_explosion" );
+	// level._effect[ "player_death_explosion" ]				= loadfx( "explosions/player_death_explosion" );
 
-	level._effect[ "fuselage_explosion1" ]					= loadfx( "explosions/fuselage_explosion1" );
-	level._effect[ "fuselage_explosion10" ] 				= loadfx( "explosions/decompression_exp1" );
+	// level._effect[ "fuselage_explosion1" ]					= loadfx( "explosions/fuselage_explosion1" );
+	// level._effect[ "fuselage_explosion10" ] 				= loadfx( "explosions/decompression_exp1" );
 	level._effect[ "fuselage_explosion_wind_suck" ]			= loadfx( "dust/decompression_exitdoor_dust");
 	level._effect[ "fuselage_explosion_cabin_dust1" ]		= loadfx( "dust/decompression_cabin_dust" );
 

@@ -1,7 +1,7 @@
 main()
 
 {
-	level._effect["knife_stab"]						= loadfx ("misc/parabolic_knife_stab"); 
+	// level._effect["knife_stab"]						= loadfx ("misc/parabolic_knife_stab"); 
 	
 	level._effect["fog_icbm"]					= loadfx ("weather/fog_icbm");
 	level._effect["fog_icbm_a"]					= loadfx ("weather/fog_icbm_a");
@@ -36,9 +36,9 @@ main()
 	level._effect["smoke_geotrail_icbm"]		= loadfx ("smoke/smoke_geotrail_icbm");
 	level._effect["icbm_launch"]				= loadfx ("smoke/icbm_launch");
 	level._effect["flashlight"]					= loadfx ("misc/flashlight");
-	level._effect["powerTower_leg"]				= loadfx ("props/powerTower_leg");
-	level._effect["powerTower_crash"]			= loadfx ("dust/powerTower_crash");
-	level._effect["powerTower_spark_exp"]		= loadfx ("explosions/powerTower_spark_exp");
+	// // level._effect["powerTower_leg"]				= loadfx ("props/powerTower_leg");
+	// // level._effect["powerTower_crash"]			= loadfx ("dust/powerTower_crash");
+	// level._effect["powerTower_spark_exp"]		= loadfx ("explosions/powerTower_spark_exp");
 	level._effect["icbm_post_light_red"]		= loadfx ("misc/icbm_post_light_red");
 	level._effect["hallway_smoke_light"]		= loadfx ("smoke/hallway_smoke_light");
 
