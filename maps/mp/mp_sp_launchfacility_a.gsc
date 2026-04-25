@@ -10,7 +10,7 @@ main()
 
 	thread sr\api\_map::createSpawn((-6800, -7870, -854), 225);
 	thread sr\api\_speedrun::createNormalWays("Normal Way");
-	thread sr\api\_speedrun::createEndMap((-7125.96, -18140.2, -2118), 90, 170, "normal_0");
+	thread sr\api\_speedrun::createEndMap((-7125.96, -18140.2, -2118), 90, 250, "normal_0");
 
 	thread delEnts("targetname", "vent_02");
 	thread delEnts("targetname", "exploder");

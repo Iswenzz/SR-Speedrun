@@ -38,13 +38,13 @@ main()
 	
 	// level script effects
 	level._effect["truck_smoke"]					= loadfx ("smoke/car_damage_blacksmoke");
-	level._effect["flashlight"]						= loadfx ("misc/flashlight");
+	// level._effect["flashlight"]						= loadfx ("misc/flashlight");
 
 	// "hunted light" required zfeather == 1 and r_zfeather is undefined on console.  So, test for != "0".
 	// if ( getdvarint( "sm_enable" ) && getdvar( "r_zfeather" ) != "0" )
 	// 	level._effect["spotlight"]						= loadfx ("misc/hunted_spotlight_model");
 	// else
-		level._effect["spotlight"]						= loadfx ("misc/spotlight_large");
+		// level._effect["spotlight"]						= loadfx ("misc/spotlight_large");
 
 	//gas station destruction
 	// level._effect["gasstation_explosion"]			= loadfx ("explosions/hunted_gasstation_explosion");
