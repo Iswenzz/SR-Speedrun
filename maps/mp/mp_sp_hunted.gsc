@@ -26,6 +26,7 @@ main()
 	thread delEnts("targetname", "creek_gate");
 	thread delEnts("targetname", "doorknob");
 	thread delEnts("targetname", "big_barn_door");
+	thread delEnts("targetname", "pf25156_auto11");
 }
 
 delEnts(property, value, modelFilter)
