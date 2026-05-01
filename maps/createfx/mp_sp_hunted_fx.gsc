@@ -286,30 +286,6 @@ main()
      	ent.v[ "fxid" ] = "fog_hunted_a";
      	ent.v[ "delay" ] = -15;
  
-     	ent = maps\mp\_utility::createLoopEffect( "leaves_lp" );
-     	ent.v[ "origin" ] = ( 3810.04, 3793.29, 72 );
-     	ent.v[ "angles" ] = ( 274, 270.002, -98.0022 );
-     	ent.v[ "fxid" ] = "leaves_lp";
-     	ent.v[ "delay" ] = 0.5;
- 
-     	ent = maps\mp\_utility::createLoopEffect( "leaves_lp" );
-     	ent.v[ "origin" ] = ( 3890.52, 4130.86, 65.1663 );
-     	ent.v[ "angles" ] = ( 274, 270.002, -98.0022 );
-     	ent.v[ "fxid" ] = "leaves_lp";
-     	ent.v[ "delay" ] = 0.5;
- 
-     	ent = maps\mp\_utility::createLoopEffect( "leaves_lp" );
-     	ent.v[ "origin" ] = ( 3831.85, 3055.1, 74.0176 );
-     	ent.v[ "angles" ] = ( 274, 270.002, -98.0022 );
-     	ent.v[ "fxid" ] = "leaves_lp";
-     	ent.v[ "delay" ] = 0.5;
- 
-     	ent = maps\mp\_utility::createLoopEffect( "leaves_lp" );
-     	ent.v[ "origin" ] = ( 4045.38, 5000.94, 51.2187 );
-     	ent.v[ "angles" ] = ( 274, 99.503, -98.0034 );
-     	ent.v[ "fxid" ] = "leaves_lp";
-     	ent.v[ "delay" ] = 0.5;
- 
      	ent = maps\mp\_utility::createOneshotEffect( "fog_hunted_a" );
      	ent.v[ "origin" ] = ( 5730.06, 7422.93, 44.75 );
      	ent.v[ "angles" ] = ( 270, 0, 0 );
@@ -381,12 +357,6 @@ main()
      	ent.v[ "angles" ] = ( 270, 0, 0 );
      	ent.v[ "fxid" ] = "leaves_lp";
      	ent.v[ "delay" ] = -15;
- 
-     	ent = maps\mp\_utility::createLoopEffect( "leaves_lp" );
-     	ent.v[ "origin" ] = ( 3837.53, 3189.43, 61.8462 );
-     	ent.v[ "angles" ] = ( 274, 270.002, -98.0022 );
-     	ent.v[ "fxid" ] = "leaves_lp";
-     	ent.v[ "delay" ] = 0.5;
  
      	ent = maps\mp\_utility::createOneshotEffect( "fog_hunted_a" );
      	ent.v[ "origin" ] = ( 6199.6, 7852.87, 34.896 );
@@ -633,12 +603,6 @@ main()
      	ent.v[ "angles" ] = ( 270, 0, 0 );
      	ent.v[ "fxid" ] = "fog_hunted_a";
      	ent.v[ "delay" ] = -15;
- 
-     	ent = maps\mp\_utility::createLoopEffect( "leaves_lp" );
-     	ent.v[ "origin" ] = ( 4050.68, 5311.16, 145.599 );
-     	ent.v[ "angles" ] = ( 274, 99.503, -98.0034 );
-     	ent.v[ "fxid" ] = "leaves_lp";
-     	ent.v[ "delay" ] = 0.5;
  
      	ent = maps\mp\_utility::createOneshotEffect( "fog_hunted_a" );
      	ent.v[ "origin" ] = ( 5191.74, 5124.35, 32.3675 );
@@ -1084,41 +1048,11 @@ main()
      	ent.v[ "fxid" ] = "hunted_vl_sm";
      	ent.v[ "delay" ] = -15;
  
-     	// ent = maps\mp\_utility::createOneshotEffect( "insects_light_hunted" );
-     	// ent.v[ "origin" ] = ( 2854.97, 2497.64, 298.433 );
-     	// ent.v[ "angles" ] = ( 270, 0, 0 );
-     	// ent.v[ "fxid" ] = "insects_light_hunted";
-     	// ent.v[ "delay" ] = -15;
- 
-     	// ent = maps\mp\_utility::createOneshotEffect( "insects_light_hunted" );
-     	// ent.v[ "origin" ] = ( 1577.38, 2738.73, 169.428 );
-     	// ent.v[ "angles" ] = ( 270, 0, 0 );
-     	// ent.v[ "fxid" ] = "insects_light_hunted";
-     	// ent.v[ "delay" ] = -15;
- 
-     	// ent = maps\mp\_utility::createOneshotEffect( "insects_light_hunted" );
-     	// ent.v[ "origin" ] = ( 1390.21, 2766.27, 152.777 );
-     	// ent.v[ "angles" ] = ( 270.5, 319.983, -124.483 );
-     	// ent.v[ "fxid" ] = "insects_light_hunted";
-     	// ent.v[ "delay" ] = -15;
- 
      	ent = maps\mp\_utility::createOneshotEffect( "hunted_vl_white_eql_a" );
      	ent.v[ "origin" ] = ( 2516.89, 3324.62, 143.613 );
      	ent.v[ "angles" ] = ( 270, 147.768, 68.2317 );
      	ent.v[ "fxid" ] = "hunted_vl_white_eql_a";
      	ent.v[ "delay" ] = -15;
- 
-     	// ent = maps\mp\_utility::createOneshotEffect( "insects_light_hunted_a" );
-     	// ent.v[ "origin" ] = ( 2497.27, 3319.72, 134.129 );
-     	// ent.v[ "angles" ] = ( 270, 175.223, -163.223 );
-     	// ent.v[ "fxid" ] = "insects_light_hunted_a";
-     	// ent.v[ "delay" ] = -15;
- 
-     	// ent = maps\mp\_utility::createOneshotEffect( "insects_light_hunted" );
-     	// ent.v[ "origin" ] = ( 7913.38, 5976.56, 163.5 );
-     	// ent.v[ "angles" ] = ( 270, 0, 0 );
-     	// ent.v[ "fxid" ] = "insects_light_hunted";
-     	// ent.v[ "delay" ] = -15;
  
      	ent = maps\mp\_utility::createOneshotEffect( "hunted_vl_white_eql" );
      	ent.v[ "origin" ] = ( 7894.74, 5984.1, 196.082 );
@@ -1174,12 +1108,6 @@ main()
      	ent.v[ "fxid" ] = "hunted_vl_white_eql";
      	ent.v[ "delay" ] = -15;
  
-     	// ent = maps\mp\_utility::createOneshotEffect( "insects_light_hunted" );
-     	// ent.v[ "origin" ] = ( 8049.81, 6553.84, 139.988 );
-     	// ent.v[ "angles" ] = ( 270, 0, 0 );
-     	// ent.v[ "fxid" ] = "insects_light_hunted";
-     	// ent.v[ "delay" ] = -15;
- 
      	ent = maps\mp\_utility::createOneshotEffect( "firelp_small_pm_a" );
      	ent.v[ "origin" ] = ( 2576.52, -8541.74, 251.73 );
      	ent.v[ "angles" ] = ( 270, 0, 0 );
@@ -1211,18 +1139,6 @@ main()
      	ent.v[ "fxid" ] = "firelp_med_pm";
      	ent.v[ "delay" ] = -15;
      	ent.v[ "soundalias" ] = "fire_wood_medium";
- 
-     	// ent = maps\mp\_utility::createOneshotEffect( "insects_light_hunted" );
-     	// ent.v[ "origin" ] = ( 1103.57, -5.74902, 287.943 );
-     	// ent.v[ "angles" ] = ( 270, 0, 0 );
-     	// ent.v[ "fxid" ] = "insects_light_hunted";
-     	// ent.v[ "delay" ] = -15;
- 
-     	// ent = maps\mp\_utility::createOneshotEffect( "insects_light_hunted" );
-     	// ent.v[ "origin" ] = ( 493.487, -3565.02, 229.159 );
-     	// ent.v[ "angles" ] = ( 270, 0, 0 );
-     	// ent.v[ "fxid" ] = "insects_light_hunted";
-     	// ent.v[ "delay" ] = -15;
  
      	ent = maps\mp\_utility::createOneshotEffect( "waterfall_hunted" );
      	ent.v[ "origin" ] = ( 3777.13, 5700.4, 52.9916 );
