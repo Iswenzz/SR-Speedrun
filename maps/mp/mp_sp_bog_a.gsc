@@ -16,6 +16,8 @@ main()
 
 	thread delEnts("targetname", "apartment_door");
 	thread delEnts("targetname", "shanty_fence_clip");
+
+	thread ac_unit();
 }
 
 delEnts(property, value, modelFilter)
@@ -34,4 +36,12 @@ delEnts(property, value, modelFilter)
 			ents[i] delete();
 		}
 	}
+}
+
+ac_unit()
+{
+	ac_unit = getEnt("window_ac_unit", "targetname");
+
+	ac_unit.origin = (9427, 490, 32);
+	ac_unit.angles = (0, 27, 0);
 }
