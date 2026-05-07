@@ -17,21 +17,21 @@ main()
 	setDvar("bg_falldamagemaxheight", 99999);
     setDvar("bg_falldamageminheight", 99998);
 
-	thread sr\api\_speedrun::createNormalWays("Normal Way;");
-    thread sr\api\_map::createSpawn((34, 34, 76), 90);
-	thread sr\api\_speedrun::createTeleporter((-14.9655, 3512.92, 16.125), 120, 100, (-442, 3477, 468), 180, "freeze");
-
+	thread sr\api\_map::createSpawn((0, -64, 60), 90);
+    thread sr\api\_speedrun::createNormalWays("Normal Way");
+	thread sr\api\_speedrun::createEndMap((727.168, 13374.9, 0.125), 110, 260, "normal_0");
+	
+	thread trap_adjustments();
 	
 }
+	
 
 trap_adjustments()
 {
-brush_1 = getEnt("startdoor", "targetname");
+brush_1 = getEnt("trap4", "targetname");
 
 wait 0.1;
 
-brush_1 delete();
+brush_1 moveY(210,0.1);
 
 }
-
-	
