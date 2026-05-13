@@ -142,6 +142,7 @@ mp_deathrun_supermario
 mp_deathrun_takecare
 mp_deathrun_texx
 mp_deathrun_thechoice
+mp_deathrun_toxic
 mp_deathrun_trans
 mp_deathrun_tribute
 mp_deathrun_tropic
@@ -222,6 +223,7 @@ mp_dr_crazyrun
 mp_dr_creek
 mp_dr_creepy2
 mp_dr_crosscode
+mp_dr_crosscode2
 mp_dr_cyber
 mp_dr_daiized
 mp_dr_dangerous
@@ -405,6 +407,7 @@ mp_dr_pure_strafe
 mp_dr_pure_strafe_v2
 mp_dr_purple_world
 mp_dr_purple_worldv2
+mp_dr_pxg_boss
 mp_dr_pyramid
 mp_dr_quack
 mp_dr_qube_evolved
