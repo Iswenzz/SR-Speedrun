@@ -12,6 +12,17 @@ main()
     cmd("bhop",     "player", ::cmd_Bhop,     "Game mode with bunny hop at 320 g_speed and 0.9 scale");
     cmd("defrag",   "player", ::cmd_Defrag,   "Game mode with bunny hop and defrag weapons at 320 g_speed and 0.9 scale");
     cmd("portal",   "player", ::cmd_Portal,   "Game mode with a portal gun at 210 g_speed with 1.12 scale");
+    cmd("speed",    "player", ::cmd_Speed,    "Toggle between 190 and 210 game mode");
+}
+
+cmd_Speed(args)
+{
+    speed = Ternary(self.sr_mode == "190", "210", "190");
+	self setStat(1700, Ternary(speed == "190", 1, 2));
+    self.sr_mode = speed;
+    self pm(fmt("Run mode: ^5%s", speed));
+	self thread speedrun\core\_leaderboards::updateMenuInfo();
+    self suicide();
 }
 
 cmd_190(args)
