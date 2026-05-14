@@ -16,9 +16,9 @@ main()
 	maps\mp\gametypes\_quickmessages::init();
 	maps\mp\gametypes\_weapons::init();
 
+	sr\_mod::main();
 	braxi\_mod::main();
 
-	sr\_mod::main();
 	sr\commands\_admin::main();
 	sr\commands\_bomberman::main();
 	sr\commands\_cef::main();
