@@ -20,8 +20,8 @@
 
 		HEADER(2, "Play", scriptMenuResponse "autoassign"; close main_mp;)
 		HEADER(3, "Spectator", scriptMenuResponse "spectator"; close main_mp;)
-		HEADER(4, "Leaderboards", open sr_leaderboard; close main_mp;)
-		HEADER(5, "Customize", open sr_customize; close main_mp;)
+		HEADER(4, "Customize", open sr_customize; close main_mp;)
+		HEADER(5, "Leaderboards", open sr_leaderboard; close main_mp;)
 		HEADER(6, "Controls", open main_controls; close main_mp;)
 		HEADER(7, "Settings", open main_options; open sr_settings; close main_mp;)
 		HEADER(8, "Vote", open sr_votemap; close main_mp;)
