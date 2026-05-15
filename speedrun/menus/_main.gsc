@@ -10,6 +10,7 @@ main()
 	menu("-1", 			"tu", 			::menu_TAS);
 	menu("quickstuff", 	"3rdperson", 	::menu_3rdPerson);
 	menu("quickstuff", 	"suicide", 		::menu_Suicide);
+	menu("quickstuff", 	"laser", 		::menu_Laser);
 	menu("main_mp", 	"allies", 		::menu_Team);
 	menu("main_mp", 	"axis", 		::menu_Team);
 	menu("main_mp", 	"autoassign", 	::menu_Team);
