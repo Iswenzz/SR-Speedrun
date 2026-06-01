@@ -11,7 +11,8 @@ Race through maps as fast as possible and compete for the top spot on the global
 The mod ships with full demo playback support so you can review and share your runs. To ensure the smoothest possible experience across all custom physics modes, we provide [IW3SR](https://github.com/Iswenzz/IW3SR) — a custom-built client tailored specifically for this mod. There's also a built-in browser with video playback, letting you watch videos with the community.
 
 ## Movements
-* 190 210 — Original CoD4 movements at 190 (1.05) and 210 (1.12) speed
+* 190 — Original CoD4 movements at 190 speed with 1.05 scale
+* 210 — Original CoD4 movements at 210 speed with 1.12 scale
 * Q3 — Quake 3 original movements
 * Q3CPM — Quake 3 CPM movements
 * Q3CPMW — Quake 3 CPM with rocket launcher and plasma gun
