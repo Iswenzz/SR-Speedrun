@@ -58,8 +58,8 @@ onConnect()
 botLeaderboardEntries()
 {
 	self.lbEntries = 0;
-	self.pers["wrCount"] = 0;
-	self.pers["wrBaseCount"] = 0;
+	self.pers["wrs"] = 0;
+	self.pers["wrms"] = 0;
 }
 
 updateMenuInfo()
@@ -78,16 +78,6 @@ getPlayerWorldRecordCount()
 	critical_enter("mysql");
 
 	filter = "SELECT id, map, name, mode, way, player, time, tas, min(time) OVER (PARTITION BY map, mode, way, tas) AS minTime FROM leaderboards";
-	query = fmt("SELECT COUNT(*) FROM (%s) b WHERE time = minTime AND player = ? AND tas = 0", filter);
-
-	request = SQL_Prepare(query);
-	SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
-	SQL_Execute(request);
-	AsyncWait(request);
-	wrCount = IfUndef(SQL_FetchRow(request), []);
-	SQL_Free(request);
-
-	filter = "SELECT id, map, name, mode, way, player, time, tas, min(time) OVER (PARTITION BY map, mode, way, tas) AS minTime FROM leaderboards";
 	query = fmt("SELECT COUNT(*) FROM (%s) b WHERE time = minTime AND player = ? AND tas = 0 AND (mode = %s OR mode = %s)",
 		filter, "190", "210");
 
@@ -95,17 +85,29 @@ getPlayerWorldRecordCount()
 	SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
 	SQL_Execute(request);
 	AsyncWait(request);
-	wrBaseCount = IfUndef(SQL_FetchRow(request), []);
+	wrs = IfUndef(SQL_FetchRow(request), []);
 	SQL_Free(request);
+
+	filter = "SELECT id, map, name, mode, way, player, time, tas, min(time) OVER (PARTITION BY map, mode, way, tas) AS minTime FROM leaderboards";
+	query = fmt("SELECT COUNT(*) FROM (%s) b WHERE time = minTime AND player = ? AND tas = 0 AND mode IN (%s, %s, %s, %s, %s)",
+        filter, "Q3", "Q3CPM", "Q3CPMW", "CS", "Portal");
+
+	request = SQL_Prepare(query);
+	SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
+	SQL_Execute(request);
+	AsyncWait(request);
+	wrms = IfUndef(SQL_FetchRow(request), []);
+	SQL_Free(request);
+
 	critical_release("mysql");
 
 	if (!isDefined(self))
 		return;
 
-	self.pers["wrCount"] = IfUndef(wrCount[0], 0);
-	self.pers["wrBaseCount"] = IfUndef(wrBaseCount[0], 0);
-	self setStat(2001, self.pers["wrBaseCount"]);
-	self setClientDvar("sr_leaderboard_wr_count", fmt("%d ^5(%d)", self.pers["wrBaseCount"], self.pers["wrCount"]));
+	self.pers["wrs"] = IfUndef(wrs[0], 0);
+	self.pers["wrms"] = IfUndef(wrms[0], 0);
+	self setStat(2001, self.pers["wrs"]);
+	self setClientDvar("sr_leaderboard_wr_count", fmt("%d ^5(%d)", self.pers["wrs"], self.pers["wrms"]));
 }
 
 getPlayerEntriesCount()
