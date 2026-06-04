@@ -74,6 +74,7 @@ CREATE TABLE `leaderboards` (
   `tas` int NOT NULL DEFAULT '0',
   `date` datetime NOT NULL DEFAULT '2025-01-01 00:00:00',
   PRIMARY KEY (`id`)
+  KEY `leaderboards_map_mode_way_tas_time_idx` (`map`, `mode`, `way`, `tas`, `time`)
 ) ENGINE=InnoDB AUTO_INCREMENT=113484 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
