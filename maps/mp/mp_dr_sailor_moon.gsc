@@ -10,11 +10,11 @@ main()
     game["defenders"] = "allies";
     game["allies_soldiertype"] = "desert";
     game["axis_soldiertype"] = "desert";
-	
+
 	setDvar( "bg_fallDamageMaxHeight", 99999 );
 	setDvar( "bg_fallDamageMinHeight", 99998 );
-    
-	thread sr\api\_speedrun::cj();///so secret can be finished///
+
+	thread sr\api\_map::cj();///so secret can be finished///
 	thread sr\api\_map::createSpawn((-281, -285, -137), 90);
     thread sr\api\_speedrun::createNormalWays("Normal Way");
     thread sr\api\_speedrun::createSecretWays("^2Easy Secret;^1Hard Secret");
@@ -26,7 +26,7 @@ main()
 	thread hard_sec_finish();
 	thread secret_fail_1();
 	thread secret_fail_2();
-	
+
 	thread init();
 	//thread preCache();
 }
@@ -34,7 +34,7 @@ custom_tp()
 {
 	trig = spawn("trigger_radius",(-753.998, 4781.64, -423.955), 0, 100, 120);
 	trig.radius = 100;
-	
+
 	ori_t = spawn("script_origin",(-2774,4783,-375));
 	ori_t.angles = (0,180,0);
 
@@ -71,7 +71,7 @@ easy_sec_enter()
 	{
 		trig waittill("trigger",player);
 
-		player thread sr\api\_speedrun::changeWay("secret_0"); 
+		player thread sr\api\_speedrun::changeWay("secret_0");
 
 		player SetOrigin(ori_t.origin);
 		player SetPlayerAngles(ori_t.angles);
@@ -83,7 +83,7 @@ easy_sec_finish()
    trig = getent("trig_easy_end", "targetname");
 
    for(;;)
-    {  
+    {
     trig waittill("trigger", player);
 
     player thread sr\api\_speedrun::finishWay("secret_0");
@@ -101,7 +101,7 @@ hard_sec_enter()
 	{
 		trig waittill("trigger",player);
 
-		player thread sr\api\_speedrun::changeWay("secret_1"); 
+		player thread sr\api\_speedrun::changeWay("secret_1");
 
 		player SetOrigin(ori_t.origin);
 		player SetPlayerAngles(ori_t.angles);
@@ -113,7 +113,7 @@ hard_sec_finish()
    trig = getent("trig_hard_end", "targetname");
 
    for(;;)
-    {  
+    {
     trig waittill("trigger", player);
 
     player thread sr\api\_speedrun::finishWay("secret_1");
@@ -124,7 +124,7 @@ secret_fail_1()
    trig = getent("trig_easy_respawn", "targetname");
 
    for(;;)
-    {  
+    {
     trig waittill("trigger", player);
 
 	player Suicide();
@@ -135,7 +135,7 @@ secret_fail_2()
    trig = getent("trig_hard_respawn", "targetname");
 
    for(;;)
-    {  
+    {
     trig waittill("trigger", player);
 
 	player Suicide();
@@ -147,7 +147,7 @@ preCache()
 	level._effect[ "smoke" ] = loadfx( "sailormoon/sailormoon_smoke" );
 	level._effect[ "bomb" ] = loadfx( "sailormoon/sailor_bomb" );
 	level._effect[ "emb" ] = loadfx( "sailormoon/sailor_emb" );
-	
+
 	//preCacheItem( "remington700_mp" );
 	preCacheItem( "rpg_mp" );
 	preCacheItem( "moonkaleidoscope_mp" );
@@ -178,12 +178,12 @@ init()
 	//thread vip();
 }
 
-playerSetup() 
-{	
-	for(;;) 
+playerSetup()
+{
+	for(;;)
 	{
 		level waittill( "player_spawn", player );
-		
+
 		player detachAll();
 		player setModel( "plr_terry_lynx" );
 		player thread slide();
@@ -207,17 +207,17 @@ credits()
 acti_model()
 {
 	trig = getEnt( "trig_acti_spawn", "targetname" );
-	
+
 	for(;;)
 	{
 		trig waittill( "trigger", player );
-		
+
 		if( player == level.activ )
 		{
 			wait 1;
 			player detachAll();
 			player setModel( "character_sailormoon" );
-		
+
 			break;
 		}
 	}
@@ -227,12 +227,12 @@ vip()
 {
 	trig = getEnt( "trig_vip", "targetname" );
 	trig setHintString("Press [^6&&1^7] ^7For ^6VIP");
-	
+
 	for(;;)
 	{
 		trig waittill( "trigger", player );
 		guid = player getGuid();
-		
+
 		if( guid == "2310346613241551196" || guid == "2310346614834966617" )
 		{
 			if( guid == "2310346614834966617" )
@@ -258,11 +258,11 @@ vip()
 onMenuResponse()
 {
 	self endon( "disconnect" );
-	
+
 	for(;;)
 	{
 		self waittill( "menuresponse", menu, response );
-		
+
 		if( menu == "vip_sailormoon" )
 		{
 			switch( response )
@@ -275,7 +275,7 @@ onMenuResponse()
 }
 
 music()
-{	
+{
 	song = "song" + ( randomInt(3) + 1 );
 	ambientPlay( song );
 }
@@ -289,10 +289,10 @@ vipMusic()
 startdoor()
 {
 	door = getEnt( "startdoor", "targetname" );
-	
-	
+
+
 	wait 0.1;
-	
+
 	door delete();
 }
 
@@ -315,16 +315,16 @@ setupTrapTrigger( name, func )
 {
     if( !isDefined( level.trapTriggers ) )
 		level.trapTriggers=[];
-	
+
 	trig = getEnt( name, "targetname" );
 	o = trig.origin;
-	
+
     level.trapTriggers[level.trapTriggers.size] = trig;
-	
+
 	trig waittill( "trigger", player );
 	trig delete();
 	playFX( level._effect[ "emb" ], o );
-	
+
 	[[ func ]]();
 }
 
@@ -332,38 +332,38 @@ zigzag()
 {
 	spawns = [];
 	o = [];
-	
+
 	for( i = 0; i < 5; i++ )
 	{
 		spawns[i] = getEnt( "trap7_" + (i+1), "targetname" );
 		o[i] = spawns[i].origin;
 	}
-	
+
 	trig = getEntArray( "trig_smoke", "targetname" );
-	
+
 	for( i = 0; i < trig.size; i++ )
 		zigzag_smoke( trig[i], o[i] );
-	
+
 }
 
 zigzag_smoke( trig, spawn )
 {
 	trig waittill( "trigger", player );
-	
+
 	playFX( level._effect[ "smoke" ], spawn );
 }
 
 trap1()
 {
 	trap = [];
-	
+
 	for( i = 0; i < 2; i++ )
 		trap[i] = getEnt( "trap1_" + (i+1), "targetname" );
-	
+
 	x = randomInt( 2 );
 	d = 5000;
 	t = 1;
-	
+
 	trap[x] moveZ( -1 * d, t );
 	trap[x] waittill( "movedone" );
 	wait 5;
@@ -371,25 +371,25 @@ trap1()
 }
 
 trap2()
-{	
+{
 	trap = [];
-	
+
 	for( i = 0; i < 6; i++ )
 		trap[i] = getEnt( "trap2_" + (i+1), "targetname" );
-	
+
 	for( i = 0; i < trap.size; i++ )
 		trap[i] notsolid();
-	
+
 	x = randomInt( 3 );
-	
+
 	trap[x] solid();
-	trap[ ( 3 + ( int( x / 2 ) ) ) + randomInt( 2 + ( x % 2 ) ) ] solid();	
+	trap[ ( 3 + ( int( x / 2 ) ) ) + randomInt( 2 + ( x % 2 ) ) ] solid();
 }
 
 trap3()
 {
 	trap = getEnt( "trap3_1", "targetname" );
-	
+
 	for(;;)
 	{
 		trap rotatePitch( 720, 1.5 );
@@ -401,31 +401,31 @@ trap3()
 trap4()
 {
 	trap = [];
-	
+
 	for( i = 0; i < 2; i++ )
 		trap[i] = getEnt( "trap4_" + (i+1), "targetname" );
-	
+
 	x = randomInt( 2 );
-	
+
 	trap[x] delete();
 }
 
 trap5()
 {
 	trap = getEnt( "trap5_1", "targetname" );
-	
+
 	trap delete();
 }
 
 trap6()
 {
 	trap = [];
-	
+
 	for( i = 0; i < 3; i++ )
 		trap[i] = getEnt( "trap6_" + (i+1), "targetname" );
-	
+
 	j = 0;
-	
+
 	for(;;)
 	{
 		j = j%3;
@@ -438,10 +438,10 @@ trap6()
 trap7()
 {
 	trap = [];
-	
+
 	for( i = 0; i < 4; i++ )
 		trap[i] = getEnt( "trap7_" + (i+1), "targetname" );
-	
+
 	for( i = 0; i < trap.size; i++ )
 	{
 		playFX( level._effect[ "bomb" ], trap[i].origin );
@@ -458,7 +458,7 @@ createDamage( o, dmg, range, time )
 			radiusDamage( o, range, dmg, dmg, level.activ );
 		else
 			radiusDamage( o, range, dmg, dmg );
-		
+
 		time -= 0.05;
 		wait 0.05;
 	}
@@ -467,7 +467,7 @@ createDamage( o, dmg, range, time )
 trap8()
 {
 	trap = getEnt( "trap8_1", "targetname" );
-	
+
 	for(;;)
 	{
 		trap rotateRoll( 360, 2 );
@@ -479,21 +479,21 @@ trap8()
 trap9()
 {
 	trap = [];
-	
+
 	for( i = 0; i < 2; i++ )
 		trap[i] = getEnt( "trap9_" + (i+1), "targetname" );
-	
+
 	d = 50;
 	t = 1.2;
 	j = 1;
-	
+
 	for(;;)
 	{
 		trap[0] moveZ( d, t );
 		trap[1] moveZ( -1 * d, t );
-		
+
 		wait t;
-		
+
 		d *= ( -1 * j ) + ( j == 0 );
 		j = ( j == 0 );
 	}
@@ -502,33 +502,33 @@ trap9()
 trap10()
 {
 	trap = [];
-	
+
 	for( i = 0; i < 3; i++ )
 		trap[i] = getEnt( "trap10_" + (i+1), "targetname" );
-	
+
 	j = 0;
 	t = 1.5;
-	
+
 	for(;;)
 	{
 		for( i = 0; i < trap.size; i++ )
 			trap[i] rotateRoll( 360, t );
-		
+
 		trap[0] waittill( "rotatedone" );
 		wait t;
 	}
-	
+
 }
 
 trap11()
 {
 	trap = getEnt( "trap11_1", "targetname" );
-	
+
 	trap hide();
 	trap notsolid();
-	
+
 	wait 3;
-	
+
 	trap show();
 	trap solid();
 }
@@ -536,64 +536,64 @@ trap11()
 room_setup()
 {
 	room = [];
-	
+
 	for( i = 0; i < 4; i++ )
 		room[i] = spawnStruct();
-	
+
 	room[0].name = "Sniper";
 	room[1].name = "Bounce";
 	room[2].name = "Knife";
 	room[3].name = "Raygun";
-	
+
 	room[0].weapons = strTok( "moonkaleidoscope_mp;", ";"  );
 	room[1].weapons = strTok( "moonkaleidoscope_mp;axe_pink_mp;", ";" );
 	room[2].weapons = strTok( "sailormoonTomahawk_mp;", ";" );
 	room[3].weapons = strTok( "pink_raygun_mp;", ";" );
-	
+
 	room[0].triggers = strTok( "trig_sniper_room;trig_s_fail;", ";" );
 	room[1].triggers = strTok( "trig_bounce_room;trig_b_fail;trig_b_wep", ";" );
 	room[2].triggers = strTok( "trig_knife_room;", ";" );
 	room[3].triggers = strTok( "trig_raygun_room;trig_r_fail;", ";" );
-	
+
 	room[0].spawns = strTok( "s1;s2;", ";" );
 	room[1].spawns = strTok( "b1;b2;", ";" );
 	room[2].spawns = strTok( "k1;k2;", ";" );
 	room[3].spawns = strTok( "r1;r2;", ";" );
-	
+
 	room[0].song = "sniper";
 	room[1].song = "bounce";
 	room[2].song = "knife";
 	room[3].song = "raygun";
-	
+
 	for( i = 0; i < room.size; i++ )
 		thread room_start( room[i] );
-	
+
 }
 
 room_start( room )
 {
 	trigs = [];
 	spawns = [];
-	
+
 	for( i = 0; i < room.triggers.size; i++ )
 		trigs[i] = getEnt( room.triggers[i], "targetname" );
-	
+
 	for( i = 0; i < room.spawns.size; i++ )
 		spawns[i] = getEnt( room.spawns[i], "targetname" );
-	
+
 	if( trigs.size > 1 )
 		trigs[1] thread room_respawn( spawns );
-	
+
 	if( trigs.size > 2 )
 		trigs[2] thread bounce_weapon( room.weapons );
-	
+
 	for(;;)
 	{
 		trigs[0] waittill( "trigger", player );
-		
+
 		if( !isDefined( level.activ ) )
 			continue;
-			
+
 		if( isDefined( level.qNum ) && player.qNum != level.qNum )
 		{
 			player iPrintlnBold( "^6Nice Try ;)" );
@@ -604,7 +604,7 @@ room_start( room )
 			if( isDefined( Player ) ) player thread braxi\_common::clientcmd( "disconnect" );
 			continue;
 		}
-		
+
 		noti = SpawnStruct();
 		noti.titleText = "^6" + player.name + " ^7Entered the ^5" + room.name + " ^7Room";
 		noti.notifyText = level.activ.name + " ^5VS^7 " + player.name;
@@ -612,32 +612,32 @@ room_start( room )
 		players = getEntArray("player", "classname");
 		for(i=0;i<players.size;i++)
 		players[i] thread maps\mp\gametypes\_hud_message::notifyMessage( noti );
-		
+
 		player teleport( spawns[0] );
 		level.activ teleport( spawns[1] );
-		
+
 		player freezeControls( 1 );
 		level.activ freezeControls( 1 );
-		
+
 		ambientPlay( room.song );
-		
+
 		player takeAllWeapons();
 		level.activ takeAllWeapons();
-		
+
 		if( toLower( room.name ) == "raygun" )
 			player thread start_jump();
-		
+
 		player.maxhealth = 100;
 		player.health = player.maxhealth;
 		level.activ.maxhealth = 100;
 		level.activ.health = level.activ.maxhealth;
-		
+
 		player thread room_weapons( toLower( room.name ), room.weapons );
-		
+
 		wait 5;
 		player iPrintLnBold("^7FIGHT!");
 		level.activ iPrintLnBold("^7FIGHT!");
-		
+
 		player freezeControls(0);
 		level.activ freezeControls(0);
 	}
@@ -648,7 +648,7 @@ room_respawn( spawns )
 	for(;;)
 	{
 		self waittill( "trigger", player );
-		
+
 		if( level.activ == player )
 			player teleport( spawns[1] );
 		else
@@ -660,9 +660,9 @@ start_jump()
 {
 	self thread jump_height();
 	level.activ thread jump_height();
-	
+
 	self waittill_any( "death", "disconnect" );
-	
+
 	level.activ notify( "jump_done" );
 }
 
@@ -671,9 +671,9 @@ jump_height()
 	self endon( "death" );
 	self endon( "disconnect" );
 	self endon( "jump_done" );
-	
-	
-	
+
+
+
 }
 
 room_weapons( name, weapons )
@@ -691,10 +691,10 @@ room_weapons( name, weapons )
 			level.activ give_weapon( weapons[i] );
 		}
 	}
-	
+
 	self switchToWeapon( ( self getWeaponsList() )[0] );
 	level.activ switchToWeapon( ( level.activ getWeaponsList() )[0] );
-	
+
 	if( name == "knife" )
 	{
 		thread WatchTomahawkDamage();
@@ -710,12 +710,12 @@ bounce_weapon( weapons )
 	for(;;)
 	{
 		self waittill( "trigger", player );
-		
+
 		player takeAllWeapons();
-		
+
 		for( i = 0; i < weapons.size-1; i++ )
 			player give_weapon( weapons[i] );
-		
+
 		player switchToWeapon( weapons[0] );
 	}
 }
@@ -738,7 +738,7 @@ addTomahawk( count )
 {
 	if( !isDefined( self ) || !isPlayer( self ) || !isAlive( self ) )
 		return;
-	
+
 	if( !self hasWeapon( "sailormoonTomahawk_mp" ) )
 	{
 		self giveWeapon( "sailormoonTomahawk_mp" );
@@ -746,7 +746,7 @@ addTomahawk( count )
 	}
 	else
 		self setWeaponAmmoClip( "sailormoonTomahawk_mp", self GetWeaponAmmoClip( "sailormoonTomahawk_mp" )+count );
-		
+
 	self thread RemoveTomahawk();
 }
 
@@ -754,9 +754,9 @@ RemoveTomahawk()	//...when empty
 {
 	self endon( "disconnect" );
 	self endon( "death" );
-	
+
 	wait 0.1;
-	
+
 	while( self getWeaponAmmoClip( "sailormoonTomahawk_mp" ) > 1 )
 	{
 		self waittill( "grenade_fire", proj, weap );
@@ -769,9 +769,9 @@ RemoveTomahawk()	//...when empty
 TomahawkPickUp()
 {
 	self endon( "death" );
-	
+
 	wait 2;
-	
+
 	oldpos = self.origin;
 	while(1)		//lets check if its still moving - would be pretty stupid if you could pick it up while it is in mid air xD
 	{
@@ -780,12 +780,12 @@ TomahawkPickUp()
 			break;
 		oldpos = self.origin;
 	}
-	
+
 	players = getEntArray( "player", "classname" );
 	self thread RemoveAfterTime( 5 );
-	
+
 	self.trig = spawn( "trigger_radius", self.origin, 0, 64, 128 );
-	
+
 	while(1)
 	{
 		self.trig waittill( "trigger", player );
@@ -816,7 +816,7 @@ CreatePickupHud()
 {
 	if( isDefined( self.pickup_hud ) )
 		return;
-	
+
 	self.pickup_hud = NewClientHudElem( self );
 	self.pickup_hud.alignX = "center";
 	self.pickup_hud.alignY = "middle";
@@ -849,39 +849,39 @@ secret()
 {
 	secret = getEnt( "secret", "targetname" );
 	ladder = getEnt( "secret_ladder", "targetname" );
-	
+
 	secret hide();
 	secret notsolid();
 	ladder hide();
 	ladder notsolid();
-	
+
 	trigs = [];
 	trigs[0] = getEnt( "trig_secret1", "targetname" );
 	trigs[1] = getEnt( "trig_secret4", "targetname" );
 	trigs[2] = getEnt( "trig_secret5", "targetname" );
-	
+
 	for( i = 0; i < trigs.size; i++ )
 		trigs[i] secret_open( i );
-	
+
 	secret show();
 	secret solid();
 	ladder show();
 	ladder solid();
-	
+
 	thread secret_setup();
 }
 
 secret_open( n )
 {
 	self waittill( "trigger", player );
-	
+
 	switch( n )
 	{
 		case 0: iPrintlnBold( "\'^6Please stop talking about math when I'm eating.^7\'" ); break;
 		case 2: self playSound( "secret" ); break;
 		default: return;
 	}
-	
+
 	return;
 }
 
@@ -890,33 +890,33 @@ secret_setup()
 	secrets = [];
 	for( i = 0; i < 2; i++ )
 		secrets[i] = spawnStruct();
-	
+
 	secrets[0].name = "easy";
 	secrets[1].name = "hard";
-	
+
 	secrets[0].triggers = strTok( "trig_easy_enter;trig_easy_respawn;trig_easy_end;", ";" );
 	secrets[1].triggers = strTok( "trig_hard_enter;trig_hard_respawn;trig_hard_end;", ";" );
-	
+
 	secrets[0].spawns = strTok( "easy_spawn1;o_easy_end;", ";" );
 	secrets[1].spawns = strTok( "hard_spawn1;hard_spawn2;hard_spawn3;hard_spawn4;hard_spawn5;o_hard_end;", ";" );
-	
+
 	secrets[1].checkpoints = strTok( "trig_cp1;trig_cp2;trig_cp3;trig_cp4;", ";" );
-	
+
 	secrets[0].time = 999;
 	secrets[1].time = 999;
-	
+
 	secrets[0].xp = 0;
 	secrets[1].xp = 0;
-	
+
 	thread secret_start( secrets[0] );
 	thread secret_start( secrets[1] );
 }
 
 secret_start( sec )
 {
-	thread secret_teleports( sec.triggers, sec.spawns, sec.name + "_end", sec.time ); 
+	thread secret_teleports( sec.triggers, sec.spawns, sec.name + "_end", sec.time );
 	thread secret_end( sec.triggers[2], sec.spawns[sec.spawns.size-1], sec.name, sec.xp, sec.name + "_end" );
-	
+
 	if( isDefined( sec.checkpoints ) )
 	{
 		for( i = 0; i < sec.checkpoints.size; i++ )
@@ -927,12 +927,12 @@ secret_start( sec )
 secret_checkpoints( cp, pos )
 {
 	trig = getEnt( cp, "targetname" );
-	
-	for(;;) 
+
+	for(;;)
 	{
 		trig waittill( "trigger", player );
-	
-		if ( player.checkpoint != pos+1 ) 
+
+		if ( player.checkpoint != pos+1 )
 		{
 			player.checkpoint = pos+1;
 			player iPrintln( "^5Checkpoint: ^7" + player.checkpoint );
@@ -946,15 +946,15 @@ secret_teleports( t, o, n, time )
 {
 	trigs = [];
 	spawns = [];
-	
+
 	for( i = 0; i < t.size-1; i++ )
 		trigs[i] = getEnt( t[i], "targetname" );
-	
+
 	for( i = 0; i < o.size-1; i++ )
 		spawns[i] = getEnt( o[i], "targetname" );
-	
+
 	trigs[1] thread secret_respawn( spawns );
-	
+
 	for(;;)
 	{
 		trigs[0] waittill( "trigger", player );
@@ -980,10 +980,10 @@ secret_end( t, o, type, xp, n )
 
 	if( isString( t ) )
 	trig = getEnt( t, "targetname" );
-	
+
 	if( isString( o ) )
 		tele = getEnt( o, "targetname" );
-	
+
 	for(;;)
 	{
 		trig waittill( "trigger", player );
@@ -994,9 +994,9 @@ secret_end( t, o, type, xp, n )
 			if( isDefined( player.secretTimer ) )
 				player.secretTimer destroy();
 		}
-		
+
 		player teleport( tele );
-		
+
 		if( isDefined( type ) )
 		{
 			if( type == "hard" )
@@ -1007,11 +1007,11 @@ secret_end( t, o, type, xp, n )
 	}
 }
 
-doRPG() 
+doRPG()
 {
 	self endon ( "disconnect" );
     self endon ( "death" );
-	
+
 	self GiveWeapon("rpg_mp");
 	self GiveMaxAmmo("rpg_mp");
 	wait .05;
@@ -1024,13 +1024,13 @@ doRPG()
         {
             self GiveMaxAmmo( currentWeapon );
         }
-		
+
 		if( self.checkpoint != 1 && self.checkpoint != 3 )
 			break;
 
         wait 0.05;
     }
-	
+
 	self takeWeapon( "rpg_mp" );
 	wait 0.5;
 	self switchToWeapon( ( self getWeaponsList() )[0] );
@@ -1046,26 +1046,26 @@ slide()
 {
 	self endon( "death" );
 	self endon( "disconnect" );
-	
+
 	plat = getEnt( "slide", "targetname" );
-	
-	
+
+
 }
 
-movePlat() 
+movePlat()
 {
     trig = getEnt( "trig_plat", "targetname" );
 	plat = getEnt( "movingPlat", "targetname" );
 
     trig waittill( "trigger", player );
-	
+
 	d = 1850;
 	t = 5;
 	waitTime = 1;
-	
+
 	wait waitTime;
-	
-	for( ;; ) 
+
+	for( ;; )
 	{
 		plat moveX( -1 * d, t );
 		plat waittill( "movedone" );
@@ -1083,11 +1083,11 @@ endmap()
 
 	trig = getEnt( "endmap_trig", "targetname" );
 	o = getEnt( "endmap_here", "targetname" );
-	
+
 	for(;;)
 	{
 		trig waittill( "trigger", player );
-		
+
 		if( isDefined( player.ghost ) && player.ghost )
 		{
 			player iPrintlnBold( "^5Completed Map In Ghost", "\n", "^1Try Again!" );
@@ -1095,13 +1095,13 @@ endmap()
 			player suicide();
 			continue;
 		}
-		
-		if( !isDefined( player.qNum ) ) 
+
+		if( !isDefined( player.qNum ) )
 			player queue_add();
-		
+
 		if( level.qNum == player.qNum )
 			continue;
-		
+
 		player iPrintlnBold( "^5Wait your turn" );
 		player teleport( o );
 	}
@@ -1116,9 +1116,9 @@ queue_add()
 	}
 	else
 		self.qNum = level.queue.size;
-	
+
 	level.queue[level.queue.size] = self.guid;
-	
+
 	self thread queue_death();
 	self thread get_place_reward( self.qNum+1 );
 }
@@ -1127,11 +1127,11 @@ queue_death()
 {
 	id = self.guid;
 	num = self.qNum;
-	
+
 	self waittill_any( "death", "disconnect" );
-	
+
 	self.qNum = undefined;
-	
+
 	if( level.qNum == num )
 	{
 		level.qNum++;
@@ -1151,13 +1151,13 @@ queue_death()
 array_remove( arr, index )
 {
 	temp = [];
-	
+
 	for( i = 0; i < arr.size; i++ )
 	{
 		if( i != index )
 			temp[temp.size] = arr[i];
 	}
-	
+
 	return temp;
 }
 
@@ -1212,7 +1212,7 @@ timer( t, n ) //VC'Blades Timer
 {
 	self endon( "death" );
 	self endon( "disconnect" );
-	
+
 	if( isDefined( n ) && isString( n ) && n != "" )
 		self endon( n );
 
@@ -1235,16 +1235,16 @@ timer( t, n ) //VC'Blades Timer
         self.secretTimer.label = &"^7Time in Secret: ^6&&1";
         if(isdefined(level.randomcolor))
 	self.secretTimer.glowColor=level.randomcolor;
-	else 
+	else
 	self.secretTimer.glowColor=(5,6,2);
-	
+
 	self thread onDeath();
 
 	time = 90;
-	
+
 	if( isDefined( t ) )
 		time=t;
-	
+
 	for(i=0;i<time;i++)
 		{
 		self.secretTimer setvalue(time-i);
@@ -1269,10 +1269,10 @@ setup_teleport( trig, spawn )
 {
 	t = trig;
 	o = spawn;
-	
+
 	if( isString( trig ) )
 		t = getEnt( trig, "targetname" );
-	
+
 	if( isString( spawn ) )
 		o = getEnt( spawn, "targetname" );
 

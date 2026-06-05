@@ -60,7 +60,7 @@ transporter()
 	{
 		self waittill( "trigger", player );
 		entTarget = getEnt( self.target, "targetname" );
-		player sr\api\_player::antiElevator(false);
+		player sr\api\_player::setAntiElevator(false);
 		player setOrigin( entTarget.origin );
 		player setplayerangles( entTarget.angles );
 	}

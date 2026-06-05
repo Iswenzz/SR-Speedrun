@@ -43,7 +43,7 @@ thread sr\api\_map::createSpawn((542, 6803, -188), 358);
 
     precacheItem ("rpg_mp");
 
-    thread sr\api\_speedrun::cj();
+    thread sr\api\_map::cj();
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createEndMap((3487.16, 7789.12, 632.125), 60, 100);
 }

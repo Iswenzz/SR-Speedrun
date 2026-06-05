@@ -1,15 +1,15 @@
 main()
 {
  maps\mp\_load::main();
- 
+
  game["allies"] = "marines";
  game["axis"] = "opfor";
  game["attackers"] = "axis";
  game["defenders"] = "allies";
  game["allies_soldiertype"] = "desert";
  game["axis_soldiertype"] = "desert";
- 
-	setdvar("bg_fallDamageMaxHeight", "99999"); 
+
+	setdvar("bg_fallDamageMaxHeight", "99999");
 	setdvar("bg_fallDamageMinHeight", "99998");
 	setdvar("r_glowbloomintensity0",".1");
 	setdvar("r_glowbloomintensity1",".1");
@@ -20,14 +20,14 @@ main()
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
     thread sr\api\_speedrun::createSecretWays("Secret Way;");
 	thread sr\api\_map::createSpawn((449, 4738, -4477), 90);
-	
+
 	thread jumper();
 	thread easy_enter();
 	thread easy_fail();
 	thread startdoor();
 	thread secret5();
 
-	
+
 
 }
 
@@ -48,7 +48,7 @@ air5 = getent ("air5","targetname");
 		if (player istouching(jumpx))
 		{
 
-        player sr\api\_player::antiElevator(false);
+        player sr\api\_player::setAntiElevator(false);
 
 		air = spawn ("script_model",(0,0,0));
 
@@ -68,7 +68,7 @@ air5 = getent ("air5","targetname");
 
 		wait 1;
 
-		player sr\api\_player::antiElevator(true);
+		player sr\api\_player::setAntiElevator(true);
 
 		player unlink();
 		wait 1;
@@ -79,7 +79,7 @@ air5 = getent ("air5","targetname");
 startdoor()
 {
 	door = getent("startdoor_brush","targetname");
-	
+
 	door delete();
 }
 
@@ -94,7 +94,7 @@ for(;; )
     trig waittill("trigger", player);
 
 	player thread sr\api\_speedrun::finishWay("secret_0");
-   
+
 
    }
 }
@@ -111,7 +111,7 @@ easy_enter()
 	{
 		trig waittill("trigger",player);
 
-		player thread sr\api\_speedrun::changeWay("secret_0"); 
+		player thread sr\api\_speedrun::changeWay("secret_0");
 
 		player SetOrigin(ori_t.origin);
 		player SetPlayerAngles(ori_t.angles);
@@ -131,7 +131,7 @@ easy_fail()
 
 		player Suicide();
 
-		
+
 	}
 }
 

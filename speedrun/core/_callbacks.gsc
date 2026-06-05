@@ -132,7 +132,7 @@ playerSpawn()
 		self giveMaxAmmo(self.pers["weapon"]);
 	}
 
-	if (sr\api\_speedrun::isCJ())
+	if (isCJ())
 	{
 		self setActionSlot(4, "weapon", "rpg_mp");
 		self giveWeapon("rpg_mp");

@@ -88,7 +88,7 @@ jump()
 {
 		jumpx waittill ("trigger",user);
 
-		user sr\api\_player::antiElevator(true);
+		user sr\api\_player::setAntiElevator(true);
 
 		if (user istouching(jumpx) && !isDefined(user.jump_thread))
 		{
@@ -123,7 +123,7 @@ jump_thread(user)
 	wait .25;
 	air moveto (air3.origin, time);
 	wait .5;
-	user sr\api\_player::antiElevator(false);
+	user sr\api\_player::setAntiElevator(false);
 	user unlink();
 	wait 1;
 
@@ -143,7 +143,7 @@ jump2()
 {
 		jump2 waittill ("trigger",user);
 
-		user sr\api\_player::antiElevator(true);
+		user sr\api\_player::setAntiElevator(true);
 
 		if (user istouching(jump2) && !isDefined(user.jump_thread))
 		{
@@ -178,7 +178,7 @@ jump2_thread(user)
 	wait .25;
 	air moveto (air3.origin, time);
 	wait .5;
-	user sr\api\_player::antiElevator(false);
+	user sr\api\_player::setAntiElevator(false);
 	user unlink();
 	wait 1;
 

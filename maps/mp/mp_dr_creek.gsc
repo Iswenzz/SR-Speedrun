@@ -87,7 +87,7 @@ on_rope(trigger_entity, origin_1_entity, origin_2_entity)
 
 do_rope(player, start, end)
 {
-    player sr\api\_player::antiElevator(false);
+    player sr\api\_player::setAntiElevator(false);
 
 	src_model = spawn ( "script_model", (5, 7, 1));
 	src_model.origin = player.origin;
@@ -100,7 +100,7 @@ do_rope(player, start, end)
 	src_model moveTo(end.origin, .5, .25, .25);
 	wait .5;
 
-    player sr\api\_player::antiElevator(true);
+    player sr\api\_player::setAntiElevator(true);
 
 	player UnLink();
 	src_model delete();

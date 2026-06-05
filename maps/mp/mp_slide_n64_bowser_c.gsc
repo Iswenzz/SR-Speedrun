@@ -45,7 +45,7 @@ thread sr\api\_map::createSpawnOrigin((2954, 1626, 1312), 270);
 
 	thread way_connect();
 
-	thread sr\api\_speedrun::slide(5);
+	thread sr\api\_map::slide(5);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

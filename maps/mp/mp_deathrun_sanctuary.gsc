@@ -400,7 +400,7 @@ rope1_ng(user)
     rop2 = getEnt ("rope1_targ2", "targetname");
     rop3 = getEnt ("rope1_targ3", "targetname");
 
-    user sr\api\_player::antiElevator(false);
+    user sr\api\_player::setAntiElevator(false);
 
 			rope1=spawn("script_model",(5,7,1));
             rope1.origin=user.origin;
@@ -420,7 +420,7 @@ rope1_ng(user)
             user EnableWeapons();
             wait 0.1;
 
-        user sr\api\_player::antiElevator(true);
+        user sr\api\_player::setAntiElevator(true);
 }
 
 rope2()
@@ -451,7 +451,7 @@ rope2_ng(user)
     rop2 = getEnt ("rope2_targ2", "targetname");
     rop3 = getEnt ("rope2_targ3", "targetname");
 
-    user sr\api\_player::antiElevator(false);
+    user sr\api\_player::setAntiElevator(false);
 
 			rope2=spawn("script_model",(5,7,1));
             rope2.origin=user.origin;
@@ -471,7 +471,7 @@ rope2_ng(user)
             user EnableWeapons();
             wait 0.1;
 
-            user sr\api\_player::antiElevator(true);
+            user sr\api\_player::setAntiElevator(true);
 }
 
 rope3()
@@ -502,7 +502,7 @@ rope3_ng(user)
     rop2 = getEnt ("rope3_targ2", "targetname");
     rop3 = getEnt ("rope3_targ3", "targetname");
 
-    user sr\api\_player::antiElevator(false);
+    user sr\api\_player::setAntiElevator(false);
 
 			rope3=spawn("script_model",(5,7,1));
             rope3.origin=user.origin;
@@ -521,7 +521,7 @@ rope3_ng(user)
             wait 0.2;
             user EnableWeapons();
             wait 0.1;
-            user sr\api\_player::antiElevator(true);
+            user sr\api\_player::setAntiElevator(true);
 }
 
 mplat1()

@@ -434,7 +434,7 @@ j1()
 		return;
 
 	self.x1 = true;
-	self sr\api\_player::antiElevator(false);
+	self sr\api\_player::setAntiElevator(false);
 
 	air1 = getent ("air1","targetname");
 	air2 = getent ("air2","targetname");
@@ -454,7 +454,7 @@ j1()
 			self unlink();
 			wait 1;
 
-			self sr\api\_player::antiElevator(true);
+			self sr\api\_player::setAntiElevator(true);
 }
 
 jumper2()
@@ -475,7 +475,7 @@ j2()
 		return;
 
 	self.x2 = true;
-	self sr\api\_player::antiElevator(false);
+	self sr\api\_player::setAntiElevator(false);
 
 	air1 = getent ("air1","targetname");
 	air2 = getent ("air2","targetname");
@@ -495,7 +495,7 @@ j2()
 			self unlink();
 			wait 1;
 
-			self sr\api\_player::antiElevator(true);
+			self sr\api\_player::setAntiElevator(true);
 }
 
 jumper3()
@@ -516,7 +516,7 @@ j3()
 		return;
 
 	self.x3 = true;
-	self sr\api\_player::antiElevator(false);
+	self sr\api\_player::setAntiElevator(false);
 
 	air1 = getent ("air1","targetname");
 	air2 = getent ("air2","targetname");
@@ -535,7 +535,7 @@ j3()
 			self unlink();
 			wait 1;
 
-			self sr\api\_player::antiElevator(true);
+			self sr\api\_player::setAntiElevator(true);
 }
 
 jumper4()
@@ -556,7 +556,7 @@ j4()
 		return;
 
 	self.x4 = true;
-	self sr\api\_player::antiElevator(false);
+	self sr\api\_player::setAntiElevator(false);
 
 	air1 = getent ("air4","targetname");
 	air2 = getent ("air5","targetname");
@@ -575,7 +575,7 @@ j4()
 			self unlink();
 			wait 1;
 
-			self sr\api\_player::antiElevator(true);
+			self sr\api\_player::setAntiElevator(true);
 }
 
 jumper5()
@@ -596,7 +596,7 @@ j5()
 		return;
 
 	self.x5 = true;
-	self sr\api\_player::antiElevator(false);
+	self sr\api\_player::setAntiElevator(false);
 
 	air1 = getent ("air7","targetname");
 	air2 = getent ("air8","targetname");
@@ -612,7 +612,7 @@ j5()
 			self unlink();
 			wait 1;
 
-			self sr\api\_player::antiElevator(true);
+			self sr\api\_player::setAntiElevator(true);
 }
 
 jumper6()
@@ -633,7 +633,7 @@ j6()
 		return;
 
 	self.x6 = true;
-	self sr\api\_player::antiElevator(false);
+	self sr\api\_player::setAntiElevator(false);
 
 	air1 = getent ("air9","targetname");
 	air2 = getent ("air10","targetname");
@@ -649,7 +649,7 @@ j6()
 			self unlink();
 			wait 1;
 
-			self sr\api\_player::antiElevator(true);
+			self sr\api\_player::setAntiElevator(true);
 }
 
 jumper7()
@@ -670,7 +670,7 @@ j7()
 		return;
 
 	self.x7 = true;
-	self sr\api\_player::antiElevator(false);
+	self sr\api\_player::setAntiElevator(false);
 
 	air1 = getent ("air11","targetname");
 	air2 = getent ("air12","targetname");
@@ -686,7 +686,7 @@ j7()
 			self unlink();
 			wait 1;
 
-			self sr\api\_player::antiElevator(true);
+			self sr\api\_player::setAntiElevator(true);
 }
 
 trap1()

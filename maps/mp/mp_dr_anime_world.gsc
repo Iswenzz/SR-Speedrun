@@ -9,7 +9,7 @@ maps\mp\_load::main();
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1" );
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
@@ -40,7 +40,7 @@ sec_dead()
 		trig waittill("trigger", player );
 
 		player Suicide();
-		
+
 	}
 }
 
@@ -76,7 +76,7 @@ rest()
 	sword1 delete();
 	sword2 delete();
 	sword6 delete();
-	
+
 }
 
 wallrun()
@@ -88,11 +88,11 @@ wallrun()
 	{
 		trig waittill("trigger", player );
 
-		player sr\api\_player::antiElevator(false);
-		
+		player sr\api\_player::setAntiElevator(false);
+
 		player setplayerangles(angle.angles);
 		air = spawn("script_model",(0,0,0));
-		
+
 		air.origin = player.origin;
 		air.angles = player.angles;
 		player linkto(air);
@@ -103,15 +103,15 @@ wallrun()
 		air moveto(lastorigin.origin, 1);
 		air rotateto(lastorigin.angles, 1);
 		air waittill("movedone");
-            
-		player sr\api\_player::antiElevator(true);
+
+		player sr\api\_player::setAntiElevator(true);
 		player unlink();
-		
+
 	}
 }
 
 bouncetrig()
-{  
+{
 	level.knockback = getDvarInt("g_knockback");
 
 	bounce   = getEntArray("bounce", "targetname");

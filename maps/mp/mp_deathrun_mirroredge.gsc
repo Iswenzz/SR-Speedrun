@@ -578,7 +578,7 @@ rope( start, end )
 	if( !isDefined( self.linker ) )
 		self.linker = Spawn("script_origin", self GetEye()+(0,0,20) );
 
-	self sr\api\_player::antiElevator(false);
+	self sr\api\_player::setAntiElevator(false);
 	self.isSliding = true;
 	self DisableWeapons();
 	self LinkTo( self.linker );
@@ -591,7 +591,7 @@ rope( start, end )
 	self.linker delete();
 	self EnableWeapons();
 	self.isSliding = false;
-	self sr\api\_player::antiElevator(true);
+	self sr\api\_player::setAntiElevator(true);
 }
 
 cranemove()

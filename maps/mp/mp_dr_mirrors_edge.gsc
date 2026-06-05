@@ -3008,7 +3008,7 @@ tiro()
 	self endon("disconnect");
 	self endon("death");
 
-	self sr\api\_player::antiElevator(false);
+	self sr\api\_player::setAntiElevator(false);
 
 	if(level.trap1 == 1)
 		thread tirong();
@@ -3061,7 +3061,7 @@ tiro()
 		self.tiro = undefined;
 		self.tiro2 = undefined;
 	}
-	self sr\api\_player::antiElevator(true);
+	self sr\api\_player::setAntiElevator(true);
 }
 
 

@@ -137,7 +137,7 @@ start_190()
 	self.jumpHeight = sr\api\_map::getJumpHeight(39);
 	self.speed = sr\api\_map::getSpeed(190);
 
-	if (sr\api\_speedrun::isSlide())
+	if (isSlide())
 	{
 		self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.0);
 		self.gravity = sr\api\_map::getGravity(1000);
@@ -162,7 +162,7 @@ start_210()
 	self.jumpHeight = sr\api\_map::getJumpHeight(39);
 	self.speed = sr\api\_map::getSpeed(210);
 
-	if (sr\api\_speedrun::isSlide())
+	if (isSlide())
 	{
 		self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.8);
 		self.gravity = sr\api\_map::getGravity(1000);

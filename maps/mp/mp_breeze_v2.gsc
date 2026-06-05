@@ -13,7 +13,7 @@ main()
     setDvar("bg_falldamageminheight", 1500000000 );
     setDvar("r_specularcolorscale", "8");
 
-	thread sr\api\_speedrun::cj();
+	thread sr\api\_map::cj();
 
 	thread sr\api\_speedrun::createNormalWays("Easy Way;");
 	thread sr\api\_speedrun::createSecretWays("Overbounce Way;");

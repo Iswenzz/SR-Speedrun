@@ -8,7 +8,7 @@ main()
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "1.8" );
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
@@ -20,7 +20,7 @@ main()
     thread sr\api\_map::createSpawn((3, -100, 76), 270);
 	thread sr\api\_speedrun::createTeleporter((-2776.82, 445.219, -975.375), 125, 100, (-2816, 3145, 380), 90, "freeze");
 	thread sr\api\_speedrun::createTeleporter((145.035, -99.9968, 16.125), 60, 100, (3112, -1314, -484), 360, "freeze", "yellow", "secret_0");
-    
+
 	thread secret_0_finish();
 	thread failtrig();
     thread ropeslide();
@@ -55,7 +55,7 @@ failtrig()
 
 	player Suicide();
 
-	}	
+	}
 }
 
 ropeslide()
@@ -78,7 +78,7 @@ slide()
 	m5 = getent("m5","targetname");
 	m6 = getent("m6","targetname");
 
-	self sr\api\_player::antiElevator(true);
+	self sr\api\_player::setAntiElevator(true);
 	ad = spawn("script_model",(0,0,0));
 	ad.origin = self.origin;
 	ad.angles = self.angles;
@@ -95,7 +95,7 @@ slide()
 	wait .31;
 	ad moveto(m6.origin-(0,0,50),.1);
 	wait .11;
-	self sr\api\_player::antiElevator(false);
+	self sr\api\_player::setAntiElevator(false);
 	self unlink();
 	self EnableWeapons();
 }
@@ -104,7 +104,7 @@ startdoor()
 {
 	door1 = getent("startdoor1","targetname");
 	door2 = getent("startdoor2","targetname");
-	
+
 	door1 delete();
 	door2 delete();
 }
@@ -116,7 +116,7 @@ xpbox()
 	xpbox3 = getent("xpbox_3","targetname");
 	xpbox4 = getent("xpbox_4","targetname");
 	xpbox5 = getent("xpbox_5","targetname");
-	
+
 
 	xpbox1 delete();
 	xpbox2 delete();
@@ -125,7 +125,7 @@ xpbox()
 	xpbox5 delete();
 
 
-	
+
 
 }
 
@@ -134,16 +134,16 @@ doors()
 {
 	door1 = getent("door2_1","targetname");
 	door2 = getent("door2_2","targetname");
-	
+
 	door1 delete();
 	door2 delete();
-	
+
 }
 
 door1()
 {
 	door = getent("door3_1","targetname");
-	
+
 	door delete();
-	
+
 }

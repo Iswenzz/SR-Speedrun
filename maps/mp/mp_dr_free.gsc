@@ -779,7 +779,7 @@ fly()
 	air4 = getent ("nub4","targetname");
 	time = 1;
 	//throw = self.origin + (100, 100, 0);
-	self sr\api\_player::antiElevator(false);
+	self sr\api\_player::setAntiElevator(false);
 	air = spawn ("script_model",(0,0,0));
 	air.origin = self.origin;
 	air.angles = self.angles;
@@ -792,7 +792,7 @@ fly()
 	wait 0.5;
 	self unlink();
 	wait 1;
-	self sr\api\_player::antiElevator(true);
+	self sr\api\_player::setAntiElevator(true);
 }
 
 addTestClients()

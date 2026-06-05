@@ -49,7 +49,7 @@ if (!level.spawn["allies"].size)
 	thread way_connect();
 	thread door();
 
-	thread sr\api\_speedrun::slide(4);
+	thread sr\api\_map::slide(4);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

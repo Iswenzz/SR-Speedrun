@@ -8,7 +8,7 @@ main()
     game["defenders"] = "allies";
     game["allies_soldiertype"] = "desert";
     game["axis_soldiertype"] = "desert";
-	
+
 	setDvar("bg_fallDamageMaxHeight", 99999);
 	setDvar("bg_fallDamageMinHeight", 9999);
 
@@ -22,7 +22,7 @@ main()
 	thread zipline_1();
 	thread zipline_2();
 
-	
+
 }
 
 startdoor()
@@ -36,11 +36,11 @@ startdoor delete();
 elevator_1()
 {
 	elevator = getent("elevator_1", "targetname");
-	
-	
+
+
 	elevator movez(144, 0.1);
-	
-	
+
+
 }
 
 zipline_1()
@@ -76,12 +76,12 @@ zipline_move(start, end)
 	self endon("death");
 	self endon("disconnect");
 
-	self sr\api\_player::antiElevator(false);
+	self sr\api\_player::setAntiElevator(false);
 
 	mov_link = spawn ( "script_model", (5, 7, 1));
 	mov_link.origin = self.origin;
 	self linkto(mov_link);
-	
+
 	self freezeControls(1);
 	self setPlayerAngles((0,0,0));
 	mov_link moveto(start, 0.5);
@@ -89,8 +89,8 @@ zipline_move(start, end)
 	mov_link moveto(end, 1);
 	mov_link waittill("movedone");
 	self freezeControls(0);
-	
-    self sr\api\_player::antiElevator(true);
+
+    self sr\api\_player::setAntiElevator(true);
 
 	self unlink();
 	mov_link delete();

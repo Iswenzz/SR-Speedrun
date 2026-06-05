@@ -1,14 +1,14 @@
 main()
 {
 	maps\mp\_load::main();
-	
+
 	game["allies"] = "sas";
 	game["axis"] = "opfor";
 	game["attackers"] = "axis";
 	game["defenders"] = "allies";
 	game["allies_soldiertype"] = "woodland";
 	game["axis_soldiertype"] = "woodland";
-	
+
 	setdvar( "r_specularcolorscale", "2" );
 	setdvar("r_glowbloomintensity0",".25");
 	setdvar("r_glowbloomintensity1",".25");
@@ -37,13 +37,13 @@ main()
 }
 
 teleporters()
-{       
+{
  	entTransporter = getentarray( "enter", "targetname" );
 	if(isdefined(entTransporter))
 		for( i = 0; i < entTransporter.size; i++ )
 			entTransporter[i] thread transporters();
 }
- 
+
 transporters()
 {
 	for(;;)
@@ -75,7 +75,7 @@ breakdoor()
 	bomb[2] = getent("bomb2","targetname");
 	bomb[3] = getent("bomb3","targetname");
 	doorpart = getent("breakdoor_part","targetname");
-	
+
 	bomb[0] delete();
 	bomb[1] delete();
 	bomb[2] delete();
@@ -85,9 +85,9 @@ breakdoor()
 plat()
 {
 	brick = getent("mbrick","targetname");
-	
+
 	brick moveY(260,0.1);
-		
+
 }
 
 trap2()
@@ -102,7 +102,7 @@ trap2()
 	kill2 delete();
 	obj1 delete();
 	obj2 delete();
-	
+
 }
 
 trap5()
@@ -112,12 +112,12 @@ trap5()
 	killtrig = getent("killtrigtrap5","targetname");
 	point1 = getent("point1","targetname");
 	point2 = getent("point2","targetname");
-	
-	
+
+
 	obj delete();
 	killtrig delete();
-	
-	
+
+
 }
 
 trap9()
@@ -126,10 +126,10 @@ trap9()
 	obj = getent("trap9obj","targetname");
 	killtrig9 = getent("killtrig9","targetname");
 	killtrig9 = getent("killtrig9","targetname");
-	
-	
+
+
 	killtrig9 delete();
-	
+
 }
 
 trap10()
@@ -144,7 +144,7 @@ trap10()
 	ball2 delete();
 	ball1killtrig delete();
 	ball2killtrig delete();
-	
+
 }
 
 sec0_enter()
@@ -159,7 +159,7 @@ sec0_enter()
 	{
 		trig waittill("trigger",player);
 
-		player thread sr\api\_speedrun::changeWay("secret_0"); 
+		player thread sr\api\_speedrun::changeWay("secret_0");
 
 		player setOrigin(ori_t.origin);
 		player setPlayerangles(ori_t.angles);
@@ -181,10 +181,10 @@ exitsecret()
 		trig waittill("trigger",player);
 
 		player thread sr\api\_speedrun::finishWay("secret_0");
-	
+
 		player.sc = 0;
 		player.insec = false;
-	
+
 	}
 }
 
@@ -251,7 +251,7 @@ mover()
 	pos2 = getent("moverpos2","targetname");
 	orgmover = spawn("script_model",(0,0,0));
 
-	self sr\api\_player::antiElevator(true);
+	self sr\api\_player::setAntiElevator(true);
 
 	orgmover.origin = self.origin;
 	orgmover.angles = self.angles;
@@ -260,7 +260,7 @@ mover()
 	wait .5;
 	orgmover moveto(pos2.origin,1);
 	wait 1.1;
-	self sr\api\_player::antiElevator(false);
+	self sr\api\_player::setAntiElevator(false);
 	self unlink();
 	wait .1;
 	orgmover delete();

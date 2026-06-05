@@ -5,9 +5,9 @@ trigger.targetname = "endmap_trig";
 
 
   	maps\mp\_load::main();
-	
+
 	maps\mp\_compass::setupMiniMap ("compass_map_mp_dr_wipeout");
-	
+
 
 	game["allies"] = "sas";
 	game["axis"] = "russian";
@@ -26,7 +26,7 @@ trigger.targetname = "endmap_trig";
 	thread sr\api\_map::createSpawn((-896, -28, 380), 0);
 
 	thread jumper();
-		
+
 }
 
 jumper()
@@ -45,7 +45,7 @@ big_air5 = getent ("big_air_5","targetname");
 	jump1 waittill ("trigger",player);
 		if (player istouching(jump1))
 		{
-        player sr\api\_player::antiElevator(false);
+        player sr\api\_player::setAntiElevator(false);
 
 		airbig = spawn ("script_model",(0,0,0));
 
@@ -63,7 +63,7 @@ big_air5 = getent ("big_air_5","targetname");
 		wait 1;
 			airbig moveto (big_air5.origin, 1);
 		wait 1;
-		player sr\api\_player::antiElevator(true);
+		player sr\api\_player::setAntiElevator(true);
 		player unlink();
 		wait 1;
 		}

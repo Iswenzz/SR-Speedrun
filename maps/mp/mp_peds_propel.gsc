@@ -7,7 +7,7 @@ if (!level.spawn["allies"].size)
 trigger = spawn( "trigger_radius", (7557,-1010,364), 0, 100, 400 );
 trigger.targetname = "endmap_trig";
 trigger.radius = 100;
-thread sr\api\_speedrun::cj();
+thread sr\api\_map::cj();
 	maps\mp\_load::main();
 	ambientPlay("amb_airplane0v1_lr");
 	game["allies"] = "sas";

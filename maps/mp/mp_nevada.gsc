@@ -15,7 +15,7 @@ thread sr\api\_map::createSpawnOrigin((-2789, -1452, -368), 0);
 
         thread way_connect();
 
-  	thread sr\api\_speedrun::cj();
+  	thread sr\api\_map::cj();
 
 
 	game["allies"] = "marines";
