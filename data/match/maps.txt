@@ -577,12 +577,6 @@ mp_peds_propel
 mp_pipeline
 mp_pizzahut_v2
 mp_pxg_capacity
-mp_q3_slide_awumpus
-mp_q3_slide_dfwc2017_2
-mp_q3_slide_dfwc2017_6
-mp_q3_slide_nood_adr
-mp_q3_slide_torque
-mp_q3_slide_wsrc09_03
 mp_race
 mp_shipment
 mp_showdown
