@@ -15,6 +15,7 @@ main()
 
 	thread sr\api\_map::createSpawn((285, -1757, 1116), 90);
     thread sr\api\_speedrun::createNormalWays("Normal Way");
+	thread sr\api\_speedrun::createSecretWays("Secret Way");
     thread sr\api\_speedrun::createEndMap((25.7193, -2858.25, 144.125), 185,120, "normal_0");
     
 	thread custom_secret_enter();

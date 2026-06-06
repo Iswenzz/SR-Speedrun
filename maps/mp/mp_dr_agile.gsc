@@ -22,8 +22,9 @@ main()
 
 	thread sr\api\_map::createSpawn((-129, -78, 64), 90);
     thread sr\api\_speedrun::createNormalWays("Normal Way");
-	
-	
+	srtp = getent ("air4","targetname");
+	thread sr\api\_speedrun::createTeleporter((-101.608, 6260.92, -123.875), 70, 70, (srtp.origin), 90, "freeze", "blue");
+
 	//thread trap1();
 	//thread trap2();
 	//thread startdoor();

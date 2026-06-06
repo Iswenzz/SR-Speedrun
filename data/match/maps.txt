@@ -12,6 +12,7 @@ mp_cm_rawstyle
 mp_cm_rush
 mp_convoy
 mp_countdown
+mp_crash_snow
 mp_crash
 mp_creek
 mp_crossfire
@@ -127,7 +128,6 @@ mp_deathrun_ruin2
 mp_deathrun_rvs
 mp_deathrun_sanctuary
 mp_deathrun_sao
-mp_deathrun_sapphire
 mp_deathrun_sapphire
 mp_deathrun_saw
 mp_deathrun_scary
