@@ -25,8 +25,30 @@
 main()
 {
 	thread sr\api\_map::createSpawn((9551, 15823, 7964), 0);
-	sr\api\_map::swapTargetname("trigger_endmap", "endmap_trig");
-	sr\api\_speedrun::createNormalWays("Normal Way;");
+	thread sr\api\_map::swapTargetname("trigger_endmap", "endmap_trig");
+	thread sr\api\_speedrun::createNormalWays("Normal Way; T1; T2; T3;");
+	thread sr\api\_speedrun::createSecretWays("T4; T5; T6;");
+
+	thread sr\api\_speedrun::createTeleporterToEntity((9698, 15505, 7964), 100, 150, "nyro_t1", "target", 0, "none", "blue", "normal_1");
+	thread sr\api\_speedrun::createTeleporterToEntity((9493, 15505, 7964), 100, 150, "nyro_t2", "target", 0, "none", "green", "normal_2");
+	thread sr\api\_speedrun::createTeleporterToEntity((9309, 15505, 7964), 100, 150, "nyro_t3", "target", 0, "none", "yellow", "normal_3");
+	thread sr\api\_speedrun::createTeleporterToEntity((9698, 16130, 7964), 100, 150, "nyro_t4", "target", 0, "none", "orange", "secret_0");
+	thread sr\api\_speedrun::createTeleporterToEntity((9493, 16130, 7964), 100, 150, "nyro_t5", "target", 0, "none", "red", "secret_1");
+	thread sr\api\_speedrun::createTeleporterToEntity((9309, 16130, 7964), 100, 150, "nyro_t6", "target", 0, "none", "purple", "secret_2");
+
+	thread sr\api\_speedrun::createEndMapFromEntity("start_nyro2n", "target", 0, "normal_1");
+	thread sr\api\_speedrun::createEndMapFromEntity("start_nyro2s", "target", 0, "normal_1");
+	thread sr\api\_speedrun::createEndMapFromEntity("start_nyro3n", "target", 0, "normal_2");
+	thread sr\api\_speedrun::createEndMapFromEntity("start_nyro3s", "target", 0, "normal_2");
+	thread sr\api\_speedrun::createEndMapFromEntity("start_nyro4n", "target", 0, "normal_3");
+	thread sr\api\_speedrun::createEndMapFromEntity("start_nyro4s", "target", 0, "normal_3");
+	thread sr\api\_speedrun::createEndMapFromEntity("start_nyro5n", "target", 0, "secret_0");
+	thread sr\api\_speedrun::createEndMapFromEntity("start_nyro5s", "target", 0, "secret_0");
+	thread sr\api\_speedrun::createEndMapFromEntity("start_nyro6n", "target", 0, "secret_1");
+	thread sr\api\_speedrun::createEndMapFromEntity("start_nyro6s", "target", 0, "secret_1");
+	thread sr\api\_speedrun::createEndMapFromEntity("ending_core_tele_dest", "target", 0, "secret_2");
+	thread sr\api\_speedrun::createEndMapFromEntity("ending_core_tele_dest", "target", 1, "secret_2");
+
 	// FX ++
 	level.spawn_geotrail_fx						= loadFx( "trails/fx_trail_pink" );
 	level.trail_gloaming_mm						= loadFx( "trails/fx_trail_pink" );

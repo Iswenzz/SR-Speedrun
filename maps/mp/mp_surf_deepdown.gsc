@@ -110,10 +110,10 @@ main()
 	thread ending_teleporter();
 	thread spawn_tp();
 	thread secret_trig01();
-	thread trail_teal();
-	thread trail_yellow();
-	thread trail_green();
-	thread trail_pink();
+	// thread trail_teal();
+	// thread trail_yellow();
+	// thread trail_green();
+	// thread trail_pink();
 	thread stg03_sound();
 
 	ent_booster = getEntArray( "booster_st1_01", "targetname" );
