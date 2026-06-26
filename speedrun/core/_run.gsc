@@ -24,9 +24,6 @@ start()
 	if (self getStat(1700) != self getModeStat())
 		self setStat(1700, self getModeStat());
 
-	iPrintLnBold(self.sr_mode);
-	iPrintLnBold(self getStat(1700));
-
     self [[level.leaderboard_modes[self.sr_mode].callback]]();
 	self thread playerTimer();
 }
