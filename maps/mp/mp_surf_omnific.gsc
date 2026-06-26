@@ -24,6 +24,8 @@
 
 main()
 {
+	sr\api\_map::surf();
+
 	thread sr\api\_map::createSpawn((9551, 15823, 7964), 0);
 	thread sr\api\_map::swapTargetname("trigger_endmap", "endmap_trig");
 	thread sr\api\_speedrun::createNormalWays("Normal Way; T1; T2; T3;");
