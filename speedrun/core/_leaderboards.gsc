@@ -167,7 +167,6 @@ load()
 			}
 		}
 	}
-
 	critical_enter("mysql");
 
 	request = SQL_Prepare("SELECT mode, way, time, name, player, run, tas FROM leaderboards WHERE map = ?");
@@ -190,6 +189,7 @@ load()
 		entry["player"] = rows[i]["player"];
 		entry["run"] = rows[i]["run"];
 		entry["tas"] = rows[i]["tas"];
+		rows[i] = [];
 
 		index = getLeaderboardIndex(entry["mode"], entry["way"], entry["tas"]);
 
@@ -202,6 +202,7 @@ load()
 		entryIndex = level.leaderboards[index].entries.size;
 		level.leaderboards[index].entries[entryIndex] = entry;
 	}
+	rows = undefined;
 
 	// Sort leaderboards
 	for (i = 0; i < modes.size; i++)
