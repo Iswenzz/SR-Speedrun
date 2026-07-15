@@ -180,7 +180,6 @@ while(1)
 {
 trigger waittill("trigger", player);
 player PlaySoundToPlayer( "tele", player );
-wait(0.05);
 player SetOrigin( spot.origin );
 player setplayerangles(spot.angles );
 }
@@ -194,7 +193,6 @@ while(1)
 {
 trigger waittill("trigger", player);
 player PlaySoundToPlayer( "tele", player );
-wait(0.05);
 player SetOrigin( spot.origin );
 player setplayerangles(spot.angles );
 }
@@ -208,7 +206,6 @@ while(1)
 {
 trigger waittill("trigger", player);
 player PlaySoundToPlayer( "tele", player );
-wait(0.05);
 player SetOrigin( (-13720, 3191, 524) );
 player setplayerangles(270 );
 }
@@ -222,7 +219,6 @@ while(1)
 {
 trigger waittill("trigger", player);
 player PlaySoundToPlayer( "tele", player );
-wait(0.05);
 player SetOrigin( spot.origin );
 player setplayerangles(spot.angles );
 }
