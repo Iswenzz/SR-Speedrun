@@ -12,7 +12,7 @@ main()
 	level.rotation = sr\core\_map::getRotation(false);
 	level.randomizedMaps = [];
 
-	thread sr\core\_map::randomizeMaps(5);
+	thread sr\core\_map::randomizeMaps(10);
 
 	event("map", ::placeSpawns);
 	event("map", ::deleteUnsupportedWeapons);
@@ -139,12 +139,23 @@ voteNextMap()
 	maps = level.randomizedMaps;
 	autoPick = maps[randomInt(maps.size)];
 
+	selection = maps;
+	selection[selection.size] = "replay";
+	selection = Reverse(selection);
+
 	if (level.dvar["map_vote"])
 	{
-		result = sr\core\_poll::poll("Next map", maps);
+		result = sr\core\_poll::poll("Next map", selection);
+
 		if (isDefined(result))
 		{
 			level sr\huds\_notifications::show(fmt("^5Next map: ^7%s", result.label));
+
+			if (result.label == "replay")
+			{
+				wait 4;
+				levelRestart(true);
+			}
 			return result.label;
 		}
 		return autoPick;
