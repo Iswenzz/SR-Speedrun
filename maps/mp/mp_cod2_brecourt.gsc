@@ -16,4 +16,17 @@ main()
 	thread sr\api\_map::createSpawn((-3704, 1514, 98), 0);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createEndMap((3633, -1780, 0), 150, 100);
+
+	thread delEnts();
+}
+
+delEnts()
+{
+	ents = getEntArray("script_model", "classname");
+
+	for (i = 0; i < ents.size; i++)
+	{
+		if (ents[i].model == "prop_suitcase_bomb")
+			ents[i] delete();
+	}
 }
