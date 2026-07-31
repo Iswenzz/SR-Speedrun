@@ -82,6 +82,7 @@ menufile,ui_mp/scriptmenus/main/main_mp.menu
 menufile,ui_mp/scriptmenus/main/sr_about.menu
 menufile,ui_mp/scriptmenus/main/sr_customize.menu
 menufile,ui_mp/scriptmenus/main/sr_leaderboard.menu
+menufile,ui_mp/scriptmenus/main/sr_modes.menu
 menufile,ui_mp/scriptmenus/main/sr_votemap.menu
 menufile,ui_mp/scriptmenus/misc/clientcmd.menu
 menufile,ui_mp/scriptmenus/misc/endofgame.menu
