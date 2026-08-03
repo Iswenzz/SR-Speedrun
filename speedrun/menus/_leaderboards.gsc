@@ -83,8 +83,8 @@ display()
 		switch (placement)
 		{
 			case 1: color = "^3"; break;
-			case 2: color = "^8"; break;
-			case 3: color = "^9"; break;
+			case 2: color = "^>"; break;
+			case 3: color = "^<"; break;
 		}
 
 		names += fmt("%s%s^7\n", color, entries[i]["name"]);
