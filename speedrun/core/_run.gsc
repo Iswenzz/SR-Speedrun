@@ -59,6 +59,7 @@ start()
 			self.jumpHeight = sr\api\_map::getJumpHeight(39);
 			self.gravity = sr\api\_map::getGravity(800);
 			self.moveSpeedScale = sr\api\_map::getMoveSpeedScale(1.0);
+			self.scriptedAmmo = 999999;
 			self takeAllWeapons();
 			for (i = 0; i < level.q3StartWeapons.size; i++)
 			{

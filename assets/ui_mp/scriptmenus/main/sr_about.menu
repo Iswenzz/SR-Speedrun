@@ -182,7 +182,7 @@
 
 	ABOUT_WINDOW("about_page_3")
 	ABOUT_TITLE("Game Modes")
-	ABOUT_TEXT("^77 movement modes are available, each with completely different physics\nand its own leaderboard. Switch between them at any time using chat commands.\n\n^2!190 ^7Original CoD4 movements at 190 speed with 1.05 scale.\n^2!210 ^7Original CoD4 movements at 210 speed with 1.12 scale.\n^2!Q3 ^7Quake 3 Arena original movement physics.\n^2!Q3CPM ^7Quake 3 Challenge Pro Mode, faster and tighter.\n^2!Q3CPMW ^7Q3CPM with rocket launcher and plasma gun.\n^2!CS ^7Counter-Strike bhop and surf physics.\n^2!Portal ^7Counter-Strike movements with a portal gun.")
+	ABOUT_TEXT("^77 movement modes are available, each with completely different physics\nand its own leaderboard. Switch between them at any time using chat commands.\n\n^2!190 ^7Original CoD4 movements at 190 speed with 1.05 scale.\n^2!210 ^7Original CoD4 movements at 210 speed with 1.12 scale.\n^2!Q3 ^7Quake 3 Arena original movement physics.\n^2!Q3CPM ^7Quake 3 Challenge Pro Mode, faster and tighter.\n^2!Q3CPMW ^7Quake 3 CPM with rocket launcher and plasma gun.\n^2!CS ^7Counter-Strike bhop and surf physics.\n^2!Portal ^7Counter-Strike movements with a portal gun.")
 	ABOUT_COUNTER("3", "9")
 	ABOUT_PREV(about_page_2)
 	ABOUT_NEXT(about_page_4)

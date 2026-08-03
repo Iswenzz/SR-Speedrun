@@ -16,6 +16,8 @@ main()
 	menu("main_mp", 	"autoassign", 	::menu_Team);
 	menu("main_mp", 	"spectator", 	::menu_Spectator);
 
+	menu_multiple("sr_modes",  "mode",	::menu_Modes);
+
 	menu_callback("quickcommands",	 	maps\mp\gametypes\_quickmessages::quickcommands);
 	menu_callback("quickstatements", 	maps\mp\gametypes\_quickmessages::quickstatements);
 	menu_callback("quickresponses",  	maps\mp\gametypes\_quickmessages::quickresponses);
@@ -29,6 +31,7 @@ precache()
 	precacheMenu("main/sr_about");
 	precacheMenu("main/sr_customize");
 	precacheMenu("main/sr_leaderboard");
+	precacheMenu("main/sr_modes");
 	precacheMenu("main/sr_votemap");
 	precacheMenu("commands/wm_quickmessage");
 	precacheMenu("commands/quickcommands");
@@ -44,6 +47,19 @@ precache()
 	precacheMenu("misc/muteplayer");
 
 	precacheMenu("about_page_1");
+}
+
+menu_Modes(arg)
+{
+	self closeMenu();
+	self closeInGameMenu();
+
+	mode = arg[1];
+	self setStat(1700, int(mode));
+	self suicide();
+
+	if (self canSpawn())
+		self eventSpawn();
 }
 
 menu_Dog(arg)
@@ -101,14 +117,16 @@ menu_Team(arg)
 	if (game["state"] == "end")
 		return;
 
-	if (self isAxis() || self sr\core\_minigames::isInAnyQueue())
+	if (self.pers["team"] == "axis")
 	{
-		self iPrintLn("^1Switching team disabled");
+		self iPrintLn("^1Suicide disabled");
 		return;
 	}
 	self sr\core\_teams::setTeam("allies");
 
-	if (self canSpawn())
+	if (self.settings["player_help_menus"])
+		self openMenu("sr_modes");
+	else if (self canSpawn())
 		self eventSpawn();
 }
 
