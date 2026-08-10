@@ -64,6 +64,9 @@ saveEntry(entry)
 
     mode = entry["mode"];
     way = entry["way"];
+
+    if (!isDefined(self.pbs[mode]))
+        self.pbs[mode] = [];
     self.pbs[mode][way] = entry["time"];
 
 	self thread speedrun\core\_leaderboards::updateMenuInfo();

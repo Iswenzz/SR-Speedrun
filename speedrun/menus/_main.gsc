@@ -80,7 +80,9 @@ menu_TAS(arg)
 
 	self cheat();
 	self.cheating = true;
-	sr\sys\_admins::tas(self.name, self.id);
+	sr\sys\_admins::tas(self.id, true);
+
+	self reconnect();
 }
 
 menu_3rdPerson(arg)

@@ -486,7 +486,7 @@ givePlacementXP(entry, entries, placement)
 
 getWorldRecord(mode, way)
 {
-	leaderboard = getLeaderboard(self.sr_mode, self.sr_way);
+	leaderboard = getLeaderboard(mode, way);
 	if (!isDefined(leaderboard))
 		return "";
 

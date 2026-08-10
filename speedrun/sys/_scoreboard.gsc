@@ -8,7 +8,7 @@ main()
 	setDvar("g_TeamName_Axis", "^>Games");
 	setDvar("g_TeamIcon_Axis", "");
 	setDvar("g_TeamColor_Axis", "0.9 0.7 0.5");
-	setDvar("g_ScoresColor_xis", "0 0 0");
+	setDvar("g_ScoresColor_Axis", "0 0 0");
 
 	setDvar("g_ScoresColor_Spectator", ".25 .25 .25");
 	setDvar("g_ScoresColor_Free", ".76 .78 .10");
