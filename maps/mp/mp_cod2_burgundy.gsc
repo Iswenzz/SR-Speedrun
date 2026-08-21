@@ -1,5 +1,7 @@
 main()
 {
+	setExpFog(0, 4620.98, 0.7, 0.85, 1, 0);
+
 	maps\mp\mp_cod2_burgundy_fx::main();
 
 	game["allies"] = "marines";

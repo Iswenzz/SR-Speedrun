@@ -1,5 +1,7 @@
 main()
 {
+	setExpFog(0, 4620.98, 0.8, 0.8, 0.8, 0);
+
 	maps\mp\mp_cod2_railyard_fx::main();
 
 	game["allies"] = "marines";

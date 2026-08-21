@@ -1,5 +1,7 @@
 main()
 {
+	setExpFog(0, 6931.47, 0.55, 0.6, 0.55, 0);
+
 	maps\mp\mp_cod2_rhine_fx::main();
 
 	game["allies"] = "marines";

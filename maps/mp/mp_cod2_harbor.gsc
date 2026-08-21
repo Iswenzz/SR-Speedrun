@@ -1,5 +1,7 @@
 main()
 {
+	setExpFog(0, 2475.53, 0.58, 0.57, 0.57, 0);
+
 	maps\mp\mp_cod2_harbor_fx::main();
 
 	game["allies"] = "marines";
