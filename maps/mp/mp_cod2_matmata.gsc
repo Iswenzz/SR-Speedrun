@@ -1,5 +1,7 @@
 main()
 {
+	setExpFog(0, 3465.74, 0.5, 0.5, 0.5, 0);
+
 	maps\mp\mp_cod2_matmata_fx::main();
 
 	game["allies"] = "marines";

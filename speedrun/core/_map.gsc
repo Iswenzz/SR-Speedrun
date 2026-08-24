@@ -141,7 +141,6 @@ voteNextMap()
 
 	selection = maps;
 	selection[selection.size] = "replay";
-	selection = Reverse(selection);
 
 	if (level.dvar["map_vote"])
 	{

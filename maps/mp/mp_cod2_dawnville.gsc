@@ -1,5 +1,7 @@
 main()
 {
+	setExpFog(0, 2772.59, 0.32, 0.36, 0.4, 0);
+
 	maps\mp\mp_cod2_dawnville_fx::main();
 
 	game["allies"] = "marines";

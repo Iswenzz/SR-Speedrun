@@ -1,5 +1,7 @@
 main()
 {
+	setExpFog(0, 1540.33, 0.58, 0.57, 0.57, 0);
+
 	maps\mp\mp_cod2_leningrad_fx::main();
 
 	game["allies"] = "marines";
