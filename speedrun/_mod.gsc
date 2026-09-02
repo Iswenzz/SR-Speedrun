@@ -56,7 +56,6 @@ main()
 	sr\fx\_shaders::main();
 	sr\fx\_spray::main();
 	sr\fx\_trail::main();
-	sr\huds\_cgaz::main();
 	sr\huds\_crosshair::main();
 	sr\huds\_fps::main();
 	sr\huds\_hitmarker::main();

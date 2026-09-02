@@ -17,23 +17,22 @@ main()
 	settings(13, "hud_velocity_info", "Velocity Info", 1613, 0, ::update_hudVelocityInfo, ::toggle_hudVelocityInfo);
 	settings(15, "hud_velocity_ground", "Ground Time", 1614, 0, ::update_hudVelocityGround, ::toggle_hudVelocityGround);
 	settings(8,  "hud_compass", "Compass", 1608, 0, ::update_hudCompass, ::toggle_hudCompass);
-	settings(16, "hud_cgaz", "CGAZ HUD", 1616, false, ::update_hudCgaz, ::toggle_hudCgaz);
 	settings(10, "hud_2D", "Draw 2D", 1610, true, ::update_hud2D, ::toggle_hud2D);
-	settings(22, "hud_spectating", "Spectating HUD", 1624, true, ::update_hudSpectating, ::toggle_hudSpectating);
-	settings(23, "hud_hitmarker", "Hitmarker", 1625, false, ::update_hudHitmarker, ::toggle_hudHitmarker);
-	settings(24, "hud_pmove", "PMove HUD", 1626, false, ::update_hudPmove, ::toggle_hudPmove);
+	settings(21, "hud_spectating", "Spectating HUD", 1624, true, ::update_hudSpectating, ::toggle_hudSpectating);
+	settings(22, "hud_hitmarker", "Hitmarker", 1625, false, ::update_hudHitmarker, ::toggle_hudHitmarker);
+	settings(23, "hud_pmove", "PMove HUD", 1626, false, ::update_hudPmove, ::toggle_hudPmove);
 	settings(9,  "player_hide", "Hide Players", 1609, false, ::update_playerHide, ::toggle_playerHide);
 	settings(12, "player_knife", "Knife Only", 1612, false, ::update_playerKnife, ::toggle_playerKnife);
-	settings(19, "player_voice", "Voice chat", 1620, true, ::update_playerVoice, ::toggle_playerVoice);
-	settings(20, "player_proximity", "Voice proximity", 1623, false, ::update_playerProximity, ::toggle_playerProximity);
-	settings(21, "player_radio", "Radio", 1622, true, ::update_playerRadio, ::toggle_playerRadio);
-	settings(25, "player_help_menus", "Help Menus", 1627, true, ::update_playerHelpMenus, ::toggle_playerHelpMenus);
+	settings(18, "player_voice", "Voice chat", 1620, true, ::update_playerVoice, ::toggle_playerVoice);
+	settings(19, "player_proximity", "Voice proximity", 1623, false, ::update_playerProximity, ::toggle_playerProximity);
+	settings(20, "player_radio", "Radio", 1622, true, ::update_playerRadio, ::toggle_playerRadio);
+	settings(24, "player_help_menus", "Help Menus", 1627, true, ::update_playerHelpMenus, ::toggle_playerHelpMenus);
 	settings(6,  "gfx_fov", "FOV Scale", 2630, 1000, ::update_gfxFOV, ::toggle_gfxFOV);
 	settings(2,  "gfx_fullbright", "Fullbright", 1602, false, ::update_gfxFullbright, ::toggle_gfxFullbright);
 	settings(5,  "gfx_distance", "Draw Distance", 1603, 0, ::update_gfxDistance, ::toggle_gfxDistance);
 	settings(11, "gfx_fx", "FX", 1611, true, ::update_gfxFX, ::toggle_gfxFX);
-	settings(17, "gfx_ragdoll", "Ragdoll", 1618, false, ::update_gfxRagdoll, ::toggle_gfxRagdoll);
-	settings(18, "gfx_music_animation", "Music Animations", 1619, true, ::update_gfxMusicAnimation, ::toggle_gfxMusicAnimation);
+	settings(16, "gfx_ragdoll", "Ragdoll", 1618, false, ::update_gfxRagdoll, ::toggle_gfxRagdoll);
+	settings(17, "gfx_music_animation", "Music Animations", 1619, true, ::update_gfxMusicAnimation, ::toggle_gfxMusicAnimation);
 
 	menu_multiple("sr_settings", "setting", ::menu_Setting);
 }

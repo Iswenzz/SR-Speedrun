@@ -171,7 +171,7 @@
 			rect			583 233 16 16 0 0
 			background		"speedrunner_logo"
 			style			3
-			visible			when((stat(2001)) >= 10)
+			visible			when((stat(2001)))
 			decoration
 		}
 	}
