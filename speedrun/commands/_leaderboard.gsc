@@ -11,11 +11,13 @@ main()
 cmd_LeaderboardDelete(args)
 {
 	if (args.size < 2)
-		return self pm("Usage: leaderboard_delete <mode> <way>");
+		return self pm("Usage: leaderboard_delete <mode> <way> [tas]");
 
 	mode = args[0];
 	way = args[1];
 	tas = 0;
+	if (args.size > 2)
+		tas = ToInt(args[2]) != 0;
 
 	id = speedrun\core\_leaderboards::getLeaderboardIndex(mode, way, tas);
 	leaderboard = level.leaderboards[id];
@@ -35,10 +37,11 @@ cmd_LeaderboardDelete(args)
 
 	critical_enter("mysql");
 
-	request = SQL_Prepare("DELETE FROM leaderboards WHERE map = ? AND mode = ? AND way = ?");
+	request = SQL_Prepare("DELETE FROM leaderboards WHERE map = ? AND mode = ? AND way = ? AND tas = ?");
 	SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
 	SQL_BindParam(request, mode, level.MYSQL_TYPE_STRING);
 	SQL_BindParam(request, way, level.MYSQL_TYPE_STRING);
+	SQL_BindParam(request, tas, level.MYSQL_TYPE_LONG);
 	SQL_Execute(request);
 	AsyncWait(request);
 	SQL_Free(request);
@@ -49,12 +52,14 @@ cmd_LeaderboardDelete(args)
 cmd_LeaderboardDeleteEntry(args)
 {
 	if (args.size < 3)
-		return self pm("Usage: leaderboard_delete_entry <mode> <way> <index>");
+		return self pm("Usage: leaderboard_delete_entry <mode> <way> <placement> [tas]");
 
 	mode = args[0];
 	way = args[1];
-	index = ToInt(args[2]);
+	index = ToInt(args[2]) - 1;
 	tas = 0;
+	if (args.size > 3)
+		tas = ToInt(args[3]) != 0;
 
 	id = speedrun\core\_leaderboards::getLeaderboardIndex(mode, way, tas);
 	leaderboard = level.leaderboards[id];
@@ -71,15 +76,16 @@ cmd_LeaderboardDeleteEntry(args)
 	if (!hasConfirmed(response))
 		return;
 
-	level.leaderboards[id].entries = speedrun\core\_leaderboards::sortEntries(Remove(level.leaderboards[id].entries, entry));
+	level.leaderboards[id].entries = Remove(level.leaderboards[id].entries, entry);
 
 	critical_enter("mysql");
 
-	request = SQL_Prepare("DELETE FROM leaderboards WHERE map = ? AND player = ? AND mode = ? AND way = ?");
+	request = SQL_Prepare("DELETE FROM leaderboards WHERE map = ? AND player = ? AND mode = ? AND way = ? AND tas = ?");
 	SQL_BindParam(request, entry["map"], level.MYSQL_TYPE_STRING);
 	SQL_BindParam(request, entry["player"], level.MYSQL_TYPE_STRING);
 	SQL_BindParam(request, entry["mode"], level.MYSQL_TYPE_STRING);
 	SQL_BindParam(request, entry["way"], level.MYSQL_TYPE_STRING);
+	SQL_BindParam(request, tas, level.MYSQL_TYPE_LONG);
 	SQL_Execute(request);
 	AsyncWait(request);
 	SQL_Free(request);

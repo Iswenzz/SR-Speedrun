@@ -209,12 +209,6 @@ update_hudVelocityGround(setting)
 	self updateHud(setting.index, value, labels[value]);
 }
 
-update_hudCgaz(setting)
-{
-	value = self.settings["hud_cgaz"];
-	self updateHud(setting.index, value);
-}
-
 toggle_hudCrosshair(setting)
 {
 	self.settings["hud_crosshair"] = intRange(self.settings["hud_crosshair"], 0, 2);
@@ -258,11 +252,6 @@ toggle_hudVelocityGround(setting)
 toggle_hudCompass(setting)
 {
 	self.settings["hud_compass"] = intRange(self.settings["hud_compass"], 0, 9);
-}
-
-toggle_hudCgaz(setting)
-{
-	self.settings["hud_cgaz"] = !self.settings["hud_cgaz"];
 }
 
 toggle_hud2D(setting)

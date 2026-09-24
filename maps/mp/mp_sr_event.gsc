@@ -1,5 +1,5 @@
 #include sr\sys\_events;
-#include sr\game\_event;
+#include sr\core\_event;
 #include sr\utils\_common;
 
 main()

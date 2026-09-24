@@ -73,8 +73,9 @@ CREATE TABLE `leaderboards` (
   `run` varchar(36) COLLATE utf8mb4_general_ci NOT NULL,
   `tas` int NOT NULL DEFAULT '0',
   `date` datetime NOT NULL DEFAULT '2025-01-01 00:00:00',
-  PRIMARY KEY (`id`)
-  KEY `leaderboards_map_mode_way_tas_time_idx` (`map`, `mode`, `way`, `tas`, `time`)
+  PRIMARY KEY (`id`),
+  KEY `leaderboards_map_mode_way_tas_time_idx` (`map`, `mode`, `way`, `tas`, `time`),
+  KEY `leaderboards_player_idx` (`player`)
 ) ENGINE=InnoDB AUTO_INCREMENT=113484 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -95,7 +96,8 @@ CREATE TABLE `pbs` (
   `time` int NOT NULL,
   `run` varchar(36) COLLATE utf8mb4_general_ci NOT NULL,
   `date` datetime NOT NULL DEFAULT '2025-01-01 00:00:00',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `pbs_map_player_idx` (`map`, `player`)
 ) ENGINE=InnoDB AUTO_INCREMENT=237137 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

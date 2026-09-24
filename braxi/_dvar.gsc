@@ -37,5 +37,5 @@ main()
 	addDvar("gibs", "dr_gibs", 1, 0, 1, "int");
 
 	makeDvarServerInfo("netaddr", getDvar("net_ip"));
-	makeDvarServerInfo("dr_motd", level.dvar["motd"]);
+	makeDvarServerInfo("dr_motd", getDvar("dr_motd"));
 }

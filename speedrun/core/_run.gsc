@@ -206,9 +206,8 @@ endTimer()
 		return;
 	}
 	way = speedrun\core\_leaderboards::getLeaderboardName(self.sr_mode, self.sr_way);
-	message = fmt("%s finished the map in %d:%d.%d - %s / %s",
-		self.name, self.time.min, self.time.sec, self.time.ms,
-		self.sr_mode, way);
+	message = fmt("%s finished the map in %s - %s / %s",
+		self.name, formatTime(self.time), self.sr_mode, way);
 
 	if (self sr\sys\_admins::isTAS())
 		message = fmt("^5[TAS] ^7%s", message);
@@ -220,4 +219,20 @@ endTimer()
     self thread speedrun\core\_pbs::saveEntry(entry);
 
 	self speedrun\huds\_speedrun::updateRecords();
+}
+
+// fmt has no zero-padding, so 1:03.005 would otherwise read as 1:3.5.
+formatTime(time, tenths)
+{
+	sec = time.sec + "";
+	if (time.sec < 10)
+		sec = "0" + sec;
+
+	if (isDefined(tenths) && tenths)
+		return fmt("%d:%s.%d", time.min, sec, int(time.ms / 100));
+
+	ms = time.ms + "";
+	while (ms.size < 3)
+		ms = "0" + ms;
+	return fmt("%d:%s.%s", time.min, sec, ms);
 }

@@ -10,7 +10,6 @@ main()
 	maps\mp\gametypes\_gameobjects::main([]);
 	maps\mp\gametypes\_spawnlogic::init();
 	maps\mp\gametypes\_oldschool::deletePickups();
-	maps\mp\gametypes\_hud::init();
 	maps\mp\gametypes\_quickmessages::init();
 	maps\mp\gametypes\_weapons::init();
 

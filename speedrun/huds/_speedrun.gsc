@@ -103,7 +103,7 @@ updateTime()
 {
 	if (isDefined(self.time))
 	{
-		self.huds["speedrun"]["row1"] setText(self.time.min + ":" + self.time.sec + "." + self.time.ms);
+		self.huds["speedrun"]["row1"] setText(speedrun\core\_run::formatTime(self.time));
 		self.huds["speedrun"]["row1"].fontScale = 1.4;
 		self.huds["speedrun"]["row1"].x = 73;
 		self.huds["speedrun"]["row1"].y = 21;

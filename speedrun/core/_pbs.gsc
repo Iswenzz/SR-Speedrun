@@ -59,7 +59,8 @@ isValidEntry(entry)
 
 saveEntry(entry)
 {
-    if (!isValidEntry(entry))
+	// The pbs table has no tas column, a TAS run would overwrite the legit PB.
+	if (IfUndef(entry["tas"], 0) || !isValidEntry(entry))
 		return;
 
     mode = entry["mode"];
@@ -108,6 +109,5 @@ getPersonalBest(mode, way)
         return "";
     if (!isDefined(self.pbs[mode][way]))
         return "";
-    pb = self.pbs[mode][way];
-	return fmt("%d:%d.%d", pb.min, pb.sec, pb.ms);
+	return speedrun\core\_run::formatTime(self.pbs[mode][way]);
 }

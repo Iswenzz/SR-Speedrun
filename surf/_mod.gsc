@@ -67,7 +67,7 @@ booster()
 speedBoost()
 {
 	speedScale = strTok(self.target, " ");
-	speedScale = (speedScale[0], speedScale[1], speedScale[2]);
+	speedScale = (float(speedScale[0]), float(speedScale[1]), float(speedScale[2]));
 
 	while (true)
 	{

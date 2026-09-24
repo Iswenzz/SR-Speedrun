@@ -73,8 +73,13 @@ display()
 		);
 	}
 
+	// Only the first max_entries fit in the menu, sending more can overflow the client's reliable commands.
+	count = entries.size;
+	if (count > level.leaderboard_max_entries)
+		count = level.leaderboard_max_entries;
+
 	stringIndex = 0;
-	for (i = 0; i < entries.size; i++)
+	for (i = 0; i < count; i++)
     {
 		placement = i + 1;
 		numbers += fmt("#%d\n", placement);
@@ -88,9 +93,9 @@ display()
 		}
 
 		names += fmt("%s%s^7\n", color, entries[i]["name"]);
-		times += fmt("^7%d:%d.%d\n", entries[i]["time"].min, entries[i]["time"].sec, entries[i]["time"].ms);
+		times += fmt("^7%s\n", speedrun\core\_run::formatTime(entries[i]["time"]));
 
-		if (!(placement % 10) || i == entries.size - 1)
+		if (!(placement % 10) || i == count - 1)
 		{
 			self setClientDvars(
 				"leaderboard_numbers_" + stringIndex, numbers,

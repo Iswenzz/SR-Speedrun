@@ -86,26 +86,16 @@ getPlayerWorldRecordCount()
 {
 	critical_enter("mysql");
 
-	filter = "SELECT id, map, name, mode, way, player, time, tas, min(time) OVER (PARTITION BY map, mode, way, tas) AS minTime FROM leaderboards";
-	query = fmt("SELECT COUNT(*) FROM (%s) b WHERE time = minTime AND player = ? AND tas = 0 AND (mode = %s OR mode = %s)",
-		filter, "190", "210");
-
-	request = SQL_Prepare(query);
+	// Correlated MIN uses the (map, mode, way, tas, time) index instead of a window over the whole table.
+	request = SQL_Prepare("SELECT "
+		+ "COUNT(CASE WHEN l.mode IN ('190', '210') THEN 1 END), "
+		+ "COUNT(CASE WHEN l.mode IN ('Q3', 'Q3CPM', 'Q3CPMW', 'CS', 'Portal') THEN 1 END) "
+		+ "FROM leaderboards l WHERE l.player = ? AND l.tas = 0 AND l.time = ("
+		+ "SELECT MIN(m.time) FROM leaderboards m WHERE m.map = l.map AND m.mode = l.mode AND m.way = l.way AND m.tas = 0)");
 	SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
 	SQL_Execute(request);
 	AsyncWait(request);
-	wrs = IfUndef(SQL_FetchRow(request), []);
-	SQL_Free(request);
-
-	filter = "SELECT id, map, name, mode, way, player, time, tas, min(time) OVER (PARTITION BY map, mode, way, tas) AS minTime FROM leaderboards";
-	query = fmt("SELECT COUNT(*) FROM (%s) b WHERE time = minTime AND player = ? AND tas = 0 AND mode IN ('%s', '%s', '%s', '%s', '%s')",
-        filter, "Q3", "Q3CPM", "Q3CPMW", "CS", "Portal");
-
-	request = SQL_Prepare(query);
-	SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
-	SQL_Execute(request);
-	AsyncWait(request);
-	wrms = IfUndef(SQL_FetchRow(request), []);
+	counts = IfUndef(SQL_FetchRow(request), []);
 	SQL_Free(request);
 
 	critical_release("mysql");
@@ -113,8 +103,8 @@ getPlayerWorldRecordCount()
 	if (!isDefined(self))
 		return;
 
-	self.pers["wrs"] = IfUndef(wrs[0], 0);
-	self.pers["wrms"] = IfUndef(wrms[0], 0);
+	self.pers["wrs"] = IfUndef(counts[0], 0);
+	self.pers["wrms"] = IfUndef(counts[1], 0);
 	self setStat(2001, self.pers["wrs"]);
 	self setClientDvar("sr_leaderboard_wr_count", fmt("%d ^5(%d)", self.pers["wrs"], self.pers["wrms"]));
 }
@@ -169,7 +159,8 @@ load()
 	}
 	critical_enter("mysql");
 
-	request = SQL_Prepare("SELECT mode, way, time, name, player, run, tas FROM leaderboards WHERE map = ?");
+	// Rows arrive sorted so each leaderboard is built in order, earliest date wins ties.
+	request = SQL_Prepare("SELECT mode, way, time, name, player, run, tas FROM leaderboards WHERE map = ? ORDER BY time, date");
 	SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
 	SQL_Execute(request);
 	AsyncWait(request);
@@ -204,24 +195,6 @@ load()
 	}
 	rows = undefined;
 
-	// Sort leaderboards
-	for (i = 0; i < modes.size; i++)
-	{
-		for (j = 0; j < ways.size; j++)
-		{
-			for (tas = 0; tas < 2; tas++)
-			{
-				mode = level.leaderboard_modes[modes[i]];
-				way = level.leaderboard_ways[ways[j]];
-				index = getLeaderboardIndex(mode.id, way.id, tas);
-
-				if (!isDefined(level.leaderboards[index]))
-					continue;
-
-				level.leaderboards[index].entries = sortEntries(level.leaderboards[index].entries);
-			}
-		}
-	}
 	level setLoading("leaderboards", false);
 	level thread demos();
 
@@ -287,6 +260,9 @@ makeEntry()
 isValidEntry(entry)
 {
 	leaderboard = getLeaderboard(entry["mode"], entry["way"], entry["tas"]);
+	if (!isDefined(leaderboard))
+		return false;
+
 	placement = getEntryPlacement(entry, leaderboard.entries);
 
 	if (placement > level.leaderboard_max_entries)
@@ -330,15 +306,16 @@ saveEntry(entry)
 
 	critical_enter("mysql");
 
-	request = SQL_Prepare("UPDATE leaderboards SET time = ?, name = ?, run = ?, tas = ?, date = NOW() WHERE map = ? AND player = ? AND mode = ? AND way = ?");
+	// Matching on tas keeps a TAS run from overwriting the same player's legit row.
+	request = SQL_Prepare("UPDATE leaderboards SET time = ?, name = ?, run = ?, date = NOW() WHERE map = ? AND player = ? AND mode = ? AND way = ? AND tas = ?");
 	SQL_BindParam(request, entry["time"].origin, level.MYSQL_TYPE_LONG);
 	SQL_BindParam(request, entry["name"], level.MYSQL_TYPE_STRING);
 	SQL_BindParam(request, entry["run"], level.MYSQL_TYPE_STRING);
-	SQL_BindParam(request, entry["tas"], level.MYSQL_TYPE_LONG);
 	SQL_BindParam(request, entry["map"], level.MYSQL_TYPE_STRING);
 	SQL_BindParam(request, entry["player"], level.MYSQL_TYPE_STRING);
 	SQL_BindParam(request, entry["mode"], level.MYSQL_TYPE_STRING);
 	SQL_BindParam(request, entry["way"], level.MYSQL_TYPE_STRING);
+	SQL_BindParam(request, entry["tas"], level.MYSQL_TYPE_LONG);
 	SQL_Execute(request);
 	AsyncWait(request);
 
@@ -378,39 +355,28 @@ addWay(way, name)
 	level.leaderboard_ways[way].name = name;
 }
 
+// Entries are kept sorted, a tie goes after the existing times.
 addEntry(entry, index)
 {
 	array = [];
 	entries = level.leaderboards[index].entries;
+	inserted = false;
 
-	// Remove duplicates
 	for (i = 0; i < entries.size; i++)
 	{
 		if (entries[i]["player"] == entry["player"])
 			continue;
+		if (!inserted && entry["time"].origin < entries[i]["time"].origin)
+		{
+			array[array.size] = entry;
+			inserted = true;
+		}
 		array[array.size] = entries[i];
 	}
-	array[array.size] = entry;
-	level.leaderboards[index].entries = sortEntries(array);
-}
+	if (!inserted)
+		array[array.size] = entry;
 
-sortEntries(entries)
-{
-	array = entries;
-
-	for (i = 0; i < array.size; i++)
-	{
-		for (z = 0; z < array.size - 1; z++)
-		{
-			if (array[z]["time"].origin > array[z + 1]["time"].origin)
-			{
-				swap = array[z + 1];
-				array[z + 1] = array[z];
-				array[z] = swap;
-			}
-		}
-	}
-	return array;
+	level.leaderboards[index].entries = array;
 }
 
 xpTable()
@@ -494,8 +460,7 @@ getWorldRecord(mode, way)
 	if (!entries.size)
 		return "";
 
-	wr = entries[0]["time"];
-	return fmt("%d:%d.%d", wr.min, wr.sec, wr.ms);
+	return speedrun\core\_run::formatTime(entries[0]["time"]);
 }
 
 worldRecord(entry)
