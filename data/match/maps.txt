@@ -18,6 +18,7 @@ mp_cod2_dawnville
 mp_cod2_decoy
 mp_cod2_downtown
 mp_cod2_farmhouse
+mp_cod2_gob_rats
 mp_cod2_harbor
 mp_cod2_leningrad
 mp_cod2_matmata
@@ -201,6 +202,7 @@ mp_dr_asylum
 mp_dr_atlantis
 mp_dr_away
 mp_dr_bananaphone_v2
+mp_dr_bay
 mp_dr_beach
 mp_dr_beat
 mp_dr_bhop
@@ -220,6 +222,7 @@ mp_dr_boxroom
 mp_dr_boy
 mp_dr_brainfuck
 mp_dr_brasso
+mp_dr_bridge
 mp_dr_brix
 mp_dr_broken
 mp_dr_broken2
@@ -515,6 +518,7 @@ mp_dr_thewar
 mp_dr_timetravel
 mp_dr_tower
 mp_dr_train_rush
+mp_dr_trancemaster
 mp_dr_trapntrance
 mp_dr_trapntrance_v2
 mp_dr_trapz
@@ -704,6 +708,7 @@ mp_vc_widow
 mp_vc_winter_run
 mp_vc_woodland
 mp_vlct_duality_v2
+mp_vlct_ez
 mp_vlct_float
 mp_vlct_gem
 mp_vlct_grotfjord
