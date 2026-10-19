@@ -20,16 +20,9 @@ hud()
 	self clear();
 	self huds();
 
-	version = self getDemoVersion();
-	timeOffset = Ternary(version == 1, 900, -100);
-
 	while (true)
 	{
-		origin = timeOffset + self getDemoTimer();
-		if (origin < 0)
-			origin = 0;
-
-		time = originToTime(origin);
+		time = originToTime(self getDemoRunTime());
 		self.huds["speedrun"]["row1"] setText(speedrun\core\_run::formatTime(time, !self jumpButtonPressed()));
 
 		wait 0.05;

@@ -29,7 +29,7 @@ setup(id)
 		self pm("^3Demo loading...");
 		return false;
 	}
-	self.demoCamera = self PlayDemo(id);
+	self.demoCamera = self PlayDemo(id, self.demo["name"]);
 
 	if (!isDefined(self.demoCamera))
 	{
