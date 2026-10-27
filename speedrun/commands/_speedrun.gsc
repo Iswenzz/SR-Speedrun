@@ -101,10 +101,9 @@ cmd_Practise(args)
     if (self.modes["practise"])
     {
         self pm("^2Practise mode enabled!");
-        self iPrintLn("Press ^3[{+melee}]^7 to save position");
-        self iPrintLn("Press ^3[{+activate}]^7 to load positon");
-        self iPrintLn("Press ^5[{+frag}]^7 to noclip");
-        self iPrintLn("Press ^2[{+gostand}]^7 to remove noclip or speed up");
+        self iPrintLn("Bind ^3Practise Save^7, ^3Load^7 and ^3Rewind^7 in Controls > Multiplayer");
+        self iPrintLn("Hold ^3[{+activate}]^7 on load for older saves, rewind steps back 1s");
+        self iPrintLn("Press ^5[{+frag}]^7 to noclip, ^2[{+gostand}]^7 to exit or speed up");
     }
     else
         self pm("^1Practise mode disabled!");

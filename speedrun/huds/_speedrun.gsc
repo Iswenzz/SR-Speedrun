@@ -115,6 +115,19 @@ updateTime()
 	}
 }
 
+// Back to a running timer, undoing the layout a finished time switched it to.
+resumeTime(elapsed)
+{
+	if (!isHud("row1"))
+		return;
+
+	self.huds["speedrun"]["row1"].label = &"^5&&1";
+	self.huds["speedrun"]["row1"].fontScale = 1.8;
+	self.huds["speedrun"]["row1"].x = 72;
+	self.huds["speedrun"]["row1"].y = 18;
+	self.huds["speedrun"]["row1"] setTenthsTimerUpFrom(elapsed / 1000.0);
+}
+
 updateWay()
 {
 	if (!isHud("name") || self isDemo())
