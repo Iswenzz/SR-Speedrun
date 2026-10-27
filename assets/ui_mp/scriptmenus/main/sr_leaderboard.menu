@@ -1,67 +1,38 @@
-#define LAYOUT_NAME				"leaderboards"
-#define LAYOUT_X_START			20
-#define LAYOUT_Y_START			20
-#define LAYOUT_TEXT_OFFSET_X 	0
-#define	LAYOUT_TEXTALIGN		ITEM_ALIGN_MIDDLE_CENTER
-#define SR_HEADER_TEXTALIGN 	ITEM_ALIGN_MIDDLE_CENTER
-#define SR_HEADER_OFFSET_X		0
 #define SR_WINDOW_HEADER_H		40
-#define HEADER_HALF				(SR_WINDOW_HEADER_H / 2)
-#define FOOTER_H				30
-#define BOTTOM_Y				(SR_WINDOW_H - FOOTER_H)
 
 #include "ui/components/base.inc"
+#include "ui/components/leaderboard.inc"
 
-#define NORMAL(id, wayId, script) \
-	SR_BUTTON_LEFT(id, dvarString("normal_" + wayId), scriptMenuResponse script;, when(dvarString("normal_" + wayId) != ""))
-#define SECRET(id, wayId, script) \
-	SR_BUTTON_LEFT(id, dvarString("secret_" + wayId), scriptMenuResponse script;, when(dvarString("secret_" + wayId) != ""))
+// A way is on screen when it is shown under any of the seven modes.
+#define SR_LB_SHOWN(wayDvar) \
+	(LB_IS("190 ^7", wayDvar) || LB_IS("210 ^7", wayDvar) || LB_IS("Q3 ^7", wayDvar) || \
+	LB_IS("Q3CPM ^7", wayDvar) || LB_IS("Q3CPMW ^7", wayDvar) || LB_IS("CS ^7", wayDvar) || \
+	LB_IS("Portal ^7", wayDvar))
 
-#define ENTRIES(id, x, y) \
-	itemDef \
-	{ \
-		visible			1 \
-		rect 			(LAYOUT_X_START + x) (65 + y) 200 100 SR_ALIGN_TOP_SUBLEFT \
-		forecolor		1 1 1 1 \
-		exp             text(dvarString("leaderboard_numbers_" + id)) \
-		textfont		UI_FONT_NORMAL \
-		textalign		ITEM_ALIGN_LEFT \
-		textscale		0.3 \
-		decoration \
-	} \
-	itemDef \
-	{ \
-		visible			1 \
-		rect 			((LAYOUT_X_START + x) + 25) (65 + y) 200 100 SR_ALIGN_TOP_SUBLEFT \
-		forecolor		1 1 1 1 \
-		exp             text(dvarString("leaderboard_names_" + id)) \
-		textfont		UI_FONT_NORMAL \
-		textalign		ITEM_ALIGN_LEFT \
-		textscale		0.3 \
-		decoration \
-	} \
-	itemDef \
-	{ \
-		visible			1 \
-		rect 			((LAYOUT_X_START + x) + 25 + 90) (65 + y) 200 100 SR_ALIGN_TOP_SUBLEFT \
-		forecolor		0 1 1 1 \
-		exp             text(dvarString("leaderboard_values_" + id)) \
-		textstyle		ITEM_TEXTSTYLE_SHADOWED \
-		textfont		UI_FONT_NORMAL \
-		textalign		ITEM_ALIGN_LEFT \
-		textscale		0.3 \
-		decoration \
-	}
+#define SR_LB_MODE(id, y, label, response, modePrefix) \
+	LB_MODE(id, 14, y, 105, 24, label, response, modePrefix)
+
+#define SR_LB_NORMAL(id, y, wayDvar, response) \
+	LB_WAY(id, 131, y, 105, 24, wayDvar, response, LB_NORMAL_RGB, SR_LB_SHOWN(wayDvar))
+
+// Secret ways carry on right after however many normal ways the map has.
+#define SR_LB_SECRET(id, i, wayDvar, response) \
+	LB_WAY_AT(id, 131, (72 + (26 * (LB_NORMAL_COUNT + i))), 105, 24, wayDvar, response, LB_SECRET_RGB, \
+		SR_LB_SHOWN(wayDvar))
+
+#define SR_LB_STRIPE(y) \
+	LB_FILL(250, y, 380, 14.4, 1 1 1 0.04)
 
 {
 	menuDef
 	{
 		SR_WINDOW("sr_leaderboard")
 
-		focusColor	COLOR_FOCUSED
+		focusColor		COLOR_FOCUSED
 
 		onOpen
 		{
+			setLocalVarInt ui_lb_hover 0;
 			scriptMenuResponse "open";
 		}
 
@@ -70,73 +41,46 @@
 			close self;
 		}
 
-		SR_FRAME_HEADER("Leaderboards", 0, 0, SR_WINDOW_W, HEADER_HALF, 0)
-		SR_FRAME_HEADER(dvarString("leaderboard_name"), 0, HEADER_HALF, SR_WINDOW_W, HEADER_HALF, 0)
+		LB_TEXT(14, 0, 120, 40, "Leaderboards", 0.38, ITEM_ALIGN_MIDDLE_LEFT, 1 1 1 1)
+		LB_TEXT(140, 0, 330, 40, dvarString("leaderboard_name"), 0.32, ITEM_ALIGN_MIDDLE_LEFT, 0 1 1 1)
 
-		ENTRIES(0, 0, 0)
-		ENTRIES(1, 0, 144)
+		LB_COLUMN(10, 48, 113, 356, "Modes")
+		SR_LB_MODE(1, 72, "190", "mode:190", "190 ^7")
+		SR_LB_MODE(2, 98, "210", "mode:210", "210 ^7")
+		SR_LB_MODE(3, 124, "Q3", "mode:Q3", "Q3 ^7")
+		SR_LB_MODE(4, 150, "Q3CPM", "mode:Q3CPM", "Q3CPM ^7")
+		SR_LB_MODE(5, 176, "Q3CPMW", "mode:Q3CPMW", "Q3CPMW ^7")
+		SR_LB_MODE(6, 202, "CS", "mode:CS", "CS ^7")
+		SR_LB_MODE(7, 228, "Portal", "mode:Portal", "Portal ^7")
 
-		ENTRIES(2, 210, 0)
-		ENTRIES(3, 210, 144)
+		LB_COLUMN(127, 48, 113, 356, "Ways")
+		SR_LB_NORMAL(11, 72, "normal_0", "way:normal_0")
+		SR_LB_NORMAL(12, 98, "normal_1", "way:normal_1")
+		SR_LB_NORMAL(13, 124, "normal_2", "way:normal_2")
+		SR_LB_NORMAL(14, 150, "normal_3", "way:normal_3")
+		SR_LB_NORMAL(15, 176, "normal_4", "way:normal_4")
+		SR_LB_NORMAL(16, 202, "normal_5", "way:normal_5")
+		SR_LB_SECRET(21, 0, "secret_0", "way:secret_0")
+		SR_LB_SECRET(22, 1, "secret_1", "way:secret_1")
+		SR_LB_SECRET(23, 2, "secret_2", "way:secret_2")
+		SR_LB_SECRET(24, 3, "secret_3", "way:secret_3")
+		SR_LB_SECRET(25, 4, "secret_4", "way:secret_4")
+		SR_LB_SECRET(26, 5, "secret_5", "way:secret_5")
 
-		#undef LAYOUT_Y_START
-		#define LAYOUT_Y_START		60
+		// The forty times in one panel, a stripe on every other row.
+		LB_FILL(250, 48, 380, 312, 0 0 0 0.3)
+		SR_LB_STRIPE(74.4)
+		SR_LB_STRIPE(103.2)
+		SR_LB_STRIPE(132)
+		SR_LB_STRIPE(160.8)
+		SR_LB_STRIPE(189.6)
+		SR_LB_STRIPE(218.4)
+		SR_LB_STRIPE(247.2)
+		SR_LB_STRIPE(276)
+		SR_LB_STRIPE(304.8)
+		SR_LB_STRIPE(333.6)
+		LB_TIMES(250, 440, 8, 34, 132, 71.52, 0.3)
 
-		#undef LAYOUT_X_START
-		#define LAYOUT_X_START		440
-
-		#undef LAYOUT_NAME
-		#define LAYOUT_NAME			"ways"
-
-		NORMAL(1, 0, "way:normal_0");
-		NORMAL(2, 1, "way:normal_1");
-		NORMAL(3, 2, "way:normal_2");
-		NORMAL(4, 3, "way:normal_3");
-		NORMAL(5, 4, "way:normal_4");
-		NORMAL(6, 5, "way:normal_5");
-
-		#undef LAYOUT_Y_START
-		#define LAYOUT_Y_START		65
-
-		SECRET(7, 0, "way:secret_0");
-		SECRET(8, 1, "way:secret_1");
-		SECRET(9, 2, "way:secret_2");
-		SECRET(10, 3, "way:secret_3");
-		SECRET(11, 4, "way:secret_4");
-		SECRET(12, 5, "way:secret_5");
-
-		#undef LAYOUT_NAME
-		#define LAYOUT_NAME			"mode"
-
-		#undef LAYOUT_X_START
-		#define LAYOUT_X_START		20
-
-		#undef LAYOUT_Y_START
-		#define LAYOUT_Y_START		(BOTTOM_Y + 5)
-
-		#undef LAYOUT_Y_COUNT
-		#define LAYOUT_Y_COUNT 		1
-
-		#undef LAYOUT_X_SPACING
-		#define LAYOUT_X_SPACING	61
-
-		#undef LAYOUT_SIZE_X
-		#define LAYOUT_SIZE_X		60
-
-		#undef BUTTON_SIZE_X
-		#define BUTTON_SIZE_X		60
-
-		SR_FRAME_HEADER("", 0, BOTTOM_Y, SR_WINDOW_W, FOOTER_H, 0)
-		SR_FRAME_BORDER(0, BOTTOM_Y, SR_WINDOW_W, 2)
-
-		BUTTON(1, "190", scriptMenuResponse "mode:190";)
-		BUTTON(2, "210", scriptMenuResponse "mode:210";)
-		BUTTON(3, "Q3", scriptMenuResponse "mode:Q3";)
-		BUTTON(4, "Q3CPM", scriptMenuResponse "mode:Q3CPM";)
-		BUTTON(5, "Q3CPMW", scriptMenuResponse "mode:Q3CPMW";)
-		BUTTON(6, "CS", scriptMenuResponse "mode:CS";)
-		BUTTON(7, "Portal", scriptMenuResponse "mode:Portal";)
-
-		BUTTON(10, "Demo", scriptMenuResponse "demo";)
+		LB_DEMO(8, 250, 368, 380, 32, "Watch World Record")
 	}
 }

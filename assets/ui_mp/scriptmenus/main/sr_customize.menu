@@ -1,52 +1,140 @@
-#define LAYOUT_NAME				"customize"
-#define LAYOUT_X_START 			25
-#define LAYOUT_Y_START 			40
-#define SR_HEADER_TEXTALIGN 	ITEM_ALIGN_MIDDLE_CENTER
-#define SR_HEADER_OFFSET_X		0
-
 #include "ui/components/base.inc"
 
-#define ITEM(id, script) \
-	SR_BUTTON_LEFT(id, dvarString("sr_customize_" + (id - 1)), scriptMenuResponse script;, when(dvarString("sr_customize_" + (id - 1)) != ""))
+#define CUS_WHITE				1 1 1 1
+#define CUS_MUTED				0.85 0.85 0.85 1
+#define CUS_PURPLE				0.5 0.1 1 1
+#define CUS_CYAN				0 1 1 1
+#define CUS_HOVER(pid)			(localVarInt(ui_customize_hover) == pid)
+
+// The category page takes the accent of the group its category belongs to.
+#define CUS_IS_PLAYER \
+	(dvarString("sr_customize_name") == "Characters" || dvarString("sr_customize_name") == "Sprays" || \
+	dvarString("sr_customize_name") == "FX")
+
+#define CUS_FILL(px, py, pw, ph, pcolor, pvisible) \
+	itemDef \
+	{ \
+		rect			px py pw ph SR_ALIGN_TOP_SUBLEFT \
+		style			WINDOW_STYLE_FILLED \
+		backcolor		pcolor \
+		visible			pvisible \
+		decoration \
+	}
+
+#define CUS_TEXT(px, py, pw, ph, ptext, pscale, palign, pcolor, pvisible) \
+	itemDef \
+	{ \
+		rect			px py pw ph SR_ALIGN_TOP_SUBLEFT \
+		type			ITEM_TYPE_TEXT \
+		ptext \
+		textfont		UI_FONT_NORMAL \
+		textscale		pscale \
+		textstyle		ITEM_TEXTSTYLE_SHADOWED \
+		textalign		palign \
+		forecolor		pcolor \
+		visible			pvisible \
+		decoration \
+	}
+
+// The clickable part, pid lights the hover fill drawn under it.
+#define CUS_HIT(pid, px, py, pw, ph, ptext, pscale, palign, palignx, paction, pvisible) \
+	itemDef \
+	{ \
+		type			ITEM_TYPE_BUTTON \
+		rect			px py pw ph SR_ALIGN_TOP_SUBLEFT \
+		ptext \
+		textfont		UI_FONT_NORMAL \
+		textscale		pscale \
+		textstyle		ITEM_TEXTSTYLE_SHADOWED \
+		textalign		palign \
+		textalignx		palignx \
+		forecolor		1 1 1 1 \
+		visible			pvisible \
+		onFocus \
+		{ \
+			play "mouse_over"; \
+			setLocalVarInt ui_customize_hover pid; \
+		} \
+		leaveFocus \
+		{ \
+			setLocalVarInt ui_customize_hover 0; \
+		} \
+		action \
+		{ \
+			play "mouse_click"; \
+			paction \
+		} \
+	}
+
+// Frame shared by both pages: a 200 wide sidebar on the left edge with a header. It stays left because the
+// GSC places the 3D preview right of centre.
+#define CUS_SIDEBAR \
+	CUS_FILL(0, 0, 200, 482, SR_WINDOW_BACKCOLOR, 1) \
+	CUS_FILL(0, 0, 200, 58, 0 0 0 0.5, 1) \
+	CUS_FILL(0, 58, 200, 2, CUS_PURPLE, 1)
+
+#define CUS_CATEGORY(pid, py, pnum, plabel, presponse, pcolor) \
+	CUS_FILL(10, py, 180, 32, 1 1 1 0.1, when(CUS_HOVER(pid))) \
+	CUS_FILL(10, py, 2, 32, pcolor, 1) \
+	CUS_TEXT(18, py, 24, 32, text pnum, 0.26, ITEM_ALIGN_MIDDLE_LEFT, CUS_MUTED, 1) \
+	CUS_TEXT(170, py, 16, 32, text ">", 0.26, ITEM_ALIGN_MIDDLE_CENTER, CUS_WHITE, when(CUS_HOVER(pid))) \
+	CUS_HIT(pid, 10, py, 180, 32, text plabel, 0.3, ITEM_ALIGN_MIDDLE_LEFT, 36, scriptMenuResponse presponse;, 1)
+
+#define CUS_ITEM(pid, py, pdvar, presponse) \
+	CUS_FILL(10, py, 180, 22, 1 1 1 0.1, when(CUS_HOVER(pid))) \
+	CUS_FILL(10, py, 2, 22, CUS_PURPLE, when(dvarString(pdvar) != "" && !CUS_IS_PLAYER)) \
+	CUS_FILL(10, py, 2, 22, CUS_CYAN, when(dvarString(pdvar) != "" && CUS_IS_PLAYER)) \
+	CUS_HIT(pid, 10, py, 180, 22, exp text(dvarString(pdvar)), 0.28, ITEM_ALIGN_MIDDLE_LEFT, 12, scriptMenuResponse presponse;, when(dvarString(pdvar) != ""))
+
+#define CUS_STRIPE(py, pdvar) \
+	CUS_FILL(10, py, 180, 22, 1 1 1 0.04, when(dvarString(pdvar) != ""))
+
+#define CUS_PAGE(pid, px, plabel, presponse) \
+	CUS_FILL(px, 432, 40, 24, 0 0 0 0.45, 1) \
+	CUS_FILL(px, 432, 40, 24, 1 1 1 0.1, when(CUS_HOVER(pid))) \
+	CUS_HIT(pid, px, 432, 40, 24, text plabel, 0.3, ITEM_ALIGN_MIDDLE_CENTER, 0, scriptMenuResponse presponse;, 1)
 
 {
 	menuDef
 	{
 		name			"sr_customize"
 		rect			0 0 200 482 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
-		focuscolor		COLOR_FOCUSED
-		style			WINDOW_STYLE_FILLED
-		backcolor		0 0 0 0.4
-		border			6
-		bordersize		1
-		bordercolor		0.5 0.1 1 1
+		focusColor		1 1 1 1
+
+		onClose
+		{
+			setLocalVarInt ui_customize_hover 0;
+		}
 
 		onEsc
 		{
 			close self;
 		}
 
-		SR_FRAME_HEADER("Customize", 0, 0, 198, 25, 0)
+		CUS_SIDEBAR
+		CUS_TEXT(16, 8, 176, 28, text "Customize", 0.42, ITEM_ALIGN_MIDDLE_LEFT, CUS_WHITE, 1)
+		CUS_TEXT(16, 34, 176, 16, text "Pick a category to edit", 0.2, ITEM_ALIGN_MIDDLE_LEFT, CUS_MUTED, 1)
 
-		SR_BUTTON_LEFT(1, "^8Weapons", scriptMenuResponse "weapon";, 1)
-		SR_BUTTON_LEFT(2, "^8Characters", scriptMenuResponse "character";, 1)
-		SR_BUTTON_LEFT(3, "^8Sprays", scriptMenuResponse "spray";, 1)
-		SR_BUTTON_LEFT(4, "^8Knifes", scriptMenuResponse "knife";, 1)
-		SR_BUTTON_LEFT(5, "^8Knife Skins", scriptMenuResponse "knife_skin";, 1)
-		SR_BUTTON_LEFT(6, "^8Gloves", scriptMenuResponse "glove";, 1)
-		SR_BUTTON_LEFT(7, "^8Effects", scriptMenuResponse "fx";, 1)
+		// One list, rows 32 apart, stripes on the even rows.
+		CUS_FILL(10, 70, 180, 224, 0 0 0 0.35, 1)
+		CUS_FILL(10, 102, 180, 32, 1 1 1 0.04, 1)
+		CUS_FILL(10, 166, 180, 32, 1 1 1 0.04, 1)
+		CUS_FILL(10, 230, 180, 32, 1 1 1 0.04, 1)
+
+		CUS_CATEGORY(1, 70, "01", "Weapons", "weapon", CUS_PURPLE)
+		CUS_CATEGORY(2, 102, "02", "Knifes", "knife", CUS_PURPLE)
+		CUS_CATEGORY(3, 134, "03", "Knife Skins", "knife_skin", CUS_PURPLE)
+		CUS_CATEGORY(4, 166, "04", "Gloves", "glove", CUS_PURPLE)
+		CUS_CATEGORY(5, 198, "05", "Characters", "character", CUS_CYAN)
+		CUS_CATEGORY(6, 230, "06", "Sprays", "spray", CUS_CYAN)
+		CUS_CATEGORY(7, 262, "07", "Effects", "fx", CUS_CYAN)
 	}
 
 	menuDef
 	{
 		name			"sr_customize_category"
 		rect			0 0 200 482 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
-		focuscolor		COLOR_FOCUSED
-		style			WINDOW_STYLE_FILLED
-		backcolor		0 0 0 0.4
-		border			6
-		bordersize		1
-		bordercolor		0.5 0.1 1 1
+		focusColor		1 1 1 1
 
 		onOpen
 		{
@@ -56,6 +144,7 @@
 
 		onClose
 		{
+			setLocalVarInt ui_customize_hover 0;
 			open sr_customize;
 			scriptMenuResponse "close";
 		}
@@ -65,85 +154,43 @@
 			close self;
 		}
 
-		SR_FRAME_HEADER("^8" + dvarString("sr_customize_name"), 0, 0, 198, 25, 0)
+		CUS_SIDEBAR
+		CUS_TEXT(16, 8, 176, 28, exp text(dvarString("sr_customize_name")), 0.42, ITEM_ALIGN_MIDDLE_LEFT, CUS_WHITE, 1)
+		CUS_FILL(16, 38, 2, 10, CUS_PURPLE, when(!CUS_IS_PLAYER))
+		CUS_FILL(16, 38, 2, 10, CUS_CYAN, when(CUS_IS_PLAYER))
+		CUS_TEXT(22, 34, 170, 16, text "LOADOUT", 0.2, ITEM_ALIGN_MIDDLE_LEFT, CUS_MUTED, when(!CUS_IS_PLAYER))
+		CUS_TEXT(22, 34, 170, 16, text "PLAYER", 0.2, ITEM_ALIGN_MIDDLE_LEFT, CUS_MUTED, when(CUS_IS_PLAYER))
 
-		ITEM(1, "pick:0")
-		ITEM(2, "pick:1")
-		ITEM(3, "pick:2")
-		ITEM(4, "pick:3")
-		ITEM(5, "pick:4")
-		ITEM(6, "pick:5")
-		ITEM(7, "pick:6")
-		ITEM(8, "pick:7")
-		ITEM(9, "pick:8")
-		ITEM(10, "pick:9")
-		ITEM(11, "pick:10")
-		ITEM(12, "pick:11")
-		ITEM(13, "pick:12")
-		ITEM(14, "pick:13")
-		ITEM(15, "pick:14")
-		ITEM(16, "pick:15")
+		// One list of the page's sixteen slots, rows 22 apart, stripes on the even rows.
+		CUS_FILL(10, 70, 180, 352, 0 0 0 0.35, 1)
+		CUS_STRIPE(92, "sr_customize_1")
+		CUS_STRIPE(136, "sr_customize_3")
+		CUS_STRIPE(180, "sr_customize_5")
+		CUS_STRIPE(224, "sr_customize_7")
+		CUS_STRIPE(268, "sr_customize_9")
+		CUS_STRIPE(312, "sr_customize_11")
+		CUS_STRIPE(356, "sr_customize_13")
+		CUS_STRIPE(400, "sr_customize_15")
 
-		itemdef
-		{
-			name			"prev"
-			rect			35 440 30 30 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
-			style			WINDOW_STYLE_FILLED
-			text			"<"
-			textalign		ITEM_ALIGN_CENTER
-			textalignx		0
-			textaligny		26
-			type			ITEM_TYPE_BUTTON
-			textstyle		ITEM_TEXTSTYLE_SHADOWED
-			visible			1
+		CUS_ITEM(1, 70, "sr_customize_0", "pick:0")
+		CUS_ITEM(2, 92, "sr_customize_1", "pick:1")
+		CUS_ITEM(3, 114, "sr_customize_2", "pick:2")
+		CUS_ITEM(4, 136, "sr_customize_3", "pick:3")
+		CUS_ITEM(5, 158, "sr_customize_4", "pick:4")
+		CUS_ITEM(6, 180, "sr_customize_5", "pick:5")
+		CUS_ITEM(7, 202, "sr_customize_6", "pick:6")
+		CUS_ITEM(8, 224, "sr_customize_7", "pick:7")
+		CUS_ITEM(9, 246, "sr_customize_8", "pick:8")
+		CUS_ITEM(10, 268, "sr_customize_9", "pick:9")
+		CUS_ITEM(11, 290, "sr_customize_10", "pick:10")
+		CUS_ITEM(12, 312, "sr_customize_11", "pick:11")
+		CUS_ITEM(13, 334, "sr_customize_12", "pick:12")
+		CUS_ITEM(14, 356, "sr_customize_13", "pick:13")
+		CUS_ITEM(15, 378, "sr_customize_14", "pick:14")
+		CUS_ITEM(16, 400, "sr_customize_15", "pick:15")
 
-			mouseEnter
-			{
-				play "mouse_over";
-			}
-
-			action
-			{
-				play "mouse_click";
-				scriptMenuResponse "prev";
-			}
-		}
-
-		itemdef
-		{
-			name			"next"
-			rect			135 440 30 30 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
-			style			WINDOW_STYLE_FILLED
-			text			">"
-			textalign		ITEM_ALIGN_CENTER
-			textalignx		0
-			textaligny		26
-			type			ITEM_TYPE_BUTTON
-			textstyle		ITEM_TEXTSTYLE_SHADOWED
-			visible			1
-
-			mouseEnter
-			{
-				play "mouse_over";
-			}
-
-			action
-			{
-				play "mouse_click";
-				scriptMenuResponse "next";
-			}
-		}
-
-		itemdef
-		{
-			name			"page"
-			rect			85 468 30 30 HORIZONTAL_ALIGN_LEFT VERTICAL_ALIGN_TOP
-			style			WINDOW_STYLE_EMPTY
-			textstyle		ITEM_TEXTSTYLE_SHADOWED
-			textalign		ITEM_ALIGN_CENTER
-			exp				text("^8" + dvarString("sr_customize_page"))
-			visible			1
-			decoration
-		}
+		CUS_PAGE(21, 14, "<", "prev")
+		CUS_TEXT(58, 432, 84, 24, exp text("Page " + dvarString("sr_customize_page")), 0.24, ITEM_ALIGN_MIDDLE_CENTER, CUS_MUTED, 1)
+		CUS_PAGE(22, 146, ">", "next")
 	}
 }

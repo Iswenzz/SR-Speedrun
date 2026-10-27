@@ -45,6 +45,10 @@
 		BUTTON_BIND(6, "@MENU_TEAM_CHAT", "chatmodeteam", ;)
 		BUTTON_BIND(7, "@MENU_QUICK_CHAT", "mp_QuickMessage", ;)
 
+		BUTTON_BIND(9, "Practise Save", "openscriptmenu cj save", ;)
+		BUTTON_BIND(10, "Practise Load", "openscriptmenu cj load", ;)
+		BUTTON_BIND(11, "Practise Rewind", "openscriptmenu cj rewind", ;)
+
 		BUTTON_BIND(16, "3rd Person", "openscriptmenu quickstuff 3rdperson", ;)
 		BUTTON_BIND(17, "Suicide", "openscriptmenu quickstuff suicide", ;)
 
