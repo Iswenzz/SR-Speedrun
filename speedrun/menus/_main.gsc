@@ -77,6 +77,8 @@ menu_TAS(arg)
 {
 	if (sr\sys\_admins::isTAS())
 		return;
+	if (!self sr\sys\_admins::isAuth())
+		return self sr\sys\_admins::printLinkRequired();
 
 	self cheat();
 	self.cheating = true;

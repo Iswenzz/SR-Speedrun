@@ -10,7 +10,7 @@ onConnect()
 {
     self.pbs = [];
 
-    if (self isBot())
+    if (self isBot() || !self sr\sys\_admins::isAuth())
 	{
 		self setLoading("pbs", false);
 		self speedrun\huds\_speedrun::updateRecords();
