@@ -631,8 +631,6 @@ mp_smb1_spiral_hard
 mp_smb1_stamina_master
 mp_smb1_steps
 mp_smb1_swing_bar
-mp_smb1_swing_bar_long
-mp_smb1_twist_and_spin
 mp_smb1_walking
 mp_smb1_wave_master
 mp_smb1_wavy_jump
@@ -653,11 +651,9 @@ mp_smb2_curvy_options
 mp_smb2_detour
 mp_smb2_disorder
 mp_smb2_domes
-mp_smb2_double_spiral
 mp_smb2_flat_maze
 mp_smb2_freefall
 mp_smb2_giant_comb
-mp_smb2_gimmick
 mp_smb2_guillotine
 mp_smb2_helix
 mp_smb2_hoppers
@@ -668,7 +664,6 @@ mp_smb2_opera
 mp_smb2_planets
 mp_smb2_postmodern
 mp_smb2_randomizer
-mp_smb2_revolution
 mp_smb2_ring_bridges
 mp_smb2_seesaw_bridges
 mp_smb2_sieve
