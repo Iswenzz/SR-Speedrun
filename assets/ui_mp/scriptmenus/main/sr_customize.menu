@@ -6,10 +6,14 @@
 #define CUS_CYAN				0 1 1 1
 #define CUS_HOVER(pid)			(localVarInt(ui_customize_hover) == pid)
 
-// The category page takes the accent of the group its category belongs to.
+// The category page takes the accent of the group its category belongs to. Spelled out both ways: the menu
+// parser puts a ! in front of parentheses on the first operand inside them, here a string.
 #define CUS_IS_PLAYER \
 	(dvarString("sr_customize_name") == "Characters" || dvarString("sr_customize_name") == "Sprays" || \
 	dvarString("sr_customize_name") == "FX")
+#define CUS_IS_LOADOUT \
+	(dvarString("sr_customize_name") != "Characters" && dvarString("sr_customize_name") != "Sprays" && \
+	dvarString("sr_customize_name") != "FX")
 
 #define CUS_FILL(px, py, pw, ph, pcolor, pvisible) \
 	itemDef \
@@ -82,7 +86,7 @@
 
 #define CUS_ITEM(pid, py, pdvar, presponse) \
 	CUS_FILL(10, py, 180, 22, 1 1 1 0.1, when(CUS_HOVER(pid))) \
-	CUS_FILL(10, py, 2, 22, CUS_PURPLE, when(dvarString(pdvar) != "" && !CUS_IS_PLAYER)) \
+	CUS_FILL(10, py, 2, 22, CUS_PURPLE, when(dvarString(pdvar) != "" && CUS_IS_LOADOUT)) \
 	CUS_FILL(10, py, 2, 22, CUS_CYAN, when(dvarString(pdvar) != "" && CUS_IS_PLAYER)) \
 	CUS_HIT(pid, 10, py, 180, 22, exp text(dvarString(pdvar)), 0.28, ITEM_ALIGN_MIDDLE_LEFT, 12, scriptMenuResponse presponse;, when(dvarString(pdvar) != ""))
 
@@ -156,9 +160,9 @@
 
 		CUS_SIDEBAR
 		CUS_TEXT(16, 8, 176, 28, exp text(dvarString("sr_customize_name")), 0.42, ITEM_ALIGN_MIDDLE_LEFT, CUS_WHITE, 1)
-		CUS_FILL(16, 38, 2, 10, CUS_PURPLE, when(!CUS_IS_PLAYER))
+		CUS_FILL(16, 38, 2, 10, CUS_PURPLE, when(CUS_IS_LOADOUT))
 		CUS_FILL(16, 38, 2, 10, CUS_CYAN, when(CUS_IS_PLAYER))
-		CUS_TEXT(22, 34, 170, 16, text "LOADOUT", 0.2, ITEM_ALIGN_MIDDLE_LEFT, CUS_MUTED, when(!CUS_IS_PLAYER))
+		CUS_TEXT(22, 34, 170, 16, text "LOADOUT", 0.2, ITEM_ALIGN_MIDDLE_LEFT, CUS_MUTED, when(CUS_IS_LOADOUT))
 		CUS_TEXT(22, 34, 170, 16, text "PLAYER", 0.2, ITEM_ALIGN_MIDDLE_LEFT, CUS_MUTED, when(CUS_IS_PLAYER))
 
 		// One list of the page's sixteen slots, rows 22 apart, stripes on the even rows.
