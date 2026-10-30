@@ -152,6 +152,8 @@ start()
 					if (i == 0)
 						self setSpawnWeapon(weapon);
 				}
+				if (level.q3StartWeapons.size)
+					self sr\core\_q3::takeKnife();
 			}
 			break;
 
