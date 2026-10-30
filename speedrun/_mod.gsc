@@ -51,7 +51,6 @@ main()
 	sr\core\_time::main();
 	sr\core\_trigger::main();
 	sr\core\_vote::main();
-	sr\core\_weapons::main();
 	sr\fx\_shaders::main();
 	sr\fx\_spray::main();
 	sr\fx\_trail::main();

@@ -92,6 +92,8 @@ start()
 	if (self getStat(1700) != self getModeStat())
 		self setStat(1700, self getModeStat());
 
+	self setQ3Weapons(self.teamKill, false);
+
 	switch (self.sr_mode)
 	{
 		case "190":
@@ -132,7 +134,6 @@ start()
 
 			if (self isQ3W())
 			{
-				self.scriptedAmmo = 999999;
 				self takeAllWeapons();
 				self giveWeapon(level.q3Weapons["rl"]);
 				self giveWeapon(level.q3Weapons["pg"]);
@@ -146,11 +147,11 @@ start()
 					if (!isDefined(weapon))
 						continue;
 					self giveWeapon(weapon);
+					self setWeaponAmmoStock(weapon, 0);
+					self setWeaponAmmoClip(weapon, IfUndef(level.q3StartAmmo, 0));
 					if (i == 0)
 						self setSpawnWeapon(weapon);
 				}
-				if (level.q3StartWeapons.size)
-					self.scriptedAmmo = IfUndef(level.q3StartAmmo, 0);
 			}
 			break;
 
