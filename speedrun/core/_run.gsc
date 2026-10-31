@@ -195,8 +195,6 @@ getMode()
 		return self.sr_mode;
 	if (isDefined(self.sr_mode_force))
 		return self.sr_mode_force;
-	if (isSurf())
-		return "CS";
 	if (sr\core\_event::isEventStarted())
 		return "210";
 	if (self sr\core\_minigames::isInAnyQueue())

@@ -1,7 +1,6 @@
 #include common_scripts\utility;
 
 main() {
-	sr\api\_map::surf();
 	sr\api\_map::swapTargetname("trigger_endmap", "endmap_trig");
 	sr\api\_speedrun::createNormalWays("Normal Way;");
 	maps\mp\_load::main();
