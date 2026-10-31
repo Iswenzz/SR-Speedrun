@@ -1,8 +1,10 @@
 main()
 {
-	setExpFog(0, 2475.53, 0.58, 0.57, 0.57, 0);
+	setExpFog(0, 2475.5256, 0.5800, 0.5700, 0.5700, 0);
 
 	maps\mp\mp_cod2_downtown_fx::main();
+
+	thread iz_sounds();
 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
@@ -10,11 +12,16 @@ main()
 	game["defenders"] = "axis";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
-	
+
 	setDvar("bg_falldamagemaxheight", 2000000000 );
     setDvar("bg_falldamageminheight", 1500000000 );
 
 	thread sr\api\_map::createSpawn((2842, 1126, 61), 270);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createEndMap((952, -3476, 30), 100, 100);
+}
+
+iz_sounds()
+{
+	ambientPlay("iz_0_amb_russia01b", 2);
 }

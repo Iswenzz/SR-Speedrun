@@ -1,8 +1,10 @@
 main()
 {
-	setExpFog(0, 6931.47, 0.3, 0.31, 0.34, 0);
+	setExpFog(0, 6931.4722, 0.3000, 0.3100, 0.3400, 0);
 
 	maps\mp\mp_cod2_brecourt_fx::main();
+
+	thread iz_sounds();
 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
@@ -17,4 +19,9 @@ main()
 	thread sr\api\_map::createSpawn((-3704, 1514, 98), 0);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createEndMap((3633, -1780, 0), 150, 100);
+}
+
+iz_sounds()
+{
+	ambientPlay("iz_0_amb_france01b", 2);
 }

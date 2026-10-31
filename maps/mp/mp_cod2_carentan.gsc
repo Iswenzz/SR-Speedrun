@@ -1,8 +1,10 @@
 main()
 {
-	setExpFog(0, 6931.47, 0.55, 0.6, 0.55, 0);
+	setExpFog(0, 6931.4722, 0.5500, 0.6000, 0.5500, 0);
 
 	maps\mp\mp_cod2_carentan_fx::main();
+
+	thread iz_sounds();
 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
@@ -17,4 +19,9 @@ main()
 	thread sr\api\_map::createSpawn((372, -854, 93), 90);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createEndMap((935, 3805, 0), 100, 100);
+}
+
+iz_sounds()
+{
+	ambientPlay("iz_0_amb_france01b", 2);
 }

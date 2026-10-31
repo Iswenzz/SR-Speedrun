@@ -1,8 +1,10 @@
 main()
 {
-	setExpFog(0, 2772.59, 0.32, 0.36, 0.4, 0);
+	setExpFog(0, 2772.5886, 0.3200, 0.3600, 0.4000, 0);
 
 	maps\mp\mp_cod2_dawnville_fx::main();
+
+	thread iz_sounds();
 
 	game["allies"] = "marines";
 	game["axis"] = "opfor";
@@ -17,4 +19,29 @@ main()
 	thread sr\api\_map::createSpawn((-1378, -18185, 119), 45);
 	thread sr\api\_speedrun::createNormalWays("Normal Way;");
 	thread sr\api\_speedrun::createEndMap((1966, -14922, -20), 120, 100);
+}
+
+iz_sounds()
+{
+	ambientPlay("iz_1_amb_france01b", 2);
+	iz_emitter("iz_0_fire_med_loop02", (785, -17095, 82), 0);
+	iz_emitter("iz_0_fire_med_loop02", (658, -16335, 17), 0);
+}
+
+iz_emitter(alias, origin, interval)
+{
+	ent = spawn("script_origin", origin);
+	if (interval <= 0)
+		ent playLoopSound(alias);
+	else
+		ent thread iz_emitter_random(alias, interval);
+}
+
+iz_emitter_random(alias, interval)
+{
+	for (;;)
+	{
+		wait(randomFloatRange(interval * 0.25, interval));
+		self playSound(alias);
+	}
 }
