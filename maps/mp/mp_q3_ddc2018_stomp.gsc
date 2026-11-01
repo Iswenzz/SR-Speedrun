@@ -10,6 +10,11 @@ main()
 	game["defenders"] = "axis";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
+
+	thread sr\api\_speedrun::createModeSpawn("210", (5826.0, 284.4, -408.0), -179); // mp_q3_ddc2018_stomp
+	thread sr\api\_speedrun::createModeEndMap("210", (2647.0, 64.0, -526.8), 120, 80); // mp_q3_ddc2018_stomp
+	thread sr\api\_speedrun::createModeSpawn("190", (-305.9, -17974.3, -3459.9), 89); // mp_q3_ddc2018_stomp
+	thread sr\api\_speedrun::createModeEndMap("190", (-290.2, -6556.0, -3519.9), 120, 80); // mp_q3_ddc2018_stomp
 }
 
 iz_sounds()

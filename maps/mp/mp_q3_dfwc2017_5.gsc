@@ -8,6 +8,8 @@ main()
 	game["defenders"] = "axis";
 	game["allies_soldiertype"] = "desert";
 	game["axis_soldiertype"] = "desert";
+
+	thread sr\api\_speedrun::createModeSpawn("COD4", (-5972.5, 1053.7, -67.6), 0);
 }
 
 iz_sounds()
