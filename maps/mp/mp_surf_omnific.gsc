@@ -50,6 +50,9 @@ main()
 	thread sr\api\_speedrun::createEndMapFromEntity("ending_core_tele_dest", "target", 0, "secret_2");
 	thread sr\api\_speedrun::createEndMapFromEntity("ending_core_tele_dest", "target", 1, "secret_2");
 
+	thread sr\api\_speedrun::createModeSpawn("COD4", (1.5, -2745.8, 4026.1), 89); // mp_surf_omnific
+	thread sr\api\_speedrun::createModeEndMap("COD4", (6.8, 3190.4, 3966.2), 120, 80); // mp_surf_omnific
+
 	// FX ++
 	level.spawn_geotrail_fx						= loadFx( "trails/fx_trail_pink" );
 	level.trail_gloaming_mm						= loadFx( "trails/fx_trail_pink" );
