@@ -130,6 +130,9 @@ resumeTime(elapsed)
 
 updateWay()
 {
+	// The way switch in sr\api calls nothing else.
+	self speedrun\core\_ghost::wayChanged();
+
 	if (!isHud("name") || self isDemo())
 		return;
 

@@ -25,6 +25,7 @@ practiseLoad(save)
 	self.time = originToTime(getTime() - save.time);
 	self timerHistory(self.time.origin);
 	self speedrun\huds\_speedrun::resumeTime(save.time);
+	self speedrun\core\_ghost::start(save.time);
 }
 
 // A rewind puts the timer back to what it read at the frame it lands on.
@@ -45,6 +46,7 @@ practiseRewind(rewind)
 	self.time = originToTime(getTime() - elapsed);
 	self timerHistory(self.time.origin);
 	self speedrun\huds\_speedrun::resumeTime(elapsed);
+	self speedrun\core\_ghost::start(elapsed);
 }
 
 // Every start the timer takes since the spawn, undefined once finished, so a rewind can find the one in
@@ -263,6 +265,7 @@ playerTimer()
 	self speedrun\huds\_speedrun::updateTime();
 	self.time = originToTime(getTime());
 	self timerHistory(self.time.origin);
+	self speedrun\core\_ghost::start();
 }
 
 endTimer()
@@ -274,6 +277,7 @@ endTimer()
 	self.time = originToTime(getTime() - self.time.origin);
 	self timerHistory(undefined);
 	self speedrun\huds\_speedrun::updateTime();
+	self speedrun\core\_ghost::finish(self.time.origin);
 
 	if (!self sr\sys\_admins::isAuth())
 	{

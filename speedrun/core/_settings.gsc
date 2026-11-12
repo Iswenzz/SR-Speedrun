@@ -27,6 +27,7 @@ main()
 	settings(19, "player_proximity", "Voice proximity", 1623, true, ::update_playerProximity, ::toggle_playerProximity);
 	settings(20, "player_radio", "Radio", 1622, true, ::update_playerRadio, ::toggle_playerRadio);
 	settings(24, "player_help_menus", "Help Menus", 1627, true, ::update_playerHelpMenus, ::toggle_playerHelpMenus);
+	settings(25, "player_ghost", "WR Ghost", 1628, false, ::update_playerGhost, ::toggle_playerGhost);
 	settings(6,  "gfx_fov", "FOV Scale", 2630, 1000, ::update_gfxFOV, ::toggle_gfxFOV);
 	settings(2,  "gfx_fullbright", "Fullbright", 1602, false, ::update_gfxFullbright, ::toggle_gfxFullbright);
 	settings(5,  "gfx_distance", "Draw Distance", 1603, 0, ::update_gfxDistance, ::toggle_gfxDistance);
@@ -141,6 +142,12 @@ update_playerRadio(setting)
 update_playerHelpMenus(setting)
 {
 	value = self.settings["player_help_menus"];
+	self updateHud(setting.index, value);
+}
+
+update_playerGhost(setting)
+{
+	value = self.settings["player_ghost"];
 	self updateHud(setting.index, value);
 }
 
@@ -302,6 +309,12 @@ toggle_playerRadio(setting)
 toggle_playerHelpMenus(setting)
 {
 	self.settings["player_help_menus"] = !self.settings["player_help_menus"];
+}
+
+toggle_playerGhost(setting)
+{
+	self.settings["player_ghost"] = !self.settings["player_ghost"];
+	self speedrun\core\_ghost::refresh();
 }
 
 toggle_gfxDistance(setting)

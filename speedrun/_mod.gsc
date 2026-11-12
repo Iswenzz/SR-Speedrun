@@ -77,6 +77,7 @@ main()
 	speedrun\commands\_leaderboard::main();
 	speedrun\commands\_speedrun::main();
 	speedrun\core\_demo::main();
+	speedrun\core\_ghost::main();
 	speedrun\core\_leaderboards::main();
 	speedrun\core\_map::main();
 	speedrun\core\_match::main();
