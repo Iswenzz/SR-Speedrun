@@ -1,5 +1,8 @@
 main()
 {
+	setDvar("bg_falldamagemaxheight", 2000000000);
+	setDvar("bg_falldamageminheight", 1500000000);
+
 	sr\api\_q3::setWeapons("pg");
 	sr\api\_q3::setAmmo(200);
 

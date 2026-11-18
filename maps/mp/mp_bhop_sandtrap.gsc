@@ -1,5 +1,8 @@
 main()
 {
+	setDvar("bg_falldamagemaxheight", 2000000000);
+	setDvar("bg_falldamageminheight", 1500000000);
+
 	setExpFog(3000, 12166.6660, 0.6824, 0.8431, 1, 0);
 
 	game["allies"] = "marines";

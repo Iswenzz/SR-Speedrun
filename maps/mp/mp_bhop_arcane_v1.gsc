@@ -1,5 +1,8 @@
 main()
 {
+	setDvar("bg_falldamagemaxheight", 2000000000);
+	setDvar("bg_falldamageminheight", 1500000000);
+
 	visionSetNaked("mp_bhop_arcane_v1", 0);
 
 	setExpFog(1000, 5583.3330, 0.6275, 0.6667, 0.6863, 0);

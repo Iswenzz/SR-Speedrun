@@ -24,6 +24,9 @@
 
 main()
 {
+	setDvar("bg_falldamagemaxheight", 2000000000);
+	setDvar("bg_falldamageminheight", 1500000000);
+
 
 	thread sr\api\_map::createSpawn((9551, 15823, 7964), 0);
 	thread sr\api\_map::swapTargetname("trigger_endmap", "endmap_trig");

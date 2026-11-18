@@ -1,5 +1,8 @@
 main()
 {
+	setDvar("bg_falldamagemaxheight", 2000000000);
+	setDvar("bg_falldamageminheight", 1500000000);
+
 	thread iz_sounds();
 
 	game["allies"] = "marines";

@@ -1,5 +1,8 @@
 main()
 {
+	setDvar("bg_falldamagemaxheight", 2000000000);
+	setDvar("bg_falldamageminheight", 1500000000);
+
 	visionSetNaked("mp_bhop_teti", 0);
 
 	game["allies"] = "marines";

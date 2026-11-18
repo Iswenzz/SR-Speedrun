@@ -1,5 +1,8 @@
 main()
 {
+	setDvar("bg_falldamagemaxheight", 2000000000);
+	setDvar("bg_falldamageminheight", 1500000000);
+
 	visionSetNaked("mp_surf_whiteout", 0);
 
 	setExpFog(1000, 4750, 0.9843, 0.8431, 0.6353, 0);

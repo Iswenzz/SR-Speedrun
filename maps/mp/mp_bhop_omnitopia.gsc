@@ -1,5 +1,8 @@
 main()
 {
+	setDvar("bg_falldamagemaxheight", 2000000000);
+	setDvar("bg_falldamageminheight", 1500000000);
+
 	visionSetNaked("mp_bhop_omnitopia", 0);
 
 	thread iz_triggers();
