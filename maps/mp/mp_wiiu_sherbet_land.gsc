@@ -1,0 +1,2877 @@
+main()
+{
+	setDvar("bg_falldamagemaxheight", 2000000000);
+	setDvar("bg_falldamageminheight", 1500000000);
+
+	visionSetNaked("mp_wiiu_sherbet_land", 0);
+
+	level.iz_cue = [];
+	level.iz_cue["iz_cue_boost"] = true;
+	level.iz_cue["iz_cue_bounce"] = true;
+	level.iz_cue["iz_cue_cannon"] = true;
+	level.iz_cue["iz_cue_finish"] = true;
+	level.iz_cue["iz_cue_item"] = true;
+	level.iz_cue["iz_cue_jump"] = true;
+	thread iz_sounds();
+
+	thread iz_course();
+	thread sr\api\_speedrun::createNormalWays("Normal Way;");
+
+	thread iz_anims();
+
+	game["allies"] = "marines";
+	game["axis"] = "opfor";
+	game["attackers"] = "allies";
+	game["defenders"] = "axis";
+	game["allies_soldiertype"] = "desert";
+	game["axis_soldiertype"] = "desert";
+}
+
+iz_sounds()
+{
+	ambientPlay("iz_0_usl", 2);
+}
+
+iz_course()
+{
+	iz_course_route();
+	level.iz_course_gates = 0;
+	gates = getEntArray("iz_gate", "targetname");
+	for (i = 0; i < gates.size; i++)
+	{
+		gates[i].iz_order = int(gates[i].script_noteworthy);
+		if (gates[i].iz_order > level.iz_course_gates)
+			level.iz_course_gates = gates[i].iz_order;
+	}
+	iz_course_each("iz_gate", ::iz_course_gate);
+	iz_course_each("iz_finish", ::iz_course_finish);
+	iz_course_each("iz_boost", ::iz_course_boost);
+	iz_course_each("iz_cannon", ::iz_course_cannon);
+	iz_course_each("iz_jump", ::iz_course_jump);
+	iz_course_each("iz_fall", ::iz_course_fall);
+	iz_course_each("iz_itembox", ::iz_course_itembox);
+	gone = 0;
+	for (i = 0; gone < 16; i++)
+	{
+		mover = getEnt("iz_obj_" + i, "targetname");
+		if (!isDefined(mover))
+		{
+			gone++;
+			continue;
+		}
+		gone = 0;
+		mover notSolid();
+		if (isDefined(mover.radius))
+			mover thread iz_course_hazard();
+	}
+
+	for (;;)
+	{
+		level waittill("player_spawn", player);
+		player.iz_gate = 0;
+	}
+}
+
+// One of the course's own sounds from whoever makes it, no sooner than
+// rest milliseconds after they last made it.
+iz_course_cue(name, rest)
+{
+	alias = "iz_cue_" + name;
+	if (!isDefined(level.iz_cue) || !isDefined(level.iz_cue[alias]))
+		return;
+	if (rest > 0)
+	{
+		if (!isDefined(self.iz_cued))
+			self.iz_cued = [];
+		if (isDefined(self.iz_cued[name]) && getTime() - self.iz_cued[name] < rest)
+			return;
+		self.iz_cued[name] = getTime();
+	}
+	self playSound(alias);
+}
+
+iz_course_each(name, run)
+{
+	ents = getEntArray(name, "targetname");
+	for (i = 0; i < ents.size; i++)
+		ents[i] thread [[run]]();
+}
+
+iz_course_gate()
+{
+	for (;;)
+	{
+		self waittill("trigger", player);
+		if (isDefined(player.iz_gate) && player.iz_gate == self.iz_order - 1)
+			player.iz_gate = self.iz_order;
+	}
+}
+
+iz_course_finish()
+{
+	for (;;)
+	{
+		self waittill("trigger", player);
+		if (!isDefined(player.iz_gate) || player.iz_gate < level.iz_course_gates)
+			continue;
+		player.iz_gate = 0;
+		player iz_course_cue("finish", 0);
+		player sr\api\_speedrun::finishWay("normal_0");
+	}
+}
+
+iz_course_boost()
+{
+	speed = int(self.script_noteworthy);
+	for (;;)
+	{
+		self waittill("trigger", player);
+		if (!isPlayer(player) || !isAlive(player))
+			continue;
+
+		velocity = player getVelocity();
+		way = (velocity[0], velocity[1], 0);
+		player iz_course_cue("boost", 1000);
+		if (length(way) >= speed)
+			continue;
+		if (length(way) < 50)
+			way = anglesToForward((0, player getPlayerAngles()[1], 0));
+		else
+			way = vectorNormalize(way);
+		player setVelocity((way[0] * speed, way[1] * speed, velocity[2]));
+	}
+}
+
+iz_course_jump()
+{
+	toss = strTok(self.script_noteworthy, " ");
+	if (toss.size != 4)
+		return;
+	speed = int(toss[0]);
+	rise = int(toss[1]);
+	rest = int(toss[2]);
+	cue = toss[3];
+	for (;;)
+	{
+		self waittill("trigger", player);
+		now = getTime();
+		if (!isPlayer(player) || !isAlive(player))
+			continue;
+		if (rest > 0)
+		{
+			if (isDefined(player.iz_thrown) && now - player.iz_thrown < rest)
+				continue;
+			player.iz_thrown = now;
+		}
+
+		velocity = player getVelocity();
+		if (rest > 0)
+		{
+			player setVelocity((velocity[0], velocity[1], rise));
+			player iz_course_cue(cue, 0);
+			continue;
+		}
+		player iz_course_cue(cue, 1000);
+		way = (velocity[0], velocity[1], 0);
+		pace = length(way);
+		if (pace < 50)
+			way = anglesToForward((0, player getPlayerAngles()[1], 0));
+		else
+			way = vectorNormalize(way);
+		if (pace < speed)
+			pace = speed;
+		player setVelocity((way[0] * pace, way[1] * pace, rise));
+	}
+}
+
+iz_course_cannon()
+{
+	ends = getEntArray("iz_cannon_end", "targetname");
+	for (i = 0; i < ends.size; i++)
+	{
+		flight = strTok(ends[i].script_noteworthy, " ");
+		if (flight.size == 3 && flight[0] == self.script_noteworthy)
+			self.iz_end = ends[i].origin;
+	}
+	if (!isDefined(self.iz_end))
+		return;
+	for (;;)
+	{
+		self waittill("trigger", player);
+		if (!isPlayer(player) || !isAlive(player))
+			continue;
+
+		velocity = player getVelocity();
+		speed = length((velocity[0], velocity[1], 0));
+		way = vectorNormalize((self.iz_end[0] - player.origin[0], self.iz_end[1] - player.origin[1], 0));
+		player setOrigin(self.iz_end);
+		player iz_course_cue("cannon", 0);
+		player setPlayerAngles((0, vectorToAngles(way)[1], 0));
+		player setVelocity((way[0] * speed, way[1] * speed, velocity[2]));
+	}
+}
+
+iz_course_fall()
+{
+	for (;;)
+	{
+		self waittill("trigger", player);
+		if (isPlayer(player) && isAlive(player))
+			player suicide();
+	}
+}
+
+iz_course_itembox()
+{
+	self notSolid();
+	reach = 60;
+	if (isDefined(self.radius))
+		reach = self.radius;
+	marks = getEntArray("iz_itembox_mark", "targetname");
+	for (i = 0; i < marks.size; i++)
+		if (distance(marks[i].origin, self.origin) < 4)
+			self.iz_mark = marks[i];
+	if (isDefined(self.iz_mark))
+	{
+		self.iz_mark notSolid();
+		self.iz_mark thread iz_course_turn();
+		self.iz_mark thread iz_course_slide();
+	}
+	self thread iz_course_spin();
+	self thread iz_course_slide();
+	for (;;)
+	{
+		wait 0.05;
+		players = getEntArray("player", "classname");
+		for (i = 0; i < players.size; i++)
+		{
+			if (!isAlive(players[i]) || distance(players[i].origin + (0, 0, 35), self.origin) > reach)
+				continue;
+			self.iz_taken = true;
+			self iz_course_cue("item", 0);
+			self hide();
+			if (isDefined(self.iz_mark))
+				self.iz_mark hide();
+			wait 3;
+			self show();
+			if (isDefined(self.iz_mark))
+				self.iz_mark show();
+			self.iz_taken = undefined;
+			break;
+		}
+	}
+}
+
+iz_course_hazard()
+{
+	reach = self.radius;
+	for (;;)
+	{
+		wait 0.05;
+		players = getEntArray("player", "classname");
+		for (i = 0; i < players.size; i++)
+		{
+			player = players[i];
+			if (!isAlive(player))
+				continue;
+			away = (player.origin[0] - self.origin[0], player.origin[1] - self.origin[1], 0);
+			if (length(away) > reach || player.origin[2] > self.origin[2] + reach * 2 || player.origin[2] + 72 < self.origin[2])
+				continue;
+			now = getTime();
+			if (isDefined(player.iz_struck) && now - player.iz_struck < 1500)
+				continue;
+			player.iz_struck = now;
+			if (length(away) < 1)
+				away = anglesToForward((0, randomInt(360), 0));
+			away = vectorNormalize(away);
+			player setVelocity((away[0] * 320, away[1] * 320, 240));
+			player notify("iz_hit", self);
+		}
+	}
+}
+
+iz_course_slide()
+{
+	if (!isDefined(self.script_noteworthy))
+		return;
+	path = strTok(self.script_noteworthy, " ");
+	if (path.size != 8)
+		return;
+	from = (int(path[0]), int(path[1]), int(path[2]));
+	to = (int(path[3]), int(path[4]), int(path[5]));
+	way = int(path[6]) / 2000;
+	if (way < 0.1)
+		return;
+	if (int(path[7]) > 0)
+		wait int(path[7]) / 1000;
+	for (;;)
+	{
+		self moveTo(to, way, way / 2, way / 2);
+		wait way;
+		self moveTo(from, way, way / 2, way / 2);
+		wait way;
+	}
+}
+
+iz_course_spin()
+{
+	for (;;)
+	{
+		self rotateVelocity((40, 110, 25), 10);
+		wait 10;
+	}
+}
+
+iz_course_turn()
+{
+	for (;;)
+	{
+		self rotateYaw(360, 8);
+		wait 8;
+	}
+}
+
+iz_course_route()
+{
+	level.iz_route = [];
+	level.iz_route[level.iz_route.size] = (5756, -1304, 5771);
+	level.iz_route[level.iz_route.size] = (5752, -2430, 5754);
+	level.iz_route[level.iz_route.size] = (5702, -3583, 5735);
+	level.iz_route[level.iz_route.size] = (5465, -4568, 5741);
+	level.iz_route[level.iz_route.size] = (4825, -5020, 5721);
+	level.iz_route[level.iz_route.size] = (3939, -5330, 5690);
+	level.iz_route[level.iz_route.size] = (3439, -5903, 5673);
+	level.iz_route[level.iz_route.size] = (3317, -6785, 5640);
+	level.iz_route[level.iz_route.size] = (3351, -7558, 5634);
+	level.iz_route[level.iz_route.size] = (3315, -8381, 5634);
+	level.iz_route[level.iz_route.size] = (3112, -9166, 5634);
+	level.iz_route[level.iz_route.size] = (2470, -9764, 5634);
+	level.iz_route[level.iz_route.size] = (1762, -10054, 5634);
+	level.iz_route[level.iz_route.size] = (709, -9980, 5634);
+	level.iz_route[level.iz_route.size] = (-352, -9474, 5634);
+	level.iz_route[level.iz_route.size] = (-1151, -8907, 5634);
+	level.iz_route[level.iz_route.size] = (-2102, -8347, 5633);
+	level.iz_route[level.iz_route.size] = (-2995, -8028, 5632);
+	level.iz_route[level.iz_route.size] = (-3609, -7905, 5633);
+	level.iz_route[level.iz_route.size] = (-4550, -7757, 5679);
+	level.iz_route[level.iz_route.size] = (-5596, -7346, 5746);
+	level.iz_route[level.iz_route.size] = (-6174, -6796, 5769);
+	level.iz_route[level.iz_route.size] = (-6291, -6047, 5802);
+	level.iz_route[level.iz_route.size] = (-6207, -5292, 5846);
+	level.iz_route[level.iz_route.size] = (-5899, -4504, 5879);
+	level.iz_route[level.iz_route.size] = (-5312, -3937, 5871);
+	level.iz_route[level.iz_route.size] = (-4391, -3822, 5852);
+	level.iz_route[level.iz_route.size] = (-3692, -3573, 5832);
+	level.iz_route[level.iz_route.size] = (-2819, -3297, 5855);
+	level.iz_route[level.iz_route.size] = (-2026, -3373, 5988);
+	level.iz_route[level.iz_route.size] = (-1703, -2904, 5961);
+	level.iz_route[level.iz_route.size] = (-1682, -2233, 5856);
+	level.iz_route[level.iz_route.size] = (-1977, -1484, 5702);
+	level.iz_route[level.iz_route.size] = (-2344, -665, 5538);
+	level.iz_route[level.iz_route.size] = (-2643, 63, 5415);
+	level.iz_route[level.iz_route.size] = (-2705, 661, 5364);
+	level.iz_route[level.iz_route.size] = (-2347, 1255, 5365);
+	level.iz_route[level.iz_route.size] = (-1761, 1786, 5414);
+	level.iz_route[level.iz_route.size] = (-1387, 2202, 5465);
+	level.iz_route[level.iz_route.size] = (-877, 2900, 5531);
+	level.iz_route[level.iz_route.size] = (-1183, 3686, 5547);
+	level.iz_route[level.iz_route.size] = (-1951, 4076, 5576);
+	level.iz_route[level.iz_route.size] = (-2930, 3965, 5626);
+	level.iz_route[level.iz_route.size] = (-4047, 3900, 5716);
+	level.iz_route[level.iz_route.size] = (-4725, 3810, 5809);
+	level.iz_route[level.iz_route.size] = (-5306, 4162, 5880);
+	level.iz_route[level.iz_route.size] = (-5428, 5029, 5841);
+	level.iz_route[level.iz_route.size] = (-5313, 5864, 5788);
+	level.iz_route[level.iz_route.size] = (-5361, 6540, 5768);
+	level.iz_route[level.iz_route.size] = (-5481, 7037, 5766);
+	level.iz_route[level.iz_route.size] = (-5668, 7535, 5779);
+	level.iz_route[level.iz_route.size] = (-5889, 8130, 5818);
+	level.iz_route[level.iz_route.size] = (-5968, 8530, 5839);
+	level.iz_route[level.iz_route.size] = (-5994, 8987, 5859);
+	level.iz_route[level.iz_route.size] = (-5888, 9385, 5861);
+	level.iz_route[level.iz_route.size] = (-5598, 9651, 5835);
+	level.iz_route[level.iz_route.size] = (-5078, 9803, 5805);
+	level.iz_route[level.iz_route.size] = (-4620, 9751, 5788);
+	level.iz_route[level.iz_route.size] = (-4142, 9733, 5780);
+	level.iz_route[level.iz_route.size] = (-3676, 9712, 5779);
+	level.iz_route[level.iz_route.size] = (-3227, 9640, 5779);
+	level.iz_route[level.iz_route.size] = (-2594, 9618, 5779);
+	level.iz_route[level.iz_route.size] = (-1776, 9669, 5778);
+	level.iz_route[level.iz_route.size] = (-1361, 9848, 5778);
+	level.iz_route[level.iz_route.size] = (-803, 9993, 5778);
+	level.iz_route[level.iz_route.size] = (-161, 10019, 5778);
+	level.iz_route[level.iz_route.size] = (382, 9677, 5778);
+	level.iz_route[level.iz_route.size] = (653, 9221, 5778);
+	level.iz_route[level.iz_route.size] = (957, 8661, 5778);
+	level.iz_route[level.iz_route.size] = (1293, 8132, 5778);
+	level.iz_route[level.iz_route.size] = (1783, 7541, 5778);
+	level.iz_route[level.iz_route.size] = (2179, 7088, 5778);
+	level.iz_route[level.iz_route.size] = (2620, 6653, 5778);
+	level.iz_route[level.iz_route.size] = (3143, 6200, 5778);
+	level.iz_route[level.iz_route.size] = (3841, 5810, 5778);
+	level.iz_route[level.iz_route.size] = (4460, 5670, 5778);
+	level.iz_route[level.iz_route.size] = (4938, 5184, 5778);
+	level.iz_route[level.iz_route.size] = (5300, 4570, 5778);
+	level.iz_route[level.iz_route.size] = (5338, 3830, 5778);
+	level.iz_route[level.iz_route.size] = (5336, 3238, 5778);
+	level.iz_route[level.iz_route.size] = (5390, 2536, 5778);
+	level.iz_route[level.iz_route.size] = (5544, 1809, 5778);
+	level.iz_route[level.iz_route.size] = (5617, 1314, 5778);
+	level.iz_route[level.iz_route.size] = (5751, 607, 5778);
+	level.iz_route[level.iz_route.size] = (5770, -351, 5777);
+}
+
+iz_move(origin, angles, frames)
+{
+	if (!isDefined(self.iz_step))
+	{
+		self.iz_step = (0, 0, 0);
+		self.iz_turn = (0, 0, 0);
+	}
+	time = frames * 0.05 + 0.0005;
+	if (isDefined(origin))
+	{
+		to = origin - self.iz_step;
+		self.iz_step = (to - self.origin) * (1.0 / frames);
+		self moveTo(to, time);
+	}
+	if (isDefined(angles))
+	{
+		turn = angles - self.iz_turn - self.angles;
+		turn = (iz_wrap(turn[0]), iz_wrap(turn[1]), iz_wrap(turn[2]));
+		self.iz_turn = turn * (1.0 / frames);
+		self rotateTo(self.angles + turn, time);
+	}
+}
+
+iz_wrap(angle)
+{
+	return angle - 360 * floor(angle / 360 + 0.5);
+}
+
+iz_place(origin, angles)
+{
+	self.origin = origin;
+	if (isDefined(angles))
+		self.angles = angles;
+	self.iz_step = (0, 0, 0);
+	self.iz_turn = (0, 0, 0);
+}
+
+iz_stop(origin, angles)
+{
+	self iz_move(origin, angles, 1);
+	wait 0.05;
+	self iz_move(origin, angles, 1);
+}
+
+iz_anims()
+{
+	thread iz_obj_0();
+	thread iz_obj_1();
+	thread iz_obj_2();
+	thread iz_obj_3();
+	thread iz_obj_4();
+	thread iz_obj_5();
+	thread iz_obj_6();
+	thread iz_obj_7();
+	thread iz_obj_8();
+	thread iz_obj_9();
+	thread iz_obj_10();
+}
+
+iz_obj_0()
+{
+	points = [];
+	angles = [];
+	at = [];
+	points[0] = (866.8032, 7398.1890, 5777.5986);
+	angles[0] = (0, 110.6838, 0);
+	at[0] = 0;
+	points[1] = (846.9134, 7390.6694, 5777.5986);
+	angles[1] = (0, 110.6838, 0);
+	at[1] = 0.4000;
+	points[2] = (839.4489, 7393.3071, 5777.5986);
+	angles[2] = (0, 72.6644, 0);
+	at[2] = 0.5333;
+	points[3] = (831.4094, 7398.2676, 5777.5986);
+	angles[3] = (0, 60.7076, 0);
+	at[3] = 0.6667;
+	points[4] = (726.9134, 7462.8350, 5777.5986);
+	angles[4] = (0, 58.2873, 0);
+	at[4] = 2.4000;
+	points[5] = (720.7992, 7469.2915, 5777.5986);
+	angles[5] = (0, 38.6245, 0);
+	at[5] = 2.5333;
+	points[6] = (718.0316, 7478.3462, 5777.5986);
+	angles[6] = (0, 20.6883, 0);
+	at[6] = 2.6667;
+	points[7] = (715.2638, 7487.3623, 5777.5986);
+	angles[7] = (0, 17.6510, 0);
+	at[7] = 2.8000;
+	points[8] = (684.8071, 7586.7324, 5777.5986);
+	angles[8] = (0, 17.0387, 0);
+	at[8] = 4.2667;
+	points[9] = (687.9291, 7599.0947, 5777.5986);
+	angles[9] = (0, -10.6460, 0);
+	at[9] = 4.4000;
+	points[10] = (692.3544, 7612.5591, 5777.5986);
+	angles[10] = (0, -16.9205, 0);
+	at[10] = 4.5333;
+	points[11] = (723.3188, 7706.8115, 5777.5986);
+	angles[11] = (0, -18.1868, 0);
+	at[11] = 5.4667;
+	points[12] = (734.5709, 7724.4883, 5777.5986);
+	angles[12] = (0, -32.1545, 0);
+	at[12] = 5.6000;
+	points[13] = (752.4213, 7746.4961, 5777.5986);
+	angles[13] = (0, -37.8752, 0);
+	at[13] = 5.7333;
+	points[14] = (770.2717, 7768.5435, 5777.5986);
+	angles[14] = (0, -38.8360, 0);
+	at[14] = 5.8667;
+	points[15] = (1609.2401, 8803.4648, 5777.5986);
+	angles[15] = (0, -39.0295, 0);
+	at[15] = 12.1333;
+	points[16] = (1622.6969, 8818.6621, 5777.5986);
+	angles[16] = (0, -46.7797, 0);
+	at[16] = 12.2667;
+	points[17] = (1633.8937, 8827.3623, 5777.5986);
+	angles[17] = (0, -52.0266, 0);
+	at[17] = 12.5333;
+	points[18] = (1706.6654, 8883.8584, 5777.5986);
+	angles[18] = (0, -52.1787, 0);
+	at[18] = 14.2667;
+	points[19] = (1713.4213, 8885.0791, 5777.5986);
+	angles[19] = (0, -79.7897, 0);
+	at[19] = 14.4000;
+	points[20] = (1720.5000, 8885.3936, 5777.5986);
+	angles[20] = (0, -86.0466, 0);
+	at[20] = 14.5333;
+	points[21] = (1791.2874, 8888.7402, 5777.5986);
+	angles[21] = (0, -87.3095, 0);
+	at[21] = 15.8667;
+	points[22] = (1798.3662, 8889.0547, 5777.5986);
+	angles[22] = (0, -90.5252, 0);
+	at[22] = 16;
+	points[23] = (1807.5474, 8886.7715, 5777.5986);
+	angles[23] = (0, -101.3103, 0);
+	at[23] = 16.1333;
+	points[24] = (1816.7362, 8884.5674, 5777.5986);
+	angles[24] = (0, -103.1258, 0);
+	at[24] = 16.2667;
+	points[25] = (1871.8661, 8871.3389, 5777.5986);
+	angles[25] = (0, -103.4919, 0);
+	at[25] = 17.0667;
+	points[26] = (1878.9449, 8865.8662, 5777.5986);
+	angles[26] = (0, -131.4996, 0);
+	at[26] = 17.2000;
+	points[27] = (1884.7914, 8858.4248, 5777.5986);
+	angles[27] = (0, -140.0499, 0);
+	at[27] = 17.3333;
+	points[28] = (1931.5591, 8799.0557, 5777.5986);
+	angles[28] = (0, -141.7772, 0);
+	at[28] = 18.4000;
+	points[29] = (1937.4055, 8791.6143, 5777.5986);
+	angles[29] = (0, -148.5283, 0);
+	at[29] = 18.5333;
+	points[30] = (1937.9843, 8777.3623, 5777.5986);
+	angles[30] = (0, -171.8091, 0);
+	at[30] = 18.6667;
+	points[31] = (1938.8307, 8763.2285, 5777.5986);
+	angles[31] = (0, -175.7770, 0);
+	at[31] = 18.8000;
+	points[32] = (1944.7521, 8664.1738, 5777.5986);
+	angles[32] = (0, -176.5772, 0);
+	at[32] = 19.7333;
+	points[33] = (1929.0355, 8643.1104, 5777.5986);
+	angles[33] = (0, -211.0717, 0);
+	at[33] = 19.8667;
+	points[34] = (1911.4763, 8620.8262, 5777.5986);
+	angles[34] = (0, -217.0681, 0);
+	at[34] = 20;
+	points[35] = (1893.9174, 8598.5830, 5777.5986);
+	angles[35] = (0, -218.0751, 0);
+	at[35] = 20.1333;
+	points[36] = (980.7953, 7441.4966, 5777.5986);
+	angles[36] = (0, -218.2781, 0);
+	at[36] = 27.0667;
+	points[37] = (974.5355, 7438.8584, 5777.5986);
+	angles[37] = (0, -244.0240, 0);
+	at[37] = 27.2000;
+	points[38] = (967.9056, 7436.3384, 5777.5986);
+	angles[38] = (0, -248.4279, 0);
+	at[38] = 27.3333;
+	points[39] = (866.8032, 7398.1890, 5777.5986);
+	angles[39] = (0, -249.3162, 0);
+	at[39] = 29.3667;
+	mover = getEnt("iz_obj_0", "targetname");
+	if (!isDefined(mover))
+		return;
+	mover thread iz_mover_loop(points, angles, at, false, true);
+}
+
+iz_obj_1()
+{
+	points = [];
+	angles = [];
+	at = [];
+	points[0] = (5625.3936, 1920.8779, 5777.5986);
+	angles[0] = (0, 96.4764, 0);
+	at[0] = 0;
+	points[1] = (5568.1895, 1914.3859, 5777.5986);
+	angles[1] = (0, 96.4764, 0);
+	at[1] = 1.0833;
+	points[2] = (5555.4722, 1919.4292, 5777.5986);
+	angles[2] = (0, 64.3734, 0);
+	at[2] = 1.3000;
+	points[3] = (5542.0864, 1927.0078, 5777.5986);
+	angles[3] = (0, 60.6315, 0);
+	at[3] = 1.5167;
+	points[4] = (5301.7715, 2063.4646, 5777.5986);
+	angles[4] = (0, 60.4138, 0);
+	at[4] = 5.4167;
+	points[5] = (5290.1572, 2073.0510, 5777.5986);
+	angles[5] = (0, 43.1594, 0);
+	at[5] = 5.6333;
+	points[6] = (5280.9448, 2085.3188, 5777.5986);
+	angles[6] = (0, 37.2972, 0);
+	at[6] = 5.8500;
+	points[7] = (5114.7637, 2306.1733, 5777.5986);
+	angles[7] = (0, 36.9559, 0);
+	at[7] = 9.7500;
+	points[8] = (5110.9448, 2326.0039, 5777.5986);
+	angles[8] = (0, 8.7230, 0);
+	at[8] = 9.9667;
+	points[9] = (5108.8193, 2348.9409, 5777.5986);
+	angles[9] = (0, 5.4513, 0);
+	at[9] = 10.1833;
+	points[10] = (5083.5039, 2624.1538, 5777.5986);
+	angles[10] = (0, 5.2609, 0);
+	at[10] = 12.7833;
+	points[11] = (5086.8896, 2651.1853, 5777.5986);
+	angles[11] = (0, -14.0956, 0);
+	at[11] = 13;
+	points[12] = (5108.4253, 2691.8977, 5777.5986);
+	angles[12] = (0, -27.1296, 0);
+	at[12] = 13.2167;
+	points[13] = (5905.6694, 4198.2681, 5777.5986);
+	angles[13] = (0, -27.8904, 0);
+	at[13] = 21.2333;
+	points[14] = (5924.2915, 4227.6382, 5777.5986);
+	angles[14] = (0, -48.4280, 0);
+	at[14] = 21.4500;
+	points[15] = (5934.1343, 4233.6221, 5777.5986);
+	angles[15] = (0, -58.0943, 0);
+	at[15] = 21.6667;
+	points[16] = (6101.3384, 4335.4331, 5777.5986);
+	angles[16] = (0, -58.6576, 0);
+	at[16] = 25.3500;
+	points[17] = (6111.8115, 4336.9683, 5777.5986);
+	angles[17] = (0, -95.2249, 0);
+	at[17] = 25.5667;
+	points[18] = (6122.9136, 4333.8979, 5777.5986);
+	angles[18] = (0, -104.8348, 0);
+	at[18] = 25.7833;
+	points[19] = (6222.8345, 4306.3779, 5777.5986);
+	angles[19] = (0, -105.3948, 0);
+	at[19] = 27.7333;
+	points[20] = (6236.0630, 4299.2520, 5777.5986);
+	angles[20] = (0, -117.8687, 0);
+	at[20] = 27.9500;
+	points[21] = (6370.8667, 4225.7480, 5777.5986);
+	angles[21] = (0, -118.5966, 0);
+	at[21] = 30.1167;
+	points[22] = (6380.4722, 4213.8188, 5777.5986);
+	angles[22] = (0, -140.7940, 0);
+	at[22] = 30.3333;
+	points[23] = (6503.0708, 4056.2993, 5777.5986);
+	angles[23] = (0, -142.0982, 0);
+	at[23] = 33.1500;
+	points[24] = (6512.5195, 4044.1733, 5777.5986);
+	angles[24] = (0, -146.0632, 0);
+	at[24] = 33.3667;
+	points[25] = (6519.4487, 4022.1655, 5777.5986);
+	angles[25] = (0, -161.2330, 0);
+	at[25] = 33.5833;
+	points[26] = (6590.1577, 3802.9922, 5777.5986);
+	angles[26] = (0, -162.1195, 0);
+	at[26] = 35.7500;
+	points[27] = (6591.1416, 3776.2480, 5777.5986);
+	angles[27] = (0, -184.9226, 0);
+	at[27] = 35.9667;
+	points[28] = (6574.3701, 3733.3506, 5777.5986);
+	angles[28] = (0, -200.4483, 0);
+	at[28] = 36.1833;
+	points[29] = (6557.5986, 3690.4487, 5777.5986);
+	angles[29] = (0, -201.3060, 0);
+	at[29] = 36.4000;
+	points[30] = (5886.6143, 1974.4489, 5777.5986);
+	angles[30] = (0, -201.3559, 0);
+	at[30] = 45.0667;
+	points[31] = (5870.9448, 1948.7560, 5777.5986);
+	angles[31] = (0, -246.1191, 0);
+	at[31] = 45.2833;
+	points[32] = (5859.5278, 1947.4568, 5777.5986);
+	angles[32] = (0, -262.5620, 0);
+	at[32] = 45.5000;
+	points[33] = (5625.3936, 1920.8779, 5777.5986);
+	angles[33] = (0, -263.5237, 0);
+	at[33] = 49.9333;
+	mover = getEnt("iz_obj_1", "targetname");
+	if (!isDefined(mover))
+		return;
+	mover thread iz_mover_loop(points, angles, at, false, true);
+}
+
+iz_obj_2()
+{
+	points = [];
+	angles = [];
+	at = [];
+	points[0] = (-2189.1338, -9533.7402, 5633.5830);
+	angles[0] = (0, -167.1426, 0);
+	at[0] = 0;
+	points[1] = (-2154.9016, -9600.5908, 5633.5830);
+	angles[1] = (0, -153.7708, 0);
+	at[1] = 0.1333;
+	points[2] = (-2091.4292, -9694.9219, 5633.5830);
+	angles[2] = (0, -145.5568, 0);
+	at[2] = 0.3333;
+	points[3] = (-2022.0197, -9785.5117, 5633.5830);
+	angles[3] = (0, -142.1776, 0);
+	at[3] = 0.5333;
+	points[4] = (-1924.2677, -9902.0469, 5633.5830);
+	angles[4] = (0, -139.3987, 0);
+	at[4] = 0.8000;
+	points[5] = (-1821.8505, -10014.1738, 5633.5830);
+	angles[5] = (0, -136.9732, 0);
+	at[5] = 1.0667;
+	points[6] = (-1713.8346, -10121.4561, 5633.5830);
+	angles[6] = (0, -133.9424, 0);
+	at[6] = 1.3333;
+	points[7] = (-1628.2126, -10195.6699, 5633.5830);
+	angles[7] = (0, -129.9808, 0);
+	at[7] = 1.5333;
+	points[8] = (-1566.1536, -10238.4648, 5633.5830);
+	angles[8] = (0, -123.8470, 0);
+	at[8] = 1.6667;
+	points[9] = (-1535.9449, -10252.7568, 5633.5830);
+	angles[9] = (0, -118.0634, 0);
+	at[9] = 1.7333;
+	points[10] = (-1497.4803, -10266.3779, 5633.5830);
+	angles[10] = (0, -112.5428, 0);
+	at[10] = 1.8000;
+	points[11] = (-1425.6930, -10285.7881, 5633.5830);
+	angles[11] = (0, -105.7740, 0);
+	at[11] = 1.9333;
+	points[12] = (-1276.9370, -10315.0400, 5633.5830);
+	angles[12] = (0, -100.2563, 0);
+	at[12] = 2.2000;
+	points[13] = (-1126.7717, -10336.7324, 5633.5830);
+	angles[13] = (0, -97.6907, 0);
+	at[13] = 2.4667;
+	points[14] = (-938.3189, -10356.6152, 5633.5830);
+	angles[14] = (0, -95.3557, 0);
+	at[14] = 2.8000;
+	points[15] = (-785.9055, -10366.9688, 5633.5830);
+	angles[15] = (0, -93.3304, 0);
+	at[15] = 3.0667;
+	points[16] = (-671.7795, -10369.9209, 5633.5830);
+	angles[16] = (0, -90.9426, 0);
+	at[16] = 3.2667;
+	points[17] = (-636.0669, -10369.3311, 5633.5830);
+	angles[17] = (0, -89.6407, 0);
+	at[17] = 3.3333;
+	points[18] = (-595.7756, -10366.9688, 5633.5830);
+	angles[18] = (0, -87.4134, 0);
+	at[18] = 3.4000;
+	points[19] = (-562.7638, -10362.1260, 5633.5830);
+	angles[19] = (0, -83.2947, 0);
+	at[19] = 3.4667;
+	points[20] = (-490.1929, -10340.6699, 5633.5830);
+	angles[20] = (0, -73.8454, 0);
+	at[20] = 3.6000;
+	points[21] = (-419.8819, -10311.8115, 5633.5830);
+	angles[21] = (0, -68.0271, 0);
+	at[21] = 3.7333;
+	points[22] = (-351.5047, -10278.7793, 5633.5830);
+	angles[22] = (0, -64.3652, 0);
+	at[22] = 3.8667;
+	points[23] = (-251.9421, -10223.5039, 5633.5830);
+	angles[23] = (0, -60.3968, 0);
+	at[23] = 4.0667;
+	points[24] = (-155.9803, -10162.0469, 5633.5830);
+	angles[24] = (0, -56.7187, 0);
+	at[24] = 4.2667;
+	points[25] = (-94.6890, -10117.2842, 5633.5830);
+	angles[25] = (0, -53.7850, 0);
+	at[25] = 4.4000;
+	points[26] = (-36.5928, -10068.1885, 5633.5830);
+	angles[26] = (0, -49.6049, 0);
+	at[26] = 4.5333;
+	points[27] = (-10.7186, -10042.4014, 5633.5830);
+	angles[27] = (0, -46.4406, 0);
+	at[27] = 4.6000;
+	points[28] = (14.0796, -10012.3623, 5633.5830);
+	angles[28] = (0, -41.3916, 0);
+	at[28] = 4.6667;
+	points[29] = (31.0189, -9983.3076, 5633.5830);
+	angles[29] = (0, -33.8316, 0);
+	at[29] = 4.7333;
+	points[30] = (46.8500, -9946.6934, 5633.5830);
+	angles[30] = (0, -27.1586, 0);
+	at[30] = 4.8000;
+	points[31] = (82.2303, -9839.8818, 5633.5830);
+	angles[31] = (0, -17.8880, 0);
+	at[31] = 5;
+	points[32] = (111.5012, -9729.5674, 5633.5830);
+	angles[32] = (0, -14.5298, 0);
+	at[32] = 5.2000;
+	points[33] = (144.4173, -9581.0234, 5633.5830);
+	angles[33] = (0, -11.9194, 0);
+	at[33] = 5.4667;
+	points[34] = (165.0736, -9469.4883, 5633.5830);
+	angles[34] = (0, -10.1996, 0);
+	at[34] = 5.6667;
+	points[35] = (186.7945, -9318.2285, 5633.5830);
+	angles[35] = (0, -7.3500, 0);
+	at[35] = 5.9333;
+	points[36] = (195.4114, -9205.3154, 5633.5830);
+	angles[36] = (0, -3.3966, 0);
+	at[36] = 6.1333;
+	points[37] = (195.2594, -9166.3779, 5633.5830);
+	angles[37] = (0, -0.8396, 0);
+	at[37] = 6.2000;
+	points[38] = (191.8917, -9131.4961, 5633.5830);
+	angles[38] = (0, 3.9058, 0);
+	at[38] = 6.2667;
+	points[39] = (171.1862, -9060.2363, 5633.5830);
+	angles[39] = (0, 15.6704, 0);
+	at[39] = 6.4000;
+	points[40] = (125.5126, -8955.9053, 5633.5830);
+	angles[40] = (0, 24.3044, 0);
+	at[40] = 6.6000;
+	points[41] = (71.9098, -8854.9209, 5633.5830);
+	angles[41] = (0, 28.4527, 0);
+	at[41] = 6.8000;
+	points[42] = (-7.2722, -8725.9053, 5633.5830);
+	angles[42] = (0, 32.5057, 0);
+	at[42] = 7.0667;
+	points[43] = (-72.7433, -8632.9521, 5633.5830);
+	angles[43] = (0, 35.7619, 0);
+	at[43] = 7.2667;
+	points[44] = (-144.5161, -8545.4336, 5633.5830);
+	angles[44] = (0, 40.3424, 0);
+	at[44] = 7.4667;
+	points[45] = (-198.3351, -8492.0078, 5633.5830);
+	angles[45] = (0, 45.5973, 0);
+	at[45] = 7.6000;
+	points[46] = (-228.8791, -8468.0312, 5633.5830);
+	angles[46] = (0, 50.0847, 0);
+	at[46] = 7.6667;
+	points[47] = (-257.2626, -8451.2207, 5633.5830);
+	angles[47] = (0, 56.4900, 0);
+	at[47] = 7.7333;
+	points[48] = (-292.7236, -8435.1973, 5633.5830);
+	angles[48] = (0, 62.3420, 0);
+	at[48] = 7.8000;
+	points[49] = (-363.0551, -8409.2520, 5633.5830);
+	angles[49] = (0, 69.1062, 0);
+	at[49] = 7.9333;
+	points[50] = (-401.3583, -8396.8115, 5633.5830);
+	angles[50] = (0, 70.9416, 0);
+	at[50] = 8;
+	points[51] = (-510.3859, -8364.9609, 5633.5830);
+	angles[51] = (0, 73.9815, 0);
+	at[51] = 8.2000;
+	points[52] = (-693.3426, -8319.0947, 5633.5830);
+	angles[52] = (0, 76.5750, 0);
+	at[52] = 8.5333;
+	points[53] = (-879.0197, -8279.5273, 5633.5430);
+	angles[53] = (0, 78.5553, 0);
+	at[53] = 8.8667;
+	points[54] = (-1065.7047, -8246.9688, 5633.5430);
+	angles[54] = (0, 80.8777, 0);
+	at[54] = 9.2000;
+	points[55] = (-1217.9016, -8228.6221, 5633.5430);
+	angles[55] = (0, 84.1607, 0);
+	at[55] = 9.4667;
+	points[56] = (-1293.7441, -8225.2363, 5633.5430);
+	angles[56] = (0, 87.6972, 0);
+	at[56] = 9.6000;
+	points[57] = (-1329.9606, -8226.9688, 5633.5430);
+	angles[57] = (0, 91.4258, 0);
+	at[57] = 9.6667;
+	points[58] = (-1363.1575, -8233.0703, 5633.5430);
+	angles[58] = (0, 97.5548, 0);
+	at[58] = 9.7333;
+	points[59] = (-1401.2875, -8244.9219, 5633.5430);
+	angles[59] = (0, 103.8704, 0);
+	at[59] = 9.8000;
+	points[60] = (-1434.8505, -8258.1494, 5633.5430);
+	angles[60] = (0, 108.7231, 0);
+	at[60] = 9.8667;
+	points[61] = (-1537.3386, -8308.7402, 5633.5430);
+	angles[61] = (0, 116.9879, 0);
+	at[61] = 10.0667;
+	points[62] = (-1635.4844, -8366.8115, 5633.5430);
+	angles[62] = (0, 121.0888, 0);
+	at[62] = 10.2667;
+	points[63] = (-1730.2953, -8429.5273, 5633.5430);
+	angles[63] = (0, 123.8746, 0);
+	at[63] = 10.4667;
+	points[64] = (-1852.8740, -8519.5674, 5633.5430);
+	angles[64] = (0, 127.0938, 0);
+	at[64] = 10.7333;
+	points[65] = (-1941.0551, -8591.8896, 5633.5430);
+	angles[65] = (0, 129.9069, 0);
+	at[65] = 10.9333;
+	points[66] = (-2022.5905, -8669.1338, 5633.5430);
+	angles[66] = (0, 134.6064, 0);
+	at[66] = 11.1333;
+	points[67] = (-2048.7874, -8699.2129, 5633.5430);
+	angles[67] = (0, 137.7568, 0);
+	at[67] = 11.2000;
+	points[68] = (-2067.7520, -8726.8105, 5633.5430);
+	angles[68] = (0, 143.3317, 0);
+	at[68] = 11.2667;
+	points[69] = (-2098.7324, -8795.5508, 5633.5430);
+	angles[69] = (0, 155.1277, 0);
+	at[69] = 11.4000;
+	points[70] = (-2132.8821, -8904.8818, 5633.5430);
+	angles[70] = (0, 163.2615, 0);
+	at[70] = 11.6000;
+	points[71] = (-2159.2126, -9015.9053, 5633.5430);
+	angles[71] = (0, 167.1069, 0);
+	at[71] = 11.8000;
+	points[72] = (-2185.7520, -9165.0400, 5633.5830);
+	angles[72] = (0, 170.7764, 0);
+	at[72] = 12.0667;
+	points[73] = (-2202.4370, -9315.3545, 5633.5830);
+	angles[73] = (0, 174.7843, 0);
+	at[73] = 12.3333;
+	points[74] = (-2205.2795, -9430.1963, 5633.5830);
+	angles[74] = (0, 179.7000, 0);
+	at[74] = 12.5333;
+	points[75] = (-2203.0039, -9466.4570, 5633.5830);
+	angles[75] = (0, 182.4265, 0);
+	at[75] = 12.6000;
+	points[76] = (-2197.2363, -9505.6689, 5633.5830);
+	angles[76] = (0, 186.7301, 0);
+	at[76] = 12.6667;
+	points[77] = (-2189.1338, -9533.7402, 5633.5830);
+	angles[77] = (0, 192.8574, 0);
+	at[77] = 12.7333;
+	mover = getEnt("iz_obj_2", "targetname");
+	if (!isDefined(mover))
+		return;
+	mover thread iz_mover_loop(points, angles, at, false, true);
+}
+
+iz_obj_3()
+{
+	points = [];
+	angles = [];
+	at = [];
+	points[0] = (-1464.2992, -9922.4414, 5633.5830);
+	angles[0] = (0, -118.8354, 0);
+	at[0] = 0;
+	points[1] = (-1409, -9942.7949, 5633.5830);
+	angles[1] = (0, -110.9915, 0);
+	at[1] = 0.1000;
+	points[2] = (-1325.5433, -9962.3232, 5633.5830);
+	angles[2] = (0, -103.4236, 0);
+	at[2] = 0.2500;
+	points[3] = (-1214.0472, -9981.0635, 5633.5830);
+	angles[3] = (0, -99.1807, 0);
+	at[3] = 0.4500;
+	points[4] = (-1100.9567, -9995.2764, 5633.5830);
+	angles[4] = (0, -96.8554, 0);
+	at[4] = 0.6500;
+	points[5] = (-987.5827, -10005.6689, 5633.5830);
+	angles[5] = (0, -94.9218, 0);
+	at[5] = 0.8500;
+	points[6] = (-874.4843, -10011.8896, 5633.5830);
+	angles[6] = (0, -92.7103, 0);
+	at[6] = 1.0500;
+	points[7] = (-759.2166, -10011.5352, 5633.5830);
+	angles[7] = (0, -88.8850, 0);
+	at[7] = 1.2500;
+	points[8] = (-732.8780, -10009.6455, 5633.5830);
+	angles[8] = (0, -87.1376, 0);
+	at[8] = 1.3000;
+	points[9] = (-702.4133, -10005.5518, 5633.5830);
+	angles[9] = (0, -84.1869, 0);
+	at[9] = 1.3500;
+	points[10] = (-678.2913, -9999.0947, 5633.5830);
+	angles[10] = (0, -78.6547, 0);
+	at[10] = 1.4000;
+	points[11] = (-628.6496, -9972.3623, 5633.5830);
+	angles[11] = (0, -64.4096, 0);
+	at[11] = 1.5000;
+	points[12] = (-583.2914, -9937.8740, 5633.5830);
+	angles[12] = (0, -55.0176, 0);
+	at[12] = 1.6000;
+	points[13] = (-540.8110, -9899.8428, 5633.5830);
+	angles[13] = (0, -49.4549, 0);
+	at[13] = 1.7000;
+	points[14] = (-443.0945, -9796.3389, 5633.5830);
+	angles[14] = (0, -42.1152, 0);
+	at[14] = 1.9500;
+	points[15] = (-389.2173, -9730.1973, 5633.5830);
+	angles[15] = (0, -39.0193, 0);
+	at[15] = 2.1000;
+	points[16] = (-339.3213, -9661.2598, 5633.5830);
+	angles[16] = (0, -35.6110, 0);
+	at[16] = 2.2500;
+	points[17] = (-309.0862, -9612.7559, 5633.5830);
+	angles[17] = (0, -32.2704, 0);
+	at[17] = 2.3500;
+	points[18] = (-286.2654, -9564.6455, 5633.5830);
+	angles[18] = (0, -25.7729, 0);
+	at[18] = 2.4500;
+	points[19] = (-260.6130, -9481.7324, 5633.5830);
+	angles[19] = (0, -17.4885, 0);
+	at[19] = 2.6000;
+	points[20] = (-227.7409, -9343.8984, 5633.5830);
+	angles[20] = (0, -12.8148, 0);
+	at[20] = 2.8500;
+	points[21] = (-195.7811, -9175.7480, 5633.5830);
+	angles[21] = (0, -10.0461, 0);
+	at[21] = 3.1500;
+	points[22] = (-175.7295, -9035.3545, 5633.5830);
+	angles[22] = (0, -7.4093, 0);
+	at[22] = 3.4000;
+	points[23] = (-167.1622, -8920.9053, 5633.5830);
+	angles[23] = (0, -3.1824, 0);
+	at[23] = 3.6000;
+	points[24] = (-170.0835, -8864.4883, 5633.5830);
+	angles[24] = (0, 2.9309, 0);
+	at[24] = 3.7000;
+	points[25] = (-176.7744, -8839.9209, 5633.5830);
+	angles[25] = (0, 9.9588, 0);
+	at[25] = 3.7500;
+	points[26] = (-202.5394, -8789.0156, 5633.5830);
+	angles[26] = (0, 23.8659, 0);
+	at[26] = 3.8500;
+	points[27] = (-234.7791, -8742.0869, 5633.5830);
+	angles[27] = (0, 32.4099, 0);
+	at[27] = 3.9500;
+	points[28] = (-289.1657, -8676.0625, 5633.5830);
+	angles[28] = (0, 39.3633, 0);
+	at[28] = 4.1000;
+	points[29] = (-347.7638, -8614.2129, 5633.5830);
+	angles[29] = (0, 43.5299, 0);
+	at[29] = 4.2500;
+	points[30] = (-409.9291, -8555.7480, 5633.5830);
+	angles[30] = (0, 46.9133, 0);
+	at[30] = 4.4000;
+	points[31] = (-475.1102, -8501.5752, 5633.5830);
+	angles[31] = (0, 50.5809, 0);
+	at[31] = 4.5500;
+	points[32] = (-521.3701, -8468.3857, 5633.5830);
+	angles[32] = (0, 54.0029, 0);
+	at[32] = 4.6500;
+	points[33] = (-546.2126, -8453.1104, 5633.5830);
+	angles[33] = (0, 56.5539, 0);
+	at[33] = 4.7000;
+	points[34] = (-568.3110, -8441.6934, 5633.5830);
+	angles[34] = (0, 60.0712, 0);
+	at[34] = 4.7500;
+	points[35] = (-647.7086, -8410.6299, 5633.5830);
+	angles[35] = (0, 68.3652, 0);
+	at[35] = 4.9000;
+	points[36] = (-757.3661, -8375.0391, 5633.5830);
+	angles[36] = (0, 72.2524, 0);
+	at[36] = 5.1000;
+	points[37] = (-920.8937, -8328.3857, 5633.5830);
+	angles[37] = (0, 74.5979, 0);
+	at[37] = 5.4000;
+	points[38] = (-1058.5630, -8293.5039, 5633.5430);
+	angles[38] = (0, 76.1445, 0);
+	at[38] = 5.6500;
+	points[39] = (-1198.6221, -8262.7559, 5633.5430);
+	angles[39] = (0, 78.2055, 0);
+	at[39] = 5.9000;
+	points[40] = (-1283.0867, -8248.1504, 5633.5430);
+	angles[40] = (0, 80.4586, 0);
+	at[40] = 6.0500;
+	points[41] = (-1339.9961, -8242.0869, 5633.5430);
+	angles[41] = (0, 83.6930, 0);
+	at[41] = 6.1500;
+	points[42] = (-1365.4685, -8241.9297, 5633.5430);
+	angles[42] = (0, 87.4085, 0);
+	at[42] = 6.2000;
+	points[43] = (-1420.4843, -8251.8105, 5633.5430);
+	angles[43] = (0, 98.2863, 0);
+	at[43] = 6.3000;
+	points[44] = (-1474.4056, -8269.6855, 5633.5430);
+	angles[44] = (0, 106.4951, 0);
+	at[44] = 6.4000;
+	points[45] = (-1552.3622, -8304.5273, 5633.5430);
+	angles[45] = (0, 114.0797, 0);
+	at[45] = 6.5500;
+	points[46] = (-1626.9016, -8346.0635, 5633.5430);
+	angles[46] = (0, 119.2866, 0);
+	at[46] = 6.7000;
+	points[47] = (-1697.8308, -8393.5430, 5633.5430);
+	angles[47] = (0, 124.1103, 0);
+	at[47] = 6.8500;
+	points[48] = (-1742.4725, -8428.8584, 5633.5430);
+	angles[48] = (0, 127.8225, 0);
+	at[48] = 6.9500;
+	points[49] = (-1783.8859, -8467.9141, 5633.5430);
+	angles[49] = (0, 132.7034, 0);
+	at[49] = 7.0500;
+	points[50] = (-1819.4685, -8512.0869, 5633.5430);
+	angles[50] = (0, 140.4447, 0);
+	at[50] = 7.1500;
+	points[51] = (-1831.6733, -8533.8584, 5633.5430);
+	angles[51] = (0, 146.2697, 0);
+	at[51] = 7.2000;
+	points[52] = (-1842.9174, -8559.7637, 5633.5430);
+	angles[52] = (0, 151.6064, 0);
+	at[52] = 7.2500;
+	points[53] = (-1862.2482, -8612.9531, 5633.5430);
+	angles[53] = (0, 158.2633, 0);
+	at[53] = 7.3500;
+	points[54] = (-1887.8228, -8694.8428, 5633.5430);
+	angles[54] = (0, 162.4754, 0);
+	at[54] = 7.5000;
+	points[55] = (-1932.2482, -8860.9844, 5633.5430);
+	angles[55] = (0, 165.6834, 0);
+	at[55] = 7.8000;
+	points[56] = (-1964.0355, -8999.4492, 5633.5430);
+	angles[56] = (0, 167.4750, 0);
+	at[56] = 8.0500;
+	points[57] = (-1991.3425, -9139.4883, 5633.5430);
+	angles[57] = (0, 169.4797, 0);
+	at[57] = 8.3000;
+	points[58] = (-2008.5513, -9252.3623, 5633.5830);
+	angles[58] = (0, 171.8245, 0);
+	at[58] = 8.5000;
+	points[59] = (-2017.7559, -9364.9609, 5633.5830);
+	angles[59] = (0, 176.5607, 0);
+	at[59] = 8.7000;
+	points[60] = (-2014.5867, -9422.4805, 5633.5830);
+	angles[60] = (0, 183.0659, 0);
+	at[60] = 8.8000;
+	points[61] = (-2008.1732, -9445.9844, 5633.5830);
+	angles[61] = (0, 190.1404, 0);
+	at[61] = 8.8500;
+	points[62] = (-1995.7047, -9472.0469, 5633.5830);
+	angles[62] = (0, 198.4406, 0);
+	at[62] = 8.9000;
+	points[63] = (-1964.0669, -9518.7793, 5633.5830);
+	angles[63] = (0, 211.0636, 0);
+	at[63] = 9;
+	points[64] = (-1907.6693, -9583.3857, 5633.5830);
+	angles[64] = (0, 220.8025, 0);
+	at[64] = 9.1500;
+	points[65] = (-1846.7205, -9642.9922, 5633.5830);
+	angles[65] = (0, 225.5917, 0);
+	at[65] = 9.3000;
+	points[66] = (-1760.9214, -9717.7959, 5633.5830);
+	angles[66] = (0, 229.3864, 0);
+	at[66] = 9.5000;
+	points[67] = (-1648.5551, -9805.1973, 5633.5830);
+	angles[67] = (0, 232.8978, 0);
+	at[67] = 9.7500;
+	points[68] = (-1555.7480, -9869.4092, 5633.5830);
+	angles[68] = (0, 235.9276, 0);
+	at[68] = 9.9500;
+	points[69] = (-1464.2992, -9922.4414, 5633.5830);
+	angles[69] = (0, 241.1646, 0);
+	at[69] = 10.1333;
+	mover = getEnt("iz_obj_3", "targetname");
+	if (!isDefined(mover))
+		return;
+	mover thread iz_mover_loop(points, angles, at, false, true);
+}
+
+iz_obj_4()
+{
+	points = [];
+	angles = [];
+	at = [];
+	points[0] = (-432.0433, -10557.8350, 5633.6221);
+	angles[0] = (0, -83.9506, 0);
+	at[0] = 0;
+	points[1] = (-397.3583, -10549.8428, 5633.5039);
+	angles[1] = (0, -79.2366, 0);
+	at[1] = 0.0667;
+	points[2] = (-359.8969, -10537.4805, 5633.3857);
+	angles[2] = (0, -74.2969, 0);
+	at[2] = 0.1333;
+	points[3] = (-326.0748, -10523.7793, 5633.3467);
+	angles[3] = (0, -70.2101, 0);
+	at[3] = 0.2000;
+	points[4] = (-257.6224, -10490.4727, 5633.2681);
+	angles[4] = (0, -64.3396, 0);
+	at[4] = 0.3333;
+	points[5] = (-159.5051, -10432.9141, 5633.2681);
+	angles[5] = (0, -58.9689, 0);
+	at[5] = 0.5333;
+	points[6] = (-34.6760, -10346.5752, 5633.3071);
+	angles[6] = (0, -54.2999, 0);
+	at[6] = 0.8000;
+	points[7] = (83.9831, -10251.5752, 5633.3857);
+	angles[7] = (0, -50.3179, 0);
+	at[7] = 1.0667;
+	points[8] = (167.9331, -10174.6455, 5633.5039);
+	angles[8] = (0, -46.8317, 0);
+	at[8] = 1.2667;
+	points[9] = (220.5071, -10119.6064, 5633.5430);
+	angles[9] = (0, -43.5502, 0);
+	at[9] = 1.4000;
+	points[10] = (243.8425, -10092.0078, 5633.5830);
+	angles[10] = (0, -41.2321, 0);
+	at[10] = 1.4667;
+	points[11] = (267.4114, -10060.0391, 5633.5830);
+	angles[11] = (0, -37.7488, 0);
+	at[11] = 1.5333;
+	points[12] = (284.1799, -10031.1416, 5633.5830);
+	angles[12] = (0, -32.3733, 0);
+	at[12] = 1.6000;
+	points[13] = (299.5268, -9995.8271, 5633.5830);
+	angles[13] = (0, -26.6215, 0);
+	at[13] = 1.6667;
+	points[14] = (323.6268, -9924.3311, 5633.5830);
+	angles[14] = (0, -19.2603, 0);
+	at[14] = 1.8000;
+	points[15] = (343.5772, -9851.4170, 5633.5830);
+	angles[15] = (0, -15.5527, 0);
+	at[15] = 1.9333;
+	points[16] = (368.9193, -9740.1973, 5633.5830);
+	angles[16] = (0, -12.4748, 0);
+	at[16] = 2.1333;
+	points[17] = (402.1142, -9552.9531, 5633.5830);
+	angles[17] = (0, -9.1258, 0);
+	at[17] = 2.4667;
+	points[18] = (424.8307, -9364.6064, 5633.5830);
+	angles[18] = (0, -5.8204, 0);
+	at[18] = 2.8000;
+	points[19] = (432.9174, -9213.8975, 5633.5830);
+	angles[19] = (0, -1.8830, 0);
+	at[19] = 3.0667;
+	points[20] = (431.1535, -9138.0312, 5633.5830);
+	angles[20] = (0, 1.5750, 0);
+	at[20] = 3.2000;
+	points[21] = (427.4055, -9098.6621, 5633.5830);
+	angles[21] = (0, 4.2852, 0);
+	at[21] = 3.2667;
+	points[22] = (421.0394, -9063.1104, 5633.5830);
+	angles[22] = (0, 8.4982, 0);
+	at[22] = 3.3333;
+	points[23] = (411.5433, -9031.2598, 5633.5830);
+	angles[23] = (0, 13.8463, 0);
+	at[23] = 3.4000;
+	points[24] = (397.1614, -8993.6221, 5633.5830);
+	angles[24] = (0, 18.3592, 0);
+	at[24] = 3.4667;
+	points[25] = (382.6653, -8960.1973, 5633.5830);
+	angles[25] = (0, 21.5832, 0);
+	at[25] = 3.5333;
+	points[26] = (348.8291, -8889.9600, 5633.5830);
+	angles[26] = (0, 25.4297, 0);
+	at[26] = 3.6667;
+	points[27] = (314.4575, -8824.6064, 5633.5830);
+	angles[27] = (0, 27.6105, 0);
+	at[27] = 3.8000;
+	points[28] = (238.8839, -8692.4404, 5633.5830);
+	angles[28] = (0, 30.3207, 0);
+	at[28] = 4.0667;
+	points[29] = (137.9181, -8531.5361, 5633.5830);
+	angles[29] = (0, 32.8385, 0);
+	at[29] = 4.4000;
+	points[30] = (29.8699, -8375.1582, 5633.5830);
+	angles[30] = (0, 35.4876, 0);
+	at[30] = 4.7333;
+	points[31] = (-62.9217, -8254.6855, 5633.5830);
+	angles[31] = (0, 38.4494, 0);
+	at[31] = 5;
+	points[32] = (-138.3476, -8168.9766, 5633.5830);
+	angles[32] = (0, 42.1628, 0);
+	at[32] = 5.2000;
+	points[33] = (-193.2390, -8116.8115, 5633.5830);
+	angles[33] = (0, 46.7168, 0);
+	at[33] = 5.3333;
+	points[34] = (-222.7500, -8094.1343, 5633.5830);
+	angles[34] = (0, 50.8519, 0);
+	at[34] = 5.4000;
+	points[35] = (-250.7756, -8077.7163, 5633.5830);
+	angles[35] = (0, 56.9064, 0);
+	at[35] = 5.4667;
+	points[36] = (-322.5468, -8049.4487, 5633.5830);
+	angles[36] = (0, 67.8573, 0);
+	at[36] = 5.6000;
+	points[37] = (-394.8543, -8028.8193, 5633.5830);
+	angles[37] = (0, 73.5888, 0);
+	at[37] = 5.7333;
+	points[38] = (-544.3504, -7996.7324, 5633.5830);
+	angles[38] = (0, 78.7381, 0);
+	at[38] = 6;
+	points[39] = (-617.6457, -7984.0947, 5633.5830);
+	angles[39] = (0, 80.1685, 0);
+	at[39] = 6.1333;
+	points[40] = (-768.2205, -7962.4014, 5633.5430);
+	angles[40] = (0, 82.2559, 0);
+	at[40] = 6.4000;
+	points[41] = (-919.3661, -7945.1968, 5633.5430);
+	angles[41] = (0, 83.8974, 0);
+	at[41] = 6.6667;
+	points[42] = (-1145.2520, -7927.3232, 5633.5430);
+	angles[42] = (0, 86.3098, 0);
+	at[42] = 7.0667;
+	points[43] = (-1222.8701, -7923.6221, 5633.5430);
+	angles[43] = (0, 87.3030, 0);
+	at[43] = 7.2000;
+	points[44] = (-1373.9095, -7921.9688, 5633.5430);
+	angles[44] = (0, 90.3492, 0);
+	at[44] = 7.4667;
+	points[45] = (-1450.9172, -7926.6143, 5633.5039);
+	angles[45] = (0, 93.7979, 0);
+	at[45] = 7.6000;
+	points[46] = (-1483.2913, -7931.5752, 5633.5039);
+	angles[46] = (0, 97.2943, 0);
+	at[46] = 7.6667;
+	points[47] = (-1519.2362, -7940.5903, 5633.5039);
+	angles[47] = (0, 101.8216, 0);
+	at[47] = 7.7333;
+	points[48] = (-1590.7402, -7965.7871, 5633.5039);
+	angles[48] = (0, 109.0269, 0);
+	at[48] = 7.8667;
+	points[49] = (-1694.8503, -8012.8350, 5633.4644);
+	angles[49] = (0, 114.9283, 0);
+	at[49] = 8.0667;
+	points[50] = (-1795.4528, -8066.1812, 5633.4644);
+	angles[50] = (0, 118.3848, 0);
+	at[50] = 8.2667;
+	points[51] = (-1893.3071, -8124.1338, 5633.4253);
+	angles[51] = (0, 121.0307, 0);
+	at[51] = 8.4667;
+	points[52] = (-1988.5787, -8186.2202, 5633.4253);
+	angles[52] = (0, 123.5047, 0);
+	at[52] = 8.6667;
+	points[53] = (-2080.7678, -8252.5596, 5633.3857);
+	angles[53] = (0, 126.2650, 0);
+	at[53] = 8.8667;
+	points[54] = (-2168.3464, -8324.0947, 5633.3857);
+	angles[54] = (0, 130.0405, 0);
+	at[54] = 9.0667;
+	points[55] = (-2223.2402, -8376.8105, 5633.3467);
+	angles[55] = (0, 134.1490, 0);
+	at[55] = 9.2000;
+	points[56] = (-2249.3032, -8406.5742, 5633.3467);
+	angles[56] = (0, 137.4201, 0);
+	at[56] = 9.2667;
+	points[57] = (-2269.7048, -8435.1182, 5633.3467);
+	angles[57] = (0, 142.4789, 0);
+	at[57] = 9.3333;
+	points[58] = (-2285.9880, -8465.5508, 5633.3467);
+	angles[58] = (0, 148.6034, 0);
+	at[58] = 9.4000;
+	points[59] = (-2302.2913, -8503.0322, 5633.3467);
+	angles[59] = (0, 153.6462, 0);
+	at[59] = 9.4667;
+	points[60] = (-2327.7283, -8573.0322, 5633.3071);
+	angles[60] = (0, 159.4816, 0);
+	at[60] = 9.6000;
+	points[61] = (-2380.0828, -8755.0791, 5633.2285);
+	angles[61] = (0, 165.0964, 0);
+	at[61] = 9.9333;
+	points[62] = (-2429.8860, -8977.6377, 5633.1499);
+	angles[62] = (0, 168.3943, 0);
+	at[62] = 10.3333;
+	points[63] = (-2462.3267, -9164.9219, 5633.1499);
+	angles[63] = (0, 170.9869, 0);
+	at[63] = 10.6667;
+	points[64] = (-2480.8584, -9315.8662, 5633.1890);
+	angles[64] = (0, 173.8159, 0);
+	at[64] = 10.9333;
+	points[65] = (-2487.5513, -9429.7246, 5633.3071);
+	angles[65] = (0, 177.4573, 0);
+	at[65] = 11.1333;
+	points[66] = (-2487.4136, -9464.8428, 5633.3857);
+	angles[66] = (0, 179.3806, 0);
+	at[66] = 11.2000;
+	points[67] = (-2484.8938, -9506.1025, 5633.4644);
+	angles[67] = (0, 182.3672, 0);
+	at[67] = 11.2667;
+	points[68] = (-2479.5039, -9539.9609, 5633.5830);
+	angles[68] = (0, 187.2197, 0);
+	at[68] = 11.3333;
+	points[69] = (-2469.6299, -9573.2285, 5633.7402);
+	angles[69] = (0, 193.3471, 0);
+	at[69] = 11.4000;
+	points[70] = (-2454.6418, -9611.1025, 5634.0161);
+	angles[70] = (0, 198.6461, 0);
+	at[70] = 11.4667;
+	points[71] = (-2439.7952, -9643.3857, 5634.2520);
+	angles[71] = (0, 202.4756, 0);
+	at[71] = 11.5333;
+	points[72] = (-2404.0591, -9711.6143, 5634.8428);
+	angles[72] = (0, 207.3241, 0);
+	at[72] = 11.6667;
+	points[73] = (-2325.5393, -9840.7090, 5636.0635);
+	angles[73] = (0, 212.2225, 0);
+	at[73] = 11.9333;
+	points[74] = (-2239.3110, -9965.7871, 5637.3232);
+	angles[74] = (0, 215.2725, 0);
+	at[74] = 12.2000;
+	points[75] = (-2123.6616, -10115.7881, 5638.8975);
+	angles[75] = (0, 218.6735, 0);
+	at[75] = 12.5333;
+	points[76] = (-2023.7244, -10230.5508, 5640.0396);
+	angles[76] = (0, 221.9567, 0);
+	at[76] = 12.8000;
+	points[77] = (-1971.1576, -10284.8037, 5640.5513);
+	angles[77] = (0, 224.1883, 0);
+	at[77] = 12.9333;
+	points[78] = (-1914.7166, -10337.1650, 5641.0234);
+	angles[78] = (0, 227.2899, 0);
+	at[78] = 13.0667;
+	points[79] = (-1886.9331, -10360.1582, 5641.1812);
+	angles[79] = (0, 229.4091, 0);
+	at[79] = 13.1333;
+	points[80] = (-1854.8229, -10383.8584, 5641.3384);
+	angles[80] = (0, 232.3112, 0);
+	at[80] = 13.2000;
+	points[81] = (-1823.7245, -10403.0713, 5641.4175);
+	angles[81] = (0, 236.5527, 0);
+	at[81] = 13.2667;
+	points[82] = (-1794.4291, -10416.8115, 5641.3779);
+	angles[82] = (0, 242.2095, 0);
+	at[82] = 13.3333;
+	points[83] = (-1720.1456, -10440.9062, 5641.1812);
+	angles[83] = (0, 251.4068, 0);
+	at[83] = 13.4667;
+	points[84] = (-1685.6456, -10449.7646, 5641.0234);
+	angles[84] = (0, 254.0764, 0);
+	at[84] = 13.5333;
+	points[85] = (-1608.4213, -10466.6934, 5640.6689);
+	angles[85] = (0, 257.3991, 0);
+	at[85] = 13.6667;
+	points[86] = (-1536.4922, -10480.1182, 5640.2759);
+	angles[86] = (0, 259.3132, 0);
+	at[86] = 13.8000;
+	points[87] = (-1459.4292, -10492.7559, 5639.8428);
+	angles[87] = (0, 260.6320, 0);
+	at[87] = 13.9333;
+	points[88] = (-1348.2205, -10508.6621, 5639.1733);
+	angles[88] = (0, 262.0352, 0);
+	at[88] = 14.1333;
+	points[89] = (-1159.5276, -10530.9053, 5638.0312);
+	angles[89] = (0, 263.7440, 0);
+	at[89] = 14.4667;
+	points[90] = (-932.8464, -10551.1416, 5636.5752);
+	angles[90] = (0, 265.4771, 0);
+	at[90] = 14.8667;
+	points[91] = (-782.4606, -10560.5908, 5635.6304);
+	angles[91] = (0, 266.7572, 0);
+	at[91] = 15.1333;
+	points[92] = (-704.1260, -10563.9375, 5635.1182);
+	angles[92] = (0, 267.5580, 0);
+	at[92] = 15.2667;
+	points[93] = (-630.9448, -10565.8271, 5634.6851);
+	angles[93] = (0, 268.5420, 0);
+	at[93] = 15.4000;
+	points[94] = (-552.2047, -10565.9844, 5634.2124);
+	angles[94] = (0, 270.0011, 0);
+	at[94] = 15.5333;
+	points[95] = (-517.6142, -10565.1182, 5634.0161);
+	angles[95] = (0, 271, 0);
+	at[95] = 15.6000;
+	points[96] = (-475.4567, -10562.7959, 5633.7798);
+	angles[96] = (0, 272.5335, 0);
+	at[96] = 15.6667;
+	points[97] = (-432.0433, -10557.8350, 5633.6221);
+	angles[97] = (0, 276.0494, 0);
+	at[97] = 15.7500;
+	mover = getEnt("iz_obj_4", "targetname");
+	if (!isDefined(mover))
+		return;
+	mover thread iz_mover_loop(points, angles, at, false, true);
+}
+
+iz_obj_5()
+{
+	points = [];
+	angles = [];
+	at = [];
+	points[0] = (-1063.9292, -9454.9209, 4743.6221);
+	angles[0] = (0, -85.8207, 0);
+	at[0] = 0;
+	points[1] = (-1143.9803, -8359.4492, 4747.8350);
+	angles[1] = (0, -85.8207, 0);
+	at[1] = 3.1000;
+	points[2] = (-1143.9803, -8359.4492, 4747.8350);
+	angles[2] = (0, -85.8207, 0);
+	at[2] = 3.6000;
+	points[3] = (-1142.4292, -8380.6699, 4747.7559);
+	angles[3] = (0, -85.8207, 0);
+	at[3] = 3.6500;
+	points[4] = (-1063.6693, -9458.5039, 4743.5825);
+	angles[4] = (0, -85.8207, 0);
+	at[4] = 6.7000;
+	points[5] = (-1063.2401, -9464.4092, 4743.5825);
+	angles[5] = (0, -85.8207, 0);
+	at[5] = 6.7500;
+	points[6] = (-1063.2401, -9464.4092, 4743.5825);
+	angles[6] = (0, -85.8207, 0);
+	at[6] = 7.2000;
+	points[7] = (-1063.9292, -9454.9209, 4743.6221);
+	angles[7] = (0, -85.8207, 0);
+	at[7] = 7.2333;
+	mover = getEnt("iz_obj_5", "targetname");
+	if (!isDefined(mover))
+		return;
+	mover thread iz_mover_loop(points, angles, at, false, true);
+}
+
+iz_obj_6()
+{
+	points = [];
+	angles = [];
+	at = [];
+	points[0] = (-3911.6931, -9197.6777, 5216.8110);
+	angles[0] = (0, -89.3996, 0);
+	at[0] = 0;
+	points[1] = (-3903.5237, -9977.1260, 5209.6064);
+	angles[1] = (0, -89.3996, 0);
+	at[1] = 2.2000;
+	points[2] = (-3903.5237, -9977.1260, 5209.6064);
+	angles[2] = (0, -89.3996, 0);
+	at[2] = 2.7000;
+	points[3] = (-3903.7600, -9954.7246, 5209.8032);
+	angles[3] = (0, -89.3996, 0);
+	at[3] = 2.7500;
+	points[4] = (-3911.7402, -9192.9922, 5216.8501);
+	angles[4] = (0, -89.3996, 0);
+	at[4] = 4.9000;
+	points[5] = (-3911.8032, -9187.0869, 5216.8901);
+	angles[5] = (0, -89.3996, 0);
+	at[5] = 4.9500;
+	points[6] = (-3911.8032, -9187.0869, 5216.8901);
+	angles[6] = (0, -89.3996, 0);
+	at[6] = 5.4000;
+	points[7] = (-3911.6931, -9197.6777, 5216.8110);
+	angles[7] = (0, -89.3996, 0);
+	at[7] = 5.4333;
+	mover = getEnt("iz_obj_6", "targetname");
+	if (!isDefined(mover))
+		return;
+	mover thread iz_mover_loop(points, angles, at, false, true);
+}
+
+iz_obj_7()
+{
+	points = [];
+	angles = [];
+	at = [];
+	points[0] = (1229.3425, 8775.9062, 5096.1421);
+	angles[0] = (0, 72.6266, 0);
+	at[0] = 0;
+	points[1] = (964.8386, 7930.5117, 5094.8032);
+	angles[1] = (0, 72.6266, 0);
+	at[1] = 2.5000;
+	points[2] = (961.3110, 7919.2124, 5094.8032);
+	angles[2] = (0, 72.6266, 0);
+	at[2] = 2.5500;
+	points[3] = (961.3110, 7919.2124, 5094.8032);
+	angles[3] = (0, 72.6266, 0);
+	at[3] = 3;
+	points[4] = (964.2087, 7928.5039, 5094.8032);
+	angles[4] = (0, 72.6266, 0);
+	at[4] = 3.0500;
+	points[5] = (1228.7166, 8773.8975, 5096.1421);
+	angles[5] = (0, 72.6266, 0);
+	at[5] = 5.5500;
+	points[6] = (1232.2441, 8785.1973, 5096.1807);
+	angles[6] = (0, 72.6266, 0);
+	at[6] = 5.6000;
+	points[7] = (1232.2441, 8785.1973, 5096.1807);
+	angles[7] = (0, 72.6266, 0);
+	at[7] = 6.0500;
+	points[8] = (1229.3425, 8775.9062, 5096.1421);
+	angles[8] = (0, 72.6266, 0);
+	at[8] = 6.1000;
+	mover = getEnt("iz_obj_7", "targetname");
+	if (!isDefined(mover))
+		return;
+	mover thread iz_mover_loop(points, angles, at, false, true);
+}
+
+iz_obj_8()
+{
+	points = [];
+	angles = [];
+	at = [];
+	points[0] = (2306.8545, 5593.2676, 4977.5591);
+	angles[0] = (0, 57.1771, 0);
+	at[0] = 0;
+	points[1] = (2815.8188, 6382.3623, 4977.5591);
+	angles[1] = (0, 57.1771, 0);
+	at[1] = 2.6500;
+	points[2] = (2815.8188, 6382.3623, 4977.5591);
+	angles[2] = (0, 57.1771, 0);
+	at[2] = 3.1500;
+	points[3] = (2305.8071, 5591.6538, 4977.5591);
+	angles[3] = (0, 57.1771, 0);
+	at[3] = 5.8000;
+	points[4] = (2302.6062, 5586.6929, 4977.5591);
+	angles[4] = (0, 57.1771, 0);
+	at[4] = 5.8500;
+	points[5] = (2302.6062, 5586.6929, 4977.5591);
+	angles[5] = (0, 57.1771, 0);
+	at[5] = 6.3000;
+	points[6] = (2306.8545, 5593.2676, 4977.5591);
+	angles[6] = (0, 57.1771, 0);
+	at[6] = 6.3333;
+	mover = getEnt("iz_obj_8", "targetname");
+	if (!isDefined(mover))
+		return;
+	mover thread iz_mover_loop(points, angles, at, false, true);
+}
+
+iz_obj_9()
+{
+	points = [];
+	angles = [];
+	at = [];
+	points[0] = (-4673.3467, -8268.7793, 5693.9375);
+	angles[0] = (0, -101, 0);
+	at[0] = 0;
+	points[1] = (-4671.6143, -8261.4170, 5693.7793);
+	angles[1] = (0, -101, 0);
+	at[1] = 0.5000;
+	points[2] = (-4671.6143, -8261.4170, 5693.7793);
+	angles[2] = (0, -101, 0);
+	at[2] = 1;
+	points[3] = (-4666.4175, -8239.3311, 5693.2285);
+	angles[3] = (0, -101, 0);
+	at[3] = 3;
+	points[4] = (-4666.4175, -8239.3311, 5693.2285);
+	angles[4] = (0, -101, 0);
+	at[4] = 3.5000;
+	points[5] = (-4661.2603, -8217.2832, 5692.7168);
+	angles[5] = (0, -101, 0);
+	at[5] = 5.5000;
+	points[6] = (-4661.2603, -8217.2832, 5692.7168);
+	angles[6] = (0, -101, 0);
+	at[6] = 6;
+	points[7] = (-4656.1025, -8195.1973, 5692.1650);
+	angles[7] = (0, -101, 0);
+	at[7] = 8;
+	points[8] = (-4656.1025, -8195.1973, 5692.1650);
+	angles[8] = (0, -101, 0);
+	at[8] = 8.5000;
+	points[9] = (-4650.9058, -8173.1104, 5691.6533);
+	angles[9] = (0, -101, 0);
+	at[9] = 10.5000;
+	points[10] = (-4650.9058, -8173.1104, 5691.6533);
+	angles[10] = (0, -101, 0);
+	at[10] = 11;
+	points[11] = (-4645.7480, -8151.0630, 5691.0630);
+	angles[11] = (0, -101, 0);
+	at[11] = 13;
+	points[12] = (-4645.7480, -8151.0630, 5691.0630);
+	angles[12] = (0, -101, 0);
+	at[12] = 13.5000;
+	points[13] = (-4640.5908, -8128.9766, 5690.4722);
+	angles[13] = (0, -101, 0);
+	at[13] = 15.5000;
+	points[14] = (-4640.5908, -8128.9766, 5690.4722);
+	angles[14] = (0, -101, 0);
+	at[14] = 16;
+	points[15] = (-4635.3936, -8106.8896, 5689.8428);
+	angles[15] = (0, -101, 0);
+	at[15] = 18;
+	points[16] = (-4635.3936, -8106.8896, 5689.8428);
+	angles[16] = (0, -101, 0);
+	at[16] = 18.5000;
+	points[17] = (-4630.2363, -8084.8423, 5689.2520);
+	angles[17] = (0, -101, 0);
+	at[17] = 20.5000;
+	points[18] = (-4630.2363, -8084.8423, 5689.2520);
+	angles[18] = (0, -101, 0);
+	at[18] = 21;
+	points[19] = (-4625.0786, -8062.7563, 5688.6616);
+	angles[19] = (0, -101, 0);
+	at[19] = 23;
+	points[20] = (-4625.0786, -8062.7563, 5688.6616);
+	angles[20] = (0, -101, 0);
+	at[20] = 23.5000;
+	points[21] = (-4619.8818, -8040.6694, 5688.0713);
+	angles[21] = (0, -101, 0);
+	at[21] = 25.5000;
+	points[22] = (-4619.8818, -8040.6694, 5688.0713);
+	angles[22] = (0, -101, 0);
+	at[22] = 26;
+	points[23] = (-4614.7241, -8018.6221, 5687.4805);
+	angles[23] = (0, -101, 0);
+	at[23] = 28;
+	points[24] = (-4614.7241, -8018.6221, 5687.4805);
+	angles[24] = (0, -101, 0);
+	at[24] = 28.5000;
+	points[25] = (-4609.5669, -7996.5356, 5686.8506);
+	angles[25] = (0, -101, 0);
+	at[25] = 30.5000;
+	points[26] = (-4609.5669, -7996.5356, 5686.8506);
+	angles[26] = (0, -101, 0);
+	at[26] = 31;
+	points[27] = (-4604.3701, -7974.4487, 5686.2598);
+	angles[27] = (0, -101, 0);
+	at[27] = 33;
+	points[28] = (-4604.3701, -7974.4487, 5686.2598);
+	angles[28] = (0, -101, 0);
+	at[28] = 33.5000;
+	points[29] = (-4599.2124, -7952.4014, 5685.6694);
+	angles[29] = (0, -101, 0);
+	at[29] = 35.5000;
+	points[30] = (-4599.2124, -7952.4014, 5685.6694);
+	angles[30] = (0, -101, 0);
+	at[30] = 36;
+	points[31] = (-4594.0552, -7930.3149, 5685.0786);
+	angles[31] = (0, -101, 0);
+	at[31] = 38;
+	points[32] = (-4594.0552, -7930.3149, 5685.0786);
+	angles[32] = (0, -101, 0);
+	at[32] = 38.5000;
+	points[33] = (-4588.8584, -7908.2676, 5684.6064);
+	angles[33] = (0, -101, 0);
+	at[33] = 40.5000;
+	points[34] = (-4588.8584, -7908.2676, 5684.6064);
+	angles[34] = (0, -101, 0);
+	at[34] = 41;
+	points[35] = (-4583.7012, -7886.1816, 5684.0947);
+	angles[35] = (0, -101, 0);
+	at[35] = 43;
+	points[36] = (-4583.7012, -7886.1816, 5684.0947);
+	angles[36] = (0, -101, 0);
+	at[36] = 43.5000;
+	points[37] = (-4578.5435, -7864.0947, 5683.5830);
+	angles[37] = (0, -101, 0);
+	at[37] = 45.5000;
+	points[38] = (-4578.5435, -7864.0947, 5683.5830);
+	angles[38] = (0, -101, 0);
+	at[38] = 46;
+	points[39] = (-4573.3467, -7842.0474, 5683.1104);
+	angles[39] = (0, -101, 0);
+	at[39] = 48;
+	points[40] = (-4573.3467, -7842.0474, 5683.1104);
+	angles[40] = (0, -101, 0);
+	at[40] = 48.5000;
+	points[41] = (-4568.1890, -7819.9604, 5682.5986);
+	angles[41] = (0, -101, 0);
+	at[41] = 50.5000;
+	points[42] = (-4568.1890, -7819.9604, 5682.5986);
+	angles[42] = (0, -101, 0);
+	at[42] = 51;
+	points[43] = (-4563.0317, -7797.8740, 5682.0864);
+	angles[43] = (0, -101, 0);
+	at[43] = 53;
+	points[44] = (-4563.0317, -7797.8740, 5682.0864);
+	angles[44] = (0, -101, 0);
+	at[44] = 53.5000;
+	points[45] = (-4557.8345, -7775.8267, 5681.5747);
+	angles[45] = (0, -101, 0);
+	at[45] = 55.5000;
+	points[46] = (-4557.8345, -7775.8267, 5681.5747);
+	angles[46] = (0, -101, 0);
+	at[46] = 56;
+	points[47] = (-4552.6772, -7753.7407, 5681.1025);
+	angles[47] = (0, -101, 0);
+	at[47] = 58;
+	points[48] = (-4552.6772, -7753.7407, 5681.1025);
+	angles[48] = (0, -101, 0);
+	at[48] = 58.5000;
+	points[49] = (-4547.5200, -7731.6538, 5680.5908);
+	angles[49] = (0, -101, 0);
+	at[49] = 60.5000;
+	points[50] = (-4547.5200, -7731.6538, 5680.5908);
+	angles[50] = (0, -101, 0);
+	at[50] = 61;
+	points[51] = (-4542.3228, -7709.6064, 5680.0791);
+	angles[51] = (0, -101, 0);
+	at[51] = 63;
+	points[52] = (-4542.3228, -7709.6064, 5680.0791);
+	angles[52] = (0, -101, 0);
+	at[52] = 63.5000;
+	points[53] = (-4537.1655, -7687.5200, 5679.6060);
+	angles[53] = (0, -101, 0);
+	at[53] = 65.5000;
+	points[54] = (-4537.1655, -7687.5200, 5679.6060);
+	angles[54] = (0, -101, 0);
+	at[54] = 66;
+	points[55] = (-4531.9688, -7665.4331, 5679.0552);
+	angles[55] = (0, -101, 0);
+	at[55] = 68;
+	points[56] = (-4531.9688, -7665.4331, 5679.0552);
+	angles[56] = (0, -101, 0);
+	at[56] = 68.5000;
+	points[57] = (-4526.8110, -7643.3857, 5678.5039);
+	angles[57] = (0, -101, 0);
+	at[57] = 70.5000;
+	points[58] = (-4526.8110, -7643.3857, 5678.5039);
+	angles[58] = (0, -101, 0);
+	at[58] = 71;
+	points[59] = (-4521.6533, -7621.2988, 5677.9131);
+	angles[59] = (0, -101, 0);
+	at[59] = 73;
+	points[60] = (-4521.6533, -7621.2988, 5677.9131);
+	angles[60] = (0, -101, 0);
+	at[60] = 73.5000;
+	points[61] = (-4516.4570, -7599.2129, 5677.3623);
+	angles[61] = (0, -101, 0);
+	at[61] = 75.5000;
+	points[62] = (-4516.4570, -7599.2129, 5677.3623);
+	angles[62] = (0, -101, 0);
+	at[62] = 76;
+	points[63] = (-4514.7642, -7591.8501, 5677.1655);
+	angles[63] = (0, -101, 0);
+	at[63] = 76.5000;
+	points[64] = (-4512.2837, -7581.2993, 5676.8896);
+	angles[64] = (0, -101, 0);
+	at[64] = 78;
+	points[65] = (-4514.0156, -7588.6616, 5677.0864);
+	angles[65] = (0, -101, 0);
+	at[65] = 78.5000;
+	points[66] = (-4514.0942, -7589.0161, 5677.0864);
+	angles[66] = (0, -101, 0);
+	at[66] = 79;
+	points[67] = (-4517.2837, -7602.6772, 5677.4409);
+	angles[67] = (0, -101, 0);
+	at[67] = 80;
+	points[68] = (-4517.4409, -7603.3862, 5677.4800);
+	angles[68] = (0, -101, 0);
+	at[68] = 80.5000;
+	points[69] = (-4519.1733, -7610.7480, 5677.6772);
+	angles[69] = (0, -101, 0);
+	at[69] = 81;
+	points[70] = (-4519.2520, -7611.0630, 5677.6772);
+	angles[70] = (0, -101, 0);
+	at[70] = 81.5000;
+	points[71] = (-4522.4409, -7624.7642, 5678.0317);
+	angles[71] = (0, -101, 0);
+	at[71] = 82.5000;
+	points[72] = (-4522.5986, -7625.4331, 5678.0317);
+	angles[72] = (0, -101, 0);
+	at[72] = 83;
+	points[73] = (-4524.3306, -7632.7954, 5678.2285);
+	angles[73] = (0, -101, 0);
+	at[73] = 83.5000;
+	points[74] = (-4524.4097, -7633.1499, 5678.2285);
+	angles[74] = (0, -101, 0);
+	at[74] = 84;
+	points[75] = (-4527.6377, -7646.8501, 5678.5825);
+	angles[75] = (0, -101, 0);
+	at[75] = 85;
+	points[76] = (-4527.7954, -7647.5195, 5678.6221);
+	angles[76] = (0, -101, 0);
+	at[76] = 85.5000;
+	points[77] = (-4529.5278, -7654.8823, 5678.8193);
+	angles[77] = (0, -101, 0);
+	at[77] = 86;
+	points[78] = (-4529.6064, -7655.2358, 5678.8193);
+	angles[78] = (0, -101, 0);
+	at[78] = 86.5000;
+	points[79] = (-4532.7954, -7668.8975, 5679.1733);
+	angles[79] = (0, -101, 0);
+	at[79] = 87.5000;
+	points[80] = (-4532.9526, -7669.6064, 5679.1733);
+	angles[80] = (0, -101, 0);
+	at[80] = 88;
+	points[81] = (-4534.6851, -7676.9683, 5679.3311);
+	angles[81] = (0, -101, 0);
+	at[81] = 88.5000;
+	points[82] = (-4534.7637, -7677.2837, 5679.3701);
+	angles[82] = (0, -101, 0);
+	at[82] = 89;
+	points[83] = (-4537.9526, -7690.9844, 5679.6855);
+	angles[83] = (0, -101, 0);
+	at[83] = 90;
+	points[84] = (-4538.1104, -7691.6533, 5679.6855);
+	angles[84] = (0, -101, 0);
+	at[84] = 90.5000;
+	points[85] = (-4539.8423, -7699.0156, 5679.8428);
+	angles[85] = (0, -101, 0);
+	at[85] = 91;
+	points[86] = (-4539.9214, -7699.3701, 5679.8428);
+	angles[86] = (0, -101, 0);
+	at[86] = 91.5000;
+	points[87] = (-4543.1499, -7713.0713, 5680.1577);
+	angles[87] = (0, -101, 0);
+	at[87] = 92.5000;
+	points[88] = (-4543.3071, -7713.7402, 5680.1968);
+	angles[88] = (0, -101, 0);
+	at[88] = 93;
+	points[89] = (-4545.0396, -7721.1025, 5680.3545);
+	angles[89] = (0, -101, 0);
+	at[89] = 93.5000;
+	points[90] = (-4545.1182, -7721.4565, 5680.3545);
+	angles[90] = (0, -101, 0);
+	at[90] = 94;
+	points[91] = (-4548.3071, -7735.1182, 5680.6694);
+	angles[91] = (0, -101, 0);
+	at[91] = 95;
+	points[92] = (-4548.4644, -7735.8271, 5680.6694);
+	angles[92] = (0, -101, 0);
+	at[92] = 95.5000;
+	points[93] = (-4550.1968, -7743.1890, 5680.8667);
+	angles[93] = (0, -101, 0);
+	at[93] = 96;
+	points[94] = (-4550.2759, -7743.5039, 5680.8667);
+	angles[94] = (0, -101, 0);
+	at[94] = 96.5000;
+	points[95] = (-4553.4644, -7757.2051, 5681.1812);
+	angles[95] = (0, -101, 0);
+	at[95] = 97.5000;
+	points[96] = (-4553.6616, -7757.8740, 5681.1812);
+	angles[96] = (0, -101, 0);
+	at[96] = 98;
+	points[97] = (-4555.3545, -7765.2363, 5681.3389);
+	angles[97] = (0, -101, 0);
+	at[97] = 98.5000;
+	points[98] = (-4555.4331, -7765.5908, 5681.3389);
+	angles[98] = (0, -101, 0);
+	at[98] = 99;
+	points[99] = (-4558.6616, -7779.2520, 5681.6533);
+	angles[99] = (0, -101, 0);
+	at[99] = 100;
+	points[100] = (-4558.8188, -7779.9604, 5681.6929);
+	angles[100] = (0, -101, 0);
+	at[100] = 100.5000;
+	points[101] = (-4560.5513, -7787.3232, 5681.8506);
+	angles[101] = (0, -101, 0);
+	at[101] = 101;
+	points[102] = (-4560.6299, -7787.6777, 5681.8506);
+	angles[102] = (0, -101, 0);
+	at[102] = 101.5000;
+	points[103] = (-4563.8188, -7801.3389, 5682.1650);
+	angles[103] = (0, -101, 0);
+	at[103] = 102.5000;
+	points[104] = (-4563.9766, -7802.0474, 5682.1650);
+	angles[104] = (0, -101, 0);
+	at[104] = 103;
+	points[105] = (-4565.7090, -7809.4092, 5682.3623);
+	angles[105] = (0, -101, 0);
+	at[105] = 103.5000;
+	points[106] = (-4565.7876, -7809.7246, 5682.3623);
+	angles[106] = (0, -101, 0);
+	at[106] = 104;
+	points[107] = (-4568.9766, -7823.4253, 5682.6772);
+	angles[107] = (0, -101, 0);
+	at[107] = 105;
+	points[108] = (-4569.1733, -7824.0942, 5682.6772);
+	angles[108] = (0, -101, 0);
+	at[108] = 105.5000;
+	points[109] = (-4570.8662, -7831.4570, 5682.8345);
+	angles[109] = (0, -101, 0);
+	at[109] = 106;
+	points[110] = (-4570.9448, -7831.8110, 5682.8740);
+	angles[110] = (0, -101, 0);
+	at[110] = 106.5000;
+	points[111] = (-4574.1733, -7845.4722, 5683.1890);
+	angles[111] = (0, -101, 0);
+	at[111] = 107.5000;
+	points[112] = (-4574.3311, -7846.1812, 5683.1890);
+	angles[112] = (0, -101, 0);
+	at[112] = 108;
+	points[113] = (-4576.0630, -7853.5435, 5683.3462);
+	angles[113] = (0, -101, 0);
+	at[113] = 108.5000;
+	points[114] = (-4576.1416, -7853.8975, 5683.3462);
+	angles[114] = (0, -101, 0);
+	at[114] = 109;
+	points[115] = (-4579.3311, -7867.5591, 5683.6616);
+	angles[115] = (0, -101, 0);
+	at[115] = 110;
+	points[116] = (-4579.4883, -7868.2681, 5683.7007);
+	angles[116] = (0, -101, 0);
+	at[116] = 110.5000;
+	points[117] = (-4581.2207, -7875.5903, 5683.8579);
+	angles[117] = (0, -101, 0);
+	at[117] = 111;
+	points[118] = (-4581.2993, -7875.9448, 5683.8579);
+	angles[118] = (0, -101, 0);
+	at[118] = 111.5000;
+	points[119] = (-4584.5273, -7889.6460, 5684.1733);
+	angles[119] = (0, -101, 0);
+	at[119] = 112.5000;
+	points[120] = (-4584.6851, -7890.3149, 5684.1733);
+	angles[120] = (0, -101, 0);
+	at[120] = 113;
+	points[121] = (-4586.3779, -7897.6772, 5684.3701);
+	angles[121] = (0, -101, 0);
+	at[121] = 113.5000;
+	points[122] = (-4586.4570, -7898.0317, 5684.3701);
+	angles[122] = (0, -101, 0);
+	at[122] = 114;
+	points[123] = (-4589.6851, -7911.6929, 5684.6855);
+	angles[123] = (0, -101, 0);
+	at[123] = 115;
+	points[124] = (-4589.8428, -7912.4019, 5684.6855);
+	angles[124] = (0, -101, 0);
+	at[124] = 115.5000;
+	points[125] = (-4591.5747, -7919.7642, 5684.8428);
+	angles[125] = (0, -101, 0);
+	at[125] = 116;
+	points[126] = (-4591.6533, -7920.1187, 5684.8428);
+	angles[126] = (0, -101, 0);
+	at[126] = 116.5000;
+	points[127] = (-4594.8428, -7933.7798, 5685.1577);
+	angles[127] = (0, -101, 0);
+	at[127] = 117.5000;
+	points[128] = (-4595, -7934.4883, 5685.1973);
+	angles[128] = (0, -101, 0);
+	at[128] = 118;
+	points[129] = (-4596.7324, -7941.8110, 5685.3936);
+	angles[129] = (0, -101, 0);
+	at[129] = 118.5000;
+	points[130] = (-4596.8110, -7942.1655, 5685.3936);
+	angles[130] = (0, -101, 0);
+	at[130] = 119;
+	points[131] = (-4600.0396, -7955.8662, 5685.7480);
+	angles[131] = (0, -101, 0);
+	at[131] = 120;
+	points[132] = (-4600.1968, -7956.5352, 5685.7876);
+	angles[132] = (0, -101, 0);
+	at[132] = 120.5000;
+	points[133] = (-4601.8896, -7963.8979, 5685.9844);
+	angles[133] = (0, -101, 0);
+	at[133] = 121;
+	points[134] = (-4601.9688, -7964.2524, 5685.9844);
+	angles[134] = (0, -101, 0);
+	at[134] = 121.5000;
+	points[135] = (-4605.1968, -7977.9136, 5686.3784);
+	angles[135] = (0, -101, 0);
+	at[135] = 122.5000;
+	points[136] = (-4605.3545, -7978.6221, 5686.3784);
+	angles[136] = (0, -101, 0);
+	at[136] = 123;
+	points[137] = (-4607.0864, -7985.9839, 5686.5747);
+	angles[137] = (0, -101, 0);
+	at[137] = 123.5000;
+	points[138] = (-4607.1655, -7986.3384, 5686.5747);
+	angles[138] = (0, -101, 0);
+	at[138] = 124;
+	points[139] = (-4610.3545, -8000, 5686.9688);
+	angles[139] = (0, -101, 0);
+	at[139] = 125;
+	points[140] = (-4610.5117, -8000.7090, 5686.9688);
+	angles[140] = (0, -101, 0);
+	at[140] = 125.5000;
+	points[141] = (-4612.2441, -8008.0317, 5687.1650);
+	angles[141] = (0, -101, 0);
+	at[141] = 126;
+	points[142] = (-4612.3228, -8008.3857, 5687.2051);
+	angles[142] = (0, -101, 0);
+	at[142] = 126.5000;
+	points[143] = (-4615.5513, -8022.0869, 5687.5591);
+	angles[143] = (0, -101, 0);
+	at[143] = 127.5000;
+	points[144] = (-4615.7085, -8022.7559, 5687.5591);
+	angles[144] = (0, -101, 0);
+	at[144] = 128;
+	points[145] = (-4617.4014, -8030.1182, 5687.7954);
+	angles[145] = (0, -101, 0);
+	at[145] = 128.5000;
+	points[146] = (-4617.5200, -8030.4727, 5687.7954);
+	angles[146] = (0, -101, 0);
+	at[146] = 129;
+	points[147] = (-4620.7085, -8044.1338, 5688.1499);
+	angles[147] = (0, -101, 0);
+	at[147] = 130;
+	points[148] = (-4620.8662, -8044.8428, 5688.1890);
+	angles[148] = (0, -101, 0);
+	at[148] = 130.5000;
+	points[149] = (-4622.5986, -8052.2051, 5688.3857);
+	angles[149] = (0, -101, 0);
+	at[149] = 131;
+	points[150] = (-4622.6772, -8052.5195, 5688.3857);
+	angles[150] = (0, -101, 0);
+	at[150] = 131.5000;
+	points[151] = (-4625.8662, -8066.2207, 5688.7402);
+	angles[151] = (0, -101, 0);
+	at[151] = 132.5000;
+	points[152] = (-4626.0234, -8066.8901, 5688.7793);
+	angles[152] = (0, -101, 0);
+	at[152] = 133;
+	points[153] = (-4627.7559, -8074.2520, 5688.9766);
+	angles[153] = (0, -101, 0);
+	at[153] = 133.5000;
+	points[154] = (-4627.8345, -8074.6064, 5688.9766);
+	angles[154] = (0, -101, 0);
+	at[154] = 134;
+	points[155] = (-4631.0630, -8088.3071, 5689.3701);
+	angles[155] = (0, -101, 0);
+	at[155] = 135;
+	points[156] = (-4631.2207, -8088.9766, 5689.3701);
+	angles[156] = (0, -101, 0);
+	at[156] = 135.5000;
+	points[157] = (-4632.9136, -8096.3389, 5689.5669);
+	angles[157] = (0, -101, 0);
+	at[157] = 136;
+	points[158] = (-4633.0317, -8096.6934, 5689.5669);
+	angles[158] = (0, -101, 0);
+	at[158] = 136.5000;
+	points[159] = (-4636.2207, -8110.3545, 5689.9604);
+	angles[159] = (0, -101, 0);
+	at[159] = 137.5000;
+	points[160] = (-4636.3779, -8111.0630, 5689.9604);
+	angles[160] = (0, -101, 0);
+	at[160] = 138;
+	points[161] = (-4638.1104, -8118.4248, 5690.1577);
+	angles[161] = (0, -101, 0);
+	at[161] = 138.5000;
+	points[162] = (-4638.1890, -8118.7402, 5690.1973);
+	angles[162] = (0, -101, 0);
+	at[162] = 139;
+	points[163] = (-4641.3779, -8132.4409, 5690.5508);
+	angles[163] = (0, -101, 0);
+	at[163] = 140;
+	points[164] = (-4641.5352, -8133.1099, 5690.5508);
+	angles[164] = (0, -101, 0);
+	at[164] = 140.5000;
+	points[165] = (-4643.2681, -8140.4727, 5690.7480);
+	angles[165] = (0, -101, 0);
+	at[165] = 141;
+	points[166] = (-4643.3467, -8140.8267, 5690.7876);
+	angles[166] = (0, -101, 0);
+	at[166] = 141.5000;
+	points[167] = (-4646.5752, -8154.5278, 5691.1416);
+	angles[167] = (0, -101, 0);
+	at[167] = 142.5000;
+	points[168] = (-4646.7324, -8155.1968, 5691.1812);
+	angles[168] = (0, -101, 0);
+	at[168] = 143;
+	points[169] = (-4648.4644, -8162.5591, 5691.3784);
+	angles[169] = (0, -101, 0);
+	at[169] = 143.5000;
+	points[170] = (-4648.5435, -8162.9136, 5691.3784);
+	angles[170] = (0, -101, 0);
+	at[170] = 144;
+	points[171] = (-4651.7324, -8176.5747, 5691.7324);
+	angles[171] = (0, -101, 0);
+	at[171] = 145;
+	points[172] = (-4651.8896, -8177.2837, 5691.7324);
+	angles[172] = (0, -101, 0);
+	at[172] = 145.5000;
+	points[173] = (-4653.6221, -8184.6455, 5691.9292);
+	angles[173] = (0, -101, 0);
+	at[173] = 146;
+	points[174] = (-4653.7012, -8184.9604, 5691.9292);
+	angles[174] = (0, -101, 0);
+	at[174] = 146.5000;
+	points[175] = (-4656.8901, -8198.6611, 5692.2437);
+	angles[175] = (0, -101, 0);
+	at[175] = 147.5000;
+	points[176] = (-4657.0474, -8199.3311, 5692.2837);
+	angles[176] = (0, -101, 0);
+	at[176] = 148;
+	points[177] = (-4658.7798, -8206.6934, 5692.4409);
+	angles[177] = (0, -101, 0);
+	at[177] = 148.5000;
+	points[178] = (-4658.8584, -8207.0469, 5692.4409);
+	angles[178] = (0, -101, 0);
+	at[178] = 149;
+	points[179] = (-4662.0864, -8220.7480, 5692.7954);
+	angles[179] = (0, -101, 0);
+	at[179] = 150;
+	points[180] = (-4662.2441, -8221.4180, 5692.7954);
+	angles[180] = (0, -101, 0);
+	at[180] = 150.5000;
+	points[181] = (-4663.9761, -8228.7793, 5692.9922);
+	angles[181] = (0, -101, 0);
+	at[181] = 151;
+	points[182] = (-4664.0552, -8229.1338, 5692.9922);
+	angles[182] = (0, -101, 0);
+	at[182] = 151.5000;
+	points[183] = (-4667.2441, -8242.7959, 5693.3071);
+	angles[183] = (0, -101, 0);
+	at[183] = 152.5000;
+	points[184] = (-4667.4019, -8243.5039, 5693.3462);
+	angles[184] = (0, -101, 0);
+	at[184] = 153;
+	points[185] = (-4669.1338, -8250.8662, 5693.5044);
+	angles[185] = (0, -101, 0);
+	at[185] = 153.5000;
+	points[186] = (-4669.2124, -8251.1816, 5693.5044);
+	angles[186] = (0, -101, 0);
+	at[186] = 154;
+	points[187] = (-4672.4019, -8264.8818, 5693.8579);
+	angles[187] = (0, -101, 0);
+	at[187] = 155;
+	points[188] = (-4673.3467, -8268.7793, 5693.9375);
+	angles[188] = (0, -101, 0);
+	at[188] = 155.8330;
+	mover = getEnt("iz_obj_9", "targetname");
+	if (!isDefined(mover))
+		return;
+	mover thread iz_mover_loop(points, angles, at, false, true);
+}
+
+iz_obj_10()
+{
+	points = [];
+	angles = [];
+	at = [];
+	points[0] = (-2413.3308, 336.9043, 5366.1021);
+	angles[0] = (0, -179, 0);
+	at[0] = 0;
+	points[1] = (-2420.6890, 338.6055, 5366.4565);
+	angles[1] = (0, -179, 0);
+	at[1] = 0.5000;
+	points[2] = (-2420.6890, 338.6055, 5366.4565);
+	angles[2] = (0, -179, 0);
+	at[2] = 1;
+	points[3] = (-2428.0432, 340.3063, 5366.8110);
+	angles[3] = (0, -179, 0);
+	at[3] = 1.5000;
+	points[4] = (-2435.3977, 342.0075, 5367.2046);
+	angles[4] = (0, -179, 0);
+	at[4] = 2.5000;
+	points[5] = (-2442.7561, 343.7083, 5367.5591);
+	angles[5] = (0, -179, 0);
+	at[5] = 3;
+	points[6] = (-2442.7561, 343.7083, 5367.5591);
+	angles[6] = (0, -179, 0);
+	at[6] = 3.5000;
+	points[7] = (-2464.8228, 348.8114, 5368.7402);
+	angles[7] = (0, -179, 0);
+	at[7] = 5.5000;
+	points[8] = (-2464.8228, 348.8114, 5368.7402);
+	angles[8] = (0, -179, 0);
+	at[8] = 6;
+	points[9] = (-2486.8899, 353.9142, 5369.9214);
+	angles[9] = (0, -179, 0);
+	at[9] = 8;
+	points[10] = (-2486.8899, 353.9142, 5369.9214);
+	angles[10] = (0, -179, 0);
+	at[10] = 8.5000;
+	points[11] = (-2508.9568, 359.0169, 5371.1021);
+	angles[11] = (0, -179, 0);
+	at[11] = 10.5000;
+	points[12] = (-2508.9568, 359.0169, 5371.1021);
+	angles[12] = (0, -179, 0);
+	at[12] = 11;
+	points[13] = (-2531.0237, 364.1201, 5372.2832);
+	angles[13] = (0, -179, 0);
+	at[13] = 13;
+	points[14] = (-2531.0237, 364.1201, 5372.2832);
+	angles[14] = (0, -179, 0);
+	at[14] = 13.5000;
+	points[15] = (-2553.0908, 369.2228, 5373.4644);
+	angles[15] = (0, -179, 0);
+	at[15] = 15.5000;
+	points[16] = (-2553.0908, 369.2228, 5373.4644);
+	angles[16] = (0, -179, 0);
+	at[16] = 16;
+	points[17] = (-2575.1575, 374.3260, 5374.6460);
+	angles[17] = (0, -179, 0);
+	at[17] = 18;
+	points[18] = (-2575.1575, 374.3260, 5374.6460);
+	angles[18] = (0, -179, 0);
+	at[18] = 18.5000;
+	points[19] = (-2597.2283, 379.4287, 5375.8662);
+	angles[19] = (0, -179, 0);
+	at[19] = 20.5000;
+	points[20] = (-2597.2283, 379.4287, 5375.8662);
+	angles[20] = (0, -179, 0);
+	at[20] = 21;
+	points[21] = (-2619.2952, 384.5319, 5377.0474);
+	angles[21] = (0, -179, 0);
+	at[21] = 23;
+	points[22] = (-2619.2952, 384.5319, 5377.0474);
+	angles[22] = (0, -179, 0);
+	at[22] = 23.5000;
+	points[23] = (-2641.3623, 389.6346, 5378.1494);
+	angles[23] = (0, -179, 0);
+	at[23] = 25.5000;
+	points[24] = (-2641.3623, 389.6346, 5378.1494);
+	angles[24] = (0, -179, 0);
+	at[24] = 26;
+	points[25] = (-2663.4292, 394.7362, 5379.2129);
+	angles[25] = (0, -179, 0);
+	at[25] = 28;
+	points[26] = (-2663.4292, 394.7362, 5379.2129);
+	angles[26] = (0, -179, 0);
+	at[26] = 28.5000;
+	points[27] = (-2685.4961, 399.8425, 5380.3149);
+	angles[27] = (0, -179, 0);
+	at[27] = 30.5000;
+	points[28] = (-2685.4961, 399.8425, 5380.3149);
+	angles[28] = (0, -179, 0);
+	at[28] = 31;
+	points[29] = (-2707.5632, 404.9449, 5381.3779);
+	angles[29] = (0, -179, 0);
+	at[29] = 33;
+	points[30] = (-2707.5632, 404.9449, 5381.3779);
+	angles[30] = (0, -179, 0);
+	at[30] = 33.5000;
+	points[31] = (-2729.6301, 410.0473, 5382.4414);
+	angles[31] = (0, -179, 0);
+	at[31] = 35.5000;
+	points[32] = (-2729.6301, 410.0473, 5382.4414);
+	angles[32] = (0, -179, 0);
+	at[32] = 36;
+	points[33] = (-2751.6968, 415.1496, 5383.5039);
+	angles[33] = (0, -179, 0);
+	at[33] = 38;
+	points[34] = (-2751.6968, 415.1496, 5383.5039);
+	angles[34] = (0, -179, 0);
+	at[34] = 38.5000;
+	points[35] = (-2773.7676, 420.2520, 5384.6064);
+	angles[35] = (0, -179, 0);
+	at[35] = 40.5000;
+	points[36] = (-2773.7676, 420.2520, 5384.6064);
+	angles[36] = (0, -179, 0);
+	at[36] = 41;
+	points[37] = (-2795.8347, 425.3543, 5385.7085);
+	angles[37] = (0, -179, 0);
+	at[37] = 43;
+	points[38] = (-2795.8347, 425.3543, 5385.7085);
+	angles[38] = (0, -179, 0);
+	at[38] = 43.5000;
+	points[39] = (-2817.9016, 430.4567, 5386.8506);
+	angles[39] = (0, -179, 0);
+	at[39] = 45.5000;
+	points[40] = (-2817.9016, 430.4567, 5386.8506);
+	angles[40] = (0, -179, 0);
+	at[40] = 46;
+	points[41] = (-2839.9685, 435.5630, 5387.9531);
+	angles[41] = (0, -179, 0);
+	at[41] = 48;
+	points[42] = (-2839.9685, 435.5630, 5387.9531);
+	angles[42] = (0, -179, 0);
+	at[42] = 48.5000;
+	points[43] = (-2862.0356, 440.6653, 5389.0942);
+	angles[43] = (0, -179, 0);
+	at[43] = 50.5000;
+	points[44] = (-2862.0356, 440.6653, 5389.0942);
+	angles[44] = (0, -179, 0);
+	at[44] = 51;
+	points[45] = (-2884.1025, 445.7677, 5390.2363);
+	angles[45] = (0, -179, 0);
+	at[45] = 53;
+	points[46] = (-2884.1025, 445.7677, 5390.2363);
+	angles[46] = (0, -179, 0);
+	at[46] = 53.5000;
+	points[47] = (-2906.1694, 450.8701, 5391.3779);
+	angles[47] = (0, -179, 0);
+	at[47] = 55.5000;
+	points[48] = (-2906.1694, 450.8701, 5391.3779);
+	angles[48] = (0, -179, 0);
+	at[48] = 56;
+	points[49] = (-2928.2361, 455.9725, 5392.4800);
+	angles[49] = (0, -179, 0);
+	at[49] = 58;
+	points[50] = (-2928.2361, 455.9725, 5392.4800);
+	angles[50] = (0, -179, 0);
+	at[50] = 58.5000;
+	points[51] = (-2950.3032, 461.0748, 5393.6221);
+	angles[51] = (0, -179, 0);
+	at[51] = 60.5000;
+	points[52] = (-2950.3032, 461.0748, 5393.6221);
+	angles[52] = (0, -179, 0);
+	at[52] = 61;
+	points[53] = (-2972.3701, 466.1772, 5394.7637);
+	angles[53] = (0, -179, 0);
+	at[53] = 63;
+	points[54] = (-2972.3701, 466.1772, 5394.7637);
+	angles[54] = (0, -179, 0);
+	at[54] = 63.5000;
+	points[55] = (-2994.4370, 471.2795, 5395.8267);
+	angles[55] = (0, -179, 0);
+	at[55] = 65.5000;
+	points[56] = (-2994.4370, 471.2795, 5395.8267);
+	angles[56] = (0, -179, 0);
+	at[56] = 66;
+	points[57] = (-3016.5042, 476.3858, 5396.8896);
+	angles[57] = (0, -179, 0);
+	at[57] = 68;
+	points[58] = (-3016.5042, 476.3858, 5396.8896);
+	angles[58] = (0, -179, 0);
+	at[58] = 68.5000;
+	points[59] = (-3038.5750, 481.4882, 5397.9531);
+	angles[59] = (0, -179, 0);
+	at[59] = 70.5000;
+	points[60] = (-3038.5750, 481.4882, 5397.9531);
+	angles[60] = (0, -179, 0);
+	at[60] = 71;
+	points[61] = (-3060.6418, 486.5905, 5399.0156);
+	angles[61] = (0, -179, 0);
+	at[61] = 73;
+	points[62] = (-3060.6418, 486.5905, 5399.0156);
+	angles[62] = (0, -179, 0);
+	at[62] = 73.5000;
+	points[63] = (-3082.7085, 491.6929, 5400.1182);
+	angles[63] = (0, -179, 0);
+	at[63] = 75.5000;
+	points[64] = (-3082.7085, 491.6929, 5400.1182);
+	angles[64] = (0, -179, 0);
+	at[64] = 76;
+	points[65] = (-3104.7756, 496.7953, 5401.1812);
+	angles[65] = (0, -179, 0);
+	at[65] = 78;
+	points[66] = (-3104.7756, 496.7953, 5401.1812);
+	angles[66] = (0, -179, 0);
+	at[66] = 78.5000;
+	points[67] = (-3126.8425, 501.8977, 5402.2441);
+	angles[67] = (0, -179, 0);
+	at[67] = 80.5000;
+	points[68] = (-3126.8425, 501.8977, 5402.2441);
+	angles[68] = (0, -179, 0);
+	at[68] = 81;
+	points[69] = (-3148.9094, 507, 5403.3071);
+	angles[69] = (0, -179, 0);
+	at[69] = 83;
+	points[70] = (-3148.9094, 507, 5403.3071);
+	angles[70] = (0, -179, 0);
+	at[70] = 83.5000;
+	points[71] = (-3153.0867, 507.9685, 5403.5039);
+	angles[71] = (0, -179, 0);
+	at[71] = 84;
+	points[72] = (-3139.4094, 504.8031, 5402.8345);
+	angles[72] = (0, -179, 0);
+	at[72] = 85;
+	points[73] = (-3138.7207, 504.6457, 5402.7954);
+	angles[73] = (0, -179, 0);
+	at[73] = 85.5000;
+	points[74] = (-3131.3621, 502.9449, 5402.4409);
+	angles[74] = (0, -179, 0);
+	at[74] = 86;
+	points[75] = (-3131.0198, 502.8662, 5402.4409);
+	angles[75] = (0, -179, 0);
+	at[75] = 86.5000;
+	points[76] = (-3117.3425, 499.7008, 5401.7720);
+	angles[76] = (0, -179, 0);
+	at[76] = 87.5000;
+	points[77] = (-3116.6536, 499.5433, 5401.7319);
+	angles[77] = (0, -179, 0);
+	at[77] = 88;
+	points[78] = (-3109.2952, 497.8425, 5401.3784);
+	angles[78] = (0, -179, 0);
+	at[78] = 88.5000;
+	points[79] = (-3108.9529, 497.7598, 5401.3784);
+	angles[79] = (0, -179, 0);
+	at[79] = 89;
+	points[80] = (-3095.2756, 494.5984, 5400.7085);
+	angles[80] = (0, -179, 0);
+	at[80] = 90;
+	points[81] = (-3094.5867, 494.4409, 5400.6694);
+	angles[81] = (0, -179, 0);
+	at[81] = 90.5000;
+	points[82] = (-3087.2285, 492.7402, 5400.3149);
+	angles[82] = (0, -179, 0);
+	at[82] = 91;
+	points[83] = (-3086.8857, 492.6575, 5400.3149);
+	angles[83] = (0, -179, 0);
+	at[83] = 91.5000;
+	points[84] = (-3073.2087, 489.4961, 5399.6460);
+	angles[84] = (0, -179, 0);
+	at[84] = 92.5000;
+	points[85] = (-3072.5159, 489.3347, 5399.6060);
+	angles[85] = (0, -179, 0);
+	at[85] = 93;
+	points[86] = (-3065.1616, 487.6339, 5399.2524);
+	angles[86] = (0, -179, 0);
+	at[86] = 93.5000;
+	points[87] = (-3064.8149, 487.5551, 5399.2124);
+	angles[87] = (0, -179, 0);
+	at[87] = 94;
+	points[88] = (-3051.1379, 484.3937, 5398.5825);
+	angles[88] = (0, -179, 0);
+	at[88] = 95;
+	points[89] = (-3050.4487, 484.2323, 5398.5435);
+	angles[89] = (0, -179, 0);
+	at[89] = 95.5000;
+	points[90] = (-3043.0945, 482.5315, 5398.1890);
+	angles[90] = (0, -179, 0);
+	at[90] = 96;
+	points[91] = (-3042.7480, 482.4528, 5398.1499);
+	angles[91] = (0, -179, 0);
+	at[91] = 96.5000;
+	points[92] = (-3029.0708, 479.2913, 5397.4800);
+	angles[92] = (0, -179, 0);
+	at[92] = 97.5000;
+	points[93] = (-3028.3818, 479.1299, 5397.4800);
+	angles[93] = (0, -179, 0);
+	at[93] = 98;
+	points[94] = (-3021.0276, 477.4292, 5397.1265);
+	angles[94] = (0, -179, 0);
+	at[94] = 98.5000;
+	points[95] = (-3020.6814, 477.3504, 5397.0864);
+	angles[95] = (0, -179, 0);
+	at[95] = 99;
+	points[96] = (-3007.0039, 474.1890, 5396.4175);
+	angles[96] = (0, -179, 0);
+	at[96] = 100;
+	points[97] = (-3006.3149, 474.0276, 5396.3779);
+	angles[97] = (0, -179, 0);
+	at[97] = 100.5000;
+	points[98] = (-2998.9607, 472.3268, 5396.0239);
+	angles[98] = (0, -179, 0);
+	at[98] = 101;
+	points[99] = (-2998.6143, 472.2480, 5396.0239);
+	angles[99] = (0, -179, 0);
+	at[99] = 101.5000;
+	points[100] = (-2984.9370, 469.0827, 5395.3545);
+	angles[100] = (0, -179, 0);
+	at[100] = 102.5000;
+	points[101] = (-2984.2478, 468.9252, 5395.3149);
+	angles[101] = (0, -179, 0);
+	at[101] = 103;
+	points[102] = (-2976.8936, 467.2244, 5394.9604);
+	angles[102] = (0, -179, 0);
+	at[102] = 103.5000;
+	points[103] = (-2976.5474, 467.1457, 5394.9604);
+	angles[103] = (0, -179, 0);
+	at[103] = 104;
+	points[104] = (-2962.8701, 463.9803, 5394.2915);
+	angles[104] = (0, -179, 0);
+	at[104] = 105;
+	points[105] = (-2962.1812, 463.8228, 5394.2524);
+	angles[105] = (0, -179, 0);
+	at[105] = 105.5000;
+	points[106] = (-2954.8267, 462.1220, 5393.8584);
+	angles[106] = (0, -179, 0);
+	at[106] = 106;
+	points[107] = (-2954.4805, 462.0394, 5393.8584);
+	angles[107] = (0, -179, 0);
+	at[107] = 106.5000;
+	points[108] = (-2940.8032, 458.8780, 5393.1494);
+	angles[108] = (0, -179, 0);
+	at[108] = 107.5000;
+	points[109] = (-2940.1143, 458.7205, 5393.1104);
+	angles[109] = (0, -179, 0);
+	at[109] = 108;
+	points[110] = (-2932.7559, 457.0197, 5392.7168);
+	angles[110] = (0, -179, 0);
+	at[110] = 108.5000;
+	points[111] = (-2932.4133, 456.9370, 5392.7168);
+	angles[111] = (0, -179, 0);
+	at[111] = 109;
+	points[112] = (-2918.7363, 453.7756, 5392.0078);
+	angles[112] = (0, -179, 0);
+	at[112] = 110;
+	points[113] = (-2918.0474, 453.6142, 5391.9683);
+	angles[113] = (0, -179, 0);
+	at[113] = 110.5000;
+	points[114] = (-2910.6892, 451.9134, 5391.6143);
+	angles[114] = (0, -179, 0);
+	at[114] = 111;
+	points[115] = (-2910.3464, 451.8346, 5391.5747);
+	angles[115] = (0, -179, 0);
+	at[115] = 111.5000;
+	points[116] = (-2896.6694, 448.6732, 5390.8657);
+	angles[116] = (0, -179, 0);
+	at[116] = 112.5000;
+	points[117] = (-2895.9802, 448.5118, 5390.8271);
+	angles[117] = (0, -179, 0);
+	at[117] = 113;
+	points[118] = (-2888.6221, 446.8110, 5390.4727);
+	angles[118] = (0, -179, 0);
+	at[118] = 113.5000;
+	points[119] = (-2888.2795, 446.7323, 5390.4336);
+	angles[119] = (0, -179, 0);
+	at[119] = 114;
+	points[120] = (-2874.6023, 443.5709, 5389.7637);
+	angles[120] = (0, -179, 0);
+	at[120] = 115;
+	points[121] = (-2873.9094, 443.4095, 5389.7246);
+	angles[121] = (0, -179, 0);
+	at[121] = 115.5000;
+	points[122] = (-2866.5552, 441.7087, 5389.3311);
+	angles[122] = (0, -179, 0);
+	at[122] = 116;
+	points[123] = (-2866.2085, 441.6299, 5389.3311);
+	angles[123] = (0, -179, 0);
+	at[123] = 116.5000;
+	points[124] = (-2852.5315, 438.4685, 5388.6221);
+	angles[124] = (0, -179, 0);
+	at[124] = 117.5000;
+	points[125] = (-2851.8425, 438.3071, 5388.5825);
+	angles[125] = (0, -179, 0);
+	at[125] = 118;
+	points[126] = (-2844.4883, 436.6063, 5388.1890);
+	angles[126] = (0, -179, 0);
+	at[126] = 118.5000;
+	points[127] = (-2844.1418, 436.5276, 5388.1890);
+	angles[127] = (0, -179, 0);
+	at[127] = 119;
+	points[128] = (-2830.4646, 433.3622, 5387.4800);
+	angles[128] = (0, -179, 0);
+	at[128] = 120;
+	points[129] = (-2829.7754, 433.2047, 5387.4409);
+	angles[129] = (0, -179, 0);
+	at[129] = 120.5000;
+	points[130] = (-2822.4211, 431.5040, 5387.0469);
+	angles[130] = (0, -179, 0);
+	at[130] = 121;
+	points[131] = (-2822.0750, 431.4252, 5387.0469);
+	angles[131] = (0, -179, 0);
+	at[131] = 121.5000;
+	points[132] = (-2808.3975, 428.2599, 5386.3389);
+	angles[132] = (0, -179, 0);
+	at[132] = 122.5000;
+	points[133] = (-2807.7087, 428.1024, 5386.2993);
+	angles[133] = (0, -179, 0);
+	at[133] = 123;
+	points[134] = (-2800.3542, 426.4016, 5385.9448);
+	angles[134] = (0, -179, 0);
+	at[134] = 123.5000;
+	points[135] = (-2800.0081, 426.3189, 5385.9058);
+	angles[135] = (0, -179, 0);
+	at[135] = 124;
+	points[136] = (-2786.3306, 423.1575, 5385.1968);
+	angles[136] = (0, -179, 0);
+	at[136] = 125;
+	points[137] = (-2785.6418, 423, 5385.1577);
+	angles[137] = (0, -179, 0);
+	at[137] = 125.5000;
+	points[138] = (-2778.2874, 421.2992, 5384.8032);
+	angles[138] = (0, -179, 0);
+	at[138] = 126;
+	points[139] = (-2777.9409, 421.2166, 5384.8032);
+	angles[139] = (0, -179, 0);
+	at[139] = 126.5000;
+	points[140] = (-2764.2639, 418.0551, 5384.1343);
+	angles[140] = (0, -179, 0);
+	at[140] = 127.5000;
+	points[141] = (-2763.5750, 417.8937, 5384.0942);
+	angles[141] = (0, -179, 0);
+	at[141] = 128;
+	points[142] = (-2756.2163, 416.1929, 5383.7397);
+	angles[142] = (0, -179, 0);
+	at[142] = 128.5000;
+	points[143] = (-2755.8740, 416.1142, 5383.7397);
+	angles[143] = (0, -179, 0);
+	at[143] = 129;
+	points[144] = (-2742.1970, 412.9528, 5383.0708);
+	angles[144] = (0, -179, 0);
+	at[144] = 130;
+	points[145] = (-2741.5078, 412.7914, 5383.0317);
+	angles[145] = (0, -179, 0);
+	at[145] = 130.5000;
+	points[146] = (-2734.1497, 411.0905, 5382.6772);
+	angles[146] = (0, -179, 0);
+	at[146] = 131;
+	points[147] = (-2733.8071, 411.0118, 5382.6377);
+	angles[147] = (0, -179, 0);
+	at[147] = 131.5000;
+	points[148] = (-2720.1299, 407.8504, 5381.9683);
+	angles[148] = (0, -179, 0);
+	at[148] = 132.5000;
+	points[149] = (-2719.4409, 407.6890, 5381.9683);
+	angles[149] = (0, -179, 0);
+	at[149] = 133;
+	points[150] = (-2712.0828, 405.9882, 5381.5747);
+	angles[150] = (0, -179, 0);
+	at[150] = 133.5000;
+	points[151] = (-2711.7400, 405.9094, 5381.5747);
+	angles[151] = (0, -179, 0);
+	at[151] = 134;
+	points[152] = (-2698.0630, 402.7480, 5380.9058);
+	angles[152] = (0, -179, 0);
+	at[152] = 135;
+	points[153] = (-2697.3740, 402.5866, 5380.8662);
+	angles[153] = (0, -179, 0);
+	at[153] = 135.5000;
+	points[154] = (-2690.0159, 400.8858, 5380.5117);
+	angles[154] = (0, -179, 0);
+	at[154] = 136;
+	points[155] = (-2689.6733, 400.8071, 5380.5117);
+	angles[155] = (0, -179, 0);
+	at[155] = 136.5000;
+	points[156] = (-2675.9961, 397.6417, 5379.8423);
+	angles[156] = (0, -179, 0);
+	at[156] = 137.5000;
+	points[157] = (-2675.3030, 397.4843, 5379.8032);
+	angles[157] = (0, -179, 0);
+	at[157] = 138;
+	points[158] = (-2667.9487, 395.7835, 5379.4487);
+	angles[158] = (0, -179, 0);
+	at[158] = 138.5000;
+	points[159] = (-2667.6025, 395.7047, 5379.4487);
+	angles[159] = (0, -179, 0);
+	at[159] = 139;
+	points[160] = (-2653.9290, 392.5405, 5378.7798);
+	angles[160] = (0, -179, 0);
+	at[160] = 140;
+	points[161] = (-2653.2361, 392.3811, 5378.7402);
+	angles[161] = (0, -179, 0);
+	at[161] = 140.5000;
+	points[162] = (-2645.8818, 390.6799, 5378.3857);
+	angles[162] = (0, -179, 0);
+	at[162] = 141;
+	points[163] = (-2645.5356, 390.6004, 5378.3467);
+	angles[163] = (0, -179, 0);
+	at[163] = 141.5000;
+	points[164] = (-2631.8582, 387.4374, 5377.6772);
+	angles[164] = (0, -179, 0);
+	at[164] = 142.5000;
+	points[165] = (-2631.1694, 387.2780, 5377.6772);
+	angles[165] = (0, -179, 0);
+	at[165] = 143;
+	points[166] = (-2623.8149, 385.5772, 5377.2832);
+	angles[166] = (0, -179, 0);
+	at[166] = 143.5000;
+	points[167] = (-2623.4685, 385.4973, 5377.2441);
+	angles[167] = (0, -179, 0);
+	at[167] = 144;
+	points[168] = (-2609.7913, 382.3347, 5376.5352);
+	angles[168] = (0, -179, 0);
+	at[168] = 145;
+	points[169] = (-2609.1025, 382.1752, 5376.4961);
+	angles[169] = (0, -179, 0);
+	at[169] = 145.5000;
+	points[170] = (-2601.7478, 380.4744, 5376.1021);
+	angles[170] = (0, -179, 0);
+	at[170] = 146;
+	points[171] = (-2601.4016, 380.3945, 5376.0630);
+	angles[171] = (0, -179, 0);
+	at[171] = 146.5000;
+	points[172] = (-2587.7246, 377.2319, 5375.3545);
+	angles[172] = (0, -179, 0);
+	at[172] = 147.5000;
+	points[173] = (-2587.0354, 377.0721, 5375.3154);
+	angles[173] = (0, -179, 0);
+	at[173] = 148;
+	points[174] = (-2579.6812, 375.3712, 5374.9209);
+	angles[174] = (0, -179, 0);
+	at[174] = 148.5000;
+	points[175] = (-2579.3347, 375.2917, 5374.8818);
+	angles[175] = (0, -179, 0);
+	at[175] = 149;
+	points[176] = (-2565.6575, 372.1288, 5374.1733);
+	angles[176] = (0, -179, 0);
+	at[176] = 150;
+	points[177] = (-2564.9685, 371.9693, 5374.1343);
+	angles[177] = (0, -179, 0);
+	at[177] = 150.5000;
+	points[178] = (-2557.6143, 370.2685, 5373.7402);
+	angles[178] = (0, -179, 0);
+	at[178] = 151;
+	points[179] = (-2557.2676, 370.1886, 5373.7012);
+	angles[179] = (0, -179, 0);
+	at[179] = 151.5000;
+	points[180] = (-2543.5906, 367.0260, 5372.9922);
+	angles[180] = (0, -179, 0);
+	at[180] = 152.5000;
+	points[181] = (-2542.9016, 366.8665, 5372.9531);
+	angles[181] = (0, -179, 0);
+	at[181] = 153;
+	points[182] = (-2535.5474, 365.1653, 5372.5591);
+	angles[182] = (0, -179, 0);
+	at[182] = 153.5000;
+	points[183] = (-2535.2007, 365.0858, 5372.5200);
+	angles[183] = (0, -179, 0);
+	at[183] = 154;
+	points[184] = (-2521.5237, 361.9228, 5371.7715);
+	angles[184] = (0, -179, 0);
+	at[184] = 155;
+	points[185] = (-2520.8345, 361.7634, 5371.7715);
+	angles[185] = (0, -179, 0);
+	at[185] = 155.5000;
+	points[186] = (-2513.4763, 360.0626, 5371.3779);
+	angles[186] = (0, -179, 0);
+	at[186] = 156;
+	points[187] = (-2513.1338, 359.9827, 5371.3389);
+	angles[187] = (0, -179, 0);
+	at[187] = 156.5000;
+	points[188] = (-2499.4565, 356.8201, 5370.5903);
+	angles[188] = (0, -179, 0);
+	at[188] = 157.5000;
+	points[189] = (-2498.7678, 356.6606, 5370.5903);
+	angles[189] = (0, -179, 0);
+	at[189] = 158;
+	points[190] = (-2491.4094, 354.9595, 5370.1968);
+	angles[190] = (0, -179, 0);
+	at[190] = 158.5000;
+	points[191] = (-2491.0671, 354.8799, 5370.1572);
+	angles[191] = (0, -179, 0);
+	at[191] = 159;
+	points[192] = (-2477.3899, 351.7173, 5369.4092);
+	angles[192] = (0, -179, 0);
+	at[192] = 160;
+	points[193] = (-2476.7007, 351.5579, 5369.3701);
+	angles[193] = (0, -179, 0);
+	at[193] = 160.5000;
+	points[194] = (-2469.3425, 349.8567, 5368.9761);
+	angles[194] = (0, -179, 0);
+	at[194] = 161;
+	points[195] = (-2469, 349.7772, 5368.9761);
+	angles[195] = (0, -179, 0);
+	at[195] = 161.5000;
+	points[196] = (-2455.3228, 346.6142, 5368.2285);
+	angles[196] = (0, -179, 0);
+	at[196] = 162.5000;
+	points[197] = (-2454.6338, 346.4547, 5368.1895);
+	angles[197] = (0, -179, 0);
+	at[197] = 163;
+	points[198] = (-2447.2756, 344.7539, 5367.7949);
+	angles[198] = (0, -179, 0);
+	at[198] = 163.5000;
+	points[199] = (-2446.9331, 344.6740, 5367.7949);
+	angles[199] = (0, -179, 0);
+	at[199] = 164;
+	points[200] = (-2433.2559, 341.5114, 5367.0869);
+	angles[200] = (0, -179, 0);
+	at[200] = 165;
+	points[201] = (-2432.5630, 341.3520, 5367.0474);
+	angles[201] = (0, -179, 0);
+	at[201] = 165.5000;
+	points[202] = (-2425.2087, 339.6508, 5366.6929);
+	angles[202] = (0, -179, 0);
+	at[202] = 166;
+	points[203] = (-2424.8662, 339.5713, 5366.6929);
+	angles[203] = (0, -179, 0);
+	at[203] = 166.5000;
+	points[204] = (-2413.3308, 336.9043, 5366.1021);
+	angles[204] = (0, -179, 0);
+	at[204] = 167.5000;
+	mover = getEnt("iz_obj_10", "targetname");
+	if (!isDefined(mover))
+		return;
+	mover thread iz_mover_loop(points, angles, at, false, true);
+}
+
+iz_mover_loop(points, angles, at, once, closed)
+{
+	wait 0.05;
+	self iz_place(points[0], iz_pose(angles, 0));
+	period = at[at.size - 1];
+	if (period < 0.05)
+		return;
+	done = 0;
+	for (pass = 0; !once || pass < 1; pass++)
+	{
+		if (pass && !closed)
+			self iz_place(points[0], iz_pose(angles, 0));
+		for (i = 1; i < points.size; i++)
+		{
+			if (at[i] == at[i - 1])
+			{
+				self iz_place(points[i], iz_pose(angles, i));
+				continue;
+			}
+			due = int((pass * period + at[i]) * 20 + 0.5);
+			if (due <= done)
+				continue;
+			self iz_move(points[i], iz_pose(angles, i), due - done);
+			wait 0.05 * (due - done);
+			done = due;
+		}
+	}
+	last = points.size - 1;
+	self iz_stop(points[last], iz_pose(angles, last));
+}
+
+iz_pose(angles, i)
+{
+	if (isDefined(angles))
+		return angles[i];
+}
