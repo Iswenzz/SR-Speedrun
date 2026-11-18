@@ -97,7 +97,7 @@ menu_3rdPerson(arg)
 
 menu_Suicide(arg)
 {
-	if (self isAxis())
+	if (self isAxis() || self sr\core\_minigames::isInQueue("mkw"))
 	{
 		self iPrintLn("^1Suicide disabled");
 		return;

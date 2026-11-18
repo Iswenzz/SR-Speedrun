@@ -97,6 +97,7 @@ menufile,ui/menus.txt
 sound,common,,all_mp
 sound,speedrun,,all_mp
 sound,q3,,all_mp
+sound,mkw,,all_mp
 sound,user_interface,,all_mp
 
 // Models
@@ -1229,6 +1230,8 @@ sound,insertion,,all
 
 // Q3 Rocket
 fx,q3/rocket_trail
+fx,mkw/foot_boost
+fx,mkw/cloud
 xmodel,quake_rocket_projectile
 xmodel,q3rocket_view
 xmodel,q3rocket_world
@@ -1496,3 +1499,46 @@ xmodel,q3_rg
 xmodel,q3_rl
 xmodel,q3_sg
 xmodel,q3_teleporter
+xmodel,smb_ball_blue
+xmodel,smb_ball_green
+xmodel,smb_ball_red
+xmodel,smb_ball_yellow
+xmodel,smb_ball_clear
+xmodel,mkw_item_banana
+xmodel,mkw_item_blue_shell
+xmodel,mkw_item_bobomb
+xmodel,mkw_item_fake_box
+xmodel,mkw_item_fake_box_mark
+xmodel,mkw_item_green_shell
+xmodel,mkw_item_red_shell
+xmodel,mkw_item_blooper
+xmodel,mkw_item_bolt
+xmodel,mkw_item_bullet
+xmodel,mkw_item_cloud
+xmodel,mkw_item_mega_mushroom
+xmodel,mkw_item_mushroom
+xmodel,mkw_item_pow
+xmodel,mkw_item_star
+fx,explosions/grenadeExp_default
+fx,explosions/aerial_explosion
+fx,impacts/20mm_default_impact
+fx,explosions/grenade_flash
+material,mkw_icon_banana
+material,mkw_icon_blooper
+material,mkw_icon_blue_shell
+material,mkw_icon_bobomb
+material,mkw_icon_bullet
+material,mkw_icon_fake_box
+material,mkw_icon_golden_mushroom
+material,mkw_icon_green_shell
+material,mkw_icon_lightning
+material,mkw_icon_mega_mushroom
+material,mkw_icon_mushroom
+material,mkw_icon_pow
+material,mkw_icon_red_shell
+material,mkw_icon_star
+material,mkw_icon_thunder_cloud
+material,mkw_icon_triple_banana
+material,mkw_icon_triple_green
+material,mkw_icon_triple_mushroom
+material,mkw_icon_triple_red

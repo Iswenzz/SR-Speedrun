@@ -94,6 +94,12 @@ start()
 	if (self getStat(1700) != self getModeStat())
 		self setStat(1700, self getModeStat());
 
+	// A minigame that moves its players its own way: 1 racer, 2 ball. 1702 is a racer's size.
+	if (self getStat(1701) != IfUndef(self.sr_movement, 0))
+		self setStat(1701, IfUndef(self.sr_movement, 0));
+	if (self getStat(1702))
+		self setStat(1702, 0);
+
 	self setQ3Weapons(self.teamKill, false);
 
 	switch (self.sr_mode)
@@ -270,6 +276,18 @@ playerTimer()
 
 endTimer()
 {
+	// A run's end is a lap's end while a race is on.
+	if (self sr\minigames\_mkw_race::racing())
+	{
+		self sr\minigames\_mkw_race::lap();
+		return;
+	}
+	// And the goal while a round of balls is.
+	if (self sr\minigames\_monkey::rolling())
+	{
+		self sr\minigames\_monkey::goal();
+		return;
+	}
 	if (!self isPlaying() || self isDemo() || !isDefined(self.time) || self.finishedMap)
 		return;
 	self.finishedMap = true;
@@ -286,7 +304,9 @@ endTimer()
 	}
 	if (self isCheat())
 	{
-		self iPrintLnBold("^1Your time was not saved!");
+		// Whoever plays a minigame was not after a time.
+		if (!self sr\core\_minigames::isInAnyQueue())
+			self iPrintLnBold("^1Your time was not saved!");
 		return;
 	}
 	way = speedrun\core\_leaderboards::getLeaderboardName(self.sr_mode, self.sr_way);

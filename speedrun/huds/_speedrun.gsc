@@ -44,6 +44,14 @@ hud()
 	self notify("speedrun");
 }
 
+// A minigame shows its own things where the run's would be.
+hide()
+{
+	keys = getArrayKeys(self.huds["speedrun"]);
+	for (i = 0; i < keys.size; i++)
+		self.huds["speedrun"][keys[i]].alpha = 0;
+}
+
 updateAdmin()
 {
 	self endon("death");

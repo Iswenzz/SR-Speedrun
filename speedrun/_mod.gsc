@@ -26,6 +26,8 @@ main()
 	sr\commands\_kz::main();
 	sr\commands\_map::main();
 	sr\commands\_misc::main();
+	sr\commands\_mkw::main();
+	sr\commands\_monkey::main();
 	sr\commands\_music::main();
 	sr\commands\_player::main();
 	sr\commands\_portal::main();
@@ -69,6 +71,8 @@ main()
 	sr\menus\_vote::main();
 	sr\minigames\_bomberman::main();
 	sr\minigames\_kz::main();
+	sr\minigames\_mkw::main();
+	sr\minigames\_monkey::main();
 	sr\minigames\_race::main();
 	sr\modes\_debug::main();
 	sr\modes\_practise::main();
