@@ -4,6 +4,8 @@
 
 main()
 {
+	precacheShader("trophy_diamond");
+
 	event("spawn", ::hud);
 	event("death", ::clear);
 }
@@ -34,6 +36,8 @@ hud()
 
  	self.huds["speedrun"]["role"] = addHud(self, 142, 18, 1, "left", "top", 1.8, 99, true);
 	self.huds["speedrun"]["vip"] = addHud(self, 144, -1, 1, "left", "top", 1.8, 99, true);
+	self.huds["speedrun"]["epic_icon"] = addHud(self, 170, 1, 0, "left", "top", 1.4, 99, true);
+	self.huds["speedrun"]["epic_icon_count"] = addHud(self, 185, 5, 0, "left", "top", 1.4, 100, true);
 	self.huds["speedrun"]["wr_icon"] = addHud(self, 170, 1, 1, "left", "top", 1.4, 99, true);
 	self.huds["speedrun"]["wr_icon_count"] = addHud(self, 185, 5, 1, "left", "top", 1.4, 100, true);
 
@@ -100,11 +104,28 @@ updateRecords()
 		self.huds["speedrun"]["wr_icon"].alpha = 1;
 	}
 	if (isDefined(self.pers["wrs"]))
-	{
-		self.huds["speedrun"]["wr_icon"] setShader("speedrunner_logo", 18, 18);
-		self.huds["speedrun"]["wr_icon_count"] setText(fmt("^3%d ^7[%d]", self.pers["wrs"], self.pers["wrms"]));
-		self.huds["speedrun"]["wr_icon"].alpha = self.pers["wrs"] > 0;
-	}
+		self updateTrophies();
+}
+
+updateTrophies()
+{
+	epics = self.pers["epics"];
+	wrs = self.pers["wrs"];
+	x = 170;
+
+	self.huds["speedrun"]["epic_icon"] setShader("trophy_diamond", 18, 18);
+	self.huds["speedrun"]["epic_icon_count"] setText("^5" + epics);
+	self.huds["speedrun"]["epic_icon"].alpha = epics > 0;
+	self.huds["speedrun"]["epic_icon_count"].alpha = epics > 0;
+	if (epics > 0)
+		x += 18 + ("" + epics).size * 10;
+
+	self.huds["speedrun"]["wr_icon"] setShader("speedrunner_logo", 18, 18);
+	self.huds["speedrun"]["wr_icon_count"] setText("^3" + wrs);
+	self.huds["speedrun"]["wr_icon"].x = x;
+	self.huds["speedrun"]["wr_icon_count"].x = x + 15;
+	self.huds["speedrun"]["wr_icon"].alpha = wrs > 0;
+	self.huds["speedrun"]["wr_icon_count"].alpha = wrs > 0;
 }
 
 updateTime()
