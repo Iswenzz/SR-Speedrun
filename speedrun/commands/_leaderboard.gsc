@@ -6,6 +6,99 @@ main()
 {
 	cmd("leaderboard_delete_entry", "owner", ::cmd_LeaderboardDeleteEntry, 	"Delete an entry in a leaderboard");
 	cmd("leaderboard_delete", 		"owner", ::cmd_LeaderboardDelete, 		"Delete a whole leaderboard");
+	cmd("epic", 					"owner", ::cmd_Epic, 					"Make a mode and way of this map an epic world record");
+	cmd("remove_epic", 				"owner", ::cmd_RemoveEpic, 				"Remove an epic world record from this map");
+}
+
+cmd_Epic(args)
+{
+	if (args.size < 2)
+	{
+		self pm("Usage: epic <mode> <way>");
+		self pm(fmt("^5Epic: ^7%s", epicList()));
+		return;
+	}
+	mode = epicMode(args[0]);
+	way = args[1];
+
+	if (!isDefined(mode) || !isDefined(level.leaderboard_ways) || !isDefined(level.leaderboard_ways[way]))
+		return self pm(fmt("^3Leaderboard not found ^7%s %s", args[0], way));
+	if (speedrun\core\_leaderboards::isEpic(mode, way))
+		return self pm(fmt("^3Already epic ^7%s %s", mode, way));
+
+	critical_enter("mysql");
+
+	request = SQL_Prepare("INSERT IGNORE INTO epics (map, mode, way) VALUES (?, ?, ?)");
+	SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
+	SQL_BindParam(request, mode, level.MYSQL_TYPE_STRING);
+	SQL_BindParam(request, way, level.MYSQL_TYPE_STRING);
+	SQL_Execute(request);
+	AsyncWait(request);
+	SQL_Free(request);
+
+	critical_release("mysql");
+
+	speedrun\core\_leaderboards::setEpic(mode, way, true);
+	self pm(fmt("^5Epic ^7%s %s", mode, speedrun\core\_leaderboards::getLeaderboardName(mode, way)));
+	refreshWorldRecordCounts();
+}
+
+cmd_RemoveEpic(args)
+{
+	if (args.size < 2)
+		return self pm("Usage: remove_epic <mode> <way>");
+
+	mode = epicMode(args[0]);
+	way = args[1];
+
+	if (!isDefined(mode) || !speedrun\core\_leaderboards::isEpic(mode, way))
+		return self pm(fmt("^3Not epic ^7%s %s", args[0], way));
+
+	critical_enter("mysql");
+
+	request = SQL_Prepare("DELETE FROM epics WHERE map = ? AND mode = ? AND way = ?");
+	SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
+	SQL_BindParam(request, mode, level.MYSQL_TYPE_STRING);
+	SQL_BindParam(request, way, level.MYSQL_TYPE_STRING);
+	SQL_Execute(request);
+	AsyncWait(request);
+	SQL_Free(request);
+
+	critical_release("mysql");
+
+	speedrun\core\_leaderboards::setEpic(mode, way, false);
+	self pm(fmt("^1Removed epic ^7%s %s", mode, way));
+	refreshWorldRecordCounts();
+}
+
+epicMode(name)
+{
+	if (!isDefined(level.leaderboard_modes))
+		return undefined;
+
+	modes = getArrayKeys(level.leaderboard_modes);
+	for (i = 0; i < modes.size; i++)
+	{
+		if (toLower(modes[i]) == toLower(name))
+			return modes[i];
+	}
+	return undefined;
+}
+
+epicList()
+{
+	list = "";
+	epics = getArrayKeys(level.leaderboard_epics);
+	for (i = 0; i < epics.size; i++)
+		list += Ternary(i, ", ", "") + level.leaderboard_epics[epics[i]];
+	return Ternary(list == "", "-", list);
+}
+
+refreshWorldRecordCounts()
+{
+	players = getAllPlayers();
+	for (i = 0; i < players.size; i++)
+		players[i] thread speedrun\core\_leaderboards::refreshWorldRecordCount();
 }
 
 cmd_LeaderboardDelete(args)

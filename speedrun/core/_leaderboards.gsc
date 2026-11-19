@@ -8,6 +8,7 @@ main()
 	level.leaderboard_max_page = 7;
 	level.leaderboard_max_entries = 40;
 	level.leaderboard_xps = xpTable();
+	level.leaderboard_epics = [];
 
 	addMode("190");
 	addMode("210");
@@ -73,7 +74,7 @@ botLeaderboardEntries()
 {
 	self.lbEntries = 0;
 	self.pers["wrs"] = 0;
-	self.pers["wrms"] = 0;
+	self.pers["epics"] = 0;
 }
 
 unlinkedLeaderboardEntries()
@@ -100,11 +101,11 @@ getPlayerWorldRecordCount()
 	critical_enter("mysql");
 
 	// Correlated MIN uses the (map, mode, way, tas, time) index instead of a window over the whole table.
-	request = SQL_Prepare("SELECT "
-		+ "COUNT(CASE WHEN l.mode IN ('190', '210') THEN 1 END), "
-		+ "COUNT(CASE WHEN l.mode IN ('Q3', 'Q3CPM', 'Q3CPMW', 'CS', 'Portal') THEN 1 END) "
-		+ "FROM leaderboards l WHERE l.player = ? AND l.tas = 0 AND l.time = ("
-		+ "SELECT MIN(m.time) FROM leaderboards m WHERE m.map = l.map AND m.mode = l.mode AND m.way = l.way AND m.tas = 0)");
+	// The mode list leaves out the retired Legacy modes still in the table.
+	request = SQL_Prepare("SELECT COUNT(*), COUNT(e.id) FROM leaderboards l "
+		+ "LEFT JOIN epics e ON e.map = l.map AND e.mode = l.mode AND e.way = l.way "
+		+ "WHERE l.player = ? AND l.tas = 0 AND l.mode IN ('190', '210', 'Q3', 'Q3CPM', 'Q3CPMW', 'CS', 'Portal') "
+		+ "AND l.time = (SELECT MIN(m.time) FROM leaderboards m WHERE m.map = l.map AND m.mode = l.mode AND m.way = l.way AND m.tas = 0)");
 	SQL_BindParam(request, self.id, level.MYSQL_TYPE_STRING);
 	SQL_Execute(request);
 	AsyncWait(request);
@@ -117,9 +118,20 @@ getPlayerWorldRecordCount()
 		return;
 
 	self.pers["wrs"] = IfUndef(counts[0], 0);
-	self.pers["wrms"] = IfUndef(counts[1], 0);
+	self.pers["epics"] = IfUndef(counts[1], 0);
 	self setStat(2001, self.pers["wrs"]);
-	self setClientDvar("sr_leaderboard_wr_count", fmt("%d ^5(%d)", self.pers["wrs"], self.pers["wrms"]));
+	self setClientDvar("sr_leaderboard_wr_count", fmt("%d ^5(%d)", self.pers["wrs"], self.pers["epics"]));
+}
+
+refreshWorldRecordCount()
+{
+	self endon("disconnect");
+
+	if (self isBot() || !self sr\sys\_admins::isAuth())
+		return;
+
+	self getPlayerWorldRecordCount();
+	self speedrun\huds\_speedrun::updateRecords();
 }
 
 getPlayerEntriesCount()
@@ -208,12 +220,46 @@ load()
 	}
 	rows = undefined;
 
+	loadEpics();
+
 	level setLoading("leaderboards", false);
 	level thread demos();
 
 	players = getAllPlayers();
 	for (i = 0; i < players.size; i++)
 		players[i] thread speedrun\huds\_speedrun::updateRecords();
+}
+
+loadEpics()
+{
+	critical_enter("mysql");
+
+	request = SQL_Prepare("SELECT mode, way FROM epics WHERE map = ?");
+	SQL_BindParam(request, level.map, level.MYSQL_TYPE_STRING);
+	SQL_Execute(request);
+	AsyncWait(request);
+
+	rows = SQL_FetchRowsDict(request);
+	SQL_Free(request);
+	critical_release("mysql");
+
+	level.leaderboard_epics = [];
+	for (i = 0; i < rows.size; i++)
+		setEpic(rows[i]["mode"], rows[i]["way"], true);
+}
+
+setEpic(mode, way, epic)
+{
+	index = fmt("%s_%s", mode, way);
+	if (epic)
+		level.leaderboard_epics[index] = fmt("%s %s", mode, way);
+	else
+		level.leaderboard_epics[index] = undefined;
+}
+
+isEpic(mode, way)
+{
+	return isDefined(level.leaderboard_epics[fmt("%s_%s", mode, way)]);
 }
 
 demos()
@@ -484,7 +530,8 @@ worldRecord(entry)
 	way = getLeaderboardName(entry["mode"], entry["way"]);
 	index = getLeaderboardIndex(entry["mode"], entry["way"], entry["tas"]);
 
-	message = fmt("^5New ^2WR ^7on ^6%s ^2%s ^7By ^5%s", entry["mode"], way, self.shortName);
+	record = Ternary(isEpic(entry["mode"], entry["way"]), "^5Epic WR", "^2WR");
+	message = fmt("^5New %s ^7on ^6%s ^2%s ^7By ^5%s", record, entry["mode"], way, self.shortName);
 	iPrintLnBold(message);
 	comPrintLn(message);
 

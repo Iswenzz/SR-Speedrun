@@ -80,6 +80,24 @@ CREATE TABLE `leaderboards` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `epics`
+--
+
+DROP TABLE IF EXISTS `epics`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `epics` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `map` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `mode` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `way` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `epics_map_mode_way_key` (`map`, `mode`, `way`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `pbs`
 --
 
