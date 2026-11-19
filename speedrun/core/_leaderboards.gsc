@@ -530,10 +530,20 @@ worldRecord(entry)
 	way = getLeaderboardName(entry["mode"], entry["way"]);
 	index = getLeaderboardIndex(entry["mode"], entry["way"], entry["tas"]);
 
-	record = Ternary(isEpic(entry["mode"], entry["way"]), "^5Epic WR", "^2WR");
-	message = fmt("^5New %s ^7on ^6%s ^2%s ^7By ^5%s", record, entry["mode"], way, self.shortName);
-	iPrintLnBold(message);
-	comPrintLn(message);
+	if (isEpic(entry["mode"], entry["way"]))
+	{
+		title = "^5>> ^7EPIC WORLD RECORD ^5<<";
+		message = fmt("^7By ^5%s ^7on ^5%s ^7%s", self.shortName, entry["mode"], way);
+		iPrintLnBold(title);
+		iPrintLnBold(message);
+		comPrintLn(title + " " + message);
+	}
+	else
+	{
+		message = fmt("^5New ^2WR ^7on ^6%s ^2%s ^7By ^5%s", entry["mode"], way, self.shortName);
+		iPrintLnBold(message);
+		comPrintLn(message);
+	}
 
 	players = getAllPlayers();
 	for (i = 0; i < players.size; i++)
