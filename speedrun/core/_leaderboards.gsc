@@ -361,7 +361,7 @@ saveEntry(entry)
 	if (placement <= 3)
 		self thread sr\core\_demo::recordSave();
 	if (placement == 1 && !self isTie(entry, entries))
-		self thread worldRecord(entry);
+		self thread worldRecord(entry, entries[0]);
 
 	critical_enter("mysql");
 
@@ -522,7 +522,8 @@ getWorldRecord(mode, way)
 	return speedrun\core\_run::formatTime(entries[0]["time"]);
 }
 
-worldRecord(entry)
+// The previous record is the one this run beat, undefined on a board's first run.
+worldRecord(entry, previous)
 {
 	if (self sr\sys\_admins::isTAS())
 		return;
@@ -537,6 +538,7 @@ worldRecord(entry)
 		iPrintLnBold(title);
 		iPrintLnBold(message);
 		comPrintLn(title + " " + message);
+		thread discordRecord(entry, previous, way);
 	}
 	else
 	{
@@ -555,6 +557,54 @@ worldRecord(entry)
 	wait 1;
 	if (speedrun\core\_demo::addSpeedrunDemo(entry))
 		level.demos[index] = entry;
+}
+
+discordRecord(entry, previous, way)
+{
+	holder = fmt("[%s](https://sr-speedrun.com/players/%s)", discordName(entry["name"]), entry["player"]);
+	board = fmt("https://sr-speedrun.com/leaderboards/%s?mode=%s&way=%s", entry["map"], entry["mode"], entry["way"]);
+	time = "**" + speedrun\core\_run::formatTime(entry["time"]) + "**";
+
+	text = fmt("**%s** sets the first record on this epic leaderboard", holder);
+	before = "None";
+	if (isDefined(previous))
+	{
+		gap = gapTime(previous["time"].origin - entry["time"].origin);
+		before = fmt("%s by %s", speedrun\core\_run::formatTime(previous["time"]), discordName(previous["name"]));
+		if (previous["player"] == entry["player"])
+			text = fmt("**%s** improves their own epic world record by **%s**", holder, gap);
+		else
+			text = fmt("**%s** takes the epic world record from **%s** by **%s**", holder, discordName(previous["name"]), gap);
+	}
+
+	server = escapeJson(removeColorFromString(getDvar("sv_hostname")));
+	json = fmt(sr\sys\_discord::template("record"), 2282478, entry["map"], board, text, time, before,
+		fmt("%s, %s", entry["mode"], escapeJson(way)), server, level.discord["icon"]);
+
+	sr\sys\_discord::send("feed", json);
+}
+
+discordName(name)
+{
+	name = removeColorFromString(name);
+	output = "";
+	for (i = 0; i < name.size; i++)
+	{
+		if (isSubStr("*_~`|[]()\\", name[i]))
+			output += "\\";
+		output += name[i];
+	}
+	return escapeJson(output);
+}
+
+gapTime(ms)
+{
+	if (ms >= 60000)
+		return speedrun\core\_run::formatTime(originToTime(ms));
+	rest = (ms % 1000) + "";
+	while (rest.size < 3)
+		rest = "0" + rest;
+	return fmt("%d.%ss", int(ms / 1000), rest);
 }
 
 effects()
